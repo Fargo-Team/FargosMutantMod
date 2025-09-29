@@ -3183,5 +3183,22 @@ Mods: {
 				// LeftOff: Unlimited Buffs Hidden
 			}
 		}
+
+		Achievements: {
+			MultitaskCenterAchievement: {
+				// FriendlyName: A Third Arm
+				// Description: Spark your crafting skills by combining basic stations into a compact bench!
+			}
+
+			CrucibleofTheCosmosAchievement: {
+				// FriendlyName: Crucibleof The Cosmos Achievement
+				// Description: Mods.Fargowiltas.Achievements.CrucibleofTheCosmosAchievement.Description
+			}
+
+			ElementalAssemblerAchievement: {
+				// FriendlyName: Elemental Assembler Achievement
+				// Description: Mods.Fargowiltas.Achievements.ElementalAssemblerAchievement.Description
+			}
+		}
 	}
 }

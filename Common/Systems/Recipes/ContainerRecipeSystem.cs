@@ -28,7 +28,7 @@ namespace Fargowiltas.Common.Systems.Recipes
                 ItemID.Flamelash,
                 ItemID.Sunfury
             );
-            RecipeHelper.CreateSimpleRecipe(ItemID.TreasureMagnet, ItemID.FlowerofFire, TileID.Solidifier, disableDecraft: true, conditions: Condition.NotRemixWorld);
+            RecipeHelper.CreateSimpleRecipe(ItemID.TreasureMagnet, ItemID.FlowerofFire, TileID.Solidifier, ingredientAmount: 2, disableDecraft: true, conditions: Condition.NotRemixWorld);
         }
 
         private static void AddPreHMTreasureBagRecipes()

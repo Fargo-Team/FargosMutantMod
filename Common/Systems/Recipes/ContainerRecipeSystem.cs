@@ -461,9 +461,10 @@ namespace Fargowiltas.Common.Systems.Recipes
 
         private static void CreateTreasureGroupRecipe(int input, params int[] outputs)
         {
+            int amount = (ItemID.Sets.BossBag[input] || input == ItemID.TreasureMagnet) ? 2 : 1;
             foreach (int output in outputs)
             {
-                RecipeHelper.CreateSimpleRecipe(input, output, TileID.Solidifier, ingredientAmount: 2, disableDecraft: true);
+                RecipeHelper.CreateSimpleRecipe(input, output, TileID.Solidifier, ingredientAmount: amount, disableDecraft: true);
             }
         }
     }

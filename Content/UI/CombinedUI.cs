@@ -114,19 +114,21 @@ namespace Fargowiltas.Content.UI
         }
         public static void ToggleUI(FargoUI ui)
         {
-            Main.playerInventory = true;
-            FargoUIManager.Open<CombinedUI>();  
             if (FargoUIManager.IsOpen(ui))
             {
                 FargoUIManager.Close(ui);
             }
             else
             {
+                Main.playerInventory = true;
+                FargoUIManager.Open<CombinedUI>();
+
                 for (int i = 0; i < ListElements; i++)
                 {
                     if (List[i].UI != ui)
                         FargoUIManager.Close(List[i].UI);
                 }
+
                 FargoUIManager.Open(ui);
             }
         }

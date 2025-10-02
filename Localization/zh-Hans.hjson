@@ -393,7 +393,7 @@ Mods: {
 		}
 
 		UI: {
-			// CombinedUIButton: Open Fargo Menus
+			// CombinedUIButton: Open Utilities
 			// StatSheet: "[i:Sign] Stat Sheet"
 			SearchText: 搜索……
 			// Stat Sheet Elements

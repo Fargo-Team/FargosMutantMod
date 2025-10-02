@@ -393,7 +393,8 @@ Mods: {
 		}
 
 		UI: {
-			StatButton: 属性统计表
+			// CombinedUIButton: Open Fargo Menus
+			// StatSheet: "[i:Sign] Stat Sheet"
 			SearchText: 搜索……
 			// Stat Sheet Elements
 			MeleeDamage: 近战伤害：{0}%
@@ -2539,6 +2540,11 @@ Mods: {
 					Uses the leftmost minion weapon in your hotbar
 					Mana is spent as normal
 					''' */
+			}
+
+			TogglerIconItem: {
+				// DisplayName: Toggler Icon Item
+				// Tooltip: ""
 			}
 		}
 

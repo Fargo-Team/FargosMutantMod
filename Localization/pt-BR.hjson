@@ -385,7 +385,8 @@ Mods: {
 		}
 
 		UI: {
-			StatButton: Folha de Estatísticas
+			// CombinedUIButton: Open Fargo Menus
+			// StatSheet: "[i:Sign] Stat Sheet"
 			SearchText: Procurar...
 			// Stat Sheet Elements
 			MeleeDamage: Dano físico: {0}%
@@ -2530,6 +2531,11 @@ Mods: {
 					Uses the leftmost minion weapon in your hotbar
 					Mana is spent as normal
 					''' */
+			}
+
+			TogglerIconItem: {
+				// DisplayName: Toggler Icon Item
+				// Tooltip: ""
 			}
 		}
 

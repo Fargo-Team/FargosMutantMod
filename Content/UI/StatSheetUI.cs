@@ -11,8 +11,9 @@ using Terraria.UI;
 
 namespace Fargowiltas.Content.UI
 {
-    public class StatSheetUI : UIState
+    public class StatSheetUI : FargoUI
     {
+        public override bool MenuToggleSound => true;
         public int BackWidth = 650;
         public int BackHeight = 25 * HowManyPerColumn + 26 + 4; //row height * stat rows + search bar + padding
         public const int HowManyPerColumn = 14;
@@ -48,10 +49,14 @@ namespace Fargowiltas.Content.UI
                 ConsumedBool = consumedBool;
             }
         }
-
+        public override void OnLoad()
+        {
+            CombinedUI.AddUI<StatSheetUI>(Language.GetText("Mods.Fargowiltas.UI.StatSheet"), 1); // TODO: localize this
+        }
         public override void OnInitialize()
         {
-            Vector2 offset = new Vector2(Main.screenWidth / 2 - BackWidth * 0.75f, Main.screenHeight / 2 - BackHeight * 0.75f);
+            Vector2 baseOffset = CombinedUI.CenterRight;
+            Vector2 offset = new(baseOffset.X, baseOffset.Y - BackHeight / 2);
 
             BackPanel = new UIDragablePanel();
             BackPanel.Left.Set(offset.X, 0f);

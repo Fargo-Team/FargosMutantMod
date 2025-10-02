@@ -197,10 +197,10 @@ namespace Fargowiltas.Content.Items.Tiles
                             Main.instance.MouseText(Lang.GetItemNameValue(fruit.type) + "\n[i:Fargowiltas/EnchantedAcorn] [c/3BFFEB:" + cost + "]", ContentSamples.ItemsByType[fruit.type].rare);
                         }
                         if (Main.MouseWorld.Distance(fruit.center) <= size && Main.LocalPlayer.controlUseItem && fruit.grabCooldown == 0 &&
-                            (Main.LocalPlayer.GetFargoPlayer().grabbedFruit == null || Main.LocalPlayer.GetFargoPlayer().grabbedFruit == fruit))
+                            (Main.LocalPlayer.FargoMutant().grabbedFruit == null || Main.LocalPlayer.FargoMutant().grabbedFruit == fruit))
                         {
                             fruit.grabbed = true;
-                            Main.LocalPlayer.GetFargoPlayer().grabbedFruit = fruit;
+                            Main.LocalPlayer.FargoMutant().grabbedFruit = fruit;
                         }
 
                         fruit.center += fruit.velocity;
@@ -247,7 +247,7 @@ namespace Fargowiltas.Content.Items.Tiles
                             if (fruit.center.Distance(fruit.targetPosition) > 100)
                             {
                                 fruit.grabbed = false;
-                                Main.LocalPlayer.GetFargoPlayer().grabbedFruit = null;
+                                Main.LocalPlayer.FargoMutant().grabbedFruit = null;
                                 fruit.grabCooldown = 30;
 
                                 if (Main.LocalPlayer.CountItem(ModContent.ItemType<EnchantedAcorn>()) >= cost)

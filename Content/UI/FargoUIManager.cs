@@ -106,8 +106,17 @@ namespace Fargowiltas.Content.UI
                 foreach (var ui in UserInterfaces)
                 {
                     ui.Value.FargoUI.OnLoad();
+                }
+            }
+        }
+        public static void InitializeUI()
+        {
+            if (!Main.dedServ)
+            {
+                foreach (var ui in UserInterfaces)
+                {
                     ui.Value.FargoUI.Activate();
-                }                   
+                }
             }
         }
         public static void UpdateUI(GameTime gameTime)

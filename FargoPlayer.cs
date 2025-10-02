@@ -5,6 +5,7 @@ using Fargowiltas.Content.Items.Misc;
 using Fargowiltas.Content.Items.Tiles;
 using Fargowiltas.Content.Items.Vanity;
 using Fargowiltas.Content.NPCs;
+using Fargowiltas.Content.UI;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -33,6 +34,8 @@ namespace Fargowiltas
         //        //public ToggleBackend Toggler = new ToggleBackend();
         //        public Dictionary<string, bool> TogglesToSync = new Dictionary<string, bool>();
 
+        public bool HasClickedWrench;
+
         public bool extractSpeed;
         public bool HasDrawnDebuffLayer;
         internal bool BattleCry;
@@ -40,7 +43,6 @@ namespace Fargowiltas
 
         internal int originalSelectedItem;
         internal bool autoRevertSelectedItem;
-
         public float luckPotionBoost;
         public float ElementalAssemblerNearby;
 
@@ -123,6 +125,9 @@ namespace Fargowiltas
             if (CalmingCry)
                 tag.Add($"FargoCalmingCry{Player.name}", true);
 
+            if (HasClickedWrench) 
+                tag.Add("HasClickedWrench", true);
+
             List<string> ownedItemsData = [];
             for (int i = 0; i < ItemHasBeenOwned.Length; i++)
             {
@@ -177,6 +182,7 @@ namespace Fargowiltas
             DeathFruitHealth = tag.GetInt("DeathFruitHealth");
             BattleCry = tag.ContainsKey($"FargoBattleCry{Player.name}");
             CalmingCry = tag.ContainsKey($"FargoCalmingCry{Player.name}");
+            HasClickedWrench = tag.ContainsKey("HasClickedWrench");
 
             ItemHasBeenOwned = ItemID.Sets.Factory.CreateBoolSet(false);
             var ownedItemsData = tag.GetList<string>("OwnedItemsList");
@@ -274,7 +280,8 @@ namespace Fargowiltas
                 {
                     Main.playerInventory = true;
                 }
-                Fargowiltas.UserInterfaceManager.ToggleStatSheet();
+                CombinedUI.ToggleUI<StatSheetUI>();
+                //Fargowiltas.UserInterfaceManager.ToggleStatSheet();
             }
         }
 

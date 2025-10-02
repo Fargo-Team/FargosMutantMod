@@ -6,6 +6,7 @@ using Terraria.UI;
 
 namespace Fargowiltas.Content.UI
 {
+    /*
     public class StatButton : UIState
     {
         public UIImage Icon;
@@ -44,4 +45,5 @@ namespace Fargowiltas.Content.UI
                 base.Draw(spriteBatch);
         }
     }
+    */
 }

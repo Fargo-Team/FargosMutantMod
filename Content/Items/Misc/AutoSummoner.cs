@@ -23,7 +23,7 @@ namespace Fargowiltas.Content.Items.Misc
 
 		public static void PassiveEffect(Player player, Item item)
 		{
-			player.GetFargoPlayer().AutoSummon = true;
+			player.FargoMutant().AutoSummon = true;
 		}
 
 		public override void UpdateInventory(Player player) => PassiveEffect(player, Item);
@@ -43,7 +43,7 @@ namespace Fargowiltas.Content.Items.Misc
 
 		public static void TryAutoSummoner(Player player)
 		{
-			FargoPlayer fargoPlayer = player.GetFargoPlayer();
+			FargoPlayer fargoPlayer = player.FargoMutant();
 
             if (player.whoAmI != Main.myPlayer)
                 return;

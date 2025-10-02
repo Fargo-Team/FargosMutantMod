@@ -385,7 +385,8 @@ Mods: {
 		}
 
 		UI: {
-			StatButton: Open Stat Sheet
+			CombinedUIButton: Open Utilities
+			StatSheet: "[i:Sign] Stat Sheet"
 			SearchText: Search...
 			// Stat Sheet Elements
 			MeleeDamage: Melee Damage: {0}%
@@ -2530,6 +2531,11 @@ Mods: {
 					Uses the leftmost minion weapon in your hotbar
 					Mana is spent as normal
 					'''
+			}
+
+			TogglerIconItem: {
+				DisplayName: Toggler Icon Item
+				Tooltip: ""
 			}
 		}
 

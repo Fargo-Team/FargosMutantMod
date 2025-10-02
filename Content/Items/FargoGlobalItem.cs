@@ -657,7 +657,7 @@ namespace Fargowiltas.Content.Items
             }
             if (player == Main.LocalPlayer)
             {
-                FargoPlayer p = player.GetFargoPlayer();
+                FargoPlayer p = player.FargoMutant();
                 bool scopeConfig = FargoClientConfig.Instance.DisableScopeView;
 
                 if (item.type is ItemID.RifleScope or ItemID.SniperScope or ItemID.ReconScope && hideVisual && scopeConfig)
@@ -774,13 +774,13 @@ namespace Fargowiltas.Content.Items
 
         public override void GrabRange(Item item, Player player, ref int grabRange)
         {
-            if (player.GetFargoPlayer().bigSuck && !ItemID.Sets.IsAPickup[item.type])
+            if (player.FargoMutant().bigSuck && !ItemID.Sets.IsAPickup[item.type])
                 grabRange += 9000 * 16; //corner to corner diagonally across a large world is 8736 units
         }
 
         public override bool GrabStyle(Item item, Player player)
         {
-            if (player.GetFargoPlayer().bigSuck && !ItemID.Sets.IsAPickup[item.type])
+            if (player.FargoMutant().bigSuck && !ItemID.Sets.IsAPickup[item.type])
             {
                 item.position += (player.MountedCenter - item.Center) / 15f;
                 item.position += player.position - player.oldPosition;

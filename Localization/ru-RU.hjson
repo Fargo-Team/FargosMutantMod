@@ -389,7 +389,8 @@ Mods: {
 		}
 
 		UI: {
-			StatButton: Открыть характеристики
+			// CombinedUIButton: Open Fargo Menus
+			// StatSheet: "[i:Sign] Stat Sheet"
 			SearchText: Поиск...
 			// Stat Sheet Elements
 			MeleeDamage: Ближний урон: {0}%
@@ -2534,6 +2535,11 @@ Mods: {
 					Использует самый левый посох призыва в вашей панели быстрого доступа
 					Использует всю требуемую ману
 					'''
+			}
+
+			TogglerIconItem: {
+				// DisplayName: Toggler Icon Item
+				// Tooltip: ""
 			}
 		}
 

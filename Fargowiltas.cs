@@ -1,4 +1,4 @@
-﻿using Fargowilta;
+﻿using Fargowiltas;
 using Fargowiltas.Common.Configs;
 using Fargowiltas.Common.Systems.Recipes;
 using Fargowiltas.Content.Items;
@@ -45,8 +45,6 @@ namespace Fargowiltas
 
         public static ModKeybind SetBonusKey;
 
-        public static UIManager UserInterfaceManager => Instance._userInterfaceManager;
-        private UIManager _userInterfaceManager;
 
         // Swarms (Energized bosses) 
         public static bool SwarmActive;
@@ -104,7 +102,7 @@ namespace Fargowiltas
 
             FargoUIManager.LoadUI();
 
-            ModStats = new();
+			ModStats = new();
             PermaUpgrades = new List<StatSheetUI.PermaUpgrade>
             {
                 new(ContentSamples.ItemsByType[ItemID.AegisCrystal], () => Main.LocalPlayer.usedAegisCrystal),
@@ -127,10 +125,6 @@ namespace Fargowiltas
             DashKey = KeybindLoader.RegisterKeybind(this, "Dash", "C");
 
             SetBonusKey = KeybindLoader.RegisterKeybind(this, "SetBonus", "V");
-
-            _userInterfaceManager = new UIManager();
-            _userInterfaceManager.LoadUI();
-
 
 
             mods =
@@ -176,8 +170,6 @@ namespace Fargowiltas
 
             On_Item.GetShimmered += FixRecipeGroupsShimmerInteraction;
         }
-
-
 
         private static IEnumerable<Item> GetWormholes(Player self) =>
             self.inventory
@@ -322,7 +314,9 @@ namespace Fargowiltas
                 Logger.Error("Fargowiltas PostSetupContent Error: " + e.StackTrace + e.Message);
             }
 
-            if (ModLoader.TryGetMod("Wikithis", out Mod wikithis) && !Main.dedServ)
+			FargoUIManager.InitializeUI();
+
+			if (ModLoader.TryGetMod("Wikithis", out Mod wikithis) && !Main.dedServ)
             {
                 wikithis.Call("AddModURL", this, "https://fargosmods.wiki.gg/wiki/{}");
 
@@ -1145,7 +1139,7 @@ namespace Fargowiltas
             {
                 int[] ammo = [AmmoID.Bullet, AmmoID.CandyCorn, AmmoID.Stake, AmmoID.Gel, AmmoID.Solution];
 
-                if ((p.GetFargoPlayer().ScopeAccessoryHidden && ammo.Contains(p.HeldItem.useAmmo)) || p.HeldItem.type == ItemID.SniperRifle)
+                if ((p.FargoMutant().ScopeAccessoryHidden && ammo.Contains(p.HeldItem.useAmmo)) || p.HeldItem.type == ItemID.SniperRifle)
                 {
                     scopeCheck = Main.mouseRight;
                     Main.mouseRight = false;
@@ -1157,7 +1151,7 @@ namespace Fargowiltas
             if (scopeCheck)
             {
                 Main.mouseRight = true;
-                p.GetFargoPlayer().ScopeAccessoryHidden = false;
+                p.FargoMutant().ScopeAccessoryHidden = false;
             }
         }
 

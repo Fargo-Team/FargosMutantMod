@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Fargowiltas.Common.Systems.Recipes;
 using Fargowiltas.Content.Items.Misc;
 using Microsoft.Xna.Framework;
@@ -140,12 +141,19 @@ namespace Fargowiltas.Content.Items.Tiles
             ("FargowiltasSouls","LumpOfFlesh"),
             ("FargowiltasSouls","PureHeart"),
             ("FargowiltasSouls","SupremeDeathbringerFairy"),
+            ("FargowiltasSouls","LithosphericCluster"),
             ];
         public static List<(string, string)> DupableMaterialsModded =
             [
             ("FargowiltasSouls", "MasochistSoul"),
             ("FargowiltasSouls", "AeolusBoots"),
             ("FargowiltasSouls", "ZephyrBoots")
+            ];
+        public static List<(string, string)> DontDupeModded = 
+            [
+            ("FargowiltasSouls", "DeviatingEnergy"),
+            ("FargowiltasSouls", "AbomEnergy"),
+            ("FargowiltasSouls", "EternalEnergy")
             ];
         public static List<int> DupableMaterials = [ItemID.Zenith];
         public static Dictionary<int, List<int>> DuplicatableRecipes = [];
@@ -161,9 +169,8 @@ namespace Fargowiltas.Content.Items.Tiles
                     return true;
                 }
 
-                return (moditem.Name.EndsWith("Enchant") || moditem.Name.EndsWith("Force") || moditem.Name.EndsWith("Soul")) && (modName.Equals("FargowiltasSouls") || modName.Equals("FargowiltasSoulsDLC"));
+                return (moditem.Name.EndsWith("Enchant") || moditem.Name.EndsWith("Force") || moditem.Name.EndsWith("Soul")) && (modName.Equals("FargowiltasSouls") || modName.Equals("FargowiltasSoulsDLC")) || FargoSets.Items.SquirrelSellsDirectly[type];
             }
-
             return FargoSets.Items.SquirrelSellsDirectly[type] || DupableMaterials.Contains(type);
         }
         public static void UpdateEnchantedTrees()
@@ -254,7 +261,7 @@ namespace Fargowiltas.Content.Items.Tiles
                                 {
                                     if (Main.netMode != NetmodeID.Server)
                                     {
-                                        int item = Item.NewItem(Main.LocalPlayer.GetSource_TileInteraction(tree.Position.X, tree.Position.Y, "EnchantedTreeDuplication"), fruit.center, fruit.type);
+                                        int item = Item.NewItem(Main.LocalPlayer.GetSource_TileInteraction(tree.Position.X, tree.Position.Y, "EnchantedTreeDuplication"), fruit.center, fruit.type, prefixGiven: tree.Prefix);
 
                                         Main.item[item].GetGlobalItem<FargoGlobalItem>().Grabbed = Main.myPlayer;
                                         Main.item[item].GetGlobalItem<FargoGlobalItem>().FromEnchantedTree = true;

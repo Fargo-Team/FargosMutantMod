@@ -143,7 +143,8 @@ namespace Fargowiltas.Content.Items.Tiles
                         }
                     }
                     player.HeldItem.stack -= 1;
-                    
+                    //player.inventory[player.selectedItem].stack -= 1;
+                    return true;
                 }
                 //if the entity has item already drop it and set it to null
                 else if (entity != null && entity.ItemType >= 0)
@@ -165,6 +166,7 @@ namespace Fargowiltas.Content.Items.Tiles
                         //NetMessage.SendData(MessageID.TileEntitySharing, -1, -1, null, entity.ID, entity.Position.X, entity.Position.Y);
                         FargoNet.SendEnchantedTreeFruitPacket(EnchantedTrees.IndexOf(FargoUtils.GetTopLeftTileInMultitile(i, j)));
                     }
+                    return true;
                    
                 }
             }

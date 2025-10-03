@@ -37,6 +37,12 @@ namespace Fargowiltas.Common.Configs
         [Slider]
         public float DebuffFaderRatio;
 
+        [DefaultValue(true)]
+        public bool HideTogglerWhenInventoryIsClosed;
+
+        [DefaultValue(false)]
+        public bool ToggleSearchReset;
+
         [Header("$Mods.Fargowiltas.Configs.FargoClientConfig.Headers.Misc")]
 
         [DefaultValue(false)]

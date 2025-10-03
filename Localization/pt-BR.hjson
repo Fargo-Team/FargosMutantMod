@@ -318,6 +318,16 @@ Mods: {
 					Tooltip: ""
 				}
 
+				HideTogglerWhenInventoryIsClosed: {
+					// Label: Only show effect toggler when inventory is open
+					// Tooltip: If true, the effect toggler is automatically hidden when your inventory is closed.
+				}
+
+				ToggleSearchReset: {
+					// Label: Accessory Effects menu resets search bar when closed
+					// Tooltip: ""
+				}
+
 				TransparentFriendlyProjectiles: {
 					Label: "[i:1309] projéteis amigáveis transparentes"
 					Tooltip: Use com a qualidade do jogo no médio ou baixo para resultados melhores
@@ -387,6 +397,7 @@ Mods: {
 		UI: {
 			// Close: Close
 			// CombinedUIButton: Open Utilities
+			// PotionToggler: "[i:IronskinPotion] Potion Toggles"
 			// StatSheet: "[i:Sign] Stat Sheet"
 			SearchText: Procurar...
 			// Stat Sheet Elements
@@ -427,6 +438,15 @@ Mods: {
 			WingHover: Asa pode flutuar: {0}
 			WingHoverTrue: Verdadeiro
 			WingHoverFalse: Falso
+			// SavedToSlot: Toggles saved to custom set {0}!
+			// NoTogglesFound: No toggles found in custom set {0}.
+			// TurnAllTogglesOff: Turn all toggles off
+			// TurnAllTogglesOn: Turn all toggles on
+			// SomeEffectsPreset: Some effects preset
+			// MinimalEffectsPreset: Minimal effects preset
+			// CustomPreset: Custom preset {0} (right click to save)
+			// DisplayAll: Display All
+			// DisplayEquipped: Display Active
 		}
 
 		MessageInfo: {

@@ -322,6 +322,16 @@ Mods: {
 					Tooltip: ""
 				}
 
+				HideTogglerWhenInventoryIsClosed: {
+					Label: Показывать переключатель эффектов только при открытом инвентаре
+					Tooltip: Если включена, переключатель эффектов автоматически выключается когда инвентарь закрыт.
+				}
+
+				ToggleSearchReset: {
+					Label: Строка поиска меню переключателей эффектов сбрасывается при закрытии
+					Tooltip: ""
+				}
+
 				TransparentFriendlyProjectiles: {
 					Label: "[i:1309] Прозрачность дружелюбных снарядов"
 					Tooltip: Используйте с ванильной настройкой качества на среднем или низком для лучших результатов.
@@ -391,6 +401,7 @@ Mods: {
 		UI: {
 			Close: Закрыть
 			CombinedUIButton: Открыть полезные меню
+			// PotionToggler: "[i:IronskinPotion] Potion Toggles"
 			StatSheet: "[i:Sign] Характеристики"
 			SearchText: Поиск...
 			// Stat Sheet Elements
@@ -431,6 +442,15 @@ Mods: {
 			WingHover: Крылья могут парить: {0}
 			WingHoverTrue: Да
 			WingHoverFalse: Нет
+			// SavedToSlot: Toggles saved to custom set {0}!
+			// NoTogglesFound: No toggles found in custom set {0}.
+			// TurnAllTogglesOff: Turn all toggles off
+			// TurnAllTogglesOn: Turn all toggles on
+			// SomeEffectsPreset: Some effects preset
+			// MinimalEffectsPreset: Minimal effects preset
+			// CustomPreset: Custom preset {0} (right click to save)
+			// DisplayAll: Display All
+			// DisplayEquipped: Display Active
 		}
 
 		MessageInfo: {

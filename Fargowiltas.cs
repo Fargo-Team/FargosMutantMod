@@ -1,5 +1,6 @@
 ﻿using Fargowiltas;
 using Fargowiltas.Common.Configs;
+using Fargowiltas.Common.Systems;
 using Fargowiltas.Common.Systems.Recipes;
 using Fargowiltas.Content.Items;
 using Fargowiltas.Content.Items.CaughtNPCs;
@@ -8,6 +9,7 @@ using Fargowiltas.Content.Items.Tiles;
 using Fargowiltas.Content.NPCs;
 using Fargowiltas.Content.Projectiles;
 using Fargowiltas.Content.UI;
+using Fargowiltas.Utilities.Extensions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -162,6 +164,7 @@ namespace Fargowiltas
             On_Player.ItemCheck_UseBossSpawners += AllowUseSummons2EvilEdition;
             On_Player.ItemCheck_UseEventItems += AllowUseEventSummons;
             On_Player.SummonItemCheck += AllowMultipleBosses;
+            On_Player.AddBuff += AddBuff;
 
             On_Main.DoUpdateInWorld += UpdateEnchantedTreeFruit;
             On_Main.DrawPlayers_AfterProjectiles += DrawEnchantedTrees;
@@ -281,6 +284,7 @@ namespace Fargowiltas
             On_Player.ItemCheck_UseBossSpawners -= AllowUseSummons2EvilEdition;
             On_Player.ItemCheck_UseEventItems -= AllowUseEventSummons;
             On_Player.SummonItemCheck -= AllowMultipleBosses;
+            On_Player.AddBuff -= AddBuff;
 
             On_Main.DoUpdateInWorld -= UpdateEnchantedTreeFruit;
             On_Main.DrawPlayers_AfterProjectiles -= DrawEnchantedTrees;
@@ -685,6 +689,25 @@ namespace Fargowiltas
                         }
                     }
                     break;
+                case 13: // Sync potion toggles
+                    {
+                        Player player = Main.player[reader.ReadByte()];
+                        FargoPlayer modPlayer = player.FargoMutant();
+                        byte count = reader.ReadByte();
+                        List<int> keys = PotionToggleLoader.LoadedToggles.Keys.ToList();
+
+                        for (int i = 0; i < count; i++)
+                        {
+                            modPlayer.PotionToggler.Toggles[keys[i]].ToggleBool = reader.ReadBoolean();
+                        }
+                    }
+                    break;
+                case 14: // Sync one potion toggle
+                    {
+                        Player player = Main.player[reader.ReadByte()];
+                        player.SetPotionToggleValue(reader.ReadInt32(), reader.ReadBoolean());
+                    }
+                    break;
                 default:
                     break;
             }
@@ -1006,6 +1029,12 @@ namespace Fargowiltas
                 return true;
             }
             return orig(self, item);
+        }
+
+        private void AddBuff(Terraria.On_Player.orig_AddBuff orig, Player self, int type, int timeToAdd, bool quiet, bool foodHack)
+        {
+            self.FargoMutant().ActivePotions.Add(type);
+            orig(self, type, timeToAdd, quiet, foodHack);
         }
 
         private void AllowUseEventSummons(On_Player.orig_ItemCheck_UseEventItems orig, Player self, Item item)

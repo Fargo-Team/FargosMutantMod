@@ -228,6 +228,8 @@ namespace Fargowiltas.Content.UI
 
         private void CloseButton_OnLeftClick(UIMouseEvent evt, UIElement listeningElement)
         {
+            // cheesy fix for dislocation on close
+            (listeningElement.Parent as UIDragablePanel).DragEnd(Main.MouseScreen);
             FargoUIManager.Close<StatSheetUI>();
         }
     }

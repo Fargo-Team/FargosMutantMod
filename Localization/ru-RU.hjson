@@ -389,8 +389,8 @@ Mods: {
 		}
 
 		UI: {
-			// CombinedUIButton: Open Utilities
-			// StatSheet: "[i:Sign] Stat Sheet"
+			CombinedUIButton: Открыть полезные меню
+			StatSheet: "[i:Sign] Характеристики"
 			SearchText: Поиск...
 			// Stat Sheet Elements
 			MeleeDamage: Ближний урон: {0}%

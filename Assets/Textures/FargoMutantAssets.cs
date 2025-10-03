@@ -28,6 +28,22 @@ namespace Fargowiltas.Assets.Textures
         {
             public static Asset<Texture2D> SoulTogglerButtonTexture => ModContent.Request<Texture2D>(Filepath + "UI/SoulTogglerToggle", AssetRequestMode.ImmediateLoad);
             public static Asset<Texture2D> SoulTogglerButton_MouseOverTexture => ModContent.Request<Texture2D>(Filepath + "UI/SoulTogglerToggle_MouseOver", AssetRequestMode.ImmediateLoad);
+
+            public class Toggler
+            {
+                public static Asset<Texture2D> SoulTogglerButtonTexture => ModContent.Request<Texture2D>(Filepath + "UI/SoulTogglerToggle", AssetRequestMode.ImmediateLoad);
+                public static Asset<Texture2D> SoulTogglerButton_MouseOverTexture => ModContent.Request<Texture2D>(Filepath + "UI/SoulTogglerToggle_MouseOver", AssetRequestMode.ImmediateLoad);
+                public static Asset<Texture2D> CheckBox => ModContent.Request<Texture2D>(Filepath + "UI/CheckBox", AssetRequestMode.ImmediateLoad);
+                public static Asset<Texture2D> CheckMark => ModContent.Request<Texture2D>(Filepath + "UI/CheckMark", AssetRequestMode.ImmediateLoad);
+                public static Asset<Texture2D> Cross => ModContent.Request<Texture2D>(Filepath + "UI/Cross", AssetRequestMode.ImmediateLoad);
+                public static Asset<Texture2D> DisplayAllButton => ModContent.Request<Texture2D>(Filepath + "UI/DisplayAllButton", AssetRequestMode.ImmediateLoad);
+                public static Asset<Texture2D> PresetCustom => ModContent.Request<Texture2D>(Filepath + "UI/PresetCustom", AssetRequestMode.ImmediateLoad);
+                public static Asset<Texture2D> PresetMinimal => ModContent.Request<Texture2D>(Filepath + "UI/PresetMinimal", AssetRequestMode.ImmediateLoad);
+                public static Asset<Texture2D> PresetOff => ModContent.Request<Texture2D>(Filepath + "UI/PresetOff", AssetRequestMode.ImmediateLoad);
+                public static Asset<Texture2D> PresetOn => ModContent.Request<Texture2D>(Filepath + "UI/PresetOn", AssetRequestMode.ImmediateLoad);
+                public static Asset<Texture2D> PresetOutline => ModContent.Request<Texture2D>(Filepath + "UI/PresetOutline", AssetRequestMode.ImmediateLoad);
+                public static Asset<Texture2D> ReloadButton => ModContent.Request<Texture2D>(Filepath + "UI/ReloadButton", AssetRequestMode.ImmediateLoad);
+            }
         }
     }
 }

@@ -385,6 +385,7 @@ Mods: {
 		}
 
 		UI: {
+			// Close: Close
 			// CombinedUIButton: Open Utilities
 			// StatSheet: "[i:Sign] Stat Sheet"
 			SearchText: Procurar...

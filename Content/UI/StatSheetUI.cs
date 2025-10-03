@@ -25,6 +25,7 @@ namespace Fargowiltas.Content.UI
         public UISearchBar SearchBar;
         public UIDragablePanel BackPanel;
         public UIPanel InnerPanel;
+        public UICloseButton CloseButton;
 
         public struct Stat
         {
@@ -80,6 +81,12 @@ namespace Fargowiltas.Content.UI
             InnerPanel.PaddingLeft = InnerPanel.PaddingRight = InnerPanel.PaddingTop = InnerPanel.PaddingBottom = 0;
             InnerPanel.BackgroundColor = new Color(73, 94, 171) * 0.9f;
             BackPanel.Append(InnerPanel);
+
+            CloseButton = new UICloseButton();
+            CloseButton.Left.Set(-18, 1f);
+            CloseButton.Top.Set(-2, 0);
+            CloseButton.OnLeftClick += CloseButton_OnLeftClick;
+            BackPanel.Append(CloseButton);
 
             base.OnInitialize();
         }
@@ -218,5 +225,10 @@ namespace Fargowiltas.Content.UI
         }
 
         public Point GetPositinAsPoint() => new Point((int)BackPanel.Left.Pixels, (int)BackPanel.Top.Pixels);*/
+
+        private void CloseButton_OnLeftClick(UIMouseEvent evt, UIElement listeningElement)
+        {
+            FargoUIManager.Close<StatSheetUI>();
+        }
     }
 }

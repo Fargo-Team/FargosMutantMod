@@ -27,13 +27,5 @@ namespace Fargowiltas.Content.UI
             if (_isDragging.GetValue(this) is bool dragging && dragging)
                 IsDragging = true;
         }
-        public override void LeftMouseDown(UIMouseEvent evt)
-        {
-            base.LeftMouseDown(evt);
-        }
-        public override void LeftMouseUp(UIMouseEvent evt)
-        {
-            base.LeftMouseUp(evt);
-        }
     }
 }

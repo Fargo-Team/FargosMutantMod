@@ -3157,7 +3157,7 @@ Mods: {
 			Stat.DisplayName: Открыть таблицу показателей
 			Dash.DisplayName: Кнопка рывка
 			SetBonus.DisplayName: Кнопка бонуса комплекта
-			// PotionToggler.DisplayName: Potion Toggler
+			// PotionToggler.DisplayName: Open Potion Toggler
 		}
 
 		ExpandedTooltips: {

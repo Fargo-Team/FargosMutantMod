@@ -3153,7 +3153,7 @@ Mods: {
 			Stat.DisplayName: Abrir Folha de Estatísticas
 			Dash.DisplayName: Botão de Corrida (Investida)
 			SetBonus.DisplayName: Botão de Bônus Definido
-			// PotionToggler.DisplayName: Potion Toggler
+			// PotionToggler.DisplayName: Open Potion Toggler
 		}
 
 		ExpandedTooltips: {

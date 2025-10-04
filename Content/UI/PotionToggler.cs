@@ -37,7 +37,7 @@ namespace Fargowiltas.Content.UI
         public UIDragablePanel BackPanel;
         public UIPanel InnerPanel;
         public UIPanel PresetPanel;
-        public UIScrollbar Scrollbar;
+        public UIScrollbarClamped Scrollbar;
         public UIToggleList ToggleList;
         public UISearchBar SearchBar;
         public UICloseButton CloseButton;
@@ -87,7 +87,7 @@ namespace Fargowiltas.Content.UI
             // all semblence of organization in favour of making it work. Enjoy my write only UI laying out.
             // Oh well, at least it works...
 
-            Scrollbar = new UIScrollbar();
+            Scrollbar = new UIScrollbarClamped();
             Scrollbar.SetView(200f, 1000f);
             Scrollbar.Width.Set(20, 0);
             Scrollbar.OverflowHidden = true;

@@ -48,7 +48,7 @@ namespace Fargowiltas.Content.UI
                 Main.LocalPlayer.mouseInterface = true;
             }
 
-            if (!dragging && ContainsPoint(Main.MouseScreen) && Main.mouseLeft)
+            if (!dragging && ContainsPoint(Main.MouseScreen) && Main.mouseLeft && !UIScrollbarClamped.IsDragging)
             {
                 bool upperMost = true;
                 if (ExtraChildren != null)

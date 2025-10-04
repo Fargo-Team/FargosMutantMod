@@ -401,7 +401,7 @@ Mods: {
 		UI: {
 			Close: Закрыть
 			CombinedUIButton: Открыть полезные меню
-			// PotionToggler: "[i:IronskinPotion] Potion Toggles"
+			PotionToggler: "[i:IronskinPotion] Переключатель зелий"
 			StatSheet: "[i:Sign] Характеристики"
 			SearchText: Поиск...
 			// Stat Sheet Elements
@@ -442,15 +442,16 @@ Mods: {
 			WingHover: Крылья могут парить: {0}
 			WingHoverTrue: Да
 			WingHoverFalse: Нет
-			// SavedToSlot: Toggles saved to custom set {0}!
-			// NoTogglesFound: No toggles found in custom set {0}.
-			// TurnAllTogglesOff: Turn all toggles off
-			// TurnAllTogglesOn: Turn all toggles on
-			// SomeEffectsPreset: Some effects preset
-			// MinimalEffectsPreset: Minimal effects preset
-			// CustomPreset: Custom preset {0} (right click to save)
-			// DisplayAll: Display All
-			// DisplayEquipped: Display Active
+			SavedToSlot: Включённые эффекты сохранены в настраиваемый пресет {0}!
+			NoTogglesFound: В настраиваемом пресете {0} не найдено включенных эффектов
+			TurnAllTogglesOff: Выключить все эффекты
+			TurnAllTogglesOn: Включить все эффекты
+			SomeEffectsPreset: Пресет с частичными эффектами
+			MinimalEffectsPreset: Пресет с минимальными эффектами
+			CustomPreset: Настраиваемый пресет {0} (ПКМ для сохранения)
+			DisplayAll: Показать все
+			DisplayEquipped: Показать доступные
+			NoToggles: Переключать нечего!
 		}
 
 		MessageInfo: {

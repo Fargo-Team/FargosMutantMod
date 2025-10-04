@@ -455,6 +455,7 @@ Mods: {
 			// CustomPreset: Custom preset {0} (right click to save)
 			// DisplayAll: Display All
 			// DisplayEquipped: Display Active
+			// NoToggles: No togglable effects equipped!
 		}
 
 		MessageInfo: {

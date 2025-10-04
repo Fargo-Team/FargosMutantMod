@@ -3162,6 +3162,7 @@ Mods: {
 			Stat.DisplayName: 打开属性统计表
 			Dash.DisplayName: 单击冲刺
 			SetBonus.DisplayName: 套装/饰品效果
+			// PotionToggler.DisplayName: Potion Toggler
 		}
 
 		ExpandedTooltips: {

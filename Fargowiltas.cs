@@ -124,11 +124,11 @@ namespace Fargowiltas
 
             HomeKey = KeybindLoader.RegisterKeybind(this, "Home", "Home");
 
-            StatKey = KeybindLoader.RegisterKeybind(this, "Stat", "RightShift");
+            StatKey = KeybindLoader.RegisterKeybind(this, "Stat", "L");
 
-            PotionTogglerKey = KeybindLoader.RegisterKeybind(this, "PotionToggler", "X");
+            PotionTogglerKey = KeybindLoader.RegisterKeybind(this, "PotionToggler", "K");
 
-            DashKey = KeybindLoader.RegisterKeybind(this, "Dash", "C");
+            DashKey = KeybindLoader.RegisterKeybind(this, "Dash", "J");
 
             SetBonusKey = KeybindLoader.RegisterKeybind(this, "SetBonus", "V");
 

@@ -43,6 +43,8 @@ namespace Fargowiltas
 
         public static ModKeybind StatKey;
 
+        public static ModKeybind PotionTogglerKey;
+
         public static ModKeybind DashKey;
 
         public static ModKeybind SetBonusKey;
@@ -123,6 +125,8 @@ namespace Fargowiltas
             HomeKey = KeybindLoader.RegisterKeybind(this, "Home", "Home");
 
             StatKey = KeybindLoader.RegisterKeybind(this, "Stat", "RightShift");
+
+            PotionTogglerKey = KeybindLoader.RegisterKeybind(this, "PotionToggler", "X");
 
             DashKey = KeybindLoader.RegisterKeybind(this, "Dash", "C");
 
@@ -298,6 +302,9 @@ namespace Fargowiltas
 
             HomeKey = null;
             StatKey = null;
+            PotionTogglerKey = null;
+            DashKey = null;
+            SetBonusKey = null;
             mods = null;
             ModLoaded = null;
 

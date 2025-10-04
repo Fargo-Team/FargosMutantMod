@@ -359,14 +359,10 @@ namespace Fargowiltas
             }
 
             if (Fargowiltas.StatKey.JustPressed)
-            {
-                if (!Main.playerInventory)
-                {
-                    Main.playerInventory = true;
-                }
                 CombinedUI.ToggleUI<StatSheetUI>();
-                //Fargowiltas.UserInterfaceManager.ToggleStatSheet();
-            }
+
+            if (Fargowiltas.PotionTogglerKey.JustPressed)
+                CombinedUI.ToggleUI<PotionToggler>();
         }
         public override void PreUpdate()
         {

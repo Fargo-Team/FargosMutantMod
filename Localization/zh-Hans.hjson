@@ -405,8 +405,8 @@ Mods: {
 		UI: {
 			// Close: Close
 			// CombinedUIButton: Open Utilities
-			// PotionToggler: "[i:IronskinPotion] Potion Toggles"
-			// StatSheet: "[i:Sign] Stat Sheet"
+			// PotionToggler: "[i:Fargowiltas/PotionTogglerItem] Potion Toggles"
+			// StatSheet: "[i:Fargowiltas/StatSheetItem] Stat Sheet"
 			SearchText: 搜索……
 			// Stat Sheet Elements
 			MeleeDamage: 近战伤害：{0}%
@@ -2565,7 +2565,17 @@ Mods: {
 			}
 
 			TogglerIconItem: {
-				// DisplayName: Toggler Icon Item
+				// DisplayName: Utilities Menu
+				// Tooltip: Opens the Utilities Menu.
+			}
+
+			PotionTogglerItem: {
+				// DisplayName: Potion Toggler Item
+				// Tooltip: ""
+			}
+
+			StatSheetItem: {
+				// DisplayName: Stat Sheet Item
 				// Tooltip: ""
 			}
 		}

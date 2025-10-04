@@ -1,15 +1,13 @@
 ﻿using Fargowiltas.Assets.Textures;
-using Fargowiltas.Content.Items.Vanity;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Fargowiltas.Content.UI
 {
-    // Exists to be displayed as an item icon in the Toggler UI
-    public class TogglerIconItem : ModItem
+    public class PotionTogglerItem : ModItem
     {
-        public override string Texture => FargoMutantAssets.GetAssetString("UI", "SoulTogglerToggle");
+        public override string Texture => FargoMutantAssets.GetAssetString("UI", "PotionTogglerItem");
 
         public override void SetStaticDefaults()
         {
@@ -24,10 +22,9 @@ namespace Fargowiltas.Content.UI
         }
         public override bool? UseItem(Player player)
         {
-            FargoUIManager.Toggle<CombinedUI>();
+            CombinedUI.ToggleUI<PotionToggler>();
             return true;
         }
-
         public override void AddRecipes()
         {
             CreateRecipe().AddIngredient(RecipeGroupID.IronBar).AddTile(TileID.Anvils).Register();

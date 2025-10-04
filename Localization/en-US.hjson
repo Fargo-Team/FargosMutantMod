@@ -397,8 +397,8 @@ Mods: {
 		UI: {
 			Close: Close
 			CombinedUIButton: Open Utilities
-			PotionToggler: "[i:IronskinPotion] Potion Toggles"
-			StatSheet: "[i:Sign] Stat Sheet"
+			PotionToggler: "[i:Fargowiltas/PotionTogglerItem] Potion Toggles"
+			StatSheet: "[i:Fargowiltas/StatSheetItem] Stat Sheet"
 			SearchText: Search...
 			// Stat Sheet Elements
 			MeleeDamage: Melee Damage: {0}%
@@ -2556,8 +2556,18 @@ Mods: {
 			}
 
 			TogglerIconItem: {
-				DisplayName: Toggler Icon Item
-				Tooltip: ""
+				DisplayName: Utilities Menu
+				Tooltip: "Use to open the Utilities menu"
+			}
+
+			PotionTogglerItem: {
+				DisplayName: Potion Toggler
+				Tooltip: "Use to open the Potion Toggles menu"
+			}
+
+			StatSheetItem: {
+				DisplayName: Stat Sheet
+				Tooltip: "Use to open the Stat Sheet menu"
 			}
 		}
 

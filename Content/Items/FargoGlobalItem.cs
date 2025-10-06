@@ -521,7 +521,7 @@ namespace Fargowiltas.Content.Items
             if (FargoSets.Items.PotionCannotBeInfinite[item.type])
                 return;
 
-            if (item.stack >= 30 && item.buffType != 0 && item.buffTime > 60 * 60 * 2)
+            if (item.stack >= 30 && item.buffType != 0 && item.buffTime >= 60 * 60 * 2)
             {
                 player.AddBuff(item.buffType, 2);
 

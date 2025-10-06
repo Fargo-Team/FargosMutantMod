@@ -2566,17 +2566,17 @@ Mods: {
 
 			TogglerIconItem: {
 				// DisplayName: Utilities Menu
-				// Tooltip: Opens the Utilities Menu.
+				// Tooltip: Use to open the Utilities menu
 			}
 
 			PotionTogglerItem: {
-				// DisplayName: Potion Toggler Item
-				// Tooltip: ""
+				// DisplayName: Potion Toggler
+				// Tooltip: Use to open the Potion Toggles menu
 			}
 
 			StatSheetItem: {
-				// DisplayName: Stat Sheet Item
-				// Tooltip: ""
+				// DisplayName: Stat Sheet
+				// Tooltip: Use to open the Stat Sheet menu
 			}
 		}
 

@@ -158,7 +158,7 @@ namespace Fargowiltas.Content.Items.Tiles
         public static List<int> DupableMaterials = [ItemID.Zenith];
         public static Dictionary<int, List<int>> DuplicatableRecipes = [];
 
-        public static List<int> SoulsMods = ["FargowiltasSouls", "FargowiltasCrossmod", "FargowiltasSoulsDLC"];
+        public static List<string> SoulsMods = ["FargowiltasSouls", "FargowiltasCrossmod", "FargowiltasSoulsDLC"];
         public static bool IsItemDupable(int type)
         {
             ModItem moditem = ContentSamples.ItemsByType[type].ModItem;
@@ -171,7 +171,7 @@ namespace Fargowiltas.Content.Items.Tiles
                     return true;
                 }
 
-                return (moditem.Name.EndsWith("Enchant") || moditem.Name.EndsWith("Force") || moditem.Name.EndsWith("Soul")) && SoulsMods.Contains(modName)) || FargoSets.Items.SquirrelSellsDirectly[type];
+                return (moditem.Name.EndsWith("Enchant") || moditem.Name.EndsWith("Force") || moditem.Name.EndsWith("Soul")) && SoulsMods.Contains(modName) || FargoSets.Items.SquirrelSellsDirectly[type];
             }
             return FargoSets.Items.SquirrelSellsDirectly[type] || DupableMaterials.Contains(type);
         }

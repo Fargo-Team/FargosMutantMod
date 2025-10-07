@@ -250,7 +250,7 @@ namespace Fargowiltas
             List<int> disabledToggleIDs = [];
             foreach (var key in disabledToggleNames)
             {
-                if (int.Parse(key) is int id && id < ItemID.Count)
+                if (int.TryParse(key, out int id) && id < ItemID.Count)
                     disabledToggleIDs.Add(id);
                 else if (ModContent.TryFind(key, out ModItem item))
                     disabledToggleIDs.Add(item.Type);

@@ -426,6 +426,7 @@ Mods: {
 			Defense: Защиты: {0}
 			DRCap: " (предел {0}%)"
 			DamageReduction: Сопротивление урону: {0}%
+			// MiningSpeed: Mining Speed: {0}%
 			Luck: Удача: {0}
 			FishingQuests: Задания рыбака: {0}
 			BattleCry: Боевой клич: {0}

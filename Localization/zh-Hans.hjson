@@ -430,6 +430,7 @@ Mods: {
 			Defense: 防御力：{0}
 			DRCap: （上限{0}%）
 			DamageReduction: 伤害减免：{0}%{1}
+			// MiningSpeed: Mining Speed: {0}%
 			Luck: 运气：{0}
 			FishingQuests: 已完成钓鱼任务：{0}
 			BattleCry: 战争号角状态：{0}

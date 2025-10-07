@@ -422,6 +422,7 @@ Mods: {
 			Defense: Defense: {0}
 			DRCap: " (cap {0}%)"
 			DamageReduction: Damage Reduction: {0}%
+			MiningSpeed: Mining Speed: {0}%
 			Luck: Luck: {0}
 			FishingQuests: Fishing Quests: {0}
 			BattleCry: Battle Cry: {0}

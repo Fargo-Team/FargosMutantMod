@@ -150,6 +150,7 @@ namespace Fargowiltas.Content.UI
                     endurance = 1 - MathF.Pow(1 - r, endurance / r);
             }
             AddStat("DamageReduction", ItemID.WormScarf, Math.Round(endurance * 100));
+            AddStat("MiningSpeed", ItemID.CopperPickaxe, Math.Round(Math.Min(170, 200 - (player.pickSpeed * 100))));
             AddStat("Luck", ItemID.Torch, Math.Round(player.luck, 2));
             AddStat("FishingQuests", ItemID.AnglerEarring, player.anglerQuestsFinished);
             AddStat("BattleCry", ModContent.ItemType<BattleCry>(), modPlayer.BattleCry ? $"[c/ff0000:{Language.GetTextValue("Mods.Fargowiltas.Items.BattleCry.Battle")}]" : 

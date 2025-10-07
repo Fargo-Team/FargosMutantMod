@@ -422,6 +422,7 @@ Mods: {
 			Defense: Defesa: {0}
 			DRCap: " (Limite {0}%)"
 			DamageReduction: Redução de Dano: {0}%{1}
+			// MiningSpeed: Mining Speed: {0}%
 			Luck: Sorte: {0}
 			FishingQuests: Missões de Pesca: {0}
 			BattleCry: Grito de Guerra: {0}

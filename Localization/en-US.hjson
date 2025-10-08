@@ -278,6 +278,11 @@ Mods: {
 					Label: "[i:IronskinPotion] Extra Buff Slots"
 					Tooltip: Grants 22 additional buff slots for all players.
 				}
+
+				AnglerQuestPity: {
+					Label: Angler Quest Pity
+					Tooltip: ""
+				}
 			}
 
 			FargoClientConfig: {

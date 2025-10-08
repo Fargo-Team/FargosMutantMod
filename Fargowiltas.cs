@@ -8,6 +8,7 @@ using Fargowiltas.Content.Items.Tiles;
 using Fargowiltas.Content.NPCs;
 using Fargowiltas.Content.Projectiles;
 using Fargowiltas.Content.UI;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -81,6 +82,22 @@ namespace Fargowiltas
         public List<StatSheetUI.PermaUpgrade> PermaUpgrades;
 
         private string[] mods;
+
+        public static Dictionary<int, int> AnglerPityAmounts = new(){
+            {ItemID.HighTestFishingLine, 5},
+            {ItemID.TackleBox, 9},
+            {ItemID.AnglerEarring, 13},
+            {ItemID.GoldenBugNet, 26},
+            {ItemID.SuperAbsorbantSponge, 23},
+            {ItemID.FishingBobber, 7},
+            {ItemID.FishermansGuide, 16},
+            {ItemID.Sextant, 17},
+            {ItemID.WeatherRadio, 18},
+            {ItemID.HoneyAbsorbantSponge, 21},
+            {ItemID.BottomlessHoneyBucket, 21},
+            {ItemID.FinWings, 45},
+            {ItemID.HotlineFishingHook, 43},
+        };
 
         internal static Fargowiltas Instance;
 
@@ -175,9 +192,9 @@ namespace Fargowiltas
             On_Main.DoDraw_UpdateCameraPosition += ScopeBinocularToggle;
 
             On_Item.GetShimmered += FixRecipeGroupsShimmerInteraction;
+
+            On_Player.GetAnglerReward_Bait += AnglerPitty;
         }
-
-
 
         private static IEnumerable<Item> GetWormholes(Player self) =>
             self.inventory
@@ -1183,6 +1200,37 @@ namespace Fargowiltas
                 }
             }
             orig(self);
+        }
+        private void AnglerPitty(On_Player.orig_GetAnglerReward_Bait orig, Player self, List<Item> rewardItems, IEntitySource source, int questsDone, float rarityReduction, ref GetItemSettings anglerRewardSettings)
+        {
+            orig(self, rewardItems, source, questsDone, rarityReduction, ref anglerRewardSettings);
+            foreach (Item item in rewardItems)
+            {
+                if (AnglerPityAmounts.ContainsKey(item.type))
+                {
+                    self.GetFargoPlayer().ItemHasBeenOwned[item.type] = true;
+                }
+            }
+            Main.NewText(questsDone);
+            if (FargoServerConfig.Instance.AnglerQuestPity && AnglerPityAmounts.ContainsValue(questsDone))
+            {
+                foreach (KeyValuePair<int, int> pair in AnglerPityAmounts)
+                {
+                    if (questsDone >= pair.Value  && !self.GetFargoPlayer().ItemHasBeenOwned[pair.Key])
+                    {
+                        if (((pair.Key == ItemID.HotlineFishingHook || pair.Key == ItemID.FinWings) && Main.hardMode) || ((pair.Key == ItemID.HoneyAbsorbantSponge || pair.Key == ItemID.BottomlessHoneyBucket) && NPC.downedQueenBee))
+                        {
+                            rewardItems.Add(new Item(pair.Key));
+                            self.GetFargoPlayer().ItemHasBeenOwned[pair.Key] = true;
+                        }
+                        else if (!(pair.Key == ItemID.HotlineFishingHook || pair.Key == ItemID.FinWings || pair.Key == ItemID.HoneyAbsorbantSponge || pair.Key == ItemID.BottomlessHoneyBucket))
+                        {
+                            rewardItems.Add(new Item(pair.Key));
+                            self.GetFargoPlayer().ItemHasBeenOwned[pair.Key] = true;
+                        }
+                    }
+                }
+            }
         }
 
         //        private static void HookIntoLoad()

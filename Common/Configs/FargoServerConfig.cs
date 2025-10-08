@@ -40,6 +40,9 @@ namespace Fargowiltas.Common.Configs
         public bool AnglerQuestInstantReset;
 
         [DefaultValue(true)]
+        public bool AnglerQuestPity;
+
+        [DefaultValue(true)]
         public bool ExtraLures;
 
         [DefaultValue(true)]

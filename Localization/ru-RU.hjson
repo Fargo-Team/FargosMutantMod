@@ -282,6 +282,11 @@ Mods: {
 					Label: "[i:IronskinPotion] Дополнительные слоты для баффов"
 					Tooltip: Даёт 22 дополнительных слота для баффов всем игрокам.
 				}
+
+				AnglerQuestPity: {
+					// Label: Angler Quest Pity
+					// Tooltip: ""
+				}
 			}
 
 			FargoClientConfig: {

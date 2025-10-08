@@ -9,6 +9,7 @@ using Fargowiltas.Content.Items.Tiles;
 using Fargowiltas.Content.NPCs;
 using Fargowiltas.Content.Projectiles;
 using Fargowiltas.Content.UI;
+
 using Fargowiltas.Utilities.Extensions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -1239,7 +1240,7 @@ namespace Fargowiltas
             {
                 if (AnglerPityAmounts.ContainsKey(item.type))
                 {
-                    self.GetFargoPlayer().ItemHasBeenOwned[item.type] = true;
+                    self.FargoMutant().ItemHasBeenOwned[item.type] = true;
                 }
             }
             Main.NewText(questsDone);
@@ -1247,17 +1248,17 @@ namespace Fargowiltas
             {
                 foreach (KeyValuePair<int, int> pair in AnglerPityAmounts)
                 {
-                    if (questsDone >= pair.Value  && !self.GetFargoPlayer().ItemHasBeenOwned[pair.Key])
+                    if (questsDone >= pair.Value  && !self.FargoMutant().ItemHasBeenOwned[pair.Key])
                     {
                         if (((pair.Key == ItemID.HotlineFishingHook || pair.Key == ItemID.FinWings) && Main.hardMode) || ((pair.Key == ItemID.HoneyAbsorbantSponge || pair.Key == ItemID.BottomlessHoneyBucket) && NPC.downedQueenBee))
                         {
                             rewardItems.Add(new Item(pair.Key));
-                            self.GetFargoPlayer().ItemHasBeenOwned[pair.Key] = true;
+                            self.FargoMutant().ItemHasBeenOwned[pair.Key] = true;
                         }
                         else if (!(pair.Key == ItemID.HotlineFishingHook || pair.Key == ItemID.FinWings || pair.Key == ItemID.HoneyAbsorbantSponge || pair.Key == ItemID.BottomlessHoneyBucket))
                         {
                             rewardItems.Add(new Item(pair.Key));
-                            self.GetFargoPlayer().ItemHasBeenOwned[pair.Key] = true;
+                            self.FargoMutant().ItemHasBeenOwned[pair.Key] = true;
                         }
                     }
                 }

@@ -132,7 +132,7 @@ namespace Fargowiltas.Content.Items.Tiles
                 {
                     entity.ItemType = player.HeldItem.type;
                     entity.Prefix = player.HeldItem.prefix;
-                    if (EnchantedTreeTileEntity.DuplicatableRecipes.ContainsKey(entity.ItemType))
+                    if (EnchantedTreeTileEntity.IsItemDupable(entity.ItemType))
                     {
                         
                         entity.Fruits.Add(new(entity.ItemType, entity.Position.ToWorldCoordinates() + new Vector2(16, -12), entity.Position.ToWorldCoordinates() + new Vector2(16, -80), Vector2.Zero));

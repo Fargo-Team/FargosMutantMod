@@ -4,6 +4,7 @@ using Fargowiltas.Content.NPCs;
 using System.Collections.Generic;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.Config;
 using static Fargowiltas.Content.Items.FargoGlobalItem;
 using static Terraria.ModLoader.ModContent;
 
@@ -15,7 +16,15 @@ namespace Fargowiltas
         {
             public static bool[] MechanicalAccessory;
             public static bool[] InfoAccessory;
-            public static bool[] SquirrelSellsDirectly;
+            public enum DupeType
+            {
+                Dupable,
+                MaterialsDupable,
+                NotDupable,
+                NotDupableFromDupable //if an item is marked as dupable materials, these items will be excluded
+            }
+            public static DupeType[] DuplicatableItems;
+            public static Dictionary<int, List<int>> DuplicatableRecipes = [];
 
             public static bool[] NonBuffPotion;
             public static bool[] PotionCannotBeInfinite;
@@ -92,30 +101,66 @@ namespace Fargowiltas
                 ItemID.FishFinder,
                 ItemID.REK);
 
-            Items.SquirrelSellsDirectly = itemFactory.CreateBoolSet(false,
-                ItemID.CellPhone,
-                ItemID.Shellphone,
-                ItemID.ShellphoneDummy,
-                ItemID.ShellphoneHell,
-                ItemID.ShellphoneOcean,
-                ItemID.ShellphoneSpawn,
-                ItemID.AnkhShield,
-                ItemID.RodofDiscord,
-                ItemID.TerrasparkBoots,
-                ItemID.TorchGodsFavor,
-                ItemID.HandOfCreation,
-                ItemID.Zenith,
-                ItemID.AnglerTackleBag,
-                ItemID.LavaproofTackleBag,
-                ItemID.GoldenFishingRod,
-                ItemID.GoldenBugNet,
-                ItemType<Omnistation>(),
-                ItemType<Omnistation2>(),
-                ItemType<CrucibleCosmos>(),
-                ItemType<ElementalAssembler>(),
-                ItemType<MultitaskCenter>(),
-                ItemType<PortableSundial>(),
-                ItemType<BattleCry>());
+            Items.DuplicatableItems = itemFactory.CreateCustomSet<Items.DupeType>(Items.DupeType.NotDupable,
+                ItemID.CellPhone, Items.DupeType.Dupable,
+                ItemID.Shellphone, Items.DupeType.Dupable,
+                ItemID.ShellphoneDummy, Items.DupeType.Dupable,
+                ItemID.ShellphoneHell, Items.DupeType.Dupable,
+                ItemID.ShellphoneOcean, Items.DupeType.Dupable,
+                ItemID.ShellphoneSpawn, Items.DupeType.Dupable,
+                ItemID.AnkhShield, Items.DupeType.Dupable,
+                ItemID.RodofDiscord, Items.DupeType.Dupable,
+                ItemID.TerrasparkBoots, Items.DupeType.Dupable,
+                ItemID.TorchGodsFavor, Items.DupeType.Dupable,
+                ItemID.HandOfCreation, Items.DupeType.Dupable,
+                ItemID.Zenith, Items.DupeType.MaterialsDupable,
+                ItemID.AnglerTackleBag, Items.DupeType.Dupable,
+                ItemID.LavaproofTackleBag, Items.DupeType.Dupable,
+                ItemID.GoldenFishingRod, Items.DupeType.Dupable,
+                ItemID.GoldenBugNet, Items.DupeType.Dupable,
+                ItemType<Omnistation>(), Items.DupeType.Dupable,
+                ItemType<Omnistation2>(), Items.DupeType.Dupable,
+                ItemType<CrucibleCosmos>(), Items.DupeType.Dupable,
+                ItemType<ElementalAssembler>(), Items.DupeType.Dupable,
+                ItemType<MultitaskCenter>(), Items.DupeType.Dupable,
+                ItemType<PortableSundial>(), Items.DupeType.Dupable,
+                ItemType<BattleCry>(), Items.DupeType.Dupable,
+                ItemID.SoulofFright, Items.DupeType.NotDupableFromDupable,
+                ItemID.SoulofSight, Items.DupeType.NotDupableFromDupable,
+                ItemID.SoulofMight, Items.DupeType.NotDupableFromDupable);
+
+            if (ModLoader.HasMod("FargowiltasSouls"))
+            {
+                TryFind<ModItem>("FargowiltasSouls/BionomicCluster", out ModItem biocluster);
+                TryFind<ModItem>("FargowiltasSouls/HeartoftheMasochist", out ModItem masoheart);
+                TryFind<ModItem>("FargowiltasSouls/ChaliceoftheMoon", out ModItem moonchalice);
+                TryFind<ModItem>("FargowiltasSouls/DubiousCircuitry", out ModItem dubiouscirc);
+                TryFind<ModItem>("FargowiltasSouls/PureHeart", out ModItem pureheart);
+                TryFind<ModItem>("FargowiltasSouls/SupremeDeathbringerFairy", out ModItem deathfairy);
+                TryFind<ModItem>("FargowiltasSouls/LithosphericCluster", out ModItem lithocluster);
+                TryFind<ModItem>("FargowiltasSouls/MasochistSoul", out ModItem masosoul);
+                TryFind<ModItem>("FargowiltasSouls/AeolusBoots", out ModItem aeolus);
+                TryFind<ModItem>("FargowiltasSouls/ZephyrBoots", out ModItem zephyr);
+                TryFind<ModItem>("FargowiltasSouls/DeviatingEnergy", out ModItem devienergy);
+                TryFind<ModItem>("FargowiltasSouls/AbomEnergy", out ModItem abomenergy);
+                TryFind<ModItem>("FargowiltasSouls/EternalEnergy", out ModItem mutantenergy);
+
+                Items.DuplicatableItems.SetValue(Items.DupeType.Dupable, biocluster.Type);
+                Items.DuplicatableItems.SetValue(Items.DupeType.Dupable, masoheart.Type);
+                Items.DuplicatableItems.SetValue(Items.DupeType.Dupable, moonchalice.Type);
+                Items.DuplicatableItems.SetValue(Items.DupeType.Dupable, dubiouscirc.Type);
+                Items.DuplicatableItems.SetValue(Items.DupeType.Dupable, pureheart.Type);
+                Items.DuplicatableItems.SetValue(Items.DupeType.Dupable, deathfairy.Type);
+                Items.DuplicatableItems.SetValue(Items.DupeType.Dupable, lithocluster.Type);
+
+                Items.DuplicatableItems.SetValue(Items.DupeType.MaterialsDupable, masosoul.Type);
+                Items.DuplicatableItems.SetValue(Items.DupeType.MaterialsDupable, aeolus.Type);
+                Items.DuplicatableItems.SetValue(Items.DupeType.MaterialsDupable, zephyr.Type);
+
+                Items.DuplicatableItems.SetValue(Items.DupeType.NotDupableFromDupable, devienergy.Type);
+                Items.DuplicatableItems.SetValue(Items.DupeType.NotDupableFromDupable, abomenergy.Type);
+                Items.DuplicatableItems.SetValue(Items.DupeType.NotDupableFromDupable, mutantenergy.Type);
+            }
 
             Items.NonBuffPotion = itemFactory.CreateBoolSet(false,
                 ItemID.RecallPotion,

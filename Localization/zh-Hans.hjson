@@ -331,6 +331,16 @@ Mods: {
 					Tooltip: ""
 				}
 
+				HideTogglerWhenInventoryIsClosed: {
+					Label: 只在开启物品栏时，才会显示饰品效果菜单
+					Tooltip: 如果开启，饰品效果菜单会在你关闭物品栏时自动隐藏
+				}
+
+				ToggleSearchReset: {
+					Label: 饰品效果菜单关闭时重置搜索栏
+					Tooltip: ""
+				}
+
 				TransparentFriendlyProjectiles: {
 					Label: "[i:1309] 友好弹幕不透明度"
 					Tooltip: 把原版的视频质量设置为中/低以获得最佳体验
@@ -398,7 +408,10 @@ Mods: {
 		}
 
 		UI: {
-			StatButton: 属性统计表
+			// Close: Close
+			// CombinedUIButton: Open Utilities
+			// PotionToggler: "[i:Fargowiltas/PotionTogglerItem] Potion Toggles"
+			// StatSheet: "[i:Fargowiltas/StatSheetItem] Stat Sheet"
 			SearchText: 搜索……
 			// Stat Sheet Elements
 			MeleeDamage: 近战伤害：{0}%
@@ -422,6 +435,7 @@ Mods: {
 			Defense: 防御力：{0}
 			DRCap: （上限{0}%）
 			DamageReduction: 伤害减免：{0}%{1}
+			// MiningSpeed: Mining Speed: {0}%
 			Luck: 运气：{0}
 			FishingQuests: 已完成钓鱼任务：{0}
 			BattleCry: 战争号角状态：{0}
@@ -438,6 +452,16 @@ Mods: {
 			WingHover: 翅膀是否可水平悬停：{0}
 			WingHoverTrue: 是
 			WingHoverFalse: 否
+			// SavedToSlot: Toggles saved to custom set {0}!
+			// NoTogglesFound: No toggles found in custom set {0}.
+			// TurnAllTogglesOff: Turn all toggles off
+			// TurnAllTogglesOn: Turn all toggles on
+			// SomeEffectsPreset: Some effects preset
+			// MinimalEffectsPreset: Minimal effects preset
+			// CustomPreset: Custom preset {0} (right click to save)
+			// DisplayAll: Display All
+			// DisplayEquipped: Display Active
+			// NoToggles: No togglable effects equipped!
 		}
 
 		MessageInfo: {
@@ -2545,6 +2569,21 @@ Mods: {
 					Mana is spent as normal
 					''' */
 			}
+
+			TogglerIconItem: {
+				// DisplayName: Utilities Menu
+				// Tooltip: Use to open the Utilities menu
+			}
+
+			PotionTogglerItem: {
+				// DisplayName: Potion Toggler
+				// Tooltip: Use to open the Potion Toggles menu
+			}
+
+			StatSheetItem: {
+				// DisplayName: Stat Sheet
+				// Tooltip: Use to open the Stat Sheet menu
+			}
 		}
 
 		NPCs: {
@@ -3139,6 +3178,7 @@ Mods: {
 			Stat.DisplayName: 打开属性统计表
 			Dash.DisplayName: 单击冲刺
 			SetBonus.DisplayName: 套装/饰品效果
+			// PotionToggler.DisplayName: Open Potion Toggler
 		}
 
 		ExpandedTooltips: {

@@ -11,8 +11,9 @@ using Terraria.UI;
 
 namespace Fargowiltas.Content.UI
 {
-    public class StatSheetUI : UIState
+    public class StatSheetUI : FargoUI
     {
+        public override bool MenuToggleSound => true;
         public int BackWidth = 650;
         public int BackHeight = 25 * HowManyPerColumn + 26 + 4; //row height * stat rows + search bar + padding
         public const int HowManyPerColumn = 14;
@@ -24,6 +25,7 @@ namespace Fargowiltas.Content.UI
         public UISearchBar SearchBar;
         public UIDragablePanel BackPanel;
         public UIPanel InnerPanel;
+        public UICloseButton CloseButton;
 
         public struct Stat
         {
@@ -48,10 +50,14 @@ namespace Fargowiltas.Content.UI
                 ConsumedBool = consumedBool;
             }
         }
-
+        public override void OnLoad()
+        {
+            CombinedUI.AddUI<StatSheetUI>(Language.GetText("Mods.Fargowiltas.UI.StatSheet"), 1); // TODO: localize this
+        }
         public override void OnInitialize()
         {
-            Vector2 offset = new Vector2(Main.screenWidth / 2 - BackWidth * 0.75f, Main.screenHeight / 2 - BackHeight * 0.75f);
+            Vector2 baseOffset = CombinedUI.CenterRight;
+            Vector2 offset = new(baseOffset.X, baseOffset.Y - BackHeight / 2);
 
             BackPanel = new UIDragablePanel();
             BackPanel.Left.Set(offset.X, 0f);
@@ -75,6 +81,12 @@ namespace Fargowiltas.Content.UI
             InnerPanel.PaddingLeft = InnerPanel.PaddingRight = InnerPanel.PaddingTop = InnerPanel.PaddingBottom = 0;
             InnerPanel.BackgroundColor = new Color(73, 94, 171) * 0.9f;
             BackPanel.Append(InnerPanel);
+
+            CloseButton = new UICloseButton();
+            CloseButton.Left.Set(-18, 1f);
+            CloseButton.Top.Set(-2, 0);
+            CloseButton.OnLeftClick += CloseButton_OnLeftClick;
+            BackPanel.Append(CloseButton);
 
             base.OnInitialize();
         }
@@ -138,6 +150,7 @@ namespace Fargowiltas.Content.UI
                     endurance = 1 - MathF.Pow(1 - r, endurance / r);
             }
             AddStat("DamageReduction", ItemID.WormScarf, Math.Round(endurance * 100));
+            AddStat("MiningSpeed", ItemID.CopperPickaxe, Math.Round(Math.Min(170, 200 - (player.pickSpeed * 100))));
             AddStat("Luck", ItemID.Torch, Math.Round(player.luck, 2));
             AddStat("FishingQuests", ItemID.AnglerEarring, player.anglerQuestsFinished);
             AddStat("BattleCry", ModContent.ItemType<BattleCry>(), modPlayer.BattleCry ? $"[c/ff0000:{Language.GetTextValue("Mods.Fargowiltas.Items.BattleCry.Battle")}]" : 
@@ -213,5 +226,12 @@ namespace Fargowiltas.Content.UI
         }
 
         public Point GetPositinAsPoint() => new Point((int)BackPanel.Left.Pixels, (int)BackPanel.Top.Pixels);*/
+
+        private void CloseButton_OnLeftClick(UIMouseEvent evt, UIElement listeningElement)
+        {
+            // cheesy fix for dislocation on close
+            (listeningElement.Parent as UIDragablePanel).DragEnd(Main.MouseScreen);
+            FargoUIManager.Close<StatSheetUI>();
+        }
     }
 }

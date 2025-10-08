@@ -438,7 +438,7 @@ namespace Fargowiltas.Content.NPCs
         }
         public override void EditSpawnRate(Player player, ref int spawnRate, ref int maxSpawns)
         {
-            FargoPlayer fargoPlayer = player.GetFargoPlayer();
+            FargoPlayer fargoPlayer = player.FargoMutant();
 
             if (fargoPlayer.BattleCry)
             {

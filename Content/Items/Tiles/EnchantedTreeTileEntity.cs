@@ -157,6 +157,8 @@ namespace Fargowiltas.Content.Items.Tiles
             ];
         public static List<int> DupableMaterials = [ItemID.Zenith];
         public static Dictionary<int, List<int>> DuplicatableRecipes = [];
+
+        public static List<string> SoulsMods = ["FargowiltasSouls", "FargowiltasCrossmod", "FargowiltasSoulsDLC"];
         public static bool IsItemDupable(int type)
         {
             ModItem moditem = ContentSamples.ItemsByType[type].ModItem;
@@ -169,7 +171,7 @@ namespace Fargowiltas.Content.Items.Tiles
                     return true;
                 }
 
-                return (moditem.Name.EndsWith("Enchant") || moditem.Name.EndsWith("Force") || moditem.Name.EndsWith("Soul")) && (modName.Equals("FargowiltasSouls") || modName.Equals("FargowiltasSoulsDLC")) || FargoSets.Items.SquirrelSellsDirectly[type];
+                return (moditem.Name.EndsWith("Enchant") || moditem.Name.EndsWith("Force") || moditem.Name.EndsWith("Soul")) && SoulsMods.Contains(modName) || FargoSets.Items.SquirrelSellsDirectly[type];
             }
             return FargoSets.Items.SquirrelSellsDirectly[type] || DupableMaterials.Contains(type);
         }
@@ -204,10 +206,10 @@ namespace Fargowiltas.Content.Items.Tiles
                             Main.instance.MouseText(Lang.GetItemNameValue(fruit.type) + "\n[i:Fargowiltas/EnchantedAcorn] [c/3BFFEB:" + cost + "]", ContentSamples.ItemsByType[fruit.type].rare);
                         }
                         if (Main.MouseWorld.Distance(fruit.center) <= size && Main.LocalPlayer.controlUseItem && fruit.grabCooldown == 0 &&
-                            (Main.LocalPlayer.GetFargoPlayer().grabbedFruit == null || Main.LocalPlayer.GetFargoPlayer().grabbedFruit == fruit))
+                            (Main.LocalPlayer.FargoMutant().grabbedFruit == null || Main.LocalPlayer.FargoMutant().grabbedFruit == fruit))
                         {
                             fruit.grabbed = true;
-                            Main.LocalPlayer.GetFargoPlayer().grabbedFruit = fruit;
+                            Main.LocalPlayer.FargoMutant().grabbedFruit = fruit;
                         }
 
                         fruit.center += fruit.velocity;
@@ -254,7 +256,7 @@ namespace Fargowiltas.Content.Items.Tiles
                             if (fruit.center.Distance(fruit.targetPosition) > 100)
                             {
                                 fruit.grabbed = false;
-                                Main.LocalPlayer.GetFargoPlayer().grabbedFruit = null;
+                                Main.LocalPlayer.FargoMutant().grabbedFruit = null;
                                 fruit.grabCooldown = 30;
 
                                 if (Main.LocalPlayer.CountItem(ModContent.ItemType<EnchantedAcorn>()) >= cost)

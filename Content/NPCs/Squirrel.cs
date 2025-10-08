@@ -357,7 +357,7 @@ namespace Fargowiltas.Content.NPCs
                 case SquirrelSellType.SoldAtThirtyStack:
                     foreach (Player player in Main.player.Where(p => p.active))
                     {
-                        if (player.GetFargoPlayer().ItemHasBeenOwnedAtThirtyStack[item.type])
+                        if (player.FargoMutant().ItemHasBeenOwnedAtThirtyStack[item.type])
                             itemCollections[shopGroup].Add(item.type);
                     }
                     break;
@@ -377,7 +377,7 @@ namespace Fargowiltas.Content.NPCs
 
             foreach (var player in Main.player.Where(p => p.active))
             {
-                FargoPlayer modPlayer = player.GetFargoPlayer();
+                FargoPlayer modPlayer = player.FargoMutant();
 
                 foreach (var item in player.inventory)
                 {

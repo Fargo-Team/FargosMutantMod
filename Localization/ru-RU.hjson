@@ -332,12 +332,12 @@ Mods: {
 			GemRobe: роба из камней
 			WoodenCrate: деревянный ящик
 			IronCrate: железный ящик
-			GoldCrate: золотой ящик
+			// GoldenCrate: Golden Crate
 			JungleCrate: джунглевый ящик
 			SkyCrate: небесный ящик
 			CorruptCrate: порченный ящик
 			CrimsonCrate: багряный ящик
-			HallowedCrate: святой ящик
+			// HallowedCrate: Hallowed Crate
 			DungeonCrate: ящик темницы
 			FrozenCrate: замороженный ящик
 			SandCrate: оазисный ящик

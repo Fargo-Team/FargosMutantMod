@@ -1243,7 +1243,6 @@ namespace Fargowiltas
                     self.FargoMutant().ItemHasBeenOwned[item.type] = true;
                 }
             }
-            Main.NewText(questsDone);
             if (FargoServerConfig.Instance.AnglerQuestPity && AnglerPityAmounts.ContainsValue(questsDone))
             {
                 foreach (KeyValuePair<int, int> pair in AnglerPityAmounts)

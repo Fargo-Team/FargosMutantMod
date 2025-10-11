@@ -13,8 +13,8 @@ namespace Fargowiltas.Content.UI
 
         public UICloseButton()
         {
-            Width.Set(20, 0);
-            Height.Set(20, 0);
+            Width.Set(22, 0);
+            Height.Set(22, 0);
         }
         protected override void DrawSelf(SpriteBatch spriteBatch)
         {
@@ -26,6 +26,7 @@ namespace Fargowiltas.Content.UI
             {
                 Vector2 textPosition = style.Position() + new Vector2(0, style.Height + 8);
                 Utils.DrawBorderString(spriteBatch, Language.GetTextValue("Mods.Fargowiltas.UI.Close"), textPosition, Color.White);
+                //spriteBatch.Draw(FargoMutantAssets.UI.Toggler.CrossGlow.Value, style.Position(), null, Color.Yellow, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0);
             }
 
             // Drawing

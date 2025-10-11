@@ -748,13 +748,12 @@ namespace Fargowiltas
         {
             if (vendor.type == ModContent.NPCType<Squirrel>())
             {
-                foreach (var tryNPCItem in ContentSamples.ItemsByType.Where(i => i.Value.ModItem != null && i.Value.ModItem is CaughtNPCItem modItem))
+                foreach (var npc in Main.npc.Where(n => n.active && n.townNPC && CaughtNPCItem.CaughtTownies.ContainsKey(n.type)))
                 {
-                    if (item.type == tryNPCItem.Key)
+                    if (item.type == CaughtNPCItem.CaughtTownies[npc.type])
                     {
                         ModContent.GetInstance<BuyNPCAchievement>().Condition.Complete();
                     }
-                    break;
                 }
             }
         }

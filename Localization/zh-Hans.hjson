@@ -3245,13 +3245,53 @@ Mods: {
 			}
 
 			CrucibleofTheCosmosAchievement: {
-				// FriendlyName: Crucibleof The Cosmos Achievement
-				// Description: Mods.Fargowiltas.Achievements.CrucibleofTheCosmosAchievement.Description
+				// FriendlyName: Master of the Craft
+				// Description: Perfect your smithing capabilities by combining every possible station into one handy workspace!
 			}
 
 			ElementalAssemblerAchievement: {
-				// FriendlyName: Elemental Assembler Achievement
-				// Description: Mods.Fargowiltas.Achievements.ElementalAssemblerAchievement.Description
+				// FriendlyName: The Avatar
+				// Description: Hone your artisanry by combining special crafting stations into a convenient tool!
+			}
+
+			BuyNPCAchievement: {
+				// FriendlyName: Buy N P C Achievement
+				// Description: Mods.Fargowiltas.Achievements.BuyNPCAchievement.Description
+			}
+
+			LumberjaxeAchievement: {
+				// FriendlyName: Lumberjaxe Achievement
+				// Description: Mods.Fargowiltas.Achievements.LumberjaxeAchievement.Description
+			}
+
+			NPCSacrificeAchievement: {
+				// FriendlyName: N P C Sacrifice Achievement
+				// Description: Mods.Fargowiltas.Achievements.NPCSacrificeAchievement.Description
+			}
+
+			OmnistationAchievement: {
+				// FriendlyName: Omnistation Achievement
+				// Description: Mods.Fargowiltas.Achievements.OmnistationAchievement.Description
+			}
+
+			SemistationAchievement: {
+				// FriendlyName: Semistation Achievement
+				// Description: Mods.Fargowiltas.Achievements.SemistationAchievement.Description
+			}
+
+			T1TreeTreasureAchievement: {
+				// FriendlyName: T1 Tree Treasure Achievement
+				// Description: Mods.Fargowiltas.Achievements.T1TreeTreasureAchievement.Description
+			}
+
+			T2TreeTreasureAchievement: {
+				// FriendlyName: T2 Tree Treasure Achievement
+				// Description: Mods.Fargowiltas.Achievements.T2TreeTreasureAchievement.Description
+			}
+
+			WiresAchievement: {
+				// FriendlyName: Wires Achievement
+				// Description: Mods.Fargowiltas.Achievements.WiresAchievement.Description
 			}
 		}
 	}

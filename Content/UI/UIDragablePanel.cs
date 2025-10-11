@@ -21,13 +21,13 @@ namespace Fargowiltas.Content.UI
             ExtraChildren = countMeAsChildren;
         }
 
-        private void DragStart(Vector2 pos)
+        public void DragStart(Vector2 pos)
         {
             offset = new Vector2(pos.X - Left.Pixels, pos.Y - Top.Pixels);
             dragging = true;
         }
 
-        private void DragEnd(Vector2 pos)
+        public void DragEnd(Vector2 pos)
         {
             Vector2 end = pos;
             dragging = false;
@@ -48,7 +48,7 @@ namespace Fargowiltas.Content.UI
                 Main.LocalPlayer.mouseInterface = true;
             }
 
-            if (!dragging && ContainsPoint(Main.MouseScreen) && Main.mouseLeft)
+            if (!dragging && ContainsPoint(Main.MouseScreen) && Main.mouseLeft && !UIScrollbarClamped.IsDragging)
             {
                 bool upperMost = true;
                 if (ExtraChildren != null)

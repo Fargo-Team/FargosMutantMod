@@ -83,26 +83,18 @@ namespace Fargowiltas.Common.Systems.Recipes
             foreach (Recipe recipe in Main.recipe.Where(recipe => EnchantedTreeTileEntity.IsItemDupable(recipe.createItem.type)))
             {
                 int result = recipe.createItem.type;
-                if (!EnchantedTreeTileEntity.DuplicatableRecipes.ContainsKey(result))
+                if (!Items.DuplicatableRecipes.ContainsKey(result))
                 {
-                    EnchantedTreeTileEntity.DuplicatableRecipes.Add(result, []);
+                    Items.DuplicatableRecipes.Add(result, []);
                 }
                 foreach (Item item in recipe.requiredItem)
                 {
-                    //is directly dupable or the materials of the current recipe result are dupable
-                    if ((EnchantedTreeTileEntity.IsItemDupable(item.type) || EnchantedTreeTileEntity.DupableMaterials.Contains(result) ||
-                        (recipe.createItem.ModItem != null && EnchantedTreeTileEntity.DupableMaterialsModded.Contains((recipe.createItem.ModItem.Mod.Name, recipe.createItem.ModItem.Name)))) &&
-                        !(item.ModItem != null && EnchantedTreeTileEntity.DontDupeModded.Contains((item.ModItem.Mod.Name, item.ModItem.Name))))
+                    if (EnchantedTreeTileEntity.IsItemDupable(item.type) || (Items.DuplicatableItems[recipe.createItem.type] == Items.DupeType.MaterialsDupable && Items.DuplicatableItems[item.type] != Items.DupeType.NotDupableFromDupable))
                     {
-                        EnchantedTreeTileEntity.DuplicatableRecipes[recipe.createItem.type].Add(item.type);
+                        Items.DuplicatableRecipes[recipe.createItem.type].Add(item.type);
                     }
                 }
             }
-            //ts item sucks
-            EnchantedTreeTileEntity.DuplicatableRecipes.Add(ItemID.Shellphone, [ItemID.CellPhone]);
-            EnchantedTreeTileEntity.DuplicatableRecipes.Add(ItemID.ShellphoneHell, [ItemID.CellPhone]);
-            EnchantedTreeTileEntity.DuplicatableRecipes.Add(ItemID.ShellphoneOcean, [ItemID.CellPhone]);
-            EnchantedTreeTileEntity.DuplicatableRecipes.Add(ItemID.ShellphoneSpawn, [ItemID.CellPhone]);
         }
 
         private static void AddStatueRecipes()

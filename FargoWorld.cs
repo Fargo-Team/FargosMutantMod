@@ -397,13 +397,13 @@ namespace Fargowiltas
         public override void UpdateUI(GameTime gameTime)
         {
             base.UpdateUI(gameTime);
-            Fargowiltas.UserInterfaceManager.UpdateUI(gameTime);
+            //Fargowiltas.UserInterfaceManager.UpdateUI(gameTime);
         }
 
         public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
         {
             base.ModifyInterfaceLayers(layers);
-            Fargowiltas.UserInterfaceManager.ModifyInterfaceLayers(layers);
+            //Fargowiltas.UserInterfaceManager.ModifyInterfaceLayers(layers);
         }
 
         public override void AddRecipes()

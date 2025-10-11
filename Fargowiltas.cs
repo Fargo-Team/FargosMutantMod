@@ -1,5 +1,6 @@
-﻿using Fargowilta;
+﻿using Fargowiltas;
 using Fargowiltas.Common.Configs;
+using Fargowiltas.Common.Systems;
 using Fargowiltas.Common.Systems.Recipes;
 using Fargowiltas.Content.Items;
 using Fargowiltas.Content.Items.CaughtNPCs;
@@ -8,6 +9,8 @@ using Fargowiltas.Content.Items.Tiles;
 using Fargowiltas.Content.NPCs;
 using Fargowiltas.Content.Projectiles;
 using Fargowiltas.Content.UI;
+
+using Fargowiltas.Utilities.Extensions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -41,12 +44,12 @@ namespace Fargowiltas
 
         public static ModKeybind StatKey;
 
+        public static ModKeybind PotionTogglerKey;
+
         public static ModKeybind DashKey;
 
         public static ModKeybind SetBonusKey;
 
-        public static UIManager UserInterfaceManager => Instance._userInterfaceManager;
-        private UIManager _userInterfaceManager;
 
         // Swarms (Energized bosses) 
         public static bool SwarmActive;
@@ -82,6 +85,22 @@ namespace Fargowiltas
 
         private string[] mods;
 
+        public static Dictionary<int, int> AnglerPityAmounts = new(){
+            {ItemID.HighTestFishingLine, 5},
+            {ItemID.TackleBox, 9},
+            {ItemID.AnglerEarring, 13},
+            {ItemID.GoldenBugNet, 26},
+            {ItemID.SuperAbsorbantSponge, 23},
+            {ItemID.FishingBobber, 7},
+            {ItemID.FishermansGuide, 16},
+            {ItemID.Sextant, 17},
+            {ItemID.WeatherRadio, 18},
+            {ItemID.HoneyAbsorbantSponge, 21},
+            {ItemID.BottomlessHoneyBucket, 21},
+            {ItemID.FinWings, 45},
+            {ItemID.HotlineFishingHook, 43},
+        };
+
         internal static Fargowiltas Instance;
 
         public override uint ExtraPlayerBuffSlots => (uint)(FargoServerConfig.Instance.ExtraBuffSlots ? 22 : 0);
@@ -104,7 +123,7 @@ namespace Fargowiltas
 
             FargoUIManager.LoadUI();
 
-            ModStats = new();
+			ModStats = new();
             PermaUpgrades = new List<StatSheetUI.PermaUpgrade>
             {
                 new(ContentSamples.ItemsByType[ItemID.AegisCrystal], () => Main.LocalPlayer.usedAegisCrystal),
@@ -122,15 +141,13 @@ namespace Fargowiltas
 
             HomeKey = KeybindLoader.RegisterKeybind(this, "Home", "Home");
 
-            StatKey = KeybindLoader.RegisterKeybind(this, "Stat", "RightShift");
+            StatKey = KeybindLoader.RegisterKeybind(this, "Stat", "L");
 
-            DashKey = KeybindLoader.RegisterKeybind(this, "Dash", "C");
+            PotionTogglerKey = KeybindLoader.RegisterKeybind(this, "PotionToggler", "K");
+
+            DashKey = KeybindLoader.RegisterKeybind(this, "Dash", "J");
 
             SetBonusKey = KeybindLoader.RegisterKeybind(this, "SetBonus", "V");
-
-            _userInterfaceManager = new UIManager();
-            _userInterfaceManager.LoadUI();
-
 
 
             mods =
@@ -168,6 +185,7 @@ namespace Fargowiltas
             On_Player.ItemCheck_UseBossSpawners += AllowUseSummons2EvilEdition;
             On_Player.ItemCheck_UseEventItems += AllowUseEventSummons;
             On_Player.SummonItemCheck += AllowMultipleBosses;
+            On_Player.AddBuff += AddBuff;
 
             On_Main.DoUpdateInWorld += UpdateEnchantedTreeFruit;
             On_Main.DrawPlayers_AfterProjectiles += DrawEnchantedTrees;
@@ -175,9 +193,9 @@ namespace Fargowiltas
             On_Main.DoDraw_UpdateCameraPosition += ScopeBinocularToggle;
 
             On_Item.GetShimmered += FixRecipeGroupsShimmerInteraction;
+
+            On_Player.GetAnglerReward_Bait += AnglerPitty;
         }
-
-
 
         private static IEnumerable<Item> GetWormholes(Player self) =>
             self.inventory
@@ -289,6 +307,7 @@ namespace Fargowiltas
             On_Player.ItemCheck_UseBossSpawners -= AllowUseSummons2EvilEdition;
             On_Player.ItemCheck_UseEventItems -= AllowUseEventSummons;
             On_Player.SummonItemCheck -= AllowMultipleBosses;
+            On_Player.AddBuff -= AddBuff;
 
             On_Main.DoUpdateInWorld -= UpdateEnchantedTreeFruit;
             On_Main.DrawPlayers_AfterProjectiles -= DrawEnchantedTrees;
@@ -302,6 +321,9 @@ namespace Fargowiltas
 
             HomeKey = null;
             StatKey = null;
+            PotionTogglerKey = null;
+            DashKey = null;
+            SetBonusKey = null;
             mods = null;
             ModLoaded = null;
 
@@ -322,7 +344,9 @@ namespace Fargowiltas
                 Logger.Error("Fargowiltas PostSetupContent Error: " + e.StackTrace + e.Message);
             }
 
-            if (ModLoader.TryGetMod("Wikithis", out Mod wikithis) && !Main.dedServ)
+			FargoUIManager.InitializeUI();
+
+			if (ModLoader.TryGetMod("Wikithis", out Mod wikithis) && !Main.dedServ)
             {
                 wikithis.Call("AddModURL", this, "https://fargosmods.wiki.gg/wiki/{}");
 
@@ -691,6 +715,25 @@ namespace Fargowiltas
                         }
                     }
                     break;
+                case 13: // Sync potion toggles
+                    {
+                        Player player = Main.player[reader.ReadByte()];
+                        FargoPlayer modPlayer = player.FargoMutant();
+                        byte count = reader.ReadByte();
+                        List<int> keys = PotionToggleLoader.LoadedToggles.Keys.ToList();
+
+                        for (int i = 0; i < count; i++)
+                        {
+                            modPlayer.PotionToggler.Toggles[keys[i]].ToggleBool = reader.ReadBoolean();
+                        }
+                    }
+                    break;
+                case 14: // Sync one potion toggle
+                    {
+                        Player player = Main.player[reader.ReadByte()];
+                        player.SetPotionToggleValue(reader.ReadInt32(), reader.ReadBoolean());
+                    }
+                    break;
                 default:
                     break;
             }
@@ -1014,6 +1057,12 @@ namespace Fargowiltas
             return orig(self, item);
         }
 
+        private void AddBuff(Terraria.On_Player.orig_AddBuff orig, Player self, int type, int timeToAdd, bool quiet, bool foodHack)
+        {
+            self.FargoMutant().ActivePotions.Add(type);
+            orig(self, type, timeToAdd, quiet, foodHack);
+        }
+
         private void AllowUseEventSummons(On_Player.orig_ItemCheck_UseEventItems orig, Player self, Item item)
         {
             if (!ModContent.GetInstance<FargoServerConfig>().EasySummons)
@@ -1145,7 +1194,7 @@ namespace Fargowiltas
             {
                 int[] ammo = [AmmoID.Bullet, AmmoID.CandyCorn, AmmoID.Stake, AmmoID.Gel, AmmoID.Solution];
 
-                if ((p.GetFargoPlayer().ScopeAccessoryHidden && ammo.Contains(p.HeldItem.useAmmo)) || p.HeldItem.type == ItemID.SniperRifle)
+                if ((p.FargoMutant().ScopeAccessoryHidden && ammo.Contains(p.HeldItem.useAmmo)) || p.HeldItem.type == ItemID.SniperRifle)
                 {
                     scopeCheck = Main.mouseRight;
                     Main.mouseRight = false;
@@ -1157,7 +1206,7 @@ namespace Fargowiltas
             if (scopeCheck)
             {
                 Main.mouseRight = true;
-                p.GetFargoPlayer().ScopeAccessoryHidden = false;
+                p.FargoMutant().ScopeAccessoryHidden = false;
             }
         }
 
@@ -1183,6 +1232,36 @@ namespace Fargowiltas
                 }
             }
             orig(self);
+        }
+        private void AnglerPitty(On_Player.orig_GetAnglerReward_Bait orig, Player self, List<Item> rewardItems, IEntitySource source, int questsDone, float rarityReduction, ref GetItemSettings anglerRewardSettings)
+        {
+            orig(self, rewardItems, source, questsDone, rarityReduction, ref anglerRewardSettings);
+            foreach (Item item in rewardItems)
+            {
+                if (AnglerPityAmounts.ContainsKey(item.type))
+                {
+                    self.FargoMutant().ItemHasBeenOwned[item.type] = true;
+                }
+            }
+            if (FargoServerConfig.Instance.AnglerQuestPity && AnglerPityAmounts.ContainsValue(questsDone))
+            {
+                foreach (KeyValuePair<int, int> pair in AnglerPityAmounts)
+                {
+                    if (questsDone >= pair.Value  && !self.FargoMutant().ItemHasBeenOwned[pair.Key])
+                    {
+                        if (((pair.Key == ItemID.HotlineFishingHook || pair.Key == ItemID.FinWings) && Main.hardMode) || ((pair.Key == ItemID.HoneyAbsorbantSponge || pair.Key == ItemID.BottomlessHoneyBucket) && NPC.downedQueenBee))
+                        {
+                            rewardItems.Add(new Item(pair.Key));
+                            self.FargoMutant().ItemHasBeenOwned[pair.Key] = true;
+                        }
+                        else if (!(pair.Key == ItemID.HotlineFishingHook || pair.Key == ItemID.FinWings || pair.Key == ItemID.HoneyAbsorbantSponge || pair.Key == ItemID.BottomlessHoneyBucket))
+                        {
+                            rewardItems.Add(new Item(pair.Key));
+                            self.FargoMutant().ItemHasBeenOwned[pair.Key] = true;
+                        }
+                    }
+                }
+            }
         }
 
         //        private static void HookIntoLoad()

@@ -6,6 +6,7 @@ using Terraria.UI;
 
 namespace Fargowiltas.Content.UI
 {
+    /*
     public class StatButton : UIState
     {
         public UIImage Icon;
@@ -30,7 +31,7 @@ namespace Fargowiltas.Content.UI
 
         private void IconHighlight_OnClick(UIMouseEvent evt, UIElement listeningElement)
         {
-            if (!Main.playerInventory)
+            if (!Main.playerInventory || Main.LocalPlayer.chest != -1)
             {
                 return;
             }
@@ -40,8 +41,9 @@ namespace Fargowiltas.Content.UI
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (Main.playerInventory)
+            if (Main.playerInventory && Main.LocalPlayer.chest == -1)
                 base.Draw(spriteBatch);
         }
     }
+    */
 }

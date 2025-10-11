@@ -254,9 +254,9 @@ namespace Fargowiltas.Content.NPCs
                         AddItem(ItemID.PharaohsMask, Item.buyPrice(gold: 1));
                         AddItem(ItemID.PharaohsRobe, Item.buyPrice(gold: 1));
 
-                        AddItem(ItemID.AnglerHat, condition: angler10);
-                        AddItem(ItemID.AnglerVest, condition: angler15);
-                        AddItem(ItemID.AnglerPants, condition: angler20);
+                        //AddItem(ItemID.AnglerHat, condition: angler10);
+                        //AddItem(ItemID.AnglerVest, condition: angler15);
+                        //AddItem(ItemID.AnglerPants, condition: angler20);
 
                         AddItem(ItemID.BlueBrick, Item.buyPrice(silver: 1));
                         AddItem(ItemType<UnsafeBlueBrickWall>(), Item.buyPrice(copper: 25));
@@ -278,18 +278,18 @@ namespace Fargowiltas.Content.NPCs
 
                     case NPCID.Merchant:
                         
-                        AddItem(ItemID.FuzzyCarrot, condition: angler5);
-                        AddItem(ItemID.AnglerEarring, condition: angler10);
-                        AddItem(ItemID.HighTestFishingLine, condition: angler10);
-                        AddItem(ItemID.TackleBox, condition: angler10);
-                        AddItem(ItemID.GoldenBugNet, condition: angler10);
-                        AddItem(ItemID.FishHook, condition: angler10);
+                        //AddItem(ItemID.FuzzyCarrot, condition: angler5);
+                        //AddItem(ItemID.AnglerEarring, condition: angler10);
+                        //AddItem(ItemID.HighTestFishingLine, condition: angler10);
+                        //AddItem(ItemID.TackleBox, condition: angler10);
+                        //AddItem(ItemID.GoldenBugNet, condition: angler10);
+                        //AddItem(ItemID.FishHook, condition: angler10);
 
-                        AddItem(ItemID.FinWings, conditions: [angler10, Condition.Hardmode]);
-                        AddItem(ItemID.SuperAbsorbantSponge, conditions: [angler10, Condition.Hardmode]); ;
-                        AddItem(ItemID.BottomlessBucket, conditions: [angler10, Condition.Hardmode]);
-                        AddItem(ItemID.HotlineFishingHook, conditions: [angler25, Condition.Hardmode]);
-                        AddItem(ItemID.GoldenFishingRod, conditions: [angler30, Condition.Hardmode]);
+                        //AddItem(ItemID.FinWings, conditions: [angler10, Condition.Hardmode]);
+                        //AddItem(ItemID.SuperAbsorbantSponge, conditions: [angler10, Condition.Hardmode]); ;
+                        //AddItem(ItemID.BottomlessBucket, conditions: [angler10, Condition.Hardmode]);
+                        //AddItem(ItemID.HotlineFishingHook, conditions: [angler25, Condition.Hardmode]);
+                        //AddItem(ItemID.GoldenFishingRod, conditions: [angler30, Condition.Hardmode]);
 
                         AddItem(ItemID.Seed, 3, condition: new Condition("Mods.Fargowiltas.Conditions.Seeds", () => Main.LocalPlayer.inventory.Any(i => !i.IsAir && i.useAmmo == AmmoID.Dart)));
                         break;
@@ -438,7 +438,7 @@ namespace Fargowiltas.Content.NPCs
         }
         public override void EditSpawnRate(Player player, ref int spawnRate, ref int maxSpawns)
         {
-            FargoPlayer fargoPlayer = player.GetFargoPlayer();
+            FargoPlayer fargoPlayer = player.FargoMutant();
 
             if (fargoPlayer.BattleCry)
             {

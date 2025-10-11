@@ -12,7 +12,7 @@ namespace Fargowiltas.Content.Buffs
 
         public override void Update(Player player, ref int buffIndex)
         {
-            player.GetFargoPlayer().bigSuck = true;
+            player.FargoMutant().bigSuck = true;
         }
     }
 }

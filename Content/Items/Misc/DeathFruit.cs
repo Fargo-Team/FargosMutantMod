@@ -63,23 +63,24 @@ namespace Fargowiltas.Content.Items.Misc
         }
         public override bool? UseItem(Player player)
 		{
-			if (player.ConsumedLifeFruit > 0)
-			{
-				if (player.altFunctionUse != 2)
-				{
-					player.ConsumedLifeFruit--;
-                }
-				
-			}
-			else if (player.ConsumedLifeCrystals > 0)
-			{
+            if (player.ConsumedLifeFruit > 0)
+            {
                 if (player.altFunctionUse != 2)
                 {
-					player.ConsumedLifeCrystals--;
+                    player.ConsumedLifeFruit--;
+                }
+                else
+                    player.ConsumedLifeFruit = 0;
+			}
+            else if (player.ConsumedLifeCrystals > 0)
+            {
+                if (player.altFunctionUse != 2)
+                {
+                    player.ConsumedLifeCrystals--;
                 }
             }
-			else
-			{
+            else
+            {
                 int effect;
                 if (player.altFunctionUse == 2)
                 {
@@ -127,7 +128,7 @@ namespace Fargowiltas.Content.Items.Misc
             {
                 return true;
             }
-            if (rightClick && player.GetModPlayer<FargoPlayer>().DeathFruitHealth > 0)
+            if (rightClick && (player.GetModPlayer<FargoPlayer>().DeathFruitHealth > 0 || player.ConsumedLifeFruit > 0))
             {
                 return true;
             }

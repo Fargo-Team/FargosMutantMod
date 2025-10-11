@@ -22,7 +22,7 @@ namespace Fargowiltas
         public static bool HasAnyItem(this Player player, params int[] itemIDs) => itemIDs.Any(itemID => player.HasItem(itemID));
 
         public static bool ActuallyNight => !Main.dayTime || Main.remixWorld;
-        public static FargoPlayer GetFargoPlayer(this Player player) => player.GetModPlayer<FargoPlayer>();
+        public static FargoPlayer FargoMutant(this Player player) => player.GetModPlayer<FargoPlayer>();
 
         public static void AddWithCondition<T>(this List<T> list, T type, bool condition)
         {

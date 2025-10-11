@@ -1,7 +1,10 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using ReLogic.Content;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
+using Terraria.ID;
 using Terraria.Localization;
 
 namespace Fargowiltas.Content.UI
@@ -10,10 +13,7 @@ namespace Fargowiltas.Content.UI
     {
         public readonly string Text;
 
-        public UIHoverTextImageButton(Asset<Texture2D> texture, string text) : base(texture)
-        {
-            Text = text;
-        }
+        public UIHoverTextImageButton(Asset<Texture2D> texture, string text) : base(texture) => Text = text;
 
         protected override void DrawSelf(SpriteBatch spriteBatch)
         {
@@ -22,7 +22,8 @@ namespace Fargowiltas.Content.UI
             if (IsMouseHovering)
             {
                 Main.LocalPlayer.mouseInterface = true;
-                Main.hoverItemName = Text;
+
+                Main.instance.MouseText(Text, 0, 0);
             }
         }
     }

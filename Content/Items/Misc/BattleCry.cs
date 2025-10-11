@@ -85,7 +85,7 @@ namespace Fargowiltas.Content.Items.Misc
         {
             if (player.whoAmI == Main.myPlayer)
             {
-                FargoPlayer modPlayer = player.GetFargoPlayer();
+                FargoPlayer modPlayer = player.FargoMutant();
                 if (player.altFunctionUse == 2)
                 {
                     if (modPlayer.BattleCry)
@@ -112,7 +112,7 @@ namespace Fargowiltas.Content.Items.Misc
         public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
         {
             Player player = Main.LocalPlayer;
-            FargoPlayer modPlayer = player.GetFargoPlayer();
+            FargoPlayer modPlayer = player.FargoMutant();
             float glowscale = (Main.mouseTextColor / 400f - 0.35f) * 0.3f + 0.9f;
             glowscale *= scale;
             float modifier = 0.5f + (float)Math.Sin(drawTimer / 30f) / 3;

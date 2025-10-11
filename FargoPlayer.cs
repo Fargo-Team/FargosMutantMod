@@ -1,10 +1,13 @@
 using Fargowiltas.Common.Configs;
+using Fargowiltas.Common.Systems;
 using Fargowiltas.Common.Systems.Recipes;
 using Fargowiltas.Content.Items;
 using Fargowiltas.Content.Items.Misc;
 using Fargowiltas.Content.Items.Tiles;
 using Fargowiltas.Content.Items.Vanity;
 using Fargowiltas.Content.NPCs;
+using Fargowiltas.Content.UI;
+using Fargowiltas.Utilities.Extensions;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -20,6 +23,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.ModLoader.UI;
+using static Fargowiltas.Assets.Textures.FargoMutantAssets.UI;
 using static Fargowiltas.Content.Items.Misc.BattleCry;
 using static Fargowiltas.Content.Items.Tiles.EnchantedTreeTileEntity;
 using static Terraria.ModLoader.ModContent;
@@ -33,6 +37,14 @@ namespace Fargowiltas
         //        //public ToggleBackend Toggler = new ToggleBackend();
         //        public Dictionary<string, bool> TogglesToSync = new Dictionary<string, bool>();
 
+        public PotionToggleBackend PotionToggler = new();
+        public List<int> DisabledPotionToggles = [];
+        public HashSet<int> ActivePotions = [];
+        public Dictionary<int, bool> PotionTogglesToSync = [];
+        public int ToggleRebuildCooldown = 0;
+
+        public bool HasClickedWrench;
+
         public bool extractSpeed;
         public bool HasDrawnDebuffLayer;
         internal bool BattleCry;
@@ -40,7 +52,6 @@ namespace Fargowiltas
 
         internal int originalSelectedItem;
         internal bool autoRevertSelectedItem;
-
         public float luckPotionBoost;
         public float ElementalAssemblerNearby;
 
@@ -123,6 +134,9 @@ namespace Fargowiltas
             if (CalmingCry)
                 tag.Add($"FargoCalmingCry{Player.name}", true);
 
+            if (HasClickedWrench) 
+                tag.Add("HasClickedWrench", true);
+
             List<string> ownedItemsData = [];
             for (int i = 0; i < ItemHasBeenOwned.Length; i++)
             {
@@ -158,6 +172,30 @@ namespace Fargowiltas
                 }
             }
             tag.Add("OwnedItemsAtThirtyList", ownedItemsAtThirtyData);
+
+            var togglesOff = new List<string>();
+            if (PotionToggler != null && PotionToggler.Toggles != null)
+            {
+                foreach (KeyValuePair<int, PotionToggle> entry in PotionToggler.Toggles)
+                {
+                    if (!PotionToggler.Toggles[entry.Key].ToggleBool)
+                    {
+                        string key;
+                        int itemID = entry.Key;
+                        if (itemID < ItemID.Count)
+                            key = itemID.ToString();
+                        else if (ContentSamples.ItemsByType[itemID] is Item item && item.ModItem is ModItem modItem)
+                        {
+                            key = modItem.FullName;
+                        }
+                        else // how?
+                            continue;
+                        togglesOff.Add(key);
+                    }
+                        
+                }
+            }
+            tag.Add($"{Mod.Name}.{Player.name}.PotionTogglesOff", togglesOff);
         }
 
         //        public override void Initialize()
@@ -177,6 +215,7 @@ namespace Fargowiltas
             DeathFruitHealth = tag.GetInt("DeathFruitHealth");
             BattleCry = tag.ContainsKey($"FargoBattleCry{Player.name}");
             CalmingCry = tag.ContainsKey($"FargoCalmingCry{Player.name}");
+            HasClickedWrench = tag.ContainsKey("HasClickedWrench");
 
             ItemHasBeenOwned = ItemID.Sets.Factory.CreateBoolSet(false);
             var ownedItemsData = tag.GetList<string>("OwnedItemsList");
@@ -206,6 +245,22 @@ namespace Fargowiltas
                         ItemHasBeenOwnedAtThirtyStack[item.Type] = true;
                 }
             }
+
+            List<string> disabledToggleNames = tag.GetList<string>($"{Mod.Name}.{Player.name}.PotionTogglesOff").ToList();
+            List<int> disabledToggleIDs = [];
+            foreach (var key in disabledToggleNames)
+            {
+                if (int.TryParse(key, out int id) && id < ItemID.Count)
+                    disabledToggleIDs.Add(id);
+                else if (ModContent.TryFind(key, out ModItem item))
+                    disabledToggleIDs.Add(item.Type);
+            }
+            DisabledPotionToggles = PotionToggleLoader.LoadedToggles.Keys.Where(disabledToggleIDs.Contains).ToList();
+        }
+        public void SyncPotionToggle(int itemID)
+        {
+            if (!PotionTogglesToSync.ContainsKey(itemID))
+                PotionTogglesToSync.Add(itemID, Player.GetPotionToggle(itemID).ToggleBool);
         }
         public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
         {
@@ -214,6 +269,20 @@ namespace Fargowiltas
             packet.Write((byte)Player.whoAmI);
             packet.Write((byte)DeathFruitHealth);
             packet.Send(toWho, fromWho);
+
+            foreach (KeyValuePair<int, bool> toggle in PotionTogglesToSync)
+            {
+                packet = Mod.GetPacket();
+
+                packet.Write((byte)14); // sync one toggle
+                packet.Write((byte)Player.whoAmI);
+                packet.Write(toggle.Key);
+                packet.Write(toggle.Value);
+
+                packet.Send(toWho, fromWho);
+            }
+
+            PotionTogglesToSync.Clear();
         }
 
         // Called in ExampleMod.Networking.cs
@@ -226,6 +295,7 @@ namespace Fargowiltas
         {
             FargoPlayer clone = (FargoPlayer)targetCopy;
             clone.DeathFruitHealth = DeathFruitHealth;
+            clone.PotionToggler = PotionToggler;
         }
 
         public override void SendClientChanges(ModPlayer clientPlayer)
@@ -234,6 +304,21 @@ namespace Fargowiltas
 
             if (DeathFruitHealth != clone.DeathFruitHealth)
                 SyncPlayer(toWho: -1, fromWho: Main.myPlayer, newPlayer: false);
+
+            if (clone.PotionToggler.Toggles != PotionToggler.Toggles)
+            {
+                ModPacket packet = Mod.GetPacket();
+                packet.Write((byte)13);
+                packet.Write((byte)Player.whoAmI);
+                packet.Write((byte)PotionToggler.Toggles.Count);
+
+                for (int i = 0; i < PotionToggler.Toggles.Count; i++)
+                {
+                    packet.Write(PotionToggler.Toggles.Values.ElementAt(i).ToggleBool);
+                }
+
+                packet.Send();
+            }
         }
         public override void ModifyStartingInventory(IReadOnlyDictionary<string, List<Item>> itemsByMod, bool mediumCoreDeath)
         {            
@@ -246,6 +331,10 @@ namespace Fargowiltas
         public override void OnEnterWorld()
         {
             SyncCry(Player);
+
+            PotionToggler.TryLoad();
+            PotionToggler.LoadPlayerToggles(Player);
+            DisabledPotionToggles.Clear();
         }
 
         public override void ResetEffects()
@@ -259,6 +348,7 @@ namespace Fargowiltas
             {
                 grabbedFruit = null;
             }
+            ActivePotions.Clear();
         }
         public override void ProcessTriggers(TriggersSet triggersSet)
         {
@@ -269,15 +359,31 @@ namespace Fargowiltas
             }
 
             if (Fargowiltas.StatKey.JustPressed)
-            {
-                if (!Main.playerInventory)
-                {
-                    Main.playerInventory = true;
-                }
-                Fargowiltas.UserInterfaceManager.ToggleStatSheet();
-            }
-        }
+                CombinedUI.ToggleUI<StatSheetUI>();
 
+            if (Fargowiltas.PotionTogglerKey.JustPressed)
+                CombinedUI.ToggleUI<PotionToggler>();
+        }
+        public override void PreUpdate()
+        {
+            PotionToggler.TryLoad();
+        }
+        public override void PreUpdateBuffs()
+        {
+            /*
+            foreach (var potToggle in PotionToggleLoader.LoadedToggles.Values)
+            {
+                if (Player.HasBuff(potToggle.BuffID))
+                    ActivePotions.Add(potToggle.BuffID);
+
+                if (!Player.GetPotionToggleValue(potToggle.ItemID))
+                {
+                    Player.ClearBuff(potToggle.BuffID);
+                    Player.buffImmune[potToggle.BuffID] = true;
+                }
+            }
+            */
+        }
         public override void PostUpdateBuffs()
         {
             if (FargoServerConfig.Instance.UnlimitedPotionBuffsOn120)
@@ -304,6 +410,19 @@ namespace Fargowiltas
                 {
                     FargoGlobalItem.TryPiggyBankAcc(item, Player);
                 }
+            }
+
+            foreach (var potToggle in PotionToggleLoader.LoadedToggles.Values)
+            {
+                if (Player.HasBuff(potToggle.BuffID))
+                {
+                    ActivePotions.Add(potToggle.BuffID);
+                }
+
+                if (!Player.GetPotionToggleValue(potToggle.ItemID))
+                {
+                    Player.buffImmune[potToggle.BuffID] = true;
+                }  
             }
         }
         public override void PostUpdateEquips()
@@ -391,8 +510,12 @@ namespace Fargowiltas
                 ElementalAssemblerNearby -= 1;
                 Player.alchemyTable = true;
             }
+
             if (StationSoundCooldown > 0)
                 StationSoundCooldown--;
+
+            if (ToggleRebuildCooldown > 0)
+                ToggleRebuildCooldown--;
 
             if (Player.equippedWings == null)
                 ResetStatSheetWings();

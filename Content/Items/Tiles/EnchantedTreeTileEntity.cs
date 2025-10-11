@@ -132,46 +132,22 @@ namespace Fargowiltas.Content.Items.Tiles
                 Fruits.Add(fruit);
             }
         }
-        public static List<(string, string)> DupableModded =
-            [
-            ("FargowiltasSouls", "BionomicCluster"),
-            ("FargowiltasSouls","HeartoftheMasochist"),
-            ("FargowiltasSouls","ChaliceoftheMoon"),
-            ("FargowiltasSouls","DubiousCircuitry"),
-            ("FargowiltasSouls","LumpOfFlesh"),
-            ("FargowiltasSouls","PureHeart"),
-            ("FargowiltasSouls","SupremeDeathbringerFairy"),
-            ("FargowiltasSouls","LithosphericCluster"),
-            ];
-        public static List<(string, string)> DupableMaterialsModded =
-            [
-            ("FargowiltasSouls", "MasochistSoul"),
-            ("FargowiltasSouls", "AeolusBoots"),
-            ("FargowiltasSouls", "ZephyrBoots")
-            ];
-        public static List<(string, string)> DontDupeModded = 
-            [
-            ("FargowiltasSouls", "DeviatingEnergy"),
-            ("FargowiltasSouls", "AbomEnergy"),
-            ("FargowiltasSouls", "EternalEnergy")
-            ];
-        public static List<int> DupableMaterials = [ItemID.Zenith];
-        public static Dictionary<int, List<int>> DuplicatableRecipes = [];
+       
+        
+
+        public static List<string> SoulsMods = ["FargowiltasSouls", "FargowiltasCrossmod", "FargowiltasSoulsDLC"];
         public static bool IsItemDupable(int type)
         {
+            if (FargoSets.Items.DuplicatableItems[type] != FargoSets.Items.DupeType.NotDupable && FargoSets.Items.DuplicatableItems[type] != FargoSets.Items.DupeType.NotDupableFromDupable) return true;
             ModItem moditem = ContentSamples.ItemsByType[type].ModItem;
             //is an enchant force or soul
             if (moditem != null)
             {
                 string modName = moditem.Mod.Name;
-                if (DupableModded.Contains((modName, moditem.Name)) || DupableMaterialsModded.Contains((modName, moditem.Name)))
-                {
-                    return true;
-                }
 
-                return (moditem.Name.EndsWith("Enchant") || moditem.Name.EndsWith("Force") || moditem.Name.EndsWith("Soul")) && (modName.Equals("FargowiltasSouls") || modName.Equals("FargowiltasSoulsDLC")) || FargoSets.Items.SquirrelSellsDirectly[type];
+                return (moditem.Name.EndsWith("Enchant") || moditem.Name.EndsWith("Force") || moditem.Name.EndsWith("Soul")) && SoulsMods.Contains(modName);
             }
-            return FargoSets.Items.SquirrelSellsDirectly[type] || DupableMaterials.Contains(type);
+            return false;
         }
         public static void UpdateEnchantedTrees()
         {
@@ -204,10 +180,10 @@ namespace Fargowiltas.Content.Items.Tiles
                             Main.instance.MouseText(Lang.GetItemNameValue(fruit.type) + "\n[i:Fargowiltas/EnchantedAcorn] [c/3BFFEB:" + cost + "]", ContentSamples.ItemsByType[fruit.type].rare);
                         }
                         if (Main.MouseWorld.Distance(fruit.center) <= size && Main.LocalPlayer.controlUseItem && fruit.grabCooldown == 0 &&
-                            (Main.LocalPlayer.GetFargoPlayer().grabbedFruit == null || Main.LocalPlayer.GetFargoPlayer().grabbedFruit == fruit))
+                            (Main.LocalPlayer.FargoMutant().grabbedFruit == null || Main.LocalPlayer.FargoMutant().grabbedFruit == fruit))
                         {
                             fruit.grabbed = true;
-                            Main.LocalPlayer.GetFargoPlayer().grabbedFruit = fruit;
+                            Main.LocalPlayer.FargoMutant().grabbedFruit = fruit;
                         }
 
                         fruit.center += fruit.velocity;
@@ -232,15 +208,15 @@ namespace Fargowiltas.Content.Items.Tiles
                                     fruit2.despawnTimer = 1;
                                 }
                             }
-                            if (expand && DuplicatableRecipes.ContainsKey(fruit.type) && DuplicatableRecipes[fruit.type].Count > 0)
+                            if (expand && FargoSets.Items.DuplicatableRecipes.ContainsKey(fruit.type) && FargoSets.Items.DuplicatableRecipes[fruit.type].Count > 0)
                             {
                                 SoundEngine.PlaySound(SoundID.Item130, fruit.center);
                                 netsync = true;
-                                for (int d = 0; d < DuplicatableRecipes[fruit.type].Count; d++)
+                                for (int d = 0; d < FargoSets.Items.DuplicatableRecipes[fruit.type].Count; d++)
                                 {
                                     float side = (d % 2 == 0 ? -1 : 1);
-                                    Vector2 position = fruit.targetPosition + new Vector2(0, 250) - new Vector2(0, 500).RotatedBy(MathHelper.ToRadians((d) * 7 - DuplicatableRecipes[fruit.type].Count * 7 / 2 + 3f));
-                                    tree.Fruits.Add(new Fruit(DuplicatableRecipes[fruit.type][d], fruit.center, position, Vector2.Zero, i, fruit.layer + 1));
+                                    Vector2 position = fruit.targetPosition + new Vector2(0, 250) - new Vector2(0, 500).RotatedBy(MathHelper.ToRadians((d) * 7 - FargoSets.Items.DuplicatableRecipes[fruit.type].Count * 7 / 2 + 3f));
+                                    tree.Fruits.Add(new Fruit(FargoSets.Items.DuplicatableRecipes[fruit.type][d], fruit.center, position, Vector2.Zero, i, fruit.layer + 1));
                                 }
                             }
                             if (netsync && Main.netMode == NetmodeID.MultiplayerClient)
@@ -254,7 +230,7 @@ namespace Fargowiltas.Content.Items.Tiles
                             if (fruit.center.Distance(fruit.targetPosition) > 100)
                             {
                                 fruit.grabbed = false;
-                                Main.LocalPlayer.GetFargoPlayer().grabbedFruit = null;
+                                Main.LocalPlayer.FargoMutant().grabbedFruit = null;
                                 fruit.grabCooldown = 30;
 
                                 if (Main.LocalPlayer.CountItem(ModContent.ItemType<EnchantedAcorn>()) >= cost)

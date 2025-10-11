@@ -39,8 +39,10 @@ namespace Fargowiltas.Content.Items.Misc
         {
             CreateRecipe()
                 .AddIngredient(ItemID.BottledWater)
-                .AddIngredient(ItemID.Meteorite)
-                .AddIngredient(ItemID.FallenStar)
+                .AddIngredient(ItemID.Meteorite, 5)
+                .AddIngredient(ItemID.FallenStar, 5)
+                .AddIngredient(ItemID.Moonglow)
+                .AddIngredient(ItemID.Fireblossom)
                 .AddTile(TileID.Bottles) 
                 .DisableDecraft()
                 .Register();

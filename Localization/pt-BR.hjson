@@ -278,6 +278,11 @@ Mods: {
 					// Label: "[i:IronskinPotion] Extra Buff Slots"
 					// Tooltip: Grants 22 additional buff slots for all players.
 				}
+
+				AnglerQuestPity: {
+					// Label: Angler Quest Pity
+					// Tooltip: ""
+				}
 			}
 
 			FargoClientConfig: {
@@ -316,6 +321,16 @@ Mods: {
 				DebuffFaderRatio: {
 					Label: "[i:1612] Força do desaparecimento da duração de efeitos negativos"
 					Tooltip: ""
+				}
+
+				HideTogglerWhenInventoryIsClosed: {
+					// Label: Only show effect toggler when inventory is open
+					// Tooltip: If true, the effect toggler is automatically hidden when your inventory is closed.
+				}
+
+				ToggleSearchReset: {
+					// Label: Accessory Effects menu resets search bar when closed
+					// Tooltip: ""
 				}
 
 				TransparentFriendlyProjectiles: {
@@ -385,7 +400,10 @@ Mods: {
 		}
 
 		UI: {
-			StatButton: Folha de Estatísticas
+			// Close: Close
+			// CombinedUIButton: Open Utilities
+			// PotionToggler: "[i:Fargowiltas/PotionTogglerItem] Potion Toggles"
+			// StatSheet: "[i:Fargowiltas/StatSheetItem] Stat Sheet"
 			SearchText: Procurar...
 			// Stat Sheet Elements
 			MeleeDamage: Dano físico: {0}%
@@ -409,6 +427,7 @@ Mods: {
 			Defense: Defesa: {0}
 			DRCap: " (Limite {0}%)"
 			DamageReduction: Redução de Dano: {0}%{1}
+			// MiningSpeed: Mining Speed: {0}%
 			Luck: Sorte: {0}
 			FishingQuests: Missões de Pesca: {0}
 			BattleCry: Grito de Guerra: {0}
@@ -425,6 +444,16 @@ Mods: {
 			WingHover: Asa pode flutuar: {0}
 			WingHoverTrue: Verdadeiro
 			WingHoverFalse: Falso
+			// SavedToSlot: Toggles saved to custom set {0}!
+			// NoTogglesFound: No toggles found in custom set {0}.
+			// TurnAllTogglesOff: Turn all toggles off
+			// TurnAllTogglesOn: Turn all toggles on
+			// SomeEffectsPreset: Some effects preset
+			// MinimalEffectsPreset: Minimal effects preset
+			// CustomPreset: Custom preset {0} (right click to save)
+			// DisplayAll: Display All
+			// DisplayEquipped: Display Active
+			// NoToggles: No togglable effects equipped!
 		}
 
 		MessageInfo: {
@@ -2531,6 +2560,21 @@ Mods: {
 					Mana is spent as normal
 					''' */
 			}
+
+			TogglerIconItem: {
+				// DisplayName: Utilities Menu
+				// Tooltip: Use to open the Utilities menu
+			}
+
+			PotionTogglerItem: {
+				// DisplayName: Potion Toggler
+				// Tooltip: Use to open the Potion Toggles menu
+			}
+
+			StatSheetItem: {
+				// DisplayName: Stat Sheet
+				// Tooltip: Use to open the Stat Sheet menu
+			}
 		}
 
 		NPCs: {
@@ -3125,6 +3169,7 @@ Mods: {
 			Stat.DisplayName: Abrir Folha de Estatísticas
 			Dash.DisplayName: Botão de Corrida (Investida)
 			SetBonus.DisplayName: Botão de Bônus Definido
+			// PotionToggler.DisplayName: Open Potion Toggler
 		}
 
 		ExpandedTooltips: {

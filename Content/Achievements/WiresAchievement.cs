@@ -1,20 +1,19 @@
 ﻿using Fargowiltas.Content.Items.Tiles;
-using Terraria.Achievements;
 using Terraria.ModLoader;
 
 namespace Fargowiltas.Content.Achievements
 {
-    public class CrucibleofTheCosmosAchievement : ModAchievement
+    public class WiresAchievement : ModAchievement
     {
         public override string TextureName => "Fargowiltas/Content/Achievements/MutantAchievements";
 
-        public override int Index => 9;
+        public override int Index => 10;
 
         public override void SetStaticDefaults()
         {
-            Achievement.SetCategory(AchievementCategory.Collector);
+            Achievement.SetCategory(Terraria.Achievements.AchievementCategory.Collector);
 
-            AddItemCraftCondition(ModContent.ItemType<CrucibleCosmos>());
+            AddItemPickupCondition(ModContent.ItemType<WiresPainting>());
         }
     }
 }

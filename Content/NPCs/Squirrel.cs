@@ -1,5 +1,6 @@
 using Fargowiltas.Common.Configs;
 using Fargowiltas.Content;
+using Fargowiltas.Content.Achievements;
 using Fargowiltas.Content.Items.CaughtNPCs;
 using Fargowiltas.Content.Items.Misc;
 using Fargowiltas.Content.Items.Tiles;
@@ -1007,6 +1008,8 @@ namespace Fargowiltas.Content.NPCs
                 {
                     FargoSets.Items.SacrificeCount[item.type]--;
                     SoundEngine.PlaySound(SoundID.Roar);
+
+                    ModContent.GetInstance<NPCSacrificeAchievement>().Condition.Complete();
 
                     // turn it to night
                     Main.dayTime = false;

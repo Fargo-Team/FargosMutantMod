@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Fargowiltas.Common.Configs;
+using Fargowiltas.Content.Achievements;
 using Fargowiltas.Content.Items.Tiles;
 using Fargowiltas.Content.Items.Vanity;
 using Fargowiltas.Content.Items.Weapons;
@@ -361,6 +362,12 @@ namespace Fargowiltas.Content.NPCs
                         player.QuickSpawnItem(player.GetSource_OpenItem(itemType), itemType);
                     }
                     player.QuickSpawnItem(player.GetSource_OpenItem(ItemID.Wood), ItemID.Wood, 50);
+                }
+
+                if (Main.myPlayer == player.whoAmI)
+                {
+                    ModContent.GetInstance<TreeTreasureAchievements.T1TreeTreasureAchievement>().Condition.Complete();
+                    ModContent.GetInstance<TreeTreasureAchievements.T2TreeTreasureAchievement>().IntCondition.Value++;
                 }
 
                 Main.npcChatText = quote;

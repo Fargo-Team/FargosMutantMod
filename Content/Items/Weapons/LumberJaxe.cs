@@ -1,4 +1,6 @@
+using Fargowiltas.Content.Achievements;
 using Fargowiltas.Content.Buffs;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
@@ -32,6 +34,18 @@ namespace Fargowiltas.Content.Items.Weapons
             Item.rare = ItemRarityID.Orange;
             Item.UseSound = SoundID.Item1;
             Item.autoReuse = true;
+        }
+
+        public override void UseStyle(Player player, Rectangle heldItemFrame)
+        {   
+            if (Main.myPlayer == player.whoAmI)
+            {
+                if (player.head == EquipLoader.GetEquipSlot(Mod, "LumberjackMask", EquipType.Head) && player.body == EquipLoader.GetEquipSlot(Mod, "LumberjackBody", EquipType.Body) && player.legs == EquipLoader.GetEquipSlot(Mod, "LumberjackPants", EquipType.Legs))
+                {
+                    ModContent.GetInstance<LumberjaxeAchievement>().Condition.Complete();
+                }
+            }
+            base.UseStyle(player, heldItemFrame);
         }
 
         public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)

@@ -1,6 +1,8 @@
 using Fargowiltas.Common.Configs;
 using Fargowiltas.Common.Systems.Recipes;
+using Fargowiltas.Content.Achievements;
 using Fargowiltas.Content.Items;
+using Fargowiltas.Content.Items.CaughtNPCs;
 using Fargowiltas.Content.Items.Misc;
 using Fargowiltas.Content.Items.Tiles;
 using Fargowiltas.Content.Items.Vanity;
@@ -615,6 +617,21 @@ namespace Fargowiltas
                     if (Player.whoAmI == Main.myPlayer)
                         Player.ItemCheck();
                     //Player.ItemCheck(Main.myPlayer);
+                }
+            }
+        }
+
+        public override void PostBuyItem(NPC vendor, Item[] shopInventory, Item item)
+        {
+            if (vendor.type == ModContent.NPCType<Squirrel>())
+            {
+                foreach (var tryNPCItem in ContentSamples.ItemsByType.Where(i => i.Value.ModItem != null && i.Value.ModItem is CaughtNPCItem modItem))
+                {
+                    if (item.type == tryNPCItem.Key)
+                    {
+                        ModContent.GetInstance<BuyNPCAchievement>().Condition.Complete();
+                    }
+                    break;
                 }
             }
         }

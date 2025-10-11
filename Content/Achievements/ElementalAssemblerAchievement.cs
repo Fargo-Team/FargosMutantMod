@@ -1,9 +1,4 @@
 ﻿using Fargowiltas.Content.Items.Tiles;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria.Achievements;
 using Terraria.ModLoader;
 
@@ -13,7 +8,7 @@ namespace Fargowiltas.Content.Achievements
     {
         public override string TextureName => "Fargowiltas/Content/Achievements/MutantAchievements";
 
-        public override int Index => 10;
+        public override int Index => 8;
 
         public override void SetStaticDefaults()
         {

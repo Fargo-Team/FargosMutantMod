@@ -22,5 +22,6 @@ namespace Fargowiltas.Content.Achievements
 
             Condition = AddCondition("LumberjaxeAchievementCondition");
         }
+        public override Position GetDefaultPosition() => new After("NO_HOBO");
     }
 }

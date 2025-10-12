@@ -3246,13 +3246,13 @@ Mods: {
 			}
 
 			BuyNPCAchievement: {
-				FriendlyName: "Don't Ask Where It Came From"
-				Description: Purchase somebody from the squirrel.
+				FriendlyName: Don't Ask Where It Came From
+				Description: Purchase somebody from the Squirrel, beneath the crimson gaze of the blood moon.
 			}
 
 			LumberjaxeAchievement: {
 				FriendlyName: You Wish You Were This Cool
-				Description: Swing the Lumber Jaxe while wearing a full set of Lumberjack Vanity.
+				Description: "Swing the Lumber Jaxe while wearing a full set of the LumberJack's clothes."
 			}
 
 			NPCSacrificeAchievement: {
@@ -3262,11 +3262,11 @@ Mods: {
 
 			OmnistationAchievement: {
 				FriendlyName: A Beacon Of Light
-				Description: Obtain the Omnistation.
+				Description: Upgrade the Semistation into the Omnistation, the pinnacle of arena support.
 			}
 
 			SemistationAchievement: {
-				FriendlyName: "It's A Beautiful Day"
+				FriendlyName: It's A Beautiful Day
 				Description: Obtain the Semistation.
 			}
 

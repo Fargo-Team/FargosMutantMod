@@ -16,5 +16,7 @@ namespace Fargowiltas.Content.Achievements
 
             AddItemCraftCondition(ModContent.ItemType<Omnistation>());
         }
+
+        public override Position GetDefaultPosition() => new After("ITS_HARD");
     }
 }

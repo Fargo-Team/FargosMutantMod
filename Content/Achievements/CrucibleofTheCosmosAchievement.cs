@@ -16,5 +16,6 @@ namespace Fargowiltas.Content.Achievements
 
             AddItemCraftCondition(ModContent.ItemType<CrucibleCosmos>());
         }
+        public override Position GetDefaultPosition() => new After("CHAMPION_OF_TERRARIA");
     }
 }

@@ -15,5 +15,7 @@ namespace Fargowiltas.Content.Achievements
 
             AddItemPickupCondition(ModContent.ItemType<WiresPainting>());
         }
+
+        public override Position GetDefaultPosition() => new After("GET_CELL_PHONE");
     }
 }

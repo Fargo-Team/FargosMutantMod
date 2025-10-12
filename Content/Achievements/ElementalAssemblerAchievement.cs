@@ -16,5 +16,7 @@ namespace Fargowiltas.Content.Achievements
 
             AddItemCraftCondition(ModContent.ItemType<ElementalAssembler>());
         }
+
+        public override Position GetDefaultPosition() => new After("BONED");
     }
 }

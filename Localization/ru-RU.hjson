@@ -3250,43 +3250,43 @@ Mods: {
 			}
 
 			BuyNPCAchievement: {
-				// FriendlyName: Buy N P C Achievement
-				// Description: Mods.Fargowiltas.Achievements.BuyNPCAchievement.Description
+				// FriendlyName: Don't Ask Where It Came From
+				// Description: Purchase somebody from the squirrel.
 			}
 
 			LumberjaxeAchievement: {
-				// FriendlyName: Lumberjaxe Achievement
-				// Description: Mods.Fargowiltas.Achievements.LumberjaxeAchievement.Description
+				// FriendlyName: You Wish You Were This Cool
+				// Description: Swing the Lumber Jaxe while wearing a full set of Lumberjack Vanity.
 			}
 
 			NPCSacrificeAchievement: {
-				// FriendlyName: N P C Sacrifice Achievement
-				// Description: Mods.Fargowiltas.Achievements.NPCSacrificeAchievement.Description
+				// FriendlyName: Occult Sacrifice
+				// Description: Sacrifice the Dryad to the Squirrel.
 			}
 
 			OmnistationAchievement: {
-				// FriendlyName: Omnistation Achievement
-				// Description: Mods.Fargowiltas.Achievements.OmnistationAchievement.Description
+				// FriendlyName: A Beacon Of Light
+				// Description: Upgrade the Semistation into the Omnistation, the pinnacle of arena support.
 			}
 
 			SemistationAchievement: {
-				// FriendlyName: Semistation Achievement
-				// Description: Mods.Fargowiltas.Achievements.SemistationAchievement.Description
+				// FriendlyName: It's A Beautiful Day
+				// Description: Obtain the Semistation.
 			}
 
 			T1TreeTreasureAchievement: {
-				// FriendlyName: T1 Tree Treasure Achievement
-				// Description: Mods.Fargowiltas.Achievements.T1TreeTreasureAchievement.Description
+				// FriendlyName: Look What I Found!
+				// Description: Retrieve a tree treasure from the LumberJack.
 			}
 
 			T2TreeTreasureAchievement: {
-				// FriendlyName: T2 Tree Treasure Achievement
-				// Description: Mods.Fargowiltas.Achievements.T2TreeTreasureAchievement.Description
+				// FriendlyName: Chronic Hoarder
+				// Description: Retrieve your 25th tree treasure from the LumberJack.
 			}
 
 			WiresAchievement: {
-				// FriendlyName: Wires Achievement
-				// Description: Mods.Fargowiltas.Achievements.WiresAchievement.Description
+				// FriendlyName: Look Inside
+				// Description: Wires.
 			}
 		}
 	}

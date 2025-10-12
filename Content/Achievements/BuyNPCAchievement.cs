@@ -23,5 +23,7 @@ namespace Fargowiltas.Content.Achievements
 
             Condition = AddCondition("BuyNPCAchievementCondition");
         }
+
+        public override Position GetDefaultPosition() => new After("NO_HOBO");
     }
 }

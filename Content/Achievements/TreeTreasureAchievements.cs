@@ -25,6 +25,7 @@ namespace Fargowiltas.Content.Achievements
         
                 Condition = AddCondition("LumberjackTreeTreasures");
             }
+            public override Position GetDefaultPosition() => new After("OBTAIN_HAMMER");
         }
         public class T2TreeTreasureAchievement : ModAchievement
         {
@@ -40,6 +41,8 @@ namespace Fargowiltas.Content.Achievements
 
                 IntCondition = AddIntCondition(25);
             }
+
+            public override Position GetDefaultPosition() => new After("MASTERMIND");
         }
     }
     

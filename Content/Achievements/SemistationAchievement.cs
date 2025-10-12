@@ -15,5 +15,6 @@ namespace Fargowiltas.Content.Achievements
 
             AddItemCraftCondition(ModContent.ItemType<Semistation>());
         }
+        public override Position GetDefaultPosition() => new Before("EYE_ON_YOU");
     }
 }

@@ -15,5 +15,7 @@ namespace Fargowiltas.Content.Achievements
 
             AddItemCraftCondition(ModContent.ItemType<MultitaskCenter>());
         }
+
+        public override Position GetDefaultPosition() => new After("HEAVY_METAL");
     }
 }

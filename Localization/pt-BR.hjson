@@ -280,8 +280,8 @@ Mods: {
 				}
 
 				AnglerQuestPity: {
-					// Label: Angler Quest Pity
-					// Tooltip: ""
+					// Label: "[i:AnglerTackleBag] Angler Quest Pity"
+					// Tooltip: Makes Angler give his important items at certain quests if he hasn't dropped them yet.
 				}
 			}
 
@@ -726,66 +726,6 @@ Mods: {
 
 			GelPack: {
 				DisplayName: Pacote de Geleia Infinito
-				Tooltip: ""
-			}
-
-			ClusterRocket1Bag: {
-				DisplayName: Bolsa Infinita de Foguete de Fragmentação I
-				Tooltip: ""
-			}
-
-			ClusterRocket2Bag: {
-				DisplayName: Bolsa Infinita de Foguete de Fragmentação II
-				Tooltip: ""
-			}
-
-			DryRocketBag: {
-				DisplayName: Bolsa Infinita de Foguete Seco
-				Tooltip: ""
-			}
-
-			HoneyRocketBag: {
-				DisplayName: Bolsa Infinita de Foguete de Mel
-				Tooltip: ""
-			}
-
-			LavaRocketBag: {
-				DisplayName: Bolsa Infinita de Foguete de Lava
-				Tooltip: ""
-			}
-
-			MiniNuke1Bag: {
-				DisplayName: Bolsa Infinita de Mini Bomba Nuclear I
-				Tooltip: ""
-			}
-
-			MiniNuke2Bag: {
-				DisplayName: Bolsa Infinita de Mini Bomba Nuclear II
-				Tooltip: ""
-			}
-
-			Rocket1Bag: {
-				DisplayName: Bolsa Infinita de Foguete I
-				Tooltip: ""
-			}
-
-			Rocket2Bag: {
-				DisplayName: Bolsa Infinita de Foguete II
-				Tooltip: ""
-			}
-
-			Rocket3Bag: {
-				DisplayName: Bolsa Infinita de Foguete III
-				Tooltip: ""
-			}
-
-			Rocket4Bag: {
-				DisplayName: Bolsa Infinita de Foguete IV
-				Tooltip: ""
-			}
-
-			WetRocketBag: {
-				DisplayName: Bolsa Infinita de Foguete Molhado
 				Tooltip: ""
 			}
 

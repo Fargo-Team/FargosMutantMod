@@ -280,8 +280,8 @@ Mods: {
 				}
 
 				AnglerQuestPity: {
-					Label: Angler Quest Pity
-					Tooltip: ""
+					Label: "[i:AnglerTackleBag] Angler Quest Pity"
+					Tooltip: Makes Angler give his important items at certain quests if he hasn't dropped them yet.
 				}
 			}
 
@@ -726,66 +726,6 @@ Mods: {
 
 			GelPack: {
 				DisplayName: Endless Gel Pack
-				Tooltip: ""
-			}
-
-			ClusterRocket1Bag: {
-				DisplayName: Endless Cluster Rocket I Bag
-				Tooltip: ""
-			}
-
-			ClusterRocket2Bag: {
-				DisplayName: Endless Cluster Rocket II Bag
-				Tooltip: ""
-			}
-
-			DryRocketBag: {
-				DisplayName: Endless Dry Rocket Bag
-				Tooltip: ""
-			}
-
-			HoneyRocketBag: {
-				DisplayName: Endless Honey Rocket Bag
-				Tooltip: ""
-			}
-
-			LavaRocketBag: {
-				DisplayName: Endless Lava Rocket Bag
-				Tooltip: ""
-			}
-
-			MiniNuke1Bag: {
-				DisplayName: Endless Mini Nuke I Bag
-				Tooltip: ""
-			}
-
-			MiniNuke2Bag: {
-				DisplayName: Endless Mini Nuke II Bag
-				Tooltip: ""
-			}
-
-			Rocket1Bag: {
-				DisplayName: Endless Rocket I Bag
-				Tooltip: ""
-			}
-
-			Rocket2Bag: {
-				DisplayName: Endless Rocket II Bag
-				Tooltip: ""
-			}
-
-			Rocket3Bag: {
-				DisplayName: Endless Rocket III Bag
-				Tooltip: ""
-			}
-
-			Rocket4Bag: {
-				DisplayName: Endless Rocket IV Bag
-				Tooltip: ""
-			}
-
-			WetRocketBag: {
-				DisplayName: Endless Wet Rocket Bag
 				Tooltip: ""
 			}
 
@@ -2629,7 +2569,7 @@ Mods: {
 					Normal4: Who's Coo-thoo-loo? No idea who you're talking about.
 					Normal5: You wish you could dress like me? Ha! Actually... yea, you can.
 					Normal6: You ever read the ancient classics? I love all the fighting in them.
-					Normal7: I'm a world class poet, ever read my piece about impending doom?
+					Normal7: I sure wish I was a boss.
 					Normal8: Have you ever read The King in Yellow? I loved it when [REDACTED]... I meant when [DATA EXPUNGED]... Fine, forget it.
 					Normal9: Like my wings? Thanks, the thing I got them from didn't like it much.
 					Normal10: Heroism has no place in this world, instead let's just play ping pong.
@@ -2641,7 +2581,7 @@ Mods: {
 					Normal16: Inflicting suffering upon others is cool and all, but have you ever caught a 6 pound bass?
 					Normal17: Irony is the best kind of humor, isn't that ironic?
 					Normal18: I like Cat... What do you mean who's Cat?
-					Normal19: Check the wiki if you need anything, the star is slowly getting it up to par.
+					Normal19: Check the wiki if you need anything, some higher beings are slowly getting it up to par.
 					Normal20: I've heard tales of a legendary Diver... Anyway what was that about a giant jellyfish?
 					Normal21: Overloaded events...? Yeah, they're pretty cool.
 					Normal22: It's not like I don't enjoy your company, but can you buy something?

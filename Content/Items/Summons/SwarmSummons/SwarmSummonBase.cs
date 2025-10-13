@@ -1,6 +1,7 @@
-﻿using Fargowiltas.Content.NPCs;
+﻿using System;
+using System.Collections.Generic;
+using Fargowiltas.Content.NPCs;
 using Microsoft.Xna.Framework;
-using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.Chat;
@@ -102,6 +103,17 @@ namespace Fargowiltas.Content.Items.Summons.SwarmSummons
 
             Fargowiltas.SwarmSetDefaults = false;
             return true;
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            base.ModifyTooltips(tooltips);
+            int count = Math.Min(Item.stack, 10);
+            int bags = 5 * count;
+            int trophies = (count - (count % 3)) / 3;
+            int energizers = count == 10 ? 1 : 0;
+            string line = Language.GetTextValue("Mods.Fargowiltas.Items.OverloaderRewards", bags, trophies, energizers);
+            tooltips.Add(new TooltipLine(Mod, "SwarmSummon", line));
         }
 
         public override void AddRecipes()

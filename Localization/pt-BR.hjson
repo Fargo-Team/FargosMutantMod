@@ -1757,6 +1757,8 @@ Mods: {
 					'''
 			}
 
+			// OverloaderRewards: The boss will drop {0} treasure bags, {1} trophies, and {2} energizers when defeated (rewards increase with stack size)
+
 			OverloadEye: {
 				DisplayName: Olhomalgamação
 				Tooltip: Invoca o Olho de Cthulhu Energizado

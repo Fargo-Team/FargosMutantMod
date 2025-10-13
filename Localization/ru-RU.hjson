@@ -3251,12 +3251,12 @@ Mods: {
 
 			BuyNPCAchievement: {
 				// FriendlyName: Don't Ask Where It Came From
-				// Description: Purchase somebody from the squirrel.
+				// Description: Purchase somebody from the Squirrel, beneath the crimson gaze of the blood moon.
 			}
 
 			LumberjaxeAchievement: {
 				// FriendlyName: You Wish You Were This Cool
-				// Description: Swing the Lumber Jaxe while wearing a full set of Lumberjack Vanity.
+				// Description: Swing the Lumber Jaxe while wearing a full set of the LumberJack's clothes.
 			}
 
 			NPCSacrificeAchievement: {

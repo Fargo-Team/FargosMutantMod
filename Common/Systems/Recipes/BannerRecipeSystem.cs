@@ -2,13 +2,14 @@
 using Fargowiltas.Utilities;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Fargowiltas.Common.Systems.Recipes
 {
     public class BannerRecipeSystem : ModSystem
     {
-        private static int AnyPirateBanner, AnyArmoredBonesBanner, AnySlimesBanner, AnyBatBanner;
+        private static int AnyPirateBanner, AnyArmoredBonesBanner, AnySlimesBanner, AnyBatBanner, AnyPureSkeletonBanner;
         private static int AnyHallowBanner, AnyCorruptBanner, AnyCrimsonBanner, AnyJungleBanner, AnySnowBanner, AnyDesertBanner;
 
         public override bool IsLoadingEnabled(Mod mod)
@@ -95,6 +96,10 @@ namespace Fargowiltas.Common.Systems.Recipes
                 ItemID.SporeBatBanner
             );
             AnyBatBanner = RecipeGroup.RegisterGroup("Fargowiltas:AnyBats", group);
+
+            // Spore or Pure Skeletons
+            group = new RecipeGroup(() => ItemXOrY(ItemID.SkeletonBanner, ItemID.SporeSkeletonBanner), ItemID.SkeletonBanner, ItemID.SporeSkeletonBanner);
+            AnyPureSkeletonBanner = RecipeGroup.RegisterGroup("Fargowiltas:AnyPureSkeleton", group);
         }
 
         public override void AddRecipes()
@@ -299,7 +304,7 @@ namespace Fargowiltas.Common.Systems.Recipes
             AddBannerToItemRecipe(ItemID.SalamanderBanner, ItemID.PotatoChips);
             AddBannerToItemRecipe(ItemID.CrawdadBanner, ItemID.PotatoChips);
             AddBannerToItemRecipe(ItemID.GiantShellyBanner, ItemID.PotatoChips);
-            AddBannerSetToItemRecipe(NPCID.Sets.Skeletons, ItemID.MilkCarton);
+            AddBannerGroupToItemRecipe(AnyPureSkeletonBanner, ItemID.MilkCarton);
 
             // Plenty Satisfied
             AddBannerToItemRecipe(ItemID.FlyingFishBanner, ItemID.Fries);
@@ -368,20 +373,6 @@ namespace Fargowiltas.Common.Systems.Recipes
             AddBannerToItemRecipe(ItemID.CursedSkullBanner, ItemID.Bone, resultAmount: 100, conditions: Condition.DownedSkeletron);
             AddBannerToItemRecipe(ItemID.SkeletonMageBanner, ItemID.Bone, resultAmount: 100, conditions: Condition.DownedSkeletron);
             //AddBannerToItemRecipe(ItemID.SkeletonBanner, ItemID.Bone, resultAmount: 100, conditions: Condition.DownedSkeletron);
-            AddBannerToItemRecipe(ItemID.GemBunnyAmber, ItemID.Amber, resultAmount: 5);
-            AddBannerToItemRecipe(ItemID.GemBunnyAmethyst, ItemID.Amethyst, resultAmount: 5);
-            AddBannerToItemRecipe(ItemID.GemBunnyDiamond, ItemID.Diamond, resultAmount: 5);
-            AddBannerToItemRecipe(ItemID.GemBunnyEmerald, ItemID.Emerald, resultAmount: 5);
-            AddBannerToItemRecipe(ItemID.GemBunnyRuby, ItemID.Ruby, resultAmount: 5);
-            AddBannerToItemRecipe(ItemID.GemBunnySapphire, ItemID.Sapphire, resultAmount: 5);
-            AddBannerToItemRecipe(ItemID.GemBunnyTopaz, ItemID.Topaz, resultAmount: 5);
-            AddBannerToItemRecipe(ItemID.GemSquirrelAmber, ItemID.Amber, resultAmount: 5);
-            AddBannerToItemRecipe(ItemID.GemSquirrelAmethyst, ItemID.Amethyst, resultAmount: 5);
-            AddBannerToItemRecipe(ItemID.GemSquirrelDiamond, ItemID.Diamond, resultAmount: 5);
-            AddBannerToItemRecipe(ItemID.GemSquirrelEmerald, ItemID.Emerald, resultAmount: 5);
-            AddBannerToItemRecipe(ItemID.GemSquirrelRuby, ItemID.Ruby, resultAmount: 5);
-            AddBannerToItemRecipe(ItemID.GemSquirrelSapphire, ItemID.Sapphire, resultAmount: 5);
-            AddBannerToItemRecipe(ItemID.GemSquirrelTopaz, ItemID.Topaz, resultAmount: 5);
             AddBannerToItemRecipe(ItemID.DemonEyeBanner, ItemID.BlackLens);
             AddBannerToItemRecipe(ItemID.MeteorHeadBanner, ItemID.Meteorite, resultAmount: 25);
             AddBannerGroupToItemRecipe(AnySlimesBanner, ItemID.Gel, resultAmount: 200);
@@ -558,6 +549,8 @@ namespace Fargowiltas.Common.Systems.Recipes
         {
             RecipeHelper.CreateSimpleRecipe(bannerItemID, resultID, TileID.Solidifier, bannerAmount, resultAmount, true, conditions: conditions);
         }
+
+        private static string ItemXOrY(int id1, int id2) => $"{Lang.GetItemName(id1)} {Language.GetTextValue($"Mods.Fargowiltas.RecipeGroups.Or")} {Lang.GetItemName(id2)}";
 
         private static void AddBannerSetToItemRecipe(bool[] set, int resultID)
         {

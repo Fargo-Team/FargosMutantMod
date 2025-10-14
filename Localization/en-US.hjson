@@ -3252,7 +3252,7 @@ Mods: {
 
 			LumberjaxeAchievement: {
 				FriendlyName: You Wish You Were This Cool
-				Description: "Swing the Lumber Jaxe while wearing a full set of the LumberJack's clothes."
+				Description: Swing the Lumber Jaxe while wearing a full set of the LumberJack's clothes.
 			}
 
 			NPCSacrificeAchievement: {

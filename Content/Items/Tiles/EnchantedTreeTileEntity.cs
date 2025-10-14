@@ -135,7 +135,6 @@ namespace Fargowiltas.Content.Items.Tiles
        
         
 
-        public static List<string> SoulsMods = ["FargowiltasSouls", "FargowiltasCrossmod", "FargowiltasSoulsDLC"];
         public static bool IsItemDupable(int type)
         {
             if (FargoSets.Items.DuplicatableItems[type] != FargoSets.Items.DupeType.NotDupable && FargoSets.Items.DuplicatableItems[type] != FargoSets.Items.DupeType.NotDupableFromDupable) return true;
@@ -145,7 +144,7 @@ namespace Fargowiltas.Content.Items.Tiles
             {
                 string modName = moditem.Mod.Name;
 
-                return (moditem.Name.EndsWith("Enchant") || moditem.Name.EndsWith("Force") || moditem.Name.EndsWith("Soul")) && SoulsMods.Contains(modName);
+                return (moditem.Name.EndsWith("Enchant") || moditem.Name.EndsWith("Force") || moditem.Name.EndsWith("Soul")) && Fargowiltas.SoulsMods.Contains(modName);
             }
             return false;
         }

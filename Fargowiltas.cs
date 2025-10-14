@@ -39,6 +39,13 @@ namespace Fargowiltas
         internal static MutantSummonTracker summonTracker;
         internal static DevianttDialogueTracker dialogueTracker;
 
+        /// <summary>
+        /// All mods that should be recognized as derivative from Fargo's Souls. <br></br>
+        /// Used to check whether certain universal features should apply to items from this mod, for example Ruminate tooltips. <br></br>
+        /// If your mod derives from Souls and includes Souls features, add it to this list.
+        /// </summary>
+        public static List<string> SoulsMods = ["FargowiltasSouls", "FargowiltasCrossmod", "FargowiltasSoulsDLC"];
+
         // Hotkeys
         public static ModKeybind HomeKey;
 

@@ -288,8 +288,8 @@ Mods: {
 				}
 
 				AnglerQuestPity: {
-					// Label: Angler Quest Pity
-					// Tooltip: ""
+					// Label: "[i:AnglerTackleBag] Angler Quest Pity"
+					// Tooltip: Makes Angler give his important items at certain quests if he hasn't dropped them yet.
 				}
 			}
 
@@ -734,66 +734,6 @@ Mods: {
 
 			GelPack: {
 				DisplayName: 无尽凝胶包
-				// Tooltip: ""
-			}
-
-			ClusterRocket1Bag: {
-				DisplayName: 无尽一级集束火箭包
-				// Tooltip: ""
-			}
-
-			ClusterRocket2Bag: {
-				DisplayName: 无尽二级集束火箭包
-				// Tooltip: ""
-			}
-
-			DryRocketBag: {
-				DisplayName: 无尽干火箭包
-				// Tooltip: ""
-			}
-
-			HoneyRocketBag: {
-				DisplayName: 无尽蜂蜜火箭包
-				// Tooltip: ""
-			}
-
-			LavaRocketBag: {
-				DisplayName: 无尽熔岩火箭包
-				// Tooltip: ""
-			}
-
-			MiniNuke1Bag: {
-				DisplayName: 无尽一级迷你核弹包
-				// Tooltip: ""
-			}
-
-			MiniNuke2Bag: {
-				DisplayName: 无尽二级迷你核弹包
-				// Tooltip: ""
-			}
-
-			Rocket1Bag: {
-				DisplayName: 无尽一级火箭包
-				// Tooltip: ""
-			}
-
-			Rocket2Bag: {
-				DisplayName: 无尽二级火箭包
-				// Tooltip: ""
-			}
-
-			Rocket3Bag: {
-				DisplayName: 无尽三级火箭包
-				// Tooltip: ""
-			}
-
-			Rocket4Bag: {
-				DisplayName: 无尽四级火箭包
-				// Tooltip: ""
-			}
-
-			WetRocketBag: {
-				DisplayName: 无尽潮湿火箭包
 				// Tooltip: ""
 			}
 
@@ -1824,6 +1764,8 @@ Mods: {
 					每消耗10个会掉落一个强化剂
 					'''
 			}
+
+			// OverloaderRewards: The boss will drop {0} treasure bags, {1} {^1:trophy;trophies}, and {2} {^2:energizer;energizers} when defeated (rewards increase with stack size)
 
 			OverloadEye: {
 				DisplayName: 融合眼球

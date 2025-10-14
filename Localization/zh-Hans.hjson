@@ -1765,7 +1765,7 @@ Mods: {
 					'''
 			}
 
-			// OverloaderRewards: The boss will drop {0} treasure bags, {1} trophies, and {2} energizers when defeated (rewards increase with stack size)
+			// OverloaderRewards: The boss will drop {0} treasure bags, {1} {^1:trophy;trophies}, and {2} {^2:energizer;energizers} when defeated (rewards increase with stack size)
 
 			OverloadEye: {
 				DisplayName: 融合眼球

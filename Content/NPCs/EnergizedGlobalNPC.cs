@@ -50,7 +50,7 @@ namespace Fargowiltas.Content.NPCs
             const int k = 1000;
             const int m = k * k;
             int baseHealth = 18 * k;
-            int baseHealthHM = 80 * k;
+            int baseHealthHM = 48 * k;
             bool validBoss = true;
             if (Fargowiltas.SwarmSetDefaults)
             {
@@ -73,7 +73,7 @@ namespace Fargowiltas.Content.NPCs
                         break;
 
                     case NPCID.DD2DarkMageT1:
-                        npc.lifeMax = baseHealth;
+                        npc.lifeMax = (int)(baseHealth / 1.5f);
                         break;
 
                     case NPCID.Deerclops:
@@ -113,7 +113,7 @@ namespace Fargowiltas.Content.NPCs
                         break;
 
                     case NPCID.SkeletronPrime:
-                        npc.lifeMax = baseHealthHM;
+                        npc.lifeMax = (int)(baseHealthHM / 1.5f);
                         Fargowiltas.HardmodeSwarmActive = true;
                         break;
 
@@ -128,18 +128,18 @@ namespace Fargowiltas.Content.NPCs
                         break;
 
                     case NPCID.DD2Betsy:
-                        npc.lifeMax = baseHealthHM;
+                        npc.lifeMax = (int)(baseHealthHM / 1.5f);
                         Fargowiltas.HardmodeSwarmActive = true;
                         break;
 
                     case NPCID.DukeFishron:
-                        npc.lifeMax = baseHealthHM;
+                        npc.lifeMax = (int)(baseHealthHM / 1.5f);
                         Fargowiltas.HardmodeSwarmActive = true;
                         Fargowiltas.LateHardmodeSwarmActive = true;
                         break;
 
                     case NPCID.HallowBoss:
-                        npc.lifeMax = baseHealthHM / 2;
+                        npc.lifeMax = (int)(baseHealthHM / 1.5f);
                         Fargowiltas.HardmodeSwarmActive = true;
                         Fargowiltas.LateHardmodeSwarmActive = true;
                         break;

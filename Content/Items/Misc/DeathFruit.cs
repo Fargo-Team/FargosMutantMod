@@ -70,7 +70,14 @@ namespace Fargowiltas.Content.Items.Misc
                     player.ConsumedLifeFruit--;
                 }
                 else
-                    player.ConsumedLifeFruit = 0;
+                {
+                    int amount = Math.Min(player.ConsumedLifeFruit, player.CountItem(Type));
+                    for (int i = 1; i < amount; i++)
+                    {
+                        player.ConsumeItem(Type);
+                    }
+                    player.ConsumedLifeFruit -= amount;
+                }
 			}
             else if (player.ConsumedLifeCrystals > 0)
             {

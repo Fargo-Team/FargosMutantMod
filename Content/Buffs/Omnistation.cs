@@ -48,10 +48,8 @@ namespace Fargowiltas.Content.Buffs
                 player.statDefense += 5;
 
                 //ladybug
-                player.ladyBugLuckTimeLeft = 24 * 60 * 60;
+                player.ladyBugLuckTimeLeft = 12 * 60 * 60;
                 player.AddBuff(BuffID.SugarRush, 2);
-
-                player.AddBuff(BuffID.Honey, 2);
             }
         }
     }

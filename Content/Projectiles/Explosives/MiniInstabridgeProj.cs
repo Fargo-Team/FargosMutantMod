@@ -74,7 +74,7 @@ namespace Fargowiltas.Content.Projectiles.Explosives
                 {
                     FargoGlobalTile.ClearEverything(xPosition, yPosition);
                 }
-                else if (tile.HasTile && Main.tileSolid[tile.TileType])
+                else if (x > min + 10 && tile.HasTile && Main.tileSolid[tile.TileType])
                 {
                     break;
                 }

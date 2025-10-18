@@ -51,7 +51,7 @@ namespace Fargowiltas.Content.Items.Misc
 			if (!fargoPlayer.AutoSummon) 
 				return;
 
-			if (++fargoPlayer.AutoSummonCD < 60)
+			if (++fargoPlayer.AutoSummonCD < 30)
 				return;
 
             fargoPlayer.AutoSummonCD = 0;

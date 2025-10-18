@@ -1976,68 +1976,13 @@ Mods: {
 					'''
 			}
 
-			UnsafeBlueBrickWall: {
-				DisplayName: 危险蓝砖墙
-				Tooltip: 允许区域特有的敌怪生成
-			}
-
-			UnsafeBlueSlabWall: {
-				DisplayName: 危险蓝板墙
-				Tooltip: 允许区域特有的敌怪生成
-			}
-
-			UnsafeBlueTileWall: {
-				DisplayName: 危险蓝瓷砖墙
-				Tooltip: 允许区域特有的敌怪生成
-			}
-
 			UnsafeGraniteWall: {
 				DisplayName: 危险花岗岩墙
 				Tooltip: 允许区域特有的敌怪生成
 			}
 
-			UnsafeGreenBrickWall: {
-				DisplayName: 危险绿砖墙
-				Tooltip: 允许区域特有的敌怪生成
-			}
-
-			UnsafeGreenSlabWall: {
-				DisplayName: 危险绿板墙
-				Tooltip: 允许区域特有的敌怪生成
-			}
-
-			UnsafeGreenTileWall: {
-				DisplayName: 危险绿瓷砖墙
-				Tooltip: 允许区域特有的敌怪生成
-			}
-
-			UnsafeLihzahrdBrickWall: {
-				DisplayName: 危险丛林蜥蜴砖墙
-				Tooltip: 允许区域特有的敌怪生成
-			}
-
 			UnsafeMarbleWall: {
 				DisplayName: 危险大理石墙
-				Tooltip: 允许区域特有的敌怪生成
-			}
-
-			UnsafePinkBrickWall: {
-				DisplayName: 危险粉砖墙
-				Tooltip: 允许区域特有的敌怪生成
-			}
-
-			UnsafePinkSlabWall: {
-				DisplayName: 危险粉板墙
-				Tooltip: 允许区域特有的敌怪生成
-			}
-
-			UnsafePinkTileWall: {
-				DisplayName: 危险粉瓷砖墙
-				Tooltip: 允许区域特有的敌怪生成
-			}
-
-			UnsafeSpiderWall: {
-				DisplayName: 危险蜘蛛墙
 				Tooltip: 允许区域特有的敌怪生成
 			}
 

@@ -259,19 +259,10 @@ namespace Fargowiltas.Content.NPCs
                         //AddItem(ItemID.AnglerPants, condition: angler20);
 
                         AddItem(ItemID.BlueBrick, Item.buyPrice(silver: 1));
-                        AddItem(ItemType<UnsafeBlueBrickWall>(), Item.buyPrice(copper: 25));
-                        AddItem(ItemType<UnsafeBlueSlabWall>(), Item.buyPrice(copper: 25));
-                        AddItem(ItemType<UnsafeBlueTileWall>(), Item.buyPrice(copper: 25));
 
                         AddItem(ItemID.GreenBrick, Item.buyPrice(silver: 1));
-                        AddItem(ItemType<UnsafeGreenBrickWall>(), Item.buyPrice(copper: 25));
-                        AddItem(ItemType<UnsafeGreenSlabWall>(), Item.buyPrice(copper: 25));
-                        AddItem(ItemType<UnsafeGreenTileWall>(), Item.buyPrice(copper: 25));
 
                         AddItem(ItemID.PinkBrick, Item.buyPrice(silver: 1));
-                        AddItem(ItemType<UnsafePinkBrickWall>(), Item.buyPrice(copper: 25));
-                        AddItem(ItemType<UnsafePinkSlabWall>(), Item.buyPrice(copper: 25));
-                        AddItem(ItemType<UnsafePinkTileWall>(), Item.buyPrice(copper: 25));
 
                         AddItem(ItemType<BrittleBone>(), condition: new Condition("Mods.Fargowiltas.Conditions.BrittleBone", () => Main.LocalPlayer.inventory.Any(i => !i.IsAir && i.useAmmo == ItemID.Bone)));
                         break;

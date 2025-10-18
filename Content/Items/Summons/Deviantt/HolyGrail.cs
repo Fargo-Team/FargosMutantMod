@@ -26,10 +26,9 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
         public override void AddRecipes()
         {
 			CreateRecipe()
-					.AddRecipeGroup("Fargowiltas:AnyEvilBar", 3)
-					.AddIngredient(ItemID.SummoningPotion, 7)
-					.AddIngredient(ItemID.MudBlock)
-					.AddIngredient(ItemID.ManaCrystal)
+					.AddRecipeGroup("Fargowiltas:AnyGoldBar", 4)
+					.AddIngredient(ItemID.ManaPotion, 6)
+					.AddIngredient(ItemID.Ruby)
 					.AddTile(TileID.DemonAltar)
 					.Register();
         }

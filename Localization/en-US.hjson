@@ -1405,7 +1405,7 @@ Mods: {
 				DisplayName: Shadowflame Icon
 				Tooltip:
 					'''
-					Summons Goblin Summoner
+					Summons Goblin Warlock
 					Only usable during Goblin Army
 					'''
 			}
@@ -3071,7 +3071,7 @@ Mods: {
 			BloodEelDown: After defeating a Blood Eel, In hardmode
 			BloodGoblinDown: After defeating a Hemogoblin Shark, In hardmode
 			BloodNautDown: After defeating Dreadnautilus, In hardmode
-			SummonerDown: After defeating a Goblin Summoner and the Goblin Army, In hardmode
+			SummonerDown: After defeating a Goblin Warlock and the Goblin Army, In hardmode
 			PirateDown: After defeating a Pirate Captain and the Pirate Invasion, In hardmode
 			NailheadDown: After defeating a Nailhead and all Mechanical Bosses
 			MothronDown: After defeating a Mothron and all Mechanical Bosses

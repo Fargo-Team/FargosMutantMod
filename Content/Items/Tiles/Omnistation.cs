@@ -41,11 +41,10 @@ Greatly increases luck when nearby"); */
         {
             CreateRecipe()
                 .AddIngredient(ModContent.ItemType<Semistation>())
-                .AddIngredient(ItemID.HoneyBucket, 5)
                 .AddIngredient(ItemID.SliceOfCake, 3)
                 .AddIngredient(ItemID.GardenGnome, 3)
                 .AddIngredient(ItemID.CatBast, 3)
-                .AddIngredient(ItemID.GoldLadyBug, 3)
+                .AddIngredient(ItemID.LadyBug, 3)
                 .AddIngredient(bar, 10)
                 .AddTile(TileID.MythrilAnvil)
                 .Register();

@@ -1967,68 +1967,13 @@ Mods: {
 					'''
 			}
 
-			UnsafeBlueBrickWall: {
-				DisplayName: Parede de Tijolo Azul Amaldiçoada
-				Tooltip: Permite que inimigos específicos à área sejam criados
-			}
-
-			UnsafeBlueSlabWall: {
-				DisplayName: Parede de Laje Azul Amaldiçoada
-				Tooltip: Permite que inimigos específicos à área sejam criados
-			}
-
-			UnsafeBlueTileWall: {
-				DisplayName: Parede de Telha Azul Amaldiçoada
-				Tooltip: Permite que inimigos específicos à área sejam criados
-			}
-
 			UnsafeGraniteWall: {
 				DisplayName: Parede de Granito Insegura
 				Tooltip: Permite que inimigos específicos à área sejam criados
 			}
 
-			UnsafeGreenBrickWall: {
-				DisplayName: Parede de Tijolo Verde Amaldiçoada
-				Tooltip: Permite que inimigos específicos à área sejam criados
-			}
-
-			UnsafeGreenSlabWall: {
-				DisplayName: Parede de Laje Verde Amaldiçoada
-				Tooltip: Permite que inimigos específicos à área sejam criados
-			}
-
-			UnsafeGreenTileWall: {
-				DisplayName: Parede de Telha Verde Amaldiçoada
-				Tooltip: Permite que inimigos específicos à área sejam criados
-			}
-
-			UnsafeLihzahrdBrickWall: {
-				DisplayName: Parede de Tijolo Lagharta Insegura
-				Tooltip: Permite que inimigos específicos à área sejam criados
-			}
-
 			UnsafeMarbleWall: {
 				DisplayName: Parede de Mármore Insegura
-				Tooltip: Permite que inimigos específicos à área sejam criados
-			}
-
-			UnsafePinkBrickWall: {
-				DisplayName: Parede de Tijolo Rosa Amaldiçoada
-				Tooltip: Permite que inimigos específicos à área sejam criados
-			}
-
-			UnsafePinkSlabWall: {
-				DisplayName: Parede de Laje Rosa Amaldiçoada
-				Tooltip: Permite que inimigos específicos à área sejam criados
-			}
-
-			UnsafePinkTileWall: {
-				DisplayName: Parede de Telha Rosa Amaldiçoada
-				Tooltip: Permite que inimigos específicos à área sejam criados
-			}
-
-			UnsafeSpiderWall: {
-				DisplayName: Parede de Aranha Insegura
 				Tooltip: Permite que inimigos específicos à área sejam criados
 			}
 

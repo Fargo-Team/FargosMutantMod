@@ -1967,69 +1967,14 @@ Mods: {
 					'''
 			}
 
-			UnsafeBlueBrickWall: {
-				DisplayName: Unsafe Blue Brick Wall
-				Tooltip: Allows area-specific enemies to spawn
-			}
-
-			UnsafeBlueSlabWall: {
-				DisplayName: Unsafe Blue Slab Wall
-				Tooltip: Allows area-specific enemies to spawn
-			}
-
-			UnsafeBlueTileWall: {
-				DisplayName: Unsafe Blue Tile Wall
-				Tooltip: Allows area-specific enemies to spawn
-			}
-
 			UnsafeGraniteWall: {
-				DisplayName: Unsafe Granite Wall
-				Tooltip: Allows area-specific enemies to spawn
-			}
-
-			UnsafeGreenBrickWall: {
-				DisplayName: Unsafe Green Brick Wall
-				Tooltip: Allows area-specific enemies to spawn
-			}
-
-			UnsafeGreenSlabWall: {
-				DisplayName: Unsafe Green Slab Wall
-				Tooltip: Allows area-specific enemies to spawn
-			}
-
-			UnsafeGreenTileWall: {
-				DisplayName: Unsafe Green Tile Wall
-				Tooltip: Allows area-specific enemies to spawn
-			}
-
-			UnsafeLihzahrdBrickWall: {
-				DisplayName: Unsafe Lihzahrd Brick Wall
-				Tooltip: Allows area-specific enemies to spawn
+				DisplayName: Enchanted Granite Wall
+				Tooltip: An enchanted slab of stone that will spawn monsters
 			}
 
 			UnsafeMarbleWall: {
-				DisplayName: Unsafe Marble Wall
-				Tooltip: Allows area-specific enemies to spawn
-			}
-
-			UnsafePinkBrickWall: {
-				DisplayName: Unsafe Pink Brick Wall
-				Tooltip: Allows area-specific enemies to spawn
-			}
-
-			UnsafePinkSlabWall: {
-				DisplayName: Unsafe Pink Slab Wall
-				Tooltip: Allows area-specific enemies to spawn
-			}
-
-			UnsafePinkTileWall: {
-				DisplayName: Unsafe Pink Tile Wall
-				Tooltip: Allows area-specific enemies to spawn
-			}
-
-			UnsafeSpiderWall: {
-				DisplayName: Unsafe Spider Wall
-				Tooltip: Allows area-specific enemies to spawn
+				DisplayName: Enchanted Marble Wall
+				Tooltip: An enchanted slab of stone that will spawn monsters
 			}
 
 			WalkingRick: {

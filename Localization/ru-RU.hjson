@@ -1971,68 +1971,13 @@ Mods: {
 					'''
 			}
 
-			UnsafeBlueBrickWall: {
-				DisplayName: Небезопасная стена из синего кирпича
-				Tooltip: Позволяет спавниться мобам определённого биома
-			}
-
-			UnsafeBlueSlabWall: {
-				DisplayName: Небезопасная синяя черепица
-				Tooltip: Позволяет спавниться мобам определённого биома
-			}
-
-			UnsafeBlueTileWall: {
-				DisplayName: Небезопасная синяя плитка
-				Tooltip: Позволяет спавниться мобам определённого биома
-			}
-
 			UnsafeGraniteWall: {
 				DisplayName: Небезопасная гранитная стена
 				Tooltip: Позволяет спавниться мобам определённого биома
 			}
 
-			UnsafeGreenBrickWall: {
-				DisplayName: Небезопасная стена из зелёного кирпича
-				Tooltip: Позволяет спавниться мобам определённого биома
-			}
-
-			UnsafeGreenSlabWall: {
-				DisplayName: Небезопасная зелёная черепица
-				Tooltip: Позволяет спавниться мобам определённого биома
-			}
-
-			UnsafeGreenTileWall: {
-				DisplayName: Небезопасная зелёная плитка
-				Tooltip: Позволяет спавниться мобам определённого биома
-			}
-
-			UnsafeLihzahrdBrickWall: {
-				DisplayName: Небезопасная стена из кирпича ящщеров
-				Tooltip: Позволяет спавниться мобам определённого биома
-			}
-
 			UnsafeMarbleWall: {
 				DisplayName: Небезопасная мраморная стена
-				Tooltip: Позволяет спавниться мобам определённого биома
-			}
-
-			UnsafePinkBrickWall: {
-				DisplayName: Небезопасная стена из розового кирпича
-				Tooltip: Позволяет спавниться мобам определённого биома
-			}
-
-			UnsafePinkSlabWall: {
-				DisplayName: Небезопасная розовая черепица
-				Tooltip: Позволяет спавниться мобам определённого биома
-			}
-
-			UnsafePinkTileWall: {
-				DisplayName: Небезопасная розовая плитка
-				Tooltip: Позволяет спавниться мобам определённого биома
-			}
-
-			UnsafeSpiderWall: {
-				DisplayName: Небезопасная паучья стена
 				Tooltip: Позволяет спавниться мобам определённого биома
 			}
 

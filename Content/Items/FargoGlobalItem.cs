@@ -1,6 +1,7 @@
 ﻿using Fargowiltas.Common.Configs;
 using Fargowiltas.Content.Items.Ammos.Coins;
 using Fargowiltas.Content.Items.CaughtNPCs;
+using Fargowiltas.Content.Items.Summons.Abom;
 using Fargowiltas.Content.Items.Tiles;
 using Fargowiltas.Content.NPCs;
 using Fargowiltas.Content.UI.Emotes;
@@ -866,6 +867,14 @@ namespace Fargowiltas.Content.Items
                 */
             }
             return base.PreDrawInInventory(item, spriteBatch, position, frame, drawColor, itemColor, origin, scale);
+        }
+
+        public override void SetStaticDefaults()
+        {
+            ItemID.Sets.ShimmerTransformToItem[ItemID.GraniteWall] = ModContent.ItemType<UnsafeGraniteWall>();
+            ItemID.Sets.ShimmerTransformToItem[ItemID.MarbleWall] = ModContent.ItemType<UnsafeMarbleWall>();
+            ItemID.Sets.ShimmerTransformToItem[ItemID.ReleaseLantern] = ModContent.ItemType<MatsuriLantern>();
+            base.SetStaticDefaults();
         }
     }
 }

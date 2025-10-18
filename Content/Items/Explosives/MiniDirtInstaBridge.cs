@@ -36,6 +36,13 @@ namespace Fargowiltas.Content.Items.Explosives
             Item.shoot = ModContent.ProjectileType<MiniDirtInstabridgeProj>();
         }
 
+        public override bool CanUseItem(Player player)
+        {
+            if (player.HasBuff(BuffID.NoBuilding))
+                return false;
+            return base.CanUseItem(player);
+        }
+
         public override void HoldItem(Player player)
         {
             if (player.whoAmI == Main.myPlayer)

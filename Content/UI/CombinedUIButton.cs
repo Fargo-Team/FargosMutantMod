@@ -25,7 +25,7 @@ namespace Fargowiltas.Content.UI
         }
         public override void UpdateUI()
         {
-            if (!Main.playerInventory)
+            if (!Main.playerInventory || Main.LocalPlayer.chest != -1 || Main.LocalPlayer.talkNPC != -1)
                 FargoUIManager.Close<CombinedUIButton>();
             else
                 FargoUIManager.Open<CombinedUIButton>();

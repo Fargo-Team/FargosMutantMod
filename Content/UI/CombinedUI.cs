@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 using Terraria;
+using Terraria.Audio;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
 using Terraria.Localization;
@@ -19,6 +20,8 @@ namespace Fargowiltas.Content.UI
     {
         public override int InterfaceIndex(List<GameInterfaceLayer> layers, int vanillaInventoryIndex) => vanillaInventoryIndex;
         public override string InterfaceLayerName => "Fargos: Combined UI";
+
+        public override bool MenuToggleSound => true;
 
         // note: lower priority -> further up in list
         public static void AddUI<T>(LocalizedText text, float priority) where T : FargoUI
@@ -46,13 +49,23 @@ namespace Fargowiltas.Content.UI
 
         public static List<CombinedUIElement> List = [];
         public static int ListElements => List.Count;
+        public override void OnOpen()
+        {
+            SoundEngine.PlaySound(SoundID.MenuOpen);
+        }
+
+        public override void OnClose()
+        {
+            SoundEngine.PlaySound(SoundID.MenuClose);
+        }
+
         public override void OnLoad()
         {
             //FargoUIManager.Open<CombinedUI>();
         }
         public override void UpdateUI()
         {
-            if (!Main.playerInventory)
+            if (!Main.playerInventory || Main.LocalPlayer.chest != -1)
                 FargoUIManager.Close<CombinedUI>();
         }
         public override void OnInitialize()

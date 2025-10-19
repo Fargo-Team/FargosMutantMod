@@ -49,23 +49,13 @@ namespace Fargowiltas.Content.UI
 
         public static List<CombinedUIElement> List = [];
         public static int ListElements => List.Count;
-        public override void OnOpen()
-        {
-            SoundEngine.PlaySound(SoundID.MenuOpen);
-        }
-
-        public override void OnClose()
-        {
-            SoundEngine.PlaySound(SoundID.MenuClose);
-        }
-
         public override void OnLoad()
         {
             //FargoUIManager.Open<CombinedUI>();
         }
         public override void UpdateUI()
         {
-            if (!Main.playerInventory || Main.LocalPlayer.chest != -1)
+            if (!Main.playerInventory)
                 FargoUIManager.Close<CombinedUI>();
         }
         public override void OnInitialize()

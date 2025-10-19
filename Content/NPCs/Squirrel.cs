@@ -183,8 +183,6 @@ namespace Fargowiltas.Content.NPCs
             if (!Main.bloodMoon)
             {
                 button = Language.GetTextValue("LegacyInterface.28");
-
-                button += $" {shopNum + 1}";
                 button2 = Language.GetTextValue("Mods.Fargowiltas.NPCs.Squirrel.Feed");
             }
             else

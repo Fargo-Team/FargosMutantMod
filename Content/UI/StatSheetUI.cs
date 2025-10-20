@@ -106,6 +106,8 @@ namespace Fargowiltas.Content.UI
             Player player = Main.LocalPlayer;
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
 
+            var souls = Fargowiltas.ModLoaded["FargowiltasSouls"] ? ModLoader.GetMod("FargowiltasSouls") : null;
+
             InnerPanel.RemoveAllChildren();
             ColumnCounter = LineCounter = 0;
 
@@ -121,15 +123,17 @@ namespace Fargowiltas.Content.UI
             AddStat("MagicCritical", ItemID.WandofSparking, Crit(DamageClass.Magic));
             AddStat("ManaCostReduction", ItemID.WandofSparking, Math.Round((1.0 - player.manaCost) * 100));
             AddStat("SummonDamage", ItemID.SlimeStaff, Damage(DamageClass.Summon));
-            if (Fargowiltas.ModLoaded["FargowiltasSouls"])
-                AddStat("SummonCritical", ItemID.SlimeStaff, (int)ModLoader.GetMod("FargowiltasSouls").Call("GetSummonCrit"));
+            if (souls != null)
+                AddStat("SummonCritical", ItemID.SlimeStaff, (int)souls.Call("GetSummonCrit"));
             else
                 AddStat("");
             AddStat("MaxMinions", ItemID.SlimeStaff, player.maxMinions);
             AddStat("MaxSentries", ItemID.SlimeStaff, player.maxTurrets);
 
-            if (Fargowiltas.ModLoaded["FargowiltasSouls"])
-                AddStat("AttackSpeed", ModLoader.GetMod("FargowiltasSouls").Find<ModItem>("MythrilEnchant").Type, (int)Math.Round((float)ModLoader.GetMod("FargowiltasSouls").Call("GetAttackSpeed") * 100));
+            if (souls != null)
+            {
+                AddStat("AttackSpeed", souls.Find<ModItem>("MythrilEnchant").Type, (int)Math.Round(MathF.Max((float)souls.Call("GetCachedAttackSpeed"), (float)souls.Call("GetAttackSpeed")) * 100));
+            }
             else
                 AddStat("");
 

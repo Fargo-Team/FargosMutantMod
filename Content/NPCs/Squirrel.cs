@@ -734,6 +734,7 @@ namespace Fargowiltas.Content.NPCs
                 ItemID.ZombieArm, 1,
                 ItemID.Shackle, 1,
                 ItemID.Shroomerang, 1,
+                ItemID.Rally, 1,
 
                 // event summons
                 CaughtNPCItem.CaughtTownies[NPCID.Dryad], 1,

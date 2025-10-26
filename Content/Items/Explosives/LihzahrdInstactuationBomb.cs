@@ -1,4 +1,5 @@
-﻿using Fargowiltas.Content.Projectiles.Explosives;
+﻿using Fargowiltas.Common.Configs;
+using Fargowiltas.Content.Projectiles.Explosives;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,11 @@ namespace Fargowiltas.Content.Items.Explosives
 {
     public class LihzahrdInstactuationBomb : ModItem
     {
+        public override bool IsLoadingEnabled(Mod mod)
+        {
+            return FargoServerConfig.Instance.InstantItems;
+        }
+
         public override void SetStaticDefaults()
         {
             // DisplayName.SetDefault("Lihzahrd Instactuation Bomb");

@@ -1,5 +1,5 @@
 ﻿using Fargowiltas.Common.Configs;
-using Fargowiltas.Content.Items.Ammos.Coins;
+//using Fargowiltas.Content.Items.Ammos.Coins;
 using Fargowiltas.Content.Items.CaughtNPCs;
 using Fargowiltas.Content.Items.Summons.Abom;
 using Fargowiltas.Content.Items.Tiles;
@@ -58,26 +58,26 @@ namespace Fargowiltas.Content.Items
         TooltipLine FountainTooltip(string biome) => new TooltipLine(Mod, "Tooltip0", $"[i:909] [c/AAAAAA:{ExpandedTooltipLoc($"Fountain{biome}")}]");
         public override void PickAmmo(Item weapon, Item ammo, Player player, ref int type, ref float speed, ref StatModifier damage, ref float knockback)
         {
-            //coin gun is broken as fucking shit codingwise so i'm fixing it
-            if (weapon.type == ItemID.CoinGun)
-            {
-                if (ammo.type == ItemID.CopperCoin || ammo.type == ItemType<CopperCoinBag>())
-                {
-                    type = ProjectileID.CopperCoin;
-                }
-                if (ammo.type == ItemID.SilverCoin || ammo.type == ItemType<SilverCoinBag>())
-                {
-                    type = ProjectileID.SilverCoin;
-                }
-                if (ammo.type == ItemID.GoldCoin || ammo.type == ItemType<GoldCoinBag>())
-                {
-                    type = ProjectileID.GoldCoin;
-                }
-                if (ammo.type == ItemID.PlatinumCoin || ammo.type == ItemType<PlatinumCoinBag>())
-                {
-                    type = ProjectileID.PlatinumCoin;
-                }
-            }
+            ////coin gun is broken as fucking shit codingwise so i'm fixing it
+            //if (weapon.type == ItemID.CoinGun)
+            //{
+            //    if (ammo.type == ItemID.CopperCoin || ammo.type == ItemType<CopperCoinBag>())
+            //    {
+            //        type = ProjectileID.CopperCoin;
+            //    }
+            //    if (ammo.type == ItemID.SilverCoin || ammo.type == ItemType<SilverCoinBag>())
+            //    {
+            //        type = ProjectileID.SilverCoin;
+            //    }
+            //    if (ammo.type == ItemID.GoldCoin || ammo.type == ItemType<GoldCoinBag>())
+            //    {
+            //        type = ProjectileID.GoldCoin;
+            //    }
+            //    if (ammo.type == ItemID.PlatinumCoin || ammo.type == ItemType<PlatinumCoinBag>())
+            //    {
+            //        type = ProjectileID.PlatinumCoin;
+            //    }
+            //}
         }
         
         //For the shop sale tooltip system.

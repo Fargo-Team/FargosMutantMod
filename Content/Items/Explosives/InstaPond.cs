@@ -1,4 +1,5 @@
-﻿using Fargowiltas.Common.Systems;
+﻿using Fargowiltas.Common.Configs;
+using Fargowiltas.Common.Systems;
 using Fargowiltas.Content.Projectiles.Explosives;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -10,9 +11,14 @@ namespace Fargowiltas.Content.Items.Explosives
 {
     public class InstaPond : ModItem
     {
+        public override bool IsLoadingEnabled(Mod mod)
+        {
+            return FargoServerConfig.Instance.InstantItems;
+        }
+
         public override void SetStaticDefaults()
         {
-            Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 10;
+        Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 10;
         }
 
         public override void SetDefaults()

@@ -188,5 +188,9 @@ namespace Fargowiltas.Common.Configs
         [DefaultValue(true)]
         [ReloadRequired]
         public bool ExtraBuffSlots;
+
+        [DefaultValue(true)]
+        [ReloadRequired]
+        public bool InstantItems;
     }
 }

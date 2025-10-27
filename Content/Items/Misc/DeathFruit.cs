@@ -8,38 +8,39 @@ using Terraria.ModLoader;
 
 namespace Fargowiltas.Content.Items.Misc
 {
-	public class DeathFruit : ModItem
-	{
+    public class DeathFruit : ModItem
+    {
         SoundStyle DeathFruitSound = new SoundStyle("Fargowiltas/Assets/Sounds/DeathFruit");
         public override void SetStaticDefaults()
-		{
-			// DisplayName.SetDefault("Death Fruit");
-			// Tooltip.SetDefault("Permanently decreases maximum life by 20\nEffects may not be reversible for characters that have used modded life-increasing items");
-		}
+        {
+            // DisplayName.SetDefault("Death Fruit");
+            // Tooltip.SetDefault("Permanently decreases maximum life by 20\nEffects may not be reversible for characters that have used modded life-increasing items");
+        }
 
-		public override void SetDefaults()
-		{
-			Item.width = 18;
-			Item.height = 18;
-			Item.maxStack = 9999;
-			Item.rare = ItemRarityID.Blue;
-			Item.useStyle = ItemUseStyleID.HoldUp;
-			Item.useAnimation = 30;
-			Item.useTime = 30;
-			Item.consumable = true;
+        public override void SetDefaults()
+        {
+            Item.width = 18;
+            Item.height = 18;
+            Item.maxStack = 9999;
+            Item.rare = ItemRarityID.Blue;
+            Item.useStyle = ItemUseStyleID.HoldUp;
+            Item.useAnimation = 30;
+            Item.useTime = 30;
+            Item.consumable = true;
+            Item.autoReuse = true;
 
-			Item.UseSound = SoundID.Item27;
-		}
+            Item.UseSound = SoundID.Item27;
+        }
         public override void AddRecipes()
         {
             CreateRecipe()
                 .AddIngredient(ItemID.LifeFruit)
-                .AddCondition(Condition.NearShimmer) 
+                .AddCondition(Condition.NearShimmer)
                 .Register();
         }
         public override bool AltFunctionUse(Player player) => true;
         public override bool CanUseItem(Player player)
-		{
+        {
             if (!CanUse(player) && player.altFunctionUse != 2)
             {
                 return false;
@@ -48,8 +49,8 @@ namespace Fargowiltas.Content.Items.Misc
             {
                 return false;
             }
-			return true;
-		}
+            return true;
+        }
         public override void HoldItem(Player player)
         {
             if (player.ConsumedLifeCrystals > 0)
@@ -62,7 +63,7 @@ namespace Fargowiltas.Content.Items.Misc
             }
         }
         public override bool? UseItem(Player player)
-		{
+        {
             if (player.ConsumedLifeFruit > 0)
             {
                 if (player.altFunctionUse != 2)
@@ -78,7 +79,7 @@ namespace Fargowiltas.Content.Items.Misc
                     }
                     player.ConsumedLifeFruit -= amount;
                 }
-			}
+            }
             else if (player.ConsumedLifeCrystals > 0)
             {
                 if (player.altFunctionUse != 2)
@@ -126,8 +127,8 @@ namespace Fargowiltas.Content.Items.Misc
                     }
                 }
             }
-			return true;
-		}
+            return true;
+        }
 
         private bool CanUse(Player player, bool rightClick = false)
         {

@@ -19,7 +19,7 @@ using Fargowiltas.Content.Items.Explosives;
 using Fargowiltas.Content.Items.Tiles;
 using Fargowiltas.Content.Items.Summons.Deviantt;
 using Fargowiltas.Content.Items.Summons.SwarmSummons.Energizers;
-using Fargowiltas.Content.Items.Ammos;
+using Fargowiltas.Content.Items.Misc;
 
 namespace Fargowiltas.Content.NPCs
 {

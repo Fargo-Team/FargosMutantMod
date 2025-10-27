@@ -248,7 +248,7 @@ namespace Fargowiltas.Content.NPCs
                     sellType = SquirrelSellType.SoldAtThirtyStack;
                     return SquirrelShopGroup.Potion;
                 }
-                bool soulsEnabled = ModLoader.TryGetMod("FargowiltasSouls", out Mod soulsMod);
+                //bool soulsEnabled = ModLoader.TryGetMod("FargowiltasSouls", out Mod soulsMod);
             }
 
             //if (IsFargoSoulsItem(item))
@@ -654,6 +654,9 @@ namespace Fargowiltas.Content.NPCs
         {
             int[] prehardmode =
             [
+                // Life Crystal
+                ItemID.LifeCrystal, 3,
+
                 // king slime
                 ItemID.NinjaHood, 1,
                 ItemID.NinjaShirt, 1,

@@ -654,6 +654,9 @@ namespace Fargowiltas.Content.NPCs
         {
             int[] prehardmode =
             [
+                // Life Crystal
+                ItemID.LifeCrystal, 3,
+
                 // king slime
                 ItemID.NinjaHood, 1,
                 ItemID.NinjaShirt, 1,

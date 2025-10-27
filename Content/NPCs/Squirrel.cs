@@ -248,7 +248,7 @@ namespace Fargowiltas.Content.NPCs
                     sellType = SquirrelSellType.SoldAtThirtyStack;
                     return SquirrelShopGroup.Potion;
                 }
-                bool soulsEnabled = ModLoader.TryGetMod("FargowiltasSouls", out Mod soulsMod);
+                //bool soulsEnabled = ModLoader.TryGetMod("FargowiltasSouls", out Mod soulsMod);
             }
 
             //if (IsFargoSoulsItem(item))

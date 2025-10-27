@@ -287,6 +287,11 @@ Mods: {
 					Label: "[i:AnglerTackleBag] Жалостливый рыбак"
 					Tooltip: Рыбак теперь выдаёт свои предметы на определённых квестах, если вы их ещё не получили.
 				}
+
+				InstantItems: {
+					// Label: "[i:Dynamite] Instant Items"
+					// Tooltip: Enables/disables Insta items such as the InstaHouse
+				}
 			}
 
 			FargoClientConfig: {

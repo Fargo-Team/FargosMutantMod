@@ -283,6 +283,11 @@ Mods: {
 					Label: "[i:AnglerTackleBag] Angler Quest Pity"
 					Tooltip: Makes Angler give his important items at certain quests if he hasn't dropped them yet.
 				}
+
+				InstantItems: {
+					Label: "[i:Dynamite] Instant Items"
+					Tooltip: Enables/disables Insta items such as the InstaHouse
+				}
 			}
 
 			FargoClientConfig: {

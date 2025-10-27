@@ -91,6 +91,11 @@ namespace Fargowiltas.Common.Configs
 
         [DefaultValue(true)]
         public bool Squirrel;
+
+        [DefaultValue(true)]
+        [ReloadRequired]
+        public bool InstantItems;
+
         [Header("$Mods.Fargowiltas.Configs.FargoServerConfig.Headers.WorldStates")]
         [DefaultValue(0)]
         [DrawTicks]
@@ -189,8 +194,5 @@ namespace Fargowiltas.Common.Configs
         [ReloadRequired]
         public bool ExtraBuffSlots;
 
-        [DefaultValue(true)]
-        [ReloadRequired]
-        public bool InstantItems;
     }
 }

@@ -380,21 +380,30 @@ namespace Fargowiltas.Content.NPCs
             }
         }
 
+        public static bool AnyoneOwnsWood(int wood)
+        {
+            foreach (Player player in Main.ActivePlayers)
+            {
+                if (player.FargoMutant().ItemHasBeenOwned[wood])
+                    return true;
+            }
+            return false;
+        }
         public override void AddShops()
         {
             var npcShop = new NPCShop(Type, ShopName)
                 .Add(new Item(ItemID.WoodPlatform) { shopCustomPrice = Item.buyPrice(copper: 5) })
                 .Add(new Item(ItemID.Wood) { shopCustomPrice = Item.buyPrice(copper: 10) })
-                .Add(new Item(ItemID.BorealWood) { shopCustomPrice = Item.buyPrice(copper: 10) })
-                .Add(new Item(ItemID.RichMahogany) { shopCustomPrice = Item.buyPrice(copper: 15) })
-                .Add(new Item(ItemID.PalmWood) { shopCustomPrice = Item.buyPrice(copper: 15) })
-                .Add(new Item(ItemID.Ebonwood) { shopCustomPrice = Item.buyPrice(copper: 15) })
-                .Add(new Item(ItemID.Shadewood) { shopCustomPrice = Item.buyPrice(copper: 15) })
-                .Add(new Item(ItemID.AshWood) { shopCustomPrice = Item.buyPrice(copper: 20) })
-                .Add(new Item(ItemID.Pearlwood) { shopCustomPrice = Item.buyPrice(copper: 20) }, Condition.Hardmode)
-                .Add(new Item(ItemID.SpookyWood) { shopCustomPrice = Item.buyPrice(copper: 50) }, Condition.DownedPumpking)
-                .Add(new Item(ItemID.Cactus) { shopCustomPrice = Item.buyPrice(copper: 10) })
-                .Add(new Item(ItemID.BambooBlock) { shopCustomPrice = Item.buyPrice(copper: 10) })
+                .Add(new Item(ItemID.BorealWood) { shopCustomPrice = Item.buyPrice(copper: 10) }, new Condition("OwnsRegionalWood", () => AnyoneOwnsWood(ItemID.BorealWood)))
+                .Add(new Item(ItemID.RichMahogany) { shopCustomPrice = Item.buyPrice(copper: 15) }, new Condition("OwnsRegionalWood", () => AnyoneOwnsWood(ItemID.RichMahogany)))
+                .Add(new Item(ItemID.PalmWood) { shopCustomPrice = Item.buyPrice(copper: 15) }, new Condition("OwnsRegionalWood", () => AnyoneOwnsWood(ItemID.PalmWood)))
+                .Add(new Item(ItemID.Ebonwood) { shopCustomPrice = Item.buyPrice(copper: 15) }, new Condition("OwnsRegionalWood", () => AnyoneOwnsWood(ItemID.Ebonwood)))
+                .Add(new Item(ItemID.Shadewood) { shopCustomPrice = Item.buyPrice(copper: 15) }, new Condition("OwnsRegionalWood", () => AnyoneOwnsWood(ItemID.Shadewood)))
+                .Add(new Item(ItemID.AshWood) { shopCustomPrice = Item.buyPrice(copper: 20) }, new Condition("OwnsRegionalWood", () => AnyoneOwnsWood(ItemID.AshWood)))
+                .Add(new Item(ItemID.Pearlwood) { shopCustomPrice = Item.buyPrice(copper: 20) }, [new Condition("OwnsRegionalWood", () => AnyoneOwnsWood(ItemID.Pearlwood)), Condition.Hardmode])
+                .Add(new Item(ItemID.SpookyWood) { shopCustomPrice = Item.buyPrice(copper: 50) }, [new Condition("OwnsRegionalWood", () => AnyoneOwnsWood(ItemID.SpookyWood)), Condition.DownedPumpking])
+                .Add(new Item(ItemID.Cactus) { shopCustomPrice = Item.buyPrice(copper: 10) }, new Condition("OwnsRegionalWood", () => AnyoneOwnsWood(ItemID.Cactus)))
+                .Add(new Item(ItemID.BambooBlock) { shopCustomPrice = Item.buyPrice(copper: 10) }, new Condition("OwnsRegionalWood", () => AnyoneOwnsWood(ItemID.BambooBlock)))
                 .Add(new Item(ItemID.LivingWoodWand) { shopCustomPrice = Item.buyPrice(copper: 10000) })
                 .Add(new Item(ItemType<LumberjackMask>()) { shopCustomPrice = Item.buyPrice(copper: 10000) })
                 .Add(new Item(ItemType<LumberjackBody>()) { shopCustomPrice = Item.buyPrice(copper: 10000) })

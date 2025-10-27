@@ -3049,6 +3049,7 @@ Mods: {
 			VioletHusk: After having picked up a Violet Husk
 			PinkPricklyPear: After having picked up a Pink Prickly Pear
 			BlackInk: After having picked up Black Ink
+			OwnsRegionalWood: After having picked up the regional wood
 		}
 
 		Keybinds: {

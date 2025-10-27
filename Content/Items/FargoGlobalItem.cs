@@ -748,8 +748,7 @@ namespace Fargowiltas.Content.Items
                 player.GetModPlayer<FargoPlayer>().FirstDyeIngredients[dye] = true;
             }
 
-            if (Squirrel.SquirrelSells(item, out SquirrelSellType _) != SquirrelShopGroup.End)
-                player.GetModPlayer<FargoPlayer>().ItemHasBeenOwned[item.type] = true;
+            player.GetModPlayer<FargoPlayer>().ItemHasBeenOwned[item.type] = true;
 
             return base.OnPickup(item, player);
         }

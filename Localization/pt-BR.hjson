@@ -3054,6 +3054,7 @@ Mods: {
 			VioletHusk: Depois de pegar uma Casca Violeta
 			PinkPricklyPear: Depois de pegar um Figo Cor-de-rosa
 			BlackInk: Depois de pegar uma Tinta Preta
+			// OwnsRegionalWood: After having picked up the regional wood
 		}
 
 		Keybinds: {

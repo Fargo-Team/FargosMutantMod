@@ -248,8 +248,8 @@ namespace Fargowiltas.Content.Items
 
                 if (FargoServerConfig.Instance.UnlimitedPotionBuffsOn120 && item.maxStack > 1)
                 {
-                    if (!FargoSets.Items.PotionCannotBeInfinite[item.type])
-                    {
+                    //if (!FargoSets.Items.PotionCannotBeInfinite[item.type])
+                    //{
                         if (item.buffType != 0)
                         {
                             line = new TooltipLine(Mod, "TooltipUnlim", $"[i:87] [c/AAAAAA:{ExpandedTooltipLoc("UnlimitedBuff30")}]");
@@ -260,7 +260,7 @@ namespace Fargowiltas.Content.Items
                             line = new TooltipLine(Mod, "TooltipUnlim", $"[i:5139] [c/AAAAAA:{ExpandedTooltipLoc("UnlimitedUse30")}]");
                             tooltips.Add(line);
                         }
-                    }
+                    //}
                 }
 
                 if (fargoServerConfig.PermanentStationsNearby && FargoSets.Items.BuffStation[item.type])
@@ -495,8 +495,8 @@ namespace Fargowiltas.Content.Items
             if (item.IsAir || !FargoServerConfig.Instance.UnlimitedPotionBuffsOn120)
                 return;
 
-            if (FargoSets.Items.PotionCannotBeInfinite[item.type])
-                return;
+            //if (FargoSets.Items.PotionCannotBeInfinite[item.type])
+            //    return;
 
             if (item.stack >= 30 && item.buffType != 0 && item.buffTime >= 60 * 60 * 2)
             {
@@ -724,8 +724,7 @@ namespace Fargowiltas.Content.Items
                 player.GetModPlayer<FargoPlayer>().FirstDyeIngredients[dye] = true;
             }
 
-            if (Squirrel.SquirrelSells(item, out SquirrelSellType _) != SquirrelShopGroup.End)
-                player.GetModPlayer<FargoPlayer>().ItemHasBeenOwned[item.type] = true;
+            player.GetModPlayer<FargoPlayer>().ItemHasBeenOwned[item.type] = true;
 
             return base.OnPickup(item, player);
         }

@@ -3058,6 +3058,7 @@ Mods: {
 			VioletHusk: После того, как вы подобрали фиолетовый хитин
 			PinkPricklyPear: После того, как вы подобрали розовую колючую грушу
 			BlackInk: После того, как вы подобрали чернила
+			// OwnsRegionalWood: After having picked up the regional wood
 		}
 
 		Keybinds: {

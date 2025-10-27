@@ -27,7 +27,7 @@ namespace Fargowiltas
             public static Dictionary<int, List<int>> DuplicatableRecipes = [];
 
             public static bool[] NonBuffPotion;
-            public static bool[] PotionCannotBeInfinite;
+            //public static bool[] PotionCannotBeInfinite;
             public static bool[] BuffStation;
             public static List<ShopTooltip>[] RegisteredShopTooltips;
 
@@ -169,8 +169,8 @@ namespace Fargowiltas
                 ItemID.TeleportationPotion,
                 ItemType<BigSuckPotion>());
 
-            Items.PotionCannotBeInfinite = itemFactory.CreateBoolSet(false,
-                ItemID.BottledHoney);
+            //Items.PotionCannotBeInfinite = itemFactory.CreateBoolSet(false,
+            //    ItemID.BottledHoney);
 
             Items.BuffStation = itemFactory.CreateBoolSet(false,
                 ItemID.SharpeningStation,

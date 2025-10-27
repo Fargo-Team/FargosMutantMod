@@ -3058,6 +3058,7 @@ Mods: {
 			VioletHusk: 获得一个蓝紫外壳后
 			PinkPricklyPear: 获得一个粉仙人掌果后
 			BlackInk: 获得一个黑墨水后
+			// OwnsRegionalWood: After having picked up the regional wood
 		}
 
 		Keybinds: {

@@ -268,7 +268,7 @@ Mods: {
 					Label: "[i:Fargowiltas/InstaBridge] Безопасные терраформеры"
 					Tooltip:
 						'''
-						Терраформеры, по типу МоментМоста и разрушителя городов, избегают уничтожения структур в списке важных структур.
+						Терраформеры по типу МоментМоста и разрушителя городов избегают уничтожения структур в списке важных структур.
 						Данная функция довольно безопасна, и будет предотвращать от разрушения даже самые мелкие структуры, по типу домов в пещерах.
 						'''
 				}
@@ -289,8 +289,8 @@ Mods: {
 				}
 
 				InstantItems: {
-					// Label: "[i:Dynamite] Instant Items"
-					// Tooltip: Enables/disables Insta items such as the InstaHouse
+					Label: "[i:Dynamite] Моментальные предметы"
+					Tooltip: Включает/выключает моментальные предметы по типу МоментМоста
 				}
 			}
 
@@ -558,191 +558,11 @@ Mods: {
 		}
 
 		Items: {
-			BoneQuiver: {
-				DisplayName: Бесконечный костяной колчан
-				Tooltip: ""
-			}
-
-			ChlorophyteQuiver: {
-				DisplayName: Бесконечный хлорофитовый колчан
-				Tooltip: Отскакивают при ударе о стену
-			}
-
-			CursedQuiver: {
-				DisplayName: Бесконечный проклятый колчан
-				Tooltip: ""
-			}
-
-			FlameQuiver: {
-				DisplayName: Бесконечный подожжённый колчан
-				Tooltip: ""
-			}
-
-			FrostburnQuiver: {
-				DisplayName: Бесконечный колчан ледяного ожога
-				Tooltip: ""
-			}
-
-			HellfireQuiver: {
-				DisplayName: Бесконечный колчан адского огня
-				Tooltip: ""
-			}
-
-			HolyQuiver: {
-				DisplayName: Бесконечный святой колчан
-				Tooltip: При ударе вызывает падающие звёзды
-			}
-
-			IchorQuiver: {
-				DisplayName: Бесконечный ихорный колчан
-				Tooltip: Снижает защиту цели
-			}
-
-			JesterQuiver: {
-				DisplayName: Бесконечный колчан шута
-				Tooltip: ""
-			}
-
-			LuminiteQuiver: {
-				DisplayName: Бесконечный люминитовый колчан
-				Tooltip: Стреляет со скоростью звука!
-			}
-
-			UnholyQuiver: {
-				DisplayName: Бесконечный несвятой колчан
-				Tooltip: ""
-			}
-
-			VenomQuiver: {
-				DisplayName: Бесконечный ядовитый колчан
-				Tooltip: ""
-			}
-
 			BrittleBone: {
 				DisplayName: Хрупкая кость
 				Tooltip: ""
 			}
-
-			ChlorophytePouch: {
-				DisplayName: Бесконечная хлорофитовая сумка
-				Tooltip: Гоняется за вашими врагами
-			}
-
-			CrystalPouch: {
-				DisplayName: Бесконечная кристальная сумка
-				Tooltip: При ударе создаёт осколки кристалла
-			}
-
-			CursedPouch: {
-				DisplayName: Бесконечная проклятая сумка
-				Tooltip: ""
-			}
-
-			ExplosivePouch: {
-				DisplayName: Бесконечная разрывная сумка
-				Tooltip: Взрывается при ударе
-			}
-
-			GoldenPouch: {
-				DisplayName: Бесконечная золотая сумка
-				Tooltip: Убитые враги оставляют больше денег
-			}
-
-			IchorPouch: {
-				DisplayName: Бесконечная ихорная сумка
-				Tooltip: Снижает защиту цели
-			}
-
-			LuminitePouch: {
-				DisplayName: Бесконечная люминитовая сумка
-				Tooltip: Выстраивай и сбивай...
-			}
-
-			MeteorPouch: {
-				DisplayName: Бесконечная метеоритовая сумка
-				Tooltip: ""
-			}
-
-			NanoPouch: {
-				DisplayName: Бесконечная наносумка
-				Tooltip: Вызывает запутанность и отскакивает при ударе о стену
-			}
-
-			PartyPouch: {
-				DisplayName: Бесконечная сумка вечеринки
-				Tooltip: При попадании выбрасывает конфеты
-			}
-
-			SilverPouch: {
-				DisplayName: Бесконечная серебряная сумка
-				Tooltip: ""
-			}
-
-			TungstenPouch: {
-				DisplayName: Бесконечная вольфрамовая сумка
-				Tooltip: ""
-			}
-
-			VelocityPouch: {
-				DisplayName: Бесконечная высокоскоростная сумка
-				Tooltip: ""
-			}
-
-			VenomPouch: {
-				DisplayName: Бесконечная ядовитая сумка
-				Tooltip: Накладывает на цель эффект кислотного яда
-			}
-
-			CopperCoinBag: {
-				DisplayName: Бесконечный сейф медных монет
-				Tooltip: ""
-			}
-
-			GoldCoinBag: {
-				DisplayName: Бесконечный сейф золотых монет
-				Tooltip: ""
-			}
-
-			PlatinumCoinBag: {
-				DisplayName: Бесконечный сейф платиновых монет
-				Tooltip: ""
-			}
-
-			SilverCoinBag: {
-				DisplayName: Бесконечный сейф серебряных монет
-				Tooltip: ""
-			}
-
-			CrystalDartBox: {
-				DisplayName: Бесконечная коробка кристальных дротиков
-				Tooltip: ""
-			}
-
-			CursedDartBox: {
-				DisplayName: Бесконечная коробка проклятых дротиков
-				Tooltip: ""
-			}
-
-			IchorDartBox: {
-				DisplayName: Бесконечная коробка ихорных дротиков
-				Tooltip: ""
-			}
-
-			PoisonDartBox: {
-				DisplayName: Бесконечная коробка отравленных дротиков
-				Tooltip: ""
-			}
-
-			GelPack: {
-				DisplayName: Бесконечный слизевой ранец
-				Tooltip: ""
-			}
-
-			StarPouch: {
-				DisplayName: Бесконечная сумка звёзд
-				Tooltip: ""
-			}
-
+			
 			AltarExterminator: {
 				DisplayName: Истребитель алтарей
 				Tooltip:
@@ -3058,7 +2878,7 @@ Mods: {
 			VioletHusk: После того, как вы подобрали фиолетовый хитин
 			PinkPricklyPear: После того, как вы подобрали розовую колючую грушу
 			BlackInk: После того, как вы подобрали чернила
-			// OwnsRegionalWood: After having picked up the regional wood
+			OwnsRegionalWood: После того, как вы подобрали этот тип древесины
 		}
 
 		Keybinds: {

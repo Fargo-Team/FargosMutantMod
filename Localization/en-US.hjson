@@ -558,7 +558,7 @@ Mods: {
 				DisplayName: Brittle Bone
 				Tooltip: ""
 			}
-			
+
 			AltarExterminator: {
 				DisplayName: Altar Exterminator
 				Tooltip:
@@ -2090,66 +2090,6 @@ Mods: {
 					Prevents evil tiles from forming an evil biome
 					Prevents tombstones from forming Graveyards
 					'''
-			}
-
-			HoneyRocketBox: {
-				Tooltip: ""
-				DisplayName: Endless Honey Rocket Box
-			}
-
-			DryRocketBox: {
-				Tooltip: ""
-				DisplayName: Endless Dry Rocket Box
-			}
-
-			ClusterRocket2Box: {
-				Tooltip: ""
-				DisplayName: Endless Cluster Rocket II Box
-			}
-
-			ClusterRocket1Box: {
-				Tooltip: ""
-				DisplayName: Endless Cluster Rocket I Box
-			}
-
-			LavaRocketBox: {
-				DisplayName: Endless Lava Rocket Box
-				Tooltip: ""
-			}
-
-			MiniNuke1Box: {
-				DisplayName: Endless Mini Nuke I Box
-				Tooltip: ""
-			}
-
-			MiniNuke2Box: {
-				DisplayName: Endless Mini Nuke II Box
-				Tooltip: ""
-			}
-
-			Rocket1Box: {
-				DisplayName: Endless Rocket I Box
-				Tooltip: ""
-			}
-
-			Rocket2Box: {
-				DisplayName: Endless Rocket II Box
-				Tooltip: ""
-			}
-
-			Rocket3Box: {
-				DisplayName: Endless Rocket III Box
-				Tooltip: ""
-			}
-
-			Rocket4Box: {
-				DisplayName: Endless Rocket IV Box
-				Tooltip: ""
-			}
-
-			WetRocketBox: {
-				DisplayName: Endless Wet Rocket Box
-				Tooltip: ""
 			}
 
 			InstaPond: {

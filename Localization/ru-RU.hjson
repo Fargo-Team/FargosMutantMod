@@ -562,7 +562,7 @@ Mods: {
 				DisplayName: Хрупкая кость
 				Tooltip: ""
 			}
-			
+
 			AltarExterminator: {
 				DisplayName: Истребитель алтарей
 				Tooltip:
@@ -1887,7 +1887,7 @@ Mods: {
 			}
 
 			LumberJaxe: {
-				DisplayName: ДревоБиллитель
+				DisplayName: Древопил
 				Tooltip:
 					'''
 					С поверженных врагом может упасть дерево
@@ -2094,66 +2094,6 @@ Mods: {
 					Не позволяет блокам биомов зла формировать биомы
 					Не позволяет надгробиям формировать кладбище
 					'''
-			}
-
-			HoneyRocketBox: {
-				Tooltip: ""
-				DisplayName: Бесконечная коробка медовых ракет
-			}
-
-			DryRocketBox: {
-				Tooltip: ""
-				DisplayName: Бесконечная коробка сухих ракет
-			}
-
-			ClusterRocket2Box: {
-				Tooltip: ""
-				DisplayName: Бесконечная коробка кластерных ракет II
-			}
-
-			ClusterRocket1Box: {
-				Tooltip: ""
-				DisplayName: Бесконечная коробка кластерных ракет I
-			}
-
-			LavaRocketBox: {
-				DisplayName: Бесконечная коробка лавовых ракет
-				Tooltip: ""
-			}
-
-			MiniNuke1Box: {
-				DisplayName: Бесконечная коробка атомных мини-бомб I
-				Tooltip: ""
-			}
-
-			MiniNuke2Box: {
-				DisplayName: Бесконечная коробка атомных мини-бомб II
-				Tooltip: ""
-			}
-
-			Rocket1Box: {
-				DisplayName: Бесконечная коробка ракет I
-				Tooltip: ""
-			}
-
-			Rocket2Box: {
-				DisplayName: Бесконечная коробка ракет II
-				Tooltip: ""
-			}
-
-			Rocket3Box: {
-				DisplayName: Бесконечная коробка ракет III
-				Tooltip: ""
-			}
-
-			Rocket4Box: {
-				DisplayName: Бесконечная коробка ракет IV
-				Tooltip: ""
-			}
-
-			WetRocketBox: {
-				DisplayName: Бесконечная коробка мокрых ракет
-				Tooltip: ""
 			}
 
 			InstaPond: {
@@ -2572,7 +2512,7 @@ Mods: {
 				}
 
 				Census.SpawnCondition: Может выпасть с деревьев, если было срублено 400 дерева.
-				TreeTreasures: Дары деревьев
+				TreeTreasures: Лесной подарок
 			}
 
 			Mutant: {
@@ -2948,58 +2888,58 @@ Mods: {
 
 		Achievements: {
 			MultitaskCenterAchievement: {
-				// FriendlyName: A Third Arm
-				// Description: Spark your crafting skills by combining basic stations into a compact bench!
+				FriendlyName: Как третья рука
+				Description: Зажгите своё творчество, соединив несколько станций создания в компактный верстачок!
 			}
 
 			CrucibleofTheCosmosAchievement: {
-				// FriendlyName: Master of the Craft
-				// Description: Perfect your smithing capabilities by combining every possible station into one handy workspace!
+				FriendlyName: Мастер создания
+				Description: Усовершенствуйте своё мастертво, соединив все возможные станции создания в одну сподручную мастерскую!
 			}
 
 			ElementalAssemblerAchievement: {
-				// FriendlyName: The Avatar
-				// Description: Hone your artisanry by combining special crafting stations into a convenient tool!
+				FriendlyName: Аватар
+				Description: Отточите своё ремесленничество, соединив особенные станции создания в удобный станок!
 			}
 
 			BuyNPCAchievement: {
-				// FriendlyName: Don't Ask Where It Came From
-				// Description: Purchase somebody from the Squirrel, beneath the crimson gaze of the blood moon.
+				FriendlyName: Не спрашивай, откуда они у меня
+				Description: Под багровым покровом кровавой луны, купите кого-нибудь у бельчонка.
 			}
 
 			LumberjaxeAchievement: {
-				// FriendlyName: You Wish You Were This Cool
-				// Description: Swing the Lumber Jaxe while wearing a full set of the LumberJack's clothes.
+				FriendlyName: Тебе никогда не быть таким крутым
+				Description: Взмахните Древопилом, когда на вас полный комплект одежды ДревоБилла.
 			}
 
 			NPCSacrificeAchievement: {
-				// FriendlyName: Occult Sacrifice
-				// Description: Sacrifice the Dryad to the Squirrel.
+				FriendlyName: Оккультное жертвоприношение
+				Description: Принесите дриаду в жертву бельчонку.
 			}
 
 			OmnistationAchievement: {
-				// FriendlyName: A Beacon Of Light
-				// Description: Upgrade the Semistation into the Omnistation, the pinnacle of arena support.
+				FriendlyName: Лучик света
+				Description: Улучшите Полустанцию до Омнистанции — кульминации баффовых станций.
 			}
 
 			SemistationAchievement: {
-				// FriendlyName: It's A Beautiful Day
-				// Description: Obtain the Semistation.
+				FriendlyName: Сегодня прекрасный день
+				Description: Получите Полустанцию.
 			}
 
 			T1TreeTreasureAchievement: {
-				// FriendlyName: Look What I Found!
-				// Description: Retrieve a tree treasure from the LumberJack.
+				FriendlyName: Смотри, что я нашёл!
+				Description: Получите лесной подарок от ДревоБилла.
 			}
 
 			T2TreeTreasureAchievement: {
-				// FriendlyName: Chronic Hoarder
-				// Description: Retrieve your 25th tree treasure from the LumberJack.
+				FriendlyName: Chronic Hoarder
+				Description: Получите свой 25-й лесной подарок от ДревоБилла.
 			}
 
 			WiresAchievement: {
-				// FriendlyName: Look Inside
-				// Description: Wires.
+				FriendlyName: Посмотрел внутрь
+				Description: Провода.
 			}
 		}
 	}

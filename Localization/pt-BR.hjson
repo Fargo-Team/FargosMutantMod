@@ -558,7 +558,7 @@ Mods: {
 				DisplayName: Osso frágil
 				Tooltip: ""
 			}
-			
+
 			AltarExterminator: {
 				DisplayName: Exterminador de Altar
 				Tooltip:
@@ -2090,66 +2090,6 @@ Mods: {
 					Evita que blocos malignos formem um bioma maligno
 					Evita que túmulos formem Cemitérios
 					'''
-			}
-
-			HoneyRocketBox: {
-				Tooltip: ""
-				DisplayName: Caixa Infinita de Foguetes de Mel
-			}
-
-			DryRocketBox: {
-				Tooltip: ""
-				DisplayName: Caixa Infinita de Foguetes Secos
-			}
-
-			ClusterRocket2Box: {
-				Tooltip: ""
-				DisplayName: Caixa Infinita de Foguete de Fragmentação II
-			}
-
-			ClusterRocket1Box: {
-				Tooltip: ""
-				DisplayName: Caixa Infinita de Foguete de Fragmentação I
-			}
-
-			LavaRocketBox: {
-				DisplayName: Caixa Infinita de Foguetes de Lava
-				Tooltip: ""
-			}
-
-			MiniNuke1Box: {
-				DisplayName: Caixa Infinita de Mini Bombas Nucleares I
-				Tooltip: ""
-			}
-
-			MiniNuke2Box: {
-				DisplayName: Caixa Infinita de Mini Bombas Nucleares II
-				Tooltip: ""
-			}
-
-			Rocket1Box: {
-				DisplayName: Caixa Infinite de Foguetes I
-				Tooltip: ""
-			}
-
-			Rocket2Box: {
-				DisplayName: Caixa Infinite de Foguetes II
-				Tooltip: ""
-			}
-
-			Rocket3Box: {
-				DisplayName: Caixa Infinite de Foguetes III
-				Tooltip: ""
-			}
-
-			Rocket4Box: {
-				DisplayName: Caixa Infinite de Foguetes IV
-				Tooltip: ""
-			}
-
-			WetRocketBox: {
-				DisplayName: Caixa Infinita de Foguetes Molhados
-				Tooltip: ""
 			}
 
 			InstaPond: {

@@ -566,7 +566,7 @@ Mods: {
 				DisplayName: 易碎骨头
 				// Tooltip: ""
 			}
-			
+
 			AltarExterminator: {
 				DisplayName: 祭坛终结者
 				Tooltip:
@@ -2099,66 +2099,6 @@ Mods: {
 					防止邪恶物块形成邪恶生物群落
 					防止墓碑形成墓地生物群落
 					'''
-			}
-
-			HoneyRocketBox: {
-				// Tooltip: ""
-				DisplayName: 无尽蜂蜜火箭盒
-			}
-
-			DryRocketBox: {
-				// Tooltip: ""
-				DisplayName: 无尽干火箭盒
-			}
-
-			ClusterRocket2Box: {
-				// Tooltip: ""
-				DisplayName: 无尽二级集束火箭盒
-			}
-
-			ClusterRocket1Box: {
-				// Tooltip: ""
-				DisplayName: 无尽一级集束火箭盒
-			}
-
-			LavaRocketBox: {
-				DisplayName: 无尽熔岩火箭盒
-				// Tooltip: ""
-			}
-
-			MiniNuke1Box: {
-				DisplayName: 无尽一级迷你核弹盒
-				// Tooltip: ""
-			}
-
-			MiniNuke2Box: {
-				DisplayName: 无尽二级迷你核弹盒
-				// Tooltip: ""
-			}
-
-			Rocket1Box: {
-				DisplayName: 无尽一级火箭盒
-				// Tooltip: ""
-			}
-
-			Rocket2Box: {
-				DisplayName: 无尽二级火箭盒
-				// Tooltip: ""
-			}
-
-			Rocket3Box: {
-				DisplayName: 无尽三级火箭盒
-				// Tooltip: ""
-			}
-
-			Rocket4Box: {
-				DisplayName: 无尽四级火箭盒
-				// Tooltip: ""
-			}
-
-			WetRocketBox: {
-				DisplayName: 无尽潮湿火箭盒
-				// Tooltip: ""
 			}
 
 			InstaPond: {

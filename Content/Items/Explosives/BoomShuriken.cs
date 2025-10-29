@@ -29,7 +29,7 @@ namespace Fargowiltas.Content.Items.Explosives
             Item.knockBack = 3f;
             Item.UseSound = SoundID.Item1;
             Item.autoReuse = true;
-            Item.maxStack = 999;
+            Item.maxStack = 9999;
             Item.rare = ItemRarityID.Blue;
             Item.shoot = ModContent.ProjectileType<ShurikenProj>();
             Item.shootSpeed = 11f;

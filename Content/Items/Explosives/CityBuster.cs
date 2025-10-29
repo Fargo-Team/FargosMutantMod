@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using Fargowiltas.Common.Configs;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -6,6 +7,11 @@ namespace Fargowiltas.Content.Items.Explosives
 {
     public class CityBuster : ModItem
     {
+        public override bool IsLoadingEnabled(Mod mod)
+        {
+            return FargoServerConfig.Instance.InstantItems;
+        }
+
         public override void SetStaticDefaults()
         {
             // DisplayName.SetDefault("City Buster");

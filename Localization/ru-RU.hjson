@@ -268,7 +268,7 @@ Mods: {
 					Label: "[i:Fargowiltas/InstaBridge] Безопасные терраформеры"
 					Tooltip:
 						'''
-						Терраформеры, по типу МоментМоста и разрушителя городов, избегают уничтожения структур в списке важных структур.
+						Терраформеры по типу МоментМоста и разрушителя городов избегают уничтожения структур в списке важных структур.
 						Данная функция довольно безопасна, и будет предотвращать от разрушения даже самые мелкие структуры, по типу домов в пещерах.
 						'''
 				}
@@ -286,6 +286,11 @@ Mods: {
 				AnglerQuestPity: {
 					Label: "[i:AnglerTackleBag] Жалостливый рыбак"
 					Tooltip: Рыбак теперь выдаёт свои предметы на определённых квестах, если вы их ещё не получили.
+				}
+
+				InstantItems: {
+					Label: "[i:Dynamite] Моментальные предметы"
+					Tooltip: Включает/выключает моментальные предметы по типу МоментМоста
 				}
 			}
 
@@ -553,188 +558,8 @@ Mods: {
 		}
 
 		Items: {
-			BoneQuiver: {
-				DisplayName: Бесконечный костяной колчан
-				Tooltip: ""
-			}
-
-			ChlorophyteQuiver: {
-				DisplayName: Бесконечный хлорофитовый колчан
-				Tooltip: Отскакивают при ударе о стену
-			}
-
-			CursedQuiver: {
-				DisplayName: Бесконечный проклятый колчан
-				Tooltip: ""
-			}
-
-			FlameQuiver: {
-				DisplayName: Бесконечный подожжённый колчан
-				Tooltip: ""
-			}
-
-			FrostburnQuiver: {
-				DisplayName: Бесконечный колчан ледяного ожога
-				Tooltip: ""
-			}
-
-			HellfireQuiver: {
-				DisplayName: Бесконечный колчан адского огня
-				Tooltip: ""
-			}
-
-			HolyQuiver: {
-				DisplayName: Бесконечный святой колчан
-				Tooltip: При ударе вызывает падающие звёзды
-			}
-
-			IchorQuiver: {
-				DisplayName: Бесконечный ихорный колчан
-				Tooltip: Снижает защиту цели
-			}
-
-			JesterQuiver: {
-				DisplayName: Бесконечный колчан шута
-				Tooltip: ""
-			}
-
-			LuminiteQuiver: {
-				DisplayName: Бесконечный люминитовый колчан
-				Tooltip: Стреляет со скоростью звука!
-			}
-
-			UnholyQuiver: {
-				DisplayName: Бесконечный несвятой колчан
-				Tooltip: ""
-			}
-
-			VenomQuiver: {
-				DisplayName: Бесконечный ядовитый колчан
-				Tooltip: ""
-			}
-
 			BrittleBone: {
 				DisplayName: Хрупкая кость
-				Tooltip: ""
-			}
-
-			ChlorophytePouch: {
-				DisplayName: Бесконечная хлорофитовая сумка
-				Tooltip: Гоняется за вашими врагами
-			}
-
-			CrystalPouch: {
-				DisplayName: Бесконечная кристальная сумка
-				Tooltip: При ударе создаёт осколки кристалла
-			}
-
-			CursedPouch: {
-				DisplayName: Бесконечная проклятая сумка
-				Tooltip: ""
-			}
-
-			ExplosivePouch: {
-				DisplayName: Бесконечная разрывная сумка
-				Tooltip: Взрывается при ударе
-			}
-
-			GoldenPouch: {
-				DisplayName: Бесконечная золотая сумка
-				Tooltip: Убитые враги оставляют больше денег
-			}
-
-			IchorPouch: {
-				DisplayName: Бесконечная ихорная сумка
-				Tooltip: Снижает защиту цели
-			}
-
-			LuminitePouch: {
-				DisplayName: Бесконечная люминитовая сумка
-				Tooltip: Выстраивай и сбивай...
-			}
-
-			MeteorPouch: {
-				DisplayName: Бесконечная метеоритовая сумка
-				Tooltip: ""
-			}
-
-			NanoPouch: {
-				DisplayName: Бесконечная наносумка
-				Tooltip: Вызывает запутанность и отскакивает при ударе о стену
-			}
-
-			PartyPouch: {
-				DisplayName: Бесконечная сумка вечеринки
-				Tooltip: При попадании выбрасывает конфеты
-			}
-
-			SilverPouch: {
-				DisplayName: Бесконечная серебряная сумка
-				Tooltip: ""
-			}
-
-			TungstenPouch: {
-				DisplayName: Бесконечная вольфрамовая сумка
-				Tooltip: ""
-			}
-
-			VelocityPouch: {
-				DisplayName: Бесконечная высокоскоростная сумка
-				Tooltip: ""
-			}
-
-			VenomPouch: {
-				DisplayName: Бесконечная ядовитая сумка
-				Tooltip: Накладывает на цель эффект кислотного яда
-			}
-
-			CopperCoinBag: {
-				DisplayName: Бесконечный сейф медных монет
-				Tooltip: ""
-			}
-
-			GoldCoinBag: {
-				DisplayName: Бесконечный сейф золотых монет
-				Tooltip: ""
-			}
-
-			PlatinumCoinBag: {
-				DisplayName: Бесконечный сейф платиновых монет
-				Tooltip: ""
-			}
-
-			SilverCoinBag: {
-				DisplayName: Бесконечный сейф серебряных монет
-				Tooltip: ""
-			}
-
-			CrystalDartBox: {
-				DisplayName: Бесконечная коробка кристальных дротиков
-				Tooltip: ""
-			}
-
-			CursedDartBox: {
-				DisplayName: Бесконечная коробка проклятых дротиков
-				Tooltip: ""
-			}
-
-			IchorDartBox: {
-				DisplayName: Бесконечная коробка ихорных дротиков
-				Tooltip: ""
-			}
-
-			PoisonDartBox: {
-				DisplayName: Бесконечная коробка отравленных дротиков
-				Tooltip: ""
-			}
-
-			GelPack: {
-				DisplayName: Бесконечный слизевой ранец
-				Tooltip: ""
-			}
-
-			StarPouch: {
-				DisplayName: Бесконечная сумка звёзд
 				Tooltip: ""
 			}
 
@@ -2062,7 +1887,7 @@ Mods: {
 			}
 
 			LumberJaxe: {
-				DisplayName: ДревоБиллитель
+				DisplayName: Древопил
 				Tooltip:
 					'''
 					С поверженных врагом может упасть дерево
@@ -2269,66 +2094,6 @@ Mods: {
 					Не позволяет блокам биомов зла формировать биомы
 					Не позволяет надгробиям формировать кладбище
 					'''
-			}
-
-			HoneyRocketBox: {
-				Tooltip: ""
-				DisplayName: Бесконечная коробка медовых ракет
-			}
-
-			DryRocketBox: {
-				Tooltip: ""
-				DisplayName: Бесконечная коробка сухих ракет
-			}
-
-			ClusterRocket2Box: {
-				Tooltip: ""
-				DisplayName: Бесконечная коробка кластерных ракет II
-			}
-
-			ClusterRocket1Box: {
-				Tooltip: ""
-				DisplayName: Бесконечная коробка кластерных ракет I
-			}
-
-			LavaRocketBox: {
-				DisplayName: Бесконечная коробка лавовых ракет
-				Tooltip: ""
-			}
-
-			MiniNuke1Box: {
-				DisplayName: Бесконечная коробка атомных мини-бомб I
-				Tooltip: ""
-			}
-
-			MiniNuke2Box: {
-				DisplayName: Бесконечная коробка атомных мини-бомб II
-				Tooltip: ""
-			}
-
-			Rocket1Box: {
-				DisplayName: Бесконечная коробка ракет I
-				Tooltip: ""
-			}
-
-			Rocket2Box: {
-				DisplayName: Бесконечная коробка ракет II
-				Tooltip: ""
-			}
-
-			Rocket3Box: {
-				DisplayName: Бесконечная коробка ракет III
-				Tooltip: ""
-			}
-
-			Rocket4Box: {
-				DisplayName: Бесконечная коробка ракет IV
-				Tooltip: ""
-			}
-
-			WetRocketBox: {
-				DisplayName: Бесконечная коробка мокрых ракет
-				Tooltip: ""
 			}
 
 			InstaPond: {
@@ -2752,7 +2517,7 @@ Mods: {
 				}
 
 				Census.SpawnCondition: Может выпасть с деревьев, если было срублено 400 дерева.
-				TreeTreasures: Дары деревьев
+				TreeTreasures: Лесной подарок
 			}
 
 			Mutant: {
@@ -3059,6 +2824,7 @@ Mods: {
 			VioletHusk: После того, как вы подобрали фиолетовый хитин
 			PinkPricklyPear: После того, как вы подобрали розовую колючую грушу
 			BlackInk: После того, как вы подобрали чернила
+			OwnsRegionalWood: После того, как вы подобрали этот тип древесины
 		}
 
 		Keybinds: {
@@ -3128,58 +2894,58 @@ Mods: {
 
 		Achievements: {
 			MultitaskCenterAchievement: {
-				// FriendlyName: A Third Arm
-				// Description: Spark your crafting skills by combining basic stations into a compact bench!
+				FriendlyName: Как третья рука
+				Description: Зажгите своё творчество, соединив несколько станций создания в компактный верстачок!
 			}
 
 			CrucibleofTheCosmosAchievement: {
-				// FriendlyName: Master of the Craft
-				// Description: Perfect your smithing capabilities by combining every possible station into one handy workspace!
+				FriendlyName: Мастер создания
+				Description: Усовершенствуйте своё мастертво, соединив все возможные станции создания в одну сподручную мастерскую!
 			}
 
 			ElementalAssemblerAchievement: {
-				// FriendlyName: The Avatar
-				// Description: Hone your artisanry by combining special crafting stations into a convenient tool!
+				FriendlyName: Аватар
+				Description: Отточите своё ремесленничество, соединив особенные станции создания в удобный станок!
 			}
 
 			BuyNPCAchievement: {
-				// FriendlyName: Don't Ask Where It Came From
-				// Description: Purchase somebody from the Squirrel, beneath the crimson gaze of the blood moon.
+				FriendlyName: Не спрашивай, откуда они у меня
+				Description: Под багровым покровом кровавой луны, купите кого-нибудь у бельчонка.
 			}
 
 			LumberjaxeAchievement: {
-				// FriendlyName: You Wish You Were This Cool
-				// Description: Swing the Lumber Jaxe while wearing a full set of the LumberJack's clothes.
+				FriendlyName: Тебе никогда не быть таким крутым
+				Description: Взмахните Древопилом, когда на вас полный комплект одежды ДревоБилла.
 			}
 
 			NPCSacrificeAchievement: {
-				// FriendlyName: Occult Sacrifice
-				// Description: Sacrifice the Dryad to the Squirrel.
+				FriendlyName: Оккультное жертвоприношение
+				Description: Принесите дриаду в жертву бельчонку.
 			}
 
 			OmnistationAchievement: {
-				// FriendlyName: A Beacon Of Light
-				// Description: Upgrade the Semistation into the Omnistation, the pinnacle of arena support.
+				FriendlyName: Лучик света
+				Description: Улучшите Полустанцию до Омнистанции — кульминации баффовых станций.
 			}
 
 			SemistationAchievement: {
-				// FriendlyName: It's A Beautiful Day
-				// Description: Obtain the Semistation.
+				FriendlyName: Сегодня прекрасный день
+				Description: Получите Полустанцию.
 			}
 
 			T1TreeTreasureAchievement: {
-				// FriendlyName: Look What I Found!
-				// Description: Retrieve a tree treasure from the LumberJack.
+				FriendlyName: Смотри, что я нашёл!
+				Description: Получите лесной подарок от ДревоБилла.
 			}
 
 			T2TreeTreasureAchievement: {
-				// FriendlyName: Chronic Hoarder
-				// Description: Retrieve your 25th tree treasure from the LumberJack.
+				FriendlyName: Хронический хламовщик
+				Description: Получите свой 25-й лесной подарок от ДревоБилла.
 			}
 
 			WiresAchievement: {
-				// FriendlyName: Look Inside
-				// Description: Wires.
+				FriendlyName: Посмотрел внутрь
+				Description: Провода.
 			}
 		}
 	}

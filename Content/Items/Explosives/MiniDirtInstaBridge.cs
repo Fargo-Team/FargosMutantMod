@@ -1,4 +1,5 @@
-﻿using Fargowiltas.Common.Systems;
+﻿using Fargowiltas.Common.Configs;
+using Fargowiltas.Common.Systems;
 using Fargowiltas.Content.Projectiles.Explosives;
 using Microsoft.Xna.Framework;
 using System;
@@ -11,6 +12,11 @@ namespace Fargowiltas.Content.Items.Explosives
 {
     public class MiniDirtInstaBridge : ModItem
     {
+        public override bool IsLoadingEnabled(Mod mod)
+        {
+            return FargoServerConfig.Instance.InstantItems;
+        }
+
         public override void SetStaticDefaults()
         {
             // DisplayName.SetDefault("Mini Instabridge");

@@ -1,3 +1,4 @@
+using Fargowiltas.Common.Configs;
 using Fargowiltas.Common.Systems;
 using Fargowiltas.Content.Projectiles.Explosives;
 using Microsoft.Xna.Framework;
@@ -10,6 +11,11 @@ namespace Fargowiltas.Content.Items.Explosives
 {
     public class ObsidianInstaBridge : ModItem
     {
+        public override bool IsLoadingEnabled(Mod mod)
+        {
+            return FargoServerConfig.Instance.InstantItems;
+        }
+
         public override void SetStaticDefaults()
         {
             // DisplayName.SetDefault("Obsidian Instabridge");

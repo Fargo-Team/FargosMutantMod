@@ -1,7 +1,7 @@
 ﻿using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Fargowiltas.Content.Items.Ammos
+namespace Fargowiltas.Content.Items.Misc
 {
     public class BrittleBone : ModItem
     {

@@ -283,6 +283,11 @@ Mods: {
 					// Label: "[i:AnglerTackleBag] Angler Quest Pity"
 					// Tooltip: Makes Angler give his important items at certain quests if he hasn't dropped them yet.
 				}
+
+				InstantItems: {
+					// Label: "[i:Dynamite] Instant Items"
+					// Tooltip: Enables/disables Insta items such as the InstaHouse
+				}
 			}
 
 			FargoClientConfig: {
@@ -549,188 +554,8 @@ Mods: {
 		}
 
 		Items: {
-			BoneQuiver: {
-				DisplayName: Aljava Infinita de Osso
-				Tooltip: ""
-			}
-
-			ChlorophyteQuiver: {
-				DisplayName: Aljava Infinita de Clorofita
-				Tooltip: Quica após bater em uma parede
-			}
-
-			CursedQuiver: {
-				DisplayName: Aljava Infinita Amaldiçoada
-				Tooltip: ""
-			}
-
-			FlameQuiver: {
-				DisplayName: Aljava Infinita de Fogo
-				Tooltip: ""
-			}
-
-			FrostburnQuiver: {
-				DisplayName: Aljava Infinita de Queimadura de Gelo
-				Tooltip: ""
-			}
-
-			HellfireQuiver: {
-				DisplayName: Aljava Infinita de Fogo Infernal
-				Tooltip: ""
-			}
-
-			HolyQuiver: {
-				DisplayName: Aljava Infinita Consagrada
-				Tooltip: Invoca estrelas cadentes no impacto
-			}
-
-			IchorQuiver: {
-				DisplayName: Aljava Infinita de Ichor
-				Tooltip: Diminui a defesa do alvo
-			}
-
-			JesterQuiver: {
-				DisplayName: Aljava Infinita do Jester
-				Tooltip: ""
-			}
-
-			LuminiteQuiver: {
-				DisplayName: Aljava Infinita de Luminita
-				Tooltip: "'Derrubando eles na velocidade do som!'"
-			}
-
-			UnholyQuiver: {
-				DisplayName: Aljava Infinita Profana
-				Tooltip: ""
-			}
-
-			VenomQuiver: {
-				DisplayName: Aljava Infinita de Veneno
-				Tooltip: ""
-			}
-
 			BrittleBone: {
 				DisplayName: Osso frágil
-				Tooltip: ""
-			}
-
-			ChlorophytePouch: {
-				DisplayName: Bolsa Infinita de Clorofita
-				Tooltip: Persegue o seu inimigo
-			}
-
-			CrystalPouch: {
-				DisplayName: Bolsa Infinita de Cristal
-				Tooltip: Cria vários fragmentos de cristal
-			}
-
-			CursedPouch: {
-				DisplayName: Bolsa Infinita Amaldiçoada
-				Tooltip: ""
-			}
-
-			ExplosivePouch: {
-				DisplayName: Bolsa Infinita Explosiva
-				Tooltip: Explode ao atingir
-			}
-
-			GoldenPouch: {
-				DisplayName: Bolsa Infinita Dourada
-				Tooltip: Inimigos derrubam mais dinheiro
-			}
-
-			IchorPouch: {
-				DisplayName: Bolsa Infinita de Ichor
-				Tooltip: Diminui a defesa do alvo
-			}
-
-			LuminitePouch: {
-				DisplayName: Bolsa Infinita de Luminita
-				Tooltip: "'Alinha e depois derruba eles...'"
-			}
-
-			MeteorPouch: {
-				DisplayName: Bolsa Infinita de Meteoro
-				Tooltip: ""
-			}
-
-			NanoPouch: {
-				DisplayName: Bolsa Infinita de Nano
-				Tooltip: Causa confusão
-			}
-
-			PartyPouch: {
-				DisplayName: Bolsa Infinita de Festa
-				Tooltip: Explode em confetti ao atingir
-			}
-
-			SilverPouch: {
-				DisplayName: Bolsa Infinita de Prata
-				Tooltip: ""
-			}
-
-			TungstenPouch: {
-				DisplayName: Bolsa Infinita de Tungstênio
-				Tooltip: ""
-			}
-
-			VelocityPouch: {
-				DisplayName: Bolsa Infinita de Alta Velocidade
-				Tooltip: ""
-			}
-
-			VenomPouch: {
-				DisplayName: Bolsa Infinita de Veneno
-				Tooltip: Inflige Veneno
-			}
-
-			CopperCoinBag: {
-				DisplayName: Cofre de cobre infinito
-				Tooltip: ""
-			}
-
-			GoldCoinBag: {
-				DisplayName: Cofre de ouro infinito
-				Tooltip: ""
-			}
-
-			PlatinumCoinBag: {
-				DisplayName: Cofre de platina infinito
-				Tooltip: ""
-			}
-
-			SilverCoinBag: {
-				DisplayName: Cofre de prata infinito
-				Tooltip: ""
-			}
-
-			CrystalDartBox: {
-				DisplayName: Caixa de Dardos de Cristal Infinita
-				Tooltip: ""
-			}
-
-			CursedDartBox: {
-				DisplayName: Caixa de Dardos Amaldiçoados Infinita
-				Tooltip: ""
-			}
-
-			IchorDartBox: {
-				DisplayName: Caia de Dardos de Ichor Infinita
-				Tooltip: ""
-			}
-
-			PoisonDartBox: {
-				DisplayName: Caixa de Dardos de Veneno Infinita
-				Tooltip: ""
-			}
-
-			GelPack: {
-				DisplayName: Pacote de Geleia Infinito
-				Tooltip: ""
-			}
-
-			StarPouch: {
-				DisplayName: Bolsa de Estrelas Infinita
 				Tooltip: ""
 			}
 
@@ -2267,66 +2092,6 @@ Mods: {
 					'''
 			}
 
-			HoneyRocketBox: {
-				Tooltip: ""
-				DisplayName: Caixa Infinita de Foguetes de Mel
-			}
-
-			DryRocketBox: {
-				Tooltip: ""
-				DisplayName: Caixa Infinita de Foguetes Secos
-			}
-
-			ClusterRocket2Box: {
-				Tooltip: ""
-				DisplayName: Caixa Infinita de Foguete de Fragmentação II
-			}
-
-			ClusterRocket1Box: {
-				Tooltip: ""
-				DisplayName: Caixa Infinita de Foguete de Fragmentação I
-			}
-
-			LavaRocketBox: {
-				DisplayName: Caixa Infinita de Foguetes de Lava
-				Tooltip: ""
-			}
-
-			MiniNuke1Box: {
-				DisplayName: Caixa Infinita de Mini Bombas Nucleares I
-				Tooltip: ""
-			}
-
-			MiniNuke2Box: {
-				DisplayName: Caixa Infinita de Mini Bombas Nucleares II
-				Tooltip: ""
-			}
-
-			Rocket1Box: {
-				DisplayName: Caixa Infinite de Foguetes I
-				Tooltip: ""
-			}
-
-			Rocket2Box: {
-				DisplayName: Caixa Infinite de Foguetes II
-				Tooltip: ""
-			}
-
-			Rocket3Box: {
-				DisplayName: Caixa Infinite de Foguetes III
-				Tooltip: ""
-			}
-
-			Rocket4Box: {
-				DisplayName: Caixa Infinite de Foguetes IV
-				Tooltip: ""
-			}
-
-			WetRocketBox: {
-				DisplayName: Caixa Infinita de Foguetes Molhados
-				Tooltip: ""
-			}
-
 			InstaPond: {
 				DisplayName: Instalago
 				Tooltip:
@@ -3055,6 +2820,7 @@ Mods: {
 			VioletHusk: Depois de pegar uma Casca Violeta
 			PinkPricklyPear: Depois de pegar um Figo Cor-de-rosa
 			BlackInk: Depois de pegar uma Tinta Preta
+			// OwnsRegionalWood: After having picked up the regional wood
 		}
 
 		Keybinds: {

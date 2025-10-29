@@ -291,6 +291,11 @@ Mods: {
 					// Label: "[i:AnglerTackleBag] Angler Quest Pity"
 					// Tooltip: Makes Angler give his important items at certain quests if he hasn't dropped them yet.
 				}
+
+				InstantItems: {
+					// Label: "[i:Dynamite] Instant Items"
+					// Tooltip: Enables/disables Insta items such as the InstaHouse
+				}
 			}
 
 			FargoClientConfig: {
@@ -557,188 +562,8 @@ Mods: {
 		}
 
 		Items: {
-			BoneQuiver: {
-				DisplayName: 无尽骨箭袋
-				// Tooltip: ""
-			}
-
-			ChlorophyteQuiver: {
-				DisplayName: 无尽叶绿箭袋
-				Tooltip: 撞墙后弹回
-			}
-
-			CursedQuiver: {
-				DisplayName: 无尽诅咒箭袋
-				// Tooltip: ""
-			}
-
-			FlameQuiver: {
-				DisplayName: 无尽烈焰箭袋
-				// Tooltip: ""
-			}
-
-			FrostburnQuiver: {
-				DisplayName: 无尽霜冻箭袋
-				// Tooltip: ""
-			}
-
-			HellfireQuiver: {
-				DisplayName: 无尽狱炎箭袋
-				// Tooltip: ""
-			}
-
-			HolyQuiver: {
-				DisplayName: 无尽圣箭袋
-				Tooltip: 碰撞时召唤陨星
-			}
-
-			IchorQuiver: {
-				DisplayName: 无尽灵液箭袋
-				Tooltip: 降低目标的防御力
-			}
-
-			JesterQuiver: {
-				DisplayName: 无尽小丑箭袋
-				// Tooltip: ""
-			}
-
-			LuminiteQuiver: {
-				DisplayName: 无尽夜明箭袋
-				Tooltip: “以音速射下它们！”
-			}
-
-			UnholyQuiver: {
-				DisplayName: 无尽邪箭袋
-				// Tooltip: ""
-			}
-
-			VenomQuiver: {
-				DisplayName: 无尽毒液箭袋
-				// Tooltip: ""
-			}
-
 			BrittleBone: {
 				DisplayName: 易碎骨头
-				// Tooltip: ""
-			}
-
-			ChlorophytePouch: {
-				DisplayName: 无尽叶绿弹袋
-				Tooltip: 追杀敌人
-			}
-
-			CrystalPouch: {
-				DisplayName: 无尽水晶弹袋
-				Tooltip: 碰撞时产生水晶碎片
-			}
-
-			CursedPouch: {
-				DisplayName: 无尽诅咒弹袋
-				// Tooltip: ""
-			}
-
-			ExplosivePouch: {
-				DisplayName: 无尽爆破弹袋
-				Tooltip: 碰撞时爆炸
-			}
-
-			GoldenPouch: {
-				DisplayName: 无尽金弹袋
-				Tooltip: 杀死的敌人会掉落更多的钱
-			}
-
-			IchorPouch: {
-				DisplayName: 无尽灵液弹袋
-				Tooltip: 降低目标的防御力
-			}
-
-			LuminitePouch: {
-				DisplayName: 无尽夜明弹袋
-				Tooltip: “鬼怪排成行，一发百中……”
-			}
-
-			MeteorPouch: {
-				DisplayName: 无尽流星弹袋
-				// Tooltip: ""
-			}
-
-			NanoPouch: {
-				DisplayName: 无尽纳米弹袋
-				Tooltip: 造成困惑
-			}
-
-			PartyPouch: {
-				DisplayName: 无尽派对弹袋
-				Tooltip: 碰撞时爆炸成彩纸
-			}
-
-			SilverPouch: {
-				DisplayName: 无尽银弹袋
-				// Tooltip: ""
-			}
-
-			TungstenPouch: {
-				DisplayName: 无尽钨弹袋
-				// Tooltip: ""
-			}
-
-			VelocityPouch: {
-				DisplayName: 无尽高速弹袋
-				// Tooltip: ""
-			}
-
-			VenomPouch: {
-				DisplayName: 无尽毒液弹袋
-				Tooltip: 对目标施放酸性毒液
-			}
-
-			CopperCoinBag: {
-				DisplayName: 无尽铜币保险箱
-				// Tooltip: ""
-			}
-
-			GoldCoinBag: {
-				DisplayName: 无尽金币保险箱
-				// Tooltip: ""
-			}
-
-			PlatinumCoinBag: {
-				DisplayName: 无尽铂金币保险箱
-				// Tooltip: ""
-			}
-
-			SilverCoinBag: {
-				DisplayName: 无尽银币保险箱
-				// Tooltip: ""
-			}
-
-			CrystalDartBox: {
-				DisplayName: 无尽水晶镖盒
-				// Tooltip: ""
-			}
-
-			CursedDartBox: {
-				DisplayName: 无尽诅咒镖盒
-				// Tooltip: ""
-			}
-
-			IchorDartBox: {
-				DisplayName: 无尽灵液镖盒
-				// Tooltip: ""
-			}
-
-			PoisonDartBox: {
-				DisplayName: 无尽毒镖盒
-				// Tooltip: ""
-			}
-
-			GelPack: {
-				DisplayName: 无尽凝胶包
-				// Tooltip: ""
-			}
-
-			StarPouch: {
-				DisplayName: 无尽星星袋
 				// Tooltip: ""
 			}
 
@@ -2276,66 +2101,6 @@ Mods: {
 					'''
 			}
 
-			HoneyRocketBox: {
-				// Tooltip: ""
-				DisplayName: 无尽蜂蜜火箭盒
-			}
-
-			DryRocketBox: {
-				// Tooltip: ""
-				DisplayName: 无尽干火箭盒
-			}
-
-			ClusterRocket2Box: {
-				// Tooltip: ""
-				DisplayName: 无尽二级集束火箭盒
-			}
-
-			ClusterRocket1Box: {
-				// Tooltip: ""
-				DisplayName: 无尽一级集束火箭盒
-			}
-
-			LavaRocketBox: {
-				DisplayName: 无尽熔岩火箭盒
-				// Tooltip: ""
-			}
-
-			MiniNuke1Box: {
-				DisplayName: 无尽一级迷你核弹盒
-				// Tooltip: ""
-			}
-
-			MiniNuke2Box: {
-				DisplayName: 无尽二级迷你核弹盒
-				// Tooltip: ""
-			}
-
-			Rocket1Box: {
-				DisplayName: 无尽一级火箭盒
-				// Tooltip: ""
-			}
-
-			Rocket2Box: {
-				DisplayName: 无尽二级火箭盒
-				// Tooltip: ""
-			}
-
-			Rocket3Box: {
-				DisplayName: 无尽三级火箭盒
-				// Tooltip: ""
-			}
-
-			Rocket4Box: {
-				DisplayName: 无尽四级火箭盒
-				// Tooltip: ""
-			}
-
-			WetRocketBox: {
-				DisplayName: 无尽潮湿火箭盒
-				// Tooltip: ""
-			}
-
 			InstaPond: {
 				DisplayName: 快速湖泊
 				Tooltip:
@@ -3064,6 +2829,7 @@ Mods: {
 			VioletHusk: 获得一个蓝紫外壳后
 			PinkPricklyPear: 获得一个粉仙人掌果后
 			BlackInk: 获得一个黑墨水后
+			// OwnsRegionalWood: After having picked up the regional wood
 		}
 
 		Keybinds: {

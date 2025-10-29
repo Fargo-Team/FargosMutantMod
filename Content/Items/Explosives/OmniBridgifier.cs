@@ -1,3 +1,4 @@
+using Fargowiltas.Common.Configs;
 using Fargowiltas.Content.Items.Tiles;
 using Fargowiltas.Content.Projectiles.Explosives;
 using Microsoft.Xna.Framework;
@@ -11,6 +12,11 @@ namespace Fargowiltas.Content.Items.Explosives
 {
     public class OmniBridgifier : ModItem
     {
+        public override bool IsLoadingEnabled(Mod mod)
+        {
+            return FargoServerConfig.Instance.InstantItems;
+        }
+
         public override void SetStaticDefaults()
         {
             // DisplayName.SetDefault("Omni-Bridgifier");

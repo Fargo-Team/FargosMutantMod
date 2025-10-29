@@ -1,3 +1,4 @@
+using Fargowiltas.Common.Configs;
 using Fargowiltas.Common.Systems;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -8,6 +9,11 @@ namespace Fargowiltas.Content.Items.Explosives
 {
     public class AutoHouse : ModItem
     {
+        public override bool IsLoadingEnabled(Mod mod)
+        {
+            return FargoServerConfig.Instance.InstantItems;
+        }
+
         public override void SetStaticDefaults()
         {
             Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 3;

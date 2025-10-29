@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Fargowiltas.Content.Items.Ammos.Bullets;
+//using Fargowiltas.Content.Items.Ammos.Bullets;
 using Fargowiltas.Content.Items.Tiles;
 using Fargowiltas.Utilities;
 using Terraria;
@@ -22,12 +22,8 @@ namespace Fargowiltas.Common.Systems.Recipes
 
         public override void AddRecipeGroups()
         {
-            //Silver or Tungsten Pouch (Used in Souls Mod)
-            var group = new RecipeGroup(() => RecipeHelper.GenerateAnyItemRecipeGroupText(ModContent.ItemType<SilverPouch>()), ModContent.ItemType<SilverPouch>(), ModContent.ItemType<TungstenPouch>());
-            RecipeGroup.RegisterGroup("Fargowiltas:AnySilverPouch", group);
-
             //gold bar
-            group = new RecipeGroup(() => ItemXOrY(ItemID.GoldBar, ItemID.PlatinumBar), ItemID.GoldBar, ItemID.PlatinumBar);
+            var group = new RecipeGroup(() => ItemXOrY(ItemID.GoldBar, ItemID.PlatinumBar), ItemID.GoldBar, ItemID.PlatinumBar);
             AnyGoldBar = RecipeGroup.RegisterGroup("Fargowiltas:AnyGoldBar", group);
 
             //demonite bar

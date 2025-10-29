@@ -1,0 +1,144 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Terraria.DataStructures;
+using Terraria.ID;
+using Terraria.Localization;
+using Terraria;
+using Terraria.ModLoader;
+using Terraria.ObjectData;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Fargowiltas.Content.UI;
+using Terraria.Audio;
+using Terraria.GameContent.ObjectInteractions;
+using ReLogic.Content;
+using Terraria.GameContent;
+
+namespace Fargowiltas.Content.Items.Tiles
+{
+    public class ChestWizardSheet : ModTile
+    {
+        public override void SetStaticDefaults()
+        {
+            Main.tileSolid[Type] = false;
+            Main.tileMergeDirt[Type] = false;
+            Main.tileBlockLight[Type] = false;
+            DustType = DustID.Stone;
+            LocalizedText name = CreateMapEntryName();
+            AddMapEntry(Color.DarkGray, name);
+            Main.tileNoAttach[Type] = true;
+            Main.tileFrameImportant[Type] = true;
+            TileID.Sets.HasOutlines[Type] = true;
+            TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
+            TileObjectData.newTile.Width = 2;
+            TileObjectData.newTile.Height = 2;
+            TileObjectData.newTile.CoordinateHeights = new int[] { 16, 18};
+            TileObjectData.newTile.HookPostPlaceMyPlayer = ModContent.GetInstance<ChestWizardTileEntity>().Generic_HookPostPlaceMyPlayer;// new PlacementHook(ModContent.GetInstance<EnchantedTreeTileEntity>().Hook_AfterPlacement, -3, 0, false);
+            TileObjectData.newTile.UsesCustomCanPlace = true;
+            TileObjectData.newTile.Origin = new Point16(0, 1);
+            TileObjectData.addTile(Type);
+            AnimationFrameHeight = 38;
+        }
+        public override void AnimateIndividualTile(int type, int i, int j, ref int frameXOffset, ref int frameYOffset)
+        {
+            FargoUtils.TryGetTileEntityAs(i, j, out ChestWizardTileEntity TE);
+            bool interacted = false;
+            for (int p = 0; p < Main.maxPlayers; p++)
+            {
+                if (Main.player[p].active && Main.player[p].FargoMutant().LastInteractedChizard == FargoUtils.GetTopLeftTileInMultitile(i, j).ToVector2())
+                {
+                    interacted = true;
+                    break;
+                }
+            }
+            if (interacted)
+            {
+                frameYOffset = 38;
+            }
+            else
+            {
+                frameYOffset = 0;
+            }
+            base.AnimateIndividualTile(type, i, j, ref frameXOffset, ref frameYOffset);
+        }
+        public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings)
+        {
+            return true;
+        }
+        public override void DrawEffects(int i, int j, SpriteBatch spriteBatch, ref TileDrawInfo drawData)
+        {
+            if (FargoUtils.GetTopLeftTileInMultitile(i, j) == new Point16(i, j))
+            {
+                Main.instance.TilesRenderer.AddSpecialPoint(i, j, Terraria.GameContent.Drawing.TileDrawing.TileCounterType.CustomNonSolid);
+            }
+            base.DrawEffects(i, j, spriteBatch, ref drawData);
+        }
+        public override void SpecialDraw(int i, int j, SpriteBatch spriteBatch)
+        {
+            FargoUtils.TryGetTileEntityAs(i, j, out ChestWizardTileEntity TE);
+            Asset<Texture2D> eye = ModContent.Request<Texture2D>("Fargowiltas/Content/Items/Tiles/ChestWizardEyeAssembly");
+            Rectangle ball = new(2, 6, 18, 18);
+            Rectangle pupil = new(26, 10, 8, 8);
+            Rectangle beard = new(38, 12, 22, 18);
+
+            TE.drawTimer += 0.1f;
+            if (TE.drawTimer >= MathHelper.Pi * 20)
+            {
+                TE.drawTimer = 0;
+            }
+            if (TE.hatID == 0)
+            {
+                TE.hatID = Main.rand.Next([ItemID.WizardHat, ItemID.WizardsHat, ItemID.RuneHat, ItemID.MagicHat]);
+            }
+            Asset<Texture2D> hat = TextureAssets.Item[TE.hatID];
+            Vector2 pos = new Vector2(i, j).ToWorldCoordinates() - Main.screenPosition + new Vector2(8, MathF.Sin(TE.drawTimer) - 24);
+            spriteBatch.Draw(eye.Value, pos, ball, Lighting.GetColor(new Point(i, j)), 0, ball.Size() / 2, 1, SpriteEffects.None, 1);
+            
+            float angle = (pos + Main.screenPosition).AngleTo(Main.LocalPlayer.Center);
+            if (TE.item >= 0 && Main.item[TE.item].active)
+            {
+                
+                angle = (pos + Main.screenPosition).AngleTo(Main.item[TE.item].Center);
+            }
+            //Main.NewText(TE.item);
+            spriteBatch.Draw(eye.Value, pos + new Vector2(3, 0).RotatedBy(angle), pupil, Lighting.GetColor(new Point(i, j)), 0, pupil.Size() / 2, 1, SpriteEffects.None, 1);
+            spriteBatch.Draw(eye.Value, pos + new Vector2(0, 10), beard, Lighting.GetColor(new Point(i, j)), 0, beard.Size() / 2, 1, SpriteEffects.None, 1);
+            spriteBatch.Draw(hat.Value, new Vector2(i, j).ToWorldCoordinates() - Main.screenPosition + new Vector2(8, MathF.Sin(TE.drawTimer) * 2 - 40), null, Lighting.GetColor(new Point(i, j)), 0, hat.Size() / 2, 1, SpriteEffects.None, 1);
+            base.SpecialDraw(i, j, spriteBatch);
+        }
+        public override bool RightClick(int i, int j)
+        {
+            Main.LocalPlayer.FargoMutant().LastInteractedChizard = FargoUtils.GetTopLeftTileInMultitile(i, j).ToVector2();
+            FargoUtils.TryGetTileEntityAs(i, j, out ChestWizardTileEntity TE);
+            FargoUI ui = FargoUIManager.Get<ChizardSearchBar>();
+            if (FargoUIManager.IsOpen(ui))
+            {
+                FargoUIManager.Close(ui);
+                SoundEngine.PlaySound(SoundID.MenuClose);
+                Main.LocalPlayer.FargoMutant().LastInteractedChizard = Vector2.Zero;
+            }
+            else
+            {
+                Vector2 pos = Main.LocalPlayer.FargoMutant().LastInteractedChizard.ToWorldCoordinates();
+
+                FargoUIManager.Open(ui);
+                SoundEngine.PlaySound(SoundID.MenuOpen);
+                if (Main.netMode == NetmodeID.MultiplayerClient)
+                {
+                    for (int c = 0; c < Main.chest.Length; c++)
+                    {
+                        if (Main.chest[c] != null && new Vector2(Main.chest[c].x*16, Main.chest[c].y*16).Distance(Main.LocalPlayer.Center) < 1000)
+                        {
+                            
+                            NetMessage.SendData(MessageID.RequestChestOpen, number: Main.chest[c].x, number2: Main.chest[c].y);
+                        }
+                    }
+                }
+            }
+            return true;
+        }
+    }
+}

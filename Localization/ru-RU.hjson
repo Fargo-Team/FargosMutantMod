@@ -2466,6 +2466,11 @@ Mods: {
 				DisplayName: Таблица характеристик
 				Tooltip: Используйте, чтобы открыть меню характеристик
 			}
+
+			ChestWizard: {
+				// DisplayName: Chest Wizard
+				// Tooltip: Searches nearby chests for specific items and retrieves them for you
+			}
 		}
 
 		NPCs: {
@@ -2981,6 +2986,7 @@ Mods: {
 			SiblingPylonTile.MapEntry: Пилон собратьев
 			PurityTotemSheet.MapEntry: Тотем чистоты
 			EnchantedTreeSheet.MapEntry: Зачарованное дерево
+			// ChestWizardSheet.MapEntry: Chest Wizard
 		}
 
 		Conditions: {

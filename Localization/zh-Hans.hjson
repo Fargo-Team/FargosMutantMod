@@ -2471,6 +2471,11 @@ Mods: {
 				// DisplayName: Stat Sheet
 				// Tooltip: Use to open the Stat Sheet menu
 			}
+
+			ChestWizard: {
+				// DisplayName: Chest Wizard
+				// Tooltip: Searches nearby chests for specific items and retrieves them for you
+			}
 		}
 
 		NPCs: {
@@ -2986,6 +2991,7 @@ Mods: {
 			SiblingPylonTile.MapEntry: 血亲晶塔
 			PurityTotemSheet.MapEntry: 纯净图腾
 			// EnchantedTreeSheet.MapEntry: Enchanted Tree
+			// ChestWizardSheet.MapEntry: Chest Wizard
 		}
 
 		Conditions: {

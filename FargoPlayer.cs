@@ -82,6 +82,7 @@ namespace Fargowiltas
         public int SpectatePlayer = 0;
 
         public Fruit? grabbedFruit = null;
+        public Vector2 LastInteractedChizard = Vector2.Zero;
 
         private readonly string[] tags =
         [

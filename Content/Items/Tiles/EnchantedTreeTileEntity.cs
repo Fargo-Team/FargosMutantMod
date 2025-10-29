@@ -67,7 +67,7 @@ namespace Fargowiltas.Content.Items.Tiles
             int placedEntity = Place(i - tileOrigin.X, j - tileOrigin.Y);
             if (Main.netMode == NetmodeID.MultiplayerClient)
             {
-                Main.NewText("yo");
+                //Main.NewText("yo");
                 int width = 3;
                 int height = 4;
                 NetMessage.SendTileSquare(Main.myPlayer, i, j, width, height);

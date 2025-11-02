@@ -2245,8 +2245,8 @@ Mods: {
 			}
 
 			ChestWizard: {
-				// DisplayName: Chest Wizard
-				// Tooltip: Searches nearby chests for specific items and retrieves them for you
+				DisplayName: Сундучный волшебник
+				Tooltip: Ищет в сундуках определённые предметы и позволяет взять их
 			}
 		}
 

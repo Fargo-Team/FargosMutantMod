@@ -739,6 +739,14 @@ namespace Fargowiltas.Content.Items
             }
 
             player.GetModPlayer<FargoPlayer>().ItemHasBeenOwned[item.type] = true;
+            if (ChizardLocation != Vector2.Zero)
+            {
+                FargoUtils.TryGetTileEntityAs(ChizardLocation.ToTileCoordinates().X, ChizardLocation.ToTileCoordinates().Y, out ChestWizardTileEntity TE);
+                TE.item = -1;
+                ChizardLocation = Vector2.Zero;
+                ChizardMovementTimer = 0;
+                ChestLocation = Vector2.Zero;
+            }
 
             return base.OnPickup(item, player);
         }

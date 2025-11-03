@@ -18,6 +18,7 @@ using Terraria.GameContent.UI;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using Terraria.ModLoader.Default;
 using Terraria.UI;
 using Terraria.UI.Chat;
 using static Terraria.ModLoader.ModContent;
@@ -539,6 +540,7 @@ namespace Fargowiltas.Content.Items
         public override void UpdateInventory(Item item, Player player)
         {
             TryUnlimBuff(item, player);
+            CheckForIsOldUnlimitedAmmo(item);
         }
         public override void UpdateAccessory(Item item, Player player, bool hideVisual)
         {
@@ -893,6 +895,83 @@ namespace Fargowiltas.Content.Items
             ItemID.Sets.ShimmerTransformToItem[ItemID.MarbleWall] = ModContent.ItemType<UnsafeMarbleWall>();
             ItemID.Sets.ShimmerTransformToItem[ItemID.ReleaseLantern] = ModContent.ItemType<MatsuriLantern>();
             base.SetStaticDefaults();
+        }
+
+        public static void CheckForIsOldUnlimitedAmmo(Item item)
+        {
+            if (item.ModItem is not UnloadedItem unloadedItem)
+                return;
+
+            (string, int)[] oldUnlimitedAmmos = {
+                ("GelPack", ItemID.Gel),
+                ("StarPouch", ItemID.FallenStar),
+
+                ("BoneQuiver", ItemID.BoneArrow),
+                ("ChlorophyteQuiver", ItemID.ChlorophyteArrow),
+                ("CursedQuiver", ItemID.CursedArrow),
+                ("FlameQuiver", ItemID.FlamingArrow),
+                ("FrostburnQuiver", ItemID.FrostburnArrow),
+                ("HellfireQuiver", ItemID.HellfireArrow),
+                ("HolyQuiver", ItemID.HolyArrow),
+                ("IchorQuiver", ItemID.IchorArrow),
+                ("JesterQuiver", ItemID.JestersArrow),
+                ("LuminiteQuiver", ItemID.MoonlordArrow),
+                ("UnholyQuiver", ItemID.UnholyArrow),
+                ("VenomQuiver", ItemID.VenomArrow),
+
+                ("ChlorophytePouch", ItemID.ChlorophyteBullet),
+                ("CrystalPouch", ItemID.CrystalBullet),
+                ("CursedPouch", ItemID.CursedBullet),
+                ("ExplosivePouch", ItemID.ExplodingBullet),
+                ("GoldenPouch", ItemID.GoldenBullet),
+                ("IchorPouch", ItemID.IchorBullet),
+                ("LuminitePouch", ItemID.MoonlordBullet),
+                ("MeteorPouch", ItemID.MeteorShot),
+                ("NanoPouch", ItemID.NanoBullet),
+                ("PartyPouch", ItemID.PartyBullet),
+                ("SilverPouch", ItemID.SilverBullet),
+                ("TungstenPouch", ItemID.TungstenBullet),
+                ("VelocityPouch", ItemID.HighVelocityBullet),
+                ("VenomPouch", ItemID.VenomBullet),
+
+                ("CopperCoinBag", ItemID.CopperCoin),
+                ("SilverCoinBag", ItemID.SilverCoin),
+                ("GoldCoinBag", ItemID.GoldCoin),
+                ("PlatinumCoinBag", ItemID.PlatinumCoin),
+
+                ("CrystalDartBox", ItemID.CrystalDart),
+                ("CursedDartBox", ItemID.CursedDart),
+                ("IchorDartBox", ItemID.IchorDart),
+                ("PoisonDartBox", ItemID.PoisonDart),
+
+                ("ClusterRocket1Box", ItemID.ClusterRocketI),
+                ("ClusterRocket2Box", ItemID.ClusterRocketII),
+                ("DryRocketBox", ItemID.DryRocket),
+                ("HoneyRocketBox", ItemID.HoneyRocket),
+                ("LavaRocketBox", ItemID.LavaRocket),
+                ("MiniNuke1Box", ItemID.MiniNukeI),
+                ("MiniNuke2Box", ItemID.MiniNukeII),
+                ("Rocket1Box", ItemID.RocketI),
+                ("Rocket2Box", ItemID.RocketII),
+                ("Rocket3Box", ItemID.RocketIII),
+                ("Rocket4Box", ItemID.RocketIV),
+                ("WetRocketBox", ItemID.WetRocket),
+            };
+
+            foreach ((string unlimName, int itemType) in oldUnlimitedAmmos)
+            {
+                TryConvertUnloadedUnlimitedAmmoTo3996(item, unlimName, itemType);
+            }
+        }
+
+        public static void TryConvertUnloadedUnlimitedAmmoTo3996(Item item, string unloadedUnlimitedAmmoName, int ammoItemType)
+        {
+            if (item.ModItem is UnloadedItem unloadedItem && unloadedItem.ItemName == unloadedUnlimitedAmmoName)
+            {
+                item.TurnToAir();
+                item.type = ammoItemType;
+                item.stack = 3996;
+            }
         }
     }
 }

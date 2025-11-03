@@ -375,9 +375,21 @@ Mods: {
 
 			SeasonSelections: {
 				Tooltip: ""
-				Normal.Label: Обычный
-				AlwaysOn.Label: Всегда вкл.
-				AlwaysOff.Label: Всегда выкл.
+
+				Normal: {
+					Label: Обычный
+					// Tooltip: ""
+				}
+
+				AlwaysOn: {
+					Label: Всегда вкл.
+					// Tooltip: ""
+				}
+
+				AlwaysOff: {
+					Label: Всегда выкл.
+					// Tooltip: ""
+				}
 			}
 
 			Common.CanSpawn: может приходить

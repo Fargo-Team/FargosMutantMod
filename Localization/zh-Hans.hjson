@@ -379,9 +379,21 @@ Mods: {
 
 			SeasonSelections: {
 				Tooltip: ""
-				Normal.Label: 正常
-				AlwaysOn.Label: 常开
-				AlwaysOff.Label: 常关
+
+				Normal: {
+					Label: 正常
+					// Tooltip: ""
+				}
+
+				AlwaysOn: {
+					Label: 常开
+					// Tooltip: ""
+				}
+
+				AlwaysOff: {
+					Label: 常关
+					// Tooltip: ""
+				}
 			}
 
 			Common.CanSpawn: 可以生成

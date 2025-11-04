@@ -212,7 +212,8 @@ namespace Fargowiltas.Content.UI
 
             int[] chestWithItem = [-1, -1, -1, -1, -1];
             int[] indexOfItem = [-1, -1, -1, -1, -1];
-            int[] scoreOfItem = [0, 0, 0, 0, 0];
+            int[] scoreOfItem = [-1, -1, -1, -1, -1];
+            
             for (int i = 0; i < Main.chest.Length; i++)
             {
                 Chest chest = Main.chest[i];
@@ -233,12 +234,14 @@ namespace Fargowiltas.Content.UI
                                 if (name.ToLower().Contains(currentText.ToLower().Substring(0, c)))
                                 {
                                     score = c;
+                                    break;
                                 }
                             }
                         }
                         for (int s = 0; s < scoreOfItem.Length; s++)
                         {
-                            if (score > scoreOfItem[s] && (scoreOfItem[s] == -1 || !scoreOfItem.Contains(-1)))
+                            
+                            if (score > scoreOfItem[s] && (scoreOfItem[s] == -1 || !scoreOfItem.Contains(-1)) && score != 0)
                             {
                                 indexOfItem[s] = j;
                                 chestWithItem[s] = i;

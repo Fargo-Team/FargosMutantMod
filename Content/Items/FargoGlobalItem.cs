@@ -45,10 +45,6 @@ namespace Fargowiltas.Content.Items
         //follow cursor when = myplayer
         public int Grabbed = -1;
 
-        //used for moving items from source chest to chest wizard
-        public Vector2 ChizardLocation;
-        public Vector2 ChestLocation;
-        public int ChizardMovementTimer;
 
         public override bool InstancePerEntity => true;
 
@@ -443,14 +439,6 @@ namespace Fargowiltas.Content.Items
                     }
                 }
             }
-            if (ChizardMovementTimer > 0 && ChizardLocation != Vector2.Zero && ChestLocation != Vector2.Zero)
-            {
-                ChizardMovementTimer--;
-                Vector2 targetpos = Vector2.Lerp(ChizardLocation, ChestLocation, ChizardMovementTimer / 60f);
-                item.velocity = Vector2.Lerp(item.velocity, item.AngleTo(targetpos).ToRotationVector2() * item.Distance(targetpos), 0.03f);
-                item.position = item.position + item.velocity * 0.1f;
-                gravity = 0;
-            }
             base.Update(item, ref gravity, ref maxFallSpeed);
         }
         public override void PostUpdate(Item item)
@@ -741,14 +729,6 @@ namespace Fargowiltas.Content.Items
             }
 
             player.GetModPlayer<FargoPlayer>().ItemHasBeenOwned[item.type] = true;
-            if (ChizardLocation != Vector2.Zero)
-            {
-                FargoUtils.TryGetTileEntityAs(ChizardLocation.ToTileCoordinates().X, ChizardLocation.ToTileCoordinates().Y, out ChestWizardTileEntity TE);
-                TE.item = -1;
-                ChizardLocation = Vector2.Zero;
-                ChizardMovementTimer = 0;
-                ChestLocation = Vector2.Zero;
-            }
 
             return base.OnPickup(item, player);
         }
@@ -823,34 +803,13 @@ namespace Fargowiltas.Content.Items
         {
             writer.Write(Grabbed);
             writer.Write(FromEnchantedTree);
-            writer.WriteVector2(ChizardLocation);
-            writer.WriteVector2(ChestLocation);
-            writer.Write7BitEncodedInt(ChizardMovementTimer);
             base.NetSend(item, writer);
         }
         public override void NetReceive(Item item, BinaryReader reader)
         {
             Grabbed = reader.ReadInt32();
             FromEnchantedTree = reader.ReadBoolean();
-            ChizardLocation = reader.ReadVector2();
-            ChestLocation = reader.ReadVector2();
-            ChizardMovementTimer = reader.Read7BitEncodedInt();
             base.NetReceive(item, reader);
-        }
-        public override bool PreDrawInWorld(Item item, SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI)
-        {
-            if (ChizardMovementTimer > 0 && ChizardLocation != Vector2.Zero && ChestLocation != Vector2.Zero)
-            {
-                Vector2 midpoint = (ChizardLocation + new Vector2(8, -22) + item.Center) / 2;
-                Asset<Texture2D> glowline = TextureAssets.Projectile[ProjectileID.MedusaHeadRay];
-                Vector2 origin = new Vector2(glowline.Width() / 2, glowline.Height());
-                Vector2 linescale = new Vector2(0.3f, item.Distance(midpoint) / glowline.Height());
-                float opacity = Math.Clamp(MathHelper.Lerp(0, 1, (60 - ChizardMovementTimer) / 10f), 0, 1);
-                spriteBatch.Draw(glowline.Value, midpoint - Main.screenPosition, null, Color.White * opacity, midpoint.AngleTo(item.Center) + MathHelper.PiOver2, origin, linescale, SpriteEffects.None, 1);
-                spriteBatch.Draw(glowline.Value, midpoint - Main.screenPosition, null, Color.White * opacity, midpoint.AngleFrom(item.Center) + MathHelper.PiOver2, origin, linescale, SpriteEffects.None, 1);
-                
-            }
-            return base.PreDrawInWorld(item, spriteBatch, lightColor, alphaColor, ref rotation, ref scale, whoAmI);
         }
         public override bool PreDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
         {

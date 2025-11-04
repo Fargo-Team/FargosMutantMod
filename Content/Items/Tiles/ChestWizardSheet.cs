@@ -94,15 +94,11 @@ namespace Fargowiltas.Content.Items.Tiles
                 TE.hatID = Main.rand.Next([ItemID.WizardHat, ItemID.WizardsHat, ItemID.RuneHat, ItemID.MagicHat]);
             }
             Asset<Texture2D> hat = TextureAssets.Item[TE.hatID];
+            Main.instance.LoadItem(TE.hatID);
             Vector2 pos = new Vector2(i, j).ToWorldCoordinates() - Main.screenPosition + new Vector2(8, MathF.Sin(TE.drawTimer) - 24);
             spriteBatch.Draw(eye.Value, pos, ball, Lighting.GetColor(new Point(i, j)), 0, ball.Size() / 2, 1, SpriteEffects.None, 1);
             
             float angle = (pos + Main.screenPosition).AngleTo(Main.LocalPlayer.Center);
-            if (TE.item >= 0 && Main.item[TE.item].active)
-            {
-                
-                angle = (pos + Main.screenPosition).AngleTo(Main.item[TE.item].Center);
-            }
             //Main.NewText(TE.item);
             spriteBatch.Draw(eye.Value, pos + new Vector2(3, 0).RotatedBy(angle), pupil, Lighting.GetColor(new Point(i, j)), 0, pupil.Size() / 2, 1, SpriteEffects.None, 1);
             spriteBatch.Draw(eye.Value, pos + new Vector2(0, 10), beard, Lighting.GetColor(new Point(i, j)), 0, beard.Size() / 2, 1, SpriteEffects.None, 1);

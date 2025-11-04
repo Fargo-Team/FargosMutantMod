@@ -14,6 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Terraria;
 using Terraria.Audio;
+using Terraria.Enums;
 using Terraria.GameContent.UI;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
@@ -21,6 +22,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.UI;
 using Terraria.UI;
+using Terraria.UI.Chat;
 
 namespace Fargowiltas.Content.UI
 {
@@ -28,6 +30,7 @@ namespace Fargowiltas.Content.UI
     {
         public UIPanel panel; //bg panel
         public UIPanel[] selectText; //buttons for selecting item to take out
+        public UICloseButton closeButton;
         public UIText[] ItemShow;
         public UISearchBar search; //search bar
 
@@ -65,16 +68,15 @@ namespace Fargowiltas.Content.UI
                 Main.LocalPlayer.mouseInterface = true;
             }
             //show item name when hovering over select button
-            for (int i = 0; i < selectText.Length; i++)
-            {
-                if (selectText[i].IsMouseHovering && ChestWithItem[i] >= 0 && IndexOfItem[i] >= 0)
-                {
-                    Item item = Main.chest[ChestWithItem[i]].item[IndexOfItem[i]];
-                    Main.instance.MouseText(item.AffixName(), item.rare);
-                }
-                
-            }
-            
+            //for (int i = 0; i < selectText.Length; i++)
+            //{
+            //    if (selectText[i].IsMouseHovering && ChestWithItem[i] >= 0 && IndexOfItem[i] >= 0)
+            //    {
+            //        Item item = Main.chest[ChestWithItem[i]].item[IndexOfItem[i]];
+            //        Main.instance.MouseText(item.AffixName(), item.rare);
+            //    }
+
+            //}
             base.Update(gameTime);
         }
         public override void OnInitialize()
@@ -83,11 +85,11 @@ namespace Fargowiltas.Content.UI
             //Vector2 offset = new(baseOffset.X, baseOffset.Y - 400 / 2f);
 
             panel = new UIPanel();
-            panel.Height.Set(84, 0);
-            panel.Width.Set(300, 0);
+            panel.Height.Set(220, 0);
+            panel.Width.Set(325, 0);
             panel.Left.Set(6, 0);
             panel.Top.Set(32, 0);
-            panel.BackgroundColor = new Color(73, 94, 171) * 0.9f;
+            panel.BackgroundColor = new Color(148, 62, 82) * 0.8f;
             panel.Left.Set(-140, 0.5f);
             panel.Top.Set(50, 0.5f);
 
@@ -95,7 +97,13 @@ namespace Fargowiltas.Content.UI
             search.Width.Set(300 - 8, 0);
             search.Top.Set(0, 0);
             search.Left.Set(0, 0);
+            search.BackPanel.BackgroundColor = new Color(104, 52, 52);
             search.OnTextChange += SearchBar_OnTextChange;
+
+            closeButton = new();
+            closeButton.OnLeftClick += CloseButton_OnLeftClick;
+            closeButton.Left.Set(-8, 1);
+            closeButton.Top.Set(0, 0);
 
             selectText = new UIPanel[5];
             ItemShow = new UIText[5];
@@ -104,16 +112,17 @@ namespace Fargowiltas.Content.UI
                 selectText[i] = new UIPanel();
                 UIPanel spanel = selectText[i];
                 spanel.Height.Set(26, 0);
-                spanel.Top.Set(26 + 8, 0);
-                spanel.Width.Set(50, 0);
-                spanel.Left.Set(57 * i, 0);
-                spanel.BackgroundColor = new Color(22, 25, 55);
+                spanel.Top.Set((26 + 8)*(i+1), 0);
+                spanel.Width.Set(search.Width.Pixels, 0);
+                spanel.Left.Set(search.Left.Pixels, 0);
+                spanel.BackgroundColor = new Color(104, 52, 52);
                 spanel.OnLeftClick += SelectButton_OnLeftClick;
                 panel.Append(selectText[i]);
 
                 ItemShow[i] = new UIText("");
-                ItemShow[i].HAlign = 0.5f;
-                ItemShow[i].VAlign = 0.5f;
+                
+                ItemShow[i].HAlign = 0f;
+                ItemShow[i].VAlign = 0.6f;
                 spanel.Append(ItemShow[i]);
 
             }
@@ -121,7 +130,16 @@ namespace Fargowiltas.Content.UI
 
             Append(panel);
             panel.Append(search);
+            panel.Append(closeButton);
             base.OnInitialize();
+        }
+
+        private void CloseButton_OnLeftClick(UIMouseEvent evt, UIElement listeningElement)
+        {
+            FargoUI ui = FargoUIManager.Get<ChizardSearchBar>();
+            FargoUIManager.Close(ui);
+            SoundEngine.PlaySound(SoundID.MenuClose);
+            Main.LocalPlayer.FargoMutant().LastInteractedChizard = Vector2.Zero;
         }
 
         private void SelectButton_OnLeftClick(UIMouseEvent evt, UIElement listeningElement)
@@ -137,6 +155,7 @@ namespace Fargowiltas.Content.UI
             }
             if (index >= 0)
             {
+                
                 Chest chest = Main.chest[ChestWithItem[index]];
                 //make sure the item is still there before spawning it in multiplayer
                 if (Main.netMode == NetmodeID.MultiplayerClient)
@@ -154,21 +173,22 @@ namespace Fargowiltas.Content.UI
                 Point tilepos = Main.LocalPlayer.FargoMutant().LastInteractedChizard.ToPoint();
                 Vector2 pos = Main.LocalPlayer.FargoMutant().LastInteractedChizard.ToWorldCoordinates();
 
-                int i = Item.NewItem(Main.LocalPlayer.GetSource_TileInteraction(tilepos.X, tilepos.Y), new Vector2(chest.x, chest.y) * 16 + new Vector2(16, 16), chest.item[IndexOfItem[index]]);
-                Item item = Main.item[i];
-                item.stack = chest.item[IndexOfItem[index]].stack;
-                item.GetGlobalItem<FargoGlobalItem>().ChestLocation = new Vector2(chest.x, chest.y).ToWorldCoordinates() + new Vector2(16, 0);
-                item.GetGlobalItem<FargoGlobalItem>().ChizardLocation = pos;
-                item.GetGlobalItem<FargoGlobalItem>().ChizardMovementTimer = 60;
+                //int i = Item.NewItem(Main.LocalPlayer.GetSource_TileInteraction(tilepos.X, tilepos.Y), new Vector2(chest.x, chest.y) * 16 + new Vector2(16, 16), chest.item[IndexOfItem[index]]);
+                //Item item = Main.item[i];
+                //item.stack = chest.item[IndexOfItem[index]].stack;
+                //item.GetGlobalItem<FargoGlobalItem>().ChestLocation = new Vector2(chest.x, chest.y).ToWorldCoordinates() + new Vector2(16, 0);
+                //item.GetGlobalItem<FargoGlobalItem>().ChizardLocation = pos;
+                //item.GetGlobalItem<FargoGlobalItem>().ChizardMovementTimer = 60;
                 
 
                 FargoUtils.TryGetTileEntityAs(tilepos.X, tilepos.Y, out ChestWizardTileEntity entity);
-                entity.item = item.whoAmI;
-
+                //entity.item = item.whoAmI;
+                Chest.VisualizeChestTransfer(new Vector2(chest.x, chest.y).ToWorldCoordinates(), Main.LocalPlayer.Center, chest.item[IndexOfItem[index]], chest.item[IndexOfItem[index]].stack);
+                Main.LocalPlayer.QuickSpawnItem(Main.LocalPlayer.GetSource_TileInteraction(tilepos.X, tilepos.Y), chest.item[IndexOfItem[index]], chest.item[IndexOfItem[index]].stack);
                 if (Main.netMode == NetmodeID.MultiplayerClient)
                 {
-                    NetMessage.SendData(MessageID.SyncItem, Main.myPlayer, number: i, number2: 1f);
-                    NetMessage.SendData(MessageID.TileEntitySharing, Main.myPlayer, number: entity.ID);
+                    //NetMessage.SendData(MessageID.SyncItem, Main.myPlayer, number: i, number2: 1f);
+                    //NetMessage.SendData(MessageID.TileEntitySharing, Main.myPlayer, number: entity.ID);
                 }
                 //Main.NewText(Main.LocalPlayer.position);
                 //Main.LocalPlayer.QuickSpawnItem(Item.GetSource_NaturalSpawn(), ChestWithItem.item[IndexOfItem], ChestWithItem.item[IndexOfItem].stack);
@@ -208,16 +228,11 @@ namespace Fargowiltas.Content.UI
                         if (item != null && item.type != ItemID.None)
                         {
                             string name = Lang.GetItemName(item.type).Value;
-                            for (int c = 0; c < name.Length; c++)
+                            for (int c = currentText.Length; c > 0; c--)
                             {
-                                char character = name.ToLower()[c];
-                                if (c < currentText.Length && character == currentText.ToLower()[c])
+                                if (name.ToLower().Contains(currentText.ToLower().Substring(0, c)))
                                 {
-                                    score++;
-                                }
-                                else
-                                {
-                                    break;
+                                    score = c;
                                 }
                             }
                         }
@@ -256,7 +271,9 @@ namespace Fargowiltas.Content.UI
                     {
                         text = "[i";
                     }
-                    text += ":" + item.type + "] ";
+                    string name = item.AffixName();
+                    if (name.Length > 28) name = name.Substring(0, 28);
+                    text += ":" + item.type + "] " + "[c/" + ItemRarity.GetColor(item.rare).Hex3() + ":"+ name+"]";
                     ItemShow[i].SetText(text);
                 }
                 else

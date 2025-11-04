@@ -20,14 +20,8 @@ namespace Fargowiltas.Content.Items.Tiles
     {
         public float drawTimer;
         public int hatID;
-        public int item;
         public override void Update()
         {
-            if ((item < 0 || !Main.item[item].active) && item != -1)
-            {
-                item = -1;
-                NetMessage.SendData(MessageID.TileEntitySharing, -1, -1, null, ID);
-            }
                        
             base.Update();
         }
@@ -55,16 +49,6 @@ namespace Fargowiltas.Content.Items.Tiles
             {
                 NetMessage.SendData(MessageID.TileEntitySharing, number: ID, number2: Position.X, number3: Position.Y);
             }
-        }
-        public override void NetSend(BinaryWriter writer)
-        {
-            writer.Write7BitEncodedInt(item);
-            base.NetSend(writer);
-        }
-        public override void NetReceive(BinaryReader reader)
-        {
-            item = reader.Read7BitEncodedInt();
-            base.NetReceive(reader);
         }
     }
 }

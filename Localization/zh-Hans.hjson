@@ -427,8 +427,8 @@ Mods: {
 		UI: {
 			// Close: Close
 			// CombinedUIButton: Open Utilities
-			// PotionToggler: "[i:Fargowiltas/PotionTogglerItem] Potion Toggles"
-			// StatSheet: "[i:Fargowiltas/StatSheetItem] Stat Sheet"
+			// PotionToggler: "[g:Fargowiltas/PotionToggler] Potion Toggles"
+			// StatSheet: "[g:Fargowiltas/StatSheet] Stat Sheet"
 			SearchText: 搜索……
 			// Stat Sheet Elements
 			MeleeDamage: 近战伤害：{0}%

@@ -419,8 +419,8 @@ Mods: {
 		UI: {
 			Close: Close
 			CombinedUIButton: Open Utilities
-			PotionToggler: "[i:Fargowiltas/PotionTogglerItem] Potion Toggles"
-			StatSheet: "[i:Fargowiltas/StatSheetItem] Stat Sheet"
+			PotionToggler: "[g:Fargowiltas/PotionToggler] Potion Toggles"
+			StatSheet: "[g:Fargowiltas/StatSheet] Stat Sheet"
 			SearchText: Search...
 			// Stat Sheet Elements
 			MeleeDamage: Melee Damage: {0}%

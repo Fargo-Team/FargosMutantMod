@@ -38,6 +38,7 @@ namespace Fargowiltas
     {
         internal static MutantSummonTracker summonTracker;
         internal static DevianttDialogueTracker dialogueTracker;
+        internal static GlyphTracker glyphTracker;
 
         /// <summary>
         /// All mods that should be recognized as derivative from Fargo's Souls. <br></br>
@@ -145,6 +146,7 @@ namespace Fargowiltas
             summonTracker = new MutantSummonTracker();
             dialogueTracker = new DevianttDialogueTracker();
             dialogueTracker.AddVanillaDialogue();
+            glyphTracker = new GlyphTracker();
 
             HomeKey = KeybindLoader.RegisterKeybind(this, "Home", "Home");
 
@@ -325,6 +327,8 @@ namespace Fargowiltas
 
             summonTracker = null;
             dialogueTracker = null;
+            glyphTracker = null;
+            
 
             HomeKey = null;
             StatKey = null;
@@ -559,6 +563,20 @@ namespace Fargowiltas
                             CaughtNPCItem item = new(internalName, id);
                             ModLoader.GetMod(modName).AddContent(item);
                             CaughtNPCItem.CaughtTownies.Add(id, item.Type);
+                        }
+                        break;
+                    case "AddGlyph":
+                        {
+                            if (glyphTracker.GlyphsFinalized)
+                                throw new Exception($"Call Error: Glyphs must be added before AddRecipes");
+
+                            if (args[1].GetType() != typeof(string))
+                                throw new Exception($"Call Error (Fargo Mutant Mod AddGlyph): args[1] must be of type string");
+                            if (args[2].GetType() != typeof(string))
+                                throw new Exception($"Call Error (Fargo Mutant Mod AddGlyph): args[2] must be of type string");
+                            string key = (string)args[1];
+                            string fileName = (string)args[2];
+                            GlyphRegistry.Register(key, fileName);
                         }
                         break;
                 }

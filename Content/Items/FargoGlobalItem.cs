@@ -45,10 +45,6 @@ namespace Fargowiltas.Content.Items
         //follow cursor when = myplayer
         public int Grabbed = -1;
 
-        //used for moving items from source chest to chest wizard
-        public Vector2 ChizardLocation;
-        public Vector2 ChestLocation;
-        public int ChizardMovementTimer;
 
         public override bool InstancePerEntity => true;
 
@@ -62,7 +58,7 @@ namespace Fargowiltas.Content.Items
         //public override bool CloneNewInstances => true;
 
         TooltipLine FountainTooltip(string biome) => new TooltipLine(Mod, "Tooltip0", $"[i:909] [c/AAAAAA:{ExpandedTooltipLoc($"Fountain{biome}")}]");
-        
+
         //For the shop sale tooltip system.
         public class ShopTooltip
         {
@@ -72,7 +68,7 @@ namespace Fargowiltas.Content.Items
         }
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
-            var fargoServerConfig = FargoServerConfig.Instance; 
+            var fargoServerConfig = FargoServerConfig.Instance;
 
             if (FargoClientConfig.Instance.ExpandedTooltips)
             {
@@ -140,7 +136,7 @@ namespace Fargowiltas.Content.Items
                     }
                     FargoSets.Items.RegisteredShopTooltips[item.type] = registeredShopTooltips;
                 }
-                
+
                 foreach (ShopTooltip tooltip in FargoSets.Items.RegisteredShopTooltips[item.type])
                 {
 
@@ -153,7 +149,7 @@ namespace Fargowiltas.Content.Items
                         index %= displayIDs.Count;
                         id = displayIDs[index];
                     }
-                    
+
                     string names = "";
                     int i = 0;
                     foreach (string npcName in tooltip.NpcNames)
@@ -257,16 +253,16 @@ namespace Fargowiltas.Content.Items
                 {
                     //if (!FargoSets.Items.PotionCannotBeInfinite[item.type])
                     //{
-                        if (item.buffType != 0)
-                        {
-                            line = new TooltipLine(Mod, "TooltipUnlim", $"[i:87] [c/AAAAAA:{ExpandedTooltipLoc("UnlimitedBuff30")}]");
-                            tooltips.Add(line);
-                        }
-                        else if (item.bait > 0)
-                        {
-                            line = new TooltipLine(Mod, "TooltipUnlim", $"[i:5139] [c/AAAAAA:{ExpandedTooltipLoc("UnlimitedUse30")}]");
-                            tooltips.Add(line);
-                        }
+                    if (item.buffType != 0)
+                    {
+                        line = new TooltipLine(Mod, "TooltipUnlim", $"[i:87] [c/AAAAAA:{ExpandedTooltipLoc("UnlimitedBuff30")}]");
+                        tooltips.Add(line);
+                    }
+                    else if (item.bait > 0)
+                    {
+                        line = new TooltipLine(Mod, "TooltipUnlim", $"[i:5139] [c/AAAAAA:{ExpandedTooltipLoc("UnlimitedUse30")}]");
+                        tooltips.Add(line);
+                    }
                     //}
                 }
 
@@ -303,7 +299,7 @@ namespace Fargowiltas.Content.Items
                         line = new TooltipLine(Mod, "TooltipSacrificable",
                             $"[i:{CaughtNPCItem.CaughtTownies[NPCType<Squirrel>()]}] [c/AAAAAA:{Language.GetTextValue($"Mods.Fargowiltas.ExpandedTooltips.SacrificeEventPlural", consumeCount)}]");
                         tooltips.Add(line);
-                        
+
                     }
                     else
                     {
@@ -311,7 +307,7 @@ namespace Fargowiltas.Content.Items
                             $"[i:{CaughtNPCItem.CaughtTownies[NPCType<Squirrel>()]}] [c/AAAAAA:{ExpandedTooltipLoc("SacrificeEvent")}]");
                         tooltips.Add(line);
                     }
-                        
+
                 }
                 else if (sacCount > 0)
                 {
@@ -372,7 +368,7 @@ namespace Fargowiltas.Content.Items
                     var tooltip = tooltips[i];
                     if (tooltip.Name == "Tooltip0")
                     {
-                        tooltips.Insert(i+1, new TooltipLine(Fargowiltas.Instance, "EnrageWarning", Language.GetTextValue("Mods.Fargowiltas.Items.EnrageWarning.QueenBee")));
+                        tooltips.Insert(i + 1, new TooltipLine(Fargowiltas.Instance, "EnrageWarning", Language.GetTextValue("Mods.Fargowiltas.Items.EnrageWarning.QueenBee")));
                         break;
                     }
                 }
@@ -410,7 +406,7 @@ namespace Fargowiltas.Content.Items
                     break;
 
                 case ItemID.WoodenCrate:
-                    
+
                     var leadingRule = new LeadingConditionRule(new Conditions.NotRemixSeed());
                     var dropRuleNormal = ItemDropRule.OneFromOptions(40, ItemID.Spear, ItemID.Blowpipe, ItemID.WoodenBoomerang, ItemID.WandofSparking);
                     var dropRuleRemix = ItemDropRule.OneFromOptions(40, ItemID.Spear, ItemID.Blowpipe, ItemID.WoodenBoomerang);
@@ -439,17 +435,9 @@ namespace Fargowiltas.Content.Items
                     {
                         Grabbed = -1;
                         NetMessage.SendData(MessageID.SyncItem, Main.myPlayer, number: item.whoAmI, number2: 1f);
-                        
+
                     }
                 }
-            }
-            if (ChizardMovementTimer > 0 && ChizardLocation != Vector2.Zero && ChestLocation != Vector2.Zero)
-            {
-                ChizardMovementTimer--;
-                Vector2 targetpos = Vector2.Lerp(ChizardLocation, ChestLocation, ChizardMovementTimer / 60f);
-                item.velocity = Vector2.Lerp(item.velocity, item.AngleTo(targetpos).ToRotationVector2() * item.Distance(targetpos), 0.03f);
-                item.position = item.position + item.velocity * 0.1f;
-                gravity = 0;
             }
             base.Update(item, ref gravity, ref maxFallSpeed);
         }
@@ -483,11 +471,11 @@ namespace Fargowiltas.Content.Items
                 {
                     item.useTime = 10;
                     item.useAnimation = 15;
-                }  
+                }
             }
             return base.CanUseItem(item, player);
         }
-        
+
         public override bool? UseItem(Item item, Player player)
         {
             if (ModContent.GetInstance<FargoServerConfig>().EasySummons)
@@ -523,7 +511,7 @@ namespace Fargowiltas.Content.Items
                 else if (item.type == ItemID.LuckPotionGreater)
                     player.GetModPlayer<FargoPlayer>().luckPotionBoost = Math.Max(player.GetModPlayer<FargoPlayer>().luckPotionBoost, 0.2f);
             }
-            
+
         }
         public static void TryPiggyBankAcc(Item item, Player player)
         {
@@ -741,14 +729,6 @@ namespace Fargowiltas.Content.Items
             }
 
             player.GetModPlayer<FargoPlayer>().ItemHasBeenOwned[item.type] = true;
-            if (ChizardLocation != Vector2.Zero)
-            {
-                FargoUtils.TryGetTileEntityAs(ChizardLocation.ToTileCoordinates().X, ChizardLocation.ToTileCoordinates().Y, out ChestWizardTileEntity TE);
-                TE.item = -1;
-                ChizardLocation = Vector2.Zero;
-                ChizardMovementTimer = 0;
-                ChestLocation = Vector2.Zero;
-            }
 
             return base.OnPickup(item, player);
         }
@@ -823,34 +803,13 @@ namespace Fargowiltas.Content.Items
         {
             writer.Write(Grabbed);
             writer.Write(FromEnchantedTree);
-            writer.WriteVector2(ChizardLocation);
-            writer.WriteVector2(ChestLocation);
-            writer.Write7BitEncodedInt(ChizardMovementTimer);
             base.NetSend(item, writer);
         }
         public override void NetReceive(Item item, BinaryReader reader)
         {
             Grabbed = reader.ReadInt32();
             FromEnchantedTree = reader.ReadBoolean();
-            ChizardLocation = reader.ReadVector2();
-            ChestLocation = reader.ReadVector2();
-            ChizardMovementTimer = reader.Read7BitEncodedInt();
             base.NetReceive(item, reader);
-        }
-        public override bool PreDrawInWorld(Item item, SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI)
-        {
-            if (ChizardMovementTimer > 0 && ChizardLocation != Vector2.Zero && ChestLocation != Vector2.Zero)
-            {
-                Vector2 midpoint = (ChizardLocation + new Vector2(8, -22) + item.Center) / 2;
-                Asset<Texture2D> glowline = TextureAssets.Projectile[ProjectileID.MedusaHeadRay];
-                Vector2 origin = new Vector2(glowline.Width() / 2, glowline.Height());
-                Vector2 linescale = new Vector2(0.3f, item.Distance(midpoint) / glowline.Height());
-                float opacity = Math.Clamp(MathHelper.Lerp(0, 1, (60 - ChizardMovementTimer) / 10f), 0, 1);
-                spriteBatch.Draw(glowline.Value, midpoint - Main.screenPosition, null, Color.White * opacity, midpoint.AngleTo(item.Center) + MathHelper.PiOver2, origin, linescale, SpriteEffects.None, 1);
-                spriteBatch.Draw(glowline.Value, midpoint - Main.screenPosition, null, Color.White * opacity, midpoint.AngleFrom(item.Center) + MathHelper.PiOver2, origin, linescale, SpriteEffects.None, 1);
-                
-            }
-            return base.PreDrawInWorld(item, spriteBatch, lightColor, alphaColor, ref rotation, ref scale, whoAmI);
         }
         public override bool PreDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
         {
@@ -896,77 +855,65 @@ namespace Fargowiltas.Content.Items
             ItemID.Sets.ShimmerTransformToItem[ItemID.ReleaseLantern] = ModContent.ItemType<MatsuriLantern>();
             base.SetStaticDefaults();
         }
+        public static Dictionary<string, int> OldUnlimitedAmmos = new()
+        {
+            { "GelPack", ItemID.Gel },
+            { "StarPouch", ItemID.FallenStar },
 
+            { "BoneQuiver", ItemID.BoneArrow },
+            { "ChlorophyteQuiver", ItemID.ChlorophyteArrow },
+            { "CursedQuiver", ItemID.CursedArrow },
+            { "FlameQuiver", ItemID.FlamingArrow },
+            { "FrostburnQuiver", ItemID.FrostburnArrow },
+            { "HellfireQuiver", ItemID.HellfireArrow },
+            { "HolyQuiver", ItemID.HolyArrow },
+            { "IchorQuiver", ItemID.IchorArrow },
+            { "JesterQuiver", ItemID.JestersArrow },
+            { "LuminiteQuiver", ItemID.MoonlordArrow },
+            { "UnholyQuiver", ItemID.UnholyArrow },
+            { "VenomQuiver", ItemID.VenomArrow },
+
+            { "ChlorophytePouch", ItemID.ChlorophyteBullet },
+            { "CrystalPouch", ItemID.CrystalBullet },
+            { "CursedPouch", ItemID.CursedBullet },
+            { "ExplosivePouch", ItemID.ExplodingBullet },
+            { "GoldenPouch", ItemID.GoldenBullet },
+            { "IchorPouch", ItemID.IchorBullet },
+            { "LuminitePouch", ItemID.MoonlordBullet },
+            { "MeteorPouch", ItemID.MeteorShot },
+            { "NanoPouch", ItemID.NanoBullet },
+            { "PartyPouch", ItemID.PartyBullet },
+            { "SilverPouch", ItemID.SilverBullet },
+            { "TungstenPouch", ItemID.TungstenBullet },
+            { "VelocityPouch", ItemID.HighVelocityBullet },
+            { "VenomPouch", ItemID.VenomBullet },
+
+            { "CopperCoinBag", ItemID.CopperCoin },
+            { "SilverCoinBag", ItemID.SilverCoin },
+            { "GoldCoinBag", ItemID.GoldCoin },
+            { "PlatinumCoinBag", ItemID.PlatinumCoin },
+
+            { "CrystalDartBox", ItemID.CrystalDart },
+            { "CursedDartBox", ItemID.CursedDart },
+            { "IchorDartBox", ItemID.IchorDart },
+            { "PoisonDartBox", ItemID.PoisonDart },
+
+            { "ClusterRocket1Box", ItemID.ClusterRocketI },
+            { "ClusterRocket2Box", ItemID.ClusterRocketII },
+            { "DryRocketBox", ItemID.DryRocket },
+            { "HoneyRocketBox", ItemID.HoneyRocket },
+            { "LavaRocketBox", ItemID.LavaRocket },
+            { "MiniNuke1Box", ItemID.MiniNukeI },
+            { "MiniNuke2Box", ItemID.MiniNukeII },
+            { "Rocket1Box", ItemID.RocketI },
+            { "Rocket2Box", ItemID.RocketII },
+            { "Rocket3Box", ItemID.RocketIII },
+            { "Rocket4Box", ItemID.RocketIV },
+            { "WetRocketBox", ItemID.WetRocket },
+        };
         public static void CheckForIsOldUnlimitedAmmo(Item item)
         {
-            if (item.ModItem is not UnloadedItem unloadedItem)
-                return;
-
-            (string, int)[] oldUnlimitedAmmos = {
-                ("GelPack", ItemID.Gel),
-                ("StarPouch", ItemID.FallenStar),
-
-                ("BoneQuiver", ItemID.BoneArrow),
-                ("ChlorophyteQuiver", ItemID.ChlorophyteArrow),
-                ("CursedQuiver", ItemID.CursedArrow),
-                ("FlameQuiver", ItemID.FlamingArrow),
-                ("FrostburnQuiver", ItemID.FrostburnArrow),
-                ("HellfireQuiver", ItemID.HellfireArrow),
-                ("HolyQuiver", ItemID.HolyArrow),
-                ("IchorQuiver", ItemID.IchorArrow),
-                ("JesterQuiver", ItemID.JestersArrow),
-                ("LuminiteQuiver", ItemID.MoonlordArrow),
-                ("UnholyQuiver", ItemID.UnholyArrow),
-                ("VenomQuiver", ItemID.VenomArrow),
-
-                ("ChlorophytePouch", ItemID.ChlorophyteBullet),
-                ("CrystalPouch", ItemID.CrystalBullet),
-                ("CursedPouch", ItemID.CursedBullet),
-                ("ExplosivePouch", ItemID.ExplodingBullet),
-                ("GoldenPouch", ItemID.GoldenBullet),
-                ("IchorPouch", ItemID.IchorBullet),
-                ("LuminitePouch", ItemID.MoonlordBullet),
-                ("MeteorPouch", ItemID.MeteorShot),
-                ("NanoPouch", ItemID.NanoBullet),
-                ("PartyPouch", ItemID.PartyBullet),
-                ("SilverPouch", ItemID.SilverBullet),
-                ("TungstenPouch", ItemID.TungstenBullet),
-                ("VelocityPouch", ItemID.HighVelocityBullet),
-                ("VenomPouch", ItemID.VenomBullet),
-
-                ("CopperCoinBag", ItemID.CopperCoin),
-                ("SilverCoinBag", ItemID.SilverCoin),
-                ("GoldCoinBag", ItemID.GoldCoin),
-                ("PlatinumCoinBag", ItemID.PlatinumCoin),
-
-                ("CrystalDartBox", ItemID.CrystalDart),
-                ("CursedDartBox", ItemID.CursedDart),
-                ("IchorDartBox", ItemID.IchorDart),
-                ("PoisonDartBox", ItemID.PoisonDart),
-
-                ("ClusterRocket1Box", ItemID.ClusterRocketI),
-                ("ClusterRocket2Box", ItemID.ClusterRocketII),
-                ("DryRocketBox", ItemID.DryRocket),
-                ("HoneyRocketBox", ItemID.HoneyRocket),
-                ("LavaRocketBox", ItemID.LavaRocket),
-                ("MiniNuke1Box", ItemID.MiniNukeI),
-                ("MiniNuke2Box", ItemID.MiniNukeII),
-                ("Rocket1Box", ItemID.RocketI),
-                ("Rocket2Box", ItemID.RocketII),
-                ("Rocket3Box", ItemID.RocketIII),
-                ("Rocket4Box", ItemID.RocketIV),
-                ("WetRocketBox", ItemID.WetRocket),
-            };
-
-            foreach ((string unlimName, int itemType) in oldUnlimitedAmmos)
-            {
-                TryConvertUnloadedUnlimitedAmmoTo3996(item, unlimName, itemType);
-            }
-        }
-
-        public static void TryConvertUnloadedUnlimitedAmmoTo3996(Item item, string unloadedUnlimitedAmmoName, int ammoItemType)
-        {
-            if (item.ModItem is UnloadedItem unloadedItem && unloadedItem.ItemName == unloadedUnlimitedAmmoName)
+            if (item.ModItem is UnloadedItem unloadedItem && OldUnlimitedAmmos.TryGetValue(unloadedItem.ItemName, out var ammoItemType))
             {
                 item.TurnToAir();
                 item.type = ammoItemType;

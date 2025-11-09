@@ -35,7 +35,6 @@ namespace Fargowiltas.Content.Items.Tiles
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ItemID.Hellforge)
                 .AddIngredient(ItemID.AlchemyTable)
                 .AddIngredient(ItemID.TinkerersWorkshop)
                 .AddIngredient(ItemID.ImbuingStation)

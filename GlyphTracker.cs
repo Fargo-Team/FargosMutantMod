@@ -20,7 +20,8 @@ namespace Fargowiltas
         private List<string> CustomGlyphs = new()
         {
             "PotionToggler",
-            "StatSheet"
+            "StatSheet",
+            "Shimmer"
         };
 
         private void InitializeCustomGlyphs()

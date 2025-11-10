@@ -328,7 +328,7 @@ namespace Fargowiltas.Content.Items
                 int shimmerItem = ItemID.Sets.ShimmerTransformToItem[item.type];
                 if (shimmerItem > 0)
                 {
-                    line = new TooltipLine(Mod, "TooltipShimmerable", $"[c/FFC0CB:{ExpandedTooltipLoc("Shimmerable")}] [i:{shimmerItem}] [c/FFC0CB:{ContentSamples.ItemsByType[shimmerItem].Name}]");
+                    line = new TooltipLine(Mod, "TooltipShimmerable", $"[g:Fargowiltas/Shimmer] [c/FFC0CB:{ExpandedTooltipLoc("Shimmerable")}] [i:{shimmerItem}] [c/FFC0CB:{ContentSamples.ItemsByType[shimmerItem].Name}]");
                     tooltips.Add(line);
                 }
             }

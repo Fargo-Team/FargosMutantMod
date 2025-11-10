@@ -598,7 +598,7 @@ namespace Fargowiltas.Content.NPCs
             {
                 if (!Main.dedServ)
                 {
-                    Gore.NewGore(NPC.GetSource_FromThis(), NPC.Center, NPC.velocity, ModContent.Find<ModGore>(Mod.Name, $"TophatSquirelGore").Type, NPC.scale);
+                    Gore.NewGore(NPC.GetSource_FromThis(), NPC.Center, NPC.velocity, ModContent.Find<ModGore>(Mod.Name, $"TophatSquirrelGore").Type, NPC.scale);
                 }
             }
         }

@@ -2321,6 +2321,15 @@ Mods: {
 					PillarFailCD: I'm not feeling it right now, come back in {0} seconds. Still not getting rid of those pillars, by the way.
 				}
 
+				WoTGDialogue: {
+					RiftEclipse1: The sun and moon change all the time. Blood moons, eclipses, a goddamn PUMPKIN. Is THIS really where you cross the line?!
+					RiftEclipse2: If I'm gonna be honest with you this is kind of freaking me out. At least the other two are taking it well.
+					RiftEclipse3: Talk about life imitating art, guess that poem I wrote about impending doom came true...
+					RiftEclipse4: Still up for that ping pong game?
+					RiftEclipse5: Yeeeaaahh sorry, can't cancel that one. You'll find out a way how, right?
+					Solyn: Solyn gave me one of her cinnamon rolls the other day. It was sickeningly sweet... Please don't tell her I said that.
+				}
+
 				Census.SpawnCondition: When the Goblin Army has been defeated.
 				CancelEvent: Cancel Event
 			}
@@ -2441,6 +2450,16 @@ Mods: {
 					RainLightning: Watch out for the lightning when it rains. It's good to pack an umbrella so you're not caught out and end up all wet!
 				}
 
+				WoTGDialogue: {
+					RiftEclipse1: Who turned the sun off? Was that you? Can you teach me how to do it?
+					RiftEclipse2: The world is ending? If this is just some trick to get me to lower my prices it won't work.
+					RiftEclipse3: "[{0} hums to herself, unconcerned with her surroundings.]"
+					RiftEclipse4: Y'know, I wonder how this will affect the trout population.
+					RiftEclipseAlien: I think I read an unfiction project like this once. Where are the aliens? {0}
+					RiftEclipseAlienExtension: WHAT DO YOU MEAN YOU ALREADY FOUGHT THEM??
+					Solyn: That other magical girl? Oh, you mean the star one? What about her? You better not be spending any of my future gold coi- I Mean Your Hard Earned Money over there.
+				}
+
 				Census.SpawnCondition: When any rare enemy has been defeated.
 				HelpButton: Help
 			}
@@ -2520,6 +2539,14 @@ Mods: {
 					CommonDayTimeCritter: These little critters are always falling out of the trees I cut down. Maybe you can find a use for them?
 					CommonNightTime: Chopping trees at night is always relaxing... well except for the flying eyeballs. Have one of these little guys to keep you company.
 					Rest: I'm resting after a good day of chopping, come back tomorrow and maybe I'll have something else for you.
+				}
+
+				WoTGDialogue: {
+					RiftEclipse1: What's all this about a rift in the sky? Well, if it ain't hurtin' the lil' critters then it's not my problem.
+					RiftEclipse2: Only you can prevent forest fires. And intergalactic turmoil too, I guess.
+					RiftEclipse3: Once yer done killin' god or whatever, mind joinin' me under that tree? Which one? You'll figure it out.
+					RiftEclipse4: If a tree falls down and nobody's around to hear it... didn't think I'd see the day is all.
+					RiftEclipseSnow: Looks like the snow biome houses more than just boreal now. Still doesn't change my job though! Neither snow nor heat nor rain nor sleet!
 				}
 
 				Census.SpawnCondition: Can fall out of trees after 400 wood has been chopped.
@@ -2638,6 +2665,17 @@ Mods: {
 					Normal45: I heard of a rumor of infinite use boss summons. Makes me sick...
 				}
 
+				WoTGDialogue: {
+					RiftEclipse1: It's a good thing your world is ending and not mine.
+					RiftEclipse2: You want advice on a future battle? Sorry, I seem to have forgotten it's name. Pretty chill dude though, we had beers last Tuesday.
+					RiftEclipse3: You can handle flashing lights, right?
+					RiftEclipse4: You ever try frostblessed salad? It's an... acquired taste.
+					RiftEclipse5: This totally looks way better. Atmospheric. Unparalleled. Other Big Pretentious Words.
+					Solyn: Still hanging out with Solyn? {0}
+					SolynExtension1: She tends to get into a lot of trouble.
+					SolynExtension2: ...What's that face supposed to mean?
+				}
+
 				Census.SpawnCondition: When any boss has been defeated.
 				CycleShop: Cycle Shop
 				PreHM: Pre Hardmode
@@ -2685,6 +2723,7 @@ Mods: {
 					FeedFail: *disappointed squeak*
 				}
 
+				WoTGDialogue: "[{0} looks up at you. You can't tell what its expression means.]"
 				Census.SpawnCondition: Have a Top Hat Squirrel in your inventory.
 				Feed: Feed Held Item
 				BlackMarket: Black Market

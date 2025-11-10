@@ -423,8 +423,8 @@ Mods: {
 		UI: {
 			Close: Закрыть
 			CombinedUIButton: Открыть полезные меню
-			PotionToggler: "[i:Fargowiltas/PotionTogglerItem] Переключатель зелий"
-			StatSheet: "[i:Fargowiltas/StatSheetItem] Характеристики"
+			PotionToggler: "[g:Fargowiltas/PotionToggler] Переключатель зелий"
+			StatSheet: "[g:Fargowiltas/StatSheet] Характеристики"
 			SearchText: Поиск...
 			// Stat Sheet Elements
 			MeleeDamage: Ближний урон: {0}%
@@ -2877,7 +2877,7 @@ Mods: {
 			EnchantedTreeDupable: Можно дублировать с помощью зачарованного дерева
 			RifleScopeBinocularToggle: Отдаление обзора можно выключить, переключив видимость аксессуара
 			SniperRifleBinocularToggle: Отдаление обзора выключено
-			Shimmerable: Можно превратить с помощью мерцания в
+			Shimmerable: "[g:Fargowiltas/Shimmer] Можно превратить с помощью мерцания в"
 		}
 
 		Emotes: {

@@ -122,7 +122,7 @@ namespace Fargowiltas.Content.Items.Tiles
             Prefix = reader.ReadInt32();
 
             int count = reader.ReadInt32();
-            Main.NewText(count);
+            //Main.NewText(count);
             Fruits = [];
             for (int i = 0; i < count; i++)
             {

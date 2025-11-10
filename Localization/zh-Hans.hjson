@@ -2803,8 +2803,7 @@ Mods: {
 			SandDown: 困难模式下击败沙尘精后
 			DevilDown: 困难模式下击败红魔鬼后
 			BloodFishDown: 击败游荡眼球怪鱼或僵尸人鱼后
-			BloodEelDown: 困难模式下击败血鳗鱼后
-			BloodGoblinDown: 困难模式下击败血浆哥布林鲨鱼后
+			// BloodFish2Down: After defeating a Hemogoblin Shark or Blood Eel, In hardmode
 			BloodNautDown: 困难模式下击败恐惧鹦鹉螺后
 			SummonerDown: 困难模式下在哥布林入侵中击败哥布林术士后
 			PirateDown: 困难模式下在海盗入侵中击败海盗船长后

@@ -1163,7 +1163,7 @@ Mods: {
 				DisplayName: Hemoclaw Crab
 				Tooltip:
 					'''
-					Summons Hemogoblin Shark
+					Summons Hemogoblin Shark and Blood Eel
 					Only usable during Blood Moon
 					'''
 			}
@@ -1267,7 +1267,7 @@ Mods: {
 				Tooltip:
 					'''
 					Summons Wandering Eye Fish and Zombie Merman
-					Only usable at night
+					Only usable during Blood Moon
 					'''
 			}
 
@@ -2794,8 +2794,7 @@ Mods: {
 			SandDown: After defeating a Sand Elemental, In hardmode
 			DevilDown: After defeating a Red Devil, In hardmode
 			BloodFishDown: After defeating a Wandering Eye Fish or Zombie Merman
-			BloodEelDown: After defeating a Blood Eel, In hardmode
-			BloodGoblinDown: After defeating a Hemogoblin Shark, In hardmode
+			BloodFish2Down: After defeating a Hemogoblin Shark or Blood Eel, In hardmode
 			BloodNautDown: After defeating Dreadnautilus, In hardmode
 			SummonerDown: After defeating a Goblin Warlock and the Goblin Army, In hardmode
 			PirateDown: After defeating a Pirate Captain and the Pirate Invasion, In hardmode

@@ -2794,8 +2794,7 @@ Mods: {
 			SandDown: Quando a Elemental de Areia for derrotada, no Modo Difícil
 			DevilDown: Quando o Diabo Vermelho for derrotado, no Modo Difícil
 			BloodFishDown: Quando o Olho Errante ou Tritão Zumbi for derrotado
-			BloodEelDown: Quando a Enguia de Sangue for derrotada, no Modo Difícil
-			BloodGoblinDown: Quando o Tubarão Hemogoblin for derrotado, no Modo Difícil
+			// BloodFish2Down: After defeating a Hemogoblin Shark or Blood Eel, In hardmode
 			BloodNautDown: Quando o Encoranáutilo for derrotado, no Modo Difícil
 			SummonerDown: Quando o Goblin Invocador e o Exército Goblin forem derrotados, no Modo Difícil
 			PirateDown: Quando o Capitão Pirata e a invasão pirata forem derrotados, no Modo Difícil

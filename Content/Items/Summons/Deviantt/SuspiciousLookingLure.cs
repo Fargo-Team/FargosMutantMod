@@ -13,17 +13,13 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
     {
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Suspicious Looking Lure");
-            /* Tooltip.SetDefault("Summons Wandering Eye Fish and Zombie Merman" +
-                               "\nOnly usable at night"); */
             Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 3;
-
 			ItemID.Sets.SortingPriorityBossSpawns[Type] = ItemID.Sets.SortingPriorityBossSpawns[ItemID.BloodMoonStarter]; // 18
 		}
 
         public override bool CanUseItem(Player player)
         {
-            return FargoUtils.ActuallyNight;
+            return FargoUtils.ActuallyNight && Main.bloodMoon;
         }
 
         public override void SetDefaults()
@@ -56,9 +52,9 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ItemID.BloodMoonStarter)
+                .AddIngredient(ItemID.JourneymanBait)
                 .AddIngredient(ItemID.DeepRedPaint)
-                .AddRecipeGroup(RecipeGroups.AnyFoodT2)
+                .AddIngredient(ItemID.Lens, 3)
                 .AddTile(TileID.Anvils)
                 .Register();
         }

@@ -8,15 +8,12 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
 {
     public class BloodUrchin : BaseSummon
     {
+        public override bool IsLoadingEnabled(Mod mod) => false;
         public override int NPCType => NPCID.BloodEelHead;
         
         public override void SetStaticDefaults()
         {
             base.SetStaticDefaults();
-			// DisplayName.SetDefault("Blood Urchin");
-			/* Tooltip.SetDefault("Summons Blood Eel" +
-                               "\nOnly usable during Blood Moon"); */
-
 			ItemID.Sets.SortingPriorityBossSpawns[Type] = ItemID.Sets.SortingPriorityBossSpawns[ItemID.BloodMoonStarter]; // 18
 		}
 

@@ -1120,12 +1120,9 @@ namespace Fargowiltas.Content.NPCs
                     FargoUtils.TryDowned("Deviantt", Color.HotPink, "rareEnemy", "zombieMerman", "eyeFish");
                     break;
 
-                case NPCID.BloodEelHead:
-                    FargoUtils.TryDowned("Deviantt", Color.HotPink, Main.hardMode, "rareEnemy", "bloodEel");
-                    break;
-
                 case NPCID.GoblinShark:
-                    FargoUtils.TryDowned("Deviantt", Color.HotPink, Main.hardMode, "rareEnemy", "goblinShark");
+                case NPCID.BloodEelHead:
+                    FargoUtils.TryDowned("Deviantt", Color.HotPink, Main.hardMode, "rareEnemy", "goblinShark", "bloodEel");
                     break;
 
                 case NPCID.BloodNautilus:

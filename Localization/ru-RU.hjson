@@ -2877,7 +2877,7 @@ Mods: {
 			EnchantedTreeDupable: Можно дублировать с помощью зачарованного дерева
 			RifleScopeBinocularToggle: Отдаление обзора можно выключить, переключив видимость аксессуара
 			SniperRifleBinocularToggle: Отдаление обзора выключено
-			Shimmerable: "[g:Fargowiltas/Shimmer] Можно превратить с помощью мерцания в"
+			Shimmerable: Можно превратить с помощью мерцания в
 		}
 
 		Emotes: {

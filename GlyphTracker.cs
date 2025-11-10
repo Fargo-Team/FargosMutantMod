@@ -14,25 +14,7 @@ namespace Fargowiltas
         public GlyphTracker()
         {
             Fargowiltas.glyphTracker = this;
-            InitializeCustomGlyphs();
-        }
-
-        private List<string> CustomGlyphs = new()
-        {
-            "PotionToggler",
-            "StatSheet",
-            "Shimmer"
-        };
-
-        private void InitializeCustomGlyphs()
-        {
-            string modName = Fargowiltas.Instance.Name;
-            foreach (var glyph in CustomGlyphs)
-            {
-                string shorthand = $"{modName}/{glyph}";
-                string fileName = $"{modName}/Assets/Glyphs/{glyph}";
-                GlyphRegistry.Register(shorthand, fileName);
-            }
+            AddGlyphPath(Fargowiltas.Instance.Name, $"{Fargowiltas.Instance.Name}/Assets/Glyphs");
         }
 
         internal void FinalizeGlyphs()
@@ -40,10 +22,10 @@ namespace Fargowiltas
             GlyphsFinalized = true;
         }
 
-        public void AddGlyph(string key, string fileName)
+        public void AddGlyphPath(string modName, string filePath)
         {
             if (!GlyphsFinalized)
-                GlyphRegistry.Register(key, fileName);
+                GlyphPathRegistry.Register(modName, filePath);
         }
     }
 }

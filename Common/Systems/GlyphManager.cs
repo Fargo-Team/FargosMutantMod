@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Microsoft.Extensions.Primitives;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using ReLogic.Graphics;
@@ -33,9 +34,10 @@ namespace Fargowiltas.Common.Systems
                 return orig(self, text, baseColor, options);
 
             // custom glyph
-            if (GlyphRegistry.ContainsKey(text))
+            string[] s = text.Split('/');
+            if (s.Length == 2 && GlyphPathRegistry.ContainsMod(s[0]))
             {
-                return new CustomGlyphSnippet(text)
+                return new CustomGlyphSnippet(s[0], s[1])
                 {
                     DeleteWhole = true,
                     Text = "[g:" + text + "]"
@@ -47,23 +49,23 @@ namespace Fargowiltas.Common.Systems
         }
     }
 
-    public static class GlyphRegistry
+    public static class GlyphPathRegistry
     {
         private static Dictionary<string, string> registry = new Dictionary<string, string>();
 
-        public static void Register(string key, string filename)
+        public static void Register(string modName, string filePath)
         {
-            if (registry.ContainsKey(key))
+            if (registry.ContainsKey(modName))
                 return;
 
-            registry[key] = filename;
+            registry[modName] = filePath;
         }
 
-        public static bool ContainsKey(string key) => registry.ContainsKey(key);
+        public static bool ContainsMod(string modName) => registry.ContainsKey(modName);
 
-        public static string GetFileName(string key)
+        public static string GetFilePath(string modName)
         {
-            if (!registry.TryGetValue(key, out string value))
+            if (!registry.TryGetValue(modName, out string value))
                 return null;
 
             return value;
@@ -72,16 +74,16 @@ namespace Fargowiltas.Common.Systems
 
     internal class CustomGlyphSnippet : TextSnippet
     {
-        private readonly string key;
+        private readonly string texturePath;
         private readonly Vector2 textureSize;
 
-        public CustomGlyphSnippet(string key)
+        public CustomGlyphSnippet(string modName, string value)
         {
-            this.key = key;
             Color = Color.White;
 
-            string fileName = GlyphRegistry.GetFileName(key);
+            string fileName = $"{GlyphPathRegistry.GetFilePath(modName)}/{value}";
             Texture2D tex = ModContent.Request<Texture2D>(fileName, AssetRequestMode.ImmediateLoad).Value;
+            texturePath = fileName;
             textureSize = tex.Frame().Size();
         }
 
@@ -90,8 +92,7 @@ namespace Fargowiltas.Common.Systems
         {
             if (!justCheckingString)
             {
-                string fileName = GlyphRegistry.GetFileName(key);
-                Texture2D tex = ModContent.Request<Texture2D>(fileName).Value;
+                Texture2D tex = ModContent.Request<Texture2D>(texturePath).Value;
                 Rectangle frame = tex.Frame();
                 Vector2 origin2 = frame.Size() / 2;
                 spriteBatch.Draw(tex, position + origin2, frame, color, 0f, origin2, scale, SpriteEffects.None, 0f);

@@ -2882,7 +2882,7 @@ Mods: {
 			// EnchantedTreeDupable: Can be duplicated with Enchanted Tree
 			// RifleScopeBinocularToggle: Binocular vision disabled while accessory visibility is hidden
 			// SniperRifleBinocularToggle: Binocular vision disabled
-			// Shimmerable: "[g:Fargowiltas/Shimmer] Can be Shimmered into"
+			// Shimmerable: Can be Shimmered into
 		}
 
 		Emotes: {

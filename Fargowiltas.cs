@@ -124,10 +124,12 @@ namespace Fargowiltas
             //            HookIntoLoad();
         }
 
+        public static Mod WoTG;
 
         public override void Load()
         {
             Instance = this;
+            ModLoader.TryGetMod("NoxusBoss", out WoTG);
 
             FargoUIManager.LoadUI();
 

@@ -565,7 +565,7 @@ namespace Fargowiltas
                             CaughtNPCItem.CaughtTownies.Add(id, item.Type);
                         }
                         break;
-                    case "AddGlyph":
+                    case "AddGlyphPath":
                         {
                             if (glyphTracker.GlyphsFinalized)
                                 throw new Exception($"Call Error: Glyphs must be added before AddRecipes");
@@ -574,9 +574,9 @@ namespace Fargowiltas
                                 throw new Exception($"Call Error (Fargo Mutant Mod AddGlyph): args[1] must be of type string");
                             if (args[2].GetType() != typeof(string))
                                 throw new Exception($"Call Error (Fargo Mutant Mod AddGlyph): args[2] must be of type string");
-                            string key = (string)args[1];
-                            string fileName = (string)args[2];
-                            GlyphRegistry.Register(key, fileName);
+                            string modName = (string)args[1];
+                            string filePath = (string)args[2];
+                            glyphTracker.AddGlyphPath(modName, filePath);
                         }
                         break;
                 }

@@ -42,9 +42,6 @@ namespace Fargowiltas.Content.NPCs
         }
 
         private const string ShopName = "Shop";
-
-        private Asset<Texture2D> GlowAsset => ModContent.Request<Texture2D>(Texture + "_Glow");
-
         private Asset<Texture2D> EyesAsset => ModContent.Request<Texture2D>(Texture + "_Eyes");
 
         public override void SetStaticDefaults()
@@ -593,6 +590,17 @@ namespace Fargowiltas.Content.NPCs
             Vector2 position = NPC.Center - screenPos + new Vector2(0f, NPC.gfxOffY + 2);
 
             spriteBatch.Draw(EyesAsset.Value, position, frame, Color.White * NPC.Opacity, NPC.rotation, frame.Size() / 2f, NPC.scale, effects, 0f);
+        }
+
+        public override void HitEffect(NPC.HitInfo hit)
+        {
+            if (NPC.life <= 0)
+            {
+                if (!Main.dedServ)
+                {
+                    Gore.NewGore(NPC.GetSource_FromThis(), NPC.Center, NPC.velocity, ModContent.Find<ModGore>(Mod.Name, $"TophatSquirrelGore").Type, NPC.scale);
+                }
+            }
         }
 
 

@@ -423,8 +423,8 @@ Mods: {
 		UI: {
 			Close: Закрыть
 			CombinedUIButton: Открыть полезные меню
-			PotionToggler: "[i:Fargowiltas/PotionTogglerItem] Переключатель зелий"
-			StatSheet: "[i:Fargowiltas/StatSheetItem] Характеристики"
+			PotionToggler: "[g:Fargowiltas/PotionToggler] Переключатель зелий"
+			StatSheet: "[g:Fargowiltas/StatSheet] Характеристики"
 			SearchText: Поиск...
 			// Stat Sheet Elements
 			MeleeDamage: Ближний урон: {0}%

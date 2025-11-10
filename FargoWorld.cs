@@ -409,7 +409,7 @@ namespace Fargowiltas
         public override void AddRecipes()
         {
             Fargowiltas.summonTracker.FinalizeSummonData();
-            Fargowiltas.glyphTracker.FinalizeGlyphs();
+            Fargowiltas.symbolTracker.FinalizeSymbols();
         }
     }
 }

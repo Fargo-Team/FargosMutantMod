@@ -38,7 +38,7 @@ namespace Fargowiltas
     {
         internal static MutantSummonTracker summonTracker;
         internal static DevianttDialogueTracker dialogueTracker;
-        internal static GlyphTracker glyphTracker;
+        internal static SymbolTracker symbolTracker;
 
         /// <summary>
         /// All mods that should be recognized as derivative from Fargo's Souls. <br></br>
@@ -146,7 +146,7 @@ namespace Fargowiltas
             summonTracker = new MutantSummonTracker();
             dialogueTracker = new DevianttDialogueTracker();
             dialogueTracker.AddVanillaDialogue();
-            glyphTracker = new GlyphTracker();
+            symbolTracker = new SymbolTracker();
 
             HomeKey = KeybindLoader.RegisterKeybind(this, "Home", "Home");
 
@@ -327,7 +327,7 @@ namespace Fargowiltas
 
             summonTracker = null;
             dialogueTracker = null;
-            glyphTracker = null;
+            symbolTracker = null;
             
 
             HomeKey = null;
@@ -565,18 +565,18 @@ namespace Fargowiltas
                             CaughtNPCItem.CaughtTownies.Add(id, item.Type);
                         }
                         break;
-                    case "AddGlyphPath":
+                    case "AddSymbolPath":
                         {
-                            if (glyphTracker.GlyphsFinalized)
-                                throw new Exception($"Call Error: Glyphs must be added before AddRecipes");
+                            if (symbolTracker.SymbolsFinalized)
+                                throw new Exception($"Call Error: Symbols must be added before AddRecipes");
 
                             if (args[1].GetType() != typeof(string))
-                                throw new Exception($"Call Error (Fargo Mutant Mod AddGlyph): args[1] must be of type string");
+                                throw new Exception($"Call Error (Fargo Mutant Mod AddSymbol): args[1] must be of type string");
                             if (args[2].GetType() != typeof(string))
-                                throw new Exception($"Call Error (Fargo Mutant Mod AddGlyph): args[2] must be of type string");
+                                throw new Exception($"Call Error (Fargo Mutant Mod AddSymbol): args[2] must be of type string");
                             string modName = (string)args[1];
                             string filePath = (string)args[2];
-                            glyphTracker.AddGlyphPath(modName, filePath);
+                            symbolTracker.AddSymbolPath(modName, filePath);
                         }
                         break;
                 }

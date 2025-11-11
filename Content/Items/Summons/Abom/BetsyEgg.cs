@@ -47,7 +47,6 @@ namespace Fargowiltas.Content.Items.Summons.Abom
                             DD2Event.FailureMessage(player.whoAmI);
                             return true;
                         }
-                        Main.NewText(p);
                         standPos = p;
                         break;
                     }

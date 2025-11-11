@@ -33,7 +33,6 @@ namespace Fargowiltas.Content.Items.Summons.Abom
             Point playerPos = player.Center.ToTileCoordinates();
             Point standPos = new Point(-1, -1);
             int radius = 20;
-
             for (int i = -radius; i < radius; i++)
             {
                 for (int j = -radius; j < radius; j++)
@@ -58,20 +57,18 @@ namespace Fargowiltas.Content.Items.Summons.Abom
                 return true;
             }
 
+
+            // actually spawn
             if (Main.netMode == NetmodeID.SinglePlayer)
             {
+                BetsyEggUsed = true;
                 DD2Event.SummonCrystal(standPos.X, standPos.Y, player.whoAmI);
                 DD2Event.TimeLeftBetweenWaves = 0;
                 NPC.waveNumber = 6;
                 NPC.waveKills = 220;
                 DD2Event.CheckProgress(NPCID.DD2GoblinT3);
-                foreach (var i in Main.ActiveItems)
-                {
-                    // kill defender medal drop
-                    if (i.type == ItemID.DefenderMedal && i.timeSinceItemSpawned == 0)
-                        i.active = false;
-                }
                 player.QuickSpawnItem(Item.GetSource_FromThis(), ItemID.DD2EnergyCrystal, 140); // give all missing crystals
+                BetsyEggUsed = false;
             }
             else
             {
@@ -82,6 +79,7 @@ namespace Fargowiltas.Content.Items.Summons.Abom
                 netMessage.Write(standPos.Y);
                 netMessage.Send();
             }
+
             return true;
         }
     }

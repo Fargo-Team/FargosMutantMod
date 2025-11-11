@@ -110,6 +110,8 @@ namespace Fargowiltas
             {ItemID.HotlineFishingHook, 43},
         };
 
+        public static bool BetsyEggUsed;
+
         internal static Fargowiltas Instance;
 
         public override uint ExtraPlayerBuffSlots => (uint)(FargoServerConfig.Instance.ExtraBuffSlots ? 22 : 0);
@@ -182,6 +184,8 @@ namespace Fargowiltas
             // DD2 Banner Effect hack
             ItemID.Sets.BannerStrength = ItemID.Sets.Factory.CreateCustomSet(new ItemID.BannerEffect(1f));
 
+            BetsyEggUsed = false;
+
             Terraria.On_Player.DoCommonDashHandle += OnVanillaDash;
             Terraria.On_Player.KeyDoubleTap += OnVanillaDoubleTapSetBonus;
             Terraria.On_Player.KeyHoldDown += OnVanillaHoldSetBonus;
@@ -207,6 +211,8 @@ namespace Fargowiltas
             On_Item.GetShimmered += FixRecipeGroupsShimmerInteraction;
 
             On_Player.GetAnglerReward_Bait += AnglerPitty;
+
+            On_DD2Event.DropMedals += BetsyMedals;
         }
 
         private static IEnumerable<Item> GetWormholes(Player self) =>
@@ -328,6 +334,8 @@ namespace Fargowiltas
 
             On_Item.GetShimmered -= FixRecipeGroupsShimmerInteraction;
 
+            On_DD2Event.DropMedals -= BetsyMedals;
+
             summonTracker = null;
             dialogueTracker = null;
             symbolTracker = null;
@@ -340,6 +348,8 @@ namespace Fargowiltas
             SetBonusKey = null;
             mods = null;
             ModLoaded = null;
+
+            BetsyEggUsed = false;
 
             Instance = null;
         }
@@ -789,22 +799,17 @@ namespace Fargowiltas
                         {
                             if (Main.dedServ)
                             {
+                                BetsyEggUsed = true;
                                 Item egg = new Item(ModContent.ItemType<BetsyEgg>());
                                 Player player = Main.player[reader.ReadInt32()];
                                 Point standPos = new Point(reader.ReadInt32(), reader.ReadInt32());
-                                Main.NewText(standPos);
                                 DD2Event.SummonCrystal(standPos.X, standPos.Y, player.whoAmI);
                                 DD2Event.TimeLeftBetweenWaves = 0;
                                 NPC.waveNumber = 6;
                                 NPC.waveKills = 220;
                                 DD2Event.CheckProgress(NPCID.DD2GoblinT3);
-                                foreach (var i in Main.ActiveItems)
-                                {
-                                    // kill defender medal drop
-                                    if (i.type == ItemID.DefenderMedal && i.timeSinceItemSpawned == 0)
-                                        i.active = false;
-                                }
                                 player.QuickSpawnItem(egg.GetSource_FromThis(), ItemID.DD2EnergyCrystal, 140); // give all missing crystals
+                                BetsyEggUsed = false;
                                 NetMessage.SendData(MessageID.WorldData);
                             }
                         }
@@ -1338,6 +1343,14 @@ namespace Fargowiltas
                     }
                 }
             }
+        }
+
+        private void BetsyMedals(On_DD2Event.orig_DropMedals orig, int medals)
+        {
+            if (BetsyEggUsed)
+                return;
+
+            orig(medals);
         }
 
         //        private static void HookIntoLoad()

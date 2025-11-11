@@ -494,7 +494,7 @@ Mods: {
 			CancelEclipse: Солнечное затмение не происходит!
 			CancelBloodMoon: Кровавая луна уходит за горизонт...
 			CancelWindyDay: Ветер прекратился!
-			CancelOOA: Армия Старца уходит!
+			CancelOOA: Армия древних уходит!
 			CancelSandstorm: Песчаная буря закончилась!
 			CancelLunarEvent: Небесные существа не наступают!
 			CancelRain: Дождь закончился!
@@ -509,7 +509,7 @@ Mods: {
 			SeveralBossesAwoken: Пробудились некоторые боссы!
 			// Swarm Summons
 			OverloadBee: Оглушающее жужжание проходит через вас!
-			OverloadBetsy: Настоящая армия Старца наступает!
+			OverloadBetsy: Настоящая армия древних наступает!
 			OverloadBrain: Галактический разум спускается с небес!
 			OverloadCultist: Оглущающие песнопения заполняют ваши уши!
 			OverloadDarkMage: Вы чувствуете себя, будто разозлили библиотекаря!
@@ -892,11 +892,11 @@ Mods: {
 			}
 
 			BetsyEgg: {
-				DisplayName: Яйцо дракона Старца
+				DisplayName: Яйцо дракона древних
 				Tooltip:
 					'''
 					Призывает Бетси
-					Only usable near an Eternia Crystal Stand
+					Можно использовать только рядом со стойкой для кристалла Этернии
 					'''
 			}
 

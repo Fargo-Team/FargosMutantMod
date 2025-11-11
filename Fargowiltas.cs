@@ -5,6 +5,7 @@ using Fargowiltas.Common.Systems.Recipes;
 using Fargowiltas.Content.Items;
 using Fargowiltas.Content.Items.CaughtNPCs;
 using Fargowiltas.Content.Items.Misc;
+using Fargowiltas.Content.Items.Summons.Abom;
 using Fargowiltas.Content.Items.Tiles;
 using Fargowiltas.Content.NPCs;
 using Fargowiltas.Content.Projectiles;
@@ -607,7 +608,8 @@ namespace Fargowiltas
             SyncTreeFruit,
             SyncTreeEntities,
             SyncPotionToggles,
-            SyncOnePotionToggle
+            SyncOnePotionToggle,
+            BetsySummon
         }
 
         public override void HandlePacket(BinaryReader reader, int whoAmI)
@@ -781,6 +783,30 @@ namespace Fargowiltas
                         {
                             Player player = Main.player[reader.ReadByte()];
                             player.SetPotionToggleValue(reader.ReadInt32(), reader.ReadBoolean());
+                        }
+                        break;
+                    case PacketID.BetsySummon:
+                        {
+                            if (Main.dedServ)
+                            {
+                                Item egg = new Item(ModContent.ItemType<BetsyEgg>());
+                                Player player = Main.player[reader.ReadInt32()];
+                                Point standPos = new Point(reader.ReadInt32(), reader.ReadInt32());
+                                Main.NewText(standPos);
+                                DD2Event.SummonCrystal(standPos.X, standPos.Y, player.whoAmI);
+                                DD2Event.TimeLeftBetweenWaves = 0;
+                                NPC.waveNumber = 6;
+                                NPC.waveKills = 220;
+                                DD2Event.CheckProgress(NPCID.DD2GoblinT3);
+                                foreach (var i in Main.ActiveItems)
+                                {
+                                    // kill defender medal drop
+                                    if (i.type == ItemID.DefenderMedal && i.timeSinceItemSpawned == 0)
+                                        i.active = false;
+                                }
+                                player.QuickSpawnItem(egg.GetSource_FromThis(), ItemID.DD2EnergyCrystal, 140); // give all missing crystals
+                                NetMessage.SendData(MessageID.WorldData);
+                            }
                         }
                         break;
                     default:

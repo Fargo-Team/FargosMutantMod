@@ -897,7 +897,11 @@ Mods: {
 
 			BetsyEgg: {
 				DisplayName: 古老龙蛋
-				Tooltip: 召唤双足翼龙
+				Tooltip: 
+					'''
+					召唤双足翼龙
+					Only usable near an Eternia Crystal Stand
+					'''
 			}
 
 			FestiveOrnament: {
@@ -2331,8 +2335,8 @@ Mods: {
 				}
 
 				WoTGDialogue: {
-					// RiftEclipse1: The sun and moon change all the time. Blood moons, eclipses, a goddamn PUMPKIN. Is THIS really where you cross the line?!
-					// RiftEclipse2: If I'm gonna be honest with you this is kind of freaking me out. At least the other two are taking it well.
+					// RiftEclipse1: The sun and moon change all the time. Blood moons, eclipses, even a god-damn PUMPKIN. Is THIS really where you cross the line?!
+					// RiftEclipse2: If I'm gonna be honest with you... this is kind of freaking me out. At least the other two are taking it well.
 					// RiftEclipse3: Talk about life imitating art, guess that poem I wrote about impending doom came true...
 					// RiftEclipse4: Still up for that ping pong game?
 					// RiftEclipse5: Yeeeaaahh sorry, can't cancel that one. You'll find out a way how, right?
@@ -2551,9 +2555,9 @@ Mods: {
 				}
 
 				WoTGDialogue: {
-					// RiftEclipse1: What's all this about a rift in the sky? Well, if it ain't hurtin' the lil' critters then it's not my problem.
+					// RiftEclipse1: What's all this about a rift in the sky? Well, if it ain't hurtin' the lil' critters, then it's not my problem.
 					// RiftEclipse2: Only you can prevent forest fires. And intergalactic turmoil too, I guess.
-					// RiftEclipse3: Once yer done killin' god or whatever, mind joinin' me under that tree? Which one? You'll figure it out.
+					// RiftEclipse3: Once yer done killin' God or whatever, mind joinin' me under that tree? Which one? You'll figure it out.
 					// RiftEclipse4: If a tree falls down and nobody's around to hear it... didn't think I'd see the day is all.
 					// RiftEclipseSnow: Looks like the snow biome houses more than just boreal now. Still doesn't change my job though! Neither snow nor heat nor rain nor sleet!
 				}
@@ -2676,7 +2680,7 @@ Mods: {
 
 				WoTGDialogue: {
 					// RiftEclipse1: It's a good thing your world is ending and not mine.
-					// RiftEclipse2: You want advice on a future battle? Sorry, I seem to have forgotten it's name. Pretty chill dude though, we had beers last Tuesday.
+					// RiftEclipse2: You want advice on a future battle? Sorry, I seem to have forgotten its name. Pretty chill dude though. We had beers last Tuesday.
 					// RiftEclipse3: You can handle flashing lights, right?
 					// RiftEclipse4: You ever try frostblessed salad? It's an... acquired taste.
 					// RiftEclipse5: This totally looks way better. Atmospheric. Unparalleled. Other Big Pretentious Words.

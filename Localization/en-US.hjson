@@ -889,7 +889,11 @@ Mods: {
 
 			BetsyEgg: {
 				DisplayName: Old Dragon Egg
-				Tooltip: Summons Betsy
+				Tooltip:
+					'''
+					Summons Betsy
+					Only usable near an Eternia Crystal Stand
+					'''
 			}
 
 			FestiveOrnament: {

@@ -20,6 +20,7 @@ using Fargowiltas.Content.Items.Vanity;
 using Fargowiltas.Content.Items.Summons.Abom;
 using Fargowiltas.Content.Items.Summons.Deviantt;
 using Fargowiltas.Content.UI.Emotes;
+using static Fargowiltas.Fargowiltas;
 
 namespace Fargowiltas.Content.NPCs
 {
@@ -222,7 +223,7 @@ namespace Fargowiltas.Content.NPCs
                 if (Main.netMode == NetmodeID.MultiplayerClient)
                 {
                     var netMessage = Mod.GetPacket();
-                    netMessage.Write((byte)6);
+                    netMessage.Write((byte)PacketID.ClientUpdateWorld);
                     netMessage.Send();
                 }
 
@@ -231,7 +232,7 @@ namespace Fargowiltas.Content.NPCs
                     if (Main.netMode == NetmodeID.MultiplayerClient)
                     {
                         var netMessage = Mod.GetPacket();
-                        netMessage.Write((byte)2);
+                        netMessage.Write((byte)PacketID.AbomClearEvent);
                         netMessage.Send();
                     }
 
@@ -250,7 +251,7 @@ namespace Fargowiltas.Content.NPCs
                     if (Main.netMode == NetmodeID.MultiplayerClient)
                     {
                         var netMessage = Mod.GetPacket();
-                        netMessage.Write((byte)2);
+                        netMessage.Write((byte)PacketID.AbomClearEvent);
                         netMessage.Send();
                     }
 

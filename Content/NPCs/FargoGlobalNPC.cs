@@ -20,6 +20,7 @@ using Fargowiltas.Content.Items.Tiles;
 using Fargowiltas.Content.Items.Summons.Deviantt;
 using Fargowiltas.Content.Items.Summons.SwarmSummons.Energizers;
 using Fargowiltas.Content.Items.Misc;
+using static Fargowiltas.Fargowiltas;
 
 namespace Fargowiltas.Content.NPCs
 {
@@ -1191,7 +1192,7 @@ namespace Fargowiltas.Content.NPCs
                 {
                     // Broadcast swap request to server
                     var netMessage = Mod.GetPacket();
-                    netMessage.Write((byte)3);
+                    netMessage.Write((byte)PacketID.AnglerReset);
                     netMessage.Send();
                 }
             }

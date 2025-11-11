@@ -28,6 +28,7 @@ using Terraria.ModLoader.UI;
 using static Fargowiltas.Assets.Textures.FargoMutantAssets.UI;
 using static Fargowiltas.Content.Items.Misc.BattleCry;
 using static Fargowiltas.Content.Items.Tiles.EnchantedTreeTileEntity;
+using static Fargowiltas.Fargowiltas;
 using static Terraria.ModLoader.ModContent;
 
 ////using Fargowiltas.Toggler;
@@ -268,7 +269,7 @@ namespace Fargowiltas
         public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
         {
             ModPacket packet = Mod.GetPacket();
-            packet.Write((byte)9);
+            packet.Write((byte)PacketID.SyncDeathFruit);
             packet.Write((byte)Player.whoAmI);
             packet.Write((byte)DeathFruitHealth);
             packet.Send(toWho, fromWho);
@@ -277,7 +278,7 @@ namespace Fargowiltas
             {
                 packet = Mod.GetPacket();
 
-                packet.Write((byte)14); // sync one toggle
+                packet.Write((byte)PacketID.SyncOnePotionToggle); // sync one toggle
                 packet.Write((byte)Player.whoAmI);
                 packet.Write(toggle.Key);
                 packet.Write(toggle.Value);

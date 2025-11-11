@@ -25,6 +25,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.Utilities;
+using static Fargowiltas.Fargowiltas;
 
 namespace Fargowiltas.Content.NPCs
 {
@@ -1075,8 +1076,8 @@ namespace Fargowiltas.Content.NPCs
                         WorldGen.dropMeteor();
                     else
                     {
-                        var netMessage = Fargowiltas.Instance.GetPacket();
-                        netMessage.Write((byte)10); // "drop a meteor" tag
+                        var netMessage = Instance.GetPacket();
+                        netMessage.Write((byte)PacketID.DropMeteor); // "drop a meteor" tag
                         netMessage.Send();
                     }
                 }

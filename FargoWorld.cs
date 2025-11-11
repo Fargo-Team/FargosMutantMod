@@ -14,6 +14,7 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.UI;
 using static Fargowiltas.FargoSets;
+using static Fargowiltas.Fargowiltas;
 using static Terraria.ModLoader.ModContent;
 
 namespace Fargowiltas
@@ -358,7 +359,7 @@ namespace Fargowiltas
             if (Main.netMode == NetmodeID.MultiplayerClient && current != oldSpawnRateTile)
             {
                 ModPacket packet = Fargowiltas.Instance.GetPacket();
-                packet.Write((byte)1);
+                packet.Write((byte)PacketID.RegalStatue);
                 packet.Write(current);
                 packet.Send();
             }

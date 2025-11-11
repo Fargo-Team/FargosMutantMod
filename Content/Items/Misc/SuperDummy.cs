@@ -4,6 +4,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Fargowiltas.Content.Projectiles;
 using Fargowiltas.Content.NPCs;
+using static Fargowiltas.Fargowiltas;
 
 namespace Fargowiltas.Content.Items.Misc
 {
@@ -53,7 +54,7 @@ namespace Fargowiltas.Content.Items.Misc
                     else if (Main.netMode == NetmodeID.MultiplayerClient) //tell server to clear
                     {
                         var netMessage = Mod.GetPacket();
-                        netMessage.Write((byte)5);
+                        netMessage.Write((byte)PacketID.KillSuperDummy);
                         netMessage.Send();
                     }
                 }

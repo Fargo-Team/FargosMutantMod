@@ -8,6 +8,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using static Fargowiltas.Fargowiltas;
 
 namespace Fargowiltas
 {
@@ -244,8 +245,8 @@ namespace Fargowiltas
         public static void SendEnchantedTreeFruitPacket(int treeIndex)
         {
             FargoUtils.TryGetTileEntityAs(EnchantedTreeSheet.EnchantedTrees[treeIndex].X, EnchantedTreeSheet.EnchantedTrees[treeIndex].Y, out EnchantedTreeTileEntity tree);
-            ModPacket packet = Fargowiltas.Instance.GetPacket();
-            packet.Write((byte)11);
+            ModPacket packet = Instance.GetPacket();
+            packet.Write((byte)PacketID.SyncTreeFruit);
             packet.Write(treeIndex);
             packet.Write(tree.ItemType);
             packet.Write(tree.Prefix);
@@ -267,8 +268,8 @@ namespace Fargowiltas
         }
         public static void SendEnchantedTreesListPacket()
         {
-            ModPacket packet = Fargowiltas.Instance.GetPacket();
-            packet.Write((byte)12);
+            ModPacket packet = Instance.GetPacket();
+            packet.Write((byte)PacketID.SyncTreeEntities);
 
             packet.Write(EnchantedTreeSheet.EnchantedTrees.Count);
             foreach (Point16 vec in EnchantedTreeSheet.EnchantedTrees)

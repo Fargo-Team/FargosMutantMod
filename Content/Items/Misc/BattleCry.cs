@@ -9,6 +9,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.WorldBuilding;
+using static Fargowiltas.Fargowiltas;
 
 namespace Fargowiltas.Content.Items.Misc
 {
@@ -52,7 +53,7 @@ namespace Fargowiltas.Content.Items.Misc
                 FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
 
                 ModPacket packet = modPlayer.Mod.GetPacket();
-                packet.Write((byte)8);
+                packet.Write((byte)PacketID.SyncBattleCry);
                 packet.Write(player.whoAmI);
                 packet.Write(modPlayer.BattleCry);
                 packet.Write(modPlayer.CalmingCry);
@@ -71,7 +72,7 @@ namespace Fargowiltas.Content.Items.Misc
             else if (Main.netMode == NetmodeID.MultiplayerClient && player.whoAmI == Main.myPlayer)
             {
                 var packet = Mod.GetPacket();
-                packet.Write((byte)7);
+                packet.Write((byte)PacketID.BroadcastBattleCry);
                 packet.Write(isBattle);
                 packet.Write(player.whoAmI);
                 packet.Write(cry);

@@ -592,177 +592,200 @@ namespace Fargowiltas
             return base.Call(args);
         }
 
+        internal enum PacketID : byte
+        {
+            RegalStatue = 1,
+            AbomClearEvent,
+            AnglerReset,
+            SyncNPCMaxLife,
+            KillSuperDummy,
+            ClientUpdateWorld,
+            BroadcastBattleCry,
+            SyncBattleCry,
+            SyncDeathFruit,
+            DropMeteor,
+            SyncTreeFruit,
+            SyncTreeEntities,
+            SyncPotionToggles,
+            SyncOnePotionToggle
+        }
+
         public override void HandlePacket(BinaryReader reader, int whoAmI)
         {
-            byte messageType = reader.ReadByte();
-
-            switch (messageType)
+            byte data = reader.ReadByte();
+            if (Enum.IsDefined(typeof(PacketID), data))
             {
-                case 0:
-                    FargoNet.HandlePacket(reader, messageType);
-                    break;
-                // Regal statue
-                case 1:
-                    {
-                        if (whoAmI >= 0 && whoAmI < FargoWorld.CurrentSpawnRateTile.Length)
+                switch ((PacketID)data)
+                {
+                    case PacketID.RegalStatue:
                         {
-                            FargoWorld.CurrentSpawnRateTile[whoAmI] = reader.ReadBoolean();
-                        }
-                    }
-                    break;
-
-                // Abominationn clear events
-                case 2:
-                    if (Main.netMode == NetmodeID.Server)
-                    {
-                        if (IsEventOccurring)
-                        {
-                            TryClearEvents();
-                            NetMessage.SendData(MessageID.WorldData);
-                        }
-                    }
-
-                    break;
-
-                // Angler reset
-                case 3:
-                    if (Main.netMode == NetmodeID.Server)
-                    {
-                        Main.AnglerQuestSwap();
-                    }
-                    break;
-
-                // Sync npc max life
-                case 4:
-                    {
-                        int n = reader.ReadInt32();
-                        int lifeMax = reader.ReadInt32();
-                        if (Main.netMode == NetmodeID.MultiplayerClient && n >= 0 && n < Main.maxNPCs)
-                            Main.npc[n].lifeMax = lifeMax;
-                    }
-                    break;
-
-                // Kill super dummies
-                case 5:
-                    if (Main.netMode == NetmodeID.Server)
-                    {
-                        for (int i = 0; i < Main.maxNPCs; i++)
-                        {
-                            if (Main.npc[i] != null && Main.npc[i].active && Main.npc[i].type == ModContent.NPCType<SuperDummyNPC>())
+                            if (whoAmI >= 0 && whoAmI < FargoWorld.CurrentSpawnRateTile.Length)
                             {
-                                NPC npc = Main.npc[i];
-                                npc.life = 0;
-                                npc.HitEffect();
-                                Main.npc[i].SimpleStrikeNPC(int.MaxValue, 0, false, 0, null, false, 0, true);
-                                //Main.npc[i].StrikeNPCNoInteraction(int.MaxValue, 0, 0, false, false, false);
-
-                                if (Main.netMode == NetmodeID.Server)
-                                    NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, i);
+                                FargoWorld.CurrentSpawnRateTile[whoAmI] = reader.ReadBoolean();
                             }
                         }
-                    }
-                    break;
+                        break;
 
-                //client requested server to update world
-                case 6:
-                    if (Main.netMode == NetmodeID.Server)
-                    {
-                        NetMessage.SendData(MessageID.WorldData);
-                    }
-                    break;
+                    // Abominationn clear events
+                    case PacketID.AbomClearEvent: // 2:
+                        {
+                            if (Main.netMode == NetmodeID.Server)
+                            {
+                                if (IsEventOccurring)
+                                {
+                                    TryClearEvents();
+                                    NetMessage.SendData(MessageID.WorldData);
+                                }
+                            }
+                        }
+                        break;
 
-                //client requested server to broadcast battle cry message
-                case 7:
-                    {
-                        bool isBattle = reader.ReadBoolean();
-                        int p = reader.ReadInt32();
-                        bool cry = reader.ReadBoolean();
-                        BattleCry.GenerateText(isBattle, Main.player[p], cry);
-                    }
-                    break;
+                    // Angler reset
+                    case PacketID.AnglerReset:
+                        {
+                            if (Main.netMode == NetmodeID.Server)
+                            {
+                                Main.AnglerQuestSwap();
+                            }
+                        }
+                        break;
 
-                //client sync battle cry states to others
-                case 8:
-                    {
-                        int p = reader.ReadInt32();
-                        Main.player[p].GetModPlayer<FargoPlayer>().BattleCry = reader.ReadBoolean();
-                        Main.player[p].GetModPlayer<FargoPlayer>().CalmingCry = reader.ReadBoolean();
-                    }
-                    break;
+                    // Sync npc max life
+                    case PacketID.SyncNPCMaxLife:
+                        {
+                            int n = reader.ReadInt32();
+                            int lifeMax = reader.ReadInt32();
+                            if (Main.netMode == NetmodeID.MultiplayerClient && n >= 0 && n < Main.maxNPCs)
+                                Main.npc[n].lifeMax = lifeMax;
+                        }
+                        break;
 
-                case 9: // sync death fruit health
-                    {
-                        int p = (int)reader.ReadByte();
-                        int deathFruitHealth = reader.ReadByte();
-                        if (p >= 0 && p < Main.maxPlayers && Main.player[p].active)
+                    // Kill super dummies
+                    case PacketID.KillSuperDummy:
                         {
-                            Main.player[p].GetModPlayer<FargoPlayer>().DeathFruitHealth = deathFruitHealth;
-                        }
-                    }
-                    break;
-                case 10: // drop a meteor
-                    {
-                        if (Main.netMode == NetmodeID.Server)
-                            WorldGen.dropMeteor();
-                    }
-                    break;
-                case 11:
-                    {
-                        int treeindex = reader.ReadInt32();
-                        FargoUtils.TryGetTileEntityAs(EnchantedTreeSheet.EnchantedTrees[treeindex].X, EnchantedTreeSheet.EnchantedTrees[treeindex].Y, out EnchantedTreeTileEntity tree);
-                        tree.ItemType = reader.ReadInt32();
-                        tree.Prefix = reader.ReadInt32();
-                        int fruitlength = reader.ReadInt32();
+                            if (Main.netMode == NetmodeID.Server)
+                            {
+                                for (int i = 0; i < Main.maxNPCs; i++)
+                                {
+                                    if (Main.npc[i] != null && Main.npc[i].active && Main.npc[i].type == ModContent.NPCType<SuperDummyNPC>())
+                                    {
+                                        NPC npc = Main.npc[i];
+                                        npc.life = 0;
+                                        npc.HitEffect();
+                                        Main.npc[i].SimpleStrikeNPC(int.MaxValue, 0, false, 0, null, false, 0, true);
+                                        //Main.npc[i].StrikeNPCNoInteraction(int.MaxValue, 0, 0, false, false, false);
 
-                        tree.Fruits = [];
-                        for (int i = 0; i < fruitlength; i++)
-                        {
-                            Fruit fruit = new Fruit(reader.ReadInt32(), reader.ReadVector2(), reader.ReadVector2(), reader.ReadVector2(), reader.ReadInt32(), reader.ReadInt32());
-                            fruit.grabCooldown = reader.ReadInt32();
-                            fruit.despawnTimer = reader.ReadSingle();
-                            tree.Fruits.Add(fruit);
+                                        if (Main.netMode == NetmodeID.Server)
+                                            NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, i);
+                                    }
+                                }
+                            }
                         }
-                        if (Main.dedServ)
-                        {
-                            NetMessage.SendData(MessageID.TileEntitySharing, -1, -1, null, tree.ID, tree.Position.X, tree.Position.Y);
-                        }
-                    }
-                    break;
-                case 12:
-                    {
-                        EnchantedTreeSheet.EnchantedTrees = [];
-                        int arrayLength = reader.ReadInt32();
-                        for (int m = 0; m < arrayLength; m++)
-                        {
-                            EnchantedTreeSheet.EnchantedTrees.Add(new Point16(reader.ReadInt32(), reader.ReadInt32()));
-                        }
-                        if (Main.dedServ)
-                        {
-                            FargoNet.SendEnchantedTreesListPacket();
-                        }
-                    }
-                    break;
-                case 13: // Sync potion toggles
-                    {
-                        Player player = Main.player[reader.ReadByte()];
-                        FargoPlayer modPlayer = player.FargoMutant();
-                        byte count = reader.ReadByte();
-                        List<int> keys = PotionToggleLoader.LoadedToggles.Keys.ToList();
+                        break;
 
-                        for (int i = 0; i < count; i++)
+                    //client requested server to update world
+                    case PacketID.ClientUpdateWorld: // 6:
                         {
-                            modPlayer.PotionToggler.Toggles[keys[i]].ToggleBool = reader.ReadBoolean();
+                            if (Main.netMode == NetmodeID.Server)
+                            {
+                                NetMessage.SendData(MessageID.WorldData);
+                            }
                         }
-                    }
-                    break;
-                case 14: // Sync one potion toggle
-                    {
-                        Player player = Main.player[reader.ReadByte()];
-                        player.SetPotionToggleValue(reader.ReadInt32(), reader.ReadBoolean());
-                    }
-                    break;
-                default:
-                    break;
+                        break;
+
+                    //client requested server to broadcast battle cry message
+                    case PacketID.BroadcastBattleCry:
+                        {
+                            bool isBattle = reader.ReadBoolean();
+                            int p = reader.ReadInt32();
+                            bool cry = reader.ReadBoolean();
+                            BattleCry.GenerateText(isBattle, Main.player[p], cry);
+                        }
+                        break;
+
+                    //client sync battle cry states to others
+                    case PacketID.SyncBattleCry:
+                        {
+                            int p = reader.ReadInt32();
+                            Main.player[p].GetModPlayer<FargoPlayer>().BattleCry = reader.ReadBoolean();
+                            Main.player[p].GetModPlayer<FargoPlayer>().CalmingCry = reader.ReadBoolean();
+                        }
+                        break;
+
+                    case PacketID.SyncDeathFruit: // sync death fruit health
+                        {
+                            int p = (int)reader.ReadByte();
+                            int deathFruitHealth = reader.ReadByte();
+                            if (p >= 0 && p < Main.maxPlayers && Main.player[p].active)
+                            {
+                                Main.player[p].GetModPlayer<FargoPlayer>().DeathFruitHealth = deathFruitHealth;
+                            }
+                        }
+                        break;
+                    case PacketID.DropMeteor: // drop a meteor
+                        {
+                            if (Main.netMode == NetmodeID.Server)
+                                WorldGen.dropMeteor();
+                        }
+                        break;
+                    case PacketID.SyncTreeFruit:
+                        {
+                            int treeindex = reader.ReadInt32();
+                            FargoUtils.TryGetTileEntityAs(EnchantedTreeSheet.EnchantedTrees[treeindex].X, EnchantedTreeSheet.EnchantedTrees[treeindex].Y, out EnchantedTreeTileEntity tree);
+                            tree.ItemType = reader.ReadInt32();
+                            tree.Prefix = reader.ReadInt32();
+                            int fruitlength = reader.ReadInt32();
+
+                            tree.Fruits = [];
+                            for (int i = 0; i < fruitlength; i++)
+                            {
+                                Fruit fruit = new Fruit(reader.ReadInt32(), reader.ReadVector2(), reader.ReadVector2(), reader.ReadVector2(), reader.ReadInt32(), reader.ReadInt32());
+                                fruit.grabCooldown = reader.ReadInt32();
+                                fruit.despawnTimer = reader.ReadSingle();
+                                tree.Fruits.Add(fruit);
+                            }
+                            if (Main.dedServ)
+                            {
+                                NetMessage.SendData(MessageID.TileEntitySharing, -1, -1, null, tree.ID, tree.Position.X, tree.Position.Y);
+                            }
+                        }
+                        break;
+                    case PacketID.SyncTreeEntities:
+                        {
+                            EnchantedTreeSheet.EnchantedTrees = [];
+                            int arrayLength = reader.ReadInt32();
+                            for (int m = 0; m < arrayLength; m++)
+                            {
+                                EnchantedTreeSheet.EnchantedTrees.Add(new Point16(reader.ReadInt32(), reader.ReadInt32()));
+                            }
+                            if (Main.dedServ)
+                            {
+                                FargoNet.SendEnchantedTreesListPacket();
+                            }
+                        }
+                        break;
+                    case PacketID.SyncPotionToggles: // Sync potion toggles
+                        {
+                            Player player = Main.player[reader.ReadByte()];
+                            FargoPlayer modPlayer = player.FargoMutant();
+                            byte count = reader.ReadByte();
+                            List<int> keys = PotionToggleLoader.LoadedToggles.Keys.ToList();
+
+                            for (int i = 0; i < count; i++)
+                            {
+                                modPlayer.PotionToggler.Toggles[keys[i]].ToggleBool = reader.ReadBoolean();
+                            }
+                        }
+                        break;
+                    case PacketID.SyncOnePotionToggle: // Sync one potion toggle
+                        {
+                            Player player = Main.player[reader.ReadByte()];
+                            player.SetPotionToggleValue(reader.ReadInt32(), reader.ReadBoolean());
+                        }
+                        break;
+                    default:
+                        break;
+                }
             }
         }
 

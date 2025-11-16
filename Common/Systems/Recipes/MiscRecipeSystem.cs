@@ -58,23 +58,6 @@ namespace Fargowiltas.Common.Systems.Recipes
             {
                 recipe.DisableDecraft();
             }
-
-            // animate recipe groups
-            foreach (Recipe recipe in Main.recipe)
-            {
-                foreach (int groupID in recipe.acceptedGroups)
-                {
-                    var groupItems = RecipeGroup.recipeGroups[groupID].ValidItems.ToList();
-                    foreach (Item item in recipe.requiredItem)
-                    {
-                        if (RecipeGroup.recipeGroups[groupID].IconicItemId == item.type)
-                        {
-                            // add tag that it should animate draw
-                            item.GetGlobalItem<FargoGlobalItem>().RecipeGroupAnimationItems = groupItems;
-                        }
-                    }
-                }
-            }
             
         }
         public override void PostSetupRecipes()
@@ -92,6 +75,23 @@ namespace Fargowiltas.Common.Systems.Recipes
                     if (EnchantedTreeTileEntity.IsItemDupable(item.type) || (Items.DuplicatableItems[recipe.createItem.type] == Items.DupeType.MaterialsDupable && Items.DuplicatableItems[item.type] != Items.DupeType.NotDupableFromDupable))
                     {
                         Items.DuplicatableRecipes[recipe.createItem.type].Add(item.type);
+                    }
+                }
+            }
+
+            // animate recipe groups
+            foreach (Recipe recipe in Main.recipe)
+            {
+                foreach (int groupID in recipe.acceptedGroups)
+                {
+                    var groupItems = RecipeGroup.recipeGroups[groupID].ValidItems.ToList();
+                    foreach (Item item in recipe.requiredItem)
+                    {
+                        if (RecipeGroup.recipeGroups[groupID].IconicItemId == item.type)
+                        {
+                            // add tag that it should animate draw
+                            item.GetGlobalItem<FargoGlobalItem>().RecipeGroupAnimationItems = groupItems;
+                        }
                     }
                 }
             }

@@ -326,9 +326,23 @@ namespace Fargowiltas.Content.Items
                 }
 
                 int shimmerItem = ItemID.Sets.ShimmerTransformToItem[item.type];
-                if (shimmerItem > 0)
+                int shimmerFromItem = FargoSets.Items.ShimmerTransformsFromItem[item.type];
+                string shimmerText = "";
+                if (shimmerItem > 0 && shimmerFromItem <= 0)
+                    shimmerText = $"[s:Fargowiltas/Shimmer] [c/FFC0CB:{ExpandedTooltipLoc("Shimmerable")}] [i:{shimmerItem}] [c/FFC0CB:{ContentSamples.ItemsByType[shimmerItem].Name}]";
+                else if (shimmerItem <= 0 && shimmerFromItem > 0)
+                    shimmerText = $"[s:Fargowiltas/Shimmer] [c/FFC0CB:{ExpandedTooltipLoc("ShimmerableFrom")}] [i:{shimmerFromItem}] [c/FFC0CB:{ContentSamples.ItemsByType[shimmerFromItem].Name}]";
+                else if (shimmerItem > 0 && shimmerFromItem > 0 )
                 {
-                    line = new TooltipLine(Mod, "TooltipShimmerable", $"[s:Fargowiltas/Shimmer] [c/FFC0CB:{ExpandedTooltipLoc("Shimmerable")}] [i:{shimmerItem}] [c/FFC0CB:{ContentSamples.ItemsByType[shimmerItem].Name}]");
+                    if (shimmerItem == shimmerFromItem)
+                        shimmerText = $"[s:Fargowiltas/Shimmer] [c/FFC0CB:{ExpandedTooltipLoc("ShimmerableBoth")}] [i:{shimmerItem}] [c/FFC0CB:{ContentSamples.ItemsByType[shimmerItem].Name}]";
+                    else
+                        shimmerText = $"[s:Fargowiltas/Shimmer] [c/FFC0CB:{ExpandedTooltipLoc("Shimmerable")}] [i:{shimmerItem}] [c/FFC0CB:{ContentSamples.ItemsByType[shimmerItem].Name}], [c/FFC0CB:{ExpandedTooltipLoc("ShimmerableFrom")}] [i:{shimmerFromItem}] [c/FFC0CB:{ContentSamples.ItemsByType[shimmerFromItem].Name}]";
+                }
+                    
+                if (shimmerText.Length > 0)
+                {
+                    line = new TooltipLine(Mod, "TooltipShimmerable", shimmerText);
                     tooltips.Add(line);
                 }
             }

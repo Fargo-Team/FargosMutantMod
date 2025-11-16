@@ -2,6 +2,7 @@
 using Fargowiltas.Content.Items.Tiles;
 using Fargowiltas.Content.NPCs;
 using System.Collections.Generic;
+using System.Linq;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Config;
@@ -16,6 +17,7 @@ namespace Fargowiltas
         {
             public static bool[] MechanicalAccessory;
             public static bool[] InfoAccessory;
+            public static int[] ShimmerTransformsFromItem;
             public enum DupeType
             {
                 Dupable,
@@ -100,6 +102,14 @@ namespace Fargowiltas
                 ItemID.TallyCounter,
                 ItemID.FishFinder,
                 ItemID.REK);
+
+            Items.ShimmerTransformsFromItem = itemFactory.CreateIntSet(-1);
+            for (int i = 0; i < Items.ShimmerTransformsFromItem.Length; i++)
+            {
+                int shimmerItem = ItemID.Sets.ShimmerTransformToItem[i];
+                if (shimmerItem > 0)
+                    Items.ShimmerTransformsFromItem[shimmerItem] = i;
+            }
 
             Items.DuplicatableItems = itemFactory.CreateCustomSet<Items.DupeType>(Items.DupeType.NotDupable,
                 ItemID.CellPhone, Items.DupeType.Dupable,

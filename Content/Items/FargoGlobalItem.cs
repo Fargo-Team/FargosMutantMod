@@ -387,6 +387,13 @@ namespace Fargowiltas.Content.Items
                     tooltips.Add(line);
                 }
             }
+
+            if (FargoClientConfig.Instance.ColoredDamageTypes)
+            {
+                TooltipLine damageLine = tooltips.FirstOrDefault(line => line.Mod == "Terraria" && line.Name == "Damage");
+                if (damageLine != null)
+                    damageLine.OverrideColor = DamageClassColor(item.DamageType);
+            }
         }
 
         public override void SetDefaults(Item item)
@@ -919,6 +926,23 @@ namespace Fargowiltas.Content.Items
                 item.type = ammoItemType;
                 item.stack = 3996;
             }
+        }
+
+        public static Color DamageClassColor(DamageClass damageClass)
+        {
+            Color color = Color.LightGray;
+            float lerp = 0.75f;
+            if (damageClass.CountsAsClass(DamageClass.Melee))
+                return Color.Lerp(new(225, 90, 90), color, lerp);
+            if (damageClass.CountsAsClass(DamageClass.Ranged))
+                return Color.Lerp(new(38, 168, 35), color, lerp);
+            if (damageClass.CountsAsClass(DamageClass.Magic))
+                return Color.Lerp(new(204, 45, 239), color, lerp);
+            if (damageClass.CountsAsClass(DamageClass.Summon))
+                return Color.Lerp(new(0, 80, 224), color, lerp);
+            if (damageClass.CountsAsClass(DamageClass.Default) || damageClass.CountsAsClass(DamageClass.Generic))
+                return color;
+            return Color.White;
         }
     }
 }

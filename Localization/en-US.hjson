@@ -303,6 +303,11 @@ Mods: {
 					Tooltip: Item speed is listed in use time, meaning bigger number = slower.
 				}
 
+				ColoredDamageTypes: {
+					Label: "[i:171] Damage tooltips are colored by damage type"
+					Tooltip: ""
+				}
+
 				HideBuffTray: {
 					Label: "[i:292] Hide unlimited buffs in tray"
 					Tooltip: Toggle this with the button on the left side of your inventory!

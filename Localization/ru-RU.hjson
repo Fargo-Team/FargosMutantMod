@@ -307,6 +307,11 @@ Mods: {
 					Tooltip: Скорость предмета измеряется во времени использования, т.е. чем больше число, тем медленнее скорость.
 				}
 
+				ColoredDamageTypes: {
+					// Label: "[i:171] Damage tooltips are colored by damage type"
+					// Tooltip: ""
+				}
+
 				HideBuffTray: {
 					Label: "[i:292] Прятать бесконечные баффы из списка"
 					Tooltip: Также можно переключать с помощью кнопки слева от инвентаря!

@@ -38,8 +38,6 @@ namespace Fargowiltas.Content.Items
 
         private bool firstTick = true;
 
-        public List<int> RecipeGroupAnimationItems = null;
-
         //float and glow when true
         public bool FromEnchantedTree = false;
         //follow cursor when = myplayer
@@ -834,20 +832,22 @@ namespace Fargowiltas.Content.Items
         }
         public override bool PreDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
         {
-            if (RecipeGroupAnimationItems != null)
+            if (FargoSets.Items.RecipeGroupAnimationItems[item.type] != null)
             {
+                List<int> animItems = FargoSets.Items.RecipeGroupAnimationItems[item.type];
                 // the config disabled state is used here to instantly revert the item to the default type if it's not at the default type
-                int index = RecipeGroupAnimationItems.IndexOf(item.type);
+                int index = animItems.IndexOf(item.type);
                 int timer = (int)(Main.GlobalTimeWrappedHourly * 60);
                 if ((index != 0 && !FargoClientConfig.Instance.AnimatedRecipeGroups) || FargoClientConfig.Instance.AnimatedRecipeGroups && timer % 60 == 0)
                 {
                     index++;
-                    if (!FargoClientConfig.Instance.AnimatedRecipeGroups || index >= RecipeGroupAnimationItems.Count)
+                    if (!FargoClientConfig.Instance.AnimatedRecipeGroups || index >= animItems.Count)
                         index = 0;
                     string name = item.Name;
                     int stack = item.stack;
-                    item.ChangeItemType(RecipeGroupAnimationItems[index]);
-                    item.GetGlobalItem<FargoGlobalItem>().RecipeGroupAnimationItems = RecipeGroupAnimationItems;
+                    int newType = animItems[index];
+                    item.ChangeItemType(newType);
+                    FargoSets.Items.RecipeGroupAnimationItems[newType] = animItems;
                     item.SetNameOverride(name);
                     item.stack = stack;
                 }

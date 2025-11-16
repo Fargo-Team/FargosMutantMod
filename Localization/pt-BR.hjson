@@ -2920,9 +2920,9 @@ Mods: {
 			// EnchantedTreeDupable: Can be duplicated with Enchanted Tree
 			// RifleScopeBinocularToggle: Binocular vision disabled while accessory visibility is hidden
 			// SniperRifleBinocularToggle: Binocular vision disabled
-			// Shimmerable: Can be Shimmered into
-			// ShimmerableFrom: Can be Shimmered from
-			// ShimmerableBoth: Can be Shimmered from and into
+			// Shimmerable: Shimmerable into
+			// ShimmerableFrom: Shimmerable from
+			// ShimmerableBoth: Shimmerable from and into
 		}
 
 		Emotes: {

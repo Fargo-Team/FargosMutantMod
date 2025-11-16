@@ -32,6 +32,7 @@ namespace Fargowiltas
             //public static bool[] PotionCannotBeInfinite;
             public static bool[] BuffStation;
             public static List<ShopTooltip>[] RegisteredShopTooltips;
+            public static List<int>[] RecipeGroupAnimationItems;
 
             public static int[] SacrificeCountDefault;
             public static int[] SacrificeCount;
@@ -190,6 +191,8 @@ namespace Fargowiltas
                 ItemID.WarTable);
 
             Items.RegisteredShopTooltips = itemFactory.CreateCustomSet<List<ShopTooltip>>(null);
+
+            Items.RecipeGroupAnimationItems = itemFactory.CreateCustomSet<List<int>>(null);
 
             Items.HardmodeSacrifice = itemFactory.CreateBoolSet(false);
             Items.SacrificeCountDefault = Squirrel.SetDefaultSacrificeCount(itemFactory);

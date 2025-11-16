@@ -2925,8 +2925,8 @@ Mods: {
 			RifleScopeBinocularToggle: Отдаление обзора можно выключить, переключив видимость аксессуара
 			SniperRifleBinocularToggle: Отдаление обзора выключено
 			Shimmerable: Можно превратить с помощью мерцания в
-			// ShimmerableFrom: Can be Shimmered from
-			// ShimmerableBoth: Can be Shimmered from and into
+			// ShimmerableFrom: Shimmerable from
+			// ShimmerableBoth: Shimmerable from and into
 		}
 
 		Emotes: {

@@ -308,8 +308,8 @@ Mods: {
 				}
 
 				ColoredDamageTypes: {
-					// Label: "[i:171] Damage tooltips are colored by damage type"
-					// Tooltip: ""
+					Label: "[i:171] Строки описания с уроном окрашиваются в цвет урона"
+					Tooltip: ""
 				}
 
 				HideBuffTray: {

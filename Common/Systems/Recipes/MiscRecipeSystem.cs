@@ -67,12 +67,10 @@ namespace Fargowiltas.Common.Systems.Recipes
                     var groupItems = RecipeGroup.recipeGroups[groupID].ValidItems.ToList();
                     foreach (Item item in recipe.requiredItem)
                     {
-                        Fargowiltas.Instance.Logger.Info($"Item {item.Name} trial");
                         if (RecipeGroup.recipeGroups[groupID].IconicItemId == item.type)
                         {
                             // add tag that it should animate draw
-                            FargoSets.Items.RecipeGroupAnimationItems[item.type] = groupItems;
-                            Fargowiltas.Instance.Logger.Info($"Item {item.Name} added successfully");
+                            item.GetGlobalItem<FargoGlobalItem>().RecipeGroupAnimationItems = groupItems;
                         }
                     }
                 }

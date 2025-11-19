@@ -27,8 +27,8 @@ namespace Fargowiltas.Content.UI
             ItemID = itemID;
             BuffID = buffID;
 
-            Width.Set(19, 0);
-            Height.Set(21, 0);
+            Width.Set(18, 0);
+            Height.Set(18, 0);
         }
 
         protected override void DrawSelf(SpriteBatch spriteBatch)
@@ -48,10 +48,17 @@ namespace Fargowiltas.Content.UI
 
             bool toggled = Main.LocalPlayer.GetPotionToggleValue(ItemID);
 
-            spriteBatch.Draw(FargoMutantAssets.UI.Toggler.CheckBox.Value, position, Color.White);
+            spriteBatch.Draw(FargoMutantAssets.UI.Toggler.CheckBox.Value, position + new Vector2(0, 8), Color.White);           
 
             if (toggled)
-                spriteBatch.Draw(FargoMutantAssets.UI.Toggler.CheckMark.Value, position, Color.White);
+            {
+                spriteBatch.Draw(FargoMutantAssets.UI.Toggler.CheckMark.Value, position + new Vector2(0, 4), Color.White);
+                if (IsMouseHovering)
+                {
+                    spriteBatch.Draw(FargoMutantAssets.UI.Toggler.CheckMarkGlow.Value, position + new Vector2(0, 4), Color.Yellow);
+                }           
+            }
+                
 
             string GetText()
             {

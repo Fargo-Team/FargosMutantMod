@@ -313,8 +313,8 @@ Mods: {
 				}
 
 				ColoredDamageTypes: {
-					// Label: "[i:171] Damage tooltips are colored by damage type"
-					// Tooltip: ""
+					Label: "[i:171] Строки описания с уроном окрашиваются в цвет урона"
+					Tooltip: ""
 				}
 
 				HideBuffTray: {
@@ -2817,7 +2817,7 @@ Mods: {
 			SiblingPylonTile.MapEntry: Пилон собратьев
 			PurityTotemSheet.MapEntry: Тотем чистоты
 			EnchantedTreeSheet.MapEntry: Зачарованное дерево
-			// ChestWizardSheet.MapEntry: Chest Wizard
+			ChestWizardSheet.MapEntry: Сундучный волшебник
 		}
 
 		Conditions: {
@@ -2854,7 +2854,7 @@ Mods: {
 			SandDown: После победы над песчаным элементалем, В хардмоде
 			DevilDown: После победы над красным дьяволом, В хардмоде
 			BloodFishDown: После победы над блуждающим рыбьим глазом или зомби-тритоном
-			// BloodFish2Down: After defeating a Hemogoblin Shark or Blood Eel, In hardmode
+			BloodFish2Down: После победы над гемогоблиновой акулой или кровавым угрём, В хардмоде
 			BloodNautDown: После победы над Грознаутилусом, В хардмоде
 			SummonerDown: После победы над гоблином-чернокнижником и армией гоблинов, В хардмоде
 			PirateDown: После победы над капитаном пиратов и нашествием пиратов, В хардмоде
@@ -2925,14 +2925,16 @@ Mods: {
 			SoldAtThirtyStack: Продаются у Бельчонок: При получении в стаке из 30
 			SoldBy: Продаётся у
 			SeveralVendors: нескольких продавцов
-			SacrificablePlural: Можно скормить Бельчонку ещё {0} раз
-			Sacrificable: Можно скормить Бельчонку 1 раз
-			SacrificeEvent: Скормите Бельчонку, чтобы начать особенное событие
-			SacrificeEventPlural: Скормите {0} {^0:штука;штуки;штук} Бельчонку, чтобы начать особое событие
+			SacrificablePlural: Можно скормить бельчонку ещё {0} раз
+			Sacrificable: Можно скормить бельчонку 1 раз
+			SacrificeEvent: Скормите бельчонку, чтобы начать особенное событие
+			SacrificeEventPlural: Скормите {0} {^0:штука;штуки;штук} бельчонку, чтобы начать особое событие
 			EnchantedTreeDupable: Можно дублировать с помощью зачарованного дерева
 			RifleScopeBinocularToggle: Отдаление обзора можно выключить, переключив видимость аксессуара
 			SniperRifleBinocularToggle: Отдаление обзора выключено
 			Shimmerable: Можно превратить с помощью мерцания в
+			ShimmerableFrom: Можно получить с помощью мерцания из
+			ShimmerableBoth: Можно в помощью мерцания получить из и превратить в
 		}
 
 		Emotes: {
@@ -2969,7 +2971,7 @@ Mods: {
 			}
 
 			ElementalAssemblerAchievement: {
-				FriendlyName: Аватар
+				FriendlyName: Владыка стихий
 				Description: Отточите своё ремесленничество, соединив особенные станции создания в удобный станок!
 			}
 

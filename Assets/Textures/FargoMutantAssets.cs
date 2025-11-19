@@ -35,7 +35,9 @@ namespace Fargowiltas.Assets.Textures
                 public static Asset<Texture2D> SoulTogglerButton_MouseOverTexture => ModContent.Request<Texture2D>(Filepath + "UI/SoulTogglerToggle_MouseOver", AssetRequestMode.ImmediateLoad);
                 public static Asset<Texture2D> CheckBox => ModContent.Request<Texture2D>(Filepath + "UI/CheckBox", AssetRequestMode.ImmediateLoad);
                 public static Asset<Texture2D> CheckMark => ModContent.Request<Texture2D>(Filepath + "UI/CheckMark", AssetRequestMode.ImmediateLoad);
+                public static Asset<Texture2D> CheckMarkGlow => ModContent.Request<Texture2D>(Filepath + "UI/CheckMarkGlow", AssetRequestMode.ImmediateLoad);
                 public static Asset<Texture2D> Cross => ModContent.Request<Texture2D>(Filepath + "UI/Cross", AssetRequestMode.ImmediateLoad);
+                public static Asset<Texture2D> CrossGlow => ModContent.Request<Texture2D>(Filepath + "UI/CrossGlow", AssetRequestMode.ImmediateLoad);
                 public static Asset<Texture2D> DisplayAllButton => ModContent.Request<Texture2D>(Filepath + "UI/DisplayAllButton", AssetRequestMode.ImmediateLoad);
                 public static Asset<Texture2D> PresetCustom => ModContent.Request<Texture2D>(Filepath + "UI/PresetCustom", AssetRequestMode.ImmediateLoad);
                 public static Asset<Texture2D> PresetMinimal => ModContent.Request<Texture2D>(Filepath + "UI/PresetMinimal", AssetRequestMode.ImmediateLoad);

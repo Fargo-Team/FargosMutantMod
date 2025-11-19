@@ -127,14 +127,14 @@ namespace Fargowiltas
             return Main.npc.Any(npc => npc.active && (npc.boss || npc.type == NPCID.EaterofWorldsHead || npc.type == NPCID.DD2Betsy));
         }
 
-        public static int CountItemHeld(this Player player, int type, int stopCountingAt = 1)
+        public static int CountItemHeld(this Player player, int type)
         {
             if (player.selectedItem == 58) // Cursor
                 return 0;
 
             Item item = player.inventory[player.selectedItem];
             if (item != null && item.stack > 0 && item.type == type)
-                return item.stack >= stopCountingAt ? stopCountingAt : item.stack;
+                return item.stack;
 
             return 0;
         }

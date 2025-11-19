@@ -615,15 +615,14 @@ namespace Fargowiltas.Content.NPCs
             int itemType = item.type;
             if (EventSacrifice(Main.LocalPlayer.HeldItem, out int consumeCount, false) || FargoSets.Items.SacrificeCount[itemType] > 0) // item sacrificable; do the sacrifice thing
             {
-                if (Main.LocalPlayer.CountItemHeld(itemType, consumeCount) >= consumeCount)
+                if (Main.LocalPlayer.CountItemHeld(itemType) >= consumeCount)
                 {
                     for (int consume = 0; consume < consumeCount; consume++)
                     {
                         Main.LocalPlayer.ConsumeItemHeld(itemType);
-
-                        if (FargoSets.Items.SacrificeCount[itemType] > 0)
-                            FargoSets.Items.SacrificeCount[itemType]--;
                     }
+                    if (FargoSets.Items.SacrificeCount[itemType] > 0)
+                        FargoSets.Items.SacrificeCount[itemType]--;
 
                     //Vector2 spawnPos = Main.MouseWorld;
                     //SoundEngine.PlaySound(a, spawnPos);

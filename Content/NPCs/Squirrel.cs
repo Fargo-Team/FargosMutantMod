@@ -72,7 +72,7 @@ namespace Fargowiltas.Content.NPCs
 
             NPCProfile = new Profiles.StackedNPCProfile(
                 new Profiles.DefaultNPCProfile(Texture, NPCHeadLoader.GetHeadSlot(HeadTexture), Texture + "_Party")
-                //new Profiles.DefaultNPCProfile(Texture + "_Shimmer", ShimmerHeadIndex, null)
+            //new Profiles.DefaultNPCProfile(Texture + "_Shimmer", ShimmerHeadIndex, null)
             );
         }
 
@@ -94,7 +94,7 @@ namespace Fargowiltas.Content.NPCs
         }
 
         public override void ChatBubblePosition(ref Vector2 position, ref SpriteEffects spriteffects)
-        {   
+        {
             if (!NPC.IsShimmerVariant)
                 position.Y += 17f;
         }
@@ -150,7 +150,7 @@ namespace Fargowiltas.Content.NPCs
             if (!Fargowiltas.ModLoaded["FargowiltasSouls"] && NPC.downedSlimeKing)
                 return true;
 
-            if (Fargowiltas.ModLoaded["FargowiltasSouls"] && ModContent.TryFind("FargowiltasSouls", "TopHatSquirrelCaught", out ModItem modItem) && 
+            if (Fargowiltas.ModLoaded["FargowiltasSouls"] && ModContent.TryFind("FargowiltasSouls", "TopHatSquirrelCaught", out ModItem modItem) &&
                 Main.player.Any(p => p.active && p.HasItem(modItem.Type)))
             {
                 return true;
@@ -321,7 +321,7 @@ namespace Fargowiltas.Content.NPCs
                 case SquirrelSellType.SoldBySquirrel:
                     {
                         itemCollections[shopGroup].Add(item.type);
-                    } 
+                    }
                     break;
 
                 case SquirrelSellType.SomeMaterialsSold:
@@ -384,7 +384,7 @@ namespace Fargowiltas.Content.NPCs
                     if (item.stack >= 30)
                         modPlayer.ItemHasBeenOwnedAtThirtyStack[item.type] = true;
                 }
-                    
+
                 foreach (var item in player.bank.item)
                 {
                     if (SquirrelSells(item, out SquirrelSellType _) == SquirrelShopGroup.End)
@@ -393,7 +393,7 @@ namespace Fargowiltas.Content.NPCs
                     if (item.stack >= 30)
                         modPlayer.ItemHasBeenOwnedAtThirtyStack[item.type] = true;
                 }
-                   
+
                 foreach (var item in player.armor)
                 {
                     if (SquirrelSells(item, out SquirrelSellType _) == SquirrelShopGroup.End)
@@ -562,7 +562,7 @@ namespace Fargowiltas.Content.NPCs
             {
                 return true;
             }
-                    
+
 
             Rectangle frame = NPC.frame;
             SpriteEffects effects = NPC.spriteDirection < 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
@@ -615,15 +615,17 @@ namespace Fargowiltas.Content.NPCs
             int itemType = item.type;
             if (EventSacrifice(Main.LocalPlayer.HeldItem, out int consumeCount, false) || FargoSets.Items.SacrificeCount[itemType] > 0) // item sacrificable; do the sacrifice thing
             {
-                if (Main.LocalPlayer.CountItem(itemType, consumeCount + 1) >= consumeCount)
+                if (Main.LocalPlayer.CountItemHeld(itemType, consumeCount) >= consumeCount)
                 {
                     for (int consume = 0; consume < consumeCount; consume++)
-                        Main.LocalPlayer.ConsumeItem(itemType, includeVoidBag: true);
+                    {
+                        Main.LocalPlayer.ConsumeItemHeld(itemType);
 
-                    if (FargoSets.Items.SacrificeCount[itemType] > 0)
-                        FargoSets.Items.SacrificeCount[itemType]--;
+                        if (FargoSets.Items.SacrificeCount[itemType] > 0)
+                            FargoSets.Items.SacrificeCount[itemType]--;
+                    }
 
-                    Vector2 spawnPos = Main.MouseWorld;
+                    //Vector2 spawnPos = Main.MouseWorld;
                     //SoundEngine.PlaySound(a, spawnPos);
 
                     SoundEngine.PlaySound(SoundID.Item2, player.Center);
@@ -827,11 +829,11 @@ namespace Fargowiltas.Content.NPCs
                 ItemID.GolemFist, 1,
 
                 // oger
-                3852, 1, // tome of infinite wisdom
-                3854, 1, // phantom phoenix
-                3823, 1, // brand of the inferno
-                3835, 1, // sleepy octopod
-                3836, 1, // gassy glaive
+                ItemID.BookStaff, 1, // tome of infinite wisdom
+                ItemID.DD2PhoenixBow, 1, // phantom phoenix
+                ItemID.DD2SquireDemonSword, 1, // brand of the inferno
+                ItemID.MonkStaffT1, 1, // sleepy octopod
+                ItemID.MonkStaffT2, 1, // gassy glaive
 
                 // betsy
                 ItemID.DD2BetsyBow, 1, // aerial bane
@@ -840,10 +842,10 @@ namespace Fargowiltas.Content.NPCs
                 ItemID.ApprenticeStaffT3, 1, // betsy's wrath
 
                 // eol
-                4952, 1, // nightglow
+                ItemID.FairyQueenMagicItem, 1, // nightglow
                 ItemID.PiercingStarlight, 1,
                 ItemID.RainbowWhip, 1,
-                4953, 1, // eventide
+                ItemID.FairyQueenRangedItem, 1, // eventide
 
                 // duke
                 ItemID.Flairon, 1,

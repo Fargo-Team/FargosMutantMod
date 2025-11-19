@@ -68,7 +68,7 @@ namespace Fargowiltas.Content.UI
             BackPanel.BackgroundColor = new Color(29, 33, 70) * 0.7f;
             Append(BackPanel);
 
-            SearchBar = new UISearchBar(BackWidth - 8, 26);
+            SearchBar = new UISearchBar(BackWidth - 26, 26);
             SearchBar.Left.Set(4, 0f);
             SearchBar.Top.Set(6, 0f); // 6 so padding lines up
             BackPanel.Append(SearchBar);
@@ -83,8 +83,8 @@ namespace Fargowiltas.Content.UI
             BackPanel.Append(InnerPanel);
 
             CloseButton = new UICloseButton();
-            CloseButton.Left.Set(-18, 1f);
-            CloseButton.Top.Set(-2, 0);
+            CloseButton.Left.Set(-22, 1f);
+            CloseButton.Top.Set(0, 0);
             CloseButton.OnLeftClick += CloseButton_OnLeftClick;
             BackPanel.Append(CloseButton);
 

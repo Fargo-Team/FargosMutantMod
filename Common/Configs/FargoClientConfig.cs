@@ -30,9 +30,6 @@ namespace Fargowiltas.Common.Configs
         public bool ExactTooltips;
 
         [DefaultValue(true)]
-        public bool ColoredDamageTypes;
-
-        [DefaultValue(true)]
         public bool AnimatedRecipeGroups;
 
         [DefaultValue(0.75f)]

@@ -69,7 +69,6 @@ namespace Fargowiltas.Content.UI
             Vector2 position = style.Position();
             spriteBatch.Draw(outlineTexture, position, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0);
 
-            position += new Vector2(2);
             Rectangle frame = new(0, 0, 20, 20);
             if (hovered)
                 frame.X += 20;

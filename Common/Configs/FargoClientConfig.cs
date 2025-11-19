@@ -18,6 +18,9 @@ namespace Fargowiltas.Common.Configs
         [Header("$Mods.Fargowiltas.Configs.FargoClientConfig.Headers.UserInterface")]
 
         [DefaultValue(true)]
+        public bool AutoReforge;
+
+        [DefaultValue(true)]
         public bool ExpandedTooltips;
 
         [DefaultValue(false)]

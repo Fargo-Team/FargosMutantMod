@@ -293,6 +293,11 @@ Mods: {
 			FargoClientConfig: {
 				DisplayName: Client Config
 
+				AutoReforge: {
+					Label: "[s:Fargowiltas/Reforge] Automatic Reforge"
+					Tooltip: "Modifies goblin tinkerer's reforge menu"
+				}
+
 				ExpandedTooltips: {
 					Label: "[i:171] More tooltips indicate Mutant Mod changes"
 					Tooltip: ""
@@ -476,6 +481,9 @@ Mods: {
 			DisplayAll: Display All
 			DisplayEquipped: Display Active
 			NoToggles: No togglable effects equipped!
+			// Reforge UI
+			InsertText: Place an item here to reforge
+			ReforgeCost: Reforge Cost
 		}
 
 		MessageInfo: {

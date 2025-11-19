@@ -301,6 +301,11 @@ Mods: {
 			FargoClientConfig: {
 				DisplayName: 客户端配置
 
+				AutoReforge: {
+					// Label: "[s:Fargowiltas/Reforge] Enables automatic reforge UI"
+					// Tooltip: ""
+				}
+
 				ExpandedTooltips: {
 					Label: "[i:171] 更多说明模组改动的物品信息"
 					Tooltip: ""
@@ -484,6 +489,9 @@ Mods: {
 			// DisplayAll: Display All
 			// DisplayEquipped: Display Active
 			// NoToggles: No togglable effects equipped!
+			// Reforge UI
+			// InsertText: Place an item here to reforge
+			// ReforgeCost: Reforge Cost
 		}
 
 		MessageInfo: {

@@ -297,6 +297,11 @@ Mods: {
 			FargoClientConfig: {
 				DisplayName: Конфигурации: сторона клиента
 
+				AutoReforge: {
+					// Label: "[s:Fargowiltas/Reforge] Enables automatic reforge UI"
+					// Tooltip: ""
+				}
+
 				ExpandedTooltips: {
 					Label: "[i:171] Больше описаний об изменениях мода Mutant"
 					Tooltip: ""
@@ -480,6 +485,9 @@ Mods: {
 			DisplayAll: Показать все
 			DisplayEquipped: Показать доступные
 			NoToggles: Переключать нечего!
+			// Reforge UI
+			// InsertText: Place an item here to reforge
+			// ReforgeCost: Reforge Cost
 		}
 
 		MessageInfo: {

@@ -293,6 +293,11 @@ Mods: {
 			FargoClientConfig: {
 				DisplayName: Configuração de Cliente
 
+				AutoReforge: {
+					// Label: "[s:Fargowiltas/Reforge] Enables automatic reforge UI"
+					// Tooltip: ""
+				}
+
 				ExpandedTooltips: {
 					Label: "[i:171] Descrições de itens indicam mudanças do Fargo Mutant"
 					Tooltip: ""
@@ -476,6 +481,9 @@ Mods: {
 			// DisplayAll: Display All
 			// DisplayEquipped: Display Active
 			// NoToggles: No togglable effects equipped!
+			// Reforge UI
+			// InsertText: Place an item here to reforge
+			// ReforgeCost: Reforge Cost
 		}
 
 		MessageInfo: {

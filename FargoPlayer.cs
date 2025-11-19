@@ -81,8 +81,9 @@ namespace Fargowiltas
 
         public int DeathCamTimer = 0;
         public int SpectatePlayer = 0;
-
+#pragma warning disable CS8632
         public Fruit? grabbedFruit = null;
+#pragma warning restore CS8632
         public Vector2 LastInteractedChizard = Vector2.Zero;
 
         private readonly string[] tags =

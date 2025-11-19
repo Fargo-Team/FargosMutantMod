@@ -18,7 +18,7 @@ namespace Fargowiltas
     {
         public static readonly BindingFlags UniversalBindingFlags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public;
 
-        public static bool EternityMode => Fargowiltas.ModLoaded["FargowiltasSouls"] && (bool) ModLoader.GetMod("FargowiltasSouls").Call("EternityMode");
+        public static bool EternityMode => Fargowiltas.ModLoaded["FargowiltasSouls"] && (bool)ModLoader.GetMod("FargowiltasSouls").Call("EternityMode");
         public static bool HasAnyItem(this Player player, params int[] itemIDs) => itemIDs.Any(itemID => player.HasItem(itemID));
 
         public static bool ActuallyNight => !Main.dayTime || Main.remixWorld;
@@ -125,6 +125,38 @@ namespace Fargowiltas
         public static bool AnyBossAlive()
         {
             return Main.npc.Any(npc => npc.active && (npc.boss || npc.type == NPCID.EaterofWorldsHead || npc.type == NPCID.DD2Betsy));
+        }
+
+        public static int CountItemHeld(this Player player, int type)
+        {
+            if (player.selectedItem == 58) // Cursor
+                return 0;
+
+            Item item = player.inventory[player.selectedItem];
+            if (item != null && item.stack > 0 && item.type == type)
+                return item.stack;
+
+            return 0;
+        }
+
+        public static bool ConsumeItemHeld(this Player player, int type)
+        {
+            if (player.selectedItem == 58) // Cursor
+                return false;
+
+            Item item = player.inventory[player.selectedItem];
+            if (item != null && item.stack > 0 && item.type == type)
+            {
+                if (ItemLoader.ConsumeItem(item, player))
+                    item.stack--;
+
+                if (item.stack <= 0)
+                    item.SetDefaults();
+
+                return true;
+            }
+
+            return false;
         }
 
         #region tiles

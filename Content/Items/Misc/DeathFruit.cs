@@ -72,10 +72,10 @@ namespace Fargowiltas.Content.Items.Misc
                 }
                 else
                 {
-                    int amount = Math.Min(player.ConsumedLifeFruit, player.CountItem(Type));
+                    int amount = Math.Min(player.ConsumedLifeFruit, player.CountItemHeld(Type));
                     for (int i = 1; i < amount; i++)
                     {
-                        player.ConsumeItem(Type);
+                        player.ConsumeItemHeld(Type);
                     }
                     player.ConsumedLifeFruit -= amount;
                 }

@@ -294,8 +294,8 @@ Mods: {
 				DisplayName: Configuração de Cliente
 
 				AutoReforge: {
-					// Label: "[s:Fargowiltas/Reforge] Enables automatic reforge UI"
-					// Tooltip: ""
+					// Label: "[s:Fargowiltas/Reforge] Automatic Reforge"
+					// Tooltip: Modifies goblin tinkerer's reforge menu
 				}
 
 				ExpandedTooltips: {

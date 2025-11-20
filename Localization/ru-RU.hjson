@@ -298,7 +298,7 @@ Mods: {
 				DisplayName: Конфигурации: сторона клиента
 
 				AutoReforge: {
-					// Label: "[s:Fargowiltas/Reforge] Enables automatic reforge UI"
+					Label: "[s:Fargowiltas/Reforge] Интерфейс автоматических перековок"
 					// Tooltip: ""
 				}
 
@@ -486,8 +486,8 @@ Mods: {
 			DisplayEquipped: Показать доступные
 			NoToggles: Переключать нечего!
 			// Reforge UI
-			// InsertText: Place an item here to reforge
-			// ReforgeCost: Reforge Cost
+			InsertText: Поместите предмет сюда для перековки
+			ReforgeCost: Стоимость перековки
 		}
 
 		MessageInfo: {

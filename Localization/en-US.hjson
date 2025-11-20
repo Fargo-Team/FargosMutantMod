@@ -295,7 +295,7 @@ Mods: {
 
 				AutoReforge: {
 					Label: "[s:Fargowiltas/Reforge] Automatic Reforge"
-					Tooltip: "Modifies goblin tinkerer's reforge menu"
+					Tooltip: Modifies goblin tinkerer's reforge menu
 				}
 
 				ExpandedTooltips: {

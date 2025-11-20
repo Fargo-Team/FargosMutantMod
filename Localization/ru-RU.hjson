@@ -299,7 +299,7 @@ Mods: {
 
 				AutoReforge: {
 					Label: "[s:Fargowiltas/Reforge] Интерфейс автоматических перековок"
-					// Tooltip: ""
+					// Tooltip: Modifies goblin tinkerer's reforge menu
 				}
 
 				ExpandedTooltips: {

@@ -298,8 +298,8 @@ Mods: {
 				DisplayName: Конфигурации: сторона клиента
 
 				AutoReforge: {
-					Label: "[s:Fargowiltas/Reforge] Интерфейс автоматических перековок"
-					// Tooltip: Modifies goblin tinkerer's reforge menu
+					Label: "[s:Fargowiltas/Reforge] Автоматическая перековка"
+					Tooltip: Изменяет меню перековок гоблина-изобретателя
 				}
 
 				ExpandedTooltips: {

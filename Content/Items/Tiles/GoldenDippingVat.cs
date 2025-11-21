@@ -57,6 +57,7 @@ namespace Fargowiltas.Content.Items.Tiles
                 .AddIngredient(critterID)
                 .AddIngredient(ItemID.GoldDust, 100)
                 .AddTile(ModContent.TileType<GoldenDippingVatSheet>())
+                .DisableDecraft()
                 .Register();
         }
 
@@ -66,6 +67,7 @@ namespace Fargowiltas.Content.Items.Tiles
                 .AddRecipeGroup(critterGroup)
                 .AddIngredient(ItemID.GoldDust, 100)
                 .AddTile(ModContent.TileType<GoldenDippingVatSheet>())
+                .DisableDecraft()
                 .Register();
         }
     }

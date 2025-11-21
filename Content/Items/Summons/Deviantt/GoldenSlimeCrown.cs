@@ -20,6 +20,7 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
                 .AddIngredient(ModContent.ItemType<PinkSlimeCrown>())
                 .AddIngredient(ItemID.GoldDust, 999)
                 .AddTile(ModContent.TileType<GoldenDippingVatSheet>())
+                .DisableDecraft()
                 .Register();
         }
     }

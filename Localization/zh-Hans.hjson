@@ -321,11 +321,6 @@ Mods: {
 					// Tooltip: ""
 				}
 
-				HideBuffTray: {
-					// Label: "[i:292] Hide unlimited buffs in tray"
-					// Tooltip: ""
-				}
-
 				DoubleTapDashDisabled: {
 					Label: "[i:3097] 禁用双击冲刺"
 					Tooltip: 禁用后双击方向键无法再触发冲刺。无论此配置开或关，单独设置的冲刺键都不会受到影响。

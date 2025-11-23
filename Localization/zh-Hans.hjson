@@ -323,7 +323,7 @@ Mods: {
 
 				HideBuffTray: {
 					// Label: "[i:292] Hide unlimited buffs in tray"
-					// Tooltip: Toggle this with the button on the left side of your inventory!
+					// Tooltip: ""
 				}
 
 				DoubleTapDashDisabled: {

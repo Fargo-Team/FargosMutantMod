@@ -102,8 +102,8 @@ namespace Fargowiltas.Content.UI
 
             closeButton = new();
             closeButton.OnLeftClick += CloseButton_OnLeftClick;
-            closeButton.Left.Set(-8, 1);
-            closeButton.Top.Set(0, 0);
+            closeButton.Left.Set(-11, 1);
+            closeButton.Top.Set(-12, 0);
 
             selectText = new UIPanel[5];
             ItemShow = new UIText[5];

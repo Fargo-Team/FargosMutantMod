@@ -313,11 +313,6 @@ Mods: {
 					// Tooltip: ""
 				}
 
-				HideBuffTray: {
-					// Label: "[i:292] Hide unlimited buffs in tray"
-					// Tooltip: ""
-				}
-
 				DoubleTapDashDisabled: {
 					Label: "[i:3097] Desabilita toque duplo para corridas"
 					Tooltip: Impede que corridas sejam feitas com o toque duplo normal. O botão de corrida está disponível independente dessa configuração.

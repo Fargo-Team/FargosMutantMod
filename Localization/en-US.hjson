@@ -313,11 +313,6 @@ Mods: {
 					Tooltip: ""
 				}
 
-				HideBuffTray: {
-					Label: "[i:292] Hide unlimited buffs in tray"
-					Tooltip: Toggle this with the button on the left side of your inventory!
-				}
-
 				DoubleTapDashDisabled: {
 					Label: "[i:3097] Disable double-tap for dashes"
 					Tooltip: Prevent dashes from using the normal double-tap keybind. The Dash key is available regardless of this config.
@@ -375,7 +370,7 @@ Mods: {
 
 				HideUnlimitedBuffs: {
 					Label: "[i:292] Hide unlimited buffs in tray"
-					Tooltip: Toggle this with the button on the left side of your inventory!
+					Tooltip: ""
 				}
 			}
 

@@ -264,6 +264,7 @@ namespace Fargowiltas.Common.Systems
             Main.playerInventory = true;
             Main.npcChatText = "";
             SoundEngine.PlaySound(SoundID.MenuTick);
+            OnInitialize();
         }
 
         public override void OnClose()
@@ -354,11 +355,13 @@ namespace Fargowiltas.Common.Systems
 
         public override void OnInitialize()
         {
+            RemoveAllChildren();
+
             BackPanel = new UIPanel();
             BackPanel.Top.Set(0, 0.5f);
             BackPanel.Left.Set(0, 0.1f);
-            BackPanel.Width.Set(0, 0.2f);
-            BackPanel.Height.Set(0, 0.2f);
+            BackPanel.Width.Set(0, 0.2f * Main.UIScale);
+            BackPanel.Height.Set(0, 0.2f * Main.UIScale);
             Append(BackPanel);
 
             ItemSlotPanel = new ItemSlotUI();
@@ -368,6 +371,8 @@ namespace Fargowiltas.Common.Systems
             ItemSlotPanel.Height.Set(52, 0);
             ItemSlotPanel.OnItemSwap = ItemSwap;
             Append(ItemSlotPanel);
+
+            OnActivate();
         }
 
         private string GetLocalText(string key) => Language.GetTextValue($"Mods.Fargowiltas.UI.{key}");

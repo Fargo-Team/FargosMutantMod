@@ -48,7 +48,7 @@ namespace Fargowiltas.Content.NPCs
         public override void SetDefaults(NPC npc)
         {
             const int k = 1000;
-            const int m = k * k;
+            //const int m = k * k;
             int baseHealth = 18 * k;
             int baseHealthHM = 48 * k;
             bool validBoss = true;

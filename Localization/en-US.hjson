@@ -455,6 +455,7 @@ Mods: {
 			MeleeDamage: Melee Damage: {0}%
 			MeleeCritical: Melee Critical: {0}%
 			MeleeSpeed: Melee Speed: {0}%
+			MeleeSize: Melee Size: {0}%
 			RangedDamage: Ranged Damage: {0}%
 			RangedCritical: Ranged Critical: {0}%
 			MagicDamage: Magic Damage: {0}%
@@ -463,24 +464,31 @@ Mods: {
 			SummonDamage: Summon Damage: {0}%
 			SummonCritical: Summon Critical: {0}%
 			MaxMinions: Max Minions: {0}
+			WhipSpeed: Whip Speed: {0}%
+			WhipLength: Whip Length: {0}%
 			MaxSentries: Max Sentries: {0}
-			ArmorPenetration: Armor Penetration: {0}
-			Aggro: Aggro: {0}
 			Life: Life: {0}
-			LifeRegen: Life Regen: {0}/sec
 			Mana: Mana: {0}
+			LifeRegen: Life Regen: {0}/sec
 			ManaRegen: Mana Regen: {0}/sec
 			Defense: Defense: {0}
 			DRCap: " (cap {0}%)"
 			DamageReduction: Damage Reduction: {0}%
+			KnockbackImmunity: Knockback Immunity: {0}
+			Aggro: Aggro: {0}
+			AttackSpeed: Attack Speed: {0}%
+			ArmorPenetration: Armor Penetration: {0}
+			MovementSpeed: Movement Speed: {0}%
+			MaxSpeed: Max Speed: {0} mph
+			Acceleration: Acceleration: {0}%
+			Deceleration: Deceleration: {0}%
+			ExtraPlacementRange: Extra Placement Range: {0}
 			MiningSpeed: Mining Speed: {0}%
 			Luck: Luck: {0}
 			FishingQuests: Fishing Quests: {0}
 			BattleCry: Battle Cry: {0}
 			// Battle & Calming are in Items.BattleCry
 			BattleCryNone: None
-			MaxSpeed: Max Speed: {0} mph
-			AttackSpeed: Attack Speed: {0}%
 			WingNull: ???
 			WingTime: Wing Time: {0}
 			WingTimeMoreThan60Sec: Yes

@@ -459,6 +459,7 @@ Mods: {
 			MeleeDamage: Ближний урон: {0}%
 			MeleeCritical: Ближний шанс крит. удара: {0}%
 			MeleeSpeed: Ближняя скорость: {0}%
+			// MeleeSize: Melee Size: {0}%
 			RangedDamage: Стрелковый урон: {0}%
 			RangedCritical: Стрелковый шанс крит. удара: {0}%
 			MagicDamage: Магический урон: {0}%
@@ -467,24 +468,31 @@ Mods: {
 			SummonDamage: Призывательный урон: {0}%
 			SummonCritical: Призывательный шанс крит. удара: {0}%
 			MaxMinions: Макс. миньоны: {0}
+			// WhipSpeed: Whip Speed: {0}%
+			// WhipLength: Whip Length: {0}%
 			MaxSentries: Макс. стражи: {0}
-			ArmorPenetration: Пробивание брони: {0}
-			Aggro: Агро: {0}
 			Life: Жизнь: {0}
-			LifeRegen: Восст. здоровья: {0}/сек
 			Mana: Мана: {0}
+			LifeRegen: Восст. здоровья: {0}/сек
 			ManaRegen: Восст. маны: {0}/сек
 			Defense: Защиты: {0}
 			DRCap: " (предел {0}%)"
 			DamageReduction: Сопротивление урону: {0}%
+			// KnockbackImmunity: Knockback Immunity: {0}
+			Aggro: Агро: {0}
+			AttackSpeed: Скорость атаки: {0}%
+			ArmorPenetration: Пробивание брони: {0}
+			// MovementSpeed: Movement Speed: {0}%
+			MaxSpeed: Макс. скорость: {0} миль в час
+			// Acceleration: Acceleration: {0}%
+			// Deceleration: Deceleration: {0}%
+			// ExtraPlacementRange: Extra Placement Range: {0}
 			MiningSpeed: Скорость добычи: {0}%
 			Luck: Удача: {0}
 			FishingQuests: Задания рыбака: {0}
 			BattleCry: Боевой клич: {0}
 			// Battle & Calming are in Items.BattleCry
 			BattleCryNone: Выкл.
-			MaxSpeed: Макс. скорость: {0} миль в час
-			AttackSpeed: Скорость атаки: {0}%
 			WingNull: ???
 			WingTime: Время полёта: {0}
 			WingTimeMoreThan60Sec: Да

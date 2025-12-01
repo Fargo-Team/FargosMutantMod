@@ -237,7 +237,7 @@ namespace Fargowiltas
             pot.stack -= 1;
 
             if (pot.stack <= 0)
-                pot.SetDefaults(0, false);
+                pot.SetDefaults(ItemID.None, false);
         }
 
         private static void DisableTombstones(Terraria.On_Player.orig_DropTombstone orig, Player self, long coinsOwned, NetworkText deathText, int hitDirection)

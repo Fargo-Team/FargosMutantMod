@@ -30,7 +30,7 @@ namespace Fargowiltas
                 MonoModHooks.DumpIL(ModContent.GetInstance<Fargowiltas>(), context);
                 return;
             }
-            cursor.EmitDelegate(() => !FargoClientConfig.Instance.DisableAllScopeView);
+            cursor.EmitDelegate(() => FargoClientConfig.Instance.DisableAllScopeView == ScopedBinocularViews.AllEnabled);
             cursor.EmitAnd();
 
             if (!cursor.TryGotoNext(MoveType.After, i => i.MatchLdcI4(Convert.ToInt32(0x4E6)))) // ItemID.SniperRifle : 1254
@@ -39,7 +39,7 @@ namespace Fargowiltas
                 MonoModHooks.DumpIL(ModContent.GetInstance<Fargowiltas>(), context);
                 return;
             }
-            cursor.EmitDelegate((int targetValue) => !FargoClientConfig.Instance.DisableSniperRifleView ? -1 : targetValue);
+            cursor.EmitDelegate((int targetValue) => FargoClientConfig.Instance.DisableAllScopeView is ScopedBinocularViews.AllDisabled or ScopedBinocularViews.SniperRifleScopeDisabled ? -1 : targetValue);
 
             if (!cursor.TryGotoNext(MoveType.After, i => i.MatchLdfld<Player>("scope")))
             {
@@ -47,7 +47,7 @@ namespace Fargowiltas
                 MonoModHooks.DumpIL(ModContent.GetInstance<Fargowiltas>(), context);
                 return;
             }
-            cursor.EmitDelegate(() => !FargoClientConfig.Instance.DisableRifleScopeAccessoryView);
+            cursor.EmitDelegate(() => FargoClientConfig.Instance.DisableAllScopeView is ScopedBinocularViews.AllEnabled or ScopedBinocularViews.SniperRifleScopeDisabled);
             cursor.EmitAnd();
 
             if (!cursor.TryGotoNext(MoveType.After, i => i.MatchLdsfld<Main>("mouseRight")))
@@ -56,7 +56,7 @@ namespace Fargowiltas
                 MonoModHooks.DumpIL(ModContent.GetInstance<Fargowiltas>(), context);
                 return;
             }
-            cursor.EmitDelegate(() => !FargoClientConfig.Instance.DisableAllScopeView);
+            cursor.EmitDelegate(() => FargoClientConfig.Instance.DisableAllScopeView == ScopedBinocularViews.AllEnabled);
             cursor.EmitAnd();
 
             if (!cursor.TryGotoNext(MoveType.After, i => i.MatchLdsfld<Main>("mouseRight")))
@@ -65,7 +65,7 @@ namespace Fargowiltas
                 MonoModHooks.DumpIL(ModContent.GetInstance<Fargowiltas>(), context);
                 return;
             }
-            cursor.EmitDelegate(() => !FargoClientConfig.Instance.DisableSniperRifleView);
+            cursor.EmitDelegate(() => FargoClientConfig.Instance.DisableAllScopeView is ScopedBinocularViews.AllEnabled or ScopedBinocularViews.RifleScopeAccessoryDisabled);
             cursor.EmitAnd();
 
             if (!cursor.TryGotoNext(MoveType.After, i => i.MatchLdsfld<Main>("mouseRight")))
@@ -74,7 +74,7 @@ namespace Fargowiltas
                 MonoModHooks.DumpIL(ModContent.GetInstance<Fargowiltas>(), context);
                 return;
             }
-            cursor.EmitDelegate(() => !FargoClientConfig.Instance.DisableRifleScopeAccessoryView);
+            cursor.EmitDelegate(() => FargoClientConfig.Instance.DisableAllScopeView is ScopedBinocularViews.AllEnabled or ScopedBinocularViews.SniperRifleScopeDisabled);
             cursor.EmitAnd();
         }
     }

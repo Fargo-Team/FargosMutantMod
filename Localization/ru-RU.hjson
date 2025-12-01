@@ -358,8 +358,8 @@ Mods: {
 				}
 
 				DisableAllScopeView: {
-					// Label: "[i:RifleScope][i:SniperRifle] Disable All Scoped Binocular Views"
-					// Tooltip: Disables the Rifle Scope and Sniper Rifle binocular views
+					// Label: "[i:RifleScope][i:SniperRifle] Toggle All Scoped Binocular Views"
+					// Tooltip: Allows toggling Scoped Binocular Views
 				}
 
 				Headers: {
@@ -375,16 +375,6 @@ Mods: {
 				HideUnlimitedBuffs: {
 					Label: "[i:292] Прятать бесконечные баффы из списка"
 					Tooltip: ""
-				}
-
-				DisableSniperRifleView: {
-					// Label: "[i:SniperRifle] Disable Sniper Rifle Binocular View"
-					// Tooltip: Disables the Sniper Rifle binocular view
-				}
-
-				DisableRifleScopeAccessoryView: {
-					// Label: "[i:RifleScope] Disable Rifle Scope Binocular View"
-					// Tooltip: Disables the Rifle Scope binocular view
 				}
 			}
 
@@ -408,6 +398,30 @@ Mods: {
 			}
 
 			Common.CanSpawn: может приходить
+
+			ScopedBinocularViews: {
+				// Tooltip: Scoped Binocular Views
+
+				AllDisabled: {
+					// Label: All Disabled
+					// Tooltip: Disables the Rifle Scope and Sniper Rifle binocular views
+				}
+
+				RifleScopeAccessoryDisabled: {
+					// Label: Rifle Scope
+					// Tooltip: Disables the Rifle Scope binocular view
+				}
+
+				SniperRifleScopeDisabled: {
+					// Label: Sniper Rifle
+					// Tooltip: Disables the Sniper Rifle binocular view
+				}
+
+				AllEnabled: {
+					// Label: All Enabled
+					// Tooltip: Does not change scoped binocular view behaviour
+				}
+			}
 		}
 
 		RecipeGroups: {

@@ -388,12 +388,12 @@ namespace Fargowiltas.Content.Items
                 }
             }
 
-            if (FargoClientConfig.Instance.DisableSniperRifleView && item.type == ItemID.SniperRifle)
+            if (FargoClientConfig.Instance.DisableAllScopeView is ScopedBinocularViews.AllDisabled or ScopedBinocularViews.SniperRifleScopeDisabled && item.type == ItemID.SniperRifle)
             {
                 TooltipLine line = new(Mod, "TooltipSniperRifleScopeView", $"[i:RifleScope] [c/AAAAAA:{ExpandedTooltipLoc("ScopeViewToggle")}]");
                 tooltips.Add(line);
             }
-            if (FargoClientConfig.Instance.DisableRifleScopeAccessoryView && item.type is ItemID.RifleScope or ItemID.SniperScope or ItemID.ReconScope)
+            if (FargoClientConfig.Instance.DisableAllScopeView is ScopedBinocularViews.AllDisabled or ScopedBinocularViews.RifleScopeAccessoryDisabled && item.type is ItemID.RifleScope or ItemID.SniperScope or ItemID.ReconScope)
             {
                 TooltipLine line = new(Mod, "TooltipRifleScopeView", $"[i:RifleScope] [c/AAAAAA:{ExpandedTooltipLoc("ScopeViewToggle")}]");
                 tooltips.Add(line);

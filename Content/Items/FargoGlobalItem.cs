@@ -388,18 +388,15 @@ namespace Fargowiltas.Content.Items
                 }
             }
 
-            if (FargoClientConfig.Instance.DisableScopeView && item.type is ItemID.SniperRifle or ItemID.RifleScope or ItemID.SniperScope or ItemID.ReconScope)
+            if (FargoClientConfig.Instance.DisableSniperRifleView && item.type == ItemID.SniperRifle)
             {
-                if (item.type is ItemID.SniperRifle)
-                {
-                    TooltipLine line = new TooltipLine(Mod, "TooltipSniperRifleBinocular", $"[i:1300] [c/AAAAAA:{ExpandedTooltipLoc("SniperRifleBinocularToggle")}]");
-                    tooltips.Add(line);
-                }
-                if (item.type is ItemID.RifleScope or ItemID.SniperScope or ItemID.ReconScope)
-                {
-                    TooltipLine line = new TooltipLine(Mod, "TooltipRifleScopeBinocular", $"[i:1300] [c/AAAAAA:{ExpandedTooltipLoc("RifleScopeBinocularToggle")}]");
-                    tooltips.Add(line);
-                }
+                TooltipLine line = new(Mod, "TooltipSniperRifleScopeView", $"[i:RifleScope] [c/AAAAAA:{ExpandedTooltipLoc("ScopeViewToggle")}]");
+                tooltips.Add(line);
+            }
+            if (FargoClientConfig.Instance.DisableRifleScopeAccessoryView && item.type is ItemID.RifleScope or ItemID.SniperScope or ItemID.ReconScope)
+            {
+                TooltipLine line = new(Mod, "TooltipRifleScopeView", $"[i:RifleScope] [c/AAAAAA:{ExpandedTooltipLoc("ScopeViewToggle")}]");
+                tooltips.Add(line);
             }
         }
 
@@ -648,16 +645,6 @@ namespace Fargowiltas.Content.Items
                         player.armor[i].SetDefaults(itemId, false);
                         break;
                     }
-                }
-            }
-            if (player == Main.LocalPlayer)
-            {
-                FargoPlayer p = player.FargoMutant();
-                bool scopeConfig = FargoClientConfig.Instance.DisableScopeView;
-
-                if (item.type is ItemID.RifleScope or ItemID.SniperScope or ItemID.ReconScope && hideVisual && scopeConfig)
-                {
-                    p.ScopeAccessoryHidden = true;
                 }
             }
         }

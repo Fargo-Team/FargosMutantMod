@@ -58,7 +58,23 @@ namespace Fargowiltas.Common.Configs
         public bool MultiplayerDeathSpectate;
 
         [DefaultValue(true)]
-        public bool DisableScopeView;
+        public bool DisableAllScopeView
+        {
+            get
+            {
+                return DisableSniperRifleView && DisableRifleScopeAccessoryView;
+            }
+            set
+            {
+                DisableSniperRifleView = value;
+                DisableRifleScopeAccessoryView = value;
+            }
+        }
+        [DefaultValue(true)]
+        public bool DisableSniperRifleView;
+
+        [DefaultValue(true)]
+        public bool DisableRifleScopeAccessoryView;
 
         [DefaultValue(1f)]
         [Slider]

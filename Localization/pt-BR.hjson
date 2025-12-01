@@ -353,9 +353,9 @@ Mods: {
 					Tooltip: ""
 				}
 
-				DisableScopeView: {
-					// Label: "[i:1300] Rifle Scope Binocular Vision Toggle"
-					// Tooltip: Allows the toggling of the Rifle Scope's binocular vision while its visibility is hidden, and disables it on Sniper Rifle
+				DisableAllScopeView: {
+					// Label: "[i:RifleScope][i:SniperRifle] Disable All Scoped Binocular Views"
+					// Tooltip: Disables the Rifle Scope and Sniper Rifle binocular views
 				}
 
 				Headers: {
@@ -371,6 +371,16 @@ Mods: {
 				HideUnlimitedBuffs: {
 					Label: "[i:292] Esconder buffs permanentes"
 					Tooltip: ""
+				}
+
+				DisableSniperRifleView: {
+					// Label: "[i:SniperRifle] Disable Sniper Rifle Binocular View"
+					// Tooltip: Disables the Sniper Rifle binocular view
+				}
+
+				DisableRifleScopeAccessoryView: {
+					// Label: "[i:RifleScope] Disable Rifle Scope Binocular View"
+					// Tooltip: Disables the Rifle Scope binocular view
 				}
 			}
 
@@ -1010,16 +1020,6 @@ Mods: {
 			WeatherBalloon: {
 				DisplayName: Balão Meteorológico
 				Tooltip: Começa a chuva
-			}
-
-			CelestialSigil2: {
-				DisplayName: Celestiamente Sigilo
-				Tooltip: Invoca o Senhor da Lua instantaneamente
-			}
-
-			DeerThing2: {
-				DisplayName: Caveira de Cervo Incomum
-				Tooltip: Invoca a Cervoclope em qualquer bioma
 			}
 
 			AmalgamatedSkull: {
@@ -2921,8 +2921,7 @@ Mods: {
 			// SacrificeEvent: Feed to the Squirrel for a special event
 			// SacrificeEventPlural: Feed {0} to the Squirrel for a special event
 			// EnchantedTreeDupable: Can be duplicated with Enchanted Tree
-			// RifleScopeBinocularToggle: Binocular vision disabled while accessory visibility is hidden
-			// SniperRifleBinocularToggle: Binocular vision disabled
+			// ScopeViewToggle: Binocular vision disabled
 			// Shimmerable: Shimmerable into
 			// ShimmerableFrom: Shimmerable from
 			// ShimmerableBoth: Shimmerable from and into

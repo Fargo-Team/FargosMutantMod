@@ -353,9 +353,9 @@ Mods: {
 					Tooltip: ""
 				}
 
-				DisableScopeView: {
-					Label: "[i:1300] Rifle Scope Binocular Vision Toggle"
-					Tooltip: Allows the toggling of the Rifle Scope's binocular vision while its visibility is hidden, and disables it on Sniper Rifle
+				DisableAllScopeView: {
+					Label: "[i:RifleScope][i:SniperRifle] Toggle All Scoped Binocular Views"
+					Tooltip: Allows toggling Scoped Binocular Views
 				}
 
 				Headers: {
@@ -394,6 +394,30 @@ Mods: {
 			}
 
 			Common.CanSpawn: Can Spawn
+
+			ScopedBinocularViews: {
+				Tooltip: Scoped Binocular Views
+
+				AllDisabled: {
+					Label: All Disabled
+					Tooltip: Disables the Rifle Scope and Sniper Rifle binocular views
+				}
+
+				RifleScopeAccessoryDisabled: {
+					Label: Rifle Scope
+					Tooltip: Disables the Rifle Scope binocular view
+				}
+
+				SniperRifleScopeDisabled: {
+					Label: Sniper Rifle
+					Tooltip: Disables the Sniper Rifle binocular view
+				}
+
+				AllEnabled: {
+					Label: All Enabled
+					Tooltip: Does not change scoped binocular view behaviour
+				}
+			}
 		}
 
 		RecipeGroups: {
@@ -1010,16 +1034,6 @@ Mods: {
 			WeatherBalloon: {
 				DisplayName: Weather Balloon
 				Tooltip: Starts the Rain
-			}
-
-			CelestialSigil2: {
-				DisplayName: Celestially Sigil
-				Tooltip: Summons the Moon Lord instantly
-			}
-
-			DeerThing2: {
-				DisplayName: Unusual Deer Skull
-				Tooltip: Summons Deerclops in any biome
 			}
 
 			AmalgamatedSkull: {
@@ -2921,8 +2935,7 @@ Mods: {
 			SacrificeEvent: Feed to the Squirrel for a special event
 			SacrificeEventPlural: Feed {0} to the Squirrel for a special event
 			EnchantedTreeDupable: Can be duplicated with Enchanted Tree
-			RifleScopeBinocularToggle: Binocular vision disabled while accessory visibility is hidden
-			SniperRifleBinocularToggle: Binocular vision disabled
+			ScopeViewToggle: Binocular vision disabled
 			Shimmerable: Shimmerable into
 			ShimmerableFrom: Shimmerable from
 			ShimmerableBoth: Shimmerable from and into

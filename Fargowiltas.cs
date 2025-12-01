@@ -206,8 +206,6 @@ namespace Fargowiltas
             On_Main.DoUpdateInWorld += UpdateEnchantedTreeFruit;
             On_Main.DrawPlayers_AfterProjectiles += DrawEnchantedTrees;
 
-            On_Main.DoDraw_UpdateCameraPosition += ScopeBinocularToggle;
-
             On_Item.GetShimmered += FixRecipeGroupsShimmerInteraction;
 
             On_Player.GetAnglerReward_Bait += AnglerPitty;
@@ -329,8 +327,6 @@ namespace Fargowiltas
 
             On_Main.DoUpdateInWorld -= UpdateEnchantedTreeFruit;
             On_Main.DrawPlayers_AfterProjectiles -= DrawEnchantedTrees;
-
-            On_Main.DoDraw_UpdateCameraPosition -= ScopeBinocularToggle;
 
             On_Item.GetShimmered -= FixRecipeGroupsShimmerInteraction;
 
@@ -1263,32 +1259,6 @@ namespace Fargowiltas
         {
             orig(self, sw);
             EnchantedTreeTileEntity.UpdateEnchantedTrees();
-        }
-
-        private static void ScopeBinocularToggle(On_Main.orig_DoDraw_UpdateCameraPosition orig)
-        {
-            bool scopeCheck = false;
-            var p = Main.LocalPlayer;
-            bool config = FargoClientConfig.Instance.DisableScopeView;
-
-            if (Main.myPlayer >= 0 && Main.myPlayer < 255 && p.active && !p.dead && p.HeldItem != null && p.HeldItem.useAmmo > AmmoID.None && p.scope && Main.mouseRight && config)
-            {
-                int[] ammo = [AmmoID.Bullet, AmmoID.CandyCorn, AmmoID.Stake, AmmoID.Gel, AmmoID.Solution];
-
-                if ((p.FargoMutant().ScopeAccessoryHidden && ammo.Contains(p.HeldItem.useAmmo)) || p.HeldItem.type == ItemID.SniperRifle)
-                {
-                    scopeCheck = Main.mouseRight;
-                    Main.mouseRight = false;
-                }
-            }
-
-            orig();
-
-            if (scopeCheck)
-            {
-                Main.mouseRight = true;
-                p.FargoMutant().ScopeAccessoryHidden = false;
-            }
         }
 
         private void FixRecipeGroupsShimmerInteraction(On_Item.orig_GetShimmered orig, Item self)

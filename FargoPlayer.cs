@@ -71,7 +71,6 @@ namespace Fargowiltas
         public float AutoSummonCap;
         public static MethodInfo AutoSummonShootMethod;
 
-        public bool ScopeAccessoryHidden; // Rifle Scope, Sniper Scope, Recon Scope
         public int StationSoundCooldown;
 
         internal Dictionary<string, bool> FirstDyeIngredients = [];

@@ -455,6 +455,7 @@ Mods: {
 			MeleeDamage: Dano físico: {0}%
 			MeleeCritical: Crítico físico: {0}%
 			MeleeSpeed: Velocidade física: {0}%
+			// MeleeSize: Melee Size: {0}%
 			RangedDamage: Dano à distância: {0}%
 			RangedCritical: Crítico à distância: {0}%
 			MagicDamage: Dano de magia: {0}%
@@ -463,24 +464,31 @@ Mods: {
 			SummonDamage: Dano de invocação: {0}%
 			SummonCritical: Crítico de Invocação: {0}%
 			MaxMinions: Lacaios máximos: {0}
+			// WhipSpeed: Whip Speed: {0}%
+			// WhipLength: Whip Length: {0}%
 			MaxSentries: Sentinelas máximas: {0}
-			ArmorPenetration: Perfuração de Blindagem: {0}
-			Aggro: Agressividade: {0}
 			Life: Vida: {0}
-			LifeRegen: Regeneração de Vida: {0}/sec
 			Mana: Mana: {0}
+			LifeRegen: Regeneração de Vida: {0}/sec
 			ManaRegen: Regeneração de Mana: {0}/sec
 			Defense: Defesa: {0}
 			DRCap: " (Limite {0}%)"
 			DamageReduction: Redução de Dano: {0}%{1}
+			// KnockbackImmunity: Knockback Immunity: {0}
+			Aggro: Agressividade: {0}
+			AttackSpeed: Velocidade de ataque: {0}%
+			ArmorPenetration: Perfuração de Blindagem: {0}
+			// MovementSpeed: Movement Speed: {0}%
+			MaxSpeed: Velocidade máxima: {0} mph
+			// Acceleration: Acceleration: {0}%
+			// Deceleration: Deceleration: {0}%
+			// ExtraPlacementRange: Extra Placement Range: {0}
 			// MiningSpeed: Mining Speed: {0}%
 			Luck: Sorte: {0}
 			FishingQuests: Missões de Pesca: {0}
 			BattleCry: Grito de Guerra: {0}
 			// Battle & Calming are in Items.BattleCry
 			BattleCryNone: Nenhum
-			MaxSpeed: Velocidade máxima: {0} mph
-			AttackSpeed: Velocidade de ataque: {0}%
 			WingNull: ???
 			WingTime: Tempo de voo: {0}
 			WingTimeMoreThan60Sec: Sim

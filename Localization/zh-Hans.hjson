@@ -463,6 +463,7 @@ Mods: {
 			MeleeDamage: 近战伤害：{0}%
 			MeleeCritical: 近战暴击率：{0}%
 			MeleeSpeed: 近战攻速：{0}%
+			// MeleeSize: Melee Size: {0}%
 			RangedDamage: 远程伤害：{0}%
 			RangedCritical: 远程暴击率：{0}%
 			MagicDamage: 魔法伤害：{0}%
@@ -471,24 +472,31 @@ Mods: {
 			SummonDamage: 召唤伤害：{0}%
 			SummonCritical: 召唤暴击率：{0}%
 			MaxMinions: 仆从数量上限：{0}
+			// WhipSpeed: Whip Speed: {0}%
+			// WhipLength: Whip Length: {0}%
 			MaxSentries: 哨兵数量上限：{0}
-			ArmorPenetration: 护甲穿透：: {0}
-			Aggro: 仇恨：{0}
 			Life: 生命值上限：{0}
-			LifeRegen: 生命再生：{0}/每秒
 			Mana: 魔力值上限：{0}
+			LifeRegen: 生命再生：{0}/每秒
 			ManaRegen: 魔力再生：{0}/每秒
 			Defense: 防御力：{0}
 			DRCap: （上限{0}%）
 			DamageReduction: 伤害减免：{0}%{1}
+			// KnockbackImmunity: Knockback Immunity: {0}
+			Aggro: 仇恨：{0}
+			AttackSpeed: 攻击速度：{0}%
+			ArmorPenetration: 护甲穿透：: {0}
+			// MovementSpeed: Movement Speed: {0}%
+			MaxSpeed: 最大速度：{0}mph
+			// Acceleration: Acceleration: {0}%
+			// Deceleration: Deceleration: {0}%
+			// ExtraPlacementRange: Extra Placement Range: {0}
 			// MiningSpeed: Mining Speed: {0}%
 			Luck: 运气：{0}
 			FishingQuests: 已完成钓鱼任务：{0}
 			BattleCry: 战争号角状态：{0}
 			// Battle & Calming are in Items.BattleCry
 			BattleCryNone: 关闭
-			MaxSpeed: 最大速度：{0}mph
-			AttackSpeed: 攻击速度：{0}%
 			WingNull: ？？？
 			WingTime: 飞行时间：{0}秒
 			WingTimeMoreThan60Sec: 无限

@@ -358,8 +358,8 @@ Mods: {
 				}
 
 				DisableAllScopeView: {
-					// Label: "[i:RifleScope][i:SniperRifle] Toggle All Scoped Binocular Views"
-					// Tooltip: Allows toggling Scoped Binocular Views
+					Label: "[i:RifleScope][i:SniperRifle] Отдаление обзора для прицелов"
+					Tooltip: Позволяет переключать отдаление обзора для прицелов и снайперской винтовки
 				}
 
 				Headers: {
@@ -387,12 +387,12 @@ Mods: {
 				}
 
 				AlwaysOn: {
-					Label: Всегда вкл.
+					Label: Всегда вкл
 					// Tooltip: ""
 				}
 
 				AlwaysOff: {
-					Label: Всегда выкл.
+					Label: Всегда выкл
 					// Tooltip: ""
 				}
 			}
@@ -403,23 +403,23 @@ Mods: {
 				// Tooltip: Scoped Binocular Views
 
 				AllDisabled: {
-					// Label: All Disabled
-					// Tooltip: Disables the Rifle Scope and Sniper Rifle binocular views
+					Label: Все выкл
+					Tooltip: Отключает отдаление обзора и для прицела, и для винтовки
 				}
 
 				RifleScopeAccessoryDisabled: {
-					// Label: Rifle Scope
-					// Tooltip: Disables the Rifle Scope binocular view
+					Label: Прицел
+					Tooltip: Отключает отдаление обзора для прицела
 				}
 
 				SniperRifleScopeDisabled: {
-					// Label: Sniper Rifle
-					// Tooltip: Disables the Sniper Rifle binocular view
+					Label: Снайп. винтовка
+					Tooltip: Отключает отдаление обзора для снайперской винтовки
 				}
 
 				AllEnabled: {
-					// Label: All Enabled
-					// Tooltip: Does not change scoped binocular view behaviour
+					Label: Все вкл
+					Tooltip: Не меняет поведение предметов, отдаляющих обзор
 				}
 			}
 		}
@@ -457,19 +457,19 @@ Mods: {
 			SearchText: Поиск...
 			// Stat Sheet Elements
 			MeleeDamage: Ближний урон: {0}%
-			MeleeCritical: Ближний шанс крит. удара: {0}%
-			MeleeSpeed: Ближняя скорость: {0}%
-			// MeleeSize: Melee Size: {0}%
+			MeleeCritical: Шанс крит. удара: {0}%
+			MeleeSpeed: Скорость атаки: {0}%
+			MeleeSize: Размер оружий: {0}%
 			RangedDamage: Стрелковый урон: {0}%
-			RangedCritical: Стрелковый шанс крит. удара: {0}%
+			RangedCritical: Шанс крит. удара: {0}%
 			MagicDamage: Магический урон: {0}%
-			MagicCritical: Магический шанс крит. удара: {0}%
+			MagicCritical: Шанс крит. удара: {0}%
 			ManaCostReduction: Снижение траты маны: {0}%
 			SummonDamage: Призывательный урон: {0}%
-			SummonCritical: Призывательный шанс крит. удара: {0}%
+			SummonCritical: Шанс крит. удара: {0}%
 			MaxMinions: Макс. миньоны: {0}
-			// WhipSpeed: Whip Speed: {0}%
-			// WhipLength: Whip Length: {0}%
+			WhipSpeed: Скорость атаки: {0}%
+			WhipLength: Длина атаки: {0}%
 			MaxSentries: Макс. стражи: {0}
 			Life: Жизнь: {0}
 			Mana: Мана: {0}
@@ -478,15 +478,15 @@ Mods: {
 			Defense: Защиты: {0}
 			DRCap: " (предел {0}%)"
 			DamageReduction: Сопротивление урону: {0}%
-			// KnockbackImmunity: Knockback Immunity: {0}
+			KnockbackImmunity: Сопротивл. отбрасыванию: {0}
 			Aggro: Агро: {0}
 			AttackSpeed: Скорость атаки: {0}%
 			ArmorPenetration: Пробивание брони: {0}
-			// MovementSpeed: Movement Speed: {0}%
-			MaxSpeed: Макс. скорость: {0} миль в час
-			// Acceleration: Acceleration: {0}%
-			// Deceleration: Deceleration: {0}%
-			// ExtraPlacementRange: Extra Placement Range: {0}
+			MovementSpeed: Скорость передвижения: {0}%
+			MaxSpeed: Макс. скорость: {0} миль/ч
+			Acceleration: Ускорение: {0}%
+			Deceleration: Замедление: {0}%
+			ExtraPlacementRange: Дальность размещения: {0}
 			MiningSpeed: Скорость добычи: {0}%
 			Luck: Удача: {0}
 			FishingQuests: Задания рыбака: {0}
@@ -497,8 +497,8 @@ Mods: {
 			WingTime: Время полёта: {0}
 			WingTimeMoreThan60Sec: Да
 			WingTimeActual: "{0} сек"
-			WingMaxSpeed: Макс. скорость крыльев: {0} mph
-			WingAscentModifier: Модификатор подъёма крыльев: {0}%
+			WingMaxSpeed: Макс. скорость: {0} миль/ч
+			WingAscentModifier: Верт. множитель: {0}%
 			WingHover: Крылья могут парить: {0}
 			WingHoverTrue: Да
 			WingHoverFalse: Нет

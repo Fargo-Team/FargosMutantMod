@@ -138,7 +138,7 @@ namespace Fargowiltas
             if (CalmingCry)
                 tag.Add($"FargoCalmingCry{Player.name}", true);
 
-            if (HasClickedWrench) 
+            if (HasClickedWrench)
                 tag.Add("HasClickedWrench", true);
 
             List<string> ownedItemsData = [];
@@ -196,7 +196,7 @@ namespace Fargowiltas
                             continue;
                         togglesOff.Add(key);
                     }
-                        
+
                 }
             }
             tag.Add($"{Mod.Name}.{Player.name}.PotionTogglesOff", togglesOff);
@@ -325,7 +325,7 @@ namespace Fargowiltas
             }
         }
         public override void ModifyStartingInventory(IReadOnlyDictionary<string, List<Item>> itemsByMod, bool mediumCoreDeath)
-        {            
+        {
             foreach (string tag in tags)
             {
                 FirstDyeIngredients[tag] = false;
@@ -426,7 +426,7 @@ namespace Fargowiltas
                 if (!Player.GetPotionToggleValue(potToggle.ItemID))
                 {
                     Player.buffImmune[potToggle.BuffID] = true;
-                }  
+                }
             }
         }
         public override void PostUpdateEquips()
@@ -456,7 +456,7 @@ namespace Fargowiltas
                 FindNewSpectateTarget();
                 spectatePlayer = Main.player[SpectatePlayer];
             }
-                
+
             if (spectatePlayer == null || !spectatePlayer.active || spectatePlayer.dead || spectatePlayer.ghost)
                 return;
 
@@ -681,13 +681,13 @@ namespace Fargowiltas
         }
         public override void ModifyScreenPosition()
         {
-            
-            if (FargoClientConfig.Instance.MultiplayerDeathSpectate && Main.LocalPlayer.dead && Main.netMode != NetmodeID.SinglePlayer &&  Main.player.Any(p => p != null && !p.dead && !p.ghost))
+
+            if (FargoClientConfig.Instance.MultiplayerDeathSpectate && Main.LocalPlayer.dead && Main.netMode != NetmodeID.SinglePlayer && Main.player.Any(p => p != null && !p.dead && !p.ghost))
             {
                 Main.screenPosition = Player.Center - (new Vector2(Main.screenWidth, Main.screenHeight) / 2);
             }
-                
-            
+
+
         }
         public void AutoUseMirror()
         {
@@ -785,8 +785,8 @@ namespace Fargowiltas
                 yield return createItem(ItemType<CrabSizedGlasses>());
             }
         }
-        
-        
+
+
 
         //        /*public override void clientClone(ModPlayer clientClone)
         //        {
@@ -835,6 +835,6 @@ namespace Fargowiltas
         //                packet.Send();
         //            }
         //        }*/
-        
-    }   
+
+    }
 }

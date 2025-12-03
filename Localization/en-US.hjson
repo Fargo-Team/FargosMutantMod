@@ -461,7 +461,6 @@ Mods: {
 				LifeRegen: Life Regen: {0}/sec
 				Defense: Defense: {0}
 				KnockbackImmunity: Knockback Immunity: {0}
-				DRCap: " (cap {0}%)"
 				Aggro: Aggro: {0}
 				DamageReduction: Damage Reduction: {0}%
 				AttackSpeed: Attack Speed: {0}%
@@ -471,9 +470,6 @@ Mods: {
 				MaxSpeed: Max Speed: {0} mph
 				Acceleration: Acceleration: {0}%
 				Deceleration: Deceleration: {0}%
-				WingHover: Wing Can Hover: {0}
-				WingHoverTrue: True
-				WingHoverFalse: False
 				WingTime: Wing Time: {0}
 				WingTimeMoreThan60Sec: Yes
 				WingTimeActual: "{0} sec"
@@ -514,7 +510,6 @@ Mods: {
 			}
 
 			SearchText: Search...
-			
 			// Battle & Calming are in Items.BattleCry
 			BattleCryNone: None
 			SavedToSlot: Toggles saved to custom set {0}!

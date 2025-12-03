@@ -464,13 +464,13 @@ Mods: {
 				// PermaUpgrade: Permanent Upgrades
 				// combat
 				// Combat: Combat
+				ArmorPenetration: 护甲穿透：: {0}
 				Life: 生命值上限：{0}
 				LifeRegen: 生命再生：{0}/每秒
 				Defense: 防御力：{0}
-				DamageReduction: 伤害减免：{0}%{1}
 				// KnockbackImmunity: Knockback Immunity: {0}
 				Aggro: 仇恨：{0}
-				ArmorPenetration: 护甲穿透：: {0}
+				DamageReduction: 伤害减免：{0}%{1}
 				AttackSpeed: 攻击速度：{0}%
 				// movement
 				// Movement: Movement
@@ -485,13 +485,13 @@ Mods: {
 				WingAscentModifier: 翅膀上升速度：{0}%
 				// utility
 				// Utility: Utility
-				// Luck: Luck: {0}
 				Luck: 运气：{0}
 				BattleCry: 战争号角状态：{0}
 				FishingQuests: 已完成钓鱼任务：{0}
 				// MiningSpeed: Mining Speed: {0}%
 				// ExtraPlacementRange: Extra Placement Range: {0}
 				// melee
+				// Melee: Melee
 				MeleeDamage: 近战伤害：{0}%
 				MeleeCritical: 近战暴击率：{0}%
 				MeleeSpeed: 近战攻速：{0}%

@@ -460,13 +460,13 @@ Mods: {
 				// PermaUpgrade: Permanent Upgrades
 				// combat
 				// Combat: Combat
+				ArmorPenetration: Пробивание брони: {0}
 				Life: Жизнь: {0}
 				LifeRegen: Восст. здоровья: {0}/сек
 				Defense: Защиты: {0}
-				DamageReduction: Сопротивление урону: {0}%
 				KnockbackImmunity: Сопротивл. отбрасыванию: {0}
 				Aggro: Агро: {0}
-				ArmorPenetration: Пробивание брони: {0}
+				DamageReduction: Сопротивление урону: {0}%
 				AttackSpeed: Скорость атаки: {0}%
 				// movement
 				// Movement: Movement
@@ -514,7 +514,6 @@ Mods: {
 			}
 
 			SearchText: Поиск...
-			// Stat Sheet Elements	
 			// Battle & Calming are in Items.BattleCry
 			BattleCryNone: Выкл.
 			SavedToSlot: Включённые эффекты сохранены в настраиваемый пресет {0}!

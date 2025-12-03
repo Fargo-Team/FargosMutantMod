@@ -456,13 +456,13 @@ Mods: {
 				// PermaUpgrade: Permanent Upgrades
 				// combat
 				// Combat: Combat
+				ArmorPenetration: Perfuração de Blindagem: {0}
 				Life: Vida: {0}
 				LifeRegen: Regeneração de Vida: {0}/sec
 				Defense: Defesa: {0}
-				DamageReduction: Redução de Dano: {0}%{1}
 				// KnockbackImmunity: Knockback Immunity: {0}
 				Aggro: Agressividade: {0}
-				ArmorPenetration: Perfuração de Blindagem: {0}
+				DamageReduction: Redução de Dano: {0}%{1}
 				AttackSpeed: Velocidade de ataque: {0}%
 				// movement
 				// Movement: Movement
@@ -510,11 +510,8 @@ Mods: {
 			}
 
 			SearchText: Procurar...
-			// Stat Sheet Elements
-			
 			// Battle & Calming are in Items.BattleCry
 			BattleCryNone: Nenhum
-
 			// SavedToSlot: Toggles saved to custom set {0}!
 			// NoTogglesFound: No toggles found in custom set {0}.
 			// TurnAllTogglesOff: Turn all toggles off

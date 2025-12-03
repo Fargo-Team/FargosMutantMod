@@ -59,7 +59,7 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ItemID.SlimeCrown)
+                .AddIngredient(ItemID.Gel, 20)
                 .AddIngredient(ItemID.PinkDye)
                 .AddTile(TileID.DyeVat)
                 .Register();

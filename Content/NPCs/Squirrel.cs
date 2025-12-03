@@ -610,7 +610,7 @@ namespace Fargowiltas.Content.NPCs
         #region Item Feeding System
         public static bool SacrificeThing(Player player, Item item)
         {
-            if (item == null)
+            if (item == null || item.favorited)
                 return false;
             int itemType = item.type;
             if (EventSacrifice(Main.LocalPlayer.HeldItem, out int consumeCount, false) || FargoSets.Items.SacrificeCount[itemType] > 0) // item sacrificable; do the sacrifice thing

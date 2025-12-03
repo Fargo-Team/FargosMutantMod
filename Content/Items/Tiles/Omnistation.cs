@@ -41,7 +41,6 @@ Greatly increases luck when nearby"); */
         {
             CreateRecipe()
                 .AddIngredient(ModContent.ItemType<Semistation>())
-                .AddIngredient(ItemID.SliceOfCake, 3)
                 .AddIngredient(ItemID.GardenGnome, 3)
                 .AddIngredient(ItemID.CatBast, 3)
                 .AddIngredient(ItemID.LadyBug, 3)

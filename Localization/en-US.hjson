@@ -514,11 +514,9 @@ Mods: {
 			}
 
 			SearchText: Search...
-			// Stat Sheet Elements
 			
 			// Battle & Calming are in Items.BattleCry
 			BattleCryNone: None
-			AttackSpeed: Attack Speed: {0}%
 			SavedToSlot: Toggles saved to custom set {0}!
 			NoTogglesFound: No toggles found in custom set {0}.
 			TurnAllTogglesOff: Turn all toggles off

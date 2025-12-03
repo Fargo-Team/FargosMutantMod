@@ -358,8 +358,8 @@ Mods: {
 				}
 
 				DisableAllScopeView: {
-					// Label: "[i:RifleScope][i:SniperRifle] Toggle All Scoped Binocular Views"
-					// Tooltip: Allows toggling Scoped Binocular Views
+					Label: "[i:RifleScope][i:SniperRifle] Отдаление обзора для прицелов"
+					Tooltip: Позволяет переключать отдаление обзора для прицелов и снайперской винтовки
 				}
 
 				Headers: {
@@ -387,12 +387,12 @@ Mods: {
 				}
 
 				AlwaysOn: {
-					Label: Всегда вкл.
+					Label: Всегда вкл
 					// Tooltip: ""
 				}
 
 				AlwaysOff: {
-					Label: Всегда выкл.
+					Label: Всегда выкл
 					// Tooltip: ""
 				}
 			}
@@ -403,23 +403,23 @@ Mods: {
 				// Tooltip: Scoped Binocular Views
 
 				AllDisabled: {
-					// Label: All Disabled
-					// Tooltip: Disables the Rifle Scope and Sniper Rifle binocular views
+					Label: Все выкл
+					Tooltip: Отключает отдаление обзора и для прицела, и для винтовки
 				}
 
 				RifleScopeAccessoryDisabled: {
-					// Label: Rifle Scope
-					// Tooltip: Disables the Rifle Scope binocular view
+					Label: Прицел
+					Tooltip: Отключает отдаление обзора для прицела
 				}
 
 				SniperRifleScopeDisabled: {
-					// Label: Sniper Rifle
-					// Tooltip: Disables the Sniper Rifle binocular view
+					Label: Снайп. винтовка
+					Tooltip: Отключает отдаление обзора для снайперской винтовки
 				}
 
 				AllEnabled: {
-					// Label: All Enabled
-					// Tooltip: Does not change scoped binocular view behaviour
+					Label: Все вкл
+					Tooltip: Не меняет поведение предметов, отдаляющих обзор
 				}
 			}
 		}
@@ -460,69 +460,63 @@ Mods: {
 				// PermaUpgrade: Permanent Upgrades
 				// combat
 				// Combat: Combat
-				// ArmorPenetration: Armor Penetration: {0}
-				// Life: Life: {0}
-				// LifeRegen: Life Regen: {0}/sec
-				// Defense: Defense: {0}
-				// KnockbackImmunity: Knockback Immunity: {0}
-				// DRCap: " (cap {0}%)"
-				// Aggro: Aggro: {0}
-				// DamageReduction: Damage Reduction: {0}%
-				// AttackSpeed: Attack Speed: {0}%
+				Life: Жизнь: {0}
+				LifeRegen: Восст. здоровья: {0}/сек
+				Defense: Защиты: {0}
+				DamageReduction: Сопротивление урону: {0}%
+				KnockbackImmunity: Сопротивл. отбрасыванию: {0}
+				Aggro: Агро: {0}
+				ArmorPenetration: Пробивание брони: {0}
+				AttackSpeed: Скорость атаки: {0}%
 				// movement
 				// Movement: Movement
-				// MovementSpeed: Movement Speed: {0}%
-				// MaxSpeed: Max Speed: {0} mph
-				// Acceleration: Acceleration: {0}%
-				// Deceleration: Deceleration: {0}%
-				// WingHover: Wing Can Hover: {0}
-				// WingHoverTrue: True
-				// WingHoverFalse: False
-				// WingTime: Wing Time: {0}
-				// WingTimeMoreThan60Sec: Yes
-				// WingTimeActual: "{0} sec"
-				// WingMaxSpeed: Wing Max Speed: {0} mph
-				// WingAscentModifier: Wing Ascent Modifier: {0}
+				MovementSpeed: Скорость передвижения: {0}%
+				MaxSpeed: Макс. скорость: {0} миль/ч
+				Acceleration: Ускорение: {0}%
+				Deceleration: Замедление: {0}%
+				WingTime: Время полёта: {0}
+				WingTimeMoreThan60Sec: Да
+				WingTimeActual: "{0} сек"
+				WingMaxSpeed: Макс. скорость: {0} миль/ч
+				WingAscentModifier: Верт. множитель: {0}%
 				// utility
 				// Utility: Utility
-				// Luck: Luck: {0}
-				// BattleCry: Battle Cry: {0}
-				// FishingQuests: Fishing Quests: {0}
-				// MiningSpeed: Mining Speed: {0}%
-				// ExtraPlacementRange: Extra Placement Range: {0}
+				Luck: Удача: {0}
+				BattleCry: Боевой клич: {0}
+				FishingQuests: Задания рыбака: {0}
+				MiningSpeed: Скорость добычи: {0}%
+				ExtraPlacementRange: Дальность размещения: {0}
 				// melee
 				// Melee: Melee
-				// MeleeDamage: Melee Damage: {0}%
-				// MeleeCritical: Melee Critical: {0}%
-				// MeleeSpeed: Melee Speed: {0}%
-				// MeleeSize: Melee Size: {0}%
+				MeleeDamage: Ближний урон: {0}%
+				MeleeCritical: Шанс крит. удара: {0}%
+				MeleeSpeed: Скорость атаки: {0}%
+				MeleeSize: Размер оружий: {0}%
 				// ranged
 				// Ranged: Ranged
-				// RangedDamage: Ranged Damage: {0}%
-				// RangedCritical: Ranged Critical: {0}%
+				RangedDamage: Стрелковый урон: {0}%
+				RangedCritical: Шанс крит. удара: {0}%
 				// magic
 				// Magic: Magic
-				// MagicDamage: Magic Damage: {0}%
-				// MagicCritical: Magic Critical: {0}%
-				// Mana: Mana: {0}
-				// ManaRegen: Mana Regen: {0}/sec
-				// ManaCostReduction: Mana Cost Reduction: {0}%
+				MagicDamage: Магический урон: {0}%
+				MagicCritical: Шанс крит. удара: {0}%
+				Mana: Мана: {0}
+				ManaRegen: Восст. маны: {0}/сек
+				ManaCostReduction: Снижение траты маны: {0}%
 				//summon
 				// Summon: Summon
-				// SummonDamage: Summon Damage: {0}%
-				// SummonCritical: Summon Critical: {0}%
-				// MaxMinions: Max Minions: {0}
-				// MaxSentries: Max Sentries: {0}
-				// WhipSpeed: Whip Speed: {0}%
-				// WhipLength: Whip Length: {0}%
+				SummonDamage: Призывательный урон: {0}%
+				SummonCritical: Шанс крит. удара: {0}%
+				MaxMinions: Макс. миньоны: {0}
+				MaxSentries: Макс. стражи: {0}
+				WhipSpeed: Скорость атаки: {0}%
+				WhipLength: Длина атаки: {0}%
 			}
 
 			SearchText: Поиск...
-			// Stat Sheet Elements
-			
+			// Stat Sheet Elements	
 			// Battle & Calming are in Items.BattleCry
 			BattleCryNone: Выкл.
-			AttackSpeed: Скорость атаки: {0}%
 			SavedToSlot: Включённые эффекты сохранены в настраиваемый пресет {0}!
 			NoTogglesFound: В настраиваемом пресете {0} не найдено включенных эффектов
 			TurnAllTogglesOff: Выключить все эффекты

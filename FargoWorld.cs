@@ -411,6 +411,7 @@ namespace Fargowiltas
         {
             Fargowiltas.summonTracker.FinalizeSummonData();
             Fargowiltas.symbolTracker.FinalizeSymbols();
+            Fargowiltas.statTracker.FinalizeStats();
         }
     }
 }

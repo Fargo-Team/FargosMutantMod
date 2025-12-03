@@ -10,7 +10,7 @@ using Fargowiltas.Content.Items.Tiles;
 using Fargowiltas.Content.NPCs;
 using Fargowiltas.Content.Projectiles;
 using Fargowiltas.Content.UI;
-
+using Fargowiltas.Content.UI.StatSheet;
 using Fargowiltas.Utilities.Extensions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -40,6 +40,7 @@ namespace Fargowiltas
         internal static MutantSummonTracker summonTracker;
         internal static DevianttDialogueTracker dialogueTracker;
         internal static SymbolTracker symbolTracker;
+        internal static StatTracker statTracker;
 
         /// <summary>
         /// All mods that should be recognized as derivative from Fargo's Souls. <br></br>
@@ -89,8 +90,8 @@ namespace Fargowiltas
         internal static List<Action> ModEventActions = [];
         internal static List<Func<bool>> ModEventActiveFuncs = [];
 
-        public List<StatSheetUI.Stat> ModStats;
-        public List<StatSheetUI.PermaUpgrade> PermaUpgrades;
+        public List<Stat> ModStats;
+        public List<PermaUpgrade> PermaUpgrades;
 
         private string[] mods;
 
@@ -137,7 +138,7 @@ namespace Fargowiltas
             FargoUIManager.LoadUI();
 
 			ModStats = new();
-            PermaUpgrades = new List<StatSheetUI.PermaUpgrade>
+            PermaUpgrades = new List<PermaUpgrade>
             {
                 new(ContentSamples.ItemsByType[ItemID.AegisCrystal], () => Main.LocalPlayer.usedAegisCrystal),
                 new(ContentSamples.ItemsByType[ItemID.AegisFruit], () => Main.LocalPlayer.usedAegisFruit),
@@ -152,6 +153,7 @@ namespace Fargowiltas
             dialogueTracker = new DevianttDialogueTracker();
             dialogueTracker.AddVanillaDialogue();
             symbolTracker = new SymbolTracker();
+            statTracker = new StatTracker();
 
             HomeKey = KeybindLoader.RegisterKeybind(this, "Home", "Home");
 
@@ -335,6 +337,7 @@ namespace Fargowiltas
             summonTracker = null;
             dialogueTracker = null;
             symbolTracker = null;
+            statTracker = null;
             
 
             HomeKey = null;
@@ -365,6 +368,7 @@ namespace Fargowiltas
             }
 
 			FargoUIManager.InitializeUI();
+            statTracker.AddSoulsStats();
 
 			if (ModLoader.TryGetMod("Wikithis", out Mod wikithis) && !Main.dedServ)
             {
@@ -457,16 +461,50 @@ namespace Fargowiltas
                             }
                         }
                         break;
+                    case "AddStatCategory":
+                        {
+                            if (statTracker.statsInitialized)
+                                throw new Exception($"Call Error (Fargo Mutant Mod AddStat): Categories must be added before AddRecipes");
+
+                            // string, string, string, Func<bool>
+                            if (args[1].GetType() != typeof(string))
+                                throw new Exception($"Call Error (Fargo Mutant Mod AddStat): args[1] must be of type String");
+                            if (args[2].GetType() != typeof(string))
+                                throw new Exception($"Call Error (Fargo Mutant Mod AddStat): args[2] must be of type String");
+
+                            string categoryKey = (string)args[1];
+
+
+                            string iconPath = args[3].GetType() == typeof(string) ? (string)args[3] : null;
+                            Func<bool> condition = args[4].GetType() == typeof(Func<bool>) ? (Func<bool>)args[4] : null;
+
+                            StatCategory.Create((string)args[1], (string)args[2], iconPath, condition).RegisterCategory();
+                        }
+                        break;
                     case "AddStat":
                         {
-                            if (args[1].GetType() != typeof(int))
-                                throw new Exception($"Call Error (Fargo Mutant Mod AddStat): args[1] must be of type int");
-                            if (args[2].GetType() != typeof(Func<string>))
-                                throw new Exception($"Call Error (Fargo Mutant Mod AddStat): args[2] must be of type Func<string>");
+                            if (statTracker.statsInitialized)
+                                throw new Exception($"Call Error (Fargo Mutant Mod AddStat): Stats must be added before AddRecipes");
 
-                            int itemID = (int)args[1];
-                            Func<string> TextFunction = (Func<string>)args[2];
-                            ModStats.Add(new StatSheetUI.Stat(itemID, TextFunction));
+                            // string, string, int, Func<object>, Func<string>, float
+                            if (args[1].GetType() != typeof(string))
+                                throw new Exception($"Call Error (Fargo Mutant Mod AddStat): args[1] must be of type String");
+                            if (args[2].GetType() != typeof(string))
+                                throw new Exception($"Call Error (Fargo Mutant Mod AddStat): args[2] must be of type String");
+                            if (args[3].GetType() != typeof(int))
+                                throw new Exception($"Call Error (Fargo Mutant Mod AddStat): args[3] must be of type int");
+                            if (args[4].GetType() != typeof(Func<object>))
+                                throw new Exception($"Call Error (Fargo Mutant Mod AddStat): args[4] must be of type Func<object>");
+                            if (args[5].GetType() != typeof(Func<string>))
+                                throw new Exception($"Call Error (Fargo Mutant Mod AddStat): args[5] must be of type Func<string>");
+
+                            string categoryName = (string)args[1];
+                            if (categoryName == "PermaUpgrade")
+                                throw new Exception($"Call Error (Fargo Mutant Mod AddStat): Invalid category! Consider using AddPermaUpgrade instead");
+
+                            float priority = args[6].GetType() == typeof(float) ? (float)args[6] : -1;
+
+                            StatRegistry.TryAddStatToCategory(categoryName, (string)args[2], (int)args[3], (Func<object>)args[4], (Func<string>)args[5], priority);
                         }
                         break;
                     case "AddPermaUpgrade":
@@ -478,7 +516,7 @@ namespace Fargowiltas
 
                             Item item = (Item)args[1];
                             Func<bool> ConsumedFunction = (Func<bool>)args[2];
-                            PermaUpgrades.Add(new StatSheetUI.PermaUpgrade(item, ConsumedFunction));
+                            PermaUpgrades.Add(new PermaUpgrade(item, ConsumedFunction));
                         }
                         break;
                     case "SwarmActive":

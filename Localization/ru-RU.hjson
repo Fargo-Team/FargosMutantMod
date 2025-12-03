@@ -453,47 +453,76 @@ Mods: {
 			Close: Закрыть
 			CombinedUIButton: Открыть полезные меню
 			PotionToggler: "[s:Fargowiltas/PotionToggler] Переключатель зелий"
-			StatSheet: "[s:Fargowiltas/StatSheet] Характеристики"
+
+			StatSheet: {
+				// misc
+				// CombinedUI: "[s:Fargowiltas/StatSheet] Stat Sheet"
+				// PermaUpgrade: Permanent Upgrades
+				// combat
+				// Combat: Combat
+				// ArmorPenetration: Armor Penetration: {0}
+				// Life: Life: {0}
+				// LifeRegen: Life Regen: {0}/sec
+				// Defense: Defense: {0}
+				// KnockbackImmunity: Knockback Immunity: {0}
+				// DRCap: " (cap {0}%)"
+				// Aggro: Aggro: {0}
+				// DamageReduction: Damage Reduction: {0}%
+				// AttackSpeed: Attack Speed: {0}%
+				// movement
+				// Movement: Movement
+				// MovementSpeed: Movement Speed: {0}%
+				// MaxSpeed: Max Speed: {0} mph
+				// Acceleration: Acceleration: {0}%
+				// Deceleration: Deceleration: {0}%
+				// WingHover: Wing Can Hover: {0}
+				// WingHoverTrue: True
+				// WingHoverFalse: False
+				// WingTime: Wing Time: {0}
+				// WingTimeMoreThan60Sec: Yes
+				// WingTimeActual: "{0} sec"
+				// WingMaxSpeed: Wing Max Speed: {0} mph
+				// WingAscentModifier: Wing Ascent Modifier: {0}
+				// utility
+				// Utility: Utility
+				// Luck: Luck: {0}
+				// BattleCry: Battle Cry: {0}
+				// FishingQuests: Fishing Quests: {0}
+				// MiningSpeed: Mining Speed: {0}%
+				// ExtraPlacementRange: Extra Placement Range: {0}
+				// melee
+				// Melee: Melee
+				// MeleeDamage: Melee Damage: {0}%
+				// MeleeCritical: Melee Critical: {0}%
+				// MeleeSpeed: Melee Speed: {0}%
+				// MeleeSize: Melee Size: {0}%
+				// ranged
+				// Ranged: Ranged
+				// RangedDamage: Ranged Damage: {0}%
+				// RangedCritical: Ranged Critical: {0}%
+				// magic
+				// Magic: Magic
+				// MagicDamage: Magic Damage: {0}%
+				// MagicCritical: Magic Critical: {0}%
+				// Mana: Mana: {0}
+				// ManaRegen: Mana Regen: {0}/sec
+				// ManaCostReduction: Mana Cost Reduction: {0}%
+				//summon
+				// Summon: Summon
+				// SummonDamage: Summon Damage: {0}%
+				// SummonCritical: Summon Critical: {0}%
+				// MaxMinions: Max Minions: {0}
+				// MaxSentries: Max Sentries: {0}
+				// WhipSpeed: Whip Speed: {0}%
+				// WhipLength: Whip Length: {0}%
+			}
+
 			SearchText: Поиск...
 			// Stat Sheet Elements
-			MeleeDamage: Ближний урон: {0}%
-			MeleeCritical: Ближний шанс крит. удара: {0}%
-			MeleeSpeed: Ближняя скорость: {0}%
-			RangedDamage: Стрелковый урон: {0}%
-			RangedCritical: Стрелковый шанс крит. удара: {0}%
-			MagicDamage: Магический урон: {0}%
-			MagicCritical: Магический шанс крит. удара: {0}%
-			ManaCostReduction: Снижение траты маны: {0}%
-			SummonDamage: Призывательный урон: {0}%
-			SummonCritical: Призывательный шанс крит. удара: {0}%
-			MaxMinions: Макс. миньоны: {0}
-			MaxSentries: Макс. стражи: {0}
-			ArmorPenetration: Пробивание брони: {0}
-			Aggro: Агро: {0}
-			Life: Жизнь: {0}
-			LifeRegen: Восст. здоровья: {0}/сек
-			Mana: Мана: {0}
-			ManaRegen: Восст. маны: {0}/сек
-			Defense: Защиты: {0}
-			DRCap: " (предел {0}%)"
-			DamageReduction: Сопротивление урону: {0}%
-			MiningSpeed: Скорость добычи: {0}%
-			Luck: Удача: {0}
-			FishingQuests: Задания рыбака: {0}
-			BattleCry: Боевой клич: {0}
+			
 			// Battle & Calming are in Items.BattleCry
 			BattleCryNone: Выкл.
-			MaxSpeed: Макс. скорость: {0} миль в час
 			AttackSpeed: Скорость атаки: {0}%
-			WingNull: ???
-			WingTime: Время полёта: {0}
-			WingTimeMoreThan60Sec: Да
-			WingTimeActual: "{0} сек"
-			WingMaxSpeed: Макс. скорость крыльев: {0} mph
-			WingAscentModifier: Модификатор подъёма крыльев: {0}%
-			WingHover: Крылья могут парить: {0}
-			WingHoverTrue: Да
-			WingHoverFalse: Нет
 			SavedToSlot: Включённые эффекты сохранены в настраиваемый пресет {0}!
 			NoTogglesFound: В настраиваемом пресете {0} не найдено включенных эффектов
 			TurnAllTogglesOff: Выключить все эффекты

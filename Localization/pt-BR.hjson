@@ -449,47 +449,76 @@ Mods: {
 			// Close: Close
 			// CombinedUIButton: Open Utilities
 			// PotionToggler: "[s:Fargowiltas/PotionToggler] Potion Toggles"
-			// StatSheet: "[s:Fargowiltas/StatSheet] Stat Sheet"
+
+			StatSheet: {
+				// misc
+				// CombinedUI: "[s:Fargowiltas/StatSheet] Stat Sheet"
+				// PermaUpgrade: Permanent Upgrades
+				// combat
+				// Combat: Combat
+				// ArmorPenetration: Armor Penetration: {0}
+				// Life: Life: {0}
+				// LifeRegen: Life Regen: {0}/sec
+				// Defense: Defense: {0}
+				// KnockbackImmunity: Knockback Immunity: {0}
+				// DRCap: " (cap {0}%)"
+				// Aggro: Aggro: {0}
+				// DamageReduction: Damage Reduction: {0}%
+				// AttackSpeed: Attack Speed: {0}%
+				// movement
+				// Movement: Movement
+				// MovementSpeed: Movement Speed: {0}%
+				// MaxSpeed: Max Speed: {0} mph
+				// Acceleration: Acceleration: {0}%
+				// Deceleration: Deceleration: {0}%
+				// WingHover: Wing Can Hover: {0}
+				// WingHoverTrue: True
+				// WingHoverFalse: False
+				// WingTime: Wing Time: {0}
+				// WingTimeMoreThan60Sec: Yes
+				// WingTimeActual: "{0} sec"
+				// WingMaxSpeed: Wing Max Speed: {0} mph
+				// WingAscentModifier: Wing Ascent Modifier: {0}
+				// utility
+				// Utility: Utility
+				// Luck: Luck: {0}
+				// BattleCry: Battle Cry: {0}
+				// FishingQuests: Fishing Quests: {0}
+				// MiningSpeed: Mining Speed: {0}%
+				// ExtraPlacementRange: Extra Placement Range: {0}
+				// melee
+				// Melee: Melee
+				// MeleeDamage: Melee Damage: {0}%
+				// MeleeCritical: Melee Critical: {0}%
+				// MeleeSpeed: Melee Speed: {0}%
+				// MeleeSize: Melee Size: {0}%
+				// ranged
+				// Ranged: Ranged
+				// RangedDamage: Ranged Damage: {0}%
+				// RangedCritical: Ranged Critical: {0}%
+				// magic
+				// Magic: Magic
+				// MagicDamage: Magic Damage: {0}%
+				// MagicCritical: Magic Critical: {0}%
+				// Mana: Mana: {0}
+				// ManaRegen: Mana Regen: {0}/sec
+				// ManaCostReduction: Mana Cost Reduction: {0}%
+				//summon
+				// Summon: Summon
+				// SummonDamage: Summon Damage: {0}%
+				// SummonCritical: Summon Critical: {0}%
+				// MaxMinions: Max Minions: {0}
+				// MaxSentries: Max Sentries: {0}
+				// WhipSpeed: Whip Speed: {0}%
+				// WhipLength: Whip Length: {0}%
+			}
+
 			SearchText: Procurar...
 			// Stat Sheet Elements
-			MeleeDamage: Dano físico: {0}%
-			MeleeCritical: Crítico físico: {0}%
-			MeleeSpeed: Velocidade física: {0}%
-			RangedDamage: Dano à distância: {0}%
-			RangedCritical: Crítico à distância: {0}%
-			MagicDamage: Dano de magia: {0}%
-			MagicCritical: Crítico de magia: {0}%
-			ManaCostReduction: Redução no custo de mana: {0}%
-			SummonDamage: Dano de invocação: {0}%
-			SummonCritical: Crítico de Invocação: {0}%
-			MaxMinions: Lacaios máximos: {0}
-			MaxSentries: Sentinelas máximas: {0}
-			ArmorPenetration: Perfuração de Blindagem: {0}
-			Aggro: Agressividade: {0}
-			Life: Vida: {0}
-			LifeRegen: Regeneração de Vida: {0}/sec
-			Mana: Mana: {0}
-			ManaRegen: Regeneração de Mana: {0}/sec
-			Defense: Defesa: {0}
-			DRCap: " (Limite {0}%)"
-			DamageReduction: Redução de Dano: {0}%{1}
-			// MiningSpeed: Mining Speed: {0}%
-			Luck: Sorte: {0}
-			FishingQuests: Missões de Pesca: {0}
-			BattleCry: Grito de Guerra: {0}
+			
 			// Battle & Calming are in Items.BattleCry
 			BattleCryNone: Nenhum
-			MaxSpeed: Velocidade máxima: {0} mph
 			AttackSpeed: Velocidade de ataque: {0}%
-			WingNull: ???
-			WingTime: Tempo de voo: {0}
-			WingTimeMoreThan60Sec: Sim
-			WingTimeActual: "{0} seg"
-			WingMaxSpeed: Velocidade máxima de asa: {0} mph
-			WingAscentModifier: Modificador de ascenção de asa: {0}%
-			WingHover: Asa pode flutuar: {0}
-			WingHoverTrue: Verdadeiro
-			WingHoverFalse: Falso
 			// SavedToSlot: Toggles saved to custom set {0}!
 			// NoTogglesFound: No toggles found in custom set {0}.
 			// TurnAllTogglesOff: Turn all toggles off

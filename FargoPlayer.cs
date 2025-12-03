@@ -9,6 +9,7 @@ using Fargowiltas.Content.Items.Tiles;
 using Fargowiltas.Content.Items.Vanity;
 using Fargowiltas.Content.NPCs;
 using Fargowiltas.Content.UI;
+using Fargowiltas.Content.UI.StatSheet;
 using Fargowiltas.Utilities.Extensions;
 using Microsoft.Xna.Framework;
 using System;
@@ -60,7 +61,6 @@ namespace Fargowiltas
 
         public float StatSheetMaxAscentMultiplier;
         public float StatSheetWingSpeed;
-        public bool? CanHover = null;
 
         public int DeathFruitHealth;
         public bool bigSuck;
@@ -545,7 +545,6 @@ namespace Fargowiltas
         {
             StatSheetMaxAscentMultiplier = 0;
             StatSheetWingSpeed = 0;
-            CanHover = null;
         }
 
         private void ForceBiomes()

@@ -177,7 +177,7 @@ namespace Fargowiltas.Content.UI.StatSheet
             if (selectedCategories.Contains(GetCategory("PermaUpgrade")))
             {
                 LerpTimer++;
-                InnerPanel.BackgroundColor = Color.Lerp(new Color(65, 84, 153, 229), Color.Lerp(Color.Purple, Color.Black, 0.75f), LerpTimer / 15f);
+                InnerPanel.BackgroundColor = Color.Lerp(new Color(65, 84, 153, 229), Color.Lerp(Color.Purple, Color.Black, 0.8f), LerpTimer / 15f);
                 if (LerpTimer >= 20 && LerpTimer % 8 == 0)
                     SpawnStar();
                 if (!InUpgradePanel)
@@ -226,18 +226,18 @@ namespace Fargowiltas.Content.UI.StatSheet
 
             InnerPanel.Append(header);
 
-            int count = 0;
+            float count = 0;
             foreach (PermaUpgrade upgrade in Fargowiltas.Instance.PermaUpgrades)
             {
-                var permaItem = new PermaItem(upgrade.Item.type);
+                var permaItem = new PermaItem(upgrade.Item.type, upgrade.ConsumedBool);
                 permaItem.Width.Set(50, 0);
                 permaItem.Height.Set(50, 0);
-                permaItem.Top.Set(56 + MathF.Floor(count / 10) * 52, 0);
-                permaItem.Left.Set(4 + count * 52, 0);
+                permaItem.Top.Set(56 + MathF.Floor(count / 12f) * 52, 0);
+                permaItem.Left.Set(8 + (count % 12) * 52, 0);
 
                 InnerPanel.Append(permaItem);
 
-                BackHeight = 23 * ((int)MathF.Floor(count / 10) + 1) + 100 + 34;
+                BackHeight = 50 * ((int)MathF.Floor(count / 12f) + 1) + 80 + 34;
 
                 BackPanel.Height.Set(BackHeight, 0f);
                 InnerPanel.Height.Set(BackHeight - 12 - 40, 0);

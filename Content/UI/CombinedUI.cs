@@ -83,7 +83,7 @@ namespace Fargowiltas.Content.UI
             BackPanel.Width.Set(width, 0);
             BackPanel.Height.Set(height, 0);
             BackPanel.PaddingLeft = BackPanel.PaddingRight = BackPanel.PaddingTop = BackPanel.PaddingBottom = 0;
-            BackPanel.BackgroundColor = new Color(29, 33, 70) * 0.7f;
+            BackPanel.BackgroundColor = new Color(29, 33, 70) * 0.3f;
 
             Append(BackPanel);
             // append elements
@@ -179,29 +179,37 @@ namespace Fargowiltas.Content.UI
             Priority = priority;
         }
 
+        public int Frame;
+
         protected override void DrawSelf(SpriteBatch spriteBatch)
         {
             base.DrawSelf(spriteBatch);
 
             CalculatedStyle dimensions = GetDimensions();
-            Color color = new Color(73, 94, 171) * 0.9f; // Colors.InventoryDefaultColor;
-            float num = 1f;
+
             bool isSelected = FargoUIManager.IsOpen(UI);
-            bool isHovered = IsMouseHovering;
-            Asset<Texture2D> baseTexture = ModContent.Request<Texture2D>("Terraria/Images/UI/CharCreation/PanelGrayscale", (AssetRequestMode)1);
-            Asset<Texture2D> selectedTexture = ModContent.Request<Texture2D>("Terraria/Images/UI/CharCreation/CategoryPanelHighlight", (AssetRequestMode)1);
-            Asset<Texture2D> hoveredTexture = ModContent.Request<Texture2D>("Terraria/Images/UI/CharCreation/CategoryPanelBorder", (AssetRequestMode)1);
-            Utils.DrawSplicedPanel(spriteBatch, baseTexture.Value, (int)dimensions.X, (int)dimensions.Y, (int)dimensions.Width, (int)dimensions.Height, 10, 10, 10, 10, color * num);
+            bool isHovered = IsMouseHovering;           
+            Asset<Texture2D> Texture = FargoMutantAssets.UI.CombinedUITab;
+            Rectangle rect = new(0, Texture.Height() / 4 * Frame, Texture.Width(), Texture.Height() / 4);
+            rect.Height -= 2;
+            spriteBatch.Draw(Texture.Value, new((int)dimensions.X, (int)dimensions.Y), rect, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0);
+            //Utils.DrawSplicedPanel(spriteBatch, baseTexture.Value, (int)dimensions.X, (int)dimensions.Y, (int)dimensions.Width, (int)dimensions.Height, 10, 10, 10, 10, color * num);
             if (isSelected)
             {
-                int offset = 0;
-                Utils.DrawSplicedPanel(spriteBatch, selectedTexture.Value, (int)dimensions.X + offset, (int)dimensions.Y + offset, (int)dimensions.Width - 2 * offset, (int)dimensions.Height - 2 * offset, 10, 10, 10, 10, Color.Lerp(color, Color.Black, 0.3f) * num);
+                Frame = 2;
+                if (isHovered)
+                    Frame = 3;
+                
             }
             if (isHovered)
-            {
+            {   
                 Main.LocalPlayer.mouseInterface = true;
-                Utils.DrawSplicedPanel(spriteBatch, hoveredTexture.Value, (int)dimensions.X, (int)dimensions.Y, (int)dimensions.Width, (int)dimensions.Height, 10, 10, 10, 10, Color.White);
+                if (!isSelected)
+                    Frame = 1;
             }
+
+            if (!isHovered && !isSelected)
+                Frame = 0;
         }
 
         public override void LeftClick(UIMouseEvent evt)

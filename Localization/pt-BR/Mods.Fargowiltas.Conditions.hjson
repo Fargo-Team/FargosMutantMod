@@ -1,0 +1,69 @@
+DownedBoss: Quando qualquer chefe for derrotado
+DutchmanDown: Quando o Holand�s Voador for derrotado
+MageDown: Quando o Mago Sombrio for derrotado
+OgreDown: Quando o Ogro for derrotado
+BetsyDown: Quando a Betsy for derrotada
+HorsemanDown: Quando o Cavaleiro sem Cabe�a for derrotado
+PillarsDown: Quando os Pilares Celestiais forem derrotados
+Downed: Quando for derrotado
+WormDown: Quando o Devorador ou Cavador for derrotado
+PinkyDown: Quando o Rosado for derrotado
+ScoutDown: Quando o Batedor Goblin for derrotado
+DoctorDown: Quando o Doctor Bones for derrotado
+MinerDown: Quando o Minerador zumbi for derrotado
+TimDown: Quando o Tim for derrotado
+GnomeDown: Quando o Gnomo for derrotado
+GoldSlimeDown: Quando a Geleia dourada for derrotada
+DungeonSlimeDown: Quando a Geleia do calabou�o e o Esqueletron forem derrotados
+MedusaDown: Quando a Medusa for derrotada, no Modo Dif�cil
+ClownDown: Quando o Palha�o for derrotado, no Modo Dif�cil
+NymphDown: Quando a Ninfa for derrotada
+MothDown: Quando a Mariposa for derrotada, no Modo Dif�cil
+RainbowSlimeDown: Quando a Geleia arco-�ris for derrotada, no Modo Dif�cil
+WyvernDown: Quando a Serpe for derrotada, no Modo Dif�cil
+RuneDown: Quando o Mago das Runas for derrotado, no Modo Dif�cil
+MimicDown: Quando o M�mico for derrotado, no Modo Dif�cil
+MimicHallowDown: Quando o M�mico Consagrado for derrotado, no Modo Dif�cil
+MimicCorruptDown: Quando o M�mico Corrompido for derrotado, no Modo Dif�cil
+MimicCrimsonDown: Quando o M�mico de Carmim for derrotado, no Modo Dif�cil
+MimicJungleDown: Quando o M�mico da Selva for derrotado, no Modo Dif�cil
+IceGolemDown: Quando o Golem de Gelo for derrotado, no Modo Dif�cil
+SandDown: Quando a Elemental de Areia for derrotada, no Modo Dif�cil
+DevilDown: Quando o Diabo Vermelho for derrotado, no Modo Dif�cil
+BloodFishDown: Quando o Olho Errante ou Trit�o Zumbi for derrotado
+// BloodFish2Down: After defeating a Hemogoblin Shark or Blood Eel, In hardmode
+BloodNautDown: Quando o Encoran�utilo for derrotado, no Modo Dif�cil
+SummonerDown: Quando o Goblin Invocador e o Ex�rcito Goblin forem derrotados, no Modo Dif�cil
+PirateDown: Quando o Capit�o Pirata e a invas�o pirata forem derrotados, no Modo Dif�cil
+NailheadDown: Quando o Cabe�a de Pregos e todos os chefes mec�nicos forem derrotados
+MothronDown: Quando a Mothron e todos os chefes mec�nicos forem derrotados
+LeeDown: Quando o Bone lee for derrotado
+PaladinDown: Quando for derrotado
+SkeleGunDown: Quando um Atirador esqueleto, Esqueleto t�tico ou Comando esqueleto forem derrotados
+SkeleMagesDown: Quando um Necromancer, Satanista ou Mago em Trapos forem derrotados
+SiblingPylon: Se todos os irm�os estiverem presentes
+BossDown: Quando qualquer chefe for derrotado
+DownedTheBoss: Quando o chefe for derrotado
+Angler5: Complete 5 miss�es do pescador
+Angler10: Complete 10 miss�es do pescador
+Angler15: Complete 15 miss�es do pescador
+Angler20: Complete 20 miss�es do pescador
+Angler25: Complete 25 miss�es do pescador
+Angler30: Complete 30 miss�es do pescador
+InRockOrDirtLayerHeight: Enquanto no subterr�neo
+BrittleBone: Tenha uma arma que usa Ossos Fr�geis como muni��o no seu invent�rio
+Seeds: Tenha uma arma que usa Sementes como muni��o no seu invent�rio
+RedHusk: Depois de pegar uma Casca Vermelha
+OrangeBloodroot: Depois de pegar uma Sanguin�ria Laranja
+YellowMarigold: Depois de pegar uma Cal�ndula Amarela
+LimeKelp: Depois de pegar uma Alga Verde-lim�o
+GreenMushroom: Depois de pegar um Cogumelo Verde
+TealMushroom: Depois de pegar um Cogumelo Verde Azulado
+CyanHusk: Depois de pegar uma Casca Ciano
+SkyBlueFlower: Depois de pegar uma Flor Azul Celeste
+BlueBerries: Depois de pegar um Mirtilo
+PurpleMucos: Depois de pegar um Muco Roxo
+VioletHusk: Depois de pegar uma Casca Violeta
+PinkPricklyPear: Depois de pegar um Figo Cor-de-rosa
+BlackInk: Depois de pegar uma Tinta Preta
+// OwnsRegionalWood: After having picked up the regional wood

@@ -1,0 +1,62 @@
+Common: {
+	Exclamation: !
+	Period: .
+}
+
+SiblingPylonNotNearSiblings: That pylon needs the mutated siblings to function.
+NearbySiblingPylonNotNearSiblings: The nearby pylon needs the mutated siblings to function.
+NewItemUnlocked: A new item has been unlocked in {0}'s shop!
+HaveAwoken: "{0} have awoken!"
+// Cancel Event
+CancelEvent: The invaders have left!
+CancelPumpkinMoon: The Pumpkin Moon is lowering...
+CancelFrostMoon: The Frost Moon is lowering...
+CancelEclipse: A solar eclipse is not happening!
+CancelBloodMoon: The blood moon is descending...
+CancelWindyDay: The wind has ended!
+CancelOOA: The Old One's Army is leaving!
+CancelSandstorm: The sandstorm has ended!
+CancelLunarEvent: Celestial creatures are not invading!
+CancelRain: The rain has ended!
+// Summons
+StartWindyDay: The wind begins howling.
+StartSandStorm: A sandstorm has begun.
+StartLanternNight: Lantern Night rate increased!
+StopLanternNight: Lantern Night rate restored to default.
+StartLunarEvent: The Celestial Pillars have awoken!
+StartRain: Rain clouds cover the sky.
+AncientSeal: Every boss has awoken!
+SeveralBossesAwoken: Several bosses have awoken!
+// Swarm Summons
+OverloadBee: A deafening buzz pierces through you!
+OverloadBetsy: The real Old One's Army is attacking!
+OverloadBrain: The galaxy brain descends from the stars!
+OverloadCultist: Deafening chants fill your ears!
+OverloadDarkMage: You feel like you've enraged a librarian!
+OverloadDeer: The Constant takes over!
+OverloadDestroyer: The planet trembles from the core!
+OverloadEmpress: Bullet heaven is descending!
+OverloadEye: Countless staring eyes pierce the veil as they amalgamate into one!
+OverloadFish: The ocean convulses in terror!
+OverloadGolem: You feel like you're going to have a bad time!
+OverloadMoon: The wind whispers of death's approach!
+OverloadPlant: The jungle beats as one!
+OverloadPrime: A sickly chill envelops the world!
+OverloadQueenSlime: Welcome to the truer slime rain!
+OverloadSkele: A great clammering of bones rises from the dungeon!
+OverloadSlimeCrown: Welcome to the true slime rain!
+OverloadTwins: The eyes are filled with determination!
+OverloadWall: A fortress of flesh arises from the depths!
+OverloadWorm: The ground shifts with formulated precision!
+// Swarm Events
+OverloadFrostMoonStop: The Frost Moon fades away!
+OverloadFrostMoonStart: The Frost Moon is rising...
+OverloadFrostMoonWave20: Wave: 20: Everything
+OverloadPumpkinMoonStop: The Pumpkin Moon fades away!
+OverloadPumpkinMoonStart: The Pumpkin Moon is rising...
+OverloadPumpkinMoonWave15: Wave: 15: Everything
+OverloadGoblinsStop: The goblins have calmed down!
+OverloadMartiansStop: The martians have calmed down!
+OverloadPiratesStop: The pirates have calmed down!
+// Swarm Misc
+SwarmDefeated: The energized boss has been defeated!

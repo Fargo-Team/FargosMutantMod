@@ -1,0 +1,24 @@
+Omnistation: {
+	DisplayName: Omnista��o
+	Description: Efeitos de todas as esta��es do vanilla
+}
+
+Semistation: {
+	DisplayName: Semista��o
+	Description: Efeitos de algumas esta��es do vanilla
+}
+
+WoodDrop: {
+	DisplayName: Queda de Madeira
+	Description: Mods.Fargowiltas.BuffDescription.WoodDrop
+}
+
+BigSuckBuff: {
+	DisplayName: Chup�o
+	Description: Voc� est� chupando tudo
+}
+
+CoolCrabBuff: {
+	DisplayName: Carangueijo Maneiro
+	Description: Ele acha que voc� deve jogar Elden Ring
+}

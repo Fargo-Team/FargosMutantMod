@@ -1,0 +1,1681 @@
+BrittleBone: {
+	DisplayName: 易碎骨头
+	// Tooltip: ""
+}
+
+AltarExterminator: {
+	DisplayName: 祭坛终结者
+	Tooltip:
+		'''
+		破坏所有自然生成的恶魔祭坛和猩红祭坛
+		会导致新三矿大量生成和幻灵大量生成等后果
+		“也叫幻灵制造者”
+		'''
+}
+
+AutoHouse: {
+	DisplayName: 快速房屋
+	Tooltip: 快速建造一间NPC房屋
+}
+
+BoomShuriken: {
+	DisplayName: 爆炸手里剑
+	Tooltip:
+		'''
+		接触物块时立即爆炸，破坏物块
+		破坏能力和使用速度取决于背包里最强镐的镐力和使用速度，使用速度还会受挖掘速度加成
+		“挖穿任何东西的最快方式永远是把它们炸飞！”
+		'''
+}
+
+CityBuster: {
+	DisplayName: 城市克星
+	Tooltip:
+		'''
+		大面积破坏物块
+		不会破坏背景墙
+		不会破坏重要区域
+		风险自担
+		'''
+}
+
+DoubleObsidianInstabridge: {
+	DisplayName: 双重黑曜石速建平台
+	Tooltip:
+		'''
+		建造2条横跨整个世界的黑曜石平台
+		同时清除平台之间和平台上方的区域
+		下方的平台出现在鼠标位置
+		不会破坏重要区域
+		风险自担
+		'''
+}
+
+GraveBuster: {
+	DisplayName: 墓碑克星
+	Tooltip: 大面积破坏墓碑
+}
+
+HalfInstavator: {
+	DisplayName: 半程地狱直通车
+	Tooltip:
+		'''
+		投掷一枚炸弹，建造一条直通地狱的半程通道
+		在一定深度下不会生效
+		不会破坏重要区域
+		风险自担
+		'''
+}
+
+InstaBridge: {
+	DisplayName: 速建平台
+	Tooltip:
+		'''
+		建造一条横跨整个世界的平台
+		同时清除平台正上方的区域
+		平台出现在鼠标位置
+		不会破坏重要区域
+		右键单击会清除这片区域但不放置平台
+		风险自担
+		'''
+}
+
+InstaTrack: {
+	DisplayName: 速建轨道
+	Tooltip:
+		'''
+		建造一条横跨整个世界的矿车轨道
+		同时清除轨道正上方的区域
+		轨道出现在鼠标位置
+		不会破坏重要区域
+		风险自担
+		'''
+}
+
+Instavator: {
+	DisplayName: 地狱直通车
+	Tooltip:
+		'''
+		投掷一枚炸弹，建造一条直通地狱的通道
+		不会破坏重要区域
+		风险自担
+		'''
+}
+
+LihzahrdInstactuationBomb: {
+	DisplayName: 丛林神庙炸弹
+	Tooltip:
+		'''
+		站在丛林祭坛前使用时，清除丛林蜥蜴祭坛周围的空间
+		虚化丛林蜥蜴砖并摧毁其他物块
+		仅能在世纪之花被击败后，在丛林神庙中使用
+		'''
+}
+
+MiniInstaBridge: {
+	DisplayName: 迷你速建平台
+	Tooltip:
+		'''
+		在鼠标的高度建造一条长平台
+		不会破坏任何方块
+		'''
+}
+
+ObsidianInstaBridge: {
+	DisplayName: 黑曜石速建平台
+	Tooltip:
+		'''
+		建造一条横跨整个世界的黑曜石平台
+		同时清除平台正上方的区域
+		平台出现在鼠标位置
+		不会破坏重要区域
+		风险自担
+		'''
+}
+
+OmniBridgifier: {
+	DisplayName: 万能平台转化器
+	Tooltip:
+		'''
+		可以被无限次重复使用
+		把你所站的平台升级为带有万能增益站的平台
+		不会建造平台
+		'''
+}
+
+OmniBridgifier2: {
+	// DisplayName: Omni-Bridgifier
+	/* Tooltip:
+		'''
+		Can be reused infinitely
+		Upgrades the platform you are standing on to use Omnistations
+		Does NOT build a platform!
+		''' */
+}
+
+BattleCry: {
+	DisplayName: 战争号角
+	Tooltip:
+		'''
+		左键使用使刷怪率提高 10 倍
+		右键使用使刷怪率降低，降低倍数随游戏进程增加
+		'''
+	Battle: 战争
+	Calming: 镇静
+	Activated: 生效
+	Deactivated: 停止生效
+	// {Battle / Calming} Cry {activated / deactivated} for {playerName}{punctuation}
+	CryText: "{0}号角已对{2}{1}{3}"
+}
+
+DeathFruit: {
+	DisplayName: 死亡果实
+	Tooltip:
+		'''
+		左键单击会永久性的减少20或5生命值上限（根据是否使用过生命果来决定）
+		生命上限最低不会低于20
+		生命上限低于100时右键单击可撤销该物品的上一次使用
+		'''
+}
+
+InstantResearch: {
+	DisplayName: 一键研究
+	Tooltip:
+		'''
+		调 试 用 物 品
+		研究所有物品
+		'''
+	ResearchText: 已研究{0}个物品
+}
+
+MapViewer: {
+	DisplayName: 失落的王之地图
+	Tooltip: 点亮整个地图
+}
+
+ModeToggle: {
+	DisplayName: 世界令牌
+	Tooltip:
+		'''
+		左键使用以切换世界难度
+		右键使用以开关旅途模式（在多人游戏下会出现问题）
+		'''
+	Journey: 旅行模式已开启！
+	Normal: 经典模式已开启！
+	Expert: 专家模式已开启！
+	Master: 大师模式已开启！
+}
+
+PortableSundial: {
+	DisplayName: 便携式日晷
+	Tooltip:
+		'''
+		左键单击可立即切换时间
+		可以在黎明，中午，黄昏和午夜之间切换时间
+		右键点击可激活魔法日晷效果
+		有Boss存活时使用速度会变慢
+		切换到黎明会重置旅行商人的商店
+		'''
+}
+
+PylonCleaner: {
+	DisplayName: 洁晶灵
+	Tooltip:
+		'''
+		净化所有晶塔周围的区域
+		在神圣晶塔处使用蓝溶液，蘑菇晶塔处使用深蓝溶液，其他晶塔处使用绿溶液
+		'''
+}
+
+SuperDummy: {
+	DisplayName: 超级假人
+	Tooltip:
+		'''
+		在你的光标处产生一个超级假人
+		与普通训练假人相同，但仆从和追踪弹幕会以其为目标
+		会触发一些武器的“击中效果”
+		右击移除所有生成的超级假人
+		最多可以同时生成50个超级假人
+		'''
+}
+
+CorruptRenewal: {
+	DisplayName: 腐化领域
+	Tooltip: 使一大片区域变为腐化之地
+}
+
+CorruptRenewalSupreme: {
+	DisplayName: 腐化维度
+	Tooltip: 使整个世界变为腐化之地
+}
+
+CrimsonRenewal: {
+	DisplayName: 猩红领域
+	Tooltip: 使一大片区域变为猩红之地
+}
+
+CrimsonRenewalSupreme: {
+	DisplayName: 猩红维度
+	Tooltip: 使整个世界变为猩红之地
+}
+
+HallowRenewal: {
+	DisplayName: 神圣领域
+	Tooltip: 使一大片区域变为神圣之地
+}
+
+HallowRenewalSupreme: {
+	DisplayName: 神圣维度
+	Tooltip: 使整个世界变为神圣之地
+}
+
+MushroomRenewal: {
+	DisplayName: 发光蘑菇领域
+	Tooltip: 使一大片区域变为发光蘑菇地
+}
+
+MushroomRenewalSupreme: {
+	DisplayName: 发光蘑菇维度
+	Tooltip: 使整个世界变为发光蘑菇地
+}
+
+PurityRenewal: {
+	DisplayName: 纯净领域
+	Tooltip: 净化一大片区域
+}
+
+PurityRenewalSupreme: {
+	DisplayName: 纯净维度
+	Tooltip: 净化整个世界
+}
+
+SnowRenewal: {
+	DisplayName: 冰雪领域
+	Tooltip: 使一大片区域变为雪原环境
+}
+
+SnowRenewalSupreme: {
+	DisplayName: 冰雪维度
+	Tooltip: 使整个世界变为雪原环境
+}
+
+SandRenewal: {
+	DisplayName: 沙漠领域
+	Tooltip: 使一大片区域变为沙漠环境
+}
+
+SandRenewalSupreme: {
+	DisplayName: 沙漠维度
+	Tooltip: 使整个世界变为沙漠环境
+}
+
+DirtRenewal: {
+	DisplayName: 森林领域
+	Tooltip: 使一大片区域变为森林环境
+}
+
+DirtRenewalSupreme: {
+	DisplayName: 森林维度
+	Tooltip: 使整个世界变为森林环境
+}
+
+Anemometer: {
+	DisplayName: 风速计
+	Tooltip: 召唤大风天
+}
+
+BatteredClub: {
+	DisplayName: 重击棍
+	Tooltip: 召唤食人魔
+}
+
+BetsyEgg: {
+	DisplayName: 古老龙蛋
+	Tooltip:
+		'''
+		召唤双足翼龙
+		Only usable near an Eternia Crystal Stand
+		'''
+}
+
+FestiveOrnament: {
+	DisplayName: 节日装饰
+	Tooltip:
+		'''
+		召唤常绿尖叫怪
+		只能在晚上使用
+		'''
+}
+
+ForbiddenScarab: {
+	DisplayName: 禁忌圣甲虫
+	Tooltip: 召唤沙尘暴
+}
+
+ForbiddenTome: {
+	DisplayName: 禁忌之书
+	Tooltip: 召唤黑暗魔法师
+}
+
+HeadofMan: {
+	DisplayName: 无头骑士的头
+	Tooltip:
+		'''
+		召唤无头骑士
+		只能在晚上使用
+		'''
+}
+
+IceKingsRemains: {
+	DisplayName: 寒冰领主的遗物
+	Tooltip:
+		'''
+		召唤冰雪女王
+		只能在晚上使用
+		'''
+}
+
+MartianMemoryStick: {
+	DisplayName: 火星记忆棒
+	Tooltip: 召唤火星飞碟
+}
+
+MatsuriLantern: {
+	DisplayName: 祭典灯笼
+	Tooltip: 让每个无Boss、无入侵事件的夜晚都是灯笼夜
+}
+
+NaughtyList: {
+	DisplayName: 捣蛋清单
+	Tooltip:
+		'''
+		召唤圣诞坦克
+		只能在晚上使用
+		'''
+}
+
+PartyInvite: {
+	DisplayName: 派对邀请函
+	Tooltip:
+		'''
+		开派对吧！
+		至少有5个城镇NPC时才能使用
+		'''
+}
+
+PillarSummon: {
+	DisplayName: 异界之门
+	Tooltip: 召唤天界柱
+}
+
+RunawayProbe: {
+	DisplayName: 逃亡的探测器
+	Tooltip: 召唤火星暴乱
+}
+
+SlimyBarometer: {
+	DisplayName: 黏糊糊的晴雨表
+	Tooltip: 召唤史莱姆雨
+}
+
+SpentLantern: {
+	DisplayName: 燃尽的灯笼
+	Tooltip: 停用祭典灯笼的效果
+}
+
+SpookyBranch: {
+	DisplayName: 诡异树枝
+	Tooltip:
+		'''
+		召唤哀木
+		只能在晚上使用
+		'''
+}
+
+SuspiciousLookingScythe: {
+	DisplayName: 可疑的镰刀
+	Tooltip:
+		'''
+		召唤南瓜王
+		只能在晚上使用
+		'''
+}
+
+WeatherBalloon: {
+	DisplayName: 气象气球
+	Tooltip: 召唤下雨
+}
+
+AmalgamatedSkull: {
+	DisplayName: 聚合头骨
+	Tooltip:
+		'''
+		召唤一批骷髅枪手
+		只能在晚上或地下使用
+		'''
+}
+
+AmalgamatedSpirit: {
+	DisplayName: 聚合灵魂
+	Tooltip:
+		'''
+		召唤一批骷髅法师
+		只能在晚上或地下使用
+		'''
+}
+
+AthenianIdol: {
+	DisplayName: 雅典神像
+	Tooltip:
+		'''
+		召唤蛇发女妖
+		只能在晚上或地下使用
+		'''
+}
+
+AttractiveOre: {
+	DisplayName: 吸引人的矿物
+	Tooltip:
+		'''
+		召唤不死矿工
+		只能在晚上或地下使用
+		'''
+}
+
+BloodSushiPlatter: {
+	DisplayName: 血寿司拼盘
+	Tooltip:
+		'''
+		召唤恐惧鹦鹉螺
+		只能在血月期间使用
+		'''
+}
+
+BloodUrchin: {
+	DisplayName: 血海胆
+	Tooltip:
+		'''
+		召唤血鳗鱼
+		只能在血月期间使用
+		'''
+}
+
+CloudSnack: {
+	DisplayName: 白云棉花糖
+	Tooltip: 召唤飞龙
+}
+
+ClownLicense: {
+	DisplayName: 小丑资格证
+	Tooltip:
+		'''
+		召唤小丑
+		只能在晚上或地下使用
+		'''
+}
+
+CoreoftheFrostCore: {
+	DisplayName: 极寒核
+	Tooltip: 召唤冰雪巨人
+}
+
+CorruptChest: {
+	DisplayName: 腐化宝箱
+	Tooltip: 召唤腐化宝箱怪
+}
+
+CrimsonChest: {
+	DisplayName: 猩红宝箱
+	Tooltip: 召唤猩红宝箱怪
+}
+
+DemonicPlushie: {
+	DisplayName: 恶魔玩具
+	Tooltip:
+		'''
+		召唤红魔鬼
+		只能在地狱使用
+		'''
+}
+
+DilutedRainbowMatter: {
+	DisplayName: 稀释彩虹物质
+	Tooltip: 召唤彩虹史莱姆
+}
+
+Eggplant: {
+	DisplayName: 茄子
+	Tooltip:
+		'''
+		召唤骷髅博士
+		只能在晚上或地下使用
+		'''
+}
+
+ForbiddenForbiddenFragment: {
+	DisplayName: 讳忌碎片
+	Tooltip: 召唤沙尘精
+}
+
+GnomeHat: {
+	DisplayName: 侏儒帽
+	Tooltip: 召唤侏儒
+}
+
+GoblinScrap: {
+	DisplayName: 哥布林破布
+	Tooltip: 召唤哥布林侦察兵
+}
+
+GoldenSlimeCrown: {
+	DisplayName: 金史莱姆王冠
+	Tooltip: 召唤金史莱姆
+}
+
+GrandCross: {
+	DisplayName: 圣之十字
+	Tooltip:
+		'''
+		召唤圣骑士
+		只能在晚上或地下使用
+		'''
+}
+
+HallowChest: {
+	DisplayName: 神圣宝箱
+	Tooltip: 召唤神圣宝箱怪
+}
+
+HeartChocolate: {
+	DisplayName: 心之巧克力
+	Tooltip:
+		'''
+		召唤宁芙
+		只能在晚上或地下使用
+		'''
+}
+
+HemoclawCrab: {
+	DisplayName: 血浆蟹饵
+	Tooltip:
+		'''
+		召唤血浆哥布林鲨鱼
+		只能在血月期间使用
+		'''
+}
+
+HolyGrail: {
+	DisplayName: 圣杯
+	Tooltip:
+		'''
+		召唤蒂姆
+		只能在晚上或地下使用
+		'''
+}
+
+JungleChest: {
+	DisplayName: 丛林宝箱
+	Tooltip: 召唤丛林宝箱怪
+}
+
+LeesHeadband: {
+	DisplayName: 李小龙头带
+	Tooltip:
+		'''
+		召唤骷髅李小龙
+		只能在晚上或地下使用
+		'''
+}
+
+MothLamp: {
+	DisplayName: 引蛾灯
+	Tooltip: 召唤蛾
+}
+
+MothronEgg: {
+	DisplayName: 蛾怪蛋
+	Tooltip:
+		'''
+		召唤蛾怪
+		只能在日食期间使用
+		'''
+}
+
+Pincushion: {
+	DisplayName: 针垫
+	Tooltip:
+		'''
+		召唤钉头
+		只能在日食期间使用
+		'''
+}
+
+PinkSlimeCrown: {
+	DisplayName: 迷之粉色王冠
+	Tooltip: 召唤粉史莱姆
+}
+
+PirateFlag: {
+	DisplayName: 海盗旗
+	Tooltip: 召唤海盗船长
+}
+
+PlunderedBooty: {
+	DisplayName: 掠夺的赃物
+	Tooltip: 召唤荷兰飞盗船
+}
+
+RuneOrb: {
+	DisplayName: 符文宝珠
+	Tooltip:
+		'''
+		召唤符文巫师
+		只能在晚上或地下使用
+		'''
+}
+
+ShadowflameIcon: {
+	DisplayName: 暗影火焰符章
+	Tooltip:
+		'''
+		召唤哥布林术士
+		只能在哥布林入侵期间使用
+		'''
+}
+
+SlimyLockBox: {
+	DisplayName: 黏黏的锁
+	Tooltip: 召唤地牢史莱姆
+}
+
+SuspiciousLookingChest: {
+	DisplayName: 可疑的箱子
+	Tooltip:
+		'''
+		召唤宝箱怪
+		在地下雪原中可召唤冰雪宝箱怪
+		'''
+	HardmodeLock: 只能在困难模式中使用
+}
+
+SuspiciousLookingLure: {
+	DisplayName: 可疑的鱼饵
+	Tooltip:
+		'''
+		召唤游荡眼球怪鱼和僵尸人鱼
+		只能在晚上使用
+		'''
+}
+
+AncientSeal: {
+	DisplayName: 古代符章
+	Tooltip:
+		'''
+		召唤所有Boss，包括其他Mod中的
+		只能在晚上使用
+		“后果自负”
+		'''
+}
+
+CultistSummon: {
+	DisplayName: 拜月教徒的遗物
+	Tooltip:
+		'''
+		召唤拜月教邪教徒
+		如果你已经击败过拜月教邪教徒，击败后不生成天界柱
+		'''
+}
+
+DeathBringerFairy: {
+	DisplayName: 告死精灵
+	Tooltip:
+		'''
+		召唤所有困难模式前的Boss
+		只能在晚上使用
+		某些Boss只有在特定的生物群落中才会被召唤
+		'''
+}
+
+FleshyDoll: {
+	DisplayName: 向导娃娃火柴套
+	Tooltip:
+		'''
+		召唤血肉之墙
+		只在地狱中生效
+		'''
+}
+
+MechanicalAmalgam: {
+	DisplayName: 机械融合体
+	Tooltip: 召唤三个机械Boss
+}
+
+MutantVoodoo: {
+	DisplayName: 突变体毛绒玩具
+	Tooltip:
+		'''
+		召唤所有原版Boss
+		只能在夜晚使用
+		'''
+}
+
+PlanterasFruit: {
+	DisplayName: 世纪之果
+	Tooltip: 召唤世纪之花
+}
+
+PrismaticPrimrose: {
+	DisplayName: 棱晶玫瑰
+	Tooltip: 召唤光之女皇
+}
+
+SuspiciousSkull: {
+	DisplayName: 可疑头骨
+	Tooltip:
+		'''
+		在不杀死服装商的情况下召唤骷髅王
+		在白天会召唤地牢守卫
+		'''
+}
+
+EnergizerBee: {
+	DisplayName: 蜂王强化剂
+	Tooltip:
+		'''
+		击败十轮[i:Fargowiltas/OverloadBee]过载幼虫后获得
+		“闻起来像蜂蜜”
+		'''
+}
+
+EnergizerBetsy: {
+	DisplayName: 翼龙强化剂
+	Tooltip:
+		'''
+		击败十轮[i:Fargowiltas/OverloadBetsy]龙蛋盒后获得
+		“你感觉你已经等了三千年”
+		'''
+}
+
+EnergizerBrain: {
+	DisplayName: 大脑强化剂
+	Tooltip:
+		'''
+		击败十轮[i:Fargowiltas/OverloadBrain]头脑风暴后获得
+		“你仍然觉得自己很傻”
+		'''
+}
+
+EnergizerCultist: {
+	DisplayName: 教徒强化剂
+	Tooltip:
+		'''
+		击败十轮[i:Fargowiltas/OverloadCultist]狂热者暴动后获得
+		“你可能疯了”
+		'''
+}
+
+EnergizerDarkMage: {
+	DisplayName: 神秘强化剂
+	Tooltip:
+		'''
+		击败十轮[i:Fargowiltas/OverloadDarkMage]绝对禁忌之书后获得
+		“你感觉你已经等了一千年”
+		'''
+}
+
+EnergizerDeer: {
+	DisplayName: 巨鹿强化剂
+	Tooltip:
+		'''
+		击败十轮[i:Fargowiltas/OverloadDeer]融合巨鹿后获得
+		“它使你饥饿”
+		'''
+}
+
+EnergizerDestroy: {
+	DisplayName: 毁灭强化剂
+	Tooltip:
+		'''
+		击败十轮[i:Fargowiltas/OverloadDestroyer]地震触发器后获得
+		“它让你有了一种想毁灭东西的冲动”
+		'''
+}
+
+EnergizerDG: {
+	DisplayName: 骸骨强化剂
+	Tooltip:
+		'''
+		击败十轮白天的[i:Fargowiltas/OverloadSkele]骷髅项链后获得
+		“让你想起一头卑鄙的母牛”
+		'''
+}
+
+EnergizerEmpress: {
+	DisplayName: 仙灵强化剂
+	Tooltip:
+		'''
+		击败十轮[i:Fargowiltas/OverloadEmpress]草蛉罐后获得
+		“观察它的时候佩戴护目镜”
+		'''
+}
+
+EnergizerEye: {
+	DisplayName: 视觉强化剂
+	Tooltip:
+		'''
+		击败十轮[i:Fargowiltas/OverloadEye]融合眼球后获得
+		“它似乎在看着你”
+		'''
+}
+
+EnergizerFish: {
+	DisplayName: 猪鲨强化剂
+	Tooltip:
+		'''
+		击败十轮[i:Fargowiltas/OverloadFish]松露虫堆后获得
+		“你很满意”
+		'''
+}
+
+EnergizerGolem: {
+	DisplayName: 蜥蜴强化剂
+	Tooltip:
+		'''
+		击败十轮[i:Fargowiltas/OverloadGolem]符文能量电池后获得
+		“你希望它拼写为‘TechDirito’”
+		'''
+}
+
+EnergizerMoon: {
+	DisplayName: 月球强化剂
+	Tooltip:
+		'''
+		击败十轮[i:Fargowiltas/OverloadMoon]符文铭文后形成
+		“你在享受奶酪”
+		'''
+}
+
+EnergizerPlant: {
+	DisplayName: 绿叶强化剂
+	Tooltip:
+		'''
+		击败十轮[i:Fargowiltas/OverloadPlant]丛林之心后获得
+		“变成一片叶子？听起来很不错”
+		'''
+}
+
+EnergizerPrime: {
+	DisplayName: 统帅强化剂
+	Tooltip:
+		'''
+		击败十轮[i:Fargowiltas/OverloadPrime]统帅控制芯片后获得
+		“感觉就像一个全新的自己”
+		'''
+}
+
+EnergizerQueenSlime: {
+	DisplayName: 结晶强化剂
+	Tooltip:
+		'''
+		击败十轮[i:Fargowiltas/OverloadQueenSlime]过载水晶后获得
+		“感觉非常粘”
+		'''
+}
+
+EnergizerSkele: {
+	DisplayName: 头骨强化剂
+	Tooltip:
+		'''
+		击败十轮[i:Fargowiltas/OverloadSkele]骷髅项链后获得
+		“让你想起一头牛”
+		'''
+}
+
+EnergizerSlime: {
+	DisplayName: 粘滑强化剂
+	Tooltip:
+		'''
+		击败十轮[i:Fargowiltas/OverloadSlimeCrown]过载王冠后获得
+		“感觉有点粘”
+		'''
+}
+
+EnergizerTwins: {
+	DisplayName: 双子强化剂
+	Tooltip:
+		'''
+		击败十轮[i:Fargowiltas/OverloadTwins]全焦距晶状体后获得
+		“你希望你拥有更多”
+		'''
+}
+
+EnergizerWall: {
+	DisplayName: 血肉强化剂
+	Tooltip:
+		'''
+		击败十轮[i:Fargowiltas/OverloadWall]人偶包后获得
+		“你感到幽闭恐惧”
+		'''
+}
+
+EnergizerWorm: {
+	DisplayName: 蠕虫强化剂
+	Tooltip:
+		'''
+		击败十轮[i:Fargowiltas/OverloadWorm]蠕虫串烧后获得
+		“有点黏”
+		'''
+}
+
+OverloadBee: {
+	DisplayName: 过载幼虫
+	Tooltip: 召唤一只充满活力的蜂后
+}
+
+OverloadBetsy: {
+	DisplayName: 龙蛋盒
+	Tooltip: 召唤一只充满活力的双足翼龙
+}
+
+OverloadBrain: {
+	DisplayName: 头脑风暴
+	Tooltip: 召唤一只充满活力的克苏鲁之脑
+}
+
+OverloadCultist: {
+	DisplayName: 狂热者暴动
+	Tooltip: 召唤一个充满活力的拜月教邪教徒
+}
+
+OverloadDarkMage: {
+	DisplayName: 绝对禁忌之书
+	Tooltip: 召唤一个充满活力的黑暗魔法师
+}
+
+OverloadDeer: {
+	DisplayName: 融合巨鹿
+	Tooltip: 召唤一只充满活力的独眼巨鹿
+}
+
+OverloadDestroyer: {
+	DisplayName: 地震触发器
+	Tooltip: 召唤一个充满活力的毁灭者
+}
+
+OverloadedSlimeRain: {
+	DisplayName: 相当黏的晴雨表
+	Tooltip:
+		'''
+		召唤过载的史莱姆雨
+		再次使用以停止事件
+		'''
+}
+
+OverloadEmpress: {
+	DisplayName: 草蛉罐
+	Tooltip: 召唤一个充满活力的光之女皇
+}
+
+Overloader: {
+	DisplayName: 过载能量
+	Tooltip:
+		'''
+		用于合成充能召唤物
+		使用充能召唤物时，堆叠在一起的所有召唤物都会被消耗，一次至多消耗10个
+		消耗的越多，产生的Boss就越强
+		消耗超过5个，Boss会变的更快
+		每消耗一个会掉落5个宝藏袋
+		每消耗3个会掉落一个纪念章
+		每消耗10个会掉落一个强化剂
+		'''
+}
+
+// OverloaderRewards: The boss will drop {0} treasure bags, {1} {^1:trophy;trophies}, and {2} {^2:energizer;energizers} when defeated (rewards increase with stack size)
+
+OverloadEye: {
+	DisplayName: 融合眼球
+	Tooltip: 召唤一个充满活力的克苏鲁之眼
+}
+
+OverloadFish: {
+	DisplayName: 松露虫堆
+	Tooltip: 召唤一个充满活力的猪龙鱼公爵
+}
+
+OverloadFrostMoon: {
+	DisplayName: 调皮礼物袋
+	Tooltip:
+		'''
+		召唤霜月事件，直接从第20波开始且刷怪率大幅增加
+		再次使用以停止事件
+		'''
+}
+
+OverloadGoblins: {
+	DisplayName: 过载哥布林战旗
+	Tooltip:
+		'''
+		召唤过载的哥布林入侵事件
+		再次使用以停止事件
+		'''
+}
+
+OverloadGolem: {
+	DisplayName: 符文能量电池
+	Tooltip: 召唤一个充满活力的石巨人
+}
+
+OverloadMartians: {
+	DisplayName: 火星人通讯卫星
+	Tooltip:
+		'''
+		召唤过载的火星暴乱事件
+		再次使用以停止事件
+		'''
+}
+
+OverloadMoon: {
+	DisplayName: 符文铭文
+	Tooltip: 召唤一个充满活力的月球领主
+}
+
+OverloadPirates: {
+	DisplayName: 海盗的赏金
+	Tooltip:
+		'''
+		召唤过载量的海盗入侵事件
+		再次使用以停止事件
+		'''
+}
+
+OverloadPlant: {
+	DisplayName: 丛林之心
+	Tooltip: 召唤一个充满活力的世纪之花
+}
+
+OverloadPrime: {
+	DisplayName: 统帅控制芯片
+	Tooltip: 召唤一个充满活力的机械骷髅王
+}
+
+OverloadPumpkinMoon: {
+	DisplayName: 闹鬼战利品
+	Tooltip:
+		'''
+		召唤南瓜月事件，直接从第15波开始且刷怪率大幅增加
+		再次使用以停止事件
+		'''
+}
+
+OverloadQueenSlime: {
+	DisplayName: 过载水晶
+	Tooltip: 召唤一个充满活力的史莱姆皇后
+}
+
+OverloadSkele: {
+	DisplayName: 骷髅项链
+	Tooltip:
+		'''
+		在夜晚召唤一个充满活力的骷髅王
+		在白天召唤一个充满活力的地牢守卫
+		只会掉落宝藏袋
+		'''
+}
+
+OverloadSlimeCrown: {
+	DisplayName: 私人皇家指令
+	Tooltip: 召唤一个充满活力的史莱姆王
+}
+
+OverloadTwins: {
+	DisplayName: 全焦距晶状体
+	Tooltip: 召唤一个充满活力的双子魔眼
+}
+
+OverloadWall: {
+	DisplayName: 人偶包
+	Tooltip: 召唤一个充满活力的血肉之墙
+}
+
+OverloadWorm: {
+	DisplayName: 蠕虫串烧
+	Tooltip: 召唤一个充满活力的世界吞噬怪
+}
+
+TruffleWorm2: {
+	DisplayName: 浓缩松露虫精华
+	Tooltip: 不钓鱼就召唤猪龙鱼公爵
+}
+
+LihzahrdPowerCell2: {
+	DisplayName: 蜥蜴电池包
+	Tooltip: 在没有祭坛的情况下召唤石巨人
+}
+
+CrimsonAltar: {
+	DisplayName: 猩红祭坛
+	// Tooltip: ""
+}
+
+CrucibleCosmos: {
+	DisplayName: 宇宙坩埚
+	Tooltip:
+		'''
+		包含几乎所有制作环境
+		“它似乎隐藏着巨大的力量”
+		'''
+}
+
+DemonAltar: {
+	DisplayName: 恶魔祭坛
+	// Tooltip: ""
+}
+
+MutantToilet: {
+	DisplayName: 突变体马桶
+	Tooltip: 不要这样……
+}
+
+EchPainting: {
+	DisplayName: Ech猫绘画
+	// Tooltip: "'Groalt W. Fai'"
+}
+
+ElementalAssembler: {
+	DisplayName: 元素装配台
+	Tooltip: 拥有几个基本制作站的功能
+}
+
+GoldenDippingVat: {
+	DisplayName: 金染缸
+	Tooltip: 用于制作金动物
+}
+
+MultitaskCenter: {
+	DisplayName: 多功能合成桌
+	Tooltip: 拥有几个基本制作站的功能
+}
+
+Omnistation: {
+	DisplayName: 万能增益站
+	Tooltip:
+		'''
+		可以被无限次重复使用
+		拥有部分原版增益站的效果
+		在附近时大幅提高运气并提供糖果冲刺增益
+		'''
+}
+
+Omnistation2: {
+	DisplayName: 万能增益站
+	Tooltip:
+		'''
+		可以被无限次重复使用
+		拥有部分原版增益站的效果
+		在附近时大幅提高运气并提供糖果冲刺增益
+		'''
+}
+
+RegalStatue: {
+	DisplayName: 帝王雕像
+	Tooltip: 在附近时城镇NPC会极快地重生
+}
+
+Semistation: {
+	DisplayName: 多功能增益站
+	Tooltip:
+		'''
+		可以被无限次重复使用
+		拥有部分原版增益站的效果
+		'''
+}
+
+SiblingPylon: {
+	DisplayName: 血亲晶塔
+	Tooltip:
+		'''
+		当附近有突变体，憎恶和戴薇安时可以传送至另一个晶塔
+		只能放置一个
+		'''
+}
+
+UnsafeGraniteWall: {
+	DisplayName: 危险花岗岩墙
+	Tooltip: 允许区域特有的敌怪生成
+}
+
+UnsafeMarbleWall: {
+	DisplayName: 危险大理石墙
+	Tooltip: 允许区域特有的敌怪生成
+}
+
+WalkingRick: {
+	DisplayName: 走路的Rick
+	// Tooltip: "'Kien R. Oco'"
+}
+
+WoodenToken: {
+	DisplayName: 木牌
+	Tooltip: “真正的木材爱好者的标志”
+}
+
+AbominationnBody: {
+	DisplayName: 憎恶之躯
+	// Tooltip: ""
+}
+
+AbominationnMask: {
+	DisplayName: 憎恶面具
+	// Tooltip: ""
+}
+
+AbominationnPants: {
+	DisplayName: 憎恶裤子
+	// Tooltip: ""
+}
+
+AbominationnScythe: {
+	DisplayName: 憎恶之镰
+	// Tooltip: ""
+}
+
+DevianttBody: {
+	DisplayName: 戴薇安的身体
+	// Tooltip: ""
+}
+
+DevianttMask: {
+	DisplayName: 戴薇安的面具
+	// Tooltip: ""
+}
+
+DevianttPants: {
+	DisplayName: 戴薇安的裤子
+	// Tooltip: ""
+}
+
+LumberHat: {
+	DisplayName: 伐木工帽
+	// Tooltip: ""
+}
+
+LumberjackBody: {
+	DisplayName: 伐木工身体
+	// Tooltip: ""
+}
+
+LumberjackMask: {
+	DisplayName: 伐木工面具
+	// Tooltip: ""
+}
+
+LumberjackPants: {
+	DisplayName: 伐木工裤
+	// Tooltip: ""
+}
+
+MutantBody: {
+	DisplayName: 突变躯体
+	// Tooltip: ""
+}
+
+MutantMask: {
+	DisplayName: 突变面具
+	// Tooltip: ""
+}
+
+MutantPants: {
+	DisplayName: 突变裤
+	// Tooltip: ""
+}
+
+LumberJaxe: {
+	DisplayName: 伐木斧
+	Tooltip:
+		'''
+		被击中的敌人死亡时会掉落木头
+		“挥舞斧头的真正英雄的武器”
+		'''
+}
+
+Abominationn: {
+	DisplayName: 憎恶
+	Tooltip: “我当然希望我是一个Boss……”
+}
+
+Angler: {
+	DisplayName: 渔夫
+	Tooltip: “你是个优秀的得力仆从！”
+}
+
+ArmsDealer: {
+	DisplayName: 军火商
+	Tooltip: “哥们，把手从我的枪上拿开！”
+}
+
+Clothier: {
+	DisplayName: 服装商
+	Tooltip: “再次感谢你帮我解了诅咒。”
+}
+
+Cyborg: {
+	DisplayName: 机器侠
+	Tooltip: “射弹击中我的运动执行机构会严重降低我的探险效率。”
+}
+
+Demolitionist: {
+	DisplayName: 爆破专家
+	Tooltip: “今天是个找死的好日子！”
+}
+
+Deviantt: {
+	DisplayName: 戴薇安
+	Tooltip: “感受痛苦吧……受虐时别忘了来我这买新东西！”
+}
+
+Dryad: {
+	DisplayName: 树妖
+	Tooltip: “注意安全！泰拉瑞亚需要你！”
+}
+
+DyeTrader: {
+	DisplayName: 染料商
+	Tooltip: “亲爱的，你的穿着太单调了。”
+}
+
+GoblinTinkerer: {
+	DisplayName: 哥布林工匠
+	Tooltip: “想找工具大师？我就是啊！”
+}
+
+Golfer: {
+	DisplayName: 高尔夫球手
+	Tooltip: “早起的鸟儿有虫吃，靠前的球洞有球吃。”
+}
+
+Guide: {
+	DisplayName: 向导
+	Tooltip: “他们说，有个人会告诉你如何在这地方上生存……”
+}
+
+LumberJack: {
+	DisplayName: 伐木工
+	Tooltip: “我早餐吃了碗‘木’片……没就着牛奶”
+}
+
+Mechanic: {
+	DisplayName: 机械师
+	Tooltip: “一定要多买些电线！”
+}
+
+Merchant: {
+	DisplayName: 商人
+	Tooltip: “你是说黄金？我会从你身上弄走。”
+}
+
+Mutant: {
+	DisplayName: 突变体
+	Tooltip: “你很幸运，我站在你这边。”
+}
+
+Nurse: {
+	DisplayName: 护士
+	Tooltip: “让我看看哪里受伤了。”
+}
+
+Painter: {
+	DisplayName: 油漆工
+	Tooltip: “我知道青绿色和蓝绿色之间的差别。但我不会告诉你。”
+}
+
+PartyGirl: {
+	DisplayName: 派对女孩
+	Tooltip: “我们得谈谈。这……聚会的事。”
+}
+
+Pirate: {
+	DisplayName: 海盗
+	Tooltip: “别碰我的战利品，淘气鬼！”
+}
+
+SantaClaus: {
+	DisplayName: 圣诞老人
+	Tooltip: “什么？你认为我不是真的？”
+}
+
+SkeletonMerchant: {
+	DisplayName: 骷髅商人
+	Tooltip: “你肯定想不到大家扔了些什么给我……想买点？”
+}
+
+Squirrel: {
+	DisplayName: 松鼠
+	Tooltip: *吱吱*
+}
+
+Steampunker: {
+	DisplayName: 蒸汽朋克人
+	Tooltip: “给我一些装备！”
+}
+
+Stylist: {
+	DisplayName: 发型师
+	Tooltip: “你今天到底有没有梳过头发？”
+}
+
+Tavernkeep: {
+	DisplayName: 酒馆老板
+	Tooltip: “我在这是要干嘛啊……”
+}
+
+TaxCollector: {
+	DisplayName: 税收官
+	Tooltip: “你又来了？你是想要更多钱吧！？”
+}
+
+TravellingMerchant: {
+	DisplayName: 旅商
+	Tooltip: “我卖的商品来自可能根本就不存在的地方！”
+}
+
+Truffle: {
+	DisplayName: 松露人
+	Tooltip: “感觉镇上的每个人都有点古怪。”
+}
+
+WitchDoctor: {
+	DisplayName: 巫医
+	Tooltip: “我是啥医？我是巫医。”
+}
+
+Wizard: {
+	DisplayName: 巫师
+	Tooltip: “想让我从你耳朵后面掏出一个钱币吗？不想？好吧。”
+}
+
+Zoologist: {
+	DisplayName: 动物学家
+	Tooltip: “我非常喜欢动物！”
+}
+
+Princess: {
+	DisplayName: 公主
+	Tooltip: “粉红色是任何人都梦寐以求的最佳颜色！”
+}
+
+TownDog: {
+	DisplayName: 城镇狗狗
+	Tooltip: “汪汪！”
+}
+
+TownCat: {
+	DisplayName: 城镇猫咪
+	Tooltip: “喵！”
+}
+
+TownBunny: {
+	DisplayName: 城镇兔兔
+	Tooltip: “*小兔子声音*”
+}
+
+SemiBridgifier: {
+	DisplayName: 多功能平台转化器
+	Tooltip:
+		'''
+		可以被无限次重复使用
+		把你所站的平台升级为带有多功能增益站的平台
+		不会建造平台
+		'''
+}
+
+PurityTotem: {
+	DisplayName: 纯净图腾
+	Tooltip:
+		'''
+		可以被无限次重复使用
+		允许城镇NPC居住在邪恶生物群落中
+		防止邪恶物块形成邪恶生物群落
+		防止墓碑形成墓地生物群落
+		'''
+}
+
+InstaPond: {
+	DisplayName: 快速湖泊
+	Tooltip:
+		'''
+		投下一颗炸弹，在其下方形成一片150×50的水体
+		不会破坏重要区域
+		风险自担
+		'''
+}
+
+KohaCrystal: {
+	DisplayName: 祛魔水晶
+	Tooltip: 撤销一次魔力水晶的使用
+}
+
+BigSuckPotion: {
+	DisplayName: 超级黑洞药水
+	Tooltip:
+		'''
+		使你将一切物品吸入囊中
+		必须要手动使用消耗
+		'''
+}
+
+MiniDirtInstaBridge: {
+	DisplayName: 迷你泥土平台
+	Tooltip:
+		'''
+		在光标处建造一条小型泥土平台
+		不会破坏任何方块
+		'''
+}
+
+WiresPainting: {
+	DisplayName: Wires绘画
+	Tooltip: 向内看
+}
+
+CrabSizedGlasses: {
+	DisplayName: 螃蟹尺寸的眼镜
+	Tooltip: 召唤一只时髦螃蟹
+}
+
+NerdySlime: {
+	DisplayName: 书呆子史莱姆
+	Tooltip: "'泡沫泡泡？嗯！'"
+}
+
+CoolSlime: {
+	DisplayName: 酷酷史莱姆
+	Tooltip: "'哟，嗤喽嗤喽！'"
+}
+
+ElderSlime: {
+	DisplayName: 长者史莱姆
+	Tooltip: "'噗……嗯哼！'"
+}
+
+ClumsySlime: {
+	DisplayName: 笨拙史莱姆
+	Tooltip: "'*尴尬的沉默*'"
+}
+
+DivaSlime: {
+	DisplayName: 天后史莱姆
+	Tooltip: "'嘘嘘，吁！'"
+}
+
+SurlySlime: {
+	DisplayName: 暴躁史莱姆
+	Tooltip: "'嘘！啊忒！叽阿……'"
+}
+
+MysticSlime: {
+	DisplayName: 神秘史莱姆
+	Tooltip: "'扑哧扑哧！'"
+}
+
+SquireSlime: {
+	DisplayName: 侍卫史莱姆
+	Tooltip: "'咯吱咯吱！'"
+}
+
+// EnrageWarning.QueenBee: Enrages on the surface
+
+WormSnack: {
+	DisplayName: 蠕虫小吃
+	Tooltip:
+		'''
+		在困难模式之前召唤巨型蠕虫
+		在困难模式中召唤挖掘怪
+		只能在地下使用
+		'''
+}
+
+EnchantedTree: {
+	// DisplayName: Enchanted Tree
+	/* Tooltip:
+		'''
+		Can duplicate several complex items and some of their components
+		Right Click with an item in hand, then drag and pull the item you wish to duplicate
+		Items require varying amounts of Enchanted Acorns to duplicate
+		''' */
+}
+
+EnchantedAcorn: {
+	// DisplayName: Enchanted Acorn
+	// Tooltip: ""
+}
+
+AutoSummoner: {
+	// DisplayName: Bewitching Wand
+	/* Tooltip:
+		'''
+		Automatically summons minions for you
+		Effect works passively from inventory or vanity slots
+		Uses the leftmost minion weapon in your hotbar
+		Mana is spent as normal
+		''' */
+}
+
+TogglerIconItem: {
+	// DisplayName: Utilities Menu
+	// Tooltip: Use to open the Utilities menu
+}
+
+PotionTogglerItem: {
+	// DisplayName: Potion Toggler
+	// Tooltip: Use to open the Potion Toggles menu
+}
+
+StatSheetItem: {
+	// DisplayName: Stat Sheet
+	// Tooltip: Use to open the Stat Sheet menu
+}
+
+ChestWizard: {
+	// DisplayName: Chest Wizard
+	// Tooltip: Searches nearby chests for specific items and retrieves them for you
+}

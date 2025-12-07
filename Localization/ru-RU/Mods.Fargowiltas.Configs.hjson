@@ -1,0 +1,388 @@
+FargoServerConfig: {
+	DisplayName: Конфигурации: сторона сервера
+
+	Headers: {
+		Gameplay: Изменения геймплея
+		Content: Новый контент
+		WorldStates: Состояния мира
+		StatMultipliers: Множители показателей
+		Misc: Прочее
+	}
+
+	UnlimitedAmmo: {
+		Label: "[i:771] Бесконечные боеприпасы в стаке 3996+ в хардмоде"
+		Tooltip: Боеприпасы в стаках 3996 и выше не будут тратиться по наступлении хардмода
+	}
+
+	UnlimitedConsumableWeapons: {
+		Label: "[i:42] Бесконечные тратящиеся оружия в стаке 3996+ в хардмоде"
+		Tooltip: Тратящиеся оружия в стаках 3996 и выше не будут тратиться по наступлении хардмода
+	}
+
+	UnlimitedPotionBuffsOn120: {
+		Label: "[i:292] Бесконечные баффы и наживка в определённых стаках"
+		Tooltip: 30+ для зелий и наживки
+	}
+
+	EasySummons: {
+		Label: "[i:Fargowiltas/SuspiciousSkull] Облегченный призыв боссов"
+		Tooltip: Предметы призыва боссов и событий игнорируют требования и изменяют время если нужно.
+	}
+
+	BossZen: {
+		Label: "[i:3117] Враги не появляются во время битв с боссами"
+		Tooltip: ""
+	}
+
+	AnglerQuestInstantReset: {
+		Label: "[i:2374] Мгновенный ресет заданий рыбака"
+		Tooltip: Сразу после выполнения задания рыбака вам будет доступно новое.
+	}
+
+	ExtraLures: {
+		Label: "[i:2373] Дополнительные крючки у удочек"
+		Tooltip: Некоторые удочки выпускают несколько крючков, а зелье рыбалки даёт дополнительный крючок всем удочкам.
+	}
+
+	FasterLavaFishing: {
+		Label: "[i:4881] Ускоренная рыбалка в лаве"
+		Tooltip: Рыба в лаве ловится быстрее.
+	}
+
+	Fountains: {
+		Label: "[i:909] Фонтаны вызывают биомы"
+		Tooltip: Поставив и включив фонтан определённого биома, вы сможете превратить окружающее пространство в этот биом.
+	}
+
+	PermanentStationsNearby: {
+		Label: "[i:3198] Автоматические баффовые станции рядом"
+		Tooltip: Баффовые станции (по типу точильного камня) автоматически накладывают свои баффы всем игрокам рядом с ними.
+	}
+
+	TorchGodEX: {
+		Label: "[i:5043] Милость Бога факелов автоматически меняет поставленные факела"
+		Tooltip:
+			'''
+			Подчиняется истинной удаче факелов; может отличаться от милости Бога факелов.
+			Например, если у биома нет своего факела, факелы будут заменяться на костяные.
+			'''
+	}
+
+	BannerRecipes: {
+		Label: "[i:1683] Рецепты из знамён"
+		Tooltip: Добавляет рецепты для создания редких предметов, выпадающих с мобов, используя знамёна этих мобов.
+	}
+
+	ContainerRecipes: {
+		Label: "[i:WoodenCrate] Рецепты из «мешков»"
+		Tooltip: Добавляет рецепты для создания предметов, выпадающих из ящиков, мешков с сокровищами и других подобных предметов, используя эти предметы.
+	}
+
+	MiscRecipes: {
+		Label: "[i:Wood] Прочие рецепты"
+		Tooltip: Добавляет другие полезные рецепты.
+	}
+
+	NPCSales: {
+		Label: "[i:267] Дополнительные предметы в магазинах НИПов"
+		Tooltip: Расширяет ассортимент в магазинах некоторых НИПов.
+	}
+
+	CatchNPCs: {
+		Label: "[i:267] Ловить городских НИПов"
+		Tooltip: Позволяет вам ловить НИПов с помощью сачка, превращая их в предмет, который после можно использовать, чтобы выпустить НИПа в мир.
+	}
+
+	Mutant: {
+		Label: "[i:Fargowiltas/MutantMask] [c/ffffff:{$Mods.Fargowiltas.NPCs.Mutant.DisplayName} {$Mods.Fargowiltas.Configs.Common.CanSpawn}]"
+		Tooltip: ""
+	}
+
+	Abom: {
+		Label: "[i:Fargowiltas/AbominationnMask] [c/ffffff:{$Mods.Fargowiltas.NPCs.Abominationn.DisplayName} {$Mods.Fargowiltas.Configs.Common.CanSpawn}]"
+		Tooltip: ""
+	}
+
+	Devi: {
+		Label: "[i:Fargowiltas/DevianttMask] [c/ffffff:{$Mods.Fargowiltas.NPCs.Deviantt.DisplayName} {$Mods.Fargowiltas.Configs.Common.CanSpawn}]"
+		Tooltip: ""
+	}
+
+	Lumber: {
+		Label: "[i:Fargowiltas/LumberjackMask] [c/ffffff:{$Mods.Fargowiltas.NPCs.LumberJack.DisplayName} {$Mods.Fargowiltas.Configs.Common.CanSpawn}]"
+		Tooltip: ""
+	}
+
+	Squirrel: {
+		Label: "[i:239] [c/ffffff:{$Mods.Fargowiltas.NPCs.Squirrel.DisplayName} {$Mods.Fargowiltas.Configs.Common.CanSpawn}]"
+		Tooltip: ""
+	}
+
+	Halloween: {
+		Label: "[i:1774] Хэллоуин"
+		Tooltip: ""
+	}
+
+	Christmas: {
+		Label: "[i:1869] Рождество"
+		Tooltip: ""
+	}
+
+	DrunkWorld: {
+		Label: "[i:353] «Пьяный» мир"
+		Tooltip: ""
+	}
+
+	BeeWorld: {
+		Label: "[i:1133] Мир «Только не пчёлы»"
+		Tooltip: ""
+	}
+
+	WorthyWorld: {
+		Label: "[i:2107] Мир «Для достойных»"
+		Tooltip: ""
+	}
+
+	CelebrationWorld: {
+		Label: "[i:3732] Мир «Празднование»"
+		Tooltip: ""
+	}
+
+	ConstantWorld: {
+		Label: "[i:5109] Мир «Постоянство»"
+		Tooltip: ""
+	}
+
+	NoTrapsWorld: {
+		Label: "[i:510] Мир «Без ловушек»"
+		Tooltip: ""
+	}
+
+	RemixWorld: {
+		Label: "[i:4711] Мир «Не копай над собой»"
+		Tooltip: ""
+	}
+
+	ZenithWorld: {
+		Label: "[i:4956] Мир «Get fixed boi»"
+		Tooltip: ""
+	}
+
+	EnemyHealth: {
+		Label: "[i:29] Здоровье врагов"
+		Tooltip: Умножает здоровье всех врагов.
+	}
+
+	BossHealth: {
+		Label: "[i:29] Здоровье боссов"
+		Tooltip: Умножает здоровье всех боссов. Берётся наибольший множитель между этим и «Здоровьем врагов».
+	}
+
+	EnemyDamage: {
+		Label: "[i:3507] Урон врагов"
+		Tooltip: Умножает урон с учётом защиты от всех врагов и снарядов.
+	}
+
+	BossDamage: {
+		Label: "[i:3507] Урон боссов"
+		Tooltip: Умножает урон с учётом защиты от всех боссов. Берётся наибольший множитель между этим и «Уроном врагов».
+	}
+
+	BossApplyToAllWhenAlive: {
+		Label: Множители боссов применяются универсально
+		Tooltip: Конфигурации «Здоровье боссов» и «Урон боссов» применяются ко всем врагам, пока босс жив, а не только к боссам.
+	}
+
+	PiggyBankAcc: {
+		Label: "[i:87] Эффекты информационных и строительных предметов из инвентаря работают из свиньи-копилки и сейфа"
+		Tooltip: ""
+	}
+
+	ModdedPiggyBankAcc: {
+		Label: "[i:87] Эффекты модовых предметов из инвентаря работают из свиньи-копилки и сейфа"
+		Tooltip: ""
+	}
+
+	StalkerMoneyTrough: {
+		Label: "[i:3213] Преследующее денежное корыто"
+		Tooltip: Свинка из денежного корыта постоянно преследует вас.
+	}
+
+	RottenEggs: {
+		Label: "[i:1809] Усиленные тухлые яйца"
+		Tooltip: Значительно увеличивает урон от тухлых яиц по городским НИПам.
+	}
+
+	SaferBoundNPCs: {
+		Label: "[i:1274] Связанные НИПы не получают урона от врагов"
+		Tooltip: ""
+	}
+
+	ExtractSpeed: {
+		Label: "[i:997] Увеличенная скорость обогатителя"
+		Tooltip: ""
+	}
+
+	PylonsIgnoreEvents: {
+		Label: "[i:4876] Пилоны игнорируют события"
+		Tooltip: Пилоны можно использовать, даже когда в мире происходит событие по типу нашествия гоблинов.
+	}
+
+	SafeTerraformers: {
+		Label: "[i:Fargowiltas/InstaBridge] Безопасные терраформеры"
+		Tooltip:
+			'''
+			Терраформеры по типу МоментМоста и разрушителя городов избегают уничтожения структур в списке важных структур.
+			Данная функция довольно безопасна, и будет предотвращать от разрушения даже самые мелкие структуры, по типу домов в пещерах.
+			'''
+	}
+
+	DisableTombstones: {
+		Label: "[i:Fargowiltas/GraveBuster] Отключить надгробия"
+		Tooltip: Пока включена, надгробия не появляются на месте смерти игрока.
+	}
+
+	ExtraBuffSlots: {
+		Label: "[i:IronskinPotion] Дополнительные слоты для баффов"
+		Tooltip: Даёт 22 дополнительных слота для баффов всем игрокам.
+	}
+
+	AnglerQuestPity: {
+		Label: "[i:AnglerTackleBag] Жалостливый рыбак"
+		Tooltip: Рыбак теперь выдаёт свои предметы на определённых квестах, если вы их ещё не получили.
+	}
+
+	InstantItems: {
+		Label: "[i:Dynamite] Моментальные предметы"
+		Tooltip: Включает/выключает моментальные предметы по типу МоментМоста
+	}
+}
+
+FargoClientConfig: {
+	DisplayName: Конфигурации: сторона клиента
+
+	AutoReforge: {
+		Label: "[s:Fargowiltas/Reforge] Автоматическая перековка"
+		Tooltip: Изменяет меню перековок гоблина-изобретателя
+	}
+
+	ExpandedTooltips: {
+		Label: "[i:171] Больше описаний об изменениях мода Mutant"
+		Tooltip: ""
+	}
+
+	ExactTooltips: {
+		Label: "[i:171] Описания показывают точные скорость предмета и отбрасывание"
+		Tooltip: Скорость предмета измеряется во времени использования, т.е. чем больше число, тем медленнее скорость.
+	}
+
+	ColoredDamageTypes: {
+		Label: "[i:171] Строки описания с уроном окрашиваются в цвет урона"
+		Tooltip: ""
+	}
+
+	DoubleTapDashDisabled: {
+		Label: "[i:3097] Отключить двойное нажатие для рывков"
+		Tooltip: Предотвращает рывки от использования стандартного двойного нажатие. Клавиша рывка работает вне зависимости от этой конфигурации.
+	}
+
+	DoubleTapSetBonusDisabled: {
+		Label: "[i:3776] Отключить двойное нажатие для бонусов сетов"
+		Tooltip: Предотвращает бонусы сетов от использования стандартного двойного нажатие. Клавиша бонуса сета работает вне зависимости от этой конфигурации.
+	}
+
+	DebuffOpacity: {
+		Label: "[i:1612] Максимальная прозрачность отображения дебаффов"
+		Tooltip: ""
+	}
+
+	DebuffFaderRatio: {
+		Label: "[i:1612] Угасание длительности отображаемых дебаффов"
+		Tooltip: ""
+	}
+
+	HideTogglerWhenInventoryIsClosed: {
+		Label: Показывать переключатель эффектов только при открытом инвентаре
+		Tooltip: Если включена, переключатель эффектов автоматически выключается когда инвентарь закрыт.
+	}
+
+	ToggleSearchReset: {
+		Label: Строка поиска меню переключателей эффектов сбрасывается при закрытии
+		Tooltip: ""
+	}
+
+	TransparentFriendlyProjectiles: {
+		Label: "[i:1309] Прозрачность дружелюбных снарядов"
+		Tooltip: Используйте с ванильной настройкой качества на среднем или низком для лучших результатов.
+	}
+
+	MultiplayerDeathSpectate: {
+		Label: "[i:3230] Наблюдение за живыми игроками в мультиплеере"
+		Tooltip: ""
+	}
+
+	DisableAllScopeView: {
+		Label: "[i:RifleScope][i:SniperRifle] Отдаление обзора для прицелов"
+		Tooltip: Позволяет переключать отдаление обзора для прицелов и снайперской винтовки
+	}
+
+	Headers: {
+		UserInterface: Пользовательский интерфейс
+		Misc: Разное
+	}
+
+	AnimatedRecipeGroups: {
+		Label: "[i:9] Анимированные группы в рецептах"
+		Tooltip: Определяет, будут ли группы предметов в рецептах показывать спрайты включённых в них предметов или нет.
+	}
+
+	HideUnlimitedBuffs: {
+		Label: "[i:292] Прятать бесконечные баффы из списка"
+		Tooltip: ""
+	}
+}
+
+SeasonSelections: {
+	Tooltip: ""
+
+	Normal: {
+		Label: Обычный
+		// Tooltip: ""
+	}
+
+	AlwaysOn: {
+		Label: Всегда вкл
+		// Tooltip: ""
+	}
+
+	AlwaysOff: {
+		Label: Всегда выкл
+		// Tooltip: ""
+	}
+}
+
+Common.CanSpawn: может приходить
+
+ScopedBinocularViews: {
+	// Tooltip: Scoped Binocular Views
+
+	AllDisabled: {
+		Label: Все выкл
+		Tooltip: Отключает отдаление обзора и для прицела, и для винтовки
+	}
+
+	RifleScopeAccessoryDisabled: {
+		Label: Прицел
+		Tooltip: Отключает отдаление обзора для прицела
+	}
+
+	SniperRifleScopeDisabled: {
+		Label: Снайп. винтовка
+		Tooltip: Отключает отдаление обзора для снайперской винтовки
+	}
+
+	AllEnabled: {
+		Label: Все вкл
+		Tooltip: Не меняет поведение предметов, отдаляющих обзор
+	}
+}

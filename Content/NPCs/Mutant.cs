@@ -84,7 +84,7 @@ namespace Fargowiltas.Content.NPCs
         {
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Sky,
-                new FlavorTextBestiaryInfoElement("Mods.Fargowiltas.Bestiary.Mutant")
+                new FlavorTextBestiaryInfoElement("Mods.Fargowiltas.NPCs.Mutant.Bestiary")
             });
         }
 

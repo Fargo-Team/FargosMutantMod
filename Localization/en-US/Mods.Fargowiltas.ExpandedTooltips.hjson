@@ -1,0 +1,33 @@
+FountainOcean: Forces surrounding biome state to Ocean upon activation
+FountainDesert: Forces surrounding biome state to Desert upon activation
+FountainJungle: Forces surrounding biome state to Jungle upon activation
+FountainSnow: Forces surrounding biome state to Snow upon activation
+FountainCorruption: Forces surrounding biome state to Corruption upon activation
+FountainCrimson: Forces surrounding biome state to Crimson upon activation
+FountainHallow: Forces surrounding biome state to Hallow (in hardmode only) upon activation
+CatchNPCs: Can also catch townsfolk
+ExtraLure1: Also grants one extra lure
+Lures2: This rod fires 2 lures
+Lures3: This rod fires 3 lures
+Lures5: This rod fires 5 lures
+AutoTorch: Automatically swaps placed torches to boost luck
+TrueTorchLuck: Obeys true torch luck when replacing torches, which may differ from default choices
+UnlimitedBuff30: Unlimited buff at 30 stack in inventory, Piggy Bank, or Safe
+UnlimitedUse30: Unlimited use at 30 stack
+PermanentEffectNearby: Permanently provides effect to nearby players when placed
+WorksFromBanks: Inventory effects also work from Piggy Bank and Safe
+SoldBySquirrel: Sold By Squirrel: When obtained
+SomeMaterialsSold: Some Materials Sold By Squirrel: When obtained
+CraftableMaterialsSold: Craftable Materials Sold By Squirrel: When obtained
+SoldAtThirtyStack: Sold By Squirrel: When obtained at 30-stack
+SoldBy: Sold By
+SeveralVendors: several vendors
+SacrificablePlural: Can be fed to the Squirrel {0} more times
+Sacrificable: Can be fed to the Squirrel 1 more time
+SacrificeEvent: Feed to the Squirrel for a special event
+SacrificeEventPlural: Feed {0} to the Squirrel for a special event
+EnchantedTreeDupable: Can be duplicated with Enchanted Tree
+ScopeViewToggle: Binocular vision disabled
+Shimmerable: Shimmerable into
+ShimmerableFrom: Shimmerable from
+ShimmerableBoth: Shimmerable from and into

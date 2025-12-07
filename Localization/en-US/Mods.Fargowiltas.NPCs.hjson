@@ -1,0 +1,490 @@
+Abominationn: {
+	DisplayName: Abominationn
+	NPCName1: Wilta
+	NPCName2: Jack
+	NPCName3: Harley
+	NPCName4: Reaper
+	NPCName5: Stevenn
+	NPCName6: Doof
+	NPCName7: Baroo
+	NPCName8: Fergus
+	NPCName9: Entev
+	NPCName10: Catastrophe
+	NPCName11: Bardo
+	NPCName12: Betson
+	Bestiary: Can control the weather and stop invasions, but he's lazy and his weapons are fused to his hands. Good thing he doesn't need to eat and doors magically open when he approaches.
+
+	TownNPCMood: {
+		Content: I am content.
+		NoHome: Give me a home and I'll lower my prices.
+		LoveSpace: Not being crowded around is good.
+		FarFromHome: I'd fly back to my house, but I don't really feel like being watched.
+		DislikeCrowded: There's too many humans around, they keep poking at my face.
+		HateCrowded: Do you know how hard it is to carry a scythe and not cut anyone with this many people around?
+		LikeBiome: I like {BiomeName}, the tides are relaxing and I've been learning to fish recently.
+		LoveBiome: I love Space, it's nostalgic and completely silent.
+		DislikeBiome: Too many weak enemies live in {BiomeName}.
+		HateBiome: I dislike {BiomeName} a lot.
+		LikeNPC: "{NPCName} is my sister... she's a bit loud, but she's okay."
+		LoveNPC: "{NPCName} is my brother... I've fought more bosses than him, but he's strong."
+		DislikeNPC: I do not like {NPCName}.
+		HateNPC: "{NPCName} ruins the glory of battle, I don't want her near me."
+		LikeNPC_Princess: "{NPCName} is okay."
+		Princess_LovesNPC: "{NPCName} tells great stories about his battles!"
+	}
+
+	Chat: {
+		// Special
+		Defeat: ...don't you dare tell anyone about this. It was all luck and I wasn't even really trying.
+		MutantShimmer: He turned himself into a squirrel. Funniest stuff I've ever seen.
+		StyxArmor: What nostalgic armor you're wearing. I was upset earlier, but you're worthy of my old set... and you put up a good fight. You wanna rematch later?
+		Graveyard: Do all these graves lying around really belong to you?
+		Mechanic: Can you please ask {0} to stop touching my laser arm? Please.
+		// Normal
+		Formattable1: Where'd I get my scythe from? {0}
+		Formatter1PHM: Ask me later.
+		Formatter1HM: You'll figure it out.
+		Normal1: I CAN SLAY ANYTHING! NOTHING CAN BEAT M- *cough* *cough* ...can I have a lozenge? My throat is sore...
+		Normal2: I have defeated EVERYTHING in this land! What's a beast-cherry? Oh, that... I never kept count.
+		Normal3: Have you ever had a weapon grafted to your arm? It's not very handy.
+		Normal4: Who's Coo-thoo-loo? No idea who you're talking about.
+		Normal5: You wish you could dress like me? Ha! Actually... yea, you can.
+		Normal6: You ever read the ancient classics? I love all the fighting in them.
+		Normal7: I sure wish I was a boss.
+		Normal8: Have you ever read The King in Yellow? I loved it when [REDACTED]... I meant when [DATA EXPUNGED]... Fine, forget it.
+		Normal9: Like my wings? Thanks, the thing I got them from didn't like it much.
+		Normal10: Heroism has no place in this world, instead let's just play ping pong.
+		Normal11: Why are you looking at me like that? Your fashion sense isn't going to be winning you any awards either.
+		Normal12: No, you can't have my hat.
+		Normal13: Embrace suffering... ...what do you mean that's already taken?
+		Normal14: Why did they call it "House of Leaves" if you can't even exit? Are they stupid?
+		Normal15: Is it really a crime if everyone else does it? Unrelated - tonight's movie night!
+		Normal16: Inflicting suffering upon others is cool and all, but have you ever caught a 6 pound bass?
+		Normal17: Irony is the best kind of humor, isn't that ironic?
+		Normal18: I like Cat... What do you mean who's Cat?
+		Normal19: Check the wiki if you need anything, some higher beings are slowly getting it up to par.
+		Normal20: I've heard tales of a legendary Diver... Anyway what was that about a giant jellyfish?
+		Normal21: Overloaded events...? Yeah, they're pretty cool.
+		Normal22: It's not like I don't enjoy your company, but can you buy something?
+		// Cancel Event
+		Canceled: Hocus pocus, the event is over.
+		CancelCD: I'm not feeling it right now, come back in {0} seconds.
+		NoEvent: I don't think there's an event right now.
+		PillarFail: I'm not getting rid of those pillars, that's for you to do.
+		PillarFail2: Hocus pocus, the event is over. Those pillars are staying though.
+		PillarFailCD: I'm not feeling it right now, come back in {0} seconds. Still not getting rid of those pillars, by the way.
+	}
+
+	WoTGDialogue: {
+		RiftEclipse1: The sun and moon change all the time. Blood moons, eclipses, even a god-damn PUMPKIN. Is THIS really where you cross the line?!
+		RiftEclipse2: If I'm gonna be honest with you... this is kind of freaking me out. At least the other two are taking it well.
+		RiftEclipse3: Talk about life imitating art, guess that poem I wrote about impending doom came true...
+		RiftEclipse4: Still up for that ping pong game?
+		RiftEclipse5: Yeeeaaahh sorry, can't cancel that one. You'll find out a way how, right?
+		Solyn: Solyn gave me one of her cinnamon rolls the other day. It was sickeningly sweet... Please don't tell her I said that.
+	}
+
+	Census.SpawnCondition: When the Goblin Army has been defeated.
+	CancelEvent: Cancel Event
+}
+
+Deviantt: {
+	DisplayName: Deviantt
+	NPCName1: Akira
+	NPCName2: Remi
+	NPCName3: Saku
+	NPCName4: Seira
+	NPCName5: Koi
+	NPCName6: Elly
+	NPCName7: Lori
+	NPCName8: Calia
+	NPCName9: Teri
+	NPCName10: Artt
+	NPCName11: Flan
+	NPCName12: Shion
+	NPCName13: Tewi
+	Bestiary: Provides monster spawners and (if she feels like it) a helping hand. This upbeat and energetic creature likes money almost as much as she likes violence. Only a little deformed.
+
+	TownNPCMood: {
+		Content: I'm feeling good!
+		NoHome: Do you have any spare housing? Please? Anything? Even a jail cell is fine with me!
+		LoveSpace: Peace and quiet means I get to live it up!
+		FarFromHome: I think my house was that way... unless you're taking me somewhere?
+		DislikeCrowded: The more the merrier and all, but I'm starting to feel a lil' overcrowded.
+		HateCrowded: I can't kick my legs out and relax without hitting someone...
+		LikeBiome: Ha ha ha, something about {BiomeName} just makes me laugh uncontrollably for some reason!
+		LoveBiome: The stars above are so pretty, I love watching them go by so much!
+		DislikeBiome: Can we go somewhere warmer than this?
+		HateBiome: I wanna live elsewhere! This is awful, I'm sweating up a storm!
+		LikeNPC: "{NPCName} is my big-but-not-biggest bro. He's pretty cool!"
+		LoveNPC: "{NPCName} is here! That's my big bro, isn't he just the coolest?!"
+		DislikeNPC: I can't stand girls like {NPCName}, feels like she's just here for a certain audience.
+		HateNPC: Just between us. Have you ever considered throwing {NPCName} back where you found him?
+		LikeNPC_Princess: I gotta visit {NPCName} again sometime, there's a girl who gets me!
+		Princess_LovesNPC: "{NPCName} is so fun, we could talk for hours!"
+	}
+
+	Chat: {
+		// Special
+		GiveGifts: This world looks tougher than usual, so you can have these on the house just this once! Talk to me if you need any tips, yeah?
+		NTB: IT'S THE FUNNY BEE WORLD!
+		NTBHA: " HA"
+		NTBHEE: " HEE"
+		NTBHOO: " HOO"
+		NTBHEH: " HEH"
+		NTBHAH: " HAH"
+		EridanusArmor: UWAH! Please don't hurt... wait, it's just you. Don't scare me like that! And why is that THING following you?!
+		NekomiArmor: Ooh, that's my hoodie! So how is it? Comfy and great for gaming, right? Maybe you'll even go beat a boss without taking damage!
+		Defeat: Good work getting one over on me! Hope I didn't make you sweat too much. Keep at the grind - I wanna see how far you can go!
+		Stinky: Wow, you smell rancid. When's the last time you took a shower, stinky?
+		LoveStruck: You're making too many hearts at me! Sorry, we're only at bond level {0} right now!
+		BloodMoon: The blood moon's effects? I'm not human anymore, so nope!
+		HM: Shower thought. If I put you in a meat grinder and all that's left is two Dye... I'd probably be rich! Not that I would, not to you, specifically, I mean... never mind!
+		Mutant1: Can you tell {0} to put some clothes on?
+		Mutant2: One day, I'll sell a summon for myself! ...Just kidding. That's {0}'s job.
+		Lumber: What's that? You want to fight {0}? ...even I know better than to try.
+		EternityMode: Embrace suffering... and while you're at it, embrace another purchase!
+		// Normal
+		Formattable1: "{0}! I saw something rodent-y just now! You don't have a hamster infestation, right? Right!?"
+		Normal1: No, I'm totally not throwing Love Potions while you're not looking! Um, I mean... oh, just buy something!
+		Normal2: Did you know? The only real music genres are death metal and artcore.
+		Normal3: I'm morally bankrupt? No, the bank loves me.
+		Normal4: The more rare things you kill, the more stuff I sell! Simple, right?
+		// Normal4: I might be able to afford a taller body if you keep buying!
+		Normal5: Oh, hi! I, uh, definitely don't have any Stink Potions on me right now! Not that I normally would!
+		// Normal5: My size deceives you! I may be 4'6'' but I'm 7'11'' when I stand on my money!
+		Normal6: You're the Terrarian? Honestly, I was expecting someone a little... taller.
+		Normal7: Don't look at me like that! The only thing I've deviated from is my humanity.
+		Normal8: Rip and tear and buy from me for more things to rip and tear!
+		Normal9: It's not the height that matters, but your credit score!
+		Normal10: Wait a second. Are you sure this house isn't what they call 'prison?'
+		Normal11: Deviantt has awoken! Quick, give her all your money to defeat her!
+		Normal12: One day, I'll sell a summon for myself! ...Just kidding.
+		Normal13: Hmm, I can tell! You've killed a lot, but you haven't killed enough!
+		Normal14: Why the extra letter, you ask? Only the strongest sibling is allowed to remove their own!
+	}
+
+	HelpDialogue: {
+		// About Bosses & Events
+		DownedMutant: What's that? You want to fight me for real? ...nah, I can't put up a good fight on my own.
+		DownedAbom: Hey, you've almost made it to the end! Got all your Soul accessories ready? What's that? You want to fight my big brother? ...maybe if he had a reason to.
+		DownedEridanus: Ready to fight my big brother? Remember how you've learned to learn. Stay focused, look for patterns, and don't panic. Good luck!
+		PostML: Wanna craft Forces, but missing Enchantments? Craft the Sigil of Champions and they'll give you what you want, so long as you earn it.
+		MoonLord: Only a specific type of weapon will work against each specific pillar. As for that moon guy, his weakness will keep changing.
+		Cultist: Some powerful enemies like that dungeon guy can create their own arenas. You won't be able to escape, so make full use of the room you do have.
+		Fishron: Did you beat that fish pig dragon yet? He reduces your maximum life a little on every hit. He's also strong enough to break defenses in one hit. Too bad you don't have any reinforced plating to prevent that, right?
+		Betsy: Now's a good time to go for Betsy! Don't worry. If you reach the last wave and lose, you won't have to retry the event for more attempts at her. Careful not to slip up before then, and mind her debuffs!
+		Golem: That temple? Reach the altar to regain wire control! The golem gets upset when you leave, so fighting in there is best. Platforms won't work, but a Lihzahrd Instactuation Bomb can help clear space!
+		Plantera: That overgrown plant inflicts a special venom that works her into an enraged frenzy if she stacks enough hits on you. She also has a ring of crystal leaves, but minions go through it.
+		Destroyer: That metal worm has a few upgrades, but its probes were downgraded to compensate. It'll start shooting homing dark orbs and flying. When it coils around you, don't try to escape!
+		Twins: I saw that metal eye spinning while firing a huge laser the other day. Also, even if you kill them, they won't die until they're both killed!
+		Prime: Focus on taking down that metal skull, not its limbs. Don't try to outrun its spinning limbs! Keep your eyes open and learn to recognize what's doing what.
+		WOF: That thing's mouth is as good as immune to damage, so you'll have to aim for the eye. Only one of them is vulnerable at a time, though. What thing? You know, that thing!
+		Deviantt: Next up is me! Make sure you can recognize whatever attack I'll throw at you. Blocks and turning away can nullify petrification!
+		Skeletron: The master of the dungeon can use its babies to attack! Which attack it uses depends on whether or not it's spinning. It'll also take a last stand, so be ready to run when you make the kill!
+		QueenBee: The queen bee will summon her progeny for backup. She's harder to hurt while they're there, so take them out first. Oh, and her swarm can't hit right above or below her!
+		Brain: Focus on how the ichor moves and don't get overwhelmed! When the brain gets mad, it'll confuse you every few seconds. Four rings to confuse you, one ring when it wears off!
+		Eater: The more the world eater splits, the more worms can rush you at once. The head is extra sturdy now, but don't let them pile up too much!
+		GoblinsCrimson: Watch out when you break your second Crimson Heart! It might attract the goblins, so prepare before you do it.
+		GoblinsCorruption: Watch out when you break your second Shadow Orb! It might attract the goblins, so prepare before you do it.
+		EOC: That big eyeball has the power of the moon, but it's too flashy for its own good! Learn to notice and focus only on the bits that threaten to hurt you.
+		Slime: Gonna fight that slime king soon? Crafting a Mini Instabridge or two might help, and mind the slimy rain. Don't stay up and out of his range or he'll get mad, though!
+		// Other
+		Auras: Seems like everyone's learning to project auras these days. If you look at the particles, you can see whether it'll affect you at close range or a distance!
+		Debuffs: There's probably a thousand items to protect against all these debuffs. It's a shame you don't have a thousand hands to carry them all at once!
+		SoulToggle: Don't forget you can turn off your effect toggles! They're all in that little wrench button right below your inventory. Those small buttons at the very bottom of the list include a recommended low-lag preset!
+		LifeCrystals: I don't have any Life Crystals for you, but I think my big brother left some in the fat slime king. Maybe he'll share if you beat it up!
+		Fish: Watch out for those fish! Sharks will leave you alone if you leave them alone, but piranhas go wild when they smell blood. They can jump out of water to get you!
+		Underwater: The water is bogging you down? Never had an issue with it, personally... Have you tried breathing water instead of air?
+		Underworld: The underworld has gotten a lot hotter since the last time I visited. I hear an obsidian skull is a good luck charm against burning alive, though!
+		SpaceSuffocation: Want to have a breath-holding contest? The empty vacuum of space would be perfect. No, I won't cheat by breathing water instead of air, or using diving gear!
+		UndergroundShadowHands: Scared of the dark? No? Well you should be! I heard a rumor that a monster is trying to grab people underground... spooky. Stay out of the darkness and they can't get you!
+		UndergroundHallow: That's a funny face you're making... Is the underground Hallow too blinding? Remain in darker areas and its volatile effects are reduced!
+		LifeFruit: If you ask me, Plantera is really letting herself go. A diet of Chlorophyte Ore and Life Fruit isn't THAT healthy! Why don't you help her slim down?
+		CactusDamage: Some cacti have teeth. Don't know why they'd need it, with the thorn and all, but watch out for cacti trying to bite you anyway!
+		RainLightning: Watch out for the lightning when it rains. It's good to pack an umbrella so you're not caught out and end up all wet!
+	}
+
+	WoTGDialogue: {
+		RiftEclipse1: Who turned the sun off? Was that you? Can you teach me how to do it?
+		RiftEclipse2: The world is ending? If this is just some trick to get me to lower my prices it won't work.
+		RiftEclipse3: "[{0} hums to herself, unconcerned with her surroundings.]"
+		RiftEclipse4: Y'know, I wonder how this will affect the trout population.
+		RiftEclipseAlien: I think I read an unfiction project like this once. Where are the aliens? {0}
+		RiftEclipseAlienExtension: WHAT DO YOU MEAN YOU ALREADY FOUGHT THEM??
+		Solyn: That other magical girl? Oh, you mean the star one? What about her? You better not be spending any of my future gold coi- I Mean Your Hard Earned Money over there.
+	}
+
+	Census.SpawnCondition: When any rare enemy has been defeated.
+	HelpButton: Help
+}
+
+LumberJack: {
+	DisplayName: LumberJack
+	NPCName1: Griff
+	NPCName2: Jack
+	NPCName3: Bruce
+	NPCName4: Larry
+	NPCName5: Will
+	NPCName6: Jerry
+	NPCName7: Liam
+	NPCName8: Stan
+	NPCName9: Lee
+	NPCName10: Woody
+	NPCName11: Leif
+	NPCName12: Paul
+	Bestiary: A wholly ordinary lumberjack that loves collecting critters and chopping wood of any kind. But could there be more to him than meets the eye? Secret godly powers? ...Probably not.
+
+	TownNPCMood: {
+		Content: I'm happy as long as the world has wood that needs chopping.
+		NoHome: No lumberjack is complete without a log cabin to call home!
+		LoveSpace: Fewer people around means I can swing my axe all I want with nobody in the way.
+		FarFromHome: This is too far from my cabin. I should get back and sharpen my axe.
+		DislikeCrowded: I think it's getting crowded around here.
+		HateCrowded: Too many people around. Nothing ruins a good chopping session more than chopping down someone.
+		LikeBiome: Plenty of trees to chop in {BiomeName} makes for a happy lumberjack.
+		LoveBiome: There's nothing like good old fashioned woodchopping in {BiomeName}!
+		DislikeBiome: There's nothing to chop in {BiomeName}!
+		HateBiome: There's nothing to chop in {BiomeName}!
+		LikeNPC: I chop down trees, {NPCName} plants more, we're the perfect duo.
+		LoveNPC: I'm glad {NPCName} understands the beauty of felling a big tree.
+		DislikeNPC: "{NPCName} told me to start hugging trees... so I taught my axe to hug trees for me."
+		HateNPC: "{NPCName} doesn't get me at all. Bombing a forest isn't woodchopping!"
+		LikeNPC_Princess: "{NPCName} is better with an axe than I expected!"
+		Princess_LovesNPC: "{NPCName} is so strong, I want to try chopping wood some time!"
+	}
+
+	Chat: {
+		// Special
+		Nurse: I always see {0} looking at my biceps when I'm working. Wonder if she wants some of my wood.
+		LucyTheAxe: Lucy from that universe.. Interesting things await you.
+		// Normal
+		Normal1: Dynasty wood? Between you and me, that stuff ain't real wood!
+		Normal2: Sure cactus isn't wood, but I can still chop it with me trusty axe.
+		Normal3: You wouldn't by chance have any fantasies about me... right?
+		Normal4: I eat a bowl of woodchips for breakfast... without any milk.
+		Normal5: TIIIIIIIIIMMMBEEEEEEEERRR!
+		Normal6: I'm a lumberjack and I'm okay, I sleep all night and I work all day!
+		Normal7: You won't ever need an axe again with me around.
+		Normal8: I have heard of people cutting trees with fish, who does that?
+		Normal9: I'm glad my wood put such a big smile on your face.
+		Normal10: You ever seen the world tree?
+		Normal11: You want what? ...Sorry that's not the kind of wood I'm selling.
+		Normal12: Why don't I sell acorns? ...I replant all the trees I chop, don't you?
+		Normal13: What's the best kind of tree? ... Any if I can chop it.
+		Normal14: Can I axe you a question?
+		Normal15: Might take a nap under a tree later, care to join me?
+		Normal16: I'm an expert in all wood types.
+		Normal17: I'm glad there's more trees to chop here at journey's end.
+		Normal18: Red is one of my favourite colors, right after wood.
+		Normal19: It's always flannel season.
+		// Tree Treasures
+		Desert: While I was chopping down a cactus these things leaped at me, why don't you take care of them?
+		Jungle: These mahogany trees are full of life, but a tree only has one purpose: to be chopped. Oh yea these fell out of the last one.
+		Hallow: This place is a bit fanciful for my tastes, but the wood's as choppable as any. Nighttime has these cool bugs though, take a few.
+		GlowshroomHM: Whatever causes these to glow is beyond me, you're probably gonna eat them anyway so have this while you're at it.
+		Evil: The trees here are probably the toughest in this branch of reality.. Sorry, just tree puns. I found these for you here.
+		Snow: This neck of the woods is pretty eh? Here I've got some of my favorite wood for you.
+		Beach: Even on vacation, I always fit in a little chopping. A couple annoying birds fell out of a palm tree. Take them off my hands.. maybe cook them up?
+		Underworld: I looked around here for a while and eventually found some weird, ashy trees. Very fragile. I also found this critter and vegetable. Please take them, they're hot to hold.
+		DirtRockGem: I certainly didn't expect to find such wonderful trees down here. Check this out.
+		DirtRockMouse: Went for a long haul today, but there were only so many of those strange trees to go around. I did find a lot of these, why don't you give some of them a new home?
+		CommonDayTimeWindy: Seems like the wind brought a bunch of these out of hiding. Some people say they're good luck. All I know is, the only luck I need is a sharp axe!
+		CommonDayTimeButterfly: Back in the day, people used to forge butterflies into powerful gear. We try to forget those days... but here have one.
+		CommonDayTimeEucaluptusSap: I found this, but I'm not a sappy person. You can have it instead.
+		CommonDayTimeCritter: These little critters are always falling out of the trees I cut down. Maybe you can find a use for them?
+		CommonNightTime: Chopping trees at night is always relaxing... well except for the flying eyeballs. Have one of these little guys to keep you company.
+		Rest: I'm resting after a good day of chopping, come back tomorrow and maybe I'll have something else for you.
+	}
+
+	WoTGDialogue: {
+		RiftEclipse1: What's all this about a rift in the sky? Well, if it ain't hurtin' the lil' critters, then it's not my problem.
+		RiftEclipse2: Only you can prevent forest fires. And intergalactic turmoil too, I guess.
+		RiftEclipse3: Once yer done killin' God or whatever, mind joinin' me under that tree? Which one? You'll figure it out.
+		RiftEclipse4: If a tree falls down and nobody's around to hear it... didn't think I'd see the day is all.
+		RiftEclipseSnow: Looks like the snow biome houses more than just boreal now. Still doesn't change my job though! Neither snow nor heat nor rain nor sleet!
+	}
+
+	Census.SpawnCondition: Can fall out of trees after 400 wood has been chopped.
+	TreeTreasures: Tree Treasures
+}
+
+Mutant: {
+	DisplayName: Mutant
+	NPCName1: Flacken
+	NPCName2: Dorf
+	NPCName3: Bingo
+	NPCName4: Hans
+	NPCName5: Fargo
+	NPCName6: Grim
+	NPCName7: Mike
+	NPCName8: Fargu
+	NPCName9: Terrance
+	NPCName10: Catty N. Pem
+	NPCName11: Tom
+	NPCName12: Weirdus
+	NPCName13: Polly
+	Bestiary: Called brother by its siblings, but refuses to confirm its gender. More interested in watching fights and small pets than talking about its past. It seems to be looking for someone strong...
+
+	TownNPCMood: {
+		Content: Thanks for the house, I guess.
+		NoHome: A house wouldn't hurt, but I don't mind either way.
+		LoveSpace: Downtime between boss fights is nice. I don't get that with lots of humans around.
+		FarFromHome: I'll eat slimes and zombies, but eating human food at home would be good too.
+		DislikeCrowded: There's too many people here. And they seem upset I keep winning our staring contests.
+		HateCrowded: If one more human in this cramped town bumps into my brain again... never mind.
+		LikeBiome: We all start in {BiomeName}, it's a good place.
+		LoveBiome: Living up here is comfortable, but when are you going to find my temple?
+		DislikeBiome: Is {BiomeName} supposed to impress me? The big fairy doesn't, that's for sure.
+		HateBiome: Do you want pricier summons? Making me live in {BiomeName} means pricier summons.
+		LikeNPC: I forget when {NPCName} joined the family, but she's earned her place.
+		LoveNPC: "{NPCName} and I fought through many battles, too bad there's no opportunity to do it again."
+		DislikeNPC: Why is {NPCName} here? It's okay, me, just don't look him in the eye and he can't scare you...
+		HateNPC: "{NPCName} needs to leave before my Penetrator makes it happen."
+		LikeNPC_Princess: "{NPCName} seems friendly."
+		Princess_LovesNPC: "{NPCName} has some amazing items, they're great for meeting new friends!"
+	}
+
+	Chat: {
+		// Special
+		EternityDefeat: Congratulations. You truly embraced eternity... at least, I think you did? So what happens next? Ascend from this plane of existence? Fight a transcendent cat-like entity? Destroy the world? All the power's in your hands now.
+		Defeat: Good work beating me, I guess. I still feel like stretching my wings... Why don't we go at it for real next time?
+		MutantArmor: Nice armor you have, very realistic skin. As a matter of fact, mind if I borrow it? Your skin, that is.
+		SoulsPostML: Now that you've defeated the big guy, I'd say it's time to start collecting those materials!
+		DefeatCommon: What's that? You want to fight me? ...sure, I guess.
+		DefeatAbom: What's that? You want to fight me? ...maybe if I had a reason.
+		SoulsModDisabled: What's that? You want to fight me? ...you're not worthy you rat.
+		PumpkinMoon: A bit spooky tonight, isn't it.
+		FrostMoon: I'd ask for a coat, but I don't think you have any my size.
+		SlimeRain: Weather seems odd today, wouldn't you agree?
+		BloodMoon1: Lovely night, isn't it?
+		BloodMoon2: I hope the constant arguing I'm hearing isn't my fault.
+		NightTime: I'd follow and help, but I'd much rather sit around right now.
+		Party: "{0} is the one who invited me, I don't understand why though."
+		PartyWithoutPartyGirl: I don't know what everyone's so happy about, but as long as nobody mistakes me for a Pigronata, I'm happy too.
+		Nurse: Whenever we're alone, {0} keeps throwing syringes at me, no matter how many times I tell her to stop!
+		WitchDoctor: Please go tell {0} to drop the 'mystical' shtick, I mean, come on! I get it, you make tainted water or something.
+		Dryad: Why does {0}'s outfit make my wings flutter?
+		Stylist: "{0} once gave me a wig... I look hideous with long hair."
+		Truffle: That mutated mushroom seems like my type of fella.
+		TaxCollector: "{0} keeps asking me for money, but he won't accept my spawners!"
+		Guide: Any idea why {0} is always cowering in fear when I get near him?
+		WitchDoctorTruffleCyborg: If any of us could play instruments, I'd totally start a band with {0}, {1}, and {2}.
+		PartyGirl: Man, {0}'s confetti keeps getting stuck to my wings.
+		Demolitionist: I'm surprised {0} hasn't blown a hole in the floor yet, on second thought that sounds fun.
+		Tavernkeep: "{0} keeps suggesting I drink some beer, something tells me he wouldn't like me when I'm drunk though."
+		DyeTrader: "{0} wants to see what I would look like in blue... I don't know how to feel."
+		// Normal
+		Normal1: Savagery, barbarism, bloodthirst, that's what I like seeing in people.
+		Normal2: The stronger you get, the more stuff I sell. Makes sense, right?
+		Normal3: There's something all of you have that I don't... Death perception, I think it's called?
+		Normal4: It would be pretty cool if I sold a summon for myself...
+		Normal5: The only way to get stronger is to keep buying from me and in bulk too!
+		Normal6: Why are you looking at me like that, all I did was eat an apple.
+		Normal7: Don't bother with anyone else, all you'll ever need is right here.
+		Normal8: You're lucky I'm on your side.
+		Normal9: Why yes I would love a ham and swiss sandwich.
+		Normal10: Should I start wearing clothes? ...Nah.
+		Normal11: It's not like I can actually use all the gold you're spending.
+		Normal12: Violence for violence is the law of the beast.
+		Normal13: Those guys really need to get more creative. All of their first bosses are desert themed!
+		Normal14: You say you want to know how a Mutant and Abominationn are brothers? You're better off not knowing.
+		Normal15: I'm all you need for a calamity.
+		Normal16: Everything shall bow before me! ...after you make this purchase.
+		Normal17: It's clear that I'm helping you out, but uh.. what's in this for me? A house you say? I eat zombies for breakfast.
+		Normal18: Can I jump? No, I don't have something called a 'spacebar'.
+		Normal19: Got your nose, I needed one to replace mine.
+		Normal20: What's a Terry?
+		Normal21: Why do so many creatures carry around a weird looking blue doll? The world may never know.
+		Normal22: Impending doom approaches. ...If you don't buy anything of course.
+		Normal23: I've heard of a '3rd dimension', I wonder what that looks like.
+		Normal24: Boy don't I look fabulous today.
+		Normal25: You have fewer friends than I do eyes.
+		Normal26: The ocean is a dangerous place, I wonder where Diver is?
+		Normal27: Do you know what an Ee-arth is?
+		Normal28: I can't even spell 'apotheosis', do you expect me to know what it is?
+		Normal29: Where do monsters get their gold from? ...I don't have pockets you know.
+		Normal30: Dogs are cool and all, but cats don't try to bite my brain.
+		Normal31: Beware the green dragon... What's that face mean?
+		Normal32: Where is this O-hi-o I keep hearing about.
+		Normal33: I've told you 56 times already, I'm busy... Oh wait you want to buy something, I suppose I have time.
+		Normal34: I've heard of a 'Soul of Souls' that only exists in 2015.
+		Normal35: Adding EX after everything makes it way more difficult.
+		Normal36: I think that all modern art looks great, especially the bloody stuff.
+		Normal37: How many guides does it take to change a lightbulb? ... I don't know, how about you ask him.
+		Normal38: Good thing I don't have a bed, I'd probably never leave it.
+		Normal39: What's this about an update? Sounds rare.
+		Normal40: If you need me I'll be slacking off somewhere.
+		Normal41: What do you mean who is Fargo!
+		Normal42: Have you seen the ech cat?
+		Normal43: I don't understand music nowadays, I prefer some smooth jazz... or the dying screams of monsters.
+		Normal44: Cthulhu's got nothing on me!
+		Normal45: I heard of a rumor of infinite use boss summons. Makes me sick...
+	}
+
+	WoTGDialogue: {
+		RiftEclipse1: It's a good thing your world is ending and not mine.
+		RiftEclipse2: You want advice on a future battle? Sorry, I seem to have forgotten its name. Pretty chill dude though. We had beers last Tuesday.
+		RiftEclipse3: You can handle flashing lights, right?
+		RiftEclipse4: You ever try frostblessed salad? It's an... acquired taste.
+		RiftEclipse5: This totally looks way better. Atmospheric. Unparalleled. Other Big Pretentious Words.
+		Solyn: Still hanging out with Solyn? {0}
+		SolynExtension1: She tends to get into a lot of trouble.
+		SolynExtension2: ...What's that face supposed to mean?
+	}
+
+	Census.SpawnCondition: When any boss has been defeated.
+	CycleShop: Cycle Shop
+	PreHM: Pre Hardmode
+	HM: Hardmode
+	PostML: Post Moon Lord
+}
+
+Squirrel: {
+	DisplayName: Squirrel
+	NPCName1: Rick
+	NPCName2: Acorn
+	NPCName3: Puff
+	NPCName4: Coco
+	NPCName5: Truffle
+	NPCName6: Furgo
+	NPCName7: Squeaks
+	Bestiary: This dapper critter sells duplicates of valuable items that it notices in inventories. Won't divulge how it gets them, mostly because it can't speak.
+
+	TownNPCMood: {
+		Content: *content squeak*
+		NoHome: *sad homeless squeak*
+		LoveSpace: *happy uncrowded squeak*
+		FarFromHome: *sad lost squeak*
+		DislikeCrowded: *sad crowded squeak*
+		HateCrowded: *very sad crowded squeak*
+		LikeBiome: *happy squeak about {BiomeName}*
+		LoveBiome: *very happy squeak about {BiomeName}*
+		DislikeBiome: *sad squeak about {BiomeName}*
+		HateBiome: *very sad squeak about {BiomeName}*
+		LikeNPC: *happy squeak about {NPCName}*
+		LoveNPC: *very happy squeak about {NPCName}*
+		DislikeNPC: *angry squeak about {NPCName}*
+		HateNPC: *very angry squeak about {NPCName}*
+		LikeNPC_Princess: *happy squeak about {NPCName}*
+		Princess_LovesNPC: "{NPCName} is really adorable!"
+	}
+
+	Chat: {
+		// Special
+		BloodMoon: "[c/FF0000:You will suffer.]"
+		// Normal
+		Normal1: *squeak*
+		Normal2: *chitter*
+		Normal3: *scratch scratch*
+		FeedSuccess: *crunch*
+		FeedFail: *disappointed squeak*
+	}
+
+	WoTGDialogue: "[{0} looks up at you. You can't tell what its expression means.]"
+	Census.SpawnCondition: Have a Top Hat Squirrel in your inventory.
+	Feed: Feed Held Item
+	BlackMarket: Black Market
+}
+
+SuperDummyNPC.DisplayName: Super Dummy

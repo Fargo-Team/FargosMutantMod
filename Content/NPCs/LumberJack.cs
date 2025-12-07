@@ -79,7 +79,7 @@ namespace Fargowiltas.Content.NPCs
         {
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
-                new FlavorTextBestiaryInfoElement("Mods.Fargowiltas.Bestiary.LumberJack")
+                new FlavorTextBestiaryInfoElement("Mods.Fargowiltas.NPCs.LumberJack.Bestiary")
             });
         }
 

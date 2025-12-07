@@ -10,4 +10,9 @@
     <None Remove="Content\Items\Vanity\CrabSizedGlasses.png" />
     <None Remove="Content\Projectiles\CoolCrab.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Localization\pt-BR\" />
+    <Folder Include="Localization\zh-Hans\" />
+    <Folder Include="Localization\ru-RU\" />
+  </ItemGroup>
 </Project>

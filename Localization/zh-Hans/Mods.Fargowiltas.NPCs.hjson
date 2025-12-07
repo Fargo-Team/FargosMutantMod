@@ -1,0 +1,490 @@
+Abominationn: {
+	DisplayName: 憎恶
+	// NPCName1: Wilta
+	// NPCName2: Jack
+	// NPCName3: Harley
+	// NPCName4: Reaper
+	// NPCName5: Stevenn
+	// NPCName6: Doof
+	// NPCName7: Baroo
+	// NPCName8: Fergus
+	// NPCName9: Entev
+	// NPCName10: Catastrophe
+	// NPCName11: Bardo
+	// NPCName12: Betson
+	Bestiary: 他可以控制天气和停止入侵，但他很懒惰，并且他的武器和手融合在一起。好消息是，他不需要吃东西。当他靠近时，门神奇地打开了。
+
+	TownNPCMood: {
+		Content: 我很满意。
+		NoHome: 给我一个住所，我会降低价格。
+		LoveSpace: 不用挤在一起针不戳。
+		FarFromHome: 我可以飞回我家，但我真的不想被人看到。
+		DislikeCrowded: 周围的人太多了，他们一直在戳我的脸。
+		HateCrowded: 你知道在周围这么多人的情况下，拿着镰刀不割伤任何人有多难吗？
+		LikeBiome: 我喜欢{BiomeName}，潮汐很舒缓，我最近还在学钓鱼呢。
+		LoveBiome: 我非常喜欢太空，它令人怀念，又寂静无声。
+		DislikeBiome: 这儿有太多弱小的敌人生活在{BiomeName}。
+		HateBiome: 我很讨厌{BiomeName}。
+		LikeNPC: 那个女孩，{NPCName}，她是我妹妹……虽然有点吵，但人还不错。
+		LoveNPC: 那个家伙，{NPCName}，他是我哥哥……我击败过的Boss比他多，但是他很强大。
+		DislikeNPC: 我不喜欢{NPCName}。
+		HateNPC: "{NPCName}毁了战斗的荣耀，我不想让她靠近我。"
+		LikeNPC_Princess: "{NPCName}看起来真棒。"
+		Princess_LovesNPC: "{NPCName}正在讲述他精彩的冒险故事！"
+	}
+
+	Chat: {
+		// Special
+		Defeat: ……这事你敢说出去试试！不过是你运气好，我都没使出全力。
+		MutantShimmer: 这家伙把自己变成松鼠了，没想到还能看见这么有趣的事情……
+		StyxArmor: 你穿的这套盔甲可真是怀旧……刚才是我小看你了，你配得上我这套旧装备——而且打得不错嘛！改天再来一局？
+		Graveyard: 周围所有的这些墓碑都是你的？
+		Mechanic: 你能去跟{0}说让她别再碰我的激光胳膊了吗？
+		// Normal
+		Formattable1: 我的镰刀是从哪里弄来的？{0}
+		Formatter1PHM: 稍后问我吧。
+		Formatter1HM: 你会明白的。
+		Normal1: 我能毁灭一切！没有东西能打败我——咳咳咳……那个，能给我颗润喉糖吗？嗓子有点疼……
+		Normal2: 我已经打败了这片土地上的一切！什么？野兽樱桃？哦那玩意……我都没数过打了多少。
+		Normal3: 你试过把武器接在手臂上吗？挺不顺手的说实话。
+		Normal4: 扣——书——撸是谁？不知道你在说谁。
+		Normal5: 你想穿得像我一样吗？哈！实际上……你可以。
+		Normal6: 你读过古代经典吗？我喜欢里面所有的战斗。
+		Normal7: 我是世界级的诗人，有没有读过我关于即将到来的末日的诗作？
+		Normal8: 你看过《黄衣之主》吗？我超爱那段[已编辑]……不对，是[数据删除]……算了，当我没说。
+		Normal9: 喜欢我的翅膀？谢谢，我从一个不太喜欢它的人那得到的。
+		Normal10: 这个世界没有英雄主义的容身之处，不如打乒乓球吧。
+		Normal11: 你为什么那样看着我？你的时尚感也不会为你赢得任何奖项。
+		Normal12: 不，你不能戴我的帽子。
+		Normal13: 拥抱痛苦……等等，你说这句话已经被占用了是什么意思？
+		Normal14: 为啥叫“叶子屋”啊，连个出口都没有？他们脑子进水了？
+		Normal15: 如果大家都这么干，那还算犯罪吗？对了，今晚是电影之夜！
+		Normal16: 让别人痛苦是挺爽的……但你钓到过6磅重的鲈鱼吗？
+		Normal17: 讽刺是最好的幽默，这不是讽刺吗？
+		Normal18: 我喜欢猫……什么？你问我谁是猫？
+		Normal19: 如果您需要任何指导，请查看wiki。（Wiki正在持续维护优化中）
+		Normal20: 我听说过一位传奇潜水员的故事……但无论如何，巨型水母是什么？？
+		Normal21: 过载事件？那可太酷了。
+		Normal22: 我不是不喜欢你的陪伴，但你能买点东西吗！？
+		// Cancel Event
+		Canceled: 天灵灵地灵灵，事件结束了！
+		CancelCD: 我现在没有力气，{0}秒之后再来吧。
+		NoEvent: 我认为现在没有事件。
+		// PillarFail: I'm not getting rid of those pillars, that's for you to do.
+		// PillarFail2: Hocus pocus, the event is over. Those pillars are staying though.
+		// PillarFailCD: I'm not feeling it right now, come back in {0} seconds. Still not getting rid of those pillars, by the way.
+	}
+
+	WoTGDialogue: {
+		// RiftEclipse1: The sun and moon change all the time. Blood moons, eclipses, even a god-damn PUMPKIN. Is THIS really where you cross the line?!
+		// RiftEclipse2: If I'm gonna be honest with you... this is kind of freaking me out. At least the other two are taking it well.
+		// RiftEclipse3: Talk about life imitating art, guess that poem I wrote about impending doom came true...
+		// RiftEclipse4: Still up for that ping pong game?
+		// RiftEclipse5: Yeeeaaahh sorry, can't cancel that one. You'll find out a way how, right?
+		// Solyn: Solyn gave me one of her cinnamon rolls the other day. It was sickeningly sweet... Please don't tell her I said that.
+	}
+
+	Census.SpawnCondition: 击败过哥布林入侵。
+	CancelEvent: 取消事件
+}
+
+Deviantt: {
+	DisplayName: 戴薇安
+	// NPCName1: Akira
+	// NPCName2: Remi
+	// NPCName3: Saku
+	// NPCName4: Seira
+	// NPCName5: Koi
+	// NPCName6: Elly
+	// NPCName7: Lori
+	// NPCName8: Calia
+	// NPCName9: Teri
+	// NPCName10: Artt
+	// NPCName11: Flan
+	// NPCName12: Shion
+	// NPCName13: Tewi
+	Bestiary: 她提供敌怪召唤物和一些帮助（如果她想）。这个乐观又充满活力的生物喜爱钱的程度和喜爱暴力的程度相同。她有一点畸形。
+
+	TownNPCMood: {
+		Content: 我感觉很好！
+		NoHome: 请问你有空的房间吗？任何房间？即使是监狱也没问题！
+		LoveSpace: 和平与宁静意味着我可以尽情享受！
+		FarFromHome: 我想我的房子就在那边……除非你正带我去什么地方？
+		DislikeCrowded: 人越多越好，但我开始觉得有点挤了。
+		HateCrowded: 我甚至不能把腿踢出去而不碰到别人。
+		LikeBiome: 哈哈哈，关于{BiomeName}的一些东西只是出于某种原因让我无法控制地笑了起来！
+		LoveBiome: 天上的星星太美了，我很喜欢看它们划过天空！
+		DislikeBiome: 我们能去比这儿暖和的地方吗？
+		HateBiome: 我想住在别的地方！这太可怕了，我正冒着暴风雨！
+		LikeNPC: "{NPCName}是我的大哥，但不是最大的。他酷毙了！"
+		LoveNPC: "{NPCName}在这！那是我的老大哥，他不是最酷的吗？！"
+		DislikeNPC: 我受不了像{NPCName}那样的女孩，感觉她到这儿来只是为某个特定的观众。
+		HateNPC: 就在我们之间。你有没有想过把{NPCName}扔回你找到他的地方？
+		LikeNPC_Princess: 我要找时间再去看看{NPCName}，这儿有个女孩钩住了我！
+		Princess_LovesNPC: "{NPCName}非常令人愉快，我们能在一起聊几个小时都不厌倦！"
+	}
+
+	Chat: {
+		// Special
+		GiveGifts: 这个世界看起来比平时更艰难，所以我免费给你提供这些，仅此一次！如果你需要任何提示，请告诉我，好吗？
+		NTB: 这里是有趣的蜜蜂世界！
+		NTBHA: 哈
+		NTBHEE: 嘻
+		NTBHOO: 呼
+		NTBHEH: 嘿
+		NTBHAH: 呀
+		EridanusArmor: 呜哇！别伤害我……等等，是你啊……不要这样吓我！还有，为什么那东西在跟着你？！
+		NekomiArmor: 哦，那是我的连帽衫！所以感觉如何？舒适、很适合打游戏，对吧？也许你甚至能无伤打败一个Boss！
+		Defeat: 不错，你战胜了我！希望我没有让你太辛苦。坚持到底吧——我想要看看你能前行多远！
+		Stinky: 哇，你闻起来像是变质了。你上次洗澡是什么时候？你身上太臭了。
+		LoveStruck: 你对我冒出太多爱心了！对不起，我们现在的亲密等级只有{0}！
+		BloodMoon: 血月的影响？我早就不是人类了，所以不会影响到我啦！
+		HM: 我突然有个想法。如果我把你放进绞肉机，绞碎到只剩下两个染料……我一定会发财！我不会那样做的，至少不会对你……我的意思是……不要多想。
+		Mutant1: 你能让{0}把衣服穿上吗？
+		Mutant2: 总有一天，我会卖自己的召唤物！……开玩笑的。那是{0}的工作。
+		Lumber: 什么？你想和{0}打一架？……嗯，我建议你最好别去尝试。
+		EternityMode: 拥抱痛苦吧……受虐时别忘了来我这买新东西！
+		// Normal
+		Formattable1: "{0}！我刚才看到了一些啮齿类动物！你没有被仓鼠感染吧？对吧！？"
+		Normal1: 呃……我不会趁你不注意往你身上扔爱情药水的啦，嗯……我是说，买点东西吧！
+		Normal2: 你知道吗？唯一真正的音乐类型是死亡金属和艺术核心。
+		Normal3: 我道德沦丧？不，银行可喜欢我了。
+		Normal4: 如果你继续买，我可能承担得起更高的身体！
+		// Normal4: I might be able to afford a taller body if you keep buying!
+		Normal5: 我的个子可能会让你产生错觉！我可能只有4英尺6英寸高，但站在我的钱上时，我高达7英尺11英寸！
+		// Normal5: My size deceives you! I may be 4'6'' but I'm 7'11'' when I stand on my money!
+		Normal6: 你就是泰拉瑞亚人？老实说，我在期待一个稍微……高一点的人。
+		Normal7: 别用那种眼神看我！我唯一背离的就是我的人性。
+		Normal8: 撕裂你的敌人，再从我这买点东西，再撕裂你的敌人，这是个轮回……
+		Normal9: 重要的不是身高，而是你的信用评分！
+		Normal10: 等一下，你确定这房子不是传说中的“监狱”？
+		Normal11: 戴薇安已苏醒！快，把你所有的钱都给她就能打败她！
+		Normal12: 总有一天我会卖自己的召唤物！……开玩笑的。
+		Normal13: 嗯，我看得出来！你屠杀了很多东西……但是还不够！
+		Normal14: 你问我为什么要多出一个字母？只有我们中的最强者才被允许删除他们多出来的字母！
+	}
+
+	HelpDialogue: {
+		// About Bosses & Events
+		DownedMutant: 啥？你想和我来真的？……啊这，我自己一个人不太会打架。
+		DownedAbom: 嘿，你已经快到最后了！准备好所有的魂石了吗？啊，你想和我大哥打？……应该能吧，如果他有理由这么做。
+		DownedEridanus: 准备打我大哥了？回想你是如何学会洞察战斗的。保持专注，寻找规律，不要惊慌。祝好运！
+		PostML: 想合成九大力，但是缺少魔石？去做一个唤灵魔符。你想要的东西，只要你证明了自己的实力，他们就会给你。
+		MoonLord: 只有特定类型的武器能够有效对付每根特定的天界柱。至于那个没腿的大章鱼，它要求你不断变换手中的武器。
+		Cultist: 一些强大的敌人——例如那个地牢门口的家伙——可以创造自己的战斗区域。你无法逃出来，所以充分利用你掌握的空间。
+		Fishron: 你打过那个猪龙鱼了吗？每次你被击中，它都会降低你的最大生命值。它的力量强到足以一下破除你的防御，要是你没有强化钢板的话。这十分糟糕，是吧？
+		Betsy: 现在是去打双足翼龙的好时机！别担心。如果你撑到了最后一波但输掉了，你不需要从头来过。注意不要在最后一波前失误，并注意她对你造成的减益！
+		Golem: 那座神庙？碰一下祭坛来重新控制电线！石巨人会在你离开神庙时狂暴，所以最好在那里战斗。平台在这场战斗中不起作用，但丛林神庙炸弹可以帮助清理空间！
+		Plantera: 那株长得飞快的植物会造成一种特殊的毒液，如果你被她连续击中很多次，她就会进入狂暴状态。她还有一圈叶状水晶来保护自己，但召唤物能穿过它们。
+		Destroyer: 那条金属蠕虫经过了一些升级，但它的探针被削弱了以维持平衡。它会射出满天的暗星并试图撞你。当它盘旋在你身边时，不要试图逃跑！
+		Twins: 前几天我看到了那个金属眼球一边旋转一边射出一道巨大的激光。并且，即使你击败它们中的一个，它们也不会立即死亡，直到它们都被杀死！
+		Prime: 专注于拿下那个大铁骷髅头，而不是它的四肢。不要试图跑出它旋转的四肢！睁大你的眼睛，学会分析它的行动。
+		WOF: 那东西的嘴几乎免疫伤害，所以你必须瞄准它们的眼睛，而且同一时间两个眼睛中只有一个能受到伤害。哪个东西？你知道的，那个东西！
+		Deviantt: 下一个是我！确保你能躲开我向你丢出的任何攻击。用方块挡住或者转身别看我就能使石化失效！
+		Skeletron: 地牢之主可以操纵它的宝宝来攻击！它使用哪种攻击取决于它的头是否在旋转。在即将被杀死时它会疯狂的旋转，所以当你快杀死它时准备好开跑！
+		QueenBee: 蜂后会召唤它的后代作为后援。它们存在时她更难被伤害，所以先灭了它们。对了，它的蜂群不能打到她的正上方和下方！
+		Brain: 注意灵液如何移动，不要惊慌失措！当大脑变得疯狂时，它每几秒钟就会让你感到困惑。四个环出现时你会感到困惑，一个环出现后它会消失并冲刺！
+		Eater: 世界吞噬怪吐出越多魔唾液，就会有越多虫子会向你冲来。它的头部现在非常结实，不要让它们堆积太多！
+		GoblinsCrimson: 当你打破第二颗猩红心脏时要小心！这也许会引来哥布林，所以在你打破前请做好应对的准备。
+		GoblinsCorruption: 当你打破第二颗暗影珠时要小心！这也许会引来哥布林，所以在你打破前请做好应对的准备。
+		EOC: 那个大眼珠子有一点月亮之力，但是其实全都是花里胡哨！只要注意关注那些可能会打到你的弹幕就行了。
+		Slime: 马上要和史莱姆王战斗了吗？造一两个速建平台也许会有帮助，并且注意从天而降的史莱姆。不要待在它的上方，也不要离它太远，不然它会狂暴的！
+		// Other
+		Auras: 看起来每个人这几天都在学习如何发出光环。如果你细看那些粒子，你可以看出它会在圈内还是圈外生效！
+		Debuffs: 可能有上千件物品来免疫这些减益。可惜你并没有一千只手来把它们一次全带上！
+		SoulToggle: 不要忘记你可以开关你的魂石饰品效果！它们都在你物品栏右下角的小扳手里。列表最底部的那些小按钮包含了一套推荐的低卡顿预设！
+		LifeCrystals: 我没有更多的生命水晶给你了，但我想我大哥在那只肥胖的史莱姆王里留了一些。如果你击败了它，他也许会分享这些水晶！
+		Fish: 小心那些鱼！鲨鱼会在你离开它们时离开你，但食人鱼一旦闻到血腥味就会立刻变得狂野。它们可以跳出水面来抓你！
+		Underwater: 水让你陷入了困境？就我而言，从来没遇到过这个问题……你试过在水里而不是空气里呼吸吗？
+		Underworld: 较我上次参观，地狱变得更热了。不过，我听说黑曜石骷髅头是个防止被烧死的好东西！
+		SpaceSuffocation: 想来一场憋气大赛吗？太空的真空环境会是个完美的场地。不，我不会通过呼吸水而非空气或者使用潜水装置来作弊！
+		UndergroundShadowHands: 怕黑？不怕？现在你该怕了！我听说过一些奇怪的暗影之手在黑暗的地下抓人……远离黑暗，它们就抓不到你了！
+		UndergroundHallow: 你这副样子真滑稽……地下神圣让你眼花缭乱？呆在较暗的区域就能减弱它的影响！
+		LifeFruit: 你要是问我的话，世纪之花实在是太放纵自己了。叶绿矿和生命果并不是一套那么好的饮食！为什么你不帮帮她减肥？
+		CactusDamage: 那些仙人掌会很扎人。感到刺痛吗？试试用仙人掌魔石的魔力来保护你，看看效果如何！
+		RainLightning: 小心雨天的闪电。你最好带把雨伞，避免被雨淋得浑身湿透！
+	}
+
+	WoTGDialogue: {
+		// RiftEclipse1: Who turned the sun off? Was that you? Can you teach me how to do it?
+		// RiftEclipse2: The world is ending? If this is just some trick to get me to lower my prices it won't work.
+		// RiftEclipse3: "[{0} hums to herself, unconcerned with her surroundings.]"
+		// RiftEclipse4: Y'know, I wonder how this will affect the trout population.
+		// RiftEclipseAlien: I think I read an unfiction project like this once. Where are the aliens? {0}
+		// RiftEclipseAlienExtension: WHAT DO YOU MEAN YOU ALREADY FOUGHT THEM??
+		// Solyn: That other magical girl? Oh, you mean the star one? What about her? You better not be spending any of my future gold coi- I Mean Your Hard Earned Money over there.
+	}
+
+	Census.SpawnCondition: 击败过任意稀有敌怪。
+	HelpButton: 帮助
+}
+
+LumberJack: {
+	DisplayName: 伐木工
+	// NPCName1: Griff
+	// NPCName2: Jack
+	// NPCName3: Bruce
+	// NPCName4: Larry
+	// NPCName5: Will
+	// NPCName6: Jerry
+	// NPCName7: Liam
+	// NPCName8: Stan
+	// NPCName9: Lee
+	// NPCName10: Woody
+	// NPCName11: Leif
+	// NPCName12: Paul
+	Bestiary: 他是一个非常普通的，喜欢收集小动物和砍任何树的伐木工。但他是否有不为人知之处？神秘的神力？或许没有……
+
+	TownNPCMood: {
+		Content: 我很高兴只要世界上有需要砍伐的木头。
+		NoHome: 没有一个小木屋可以回家的伐木工人是不完整的！
+		LoveSpace: 周围人少了，这意味着我可以随心所欲地挥动斧头，没有人挡道。
+		FarFromHome: 这儿离我的小木屋太远了。我应该回去磨一磨我的斧子。
+		DislikeCrowded: 我觉得这里越来越挤了。
+		HateCrowded: 周围人太多了。没什么会比砍掉一个人更能破坏一个砍树的好心情。
+		LikeBiome: "{BiomeName}里大量的树让人成为一个快乐的伐木工人。"
+		LoveBiome: 在{BiomeName}没有什么能比得上老式的伐木工了！
+		DislikeBiome: 在{BiomeName}没什么能砍的!
+		HateBiome: 在{BiomeName}什么都砍不了!
+		LikeNPC: 我砍倒了树，{NPCName}种了更多，我们是完美的搭档。
+		LoveNPC: 我很高兴{NPCName}了解砍倒大树的美妙之处。
+		DislikeNPC: "{NPCName}告诉我要开始拥抱树木……所以我教会了我的斧头为我拥抱树木。"
+		HateNPC: "{NPCName}一点也不懂我的意思。炸掉森林不是伐木！"
+		LikeNPC_Princess: "{NPCName}用斧头比我想象中要更好！"
+		Princess_LovesNPC: "{NPCName}非常有力，有空想和他一起砍树！"
+	}
+
+	Chat: {
+		// Special
+		Nurse: 我总是看见{0}在我砍树的时候盯着我的二头肌。不知道她是不是想要一些我的木头。
+		LucyTheAxe: 来自那个宇宙的露西……有趣的东西正等着你呢。
+		// Normal
+		Normal1: 王朝木？这话我就跟你说，那东西不是真木头！
+		Normal2: 仙人掌当然不是木头，但我仍然可以用我可靠的斧头砍了它。
+		Normal3: 你对我不会有任何幻想……对吧？
+		Normal4: 我早餐吃了一碗木片……不带牛奶。
+		Normal5: 砍木木木木木木木木木木木木木木木木木木木头！
+		Normal6: 我是伐木工，我没事，我整夜睡觉，整天工作！
+		Normal7: 有我在，你再也不需要斧头了。
+		Normal8: 我听说有人用鱼砍树，谁那么干？
+		Normal9: 我很高兴我的木头让你脸上露出如此灿烂的笑容。
+		Normal10: 你见过世界树吗？
+		Normal11: 你想要什么？……对不起，那种木材不是我卖的。
+		Normal12: 我为什么不卖橡实？……我每次都重新种植所有我砍的树，难道你不是吗？
+		Normal13: 最好的树是什么树？……任何我砍得掉的树。
+		Normal14: 能让你砍砍我的问题吗？
+		Normal15: 我待会儿也许会在树下小睡一会儿，愿意和我一起吗？
+		Normal16: 我是所有木材类型的专家。
+		Normal17: 我很高兴处在旅途的终点，又有更多树可以砍了。
+		Normal18: 红色是我最喜欢的颜色之一，仅次于木材色。
+		Normal19: 这儿一直是法兰绒的季节。
+		// Tree Treasures
+		Desert: 我在砍仙人掌的时候，这些东西向我扑过来，你为什么不好好处理它们？
+		Jungle: 这些红木树充满了生机，但一棵树只有一个意义：被砍掉。哦，是的，这些是从上一棵树上掉下来的。
+		Hallow: 这个地方对我的风格来说有点异想天开，还好这里的木头和其他任何地方一样砍得动。不过，夜间有这些很酷的虫子，拿一点吧。
+		GlowshroomHM: 无论是什么使这些东西发光，我都无法理解，反正你可能会吃掉它们，所以你要吃的时候就吃这个吧。
+		Evil: 这里的树可能是这个现实分支中最坚固的……抱歉，只是些树的双关语。我在这里找到了这些东西给你。
+		Snow: 这个树林的脖子很漂亮吧？在这里，我给你搞了些我最喜欢的木头。
+		Beach: 即使在度假，我也总会抽出时间来砍一小点树。几对恼人的鸟从一棵棕榈树上掉了下来，把它们从我手中拿走……也许可以把它们煮了吃？
+		Underworld: 我在周围转了转，发现了一些奇怪的灰色木头，这些木头很脆弱。还找到了一些小动物和一些果蔬，把它们拿走吧，小心点，这些玩意相当烫。
+		DirtRockGem: 我真没想到我能在这里找到这么让人惊讶的树。看看这个。
+		DirtRockMouse: 今天我走了很远，但周围只有许多那种奇怪的树。我找到了这些，为什么不给他们一个新家呢？
+		CommonDayTimeWindy: 看上去风把这些虫子从藏身地带了出来。有些人说他们代表着好运。我只知道，我需要的所有好运就是一把锋利的斧头！
+		CommonDayTimeButterfly: 过去的日子里，人们常常将蝴蝶锻造成强大的装备。我们试图忘记那些日子……但这里有一只。
+		CommonDayTimeEucaluptusSap: 我找到了这玩意儿，但我一点也不“美汁汁”的，还是给你吧。
+		CommonDayTimeCritter: 这些小动物总是从我砍倒的树上掉下来。也许你可以找到它们的用途？
+		CommonNightTime: 晚上砍树总是很放松的……好吧，除了这些飞来飞去的眼球。让这些小家伙中的一个陪陪你。
+		Rest: 我在砍伐中度过了一天的美好时光，现在正在休息呢。明天再来，也许我会给你点别的东西。
+	}
+
+	WoTGDialogue: {
+		// RiftEclipse1: What's all this about a rift in the sky? Well, if it ain't hurtin' the lil' critters, then it's not my problem.
+		// RiftEclipse2: Only you can prevent forest fires. And intergalactic turmoil too, I guess.
+		// RiftEclipse3: Once yer done killin' God or whatever, mind joinin' me under that tree? Which one? You'll figure it out.
+		// RiftEclipse4: If a tree falls down and nobody's around to hear it... didn't think I'd see the day is all.
+		// RiftEclipseSnow: Looks like the snow biome houses more than just boreal now. Still doesn't change my job though! Neither snow nor heat nor rain nor sleet!
+	}
+
+	Census.SpawnCondition: 砍伐400棵木头后会从树上掉下来。
+	TreeTreasures: 树木宝藏
+}
+
+Mutant: {
+	DisplayName: 突变体
+	// NPCName1: Flacken
+	// NPCName2: Dorf
+	// NPCName3: Bingo
+	// NPCName4: Hans
+	// NPCName5: Fargo
+	// NPCName6: Grim
+	// NPCName7: Mike
+	// NPCName8: Fargu
+	// NPCName9: Terrance
+	// NPCName10: Catty N. Pem
+	// NPCName11: Tom
+	// NPCName12: Weirdus
+	// NPCName13: Polly
+	Bestiary: 他被他的弟弟和妹妹叫做大哥，但他拒绝承认他的性别。相比于谈论他的过去，他对观看战斗和观察小宠物更感兴趣。他似乎在寻找某个强壮的人……
+
+	TownNPCMood: {
+		Content: 谢谢你的房子，我想。
+		NoHome: 房子没什么坏处，但我不介意。
+		LoveSpace: Boss战之间的休息时间很不错，前提是周围没有很多人。
+		FarFromHome: 我会吃史莱姆和僵尸，但在家吃人类的食物也不错。
+		DislikeCrowded: 这里人太多了。他们似乎很沮丧，因为我一直在赢得我们的对视比赛。
+		HateCrowded: 如果在这个拥挤的城镇上再多一个人撞上我的脑子……不管它了。
+		LikeBiome: 我们都从{BiomeName}开始，这是个好地方。
+		LoveBiome: 住在这儿很舒服，但是你什么时候能找到我的神殿？
+		DislikeBiome: "{BiomeName}应该给我留下深刻印象吗？大仙灵不会，这是肯定的。"
+		HateBiome: 你想要更昂贵的召唤物吗？让我住在{BiomeName}意味着更贵的召唤物。
+		LikeNPC: 我忘了{NPCName}是什么时候加入这个家庭的，但她已经赢得了她的位置。
+		LoveNPC: "{NPCName}和我打了很多次仗，可惜没有机会再打了。"
+		DislikeNPC: 为什么{NPCName}在这儿？那好吧，不要直视他的眼睛，他不会吓到你的……
+		HateNPC: "{NPCName}最好在我用我的洞察者之前离开。"
+		LikeNPC_Princess: "{NPCName}看起来很友好。"
+		Princess_LovesNPC: "{NPCName}有一些很奇特的东西，他很适合当朋友！"
+	}
+
+	Chat: {
+		// Special
+		EternityDefeat: 恭喜。你真正地拥抱了永恒……至少，我认为你做到过？那么之后会发生什么？从这种无聊的境界飞升？与一只超凡的猫形生物战斗？毁灭世界？所有力量现在都掌握在你的手里。
+		Defeat: 打得不错，我感觉。不过我还想更充分的伸展我的翅膀……我们下次认真打一场吧？
+		MutantArmor: 你这套盔甲很好，有非常逼真的皮肤。事实上，你介意我借用一下吗？我说的是你的皮肤。
+		SoulsPostML: 既然打败了那个大家伙，是时候开始收集材料了！
+		DefeatCommon: 啥？你想和我战斗？……好吧。
+		DefeatAbom: 啥？你想和我战斗？……得有足够的理由说服我。
+		SoulsModDisabled: 啥？你想和我战斗？……你这个老鼠不配。
+		PumpkinMoon: 今晚有点吓人，不是吗？
+		FrostMoon: 我想要一件外套，但我认为你没有我的尺码。
+		SlimeRain: 今天的天气似乎很奇怪，你不觉得吗？
+		BloodMoon1: 美好的夜晚，不是吗？
+		BloodMoon2: 我希望我听到的不断争论不是我的错。
+		NightTime: 我会跟随并提供帮助，但我现在更想袖手旁观。
+		Party: "{0}邀请了我，但我不明白为什么。"
+		PartyWithoutPartyGirl: 我不知道怎么大家都这么开心。不过只要没人把我当成猪龙彩罐，那我就也很开心。
+		Nurse: 每当我们独自一人时，{0}都一直向我扔注射器！无论我叫她停下多少次！
+		WitchDoctor: 请让{0}放弃“神秘”的技巧，我的意思是，哦！我明白了，你也制造了被污染的水什么的。
+		Dryad: 为什么{0}的穿着让我翅膀扇动？
+		Stylist: "{0}曾经给了我一顶假发……不过我戴长发看起来很丑。"
+		Truffle: 那个变异蘑菇似乎是我喜欢的类型。
+		TaxCollector: "{0}一直向我要钱，但他不要我的召唤物！"
+		Guide: 为什么当我靠近{0}时他总是害怕？
+		WitchDoctorTruffleCyborg: 如果我们中有人会演奏乐器，我会叫上{0}，{1}，和{2}来组建一支乐队。
+		PartyGirl: 哥们，{0}的五彩纸屑总是粘在我的翅膀上。
+		Demolitionist: "{0}暂时还没有在地板上炸个洞，不过仔细想想感觉这也挺有趣的。"
+		Tavernkeep: "{0}一直建议我喝啤酒，但我喝醉了他也不会喜欢我。"
+		DyeTrader: "{0}想看看我穿蓝色衣服会是什么样子……我不知道什么感觉。"
+		// Normal
+		Normal1: 残暴、野蛮、嗜血，这就是我喜欢在人们身上看到的。
+		Normal2: 你越强大，我卖的东西就越多。不难理解，对吧？
+		Normal3: 你们所有人都有一些我没有的东西……死亡感知，是叫这个来着吧？
+		Normal4: 我觉得卖个自己的召唤物是个挺酷的事儿……
+		Normal5: 变得更强大的唯一方法是继续从我这里购买东西，大量地购买东西！
+		Normal6: 你为什么那样看着我，我只是吃了一个苹果。
+		Normal7: 不要打扰其他人，你所需要的就在这里。
+		Normal8: 你很幸运，我站在你这边。
+		Normal9: 我在想为什么我会喜欢火腿和瑞士三明治。
+		Normal10: 我应该开始穿衣服吗？啊这……
+		Normal11: 你花的所有金币我其实用不完。
+		Normal12: 以暴制暴是野兽的法则。
+		Normal13: 那些家伙真的需要变得更有创意。他们所有的第一个Boss都是沙漠主题！
+		Normal14: 你说你想知道突变体和憎恶是怎样的兄弟关系？你最好别问。
+		Normal15: 在灾厄中，我就是你需要的一切。
+		Normal16: 我将拥有整个世界！……在你购买我东西之后。
+		Normal17: 很明显我是在帮助你，但是呃……这对我有什么好处？你认为是房子？我早餐吃僵尸。
+		Normal18: 我可以跳吗？不，我没有叫做“空格键”的东西。
+		Normal19: 摸到你的鼻子了，我需要一个东西把我的鼻子换掉。
+		Normal20: Terry是啥？
+		Normal21: 为什么这么多生物带着一个看起来很奇怪的蓝色娃娃？这个问题的答案可能永远不会被知晓。
+		Normal22: 末日即将来临……如果你不买我东西的话。
+		Normal23: 我听说过“三维”，我想知道它是什么样子的。
+		Normal24: 小子，我今天看起来不是很好。
+		Normal25: 你的朋友比我的眼睛还少。
+		Normal26: 海洋是一个危险的地方，我想知道潜水员在哪里？
+		Normal27: 你知道Ee-arth是什么吗？
+		Normal28: 我连“巅峰”都不会拼写，你希望我知道它是什么吗？
+		Normal29: 怪物从哪里得到的金币？……你知道我没有口袋。
+		Normal30: 狗很酷，但猫不会试图咬我的大脑。
+		Normal31: 小心绿龙……你这张脸是什么意思？
+		Normal32: 我一直听说的O-hi-o在哪？
+		Normal33: 我已经跟你说过56次了，我很忙……哦，等等你想买东西？我想我有时间。
+		Normal34: 我听说过一个只存在于2015年的“灵魂之魂
+		Normal35: 在事物之后添加EX会让它变得更加困难。
+		Normal36: 我认为所有现代艺术看起来都很棒，尤其是血腥的东西。
+		Normal37: 换一个灯泡需要几个向导？……我不知道，你问问他怎么样。
+		Normal38: 还好我没有床，有的话我可能永远不会离开它。
+		Normal39: 这更新的是什么？听起来很罕见。
+		Normal40: 如果你需要我，我会在某个地方偷懒。
+		Normal41: 你是什么意思，谁是Fargo！
+		Normal42: 你见过Ech猫吗？
+		Normal43: 我不懂现在的音乐，我更喜欢一些流畅的爵士乐……或者怪物垂死的尖叫声。
+		Normal44: 克苏鲁在我身上得不到任何东西！
+		Normal45: 我听到一个关于无限召唤物的传言。这让我很难受……
+	}
+
+	WoTGDialogue: {
+		// RiftEclipse1: It's a good thing your world is ending and not mine.
+		// RiftEclipse2: You want advice on a future battle? Sorry, I seem to have forgotten its name. Pretty chill dude though. We had beers last Tuesday.
+		// RiftEclipse3: You can handle flashing lights, right?
+		// RiftEclipse4: You ever try frostblessed salad? It's an... acquired taste.
+		// RiftEclipse5: This totally looks way better. Atmospheric. Unparalleled. Other Big Pretentious Words.
+		// Solyn: Still hanging out with Solyn? {0}
+		// SolynExtension1: She tends to get into a lot of trouble.
+		// SolynExtension2: ...What's that face supposed to mean?
+	}
+
+	Census.SpawnCondition: 击败过任意Boss。
+	CycleShop: 切换商店
+	PreHM: 困难模式前
+	HM: 困难模式
+	PostML: 月亮领主后
+}
+
+Squirrel: {
+	DisplayName: 松鼠
+	// NPCName1: Rick
+	// NPCName2: Acorn
+	// NPCName3: Puff
+	// NPCName4: Coco
+	// NPCName5: Truffle
+	// NPCName6: Furgo
+	// NPCName7: Squeaks
+	Bestiary: 当这个矮小利落的小动物注意到你的背包中有价值的物品时，它会售卖它的复制品。它不会告诉你它从哪得到的这些东西，不过这基本上是因为它不会说话。
+
+	TownNPCMood: {
+		Content: *表达满足的吱吱声*
+		NoHome: *因无家可归而悲哀的吱吱声*
+		LoveSpace: *因不拥挤而快乐的吱吱声*
+		FarFromHome: *因迷路而悲哀的吱吱声*
+		DislikeCrowded: *因拥挤而悲哀的吱吱声*
+		HateCrowded: *因拥挤不堪而非常悲哀的吱吱声*
+		LikeBiome: *对{BiomeName}开心的吱吱声*
+		LoveBiome: *对{BiomeName}非常开心的吱吱声*
+		DislikeBiome: *对{BiomeName}悲哀的吱吱声*
+		HateBiome: *对{BiomeName}非常悲哀的吱吱声*
+		LikeNPC: *对{NPCName}快乐的吱吱声*
+		LoveNPC: *对{NPCName}非常快乐的吱吱声*
+		DislikeNPC: *对{NPCName}愤怒的吱吱声*
+		HateNPC: *对{NPCName}非常愤怒的吱吱声*
+		LikeNPC_Princess: *对{NPCName}快乐的吱吱声*
+		Princess_LovesNPC: "{NPCName}真的真的真的好可爱！！"
+	}
+
+	Chat: {
+		// Special
+		BloodMoon: "[c/FF0000:你会受苦的。]"
+		// Normal
+		Normal1: *吱吱*
+		Normal2: *啾啾*
+		Normal3: *嘎吱嘎吱*
+		// FeedSuccess: *crunch*
+		// FeedFail: *disappointed squeak*
+	}
+
+	// WoTGDialogue: "[{0} looks up at you. You can't tell what its expression means.]"
+	Census.SpawnCondition: 库存中有一只高顶礼帽松鼠。
+	// Feed: Feed Held Item
+	// BlackMarket: Black Market
+}
+
+// SuperDummyNPC.DisplayName: Super Dummy

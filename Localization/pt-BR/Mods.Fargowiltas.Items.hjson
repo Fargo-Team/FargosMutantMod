@@ -1,0 +1,1680 @@
+BrittleBone: {
+	DisplayName: Osso fr�gil
+	Tooltip: ""
+}
+
+AltarExterminator: {
+	DisplayName: Exterminador de Altar
+	Tooltip:
+		'''
+		Destr�i todos os Altarem Demon�acos e do Carmim Naturais
+		'Tamb�m conhecido como a M�quina de Lag 9000'
+		'''
+}
+
+AutoHouse: {
+	DisplayName: Instacasa
+	Tooltip: Posiciona uma casa de NPC instantaneamente
+}
+
+BoomShuriken: {
+	DisplayName: Shuriken Explosiva
+	Tooltip:
+		'''
+		instantaneamente explode ao acertar blocos
+		Usa o Poder de minera��o da sua picareta mais forte
+		Velocidade de lan�amento escala com a sua velocidade de minera��o
+		'A maneira mais r�pida de cavar � explodir!'
+		'''
+}
+
+CityBuster: {
+	DisplayName: Destruidor de Cidade
+	Tooltip:
+		'''
+		Destr�i uma grande �rea
+		N�o remove paredes de fundo
+		Evita quebrar �reas importantes
+		Use por sua conta e risco
+		'''
+}
+
+DoubleObsidianInstabridge: {
+	DisplayName: Instaponte de Obsidiana Dupla
+	Tooltip:
+		'''
+		Cria 2 pontes de plataformas de obsidiana por todo o mundo
+		Tamb�m limpa a �rea acima e entre as plataformas
+		A ponte de baixo aparece no seu cursor
+		Evita quebrar �reas importantes
+		Use por sua conta e risco
+		'''
+}
+
+GraveBuster: {
+	DisplayName: Destruidor de T�mulos
+	Tooltip: Destr�i T�mulos em uma grande �rea
+}
+
+HalfInstavator: {
+	DisplayName: Metade de Instavador
+	Tooltip:
+		'''
+		                                   Solta uma bomba que cria a metade de um elevador at� o inferno
+		N�o vai cavar ap�s uma certa profundidade
+		Evita quebrar �reas importantes
+		Use por sua conta e risco
+		'''
+}
+
+InstaBridge: {
+	DisplayName: Instaponte
+	Tooltip:
+		'''
+		Cria uma ponte de plataformas por todo o mundo
+		Tamb�m limpa a �rea acima das plataformas
+		A ponte aparece no seu cursor
+		Evita quebrar �reas importantes
+		Bot�o direito para limpar a �rea sem posicionar a ponte
+		use por sua conta e risco
+		'''
+}
+
+InstaTrack: {
+	DisplayName: Instatrilha
+	Tooltip:
+		'''
+		Cria uma trilha por todo o mundo
+		Tamb�m limpa a �rea acima das plataformas
+		A trilha aparece no seu cursor
+		Evita quebrar �reas importantes
+		use por sua conta e risco
+		'''
+}
+
+Instavator: {
+	DisplayName: Instavador
+	Tooltip:
+		'''
+		Derruba uma bomba que cria um elevador at� o inferno
+		Evita quebrar �reas importantes
+		use por sua conta e risco
+		'''
+}
+
+LihzahrdInstactuationBomb: {
+	DisplayName: Bomba de Instatua��o Lagharta
+	Tooltip:
+		'''
+		Cria uma �rea em volta do Altar Lagharto quando usado em frente a ele
+		Atua Tijolos Laghartos e destr�i outros
+		Apenas funciona no Templo da Selva, ap�s a Plantera ser derrotada
+		'''
+}
+
+MiniInstaBridge: {
+	DisplayName: Mini Instaponte
+	Tooltip:
+		'''
+		Cria uma ponte longa de plataformas no seu cursor
+		N�o quebra nenhum bloco
+		'''
+}
+
+ObsidianInstaBridge: {
+	DisplayName: Instaponte de Obsidiana
+	Tooltip:
+		'''
+		Cria uma ponte de plataformas de obsidiana por todo o mundo
+		Tamb�m limpa a �rea acima das plataformas
+		A ponte aparece no seu cursor
+		Evita quebrar �reas importantes
+		use por sua conta e risco
+		'''
+}
+
+OmniBridgifier: {
+	DisplayName: Omni-Pontificador
+	Tooltip:
+		'''
+		Pode ser usado infinitamente
+		Automaticamente posiciona Omnista��es na plataforma que voc� clicar
+		N�O cria uma plataforma!
+		'''
+}
+
+OmniBridgifier2: {
+	// DisplayName: Omni-Bridgifier
+	/* Tooltip:
+		'''
+		Can be reused infinitely
+		Upgrades the platform you are standing on to use Omnistations
+		Does NOT build a platform!
+		''' */
+}
+
+BattleCry: {
+	DisplayName: Grito de Guerra
+	Tooltip:
+		'''
+		Bot�o esquerdo para aumentar a taxa de cria��o em 10x
+		Bot�o direito diminui a taxa de cria��o, melhora com progresso
+		'''
+	Battle: Guerra
+	Calming: Calmante
+	Activated: Ativado
+	Deactivated: Desativado
+	// {Battle / Calming} Cry {activated / deactivated} for {playerName}{punctuation}
+	CryText: Grito de {0} {1} para {2}{3}
+}
+
+DeathFruit: {
+	DisplayName: Fruta da Morte
+	Tooltip:
+		'''
+		Bot�o esquerdo para diminuir a quantidade de cristais de vida, ou fruta da vida se voc� tiver alguma, em 1
+		Se ambas forem 0, diminui a vida base em 20, at� no m�nimo 20
+		Bot�o direito para reverter 1 uso do �ltimo efeito
+		'''
+}
+
+InstantResearch: {
+	DisplayName: Insta Pesquisador
+	Tooltip:
+		'''
+		DEBUG ITEM
+		Pesquisa Tudo
+		'''
+	ResearchText: Pesquisou {0} itens
+}
+
+MapViewer: {
+	DisplayName: O Mapa Mestre Anci�o dos Grandes Antepassados do Rei Perdido
+	Tooltip: Revela o mapa
+}
+
+ModeToggle: {
+	DisplayName: Ficha do Mundo
+	Tooltip:
+		'''
+		Cicla dificuldades com o bot�o esquerdo
+		Liga o Modo Jornada com bot�o direito (pode causar problemas no multiplayer)
+		'''
+	Journey: Modo Jornada foi ativado!
+	Normal: Modo Normal foi ativado!
+	Expert: Modo Perito foi ativado!
+	Master: Modo Mestre foi ativado!
+}
+
+PortableSundial: {
+	DisplayName: Rel�gio Solar Port�til
+	Tooltip:
+		'''
+		Bot�o esquerdo para instantaneamente mudar o hor�rio
+		O hor�rio cicla entre Amanhecer, Meio-dia, P�r do Sol e Meia-noite
+		Bot�o direito para ativar o efeitos do Rel�gio do Sol Encantado
+		Velocidade de uso mais lenta quando um chefe est� vivo
+		Ciclar at� o Amanhecer ir� resetar a loja do Caixeiro Viajante
+		'''
+}
+
+PylonCleaner: {
+	DisplayName: Limpador de Pilar
+	Tooltip:
+		'''
+		Purifica a �rea em volta de todos os pilares
+		Ir� usar solu��o azul no pilar do Consagrado e verde nos outros
+		'''
+}
+
+SuperDummy: {
+	DisplayName: Super Boneco
+	Tooltip:
+		'''
+		Invoca um super boneco no seu cursor
+		Funciona da mesma forma que um boneco normal mas lacaios e proj�teis detectam e seguem ele
+		Efeitos ativados ao atingir inimigos funcionam
+		Bot�o direito para remover todos os super bonecos invocados
+		Pode criar at� 50 super bonecos de uma vez
+		'''
+}
+
+CorruptRenewal: {
+	DisplayName: Renovador de Corrup��o
+	Tooltip: Corrompe uma grande �rea
+}
+
+CorruptRenewalSupreme: {
+	DisplayName: Renovador de Corrup��o Supremo
+	Tooltip: Corrompe o mundo inteiro
+}
+
+CrimsonRenewal: {
+	DisplayName: Renovador de Carmim
+	Tooltip: Carminiza uma grande �rea
+}
+
+CrimsonRenewalSupreme: {
+	DisplayName: Renovador de Carmim Supremo
+	Tooltip: Carminiza o mundo inteiro
+}
+
+HallowRenewal: {
+	DisplayName: Renovador de Consagrado
+	Tooltip: Consagra uma grande �rea
+}
+
+HallowRenewalSupreme: {
+	DisplayName: Renovador de Consagrado Supremo
+	Tooltip: Consagra o mundo inteiro
+}
+
+MushroomRenewal: {
+	DisplayName: Renovador de Cogumelo
+	Tooltip: Cogumelifica uma grande �rea
+}
+
+MushroomRenewalSupreme: {
+	DisplayName: Renovador de Cogumelo Supremo
+	Tooltip: Cogumelifica o mundo inteiro
+}
+
+PurityRenewal: {
+	DisplayName: Renovador da Pureza
+	Tooltip: Limpa uma grande �rea
+}
+
+PurityRenewalSupreme: {
+	DisplayName: Renovador de Pureza Suprema
+	Tooltip: Limpa o mundo inteiro
+}
+
+SnowRenewal: {
+	DisplayName: Renovador de Neve
+	Tooltip: Neva uma grande �rea
+}
+
+SnowRenewalSupreme: {
+	DisplayName: Renovador de Neve Supremo
+	Tooltip: Neva o mundo inteiro
+}
+
+SandRenewal: {
+	DisplayName: Renovador de Deserto
+	Tooltip: Assoreia uma grande �rea
+}
+
+SandRenewalSupreme: {
+	DisplayName: Renovador de Deserto Supremo
+	Tooltip: Assoreia o mundo inteiro
+}
+
+DirtRenewal: {
+	DisplayName: Renovador de Floresta
+	Tooltip: Floresta uma grande �rea
+}
+
+DirtRenewalSupreme: {
+	DisplayName: Renovador de Floresta Supremo
+	Tooltip: Floresta o mundo inteiro
+}
+
+Anemometer: {
+	DisplayName: Anem�metro
+	Tooltip: Come�a um dia ventoso
+}
+
+BatteredClub: {
+	DisplayName: Bast�o Batido
+	Tooltip: Invoca o Ogro
+}
+
+BetsyEgg: {
+	DisplayName: Ovo Velho de Drag�o
+	Tooltip:
+		'''
+		Invoca Betsy
+		Only usable near an Eternia Crystal Stand
+		'''
+}
+
+FestiveOrnament: {
+	DisplayName: Ornamento Festivo
+	Tooltip:
+		'''
+		Invoca Everscream
+		Pode ser usado apenas � noite
+		'''
+}
+
+ForbiddenScarab: {
+	DisplayName: Escaravelho Pro�bido
+	Tooltip: Come�a a tempestade de areia
+}
+
+ForbiddenTome: {
+	DisplayName: Tomo Pro�bido
+	Tooltip: Invoca o Mago Sombrio
+}
+
+HeadofMan: {
+	DisplayName: Cabe�a de Homem
+	Tooltip:
+		'''
+		Invoca o Cavaleiro sem Cabe�a
+		Pode ser usado apenas � noite
+		'''
+}
+
+IceKingsRemains: {
+	DisplayName: Restos do Rei Gelado
+	Tooltip:
+		'''
+		Invoca a Rainha do Gelo
+		Pode ser usado apenas � noite
+		'''
+}
+
+MartianMemoryStick: {
+	DisplayName: Cart�o de Mem�ria Marciano
+	Tooltip: Invoca o Disco Voador de Marte
+}
+
+MatsuriLantern: {
+	DisplayName: Lanterna de Matsuri
+	Tooltip: Transforma todas as noites em noites de lanterna quando poss�vel
+}
+
+NaughtyList: {
+	DisplayName: Lista dos Malvados
+	Tooltip:
+		'''
+		Invoca o Papai-Noel-NK1
+		Pode ser usado apenas � noite
+		'''
+}
+
+PartyInvite: {
+	DisplayName: Convite de Festa
+	Tooltip:
+		'''
+		Come�a uma Festa!
+		Precisa de pelo menos 5 NPCs de cidade para come�ar
+		'''
+}
+
+PillarSummon: {
+	DisplayName: Portal Xereta
+	Tooltip: Invoca os Pilares Celestiais
+}
+
+RunawayProbe: {
+	DisplayName: Sonda Fugitiva
+	Tooltip: Come�a a Loucura de Marte
+}
+
+SlimyBarometer: {
+	DisplayName: Bar�metro de Geleia
+	Tooltip: Come�a a chuva de geleia
+}
+
+SpentLantern: {
+	DisplayName: Lantera Gasta
+	Tooltip: Desativa o efeito da Lanterna de Matsuri
+}
+
+SpookyBranch: {
+	DisplayName: Galho Assustador
+	Tooltip:
+		'''
+		Invoca a �rvore da Morte
+		Pode ser usado apenas � noite
+		'''
+}
+
+SuspiciousLookingScythe: {
+	DisplayName: Foice Suspeita
+	Tooltip:
+		'''
+		Invoca Reib�bora
+		Pode ser usado apenas � noite
+		'''
+}
+
+WeatherBalloon: {
+	DisplayName: Bal�o Meteorol�gico
+	Tooltip: Come�a a chuva
+}
+
+AmalgamatedSkull: {
+	DisplayName: Caveira Amalgamada
+	Tooltip:
+		'''
+		Invoca os Atiradores Esqueleto
+		Pode ser usado apenas � noite ou no subterr�neo
+		'''
+}
+
+AmalgamatedSpirit: {
+	DisplayName: Amalgamated Spirit
+	Tooltip:
+		'''
+		Invoca os Magos Esqueleto
+		Pode ser usado apenas � noite ou no subterr�neo
+		'''
+}
+
+AthenianIdol: {
+	DisplayName: �dolo Ateniense
+	Tooltip:
+		'''
+		Invoca a Medusa
+		Pode ser usado apenas � noite ou no subterr�neo
+		'''
+}
+
+AttractiveOre: {
+	DisplayName: Min�rio Atrativo
+	Tooltip:
+		'''
+		Invoca o Minerador Zumbi
+		Pode ser usado apenas � noite ou no subterr�neo
+		'''
+}
+
+BloodSushiPlatter: {
+	DisplayName: Prato de Sushi Sangrento
+	Tooltip:
+		'''
+		Invoca o Encouran�utilo
+		Pode ser usado apenas na Lua de Sangue
+		'''
+}
+
+BloodUrchin: {
+	DisplayName: Ouri�o Sangrento
+	Tooltip:
+		'''
+		Invoca a Enguia de Sangue
+		Pode ser usado apenas na Lua de Sangue
+		'''
+}
+
+CloudSnack: {
+	DisplayName: Lanche de Nuvem
+	Tooltip: Invoca a Serpe
+}
+
+ClownLicense: {
+	DisplayName: Licen�a de Palha�o
+	Tooltip:
+		'''
+		Invoca o Palha�o
+		Pode ser usado apenas � noite ou no subterr�neo
+		'''
+}
+
+CoreoftheFrostCore: {
+	DisplayName: N�cleo do N�cleo de Gelo
+	Tooltip: Invoca o Golem de Gelo
+}
+
+CorruptChest: {
+	DisplayName: Ba� Corrupto
+	Tooltip: Invoca o M�mico Corrompido
+}
+
+CrimsonChest: {
+	DisplayName: Ba� Carmim
+	Tooltip: Invoca o M�mico de Carmim
+}
+
+DemonicPlushie: {
+	DisplayName: Pel�cia Demon�aca
+	Tooltip:
+		'''
+		Invoca o Diabo Vermelho
+		Pode ser usado apenas no submundo
+		'''
+}
+
+DilutedRainbowMatter: {
+	DisplayName: Mat�ria Arco-�ris Dilu�da
+	Tooltip: Invoca a geleia arco-�ris
+}
+
+Eggplant: {
+	DisplayName: Beringela
+	Tooltip:
+		'''
+		Invoca o Doutor Bones
+		Pode ser usado apenas � noite ou no subterr�neo
+		'''
+}
+
+ForbiddenForbiddenFragment: {
+	DisplayName: Fragmento Pro�bido Pro�bido
+	Tooltip: Invoca a Elemental da Areia
+}
+
+GnomeHat: {
+	DisplayName: Chap�u de Gnomo
+	Tooltip: Invoca o Gnomo
+}
+
+GoblinScrap: {
+	DisplayName: Sucata Goblin
+	Tooltip: Invoca o Batedor Goblin
+}
+
+GoldenSlimeCrown: {
+	DisplayName: Coroa de Geleia Dourada
+	Tooltip: Invoca a Geleia dourada
+}
+
+GrandCross: {
+	DisplayName: Grande Cruz
+	Tooltip:
+		'''
+		Invoca o Paladino
+		Pode ser usado apenas � noite ou no subterr�neo
+		'''
+}
+
+HallowChest: {
+	DisplayName: Ba� Consagrado
+	Tooltip: Invoca o m�mico consagrado
+}
+
+HeartChocolate: {
+	DisplayName: Cora��o de Chocolate
+	Tooltip:
+		'''
+		Invoca a Ninfa
+		Pode ser usado apenas � noite ou no subterr�neo
+		'''
+}
+
+HemoclawCrab: {
+	DisplayName: Garra de Carangueijo Sangrenta
+	Tooltip:
+		'''
+		Invoca o Tubar�o Hemogoblin
+		Pode ser usado apenas na Lua de Sangue
+		'''
+}
+
+HolyGrail: {
+	DisplayName: Santo Graal
+	Tooltip:
+		'''
+		Invoca o Tim
+		Pode ser usado apenas � noite ou no subterr�neo
+		'''
+}
+
+JungleChest: {
+	DisplayName: Ba� da Selva
+	Tooltip: Invoca o M�mico da Selva
+}
+
+LeesHeadband: {
+	DisplayName: Bandana do Lee
+	Tooltip:
+		'''
+		Invoca o Bone Lee
+		Pode ser usado apenas � noite ou no subterr�neo
+		'''
+}
+
+MothLamp: {
+	DisplayName: Lamp�da de Mariposa
+	Tooltip: Invoca a Mariposa
+}
+
+MothronEgg: {
+	DisplayName: Ovo da Mothron
+	Tooltip:
+		'''
+		Invoca a Mothron
+		Pode ser usado apenas durante o Eclipse
+		'''
+}
+
+Pincushion: {
+	DisplayName: Almofada de Alfinetes
+	Tooltip:
+		'''
+		Invoca o Cabe�a de pregos
+		Pode ser usado apenas durante o Eclipse
+		'''
+}
+
+PinkSlimeCrown: {
+	DisplayName: Tiara de geleia rosa
+	Tooltip: Invoca o Rosado
+}
+
+PirateFlag: {
+	DisplayName: Bandeira Pirata
+	Tooltip: Invoca o Capit�o Pirata
+}
+
+PlunderedBooty: {
+	DisplayName: Tesouro Roubado
+	Tooltip: Invoca o holand�s voador
+}
+
+RuneOrb: {
+	DisplayName: Orbe de Runa
+	Tooltip:
+		'''
+		Invoca o Mago das Runas
+		Pode ser usado apenas � noite ou no subterr�neo
+		'''
+}
+
+ShadowflameIcon: {
+	DisplayName: �cone de Chama das Sombras
+	Tooltip:
+		'''
+		Invoca o Invocador Goblin
+		Pode ser usado apenas durante a invas�o Goblin
+		'''
+}
+
+SlimyLockBox: {
+	DisplayName: Fechadura Gosmenta
+	Tooltip: Invoca a Geleia do Calabou�o
+}
+
+SuspiciousLookingChest: {
+	DisplayName: Ba� Suspeito
+	Tooltip:
+		'''
+		Invoca o m�mico
+		Invoca o m�mico de gelo no bioma da neve
+		'''
+	HardmodeLock: Pode ser usado apenas no Modo D�ficil
+}
+
+SuspiciousLookingLure: {
+	DisplayName: Isca Suspeita
+	Tooltip:
+		'''
+		invoca o Olho Errante e Trit�o Zumbi
+		Pode ser usado apenas � noite
+		'''
+}
+
+AncientSeal: {
+	DisplayName: Selo Anci�o
+	Tooltip:
+		'''
+		INVOCA TODOS OS CHEFES (incluido os de mods)
+		Pode ser usado apenas � noite
+		'use por sua conta e risco'
+		'''
+}
+
+CultistSummon: {
+	DisplayName: Propriedade do Fan�tico
+	Tooltip:
+		'''
+		Invoca o Cultista Lun�tico
+		N�o invoca os pilares caso o Cultista j� tenha sido derrotado uma vez
+		'''
+}
+
+DeathBringerFairy: {
+	DisplayName: Fada da Morte
+	Tooltip:
+		'''
+		invoca todos os chefes do Pr�-Modo D�ficil
+		Pode ser usado apenas � noite
+		Certos chefes s� s�o invocados se voc� estiver no bioma certo
+		'''
+}
+
+FleshyDoll: {
+	DisplayName: Boneco do Guia e Pacote de F�sforos
+	Tooltip:
+		'''
+		Invoca a Parede de Carne
+		Use apenas no submundo
+		'''
+}
+
+MechanicalAmalgam: {
+	DisplayName: Am�lgamo Mec�nico
+	Tooltip: Invoca os 3 chefes mec�nicos
+}
+
+MutantVoodoo: {
+	DisplayName: Pel�cia do Mutant
+	Tooltip:
+		'''
+		INVOCA TODOS OS CHEFES
+		Pode ser usado apenas � noite
+		'''
+}
+
+PlanterasFruit: {
+	DisplayName: Fruta da Plantera
+	Tooltip: Invoca a Plantera
+}
+
+PrismaticPrimrose: {
+	DisplayName: Pr�mula Prism�tica
+	Tooltip: Invoca a Imperatriz da Luz
+}
+
+SuspiciousSkull: {
+	DisplayName: Caveira Suspeita
+	Tooltip:
+		'''
+		Invoca o Skeletron sem matar o Alfaiate
+		Invoca o Guardi�o do Calabou�o durante o dia
+		'''
+}
+
+EnergizerBee: {
+	DisplayName: Energizador Zumbido
+	Tooltip:
+		'''
+		Formado ap�s usar 10 Larvas muito Recheada
+		'Cheira como se tivesse gosto de mel'
+		'''
+}
+
+EnergizerBetsy: {
+	DisplayName: Energizador Drac�nico
+	Tooltip:
+		'''
+		Formado ap�s usar 10 Bandejas de Ovos de Drag�o
+		'Voc� sente que esperou 3000 anos'
+		'''
+}
+
+EnergizerBrain: {
+	DisplayName: Energizador Cerebral
+	Tooltip:
+		'''
+		Formado ap�s usar 10 Tempestade Cerebrais
+		'Voc� ainda se sente burro'
+		'''
+}
+
+EnergizerCultist: {
+	DisplayName: Energizador da Insanidade
+	Tooltip:
+		'''
+		Formado ap�s usar 10 Loucuras do Fan�tico
+		'Voc� provavelmente � insano'
+		'''
+}
+
+EnergizerDarkMage: {
+	DisplayName: Energizador Misterioso
+	Tooltip:
+		'''
+		Formado ap�s usar 10 Tomos Muito Proibidos
+		'Voc� sente que esperou 1000 anos'
+		'''
+}
+
+EnergizerDeer: {
+	DisplayName: Energizador de Veado
+	Tooltip:
+		'''
+		Formado ap�s usar 10 Aglomera��es de Cervo
+		'Te deixa com fome'
+		'''
+}
+
+EnergizerDestroy: {
+	DisplayName: Energizador da Destrui��o
+	Tooltip:
+		'''
+		Formado ap�s usar 10 Atuador S�smico
+		'Faz voc� querer quebrar algumas crian�as'
+		'''
+}
+
+EnergizerDG: {
+	DisplayName: Energizador Extra Ossudo
+	Tooltip:
+		'''
+		Formado ap�s usar 10 Colares de Caveira
+		'Te lembra de uma vaca rude'
+		'''
+}
+
+EnergizerEmpress: {
+	DisplayName: Energizador de Fada
+	Tooltip:
+		'''
+		Formado ap�s usar 10 Jarras de Crisop�deo
+		'Voc� precisa de prote��o para os olhos se quiser olhar'
+		'''
+}
+
+EnergizerEye: {
+	DisplayName: Energizador �tico
+	Tooltip:
+		'''
+		Formado ap�s usar 10 Olhomalgama��es
+		'Voc� sente que est� te observando'
+		'''
+}
+
+EnergizerFish: {
+	DisplayName: Energizador Peixoto
+	Tooltip:
+		'''
+		Formado ap�s usar 10 Latas de Verme da Trufa
+		'Voc� se sente contento'
+		'''
+}
+
+EnergizerGolem: {
+	DisplayName: Energizador Lagharto
+	Tooltip:
+		'''
+		Formado ap�s usar 10 Baterias R�nicas
+		'Voc� gostaria que fosse escrito "Lagarto"'
+		'''
+}
+
+EnergizerMoon: {
+	DisplayName: Energizador Lunar
+	Tooltip:
+		'''
+		Formado ap�s usar 10 Inscri��es R�nicas
+		'Voc� gosta de queijo'
+		'''
+}
+
+EnergizerPlant: {
+	DisplayName: Energizador Folhudo
+	Tooltip:
+		'''
+		Formado ap�s usar 10 Cora��es da Selva
+		'Ser uma folha parece bom'
+		'''
+}
+
+EnergizerPrime: {
+	DisplayName: Energizador Alfa
+	Tooltip:
+		'''
+		Formado ap�s usar 10 Chips de Controle Primais
+		'Voc� se sente como um novo voc�'
+		'''
+}
+
+EnergizerQueenSlime: {
+	DisplayName: Energizador Cristalino
+	Tooltip:
+		'''
+		Formado ap�s usar 10 Cristais Sobrecarregados
+		'Parece muito gosmento'
+		'''
+}
+
+EnergizerSkele: {
+	DisplayName: Energizador Ossudo
+	Tooltip:
+		'''
+		Formado ap�s usar 10 Colares de Caveira
+		'Te lembra de uma vaca'
+		'''
+}
+
+EnergizerSlime: {
+	DisplayName: Energizador Gosmento
+	Tooltip:
+		'''
+		Formado ap�s usar 10 Coroas Sobrecarregados
+		'Parece um pouco gosmento'
+		'''
+}
+
+EnergizerTwins: {
+	DisplayName: Energizador dos irm�os
+	Tooltip:
+		'''
+		Formado ap�s usar 10 Lentes Multifocais
+		'Voc� queria ter mais'
+		'''
+}
+
+EnergizerWall: {
+	DisplayName: Energizador de Parede
+	Tooltip:
+		'''
+		Formado ap�s usar 10 Fardos de Bonecos
+		'Voc� sente claustrofobia'
+		'''
+}
+
+EnergizerWorm: {
+	DisplayName: Energizador de Minhoca
+	Tooltip:
+		'''
+		Formado ap�s usar 10 Galinhas de Minhoca
+		'� um pouquinho mole'
+		'''
+}
+
+OverloadBee: {
+	DisplayName: Larva muito Recheada
+	Tooltip: Invoca uma Rainha Abelha Energizada
+}
+
+OverloadBetsy: {
+	DisplayName: Bandeja de Ovos de Drag�o
+	Tooltip: Invoca uma Betsy Energizada
+}
+
+OverloadBrain: {
+	DisplayName: Tempestade Cerebral
+	Tooltip: Invoca um C�rebro de Cthulhu Energizado
+}
+
+OverloadCultist: {
+	DisplayName: Loucura do Fan�tico
+	Tooltip: Invoca um Cultista Lun�tico Energizado
+}
+
+OverloadDarkMage: {
+	DisplayName: Tomo Muito Pro�bido
+	Tooltip: Invoca um Mago Sombrio Energizado
+}
+
+OverloadDeer: {
+	DisplayName: Aglomera��o de Cervo
+	Tooltip: Invoca um Cervoclope Energizado
+}
+
+OverloadDestroyer: {
+	DisplayName: Atuador S�smico
+	Tooltip: Invoca um Destruidor Energizado
+}
+
+OverloadedSlimeRain: {
+	DisplayName: Invocador de Tempestade Gosmento
+	Tooltip:
+		'''
+		Invoca uma Chuva de Geleia Sobrecarregado
+		Use novamente para parar o evento
+		'''
+}
+
+OverloadEmpress: {
+	DisplayName: Jarra de Crisop�deos
+	Tooltip: Invoca uma Imperatriz da Luz Energizada
+}
+
+Overloader: {
+	DisplayName: Sobrecarregador
+	Tooltip:
+		'''
+		Usado para criar invoca��es sobrecarragadas
+		Quando usadas, todos os itens na pilha s�o usados de uma vez, at� 10
+		Quanto mais foram consumidos, mais forte o chefe ser�
+		Se mais de 5 forem consumidos, o chefe fica mais r�pido
+		5 Bolsas do Tesouro s�o derrubadas por item usado
+		Um trof�u ir� ser derrubado a cada 3 itens usados
+		Um Energizador ser� derrubado se 10 forem usados
+		'''
+}
+
+// OverloaderRewards: The boss will drop {0} treasure bags, {1} {^1:trophy;trophies}, and {2} {^2:energizer;energizers} when defeated (rewards increase with stack size)
+
+OverloadEye: {
+	DisplayName: Olhomalgama��o
+	Tooltip: Invoca o Olho de Cthulhu Energizado
+}
+
+OverloadFish: {
+	DisplayName: lata de Vermes da Trufa
+	Tooltip: Invoca um Duque Peixe-drag�o Energizado
+}
+
+OverloadFrostMoon: {
+	DisplayName: Saco de Presentes Malcriados
+	Tooltip:
+		'''
+		Invoca uma Lua de Gelo Sobrecarregada
+		Use novamente para parar o evento
+		'''
+}
+
+OverloadGoblins: {
+	DisplayName: Bandeira de Guerra Goblin
+	Tooltip:
+		'''
+		Invoca uma Invas�o Goblin Sobrecarregada
+		Use novamente para parar o evento
+		'''
+}
+
+OverloadGolem: {
+	DisplayName: Bateria R�nica
+	Tooltip: Invoca um Golem Energizado
+}
+
+OverloadMartians: {
+	DisplayName: Sat�lite de Comunica��es Marciano
+	Tooltip:
+		'''
+		Invoca uma Invas�o de Marte Sobrecarregada
+		Use novamente para parar o evento
+		'''
+}
+
+OverloadMoon: {
+	DisplayName: Inscri��o R�nica
+	Tooltip: Invoca um Senhor da Lua Energizado
+}
+
+OverloadPirates: {
+	DisplayName: Recompensa Pirata
+	Tooltip:
+		'''
+		Invoca uma Invas�o Pirata Sobrecarregada
+		Use novamente para parar o evento
+		'''
+}
+
+OverloadPlant: {
+	DisplayName: Cora��o da Selva
+	Tooltip: Invoca uma Plantera Sobrecarregada
+}
+
+OverloadPrime: {
+	DisplayName: Chip de Controle Primal
+	Tooltip: Invoca um Skeletron Alfa Energizado
+}
+
+OverloadPumpkinMoon: {
+	DisplayName: Medalh�o da Lua de Ab�bora Sobrecarregado
+	Tooltip:
+		'''
+		Invoca a Lua de Ab�bora Sobrecarregada
+		Use novamente para parar o evento
+		'''
+}
+
+OverloadQueenSlime: {
+	DisplayName: Cristal Sobrecarregado
+	Tooltip: Invoca uma Geleia Rainha Energizada
+}
+
+OverloadSkele: {
+	DisplayName: Colar de Caveira
+	Tooltip:
+		'''
+		Invoca um Skeletron Energizado durante a noite
+		Invoca um Guardi�o do Calabou�o Energizado durante o dia
+		'''
+}
+
+OverloadSlimeCrown: {
+	DisplayName: Ordem Real
+	Tooltip: Invoca uma Geleia Rei Energizada
+}
+
+OverloadTwins: {
+	DisplayName: Lente Multifocal
+	Tooltip: Invoca um grupo de G�meos Energizados
+}
+
+OverloadWall: {
+	DisplayName: Fardo de Bonecos
+	Tooltip: Invoca uma Parede de Carne Energizada
+}
+
+OverloadWorm: {
+	DisplayName: Galinha de Minhoca
+	Tooltip: Invoca um Devorador de Mundos Energizado
+}
+
+TruffleWorm2: {
+	DisplayName: �leo de Verme da Trufa Concentrado
+	Tooltip: Invoca o Duque Peixe-drag�o sem pescar
+}
+
+LihzahrdPowerCell2: {
+	DisplayName: Pacote de Baterias Laghartas
+	Tooltip: Invoca o Golem sem um altar
+}
+
+CrimsonAltar: {
+	DisplayName: Altar de Carmesim
+	Tooltip: ""
+}
+
+CrucibleCosmos: {
+	DisplayName: Crisol dos Cosmos
+	Tooltip:
+		'''
+		Funciona como todas as esta��es de cria��o
+		'Parece esconder poder magn�fico'
+		'''
+}
+
+DemonAltar: {
+	DisplayName: Altar Demon�aco
+	Tooltip: ""
+}
+
+MutantToilet: {
+	DisplayName: Vaso Mutant
+	Tooltip: N�o.
+}
+
+EchPainting: {
+	DisplayName: Pintura Ech
+	Tooltip: "'Groalt W. Fai'"
+}
+
+ElementalAssembler: {
+	DisplayName: Montador Elemental
+	Tooltip: Funciona como v�rias esta��es de cria��o b�sicas
+}
+
+GoldenDippingVat: {
+	DisplayName: Tanque de Mergulho em Ouro
+	Tooltip: Usado para criar criaturas de ouro
+}
+
+MultitaskCenter: {
+	DisplayName: Centro Multitarefa
+	Tooltip: Funciona como v�rias esta��es de cria��o b�sicas
+}
+
+Omnistation: {
+	DisplayName: Omnista��o
+	Tooltip:
+		'''
+		Pode ser Reutilizada Infinitamente
+		Efeitos de todas as esta��es do vanilla
+		Aumenta muito a sorte e oferece Pico de A��car quando perto
+		'''
+}
+
+Omnistation2: {
+	DisplayName: Omnista��o
+	Tooltip:
+		'''
+		Pode ser Reutilizada Infinitamente
+		Efeitos de todas as esta��es do vanilla
+		Aumenta muito a sorte e oferece Pico de A��car quando perto
+		'''
+}
+
+RegalStatue: {
+	DisplayName: Est�tua R�gia
+	Tooltip: NPCs de Cidade renascem extremamente r�pido quando perto
+}
+
+Semistation: {
+	DisplayName: Semista��o
+	Tooltip:
+		'''
+		Pode ser Reutilizada Infinitamente
+		Efeito de algumas esta��es do vanilla
+		'''
+}
+
+SiblingPylon: {
+	DisplayName: Pilar dos Irm�os
+	Tooltip:
+		'''
+		Teleporta at� outro pilar quando Mutant, Abominationn, e Deviantt estiverem pr�ximos
+		Apenas um de cada tipo pode ser posicionado
+		'''
+}
+
+UnsafeGraniteWall: {
+	DisplayName: Parede de Granito Insegura
+	Tooltip: Permite que inimigos espec�ficos � �rea sejam criados
+}
+
+UnsafeMarbleWall: {
+	DisplayName: Parede de M�rmore Insegura
+	Tooltip: Permite que inimigos espec�ficos � �rea sejam criados
+}
+
+WalkingRick: {
+	DisplayName: Rick Andante
+	Tooltip: "'Kien R. Oco'"
+}
+
+WoodenToken: {
+	DisplayName: S�mbolo de Madeira
+	Tooltip: "'O sinal de um verdadeiro amante da madeira'"
+}
+
+AbominationnBody: {
+	DisplayName: Corpo do Abominationn
+	Tooltip: ""
+}
+
+AbominationnMask: {
+	DisplayName: M�scara do Abominationn
+	Tooltip: ""
+}
+
+AbominationnPants: {
+	DisplayName: Cal�as do Abominationn
+	Tooltip: ""
+}
+
+AbominationnScythe: {
+	DisplayName: Foice do Abominationn
+	Tooltip: ""
+}
+
+DevianttBody: {
+	DisplayName: Corpo da Deviantt
+	Tooltip: ""
+}
+
+DevianttMask: {
+	DisplayName: M�scara da Deviantt
+	Tooltip: ""
+}
+
+DevianttPants: {
+	DisplayName: Cal�as da Deviantt
+	Tooltip: ""
+}
+
+LumberHat: {
+	DisplayName: Chap�u do Lenhador
+	Tooltip: ""
+}
+
+LumberjackBody: {
+	DisplayName: Corpo do Lenhador
+	Tooltip: ""
+}
+
+LumberjackMask: {
+	DisplayName: M�scara do Lenhador
+	Tooltip: ""
+}
+
+LumberjackPants: {
+	DisplayName: Cal�as do Lenhador
+	Tooltip: ""
+}
+
+MutantBody: {
+	DisplayName: Corpo do Mutant
+	Tooltip: ""
+}
+
+MutantMask: {
+	DisplayName: M�scara do Mutant
+	Tooltip: ""
+}
+
+MutantPants: {
+	DisplayName: Cal�as do Mutant
+	Tooltip: ""
+}
+
+LumberJaxe: {
+	DisplayName: O Machanhador
+	Tooltip:
+		'''
+		Inimigos atingidos podem derrubar madeira ao morrerem
+		'A arma antiga de um her�i que usa machados'
+		'''
+}
+
+Abominationn: {
+	DisplayName: Abominationn
+	Tooltip: "'Eu certamente queria ser um chefe.'"
+}
+
+Angler: {
+	DisplayName: Pescador
+	Tooltip: "'Voc� seria um �timo lacaio ajudante!'"
+}
+
+ArmsDealer: {
+	DisplayName: Comerciante de Armas
+	Tooltip: "'Tira as suas m�os da minha arma, parceiro!'"
+}
+
+Clothier: {
+	DisplayName: Alfaiate
+	Tooltip: "'Obrigado mais uma vez por me libertar de minha maldi��o.'"
+}
+
+Cyborg: {
+	DisplayName: Ciborgue
+	Tooltip: "'A efici�ncia da minha expedi��o foi reduzida drasticamente quando um proj�til atingiu meu atuador de locomo��o.'"
+}
+
+Demolitionist: {
+	DisplayName: Demolicionista
+	Tooltip: "'� um bom dia para morrer!'"
+}
+
+Deviantt: {
+	DisplayName: Deviantt
+	Tooltip: "'Abrace o sofrimento... E enquanto isso, abrace outra compra!'"
+}
+
+Dryad: {
+	DisplayName: Dr�ade
+	Tooltip: "'Proteja-se. Terraria precisa de voc�!'"
+}
+
+DyeTrader: {
+	DisplayName: Comerciante de Tinturas
+	Tooltip: "'Meu amor, suas roupas n�o tem cor alguma.'"
+}
+
+GoblinTinkerer: {
+	DisplayName: Inventor Goblin
+	Tooltip: "'Procurando por um mestre em geringon�as? Eu sou o seu goblin!'"
+}
+
+Golfer: {
+	DisplayName: Golfista
+	Tooltip: "'Casa de ferreiro, taco de madeira.'"
+}
+
+Guide: {
+	DisplayName: Guia
+	Tooltip: "'Eles dizem que existe uma pessoa que vai te contar como sobreviver nesta terra.'"
+}
+
+LumberJack: {
+	DisplayName: Lenhador
+	Tooltip: "'Eu como um pote de lascas de madeira no caf� da manh�... sem leite.'"
+}
+
+Mechanic: {
+	DisplayName: Mec�nica
+	Tooltip: "'Sempre compre mais fios do que voc� precisa!'"
+}
+
+Merchant: {
+	DisplayName: Comerciante
+	Tooltip: "'Voc� falou em ouro?  Eu posso ficar com isso a�.'"
+}
+
+Mutant: {
+	DisplayName: Mutant
+	Tooltip: "'Voc� tem sorte que eu estou do seu lado.'"
+}
+
+Nurse: {
+	DisplayName: Enfermeira
+	Tooltip: "'Mostre-me onde d�i.'"
+}
+
+Painter: {
+	DisplayName: Pintor
+	Tooltip: "'Eu sei a diferen�a entre Turquesa e Azuk-verde. Mas n�o vou te contar.'"
+}
+
+PartyGirl: {
+	DisplayName: Garota da Festa
+	Tooltip: "'Temos que conversar. �... � sobre festas.'"
+}
+
+Pirate: {
+	DisplayName: Pirata
+	Tooltip: "'Fica longe do meu tesouro, malandro!'"
+}
+
+SantaClaus: {
+	DisplayName: Papai Noel
+	Tooltip: "'O qu�? Voc� achou que eu n�o era real?'"
+}
+
+SkeletonMerchant: {
+	DisplayName: Comerciante Esqueleto
+	Tooltip: "'Voc� n�o acreditaria no tipo de coisa que as pessoas jogam em mim... Quer comprar um pouco?'"
+}
+
+Squirrel: {
+	DisplayName: Esquilo
+	Tooltip: *chio*
+}
+
+Steampunker: {
+	DisplayName: Steampunker
+	Tooltip: "'Me mostra umas engrenagens!'"
+}
+
+Stylist: {
+	DisplayName: Estilista
+	Tooltip: "'Voc� sequer tentou escovar seu cabelo hoje?'"
+}
+
+Tavernkeep: {
+	DisplayName: Taberneiro
+	Tooltip: "'O que eu estou fazendo aqui...'"
+}
+
+TaxCollector: {
+	DisplayName: Cobrador de Impostos
+	Tooltip: "'Voc� de novo? Imagino que queria mais dinheiro!?'"
+}
+
+TravellingMerchant: {
+	DisplayName: Caixeiro Viajante
+	Tooltip: "'Eu vendo produtos de lugares que talvez nem existam!'"
+}
+
+Truffle: {
+	DisplayName: Trufa
+	Tooltip: "'Todo mundo nesse lugar parece um pouco estranho.'"
+}
+
+WitchDoctor: {
+	DisplayName: Doutor Bruxo
+	Tooltip: "'Que tipo de m�dico eu sou? Sou o M�dico Bruxo.'"
+}
+
+Wizard: {
+	DisplayName: Mago
+	Tooltip: "'Quer que eu puxe uma moeda de tr�s da sua orelha? N�o? Ok.'"
+}
+
+Zoologist: {
+	DisplayName: Zoologista
+	Tooltip: "'Eu amo animais, tipo, muito!'"
+}
+
+Princess: {
+	DisplayName: Princesa
+	Tooltip: "'Cor de rosa � a melhor cor do mundo!'"
+}
+
+TownDog: {
+	DisplayName: Town Dog
+	Tooltip: "'Woof!'"
+}
+
+TownCat: {
+	DisplayName: Town Cat
+	Tooltip: "'Miau!'"
+}
+
+TownBunny: {
+	DisplayName: Town Bunny
+	Tooltip: "'*sons de coelho*'"
+}
+
+SemiBridgifier: {
+	DisplayName: Semi-Pontificador
+	Tooltip:
+		'''
+		Pode ser reutilizado infinitamente
+		Automaticamente posiciona Semista��es na plataforma que voc� clicar
+		N�O cria uma plataforma!
+		'''
+}
+
+PurityTotem: {
+	DisplayName: Totem da Pureza
+	Tooltip:
+		'''
+		Pode ser reutilizado infinitamente
+		Permite que NPCs de Cidade vivam em biomas malignos
+		Evita que blocos malignos formem um bioma maligno
+		Evita que t�mulos formem Cemit�rios
+		'''
+}
+
+InstaPond: {
+	DisplayName: Instalago
+	Tooltip:
+		'''
+		Derruba uma bomba que cria um corpo de �gua de 150x50 embaixo dela
+		Evita quebrar �reas importantes
+		use por sua conta e risco
+		'''
+}
+
+KohaCrystal: {
+	DisplayName: Cristal de Koha
+	Tooltip: Diminui a quantidade Cristais de Mana que voc� tem por 1
+}
+
+BigSuckPotion: {
+	DisplayName: Po��o Chup�o
+	Tooltip:
+		'''
+		Faz voc� puxar tudo
+		Deve ser consumida manualmente
+		'''
+}
+
+MiniDirtInstaBridge: {
+	DisplayName: Mini Instaponte de Terra
+	Tooltip:
+		'''
+		Cria uma pequena ponte de terra no seu cursor
+		N�O quebra nenhum bloco
+		'''
+}
+
+WiresPainting: {
+	DisplayName: Pintura do Wires
+	Tooltip: Olha Dentro
+}
+
+CrabSizedGlasses: {
+	DisplayName: �culos do Tamanho de um Carangueijo
+	Tooltip: Invoca um carangueijo maneiro
+}
+
+NerdySlime: {
+	DisplayName: Geleia Nerdy
+	Tooltip: "'Burble bubble? Hrm!'"
+}
+
+CoolSlime: {
+	DisplayName: Geleia Legal
+	Tooltip: "'Seu, slurp glurp!'"
+}
+
+ElderSlime: {
+	DisplayName: Geleia Antiga
+	Tooltip: "'Poot... ahem!'"
+}
+
+ClumsySlime: {
+	DisplayName: Geleia Desajeitada
+	Tooltip: "'*Sil�ncio Desconfort�vel*'"
+}
+
+DivaSlime: {
+	DisplayName: Geleia Diva
+	Tooltip: "'Sprinkle, tinkle!'"
+}
+
+SurlySlime: {
+	DisplayName: Geleia Rude
+	Tooltip: "'Hiss! Gargle! Grrrrr...'"
+}
+
+MysticSlime: {
+	DisplayName: Geleia M�stica
+	Tooltip: "'Blobra Kaslobra!'"
+}
+
+SquireSlime: {
+	DisplayName: Geleia Escudeira
+	Tooltip: "'Squish 'n sploink!'"
+}
+
+// EnrageWarning.QueenBee: Enrages on the surface
+
+WormSnack: {
+	DisplayName: Lanche de Minhoca
+	Tooltip:
+		'''
+		Invoca o verme gigante no Pr�-Modo D�ficil
+		Invoca o cavador no Modo D�ficil
+		Pode ser usado apenas no subterr�neo
+		'''
+}
+
+EnchantedTree: {
+	// DisplayName: Enchanted Tree
+	/* Tooltip:
+		'''
+		Can duplicate several complex items and some of their components
+		Right Click with an item in hand, then drag and pull the item you wish to duplicate
+		Items require varying amounts of Enchanted Acorns to duplicate
+		''' */
+}
+
+EnchantedAcorn: {
+	// DisplayName: Enchanted Acorn
+	// Tooltip: ""
+}
+
+AutoSummoner: {
+	// DisplayName: Bewitching Wand
+	/* Tooltip:
+		'''
+		Automatically summons minions for you
+		Effect works passively from inventory or vanity slots
+		Uses the leftmost minion weapon in your hotbar
+		Mana is spent as normal
+		''' */
+}
+
+TogglerIconItem: {
+	// DisplayName: Utilities Menu
+	// Tooltip: Use to open the Utilities menu
+}
+
+PotionTogglerItem: {
+	// DisplayName: Potion Toggler
+	// Tooltip: Use to open the Potion Toggles menu
+}
+
+StatSheetItem: {
+	// DisplayName: Stat Sheet
+	// Tooltip: Use to open the Stat Sheet menu
+}
+
+ChestWizard: {
+	// DisplayName: Chest Wizard
+	// Tooltip: Searches nearby chests for specific items and retrieves them for you
+}

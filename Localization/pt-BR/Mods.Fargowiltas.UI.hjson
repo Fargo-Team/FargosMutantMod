@@ -1,0 +1,79 @@
+// Close: Close
+// CombinedUIButton: Open Utilities
+// PotionToggler: "[s:Fargowiltas/PotionToggler] Potion Toggles"
+
+StatSheet: {
+	// misc
+	// CombinedUI: "[s:Fargowiltas/StatSheet] Stat Sheet"
+	// PermaUpgrade: Permanent Upgrades
+	// combat
+	// Combat: Combat
+	ArmorPenetration: Perfura��o de Blindagem: {0}
+	Life: Vida: {0}
+	LifeRegen: Regenera��o de Vida: {0}/sec
+	Defense: Defesa: {0}
+	// KnockbackImmunity: Knockback Immunity: {0}
+	Aggro: Agressividade: {0}
+	DamageReduction: Redu��o de Dano: {0}%{1}
+	AttackSpeed: Velocidade de ataque: {0}%
+	// movement
+	// Movement: Movement
+	// MovementSpeed: Movement Speed: {0}%
+	MaxSpeed: Velocidade m�xima: {0} mph
+	// Acceleration: Acceleration: {0}%
+	// Deceleration: Deceleration: {0}%
+	WingTime: Tempo de voo: {0}
+	WingTimeMoreThan60Sec: Sim
+	WingTimeActual: "{0} seg"
+	WingMaxSpeed: Velocidade m�xima de asa: {0} mph
+	WingAscentModifier: Modificador de ascen��o de asa: {0}%
+	// utility
+	// Utility: Utility
+	Luck: Sorte: {0}
+	BattleCry: Grito de Guerra: {0}
+	FishingQuests: Miss�es de Pesca: {0}
+	// MiningSpeed: Mining Speed: {0}%
+	// ExtraPlacementRange: Extra Placement Range: {0}
+	// melee
+	// Melee: Melee
+	MeleeDamage: Dano f�sico: {0}%
+	MeleeCritical: Cr�tico f�sico: {0}%
+	MeleeSpeed: Velocidade f�sica: {0}%
+	// MeleeSize: Melee Size: {0}%
+	// ranged
+	// Ranged: Ranged
+	RangedDamage: Dano � dist�ncia: {0}%
+	RangedCritical: Cr�tico � dist�ncia: {0}%
+	// magic
+	// Magic: Magic
+	MagicDamage: Dano de magia: {0}%
+	MagicCritical: Cr�tico de magia: {0}%
+	Mana: Mana: {0}
+	ManaRegen: Regenera��o de Mana: {0}/sec
+	ManaCostReduction: Redu��o no custo de mana: {0}%
+	//summon
+	// Summon: Summon
+	SummonDamage: Dano de invoca��o: {0}%
+	SummonCritical: Cr�tico de Invoca��o: {0}%
+	MaxMinions: Lacaios m�ximos: {0}
+	MaxSentries: Sentinelas m�ximas: {0}
+	// WhipSpeed: Whip Speed: {0}%
+	// WhipLength: Whip Length: {0}%
+}
+
+SearchText: Procurar...
+// Battle & Calming are in Items.BattleCry
+BattleCryNone: Nenhum
+// SavedToSlot: Toggles saved to custom set {0}!
+// NoTogglesFound: No toggles found in custom set {0}.
+// TurnAllTogglesOff: Turn all toggles off
+// TurnAllTogglesOn: Turn all toggles on
+// SomeEffectsPreset: Some effects preset
+// MinimalEffectsPreset: Minimal effects preset
+// CustomPreset: Custom preset {0} (right click to save)
+// DisplayAll: Display All
+// DisplayEquipped: Display Active
+// NoToggles: No togglable effects equipped!
+// Reforge UI
+// InsertText: Place an item here to reforge
+// ReforgeCost: Reforge Cost

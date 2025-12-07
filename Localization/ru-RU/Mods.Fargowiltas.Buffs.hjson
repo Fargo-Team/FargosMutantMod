@@ -1,0 +1,24 @@
+Omnistation: {
+	DisplayName: Омнистанция
+	Description: Эффекты всех ванильных бафф-станций
+}
+
+Semistation: {
+	DisplayName: Полустанция
+	Description: Эффекты некоторых ванильных бафф-станций
+}
+
+WoodDrop: {
+	DisplayName: Бросок дров
+	Description: Mods.Fargowiltas.BuffDescription.WoodDrop
+}
+
+BigSuckBuff: {
+	DisplayName: Большое всасывание
+	Description: Вы всасываете в себя всё
+}
+
+CoolCrabBuff: {
+	DisplayName: Крутой краб
+	Description: Он думает, что вы должны поиграть в Elden Ring
+}

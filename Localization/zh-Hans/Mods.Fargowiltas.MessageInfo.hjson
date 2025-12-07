@@ -1,0 +1,62 @@
+Common: {
+	Exclamation: ！
+	Period: 。
+}
+
+SiblingPylonNotNearSiblings: 目标晶塔需要三兄妹在附近才能使用
+NearbySiblingPylonNotNearSiblings: 当前晶塔需要三兄妹在附近才能使用
+NewItemUnlocked: "{0}解锁了新商品！"
+HaveAwoken: "{0}已苏醒！"
+// Cancel Event
+CancelEvent: 入侵者已离开！
+CancelPumpkinMoon: 南瓜月正在降下……
+CancelFrostMoon: 霜月正在降下……
+CancelEclipse: 日食停止发生！
+CancelBloodMoon: 血月正在降下……
+CancelWindyDay: 狂风已经平息！
+CancelOOA: 旧日军团正在离开！
+CancelSandstorm: 沙尘暴已结束！
+CancelLunarEvent: 天界生物停止入侵！
+CancelRain: 雨停了！
+// Summons
+StartWindyDay: 狂风开始怒号。
+StartSandStorm: 沙尘暴开始了。
+StartLanternNight: 出现灯笼夜的概率提高了！
+StopLanternNight: 出现灯笼夜的概率恢复正常。
+StartLunarEvent: 天界柱已苏醒！
+StartRain: 雨云遮住了天空。
+AncientSeal: 所有Boss已苏醒！
+SeveralBossesAwoken: 数个Boss已苏醒！
+// Swarm Summons
+OverloadBee: 震耳欲聋的嗡嗡声穿透了你！
+OverloadBetsy: 真正的撒旦大军来袭！
+OverloadBrain: 银河系的核心正从群星中降落！
+OverloadCultist: 反抗的圣歌回响在你的耳畔！
+OverloadDarkMage: 你感觉自己惹怒了图书管理员！
+OverloadDeer: 永恒领域的生物大肆入侵！
+OverloadDestroyer: 整颗星球从核心开始颤抖！
+OverloadEmpress: 弹幕的天堂正在降临！
+OverloadEye: 无数眼睛刺破面纱合为一个！
+OverloadFish: 海洋在恐惧中颤抖！
+OverloadGolem: 你感觉你将会度过一段糟糕的时光！
+OverloadMoon: 逼近死亡之风呢喃不已……
+OverloadPlant: 丛林万物的心跳合而为一！
+OverloadPrime: 一股恶心的寒气笼罩着整个世界！
+OverloadQueenSlime: 欢迎来到名副其实的史莱姆雨！
+OverloadSkele: 骨头的碰撞声从地牢中升腾而起！
+OverloadSlimeCrown: 欢迎来到真正的史莱姆雨！
+OverloadTwins: 双眼里充满了决心！
+OverloadWall: 一个血肉堡垒从深处升起！
+OverloadWorm: 地面以公式化的精度颤动！
+// Swarm Events
+OverloadFrostMoonStop: 霜月消逝……
+OverloadFrostMoonStart: 霜月正在升起……
+OverloadFrostMoonWave20: 波数：20：一切
+OverloadPumpkinMoonStop: 南瓜月消逝……
+OverloadPumpkinMoonStart: 南瓜月正在升起……
+OverloadPumpkinMoonWave15: 波数：15：一切
+OverloadGoblinsStop: 哥布林们冷静下来了！
+OverloadMartiansStop: 火星人们冷静下来了！
+OverloadPiratesStop: 海盗们冷静下来了！
+// Swarm Misc
+SwarmDefeated: 这群能量满溢的Boss已被打败！

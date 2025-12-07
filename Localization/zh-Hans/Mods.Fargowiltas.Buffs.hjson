@@ -1,0 +1,24 @@
+Omnistation: {
+	DisplayName: 万能增益站
+	Description: 拥有部分原版增益站的效果
+}
+
+Semistation: {
+	DisplayName: 多功能增益站
+	Description: 拥有部分原版增益站的效果
+}
+
+WoodDrop: {
+	DisplayName: 掉落木头
+	Description: Mods.Fargowiltas.BuffDescription.WoodDrop
+}
+
+BigSuckBuff: {
+	DisplayName: 超级黑洞
+	Description: 你正吞噬一切！
+}
+
+CoolCrabBuff: {
+	DisplayName: 时髦螃蟹
+	Description: 他觉得你应该游玩《艾尔登法环》
+}

@@ -1,0 +1,54 @@
+MultitaskCenterAchievement: {
+	FriendlyName: Как третья рука
+	Description: Зажгите своё творчество, соединив несколько станций создания в компактный верстачок!
+}
+
+CrucibleofTheCosmosAchievement: {
+	FriendlyName: Мастер создания
+	Description: Усовершенствуйте своё мастертво, соединив все возможные станции создания в одну сподручную мастерскую!
+}
+
+ElementalAssemblerAchievement: {
+	FriendlyName: Владыка стихий
+	Description: Отточите своё ремесленничество, соединив особенные станции создания в удобный станок!
+}
+
+BuyNPCAchievement: {
+	FriendlyName: Не спрашивай, откуда они у меня
+	Description: Под багровым покровом кровавой луны, купите кого-нибудь у бельчонка.
+}
+
+LumberjaxeAchievement: {
+	FriendlyName: Тебе никогда не быть таким крутым
+	Description: Взмахните Древопилом, когда на вас полный комплект одежды ДревоБилла.
+}
+
+NPCSacrificeAchievement: {
+	FriendlyName: Оккультное жертвоприношение
+	Description: Принесите дриаду в жертву бельчонку.
+}
+
+OmnistationAchievement: {
+	FriendlyName: Лучик света
+	Description: Улучшите Полустанцию до Омнистанции — кульминации баффовых станций.
+}
+
+SemistationAchievement: {
+	FriendlyName: Сегодня прекрасный день
+	Description: Получите Полустанцию.
+}
+
+T1TreeTreasureAchievement: {
+	FriendlyName: Смотри, что я нашёл!
+	Description: Получите лесной дар от ДревоБилла.
+}
+
+T2TreeTreasureAchievement: {
+	FriendlyName: Хронический хламовщик
+	Description: Получите свой 25-й лесной дар от ДревоБилла.
+}
+
+WiresAchievement: {
+	FriendlyName: Посмотрел внутрь
+	Description: Провода.
+}

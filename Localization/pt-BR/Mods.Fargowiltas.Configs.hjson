@@ -1,0 +1,384 @@
+FargoServerConfig: {
+	DisplayName: Configura��o do Servidor
+
+	Headers: {
+		// Gameplay: Gameplay Changes
+		// Content: New Content
+		// WorldStates: World States
+		StatMultipliers: Multiplicadores de estat�sticas
+		Misc: Diversos
+	}
+
+	UnlimitedAmmo: {
+		Label: "[i:771] Muni��o infinita quando com 3996+ no Modo D�ficil"
+		Tooltip: ""
+	}
+
+	UnlimitedConsumableWeapons: {
+		Label: "[i:42] Armas consum�veis infinitas quando com 3996+ no Modo D�ficil"
+		Tooltip: ""
+	}
+
+	UnlimitedPotionBuffsOn120: {
+		Label: "[i:292] Buffs e Isca ilimitados quando carregados em certa quantidade"
+		Tooltip: 30+ para po��es e isca
+	}
+
+	EasySummons: {
+		// Label: "[i:Fargowiltas/SuspiciousSkull] Easy Summons"
+		// Tooltip: Boss and event summons ignore requirements and set the time to meet their requirements.
+	}
+
+	BossZen: {
+		Label: "[i:3117] Inimigos n�o s�o criados enquanto um chefe est� vivo"
+		Tooltip: ""
+	}
+
+	AnglerQuestInstantReset: {
+		Label: "[i:2374] Miss�es do Pescador resetam intantaneamente"
+		Tooltip: ""
+	}
+
+	ExtraLures: {
+		Label: "[i:2373] Iscas Extras em varas de pesca"
+		Tooltip: ""
+	}
+
+	FasterLavaFishing: {
+		Label: "[i:4881] Pescaria mais r�pida na Lava"
+		Tooltip: ""
+	}
+
+	Fountains: {
+		Label: "[i:909] Fonte causam biomas"
+		Tooltip: ""
+	}
+
+	PermanentStationsNearby: {
+		Label: "[i:3198] Buffs de esta��o autom�tico quando pr�ximas"
+		Tooltip: ""
+	}
+
+	TorchGodEX: {
+		Label: "[i:5043] O favor do deus da tocha automaticamente troca as tochas posicionadas"
+		Tooltip: Obedece a sorte de tocha, que pode ser differente do favor deus da tocha
+	}
+
+	BannerRecipes: {
+		Label: "[i:1683] Receitas com bandeira"
+		Tooltip: ""
+	}
+
+	ContainerRecipes: {
+		// Label: "[i:WoodenCrate] Container Recipes"
+		// Tooltip: Adds recipes to convert Crates, Treasure Bags, Herb Bags and other containers to various items that can drop from them.
+	}
+
+	MiscRecipes: {
+		// Label: "[i:Wood] Miscellaneous Recipes"
+		// Tooltip: Adds various miscellaneous recipes.
+	}
+
+	NPCSales: {
+		Label: "[i:267] Vendas extras de NPCs de cidade"
+		Tooltip: ""
+	}
+
+	CatchNPCs: {
+		Label: "[i:267] Capturar NPCs de cidade"
+		Tooltip: ""
+	}
+
+	Mutant: {
+		Label: "[i:Fargowiltas/MutantMask] [c/ffffff:{$Mods.Fargowiltas.NPCs.Mutant.DisplayName} {$Mods.Fargowiltas.Configs.Common.CanSpawn}]"
+		Tooltip: ""
+	}
+
+	Abom: {
+		Label: "[i:Fargowiltas/AbominationnMask] [c/ffffff:{$Mods.Fargowiltas.NPCs.Abominationn.DisplayName} {$Mods.Fargowiltas.Configs.Common.CanSpawn}]"
+		Tooltip: ""
+	}
+
+	Devi: {
+		Label: "[i:Fargowiltas/DevianttMask] [c/ffffff:{$Mods.Fargowiltas.NPCs.Deviantt.DisplayName} {$Mods.Fargowiltas.Configs.Common.CanSpawn}]"
+		Tooltip: ""
+	}
+
+	Lumber: {
+		Label: "[i:Fargowiltas/LumberjackMask] [c/ffffff:{$Mods.Fargowiltas.NPCs.LumberJack.DisplayName} {$Mods.Fargowiltas.Configs.Common.CanSpawn}]"
+		Tooltip: ""
+	}
+
+	Squirrel: {
+		Label: "[i:239] [c/ffffff:{$Mods.Fargowiltas.NPCs.Squirrel.DisplayName} {$Mods.Fargowiltas.Configs.Common.CanSpawn}]"
+		Tooltip: ""
+	}
+
+	Halloween: {
+		Label: "[i:1774] Tempo de Halloween"
+		Tooltip: ""
+	}
+
+	Christmas: {
+		Label: "[i:1869] Tempo Natalino"
+		Tooltip: ""
+	}
+
+	DrunkWorld: {
+		Label: "[i:353] Mundo B�bado"
+		Tooltip: ""
+	}
+
+	BeeWorld: {
+		Label: "[i:1133] Mundo de Abelha"
+		Tooltip: ""
+	}
+
+	WorthyWorld: {
+		Label: "[i:2107] Mundo For The Worthy"
+		Tooltip: ""
+	}
+
+	CelebrationWorld: {
+		Label: "[i:3732] Mundo de Celebra��o"
+		Tooltip: ""
+	}
+
+	ConstantWorld: {
+		Label: "[i:5109] Mundo Constante"
+		Tooltip: ""
+	}
+
+	NoTrapsWorld: {
+		Label: "[i:510] Mundo Sem Armadilhas"
+		Tooltip: ""
+	}
+
+	RemixWorld: {
+		Label: "[i:4711] Mundo Remix"
+		Tooltip: ""
+	}
+
+	ZenithWorld: {
+		Label: "[i:4956] Mundo Z�nite"
+		Tooltip: ""
+	}
+
+	EnemyHealth: {
+		Label: "[i:29] Vida do Inimigo"
+		Tooltip: Multiplica a vida de todos os inimigos.
+	}
+
+	BossHealth: {
+		Label: "[i:29] Vida do Chefe"
+		Tooltip: Multiplica a vida de todos os chefes. Maior multiplicador entre esse e o multiplicador de inimigo � aplicado.
+	}
+
+	EnemyDamage: {
+		Label: "[i:3507] Dano do Inimigo"
+		Tooltip: Multiplica o dano de todos os inimigos e proj�teis.
+	}
+
+	BossDamage: {
+		Label: "[i:3507] Dano do Chefe"
+		Tooltip: Multiplica o dano de todos os chefes. Maior multiplicador entre esse e o multiplicador de inimigo � aplicado.
+	}
+
+	BossApplyToAllWhenAlive: {
+		Label: Multiplicadores de Chefe se aplicam universalmente
+		Tooltip: Vida do Chefe e Dano do Chefe s�o aplicados para todos os inimigos enquanto um chefe est� vivo, ao inv�s de afetar apenas os chefes.
+	}
+
+	PiggyBankAcc: {
+		Label: "[i:87] Efeitos informacionais e de constru��o funcionam no Porquinho"
+		Tooltip: ""
+	}
+
+	ModdedPiggyBankAcc: {
+		Label: "[i:87] Efeitos de itens de Mods funcionam no Porquinho"
+		Tooltip: ""
+	}
+
+	StalkerMoneyTrough: {
+		Label: "[i:3213] Porquinho stalker"
+		Tooltip: ""
+	}
+
+	RottenEggs: {
+		Label: "[i:1809] Ovos podres poderosos"
+		Tooltip: ""
+	}
+
+	SaferBoundNPCs: {
+		Label: "[i:1274] NPCs de cidade resgat�veis n�o recebem danos"
+		Tooltip: ""
+	}
+
+	ExtractSpeed: {
+		Label: "[i:997] Velocidade aumentada do Extrator"
+		Tooltip: ""
+	}
+
+	PylonsIgnoreEvents: {
+		Label: "[i:4876] Pilares ignoram eventos"
+		Tooltip: ""
+	}
+
+	SafeTerraformers: {
+		Label: "[i:Fargowiltas/InstaBridge] Terraformadores Seguros"
+		Tooltip:
+			'''
+			Terraformadores como a Instaponte ou o Destruidor de Cidade evitam destruir �reas consideradas importantes.
+			Essa op��o � segura at� demais e pode evitar coisas normais, como casas abandonadas.
+			'''
+	}
+
+	DisableTombstones: {
+		Label: "[i:Fargowiltas/GraveBuster] L�pides desativadas"
+		Tooltip: Faz l�pides n�o aparecerem quando um jogador morre.
+	}
+
+	ExtraBuffSlots: {
+		// Label: "[i:IronskinPotion] Extra Buff Slots"
+		// Tooltip: Grants 22 additional buff slots for all players.
+	}
+
+	AnglerQuestPity: {
+		// Label: "[i:AnglerTackleBag] Angler Quest Pity"
+		// Tooltip: Makes Angler give his important items at certain quests if he hasn't dropped them yet.
+	}
+
+	InstantItems: {
+		// Label: "[i:Dynamite] Instant Items"
+		// Tooltip: Enables/disables Insta items such as the InstaHouse
+	}
+}
+
+FargoClientConfig: {
+	DisplayName: Configura��o de Cliente
+
+	AutoReforge: {
+		// Label: "[s:Fargowiltas/Reforge] Automatic Reforge"
+		// Tooltip: Modifies goblin tinkerer's reforge menu
+	}
+
+	ExpandedTooltips: {
+		Label: "[i:171] Descri��es de itens indicam mudan�as do Fargo Mutant"
+		Tooltip: ""
+	}
+
+	ExactTooltips: {
+		Label: "[i:171] Descri��es de itens mostram a velocidade e recuo exatos dos itens"
+		Tooltip: Velocidade do item est� lista no tempo de uso, ent�o n�meros maiores = mais devagar.
+	}
+
+	ColoredDamageTypes: {
+		// Label: "[i:171] Damage tooltips are colored by damage type"
+		// Tooltip: ""
+	}
+
+	DoubleTapDashDisabled: {
+		Label: "[i:3097] Desabilita toque duplo para corridas"
+		Tooltip: Impede que corridas sejam feitas com o toque duplo normal. O bot�o de corrida est� dispon�vel independente dessa configura��o.
+	}
+
+	DoubleTapSetBonusDisabled: {
+		Label: "[i:3776] Desabilita toque duplo para Bon�s Definido"
+		Tooltip: Impede que b�nus definidos sejam ativados com o toque duplo normal. O bot�o de b�nus definido est� dispon�vel independente dessa configura��o.
+	}
+
+	DebuffOpacity: {
+		Label: "[i:1612] Opacidade m�xima da exibi��o de efeitos negativos"
+		Tooltip: ""
+	}
+
+	DebuffFaderRatio: {
+		Label: "[i:1612] For�a do desaparecimento da dura��o de efeitos negativos"
+		Tooltip: ""
+	}
+
+	HideTogglerWhenInventoryIsClosed: {
+		// Label: Only show effect toggler when inventory is open
+		// Tooltip: If true, the effect toggler is automatically hidden when your inventory is closed.
+	}
+
+	ToggleSearchReset: {
+		// Label: Accessory Effects menu resets search bar when closed
+		// Tooltip: ""
+	}
+
+	TransparentFriendlyProjectiles: {
+		Label: "[i:1309] proj�teis amig�veis transparentes"
+		Tooltip: Use com a qualidade do jogo no m�dio ou baixo para resultados melhores
+	}
+
+	MultiplayerDeathSpectate: {
+		Label: Espectar ao morrer no multiplayer
+		Tooltip: ""
+	}
+
+	DisableAllScopeView: {
+		// Label: "[i:RifleScope][i:SniperRifle] Toggle All Scoped Binocular Views"
+		// Tooltip: Allows toggling Scoped Binocular Views
+	}
+
+	Headers: {
+		// UserInterface: User Interface
+		// Misc: Miscellaneous
+	}
+
+	AnimatedRecipeGroups: {
+		// Label: "[i:9] Animated Recipe Groups"
+		// Tooltip: Whether recipe group sprites should flip through the viable items in the recipe group when displayed.
+	}
+
+	HideUnlimitedBuffs: {
+		Label: "[i:292] Esconder buffs permanentes"
+		Tooltip: ""
+	}
+}
+
+SeasonSelections: {
+	Tooltip: ""
+
+	Normal: {
+		Label: Normal
+		// Tooltip: ""
+	}
+
+	AlwaysOn: {
+		Label: Sempre ligado
+		// Tooltip: ""
+	}
+
+	AlwaysOff: {
+		Label: Sempre desligado
+		// Tooltip: ""
+	}
+}
+
+Common.CanSpawn: Pode aparecer
+
+ScopedBinocularViews: {
+	// Tooltip: Scoped Binocular Views
+
+	AllDisabled: {
+		// Label: All Disabled
+		// Tooltip: Disables the Rifle Scope and Sniper Rifle binocular views
+	}
+
+	RifleScopeAccessoryDisabled: {
+		// Label: Rifle Scope
+		// Tooltip: Disables the Rifle Scope binocular view
+	}
+
+	SniperRifleScopeDisabled: {
+		// Label: Sniper Rifle
+		// Tooltip: Disables the Sniper Rifle binocular view
+	}
+
+	AllEnabled: {
+		// Label: All Enabled
+		// Tooltip: Does not change scoped binocular view behaviour
+	}
+}

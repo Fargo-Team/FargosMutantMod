@@ -1,0 +1,62 @@
+Common: {
+	Exclamation: !
+	Period: .
+}
+
+SiblingPylonNotNearSiblings: Aquele Pilar precisa dos Irm�os Mutados por perto para funcionar.
+NearbySiblingPylonNotNearSiblings: Aquele Pilar precisa dos Irm�os Mutados por perto para funcionar.
+NewItemUnlocked: Um novo item foi desbloqueado na loja da {0}!
+HaveAwoken: "{0} Acordou"
+// Cancel Event
+CancelEvent: Os invasores foram embora!
+CancelPumpkinMoon: A Lua de Ab�bora se p�s...
+CancelFrostMoon: A Lua de Gelo se p�s...
+CancelEclipse: Um Eclipse Solar n�o est� acontecendo!
+CancelBloodMoon: A Lua de Sangue est� descendo...
+CancelWindyDay: O vento acabou!
+CancelOOA: o Ex�rcito do anci�o est� indo embora!
+CancelSandstorm: A tempesta de areia terminou!
+CancelLunarEvent: As criaturas celestiais foram embora!
+CancelRain: A chuva terminou!
+// Summons
+StartWindyDay: O vento come�a a uivar.
+StartSandStorm: A tempestade de areia come�ou.
+StartLanternNight: Taxa de noites de lanterna aumentada!
+StopLanternNight: Taxa de noites de lanterna retornadas ao normal.
+StartLunarEvent: Os pilares celestiais acordou!
+StartRain: Nuvens cobrem o c�u.
+AncientSeal: TODOS OS CHEFES acordaram!
+SeveralBossesAwoken: Diversos chefes acordaram!
+// Swarm Summons
+OverloadBee: Um zumbido perfurante te faz tremer!
+OverloadBetsy: O real ex�rcito do anci�o est� atacando!
+OverloadBrain: O c�rebro gal�tico descende!
+OverloadCultist: Cultos ensurdecedores te atacam!
+OverloadDarkMage: Voc� sente que enfureceu um bibliotec�rio!
+OverloadDeer: A constante toma tudo!
+OverloadDestroyer: O planeta treme at� o n�cleo!
+OverloadEmpress: Uma Chuva de Tiros est� vindo!
+OverloadEye: V�rios olhos observadores se juntam em um!
+OverloadFish: O Oceano convulsa em terror!
+OverloadGolem: Voc� sente que vai passar por uns mals tempos.
+OverloadMoon: O vendo sussura sobre a chegada da Morte!
+OverloadPlant: A selva pulsa como uma!
+OverloadPrime: Um gelo doentio toma o mundo!
+OverloadQueenSlime: Bem vindo a chuva de geleias mais que verdadeira!
+OverloadSkele: Uma grande aglomera��o de ossos sobe do calabou�o!
+OverloadSlimeCrown: Bem vindo a chuva de geleias verdadeira!
+OverloadTwins: Os olhos est�o cheios de determina��o!
+OverloadWall: Uma fortaleza de carne sobe das profundezas!
+OverloadWorm: O ch�o se mexe com precis�o formulada!
+// Swarm Events
+OverloadFrostMoonStop: A Lua de Gelo desaparece!
+OverloadFrostMoonStart: A Lua de Gelo est� subindo...
+OverloadFrostMoonWave20: Onda: 20: TUDO
+OverloadPumpkinMoonStop: A Lua de Ab�bora desaparece!
+OverloadPumpkinMoonStart: A Lua de Ab�bora est� subindo...
+OverloadPumpkinMoonWave15: Onda: 15: TUDO
+OverloadGoblinsStop: Os goblins se acalmaras!
+OverloadMartiansStop: Os marcianos se acalmaram!
+OverloadPiratesStop: Os piratas se acalmaram!
+// Swarm Misc
+SwarmDefeated: O chefe energizado foi derrotado!

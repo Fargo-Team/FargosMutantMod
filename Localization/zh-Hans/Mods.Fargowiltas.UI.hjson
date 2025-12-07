@@ -1,0 +1,79 @@
+// Close: Close
+// CombinedUIButton: Open Utilities
+// PotionToggler: "[s:Fargowiltas/PotionToggler] Potion Toggles"
+
+StatSheet: {
+	// misc
+	// CombinedUI: "[s:Fargowiltas/StatSheet] Stat Sheet"
+	// PermaUpgrade: Permanent Upgrades
+	// combat
+	// Combat: Combat
+	ArmorPenetration: 护甲穿透：: {0}
+	Life: 生命值上限：{0}
+	LifeRegen: 生命再生：{0}/每秒
+	Defense: 防御力：{0}
+	// KnockbackImmunity: Knockback Immunity: {0}
+	Aggro: 仇恨：{0}
+	DamageReduction: 伤害减免：{0}%{1}
+	AttackSpeed: 攻击速度：{0}%
+	// movement
+	// Movement: Movement
+	// MovementSpeed: Movement Speed: {0}%
+	MaxSpeed: 最大速度：{0}mph
+	// Acceleration: Acceleration: {0}%
+	// Deceleration: Deceleration: {0}%
+	WingTime: 飞行时间：{0}秒
+	WingTimeMoreThan60Sec: 无限
+	WingTimeActual: "{0}秒"
+	WingMaxSpeed: 最大飞行速度：{0}mph
+	WingAscentModifier: 翅膀上升速度：{0}%
+	// utility
+	// Utility: Utility
+	Luck: 运气：{0}
+	BattleCry: 战争号角状态：{0}
+	FishingQuests: 已完成钓鱼任务：{0}
+	// MiningSpeed: Mining Speed: {0}%
+	// ExtraPlacementRange: Extra Placement Range: {0}
+	// melee
+	// Melee: Melee
+	MeleeDamage: 近战伤害：{0}%
+	MeleeCritical: 近战暴击率：{0}%
+	MeleeSpeed: 近战攻速：{0}%
+	// MeleeSize: Melee Size: {0}%
+	// ranged
+	// Ranged: Ranged
+	RangedDamage: 远程伤害：{0}%
+	RangedCritical: 远程暴击率：{0}%
+	// magic
+	// Magic: Magic
+	MagicDamage: 魔法伤害：{0}%
+	MagicCritical: 魔法暴击率：{0}%
+	Mana: 魔力值上限：{0}
+	ManaRegen: 魔力再生：{0}/每秒
+	ManaCostReduction: 魔力消耗降低：{0}%
+	//summon
+	// Summon: Summon
+	SummonDamage: 召唤伤害：{0}%
+	SummonCritical: 召唤暴击率：{0}%
+	MaxMinions: 仆从数量上限：{0}
+	MaxSentries: 哨兵数量上限：{0}
+	// WhipSpeed: Whip Speed: {0}%
+	// WhipLength: Whip Length: {0}%
+}
+
+SearchText: 搜索……
+// Battle & Calming are in Items.BattleCry
+BattleCryNone: 关闭
+// SavedToSlot: Toggles saved to custom set {0}!
+// NoTogglesFound: No toggles found in custom set {0}.
+// TurnAllTogglesOff: Turn all toggles off
+// TurnAllTogglesOn: Turn all toggles on
+// SomeEffectsPreset: Some effects preset
+// MinimalEffectsPreset: Minimal effects preset
+// CustomPreset: Custom preset {0} (right click to save)
+// DisplayAll: Display All
+// DisplayEquipped: Display Active
+// NoToggles: No togglable effects equipped!
+// Reforge UI
+// InsertText: Place an item here to reforge
+// ReforgeCost: Reforge Cost

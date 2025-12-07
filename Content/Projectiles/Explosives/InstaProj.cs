@@ -5,16 +5,13 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
-using static Terraria.ModLoader.PlayerDrawLayer;
+
 
 namespace Fargowiltas.Content.Projectiles.Explosives
 {
     public class InstaProj : ModProjectile
     {
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Instavator");
-        }
+        public override string Texture => "Fargowiltas/Content/Items/Explosives/Instavator";
 
         public override void SetDefaults()
         {

@@ -11,10 +11,7 @@ namespace Fargowiltas.Content.Projectiles.Explosives
 {
     public class HalfInstaProj : ModProjectile
     {
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Half Instavator");
-        }
+        public override string Texture => "Fargowiltas/Content/Items/Explosives/HalfInstavator";
 
         public override void SetDefaults()
         {

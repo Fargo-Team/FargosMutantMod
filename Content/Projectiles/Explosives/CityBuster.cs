@@ -12,10 +12,7 @@ namespace Fargowiltas.Content.Projectiles.Explosives
 {
     public class CityBuster : ModProjectile
     {
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("City Buster");
-        }
+        public override string Texture => "Fargowiltas/Content/Items/Explosives/CityBuster";
 
         public override void SetDefaults()
         {

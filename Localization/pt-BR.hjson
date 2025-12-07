@@ -765,6 +765,16 @@ Mods: {
 					'''
 			}
 
+			OmniBridgifier2: {
+				// DisplayName: Omni-Bridgifier
+				/* Tooltip:
+					'''
+					Can be reused infinitely
+					Upgrades the platform you are standing on to use Omnistations
+					Does NOT build a platform!
+					''' */
+			}
+
 			BattleCry: {
 				DisplayName: Grito de Guerra
 				Tooltip:

@@ -9,6 +9,7 @@ namespace Fargowiltas.Content.Projectiles.Explosives
 {
     public class OmniBridgifierProj : ModProjectile
     {
+        public override string Texture => "Fargowiltas/Content/Items/Explosives/OmniBridgifier";
         protected virtual int TileHeight => 4;
         protected virtual int Placeable => Projectile.ai[0] == 0 ? ModContent.TileType<OmnistationSheet>() : ModContent.TileType<OmnistationSheet2>();
         protected virtual bool Replaceable(int TileType) => TileType == ModContent.TileType<OmnistationSheet>() || TileType == ModContent.TileType<OmnistationSheet2>();

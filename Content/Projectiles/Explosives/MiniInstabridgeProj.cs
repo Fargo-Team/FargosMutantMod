@@ -10,11 +10,7 @@ namespace Fargowiltas.Content.Projectiles.Explosives
 {
     public class MiniInstabridgeProj : ModProjectile
     {
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Mini Instabridge");
-        }
-
+        public override string Texture => "Fargowiltas/Content/Items/Explosives/MiniInstaBridge";
         public override void SetDefaults()
         {
             Projectile.width = 20;

@@ -10,8 +10,6 @@ namespace Fargowiltas.Content.Items.Explosives
     {
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Altar Exterminator");
-            // Tooltip.SetDefault("Destroys all natural Demon Altars and Crimson Altars");
             Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 3;
         }
 

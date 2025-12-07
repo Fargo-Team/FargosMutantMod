@@ -10,10 +10,7 @@ namespace Fargowiltas.Content.Projectiles.Explosives
 {
     public class DoubleObsInstaBridgeProj : ModProjectile
     {
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Double Obsidian Instabridge");
-        }
+        public override string Texture => "Fargowiltas/Content/Items/Explosives/DoubleObsidianInstabridge";
 
         public override void SetDefaults()
         {

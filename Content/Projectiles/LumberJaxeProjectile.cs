@@ -7,11 +7,7 @@ namespace Fargowiltas.Content.Projectiles
 {
     public class LumberJaxeProjectile : ModProjectile
     {
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("LumberJaxe");
-        }
-
+        public override string Texture => "Fargowiltas/Content/Items/Weapons/LumberJaxe";
         public override void SetDefaults()
         {
             Projectile.width = 42;

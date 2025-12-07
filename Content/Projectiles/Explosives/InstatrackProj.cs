@@ -10,11 +10,7 @@ namespace Fargowiltas.Content.Projectiles.Explosives
 {
     public class InstatrackProj : ModProjectile
     {
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Instatrack");
-        }
-
+        public override string Texture => "Fargowiltas/Content/Items/Explosives/InstaTrack";
         public override void SetDefaults()
         {
             Projectile.width = 20;

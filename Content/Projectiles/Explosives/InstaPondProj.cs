@@ -11,9 +11,6 @@ namespace Fargowiltas.Content.Projectiles.Explosives
     public class InstaPondProj : ModProjectile
     {
         public override string Texture => "Fargowiltas/Content/Items/Explosives/InstaPond";
-        public override void SetStaticDefaults()
-        {
-        }
 
         public override void SetDefaults()
         {

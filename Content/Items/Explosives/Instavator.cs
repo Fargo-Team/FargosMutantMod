@@ -18,8 +18,6 @@ namespace Fargowiltas.Content.Items.Explosives
 
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Instavator");
-            // Tooltip.SetDefault("Drops a bomb that creates a hellevator instantly\nDo not use if any important building is below");
             Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 10;
         }
 

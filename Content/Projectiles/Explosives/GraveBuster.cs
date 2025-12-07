@@ -12,10 +12,7 @@ namespace Fargowiltas.Content.Projectiles.Explosives
 {
     public class GraveBuster : ModProjectile
     {
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Grave Buster");
-        }
+        public override string Texture => "Fargowiltas/Content/Items/Explosives/GraveBuster";
 
         public override void SetDefaults()
         {

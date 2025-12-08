@@ -144,13 +144,13 @@ OmniBridgifier: {
 }
 
 OmniBridgifier2: {
-	// DisplayName: Omni-Bridgifier
-	/* Tooltip:
+	DisplayName: Омни-мостовик
+	Tooltip:
 		'''
-		Can be reused infinitely
-		Upgrades the platform you are standing on to use Omnistations
-		Does NOT build a platform!
-		''' */
+		Не тратится
+		Ставит Омнистанции на платформу, на которой вы стоите
+		НЕ строит платформу!
+		'''
 }
 
 BattleCry: {

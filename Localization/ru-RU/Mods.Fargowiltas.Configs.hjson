@@ -25,7 +25,7 @@ FargoServerConfig: {
 	}
 
 	EasySummons: {
-		Label: "[i:Fargowiltas/SuspiciousSkull] Облегченный призыв боссов"
+		Label: "[i:Fargowiltas/SuspiciousSkull] Облегчённый призыв боссов"
 		Tooltip: Предметы призыва боссов и событий игнорируют требования и изменяют время если нужно.
 	}
 

@@ -9,7 +9,7 @@ Semistation: {
 }
 
 WoodDrop: {
-	DisplayName: Бросок дров
+	DisplayName: Дебафф на выпадение древесины
 	Description: Mods.Fargowiltas.BuffDescription.WoodDrop
 }
 

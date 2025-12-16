@@ -1,0 +1,384 @@
+FargoServerConfig: {
+	DisplayName: Server Config
+
+	Headers: {
+		Gameplay: Gameplay Changes
+		Content: New Content
+		WorldStates: World States
+		StatMultipliers: Stat Multipliers
+		Misc: Miscellaneous
+	}
+
+	UnlimitedAmmo: {
+		Label: "[i:771] Unlimited Ammo at 3996+ in Hardmode"
+		Tooltip: Ammunition is not consumed if you have a stack of at least 3996, in Hardmode.
+	}
+
+	UnlimitedConsumableWeapons: {
+		Label: "[i:42] Unlimited Consumable Weapons at 3996+ in Hardmode"
+		Tooltip: All consumable weapons are not consumed if you have a stack of at least 3996, in Hardmode.
+	}
+
+	UnlimitedPotionBuffsOn120: {
+		Label: "[i:292] Unlimited Buffs and Bait when carried in certain stacks"
+		Tooltip: 30+ for potions and bait
+	}
+
+	EasySummons: {
+		Label: "[i:Fargowiltas/SuspiciousSkull] Easy Summons"
+		Tooltip: Boss and event summons ignore requirements and set the time to meet their requirements.
+	}
+
+	BossZen: {
+		Label: "[i:3117] No enemies spawn during boss fights"
+		Tooltip: ""
+	}
+
+	AnglerQuestInstantReset: {
+		Label: "[i:2374] Angler Quest Instant Refresh"
+		Tooltip: Angler quests instantly refresh when you complete an angler quest.
+	}
+
+	ExtraLures: {
+		Label: "[i:2373] Extra Lures on Fishing Rods"
+		Tooltip: Several fishing items grant extra lures, including Fishing Potion and several Fishing Rods.
+	}
+
+	FasterLavaFishing: {
+		Label: "[i:4881] Faster Fishing in Lava"
+		Tooltip: Increases the speed of fishing in Lava liquid.
+	}
+
+	Fountains: {
+		Label: "[i:909] Fountains Cause Biomes"
+		Tooltip: Fountains cause the nearby area to count as their associated biome.
+	}
+
+	PermanentStationsNearby: {
+		Label: "[i:3198] Automatic Station Buffs When Nearby"
+		Tooltip: Stations (like Bewitching Table or Sharpening Station) automatically grant their infinite buffs to nearby players.
+	}
+
+	TorchGodEX: {
+		Label: "[i:5043] Torch God's Favor Automatically Swaps Placed Torches"
+		Tooltip: Obeys true torch luck, which may differ from Torch God's Favor. For example, swaps to Bone Torches to increase luck where other torches are not applicable.
+	}
+
+	BannerRecipes: {
+		Label: "[i:1683] Banner Recipes"
+		Tooltip: Adds recipes to convert banners into rare items dropped by the banner's enemy.
+	}
+
+	ContainerRecipes: {
+		Label: "[i:WoodenCrate] Container Recipes"
+		Tooltip: Adds recipes to convert Crates, Treasure Bags, Herb Bags and other containers to various items that can drop from them.
+	}
+
+	MiscRecipes: {
+		Label: "[i:Wood] Miscellaneous Recipes"
+		Tooltip: Adds various miscellaneous recipes.
+	}
+
+	NPCSales: {
+		Label: "[i:267] Extra Town NPC sales"
+		Tooltip: Adds extra item sales to various NPCs.
+	}
+
+	CatchNPCs: {
+		Label: "[i:267] Catch Town NPCs"
+		Tooltip: Adds the ability to catch NPCs with a Bug Net, move them around in your inventory, and place them down wherever you want.
+	}
+
+	Mutant: {
+		Label: "[i:Fargowiltas/MutantMask] [c/ffffff:{$Mods.Fargowiltas.NPCs.Mutant.DisplayName} {$Mods.Fargowiltas.Configs.Common.CanSpawn}]"
+		Tooltip: ""
+	}
+
+	Abom: {
+		Label: "[i:Fargowiltas/AbominationnMask] [c/ffffff:{$Mods.Fargowiltas.NPCs.Abominationn.DisplayName} {$Mods.Fargowiltas.Configs.Common.CanSpawn}]"
+		Tooltip: ""
+	}
+
+	Devi: {
+		Label: "[i:Fargowiltas/DevianttMask] [c/ffffff:{$Mods.Fargowiltas.NPCs.Deviantt.DisplayName} {$Mods.Fargowiltas.Configs.Common.CanSpawn}]"
+		Tooltip: ""
+	}
+
+	Lumber: {
+		Label: "[i:Fargowiltas/LumberjackMask] [c/ffffff:{$Mods.Fargowiltas.NPCs.LumberJack.DisplayName} {$Mods.Fargowiltas.Configs.Common.CanSpawn}]"
+		Tooltip: ""
+	}
+
+	Squirrel: {
+		Label: "[i:239] [c/ffffff:{$Mods.Fargowiltas.NPCs.Squirrel.DisplayName} {$Mods.Fargowiltas.Configs.Common.CanSpawn}]"
+		Tooltip: ""
+	}
+
+	Halloween: {
+		Label: "[i:1774] Halloween Season"
+		Tooltip: ""
+	}
+
+	Christmas: {
+		Label: "[i:1869] Christmas Season"
+		Tooltip: ""
+	}
+
+	DrunkWorld: {
+		Label: "[i:353] Drunk World"
+		Tooltip: ""
+	}
+
+	BeeWorld: {
+		Label: "[i:1133] Bee World"
+		Tooltip: ""
+	}
+
+	WorthyWorld: {
+		Label: "[i:2107] For the Worthy World"
+		Tooltip: ""
+	}
+
+	CelebrationWorld: {
+		Label: "[i:3732] Celebration World"
+		Tooltip: ""
+	}
+
+	ConstantWorld: {
+		Label: "[i:5109] Constant World"
+		Tooltip: ""
+	}
+
+	NoTrapsWorld: {
+		Label: "[i:510] No Traps World"
+		Tooltip: ""
+	}
+
+	RemixWorld: {
+		Label: "[i:4711] Remix World"
+		Tooltip: ""
+	}
+
+	ZenithWorld: {
+		Label: "[i:4956] Zenith World"
+		Tooltip: ""
+	}
+
+	EnemyHealth: {
+		Label: "[i:29] Enemy Health"
+		Tooltip: Multiplies the health of all enemies.
+	}
+
+	BossHealth: {
+		Label: "[i:29] Boss Health"
+		Tooltip: Multiplies the health of all bosses. Highest multiplier between this or Enemy Health is applied.
+	}
+
+	EnemyDamage: {
+		Label: "[i:3507] Enemy Damage"
+		Tooltip: Multiplies post-mitigation damage of all enemies and projectiles.
+	}
+
+	BossDamage: {
+		Label: "[i:3507] Boss Damage"
+		Tooltip: Multiplies post-mitigation damage of all bosses. Highest multiplier between this or Enemy Damage is applied.
+	}
+
+	BossApplyToAllWhenAlive: {
+		Label: Boss Multipliers Apply Universally
+		Tooltip: Boss Health and Boss Damage configs apply to all enemies while a boss is alive, rather than just bosses themselves.
+	}
+
+	PiggyBankAcc: {
+		Label: "[i:87] Informational and Construction item inventory effects work in Piggy Bank"
+		Tooltip: ""
+	}
+
+	ModdedPiggyBankAcc: {
+		Label: "[i:87] Modded item inventory effects work in Piggy Bank"
+		Tooltip: ""
+	}
+
+	StalkerMoneyTrough: {
+		Label: "[i:3213] Stalker Money Trough"
+		Tooltip: The Money Trough follows you around in the world.
+	}
+
+	RottenEggs: {
+		Label: "[i:1809] Powerful Rotten Eggs"
+		Tooltip: Drastically increases the damage that Rotten Eggs deal to NPCs.
+	}
+
+	SaferBoundNPCs: {
+		Label: "[i:1274] Rescuable Town NPCs take no contact damage"
+		Tooltip: ""
+	}
+
+	ExtractSpeed: {
+		Label: "[i:997] Increased Extractinator Speed"
+		Tooltip: ""
+	}
+
+	PylonsIgnoreEvents: {
+		Label: "[i:4876] Pylons Ignore Events"
+		Tooltip: You can use Pylons even if an Event is active.
+	}
+
+	SafeTerraformers: {
+		Label: "[i:Fargowiltas/InstaBridge] Safe Terraformers"
+		Tooltip:
+			'''
+			Terraformers such as Instabridge and City Buster avoid destroying any areas added to the Important Structures list.
+			This option is overly safe and will often avoid destroying even common things, such as cavern houses.
+			'''
+	}
+
+	DisableTombstones: {
+		Label: "[i:Fargowiltas/GraveBuster] Disable Tombstones"
+		Tooltip: Makes Tombstones not spawn when players die.
+	}
+
+	ExtraBuffSlots: {
+		Label: "[i:IronskinPotion] Extra Buff Slots"
+		Tooltip: Grants 22 additional buff slots for all players.
+	}
+
+	AnglerQuestPity: {
+		Label: "[i:AnglerTackleBag] Angler Quest Pity"
+		Tooltip: Makes Angler give his important items at certain quests if he hasn't dropped them yet.
+	}
+
+	InstantItems: {
+		Label: "[i:Dynamite] Instant Items"
+		Tooltip: Enables/disables Insta items such as the InstaHouse
+	}
+}
+
+FargoClientConfig: {
+	DisplayName: Client Config
+
+	AutoReforge: {
+		Label: "[s:Fargowiltas/Reforge] Automatic Reforge"
+		Tooltip: Modifies goblin tinkerer's reforge menu
+	}
+
+	ExpandedTooltips: {
+		Label: "[i:171] More tooltips indicate Mutant Mod changes"
+		Tooltip: ""
+	}
+
+	ExactTooltips: {
+		Label: "[i:171] Tooltips display exact item speed and knockback"
+		Tooltip: Item speed is listed in use time, meaning bigger number = slower.
+	}
+
+	ColoredDamageTypes: {
+		Label: "[i:171] Damage tooltips are colored by damage type"
+		Tooltip: ""
+	}
+
+	DoubleTapDashDisabled: {
+		Label: "[i:3097] Disable double-tap for dashes"
+		Tooltip: Prevent dashes from using the normal double-tap keybind. The Dash key is available regardless of this config.
+	}
+
+	DoubleTapSetBonusDisabled: {
+		Label: "[i:3776] Disable double-tap for Set Bonuses"
+		Tooltip: Prevent set bonuses from using the normal double-tap keybind. The Set Bonus key is available regardless of this config.
+	}
+
+	DebuffOpacity: {
+		Label: "[i:1612] Debuff Display Max Opacity"
+		Tooltip: ""
+	}
+
+	DebuffFaderRatio: {
+		Label: "[i:1612] Debuff Duration Fader Strength"
+		Tooltip: ""
+	}
+
+	HideTogglerWhenInventoryIsClosed: {
+		Label: Only show effect toggler when inventory is open
+		Tooltip: If true, the effect toggler is automatically hidden when your inventory is closed.
+	}
+
+	ToggleSearchReset: {
+		Label: Accessory Effects menu resets search bar when closed
+		Tooltip: ""
+	}
+
+	TransparentFriendlyProjectiles: {
+		Label: "[i:1309] Transparent Friendly Projectiles"
+		Tooltip: Use with vanilla setting for Quality at Medium or Low for best results.
+	}
+
+	MultiplayerDeathSpectate: {
+		Label: "[i:3230] Multiplayer Death Spectate"
+		Tooltip: ""
+	}
+
+	DisableAllScopeView: {
+		Label: "[i:RifleScope][i:SniperRifle] Toggle All Scoped Binocular Views"
+		Tooltip: Allows toggling Scoped Binocular Views
+	}
+
+	Headers: {
+		UserInterface: User Interface
+		Misc: Miscellaneous
+	}
+
+	AnimatedRecipeGroups: {
+		Label: "[i:9] Animated Recipe Groups"
+		Tooltip: Whether recipe group sprites should flip through the viable items in the recipe group when displayed.
+	}
+
+	HideUnlimitedBuffs: {
+		Label: "[i:292] Hide unlimited buffs in tray"
+		Tooltip: ""
+	}
+}
+
+SeasonSelections: {
+	Tooltip: ""
+
+	Normal: {
+		Label: Normal
+		Tooltip: ""
+	}
+
+	AlwaysOn: {
+		Label: Always On
+		Tooltip: ""
+	}
+
+	AlwaysOff: {
+		Label: Always Off
+		Tooltip: ""
+	}
+}
+
+Common.CanSpawn: Can Spawn
+
+ScopedBinocularViews: {
+	Tooltip: Scoped Binocular Views
+
+	AllDisabled: {
+		Label: All Disabled
+		Tooltip: Disables the Rifle Scope and Sniper Rifle binocular views
+	}
+
+	RifleScopeAccessoryDisabled: {
+		Label: Rifle Scope
+		Tooltip: Disables the Rifle Scope binocular view
+	}
+
+	SniperRifleScopeDisabled: {
+		Label: Sniper Rifle
+		Tooltip: Disables the Sniper Rifle binocular view
+	}
+
+	AllEnabled: {
+		Label: All Enabled
+		Tooltip: Does not change scoped binocular view behaviour
+	}
+}

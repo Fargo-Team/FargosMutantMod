@@ -1,0 +1,62 @@
+Common: {
+	Exclamation: !
+	Period: .
+}
+
+SiblingPylonNotNearSiblings: Этот пилон нуждается в мутировавших собратьях, чтобы работать.
+NearbySiblingPylonNotNearSiblings: Ближайший пилон нуждается в мутировавших собратьях, чтобы работать.
+NewItemUnlocked: Новый предмет доступен в магазине НИПа {0}!
+HaveAwoken: "{0} пробудился!"
+// Cancel Event
+CancelEvent: Нашествие было прекращено!
+CancelPumpkinMoon: Тыквенная луна скрывается...
+CancelFrostMoon: Морозная луна скрывается...
+CancelEclipse: Солнечное затмение не происходит!
+CancelBloodMoon: Кровавая луна уходит за горизонт...
+CancelWindyDay: Ветер прекратился!
+CancelOOA: Армия древних уходит!
+CancelSandstorm: Песчаная буря закончилась!
+CancelLunarEvent: Небесные существа не наступают!
+CancelRain: Дождь закончился!
+// Summons
+StartWindyDay: Ветер начинает завывать.
+StartSandStorm: Началась песчаная буря.
+StartLanternNight: Ночь фонарей появляется чаще!
+StopLanternNight: Ночь фонарей появляется в обычном режиме.
+StartLunarEvent: Небесные башни пробудились!
+StartRain: Тучи закрывают собой небо.
+AncientSeal: Пробудились все боссы!
+SeveralBossesAwoken: Пробудились некоторые боссы!
+// Swarm Summons
+OverloadBee: Оглушающее жужжание проходит через вас!
+OverloadBetsy: Настоящая армия древних наступает!
+OverloadBrain: Галактический разум спускается с небес!
+OverloadCultist: Оглущающие песнопения заполняют ваши уши!
+OverloadDarkMage: Чувство, будто вы разозлили библиотекаря!
+OverloadDeer: Константа начинает брать верх!
+OverloadDestroyer: Планета трясётся от самого ядра!
+OverloadEmpress: «Рай пуль» опускается за горизонт!
+OverloadEye: Неисчисляемые уставившиеся глаза проникают чрез занавес, сливаясь воедино!
+OverloadFish: Океан содрогается в ужасе!
+OverloadGolem: Сейчас у вас будут неприятности!
+OverloadMoon: Ветер шепчет о приближении смерти!
+OverloadPlant: Сердца джунгей бьются в унисон!
+OverloadPrime: Болезненный мороз покрывает весь мир!
+OverloadQueenSlime: Добро пожаловать в более истинный дождь слизней!
+OverloadSkele: Великий грохот костей доносится из темницы!
+OverloadSlimeCrown: Добро пожаловать в истинный дождь слизней!
+OverloadTwins: Эти глаза переполняются решимостью!
+OverloadWall: Крепость из плоти восстаёт из глубин!
+OverloadWorm: Земля трясётся с математической точностью!
+// Swarm Events
+OverloadFrostMoonStop: Морозная луна угасает!
+OverloadFrostMoonStart: Восходит истинная морозная луна...
+OverloadFrostMoonWave20: Волна: 20: Всё
+OverloadPumpkinMoonStop: Тыквенная луна угасает!
+OverloadPumpkinMoonStart: Восходит истинная тыквенная луна...
+OverloadPumpkinMoonWave15: Волна: 15: Всё
+OverloadGoblinsStop: Гоблины нашли покой!
+OverloadMartiansStop: Марсиане нашли покой!
+OverloadPiratesStop: Пираты наши покой!
+// Swarm Misc
+SwarmDefeated: Перегруженный босс побеждён!

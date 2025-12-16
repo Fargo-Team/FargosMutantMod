@@ -1,0 +1,79 @@
+Close: Close
+CombinedUIButton: Open Utilities
+PotionToggler: "[s:Fargowiltas/PotionToggler] Potion Toggles"
+
+StatSheet: {
+	// misc
+	CombinedUI: "[s:Fargowiltas/StatSheet] Stat Sheet"
+	PermaUpgrade: Permanent Upgrades
+	// combat
+	Combat: Combat
+	ArmorPenetration: Armor Penetration: {0}
+	Life: Life: {0}
+	LifeRegen: Life Regen: {0}/sec
+	Defense: Defense: {0}
+	KnockbackImmunity: Knockback Immunity: {0}
+	Aggro: Aggro: {0}
+	DamageReduction: Damage Reduction: {0}%
+	AttackSpeed: Attack Speed: {0}%
+	// movement
+	Movement: Movement
+	MovementSpeed: Movement Speed: {0}%
+	MaxSpeed: Max Speed: {0} mph
+	Acceleration: Acceleration: {0}%
+	Deceleration: Deceleration: {0}%
+	WingTime: Wing Time: {0}
+	WingTimeMoreThan60Sec: Yes
+	WingTimeActual: "{0} sec"
+	WingMaxSpeed: Wing Max Speed: {0} mph
+	WingAscentModifier: Wing Ascent Modifier: {0}
+	// utility
+	Utility: Utility
+	Luck: Luck: {0}
+	BattleCry: Battle Cry: {0}
+	FishingQuests: Fishing Quests: {0}
+	MiningSpeed: Mining Speed: {0}%
+	ExtraPlacementRange: Extra Placement Range: {0}
+	// melee
+	Melee: Melee
+	MeleeDamage: Melee Damage: {0}%
+	MeleeCritical: Melee Critical: {0}%
+	MeleeSpeed: Melee Speed: {0}%
+	MeleeSize: Melee Size: {0}%
+	// ranged
+	Ranged: Ranged
+	RangedDamage: Ranged Damage: {0}%
+	RangedCritical: Ranged Critical: {0}%
+	// magic
+	Magic: Magic
+	MagicDamage: Magic Damage: {0}%
+	MagicCritical: Magic Critical: {0}%
+	Mana: Mana: {0}
+	ManaRegen: Mana Regen: {0}/sec
+	ManaCostReduction: Mana Cost Reduction: {0}%
+	//summon
+	Summon: Summon
+	SummonDamage: Summon Damage: {0}%
+	SummonCritical: Summon Critical: {0}%
+	MaxMinions: Max Minions: {0}
+	MaxSentries: Max Sentries: {0}
+	WhipSpeed: Whip Speed: {0}%
+	WhipLength: Whip Length: {0}%
+}
+
+SearchText: Search...
+// Battle & Calming are in Items.BattleCry
+BattleCryNone: None
+SavedToSlot: Toggles saved to custom set {0}!
+NoTogglesFound: No toggles found in custom set {0}.
+TurnAllTogglesOff: Turn all toggles off
+TurnAllTogglesOn: Turn all toggles on
+SomeEffectsPreset: Some effects preset
+MinimalEffectsPreset: Minimal effects preset
+CustomPreset: Custom preset {0} (right click to save)
+DisplayAll: Display All
+DisplayEquipped: Display Active
+NoToggles: No togglable effects equipped!
+// Reforge UI
+InsertText: Place an item here to reforge
+ReforgeCost: Reforge Cost

@@ -1,0 +1,1680 @@
+BrittleBone: {
+	DisplayName: Brittle Bone
+	Tooltip: ""
+}
+
+AltarExterminator: {
+	DisplayName: Altar Exterminator
+	Tooltip:
+		'''
+		Destroys all natural Demon Altars and Crimson Altars
+		'Also known as the Wraithmaker 200'
+		'''
+}
+
+AutoHouse: {
+	DisplayName: InstaHouse
+	Tooltip: Places an NPC house instantly
+}
+
+BoomShuriken: {
+	DisplayName: Boom Shuriken
+	Tooltip:
+		'''
+		Instantly explodes when hitting tiles, breaking blocks
+		Uses your best pickaxe's mining power
+		Throwing speed scales with your best pickaxe's mining speed and other mining speed bonuses
+		'The fastest way to dig through anything is always to blow it up!'
+		'''
+}
+
+CityBuster: {
+	DisplayName: City Buster
+	Tooltip:
+		'''
+		Destroys a large area
+		Will not remove background walls
+		Avoids breaking areas denoted as important
+		Use at your own risk
+		'''
+}
+
+DoubleObsidianInstabridge: {
+	DisplayName: Double Obsidian Instabridge
+	Tooltip:
+		'''
+		Creates 2 bridges of obsidian platforms across the whole world
+		Also clears the area between and above the platforms
+		The bottom bridge appears at your cursor
+		Avoids breaking areas denoted as important
+		Use at your own risk
+		'''
+}
+
+GraveBuster: {
+	DisplayName: Grave Buster
+	Tooltip: Destroys tombstones in a large area
+}
+
+HalfInstavator: {
+	DisplayName: Half Instavator
+	Tooltip:
+		'''
+		Drops a bomb that creates half a hellevator instantly
+		Will not dig below a certain depth
+		Avoids breaking areas denoted as important
+		Use at your own risk
+		'''
+}
+
+InstaBridge: {
+	DisplayName: Instabridge
+	Tooltip:
+		'''
+		Creates a bridge of platforms across the whole world
+		Also clears the area right above the platforms
+		The bridge appears at your cursor
+		Avoids breaking areas denoted as important
+		Right Click to clear the area without placing a bridge
+		Use at your own risk
+		'''
+}
+
+InstaTrack: {
+	DisplayName: Instatrack
+	Tooltip:
+		'''
+		Creates a minecart track across the whole world
+		Also clears the area right above the tracks
+		The track appears at your cursor
+		Avoids breaking areas denoted as important
+		Use at your own risk
+		'''
+}
+
+Instavator: {
+	DisplayName: Instavator
+	Tooltip:
+		'''
+		Drops a bomb that creates a hellevator instantly
+		Avoids breaking areas denoted as important
+		Use at your own risk
+		'''
+}
+
+LihzahrdInstactuationBomb: {
+	DisplayName: Lihzahrd Instactuation Bomb
+	Tooltip:
+		'''
+		Clears a space around the Lihzahrd Altar when used while standing in front of it
+		Actuates Lihzahrd Brick and destroys others
+		Only works in the Jungle Temple and after Plantera is defeated
+		'''
+}
+
+MiniInstaBridge: {
+	DisplayName: Mini Instabridge
+	Tooltip:
+		'''
+		Creates a long bridge of platforms at your cursor
+		Will not break any blocks and stops when it hits a solid block
+		'''
+}
+
+ObsidianInstaBridge: {
+	DisplayName: Obsidian Instabridge
+	Tooltip:
+		'''
+		Creates a bridge of obsidian platforms across the whole world
+		Also clears the area right above the platforms
+		The bridge appears at your cursor
+		Avoids breaking areas denoted as important
+		Use at your own risk
+		'''
+}
+
+OmniBridgifier: {
+	DisplayName: Omni-Bridgifier
+	Tooltip:
+		'''
+		Can be reused infinitely
+		Upgrades the platform you are standing on to use Omnistations
+		Does NOT build a platform!
+		'''
+}
+
+OmniBridgifier2: {
+	DisplayName: Omni-Bridgifier
+	Tooltip:
+		'''
+		Can be reused infinitely
+		Upgrades the platform you are standing on to use Omnistations
+		Does NOT build a platform!
+		'''
+}
+
+BattleCry: {
+	DisplayName: Battle Cry
+	Tooltip:
+		'''
+		Left click to toggle 10x increased spawn rates
+		Right click to toggle decreased spawn rates, improved through progression
+		'''
+	Battle: Battle
+	Calming: Calming
+	Activated: activated
+	Deactivated: deactivated
+	// {Battle / Calming} Cry {activated / deactivated} for {playerName}{punctuation}
+	CryText: "{0} Cry {1} for {2}{3}"
+}
+
+DeathFruit: {
+	DisplayName: Death Fruit
+	Tooltip:
+		'''
+		Left click to decrease the amount of Life Crystals, or Life Fruit if you have any, by 1
+		If both are 0, decreases base maximum health by 20, down to a minimum of 20
+		Right click to reverse 1 use of the latter effect, otherwise remove all Life Fruits
+		'''
+}
+
+InstantResearch: {
+	DisplayName: Instant Research
+	Tooltip:
+		'''
+		DEBUG ITEM
+		Researches everything
+		'''
+	ResearchText: researched {0} items
+}
+
+MapViewer: {
+	DisplayName: The Ancient Master's Map of the Lost King's Great Ancestors
+	Tooltip: Reveals the map
+}
+
+ModeToggle: {
+	DisplayName: World Token
+	Tooltip:
+		'''
+		Cycles difficulty modes with left click
+		Toggles Journey Mode with right click (can cause issues in multiplayer)
+		'''
+	Journey: Journey mode is now enabled!
+	Normal: Normal mode is now enabled!
+	Expert: Expert mode is now enabled!
+	Master: Master mode is now enabled!
+}
+
+PortableSundial: {
+	DisplayName: Portable Sundial
+	Tooltip:
+		'''
+		Left click to instantly change time
+		Time cycles between dawn, noon, dusk, and midnight
+		Right click to activate the Enchanted Sundial effect
+		Slower use speed when a boss is alive
+		Cycling to dawn will reset travelling merchant's shops
+		'''
+}
+
+PylonCleaner: {
+	DisplayName: Pylon Cleaner
+	Tooltip:
+		'''
+		Purifies the area around every pylon
+		Will use Blue Solution on Hallow Pylon and Green Solution on others
+		'''
+}
+
+SuperDummy: {
+	DisplayName: Super Dummy
+	Tooltip:
+		'''
+		Spawns a super dummy at your cursor
+		Same as regular Target Dummy except minions and projectiles detect and home onto it
+		On hit effects get triggered as well
+		Right click to remove all spawned super dummies
+		Can spawn up to 50 super dummies at once
+		'''
+}
+
+CorruptRenewal: {
+	DisplayName: Corruption Renewal
+	Tooltip: Corrupts a large radius
+}
+
+CorruptRenewalSupreme: {
+	DisplayName: Corruption Renewal Supreme
+	Tooltip: Corrupts the entire world
+}
+
+CrimsonRenewal: {
+	DisplayName: Crimson Renewal
+	Tooltip: Crimsons a large radius
+}
+
+CrimsonRenewalSupreme: {
+	DisplayName: Crimson Renewal Supreme
+	Tooltip: Crimsons the entire world
+}
+
+HallowRenewal: {
+	DisplayName: Hallowed Renewal
+	Tooltip: Hallows a large radius
+}
+
+HallowRenewalSupreme: {
+	DisplayName: Hallowed Renewal Supreme
+	Tooltip: Hallows the entire world
+}
+
+MushroomRenewal: {
+	DisplayName: Mushroom Renewal
+	Tooltip: Shroomifies a large radius
+}
+
+MushroomRenewalSupreme: {
+	DisplayName: Mushroom Renewal Supreme
+	Tooltip: Shroomifies the entire world
+}
+
+PurityRenewal: {
+	DisplayName: Purity Renewal
+	Tooltip: Cleanses a large radius
+}
+
+PurityRenewalSupreme: {
+	DisplayName: Purity Renewal Supreme
+	Tooltip: Cleanses the entire world
+}
+
+SnowRenewal: {
+	DisplayName: Snow Renewal
+	Tooltip: Snows a large radius
+}
+
+SnowRenewalSupreme: {
+	DisplayName: Snow Renewal Supreme
+	Tooltip: Snows the entire world
+}
+
+SandRenewal: {
+	DisplayName: Desert Renewal
+	Tooltip: Sands a large radius
+}
+
+SandRenewalSupreme: {
+	DisplayName: Desert Renewal Supreme
+	Tooltip: Sands the entire world
+}
+
+DirtRenewal: {
+	DisplayName: Forest Renewal
+	Tooltip: Dirts a large radius
+}
+
+DirtRenewalSupreme: {
+	DisplayName: Forest Renewal Supreme
+	Tooltip: Dirts the entire world
+}
+
+Anemometer: {
+	DisplayName: Anemometer
+	Tooltip: Starts a Windy Day
+}
+
+BatteredClub: {
+	DisplayName: Battered Club
+	Tooltip: Summons the Ogre
+}
+
+BetsyEgg: {
+	DisplayName: Old Dragon Egg
+	Tooltip:
+		'''
+		Summons Betsy
+		Only usable near an Eternia Crystal Stand
+		'''
+}
+
+FestiveOrnament: {
+	DisplayName: Festive Ornament
+	Tooltip:
+		'''
+		Summons Everscream
+		Only usable at night
+		'''
+}
+
+ForbiddenScarab: {
+	DisplayName: Forbidden Scarab
+	Tooltip: Starts a Sandstorm
+}
+
+ForbiddenTome: {
+	DisplayName: Forbidden Tome
+	Tooltip: Summons a Dark Mage
+}
+
+HeadofMan: {
+	DisplayName: Head of Man
+	Tooltip:
+		'''
+		Summons Headless Horseman
+		Only usable at night
+		'''
+}
+
+IceKingsRemains: {
+	DisplayName: Ice King's Remains
+	Tooltip:
+		'''
+		Summons Ice Queen
+		Only usable at night
+		'''
+}
+
+MartianMemoryStick: {
+	DisplayName: Martian Memory Stick
+	Tooltip: Summons Martian Saucer
+}
+
+MatsuriLantern: {
+	DisplayName: Matsuri Lantern
+	Tooltip: Makes every night a Lantern Night when possible
+}
+
+NaughtyList: {
+	DisplayName: Naughty List
+	Tooltip:
+		'''
+		Summons Santa-NK1
+		Only usable at night
+		'''
+}
+
+PartyInvite: {
+	DisplayName: Party Invite
+	Tooltip:
+		'''
+		Starts a Party!
+		Needs at least 5 town NPCs to use
+		'''
+}
+
+PillarSummon: {
+	DisplayName: Outsider's Portal
+	Tooltip: Summons the Celestial Pillars
+}
+
+RunawayProbe: {
+	DisplayName: Runaway Probe
+	Tooltip: Starts the Martian invasion
+}
+
+SlimyBarometer: {
+	DisplayName: Slimy Barometer
+	Tooltip: Starts the Slime Rain
+}
+
+SpentLantern: {
+	DisplayName: Spent Lantern
+	Tooltip: Deactivates Matsuri Lantern effect
+}
+
+SpookyBranch: {
+	DisplayName: Spooky Branch
+	Tooltip:
+		'''
+		Summons Mourning Wood
+		Only usable at night
+		'''
+}
+
+SuspiciousLookingScythe: {
+	DisplayName: Suspicious Looking Scythe
+	Tooltip:
+		'''
+		Summons Pumpking
+		Only usable at night
+		'''
+}
+
+WeatherBalloon: {
+	DisplayName: Weather Balloon
+	Tooltip: Starts the Rain
+}
+
+AmalgamatedSkull: {
+	DisplayName: Amalgamated Skull
+	Tooltip:
+		'''
+		Summons the skeleton gunners
+		Only usable at night or underground
+		'''
+}
+
+AmalgamatedSpirit: {
+	DisplayName: Amalgamated Spirit
+	Tooltip:
+		'''
+		Summons the skeleton mages
+		Only usable at night or underground
+		'''
+}
+
+AthenianIdol: {
+	DisplayName: Athenian Idol
+	Tooltip:
+		'''
+		Summons Medusa
+		Only usable at night or underground
+		'''
+}
+
+AttractiveOre: {
+	DisplayName: Attractive Ore
+	Tooltip:
+		'''
+		Summons Undead Miner
+		Only usable at night or underground
+		'''
+}
+
+BloodSushiPlatter: {
+	DisplayName: Blood Sushi Platter
+	Tooltip:
+		'''
+		Summons Dreadnautilus
+		Only usable during Blood Moon
+		'''
+}
+
+BloodUrchin: {
+	DisplayName: Blood Urchin
+	Tooltip:
+		'''
+		Summons Blood Eel
+		Only usable during Blood Moon
+		'''
+}
+
+CloudSnack: {
+	DisplayName: Cloud Snack
+	Tooltip: Summons Wyvern
+}
+
+ClownLicense: {
+	DisplayName: Clown License
+	Tooltip:
+		'''
+		Summons Clown
+		Only usable at night or underground
+		'''
+}
+
+CoreoftheFrostCore: {
+	DisplayName: Core of the Frost Core
+	Tooltip: Summons Ice Golem
+}
+
+CorruptChest: {
+	DisplayName: Corrupt Chest
+	Tooltip: Summons Corrupt Mimic
+}
+
+CrimsonChest: {
+	DisplayName: Crimson Chest
+	Tooltip: Summons Crimson Mimic
+}
+
+DemonicPlushie: {
+	DisplayName: Demonic Plushie
+	Tooltip:
+		'''
+		Summons Red Devil
+		Only usable in the Underworld
+		'''
+}
+
+DilutedRainbowMatter: {
+	DisplayName: Diluted Rainbow Matter
+	Tooltip: Summons Rainbow Slime
+}
+
+Eggplant: {
+	DisplayName: Eggplant
+	Tooltip:
+		'''
+		Summons Doctor Bones
+		Only usable at night or underground
+		'''
+}
+
+ForbiddenForbiddenFragment: {
+	DisplayName: Forbidden Forbidden Fragment
+	Tooltip: Summons Sand Elemental
+}
+
+GnomeHat: {
+	DisplayName: Gnome Hat
+	Tooltip: Summons Gnome
+}
+
+GoblinScrap: {
+	DisplayName: Goblin Scrap
+	Tooltip: Summons Goblin Scout
+}
+
+GoldenSlimeCrown: {
+	DisplayName: Golden Slime Crown
+	Tooltip: Summons Golden Slime
+}
+
+GrandCross: {
+	DisplayName: Grand Cross
+	Tooltip:
+		'''
+		Summons Paladin
+		Only usable at night or underground
+		'''
+}
+
+HallowChest: {
+	DisplayName: Hallow Chest
+	Tooltip: Summons Hallowed Mimic
+}
+
+HeartChocolate: {
+	DisplayName: Heart Chocolate
+	Tooltip:
+		'''
+		Summons Nymph
+		Only usable at night or underground
+		'''
+}
+
+HemoclawCrab: {
+	DisplayName: Hemoclaw Crab
+	Tooltip:
+		'''
+		Summons Hemogoblin Shark and Blood Eel
+		Only usable during Blood Moon
+		'''
+}
+
+HolyGrail: {
+	DisplayName: Holy Grail
+	Tooltip:
+		'''
+		Summons Tim
+		Only usable at night or underground
+		'''
+}
+
+JungleChest: {
+	DisplayName: Jungle Chest
+	Tooltip: Summons Jungle Mimic
+}
+
+LeesHeadband: {
+	DisplayName: Lee's Headband
+	Tooltip:
+		'''
+		Summons Bone Lee
+		Only usable at night or underground
+		'''
+}
+
+MothLamp: {
+	DisplayName: Moth Lamp
+	Tooltip: Summons Moth
+}
+
+MothronEgg: {
+	DisplayName: Mothron Egg
+	Tooltip:
+		'''
+		Summons Mothron
+		Only usable during Solar Eclipse
+		'''
+}
+
+Pincushion: {
+	DisplayName: Pincushion
+	Tooltip:
+		'''
+		Summons Nailhead
+		Only usable during Solar Eclipse
+		'''
+}
+
+PinkSlimeCrown: {
+	DisplayName: Pink Slime Tiara
+	Tooltip: Summons Pinky
+}
+
+PirateFlag: {
+	DisplayName: Pirate Flag
+	Tooltip: Summons Pirate Captain
+}
+
+PlunderedBooty: {
+	DisplayName: Plundered Booty
+	Tooltip: Summons Flying Dutchman
+}
+
+RuneOrb: {
+	DisplayName: Rune Orb
+	Tooltip:
+		'''
+		Summons Rune Wizard
+		Only usable at night or underground
+		'''
+}
+
+ShadowflameIcon: {
+	DisplayName: Shadowflame Icon
+	Tooltip:
+		'''
+		Summons Goblin Warlock
+		Only usable during Goblin Army
+		'''
+}
+
+SlimyLockBox: {
+	DisplayName: Slimy Lock
+	Tooltip: Summons Dungeon Slime
+}
+
+SuspiciousLookingChest: {
+	DisplayName: Suspicious Looking Chest
+	Tooltip:
+		'''
+		Summons Mimic
+		Summons Ice Mimic when in snow biome
+		'''
+	HardmodeLock: Only usable in Hardmode
+}
+
+SuspiciousLookingLure: {
+	DisplayName: Suspicious Looking Lure
+	Tooltip:
+		'''
+		Summons Wandering Eye Fish and Zombie Merman
+		Only usable during Blood Moon
+		'''
+}
+
+AncientSeal: {
+	DisplayName: Ancient Seal
+	Tooltip:
+		'''
+		Summons ALL the bosses modded included
+		Can only be used at night
+		'Use at your own risk'
+		'''
+}
+
+CultistSummon: {
+	DisplayName: Zealot's Possession
+	Tooltip:
+		'''
+		Summons the Lunatic Cultist
+		Does not spawn the pillars if Lunatic Cultist has been defeated before
+		'''
+}
+
+DeathBringerFairy: {
+	DisplayName: Death Bringer Fairy
+	Tooltip:
+		'''
+		Summons all pre-hardmode bosses
+		Can only be used at night
+		Certain bosses will only spawn if you're in their specific biome
+		'''
+}
+
+FleshyDoll: {
+	DisplayName: Guide Doll and Match Kit
+	Tooltip:
+		'''
+		Summons the Wall of Flesh
+		Make sure you use it in the Underworld
+		'''
+}
+
+MechanicalAmalgam: {
+	DisplayName: Mechanical Amalgam
+	Tooltip: Summons all 3 Mechanical bosses
+}
+
+MutantVoodoo: {
+	DisplayName: Mutant Plushie
+	Tooltip:
+		'''
+		Summons ALL the bosses
+		Can only be used at night
+		'''
+}
+
+PlanterasFruit: {
+	DisplayName: Plantera's Fruit
+	Tooltip: Summons Plantera
+}
+
+PrismaticPrimrose: {
+	DisplayName: Prismatic Primrose
+	Tooltip: Summons the Empress of Light
+}
+
+SuspiciousSkull: {
+	DisplayName: Suspicious Skull
+	Tooltip:
+		'''
+		Summons Skeletron without killing the Clothier
+		Summons the Dungeon Guardian during the day
+		'''
+}
+
+EnergizerBee: {
+	DisplayName: Buzzy Energizer
+	Tooltip:
+		'''
+		Formed after using 10 Crowned Larva
+		'Smells like it tastes like honey'
+		'''
+}
+
+EnergizerBetsy: {
+	DisplayName: Draco Energizer
+	Tooltip:
+		'''
+		Formed after using 10 Dragon Egg Trays
+		'You feel like you've waited three thousand years'
+		'''
+}
+
+EnergizerBrain: {
+	DisplayName: Brainy Energizer
+	Tooltip:
+		'''
+		Formed after using 10 Brain Storms
+		'You still feel dumb'
+		'''
+}
+
+EnergizerCultist: {
+	DisplayName: Insanity Energizer
+	Tooltip:
+		'''
+		Formed after using 10 Zealot's Madness
+		'You're probably insane'
+		'''
+}
+
+EnergizerDarkMage: {
+	DisplayName: Mysterious Energizer
+	Tooltip:
+		'''
+		Formed after using 10 Really Forbidden Tomes
+		'You feel like you've waited one thousand years'
+		'''
+}
+
+EnergizerDeer: {
+	DisplayName: Deary Energizer
+	Tooltip:
+		'''
+		Formed after using 10 Deer Amalgamations
+		'Makes you hungry'
+		'''
+}
+
+EnergizerDestroy: {
+	DisplayName: Destruction Energizer
+	Tooltip:
+		'''
+		Formed after using 10 Seismic Actuator
+		'It makes you want to break some kids'
+		'''
+}
+
+EnergizerDG: {
+	DisplayName: Extra Boney Energizer
+	Tooltip:
+		'''
+		Formed after using 10 Skull Chain Necklaces
+		'Reminds you of a mean cow'
+		'''
+}
+
+EnergizerEmpress: {
+	DisplayName: Fairy Energizer
+	Tooltip:
+		'''
+		Formed after using 10 Jars of Lacewings
+		'Wear eye protection when looking'
+		'''
+}
+
+EnergizerEye: {
+	DisplayName: Optical Energizer
+	Tooltip:
+		'''
+		Formed after using 10 Eyemalgamations
+		'It feels like it's watching you'
+		'''
+}
+
+EnergizerFish: {
+	DisplayName: Fishy Energizer
+	Tooltip:
+		'''
+		Formed after using 10 Truffle Worm Clumps
+		'You feel content'
+		'''
+}
+
+EnergizerGolem: {
+	DisplayName: Lihzahrd Energizer
+	Tooltip:
+		'''
+		Formed after using 10 Runic Power Cells
+		'You wish it was spelled "lizard"
+		'''
+}
+
+EnergizerMoon: {
+	DisplayName: Lunar Energizer
+	Tooltip:
+		'''
+		Formed after using 10 Runic Inscriptions
+		'You enjoy cheese'
+		'''
+}
+
+EnergizerPlant: {
+	DisplayName: Leafy Energizer
+	Tooltip:
+		'''
+		Formed after using 10 Heart of the Jungles
+		'Being a leaf sounds like a good time'
+		'''
+}
+
+EnergizerPrime: {
+	DisplayName: Prime Energizer
+	Tooltip:
+		'''
+		Formed after using 10 Primal Control Chips
+		'You feel like a new you'
+		'''
+}
+
+EnergizerQueenSlime: {
+	DisplayName: Crystalline Energizer
+	Tooltip:
+		'''
+		Formed after using 10 Overloaded Jellies
+		'It feels very slimy'
+		'''
+}
+
+EnergizerSkele: {
+	DisplayName: Boney Energizer
+	Tooltip:
+		'''
+		Formed after using 10 Skull Chain Necklaces
+		'Reminds you of a cow'
+		'''
+}
+
+EnergizerSlime: {
+	DisplayName: Slimy Energizer
+	Tooltip:
+		'''
+		Formed after using 10 Personal Royal Orders
+		'It feels a bit slimy'
+		'''
+}
+
+EnergizerTwins: {
+	DisplayName: Sibling Energizer
+	Tooltip:
+		'''
+		Formed after using 10 Omnifocal Eyes
+		'You wish you had more'
+		'''
+}
+
+EnergizerWall: {
+	DisplayName: Wally Energizer
+	Tooltip:
+		'''
+		Formed after using 10 Bundle of Dolls
+		'You feel claustrophobic'
+		'''
+}
+
+EnergizerWorm: {
+	DisplayName: Wormy Energizer
+	Tooltip:
+		'''
+		Formed after using 10 Superrotted Bait
+		'It's a little squishy'
+		'''
+}
+
+OverloadBee: {
+	DisplayName: Crowned Larva
+	Tooltip: Summons an energized Queen Bee
+}
+
+OverloadBetsy: {
+	DisplayName: Dragon Egg Tray
+	Tooltip: Summons an energized Betsy
+}
+
+OverloadBrain: {
+	DisplayName: Brain Storm
+	Tooltip: Summons an energized Brain of Cthulhu
+}
+
+OverloadCultist: {
+	DisplayName: Zealot's Madness
+	Tooltip: Summons an energized Lunatic Cultist
+}
+
+OverloadDarkMage: {
+	DisplayName: Really Forbidden Tome
+	Tooltip: Summons an energized Dark Mage
+}
+
+OverloadDeer: {
+	DisplayName: Deer Amalgamation
+	Tooltip: Summons an energized Deerclops
+}
+
+OverloadDestroyer: {
+	DisplayName: Mechanical Serpent
+	Tooltip: Summons an energized Destroyer
+}
+
+OverloadedSlimeRain: {
+	DisplayName: Slimy Stormcaller
+	Tooltip:
+		'''
+		Summons an Overloaded Slime Rain
+		Use again to stop the event
+		'''
+}
+
+OverloadEmpress: {
+	DisplayName: Jar of Lacewings
+	Tooltip: Summons an energized Empress of Light
+}
+
+Overloader: {
+	DisplayName: Overloader
+	Tooltip:
+		'''
+		Used to craft energized summons
+		When used, all summons in the stack will be consumed, up to 10
+		The more consumed, the stronger the boss will be
+		If more than 5 are consumed, the boss is faster
+		5 Treasure Bags will drop per consumed item
+		A Trophy will drop for every 3 consumed items
+		An Energizer will drop for every 10 consumed items
+		'''
+}
+
+OverloaderRewards: The boss will drop {0} treasure bags, {1} {^1:trophy;trophies}, and {2} {^2:energizer;energizers} when defeated (rewards increase with stack size)
+
+OverloadEye: {
+	DisplayName: Demon Eye Tears
+	Tooltip: Summons an energized Eye of Cthulhu
+}
+
+OverloadFish: {
+	DisplayName: Can of Truffle Worms
+	Tooltip: Summons an energized Duke Fishron
+}
+
+OverloadFrostMoon: {
+	DisplayName: Naughty Present Sack
+	Tooltip:
+		'''
+		Summons an Overloaded Frost Moon
+		Use again to stop the event
+		'''
+}
+
+OverloadGoblins: {
+	DisplayName: Goblin War Banner
+	Tooltip:
+		'''
+		Summons an Overloaded Goblin Invasion
+		Use again to stop the event
+		'''
+}
+
+OverloadGolem: {
+	DisplayName: Runic Power Cell
+	Tooltip: Summons an energized Golem
+}
+
+OverloadMartians: {
+	DisplayName: Martian Communications Satellite
+	Tooltip:
+		'''
+		Summons an Overloaded Martian Invasion
+		Use again to stop the event
+		'''
+}
+
+OverloadMoon: {
+	DisplayName: Runic Inscription
+	Tooltip: Summons an energized Moon Lord
+}
+
+OverloadPirates: {
+	DisplayName: Pirate's Bounty
+	Tooltip:
+		'''
+		Summons an Overloaded Pirate Invasion
+		Use again to stop the event
+		'''
+}
+
+OverloadPlant: {
+	DisplayName: Heart of the Jungle
+	Tooltip: Summons an energized Plantera
+}
+
+OverloadPrime: {
+	DisplayName: Primal Control Chip
+	Tooltip: Summons an energized Skeletron Prime
+}
+
+OverloadPumpkinMoon: {
+	DisplayName: Overloaded Pumpkin Moon Medallion
+	Tooltip:
+		'''
+		Summons an Overloaded Pumpkin Moon
+		Use again to stop the event
+		'''
+}
+
+OverloadQueenSlime: {
+	DisplayName: Overloaded Jelly
+	Tooltip: Summons an energized Queen Slime
+}
+
+OverloadSkele: {
+	DisplayName: Skull Chain Necklace
+	Tooltip:
+		'''
+		Summons an energized Skeletron during the night
+		Summons an energized Dungeon Guardian during the day
+		'''
+}
+
+OverloadSlimeCrown: {
+	DisplayName: Personal Royal Order
+	Tooltip: Summons an energized King Slime
+}
+
+OverloadTwins: {
+	DisplayName: Omnifocal Eye
+	Tooltip: Summons an energized set of Twins
+}
+
+OverloadWall: {
+	DisplayName: Bundle of Dolls
+	Tooltip: Summons an energized Wall of Flesh
+}
+
+OverloadWorm: {
+	DisplayName: Superrotted Bait
+	Tooltip: Summons an energized Eater of Worlds
+}
+
+TruffleWorm2: {
+	DisplayName: Concentrated Truffle Worm Oil
+	Tooltip: Summons Duke Fishron without fishing
+}
+
+LihzahrdPowerCell2: {
+	DisplayName: Lihzahrd Battery Pack
+	Tooltip: Summons the Golem without an altar
+}
+
+CrimsonAltar: {
+	DisplayName: Crimson Altar
+	Tooltip: ""
+}
+
+CrucibleCosmos: {
+	DisplayName: Crucible of the Cosmos
+	Tooltip:
+		'''
+		Functions as every crafting station
+		'It seems to be hiding magnificent power'
+		'''
+}
+
+DemonAltar: {
+	DisplayName: Demon Altar
+	Tooltip: ""
+}
+
+MutantToilet: {
+	DisplayName: Mutant Toilet
+	Tooltip: Don't.
+}
+
+EchPainting: {
+	DisplayName: Ech Painting
+	Tooltip: "'Groalt W. Fai'"
+}
+
+ElementalAssembler: {
+	DisplayName: Elemental Assembler
+	Tooltip: Functions as several basic crafting stations
+}
+
+GoldenDippingVat: {
+	DisplayName: Golden Dipping Vat
+	Tooltip: Used to craft Gold Critters
+}
+
+MultitaskCenter: {
+	DisplayName: Multitask Center
+	Tooltip: Functions as several basic crafting stations
+}
+
+Omnistation: {
+	DisplayName: Omnistation
+	Tooltip:
+		'''
+		Can be reused infinitely
+		Effects of all vanilla buff stations
+		Greatly increases luck and provides Sugar Rush when nearby
+		'''
+}
+
+Omnistation2: {
+	DisplayName: Omnistation
+	Tooltip:
+		'''
+		Can be reused infinitely
+		Effects of all vanilla buff stations
+		Greatly increases luck and provides Sugar Rush when nearby
+		'''
+}
+
+RegalStatue: {
+	DisplayName: Regal Statue
+	Tooltip: Town NPCs respawn extremely quickly when nearby
+}
+
+Semistation: {
+	DisplayName: Semistation
+	Tooltip:
+		'''
+		Can be reused infinitely
+		Effects of some vanilla buff stations
+		'''
+}
+
+SiblingPylon: {
+	DisplayName: Sibling Pylon
+	Tooltip:
+		'''
+		Teleport to another pylon when Mutant, Abominationn, and Deviantt are nearby
+		You can only place one per type
+		'''
+}
+
+UnsafeGraniteWall: {
+	DisplayName: Enchanted Granite Wall
+	Tooltip: An enchanted slab of stone that will spawn monsters
+}
+
+UnsafeMarbleWall: {
+	DisplayName: Enchanted Marble Wall
+	Tooltip: An enchanted slab of stone that will spawn monsters
+}
+
+WalkingRick: {
+	DisplayName: Walking Rick
+	Tooltip: "'Kien R. Oco'"
+}
+
+WoodenToken: {
+	DisplayName: Wooden Token
+	Tooltip: "'The sign of a true wood lover'"
+}
+
+AbominationnBody: {
+	DisplayName: Abominationn Body
+	Tooltip: ""
+}
+
+AbominationnMask: {
+	DisplayName: Abominationn Mask
+	Tooltip: ""
+}
+
+AbominationnPants: {
+	DisplayName: Abominationn Pants
+	Tooltip: ""
+}
+
+AbominationnScythe: {
+	DisplayName: Abominationn's Scythe
+	Tooltip: ""
+}
+
+DevianttBody: {
+	DisplayName: Deviantt Body
+	Tooltip: ""
+}
+
+DevianttMask: {
+	DisplayName: Deviantt Mask
+	Tooltip: ""
+}
+
+DevianttPants: {
+	DisplayName: Deviantt Pants
+	Tooltip: ""
+}
+
+LumberHat: {
+	DisplayName: Lumberjack's Hat
+	Tooltip: ""
+}
+
+LumberjackBody: {
+	DisplayName: Lumberjack Body
+	Tooltip: ""
+}
+
+LumberjackMask: {
+	DisplayName: Lumberjack Mask
+	Tooltip: ""
+}
+
+LumberjackPants: {
+	DisplayName: Lumberjack Pants
+	Tooltip: ""
+}
+
+MutantBody: {
+	DisplayName: Mutant Body
+	Tooltip: ""
+}
+
+MutantMask: {
+	DisplayName: Mutant Mask
+	Tooltip: ""
+}
+
+MutantPants: {
+	DisplayName: Mutant Pants
+	Tooltip: ""
+}
+
+LumberJaxe: {
+	DisplayName: The Lumber Jaxe
+	Tooltip:
+		'''
+		Hit enemies may drop wood when killed
+		'The former weapon of a true axe wielding hero'
+		'''
+}
+
+Abominationn: {
+	DisplayName: Abominationn
+	Tooltip: "'I sure wish I was a boss.'"
+}
+
+Angler: {
+	DisplayName: Angler
+	Tooltip: "'You'd be a great helper minion!'"
+}
+
+ArmsDealer: {
+	DisplayName: Arms Dealer
+	Tooltip: "'Keep your hands off my gun, buddy!'"
+}
+
+Clothier: {
+	DisplayName: Clothier
+	Tooltip: "'Thanks again for freeing me from my curse.'"
+}
+
+Cyborg: {
+	DisplayName: Cyborg
+	Tooltip: "'My expedition efficiency was critically reduced when a projectile impacted my locomotive actuator.'"
+}
+
+Demolitionist: {
+	DisplayName: Demolitionist
+	Tooltip: "'It's a good day to die!'"
+}
+
+Deviantt: {
+	DisplayName: Deviantt
+	Tooltip: "'Embrace suffering... and while you're at it, embrace another purchase!'"
+}
+
+Dryad: {
+	DisplayName: Dryad
+	Tooltip: "'Be safe; Terraria needs you!'"
+}
+
+DyeTrader: {
+	DisplayName: Dye Trader
+	Tooltip: "'My dear, what you're wearing is much too drab.'"
+}
+
+GoblinTinkerer: {
+	DisplayName: Goblin Tinkerer
+	Tooltip: "'Looking for a gadgets expert? I'm your goblin!'"
+}
+
+Golfer: {
+	DisplayName: Golfer
+	Tooltip: "'An early bird catches the worm, but an early hole catches the birdie.'"
+}
+
+Guide: {
+	DisplayName: Guide
+	Tooltip: "'They say there is a person who will tell you how to survive in this land.'"
+}
+
+LumberJack: {
+	DisplayName: LumberJack
+	Tooltip: "'I eat a bowl of woodchips for breakfast... without any milk.'"
+}
+
+Mechanic: {
+	DisplayName: Mechanic
+	Tooltip: "'Always buy more wire than you need!'"
+}
+
+Merchant: {
+	DisplayName: Merchant
+	Tooltip: "'Did you say gold? I'll take that off of ya.'"
+}
+
+Mutant: {
+	DisplayName: Mutant
+	Tooltip: "'You're lucky I'm on your side.'"
+}
+
+Nurse: {
+	DisplayName: Nurse
+	Tooltip: "'Show me where it hurts.'"
+}
+
+Painter: {
+	DisplayName: Painter
+	Tooltip: "'I know the difference between turquoise and blue-green. But I won't tell you.'"
+}
+
+PartyGirl: {
+	DisplayName: Party Girl
+	Tooltip: "'We have to talk. It's... it's about parties.'"
+}
+
+Pirate: {
+	DisplayName: Pirate
+	Tooltip: "'Stay off me booty, ya scallywag!'"
+}
+
+SantaClaus: {
+	DisplayName: Santa Claus
+	Tooltip: "'What? You thought I wasn't real?'"
+}
+
+SkeletonMerchant: {
+	DisplayName: Skeleton Merchant
+	Tooltip: "'You would not believe some of the things people throw at me... Wanna buy some of it?'"
+}
+
+Squirrel: {
+	DisplayName: Squirrel
+	Tooltip: *squeak*
+}
+
+Steampunker: {
+	DisplayName: Steampunker
+	Tooltip: "'Show me some gears!'"
+}
+
+Stylist: {
+	DisplayName: Stylist
+	Tooltip: "'Did you even try to brush your hair today?'"
+}
+
+Tavernkeep: {
+	DisplayName: Tavernkeep
+	Tooltip: "'What am I doing here...'"
+}
+
+TaxCollector: {
+	DisplayName: Tax Collector
+	Tooltip: "'You again? Suppose you want more money!?'"
+}
+
+TravellingMerchant: {
+	DisplayName: Travelling Merchant
+	Tooltip: "'I sell wares from places that might not even exist!'"
+}
+
+Truffle: {
+	DisplayName: Truffle
+	Tooltip: "'Everyone in this town feels a bit off.'"
+}
+
+WitchDoctor: {
+	DisplayName: Witch Doctor
+	Tooltip: "'Which doctor am I? The Witch Doctor am I.'"
+}
+
+Wizard: {
+	DisplayName: Wizard
+	Tooltip: "'Want me to pull a coin from behind your ear? No? Ok.'"
+}
+
+Zoologist: {
+	DisplayName: Zoologist
+	Tooltip: "'I love animals, like, a lot!'"
+}
+
+Princess: {
+	DisplayName: Princess
+	Tooltip: "'Pink is the best color anyone could ask for!'"
+}
+
+TownDog: {
+	DisplayName: Town Dog
+	Tooltip: "'Woof!'"
+}
+
+TownCat: {
+	DisplayName: Town Cat
+	Tooltip: "'Meow!'"
+}
+
+TownBunny: {
+	DisplayName: Town Bunny
+	Tooltip: "'*Bunny noises*'"
+}
+
+SemiBridgifier: {
+	DisplayName: Semi-Bridgifier
+	Tooltip:
+		'''
+		Can be reused infinitely
+		Upgrades the platform you are standing on to use Semistations
+		Does NOT build a platform!
+		'''
+}
+
+PurityTotem: {
+	DisplayName: Purity Totem
+	Tooltip:
+		'''
+		Can be reused infinitely
+		Allows town NPCs to inhabit evil biomes
+		Prevents evil tiles from forming an evil biome
+		Prevents tombstones from forming Graveyards
+		'''
+}
+
+InstaPond: {
+	DisplayName: Instalake
+	Tooltip:
+		'''
+		Drops a bomb that creates a 150x50 body of water below it
+		Avoids breaking areas denoted as important
+		Use at your own risk
+		'''
+}
+
+KohaCrystal: {
+	DisplayName: Koha Crystal
+	Tooltip: Decreases the amount of Mana Crystals you have by 1
+}
+
+BigSuckPotion: {
+	DisplayName: Big Suck Potion
+	Tooltip:
+		'''
+		Makes you suck everything
+		Must be consumed manually
+		'''
+}
+
+MiniDirtInstaBridge: {
+	DisplayName: Mini Dirt Instabridge
+	Tooltip:
+		'''
+		Creates a small bridge of dirt at your cursor
+		Will not break any blocks
+		'''
+}
+
+WiresPainting: {
+	DisplayName: Wires Painting
+	Tooltip: Look inside
+}
+
+CrabSizedGlasses: {
+	DisplayName: Crab-Sized Glasses
+	Tooltip: Summons a cool crab
+}
+
+NerdySlime: {
+	DisplayName: Nerdy Slime
+	Tooltip: "'Burble bubble? Hrm!'"
+}
+
+CoolSlime: {
+	DisplayName: Cool Slime
+	Tooltip: "'Yo, slurp glurp!'"
+}
+
+ElderSlime: {
+	DisplayName: Elder Slime
+	Tooltip: "'Poot... ahem!'"
+}
+
+ClumsySlime: {
+	DisplayName: Clumsy Slime
+	Tooltip: "'*Awkward Silence*'"
+}
+
+DivaSlime: {
+	DisplayName: Diva Slime
+	Tooltip: "'Sprinkle, tinkle!'"
+}
+
+SurlySlime: {
+	DisplayName: Surly Slime
+	Tooltip: "'Hiss! Gargle! Grrrrr...'"
+}
+
+MysticSlime: {
+	DisplayName: Mystic Slime
+	Tooltip: "'Blobra Kaslobra!'"
+}
+
+SquireSlime: {
+	DisplayName: Squire Slime
+	Tooltip: "'Squish 'n sploink!'"
+}
+
+EnrageWarning.QueenBee: Enrages on the surface
+
+WormSnack: {
+	DisplayName: Worm Snack
+	Tooltip:
+		'''
+		Summons Giant Worm in pre-Hardmode
+		Summons Digger in Hardmode
+		Only usable underground
+		'''
+}
+
+EnchantedTree: {
+	DisplayName: Enchanted Tree
+	Tooltip:
+		'''
+		Can duplicate several complex items and some of their components
+		Right Click with an item in hand, then drag and pull the item you wish to duplicate
+		Items require varying amounts of Enchanted Acorns to duplicate
+		'''
+}
+
+EnchantedAcorn: {
+	DisplayName: Enchanted Acorn
+	Tooltip: ""
+}
+
+AutoSummoner: {
+	DisplayName: Bewitching Wand
+	Tooltip:
+		'''
+		Automatically summons minions for you
+		Effect works passively from inventory or vanity slots
+		Uses the leftmost minion weapon in your hotbar
+		Mana is spent as normal
+		'''
+}
+
+TogglerIconItem: {
+	DisplayName: Utilities Menu
+	Tooltip: Use to open the Utilities menu
+}
+
+PotionTogglerItem: {
+	DisplayName: Potion Toggler
+	Tooltip: Use to open the Potion Toggles menu
+}
+
+StatSheetItem: {
+	DisplayName: Stat Sheet
+	Tooltip: Use to open the Stat Sheet menu
+}
+
+ChestWizard: {
+	DisplayName: Chest Wizard
+	Tooltip: Searches nearby chests for specific items and retrieves them for you
+}

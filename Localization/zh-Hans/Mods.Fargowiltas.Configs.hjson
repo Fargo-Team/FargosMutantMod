@@ -1,0 +1,392 @@
+FargoServerConfig: {
+	DisplayName: 服务器端配置
+
+	Headers: {
+		// Gameplay: Gameplay Changes
+		// Content: New Content
+		// WorldStates: World States
+		StatMultipliers: 数据倍率
+		Misc: 杂项
+	}
+
+	UnlimitedAmmo: {
+		Label: "[i:771] 在困难模式中，背包中的某种弹药堆叠多于3996时不消耗"
+		Tooltip: ""
+	}
+
+	UnlimitedConsumableWeapons: {
+		Label: "[i:42] 在困难模式中，某种消耗品武器堆叠多于3996时不消耗"
+		Tooltip: ""
+	}
+
+	UnlimitedPotionBuffsOn120: {
+		Label: "[i:292] 携带一定数量时获得无限增益和无限鱼饵"
+		Tooltip: 堆叠30以上获得无限药水效果和无限鱼饵
+	}
+
+	EasySummons: {
+		// Label: "[i:Fargowiltas/SuspiciousSkull] Easy Summons"
+		// Tooltip: Boss and event summons ignore requirements and set the time to meet their requirements.
+	}
+
+	BossZen: {
+		Label: "[i:3117] Boss战不刷新敌怪"
+		Tooltip: ""
+	}
+
+	AnglerQuestInstantReset: {
+		Label: "[i:2374] 渔夫任务提交后立即重置"
+		Tooltip: ""
+	}
+
+	ExtraLures: {
+		Label: "[i:2373] 钓鱼竿有额外鱼线"
+		Tooltip: ""
+	}
+
+	FasterLavaFishing: {
+		Label: "[i:4881] 岩浆中钓鱼速度加快"
+		Tooltip: ""
+	}
+
+	Fountains: {
+		Label: "[i:909] 喷泉改变生物群落"
+		Tooltip: ""
+	}
+
+	PermanentStationsNearby: {
+		Label: "[i:3198] 自动获得附近的永久性增益站效果"
+		Tooltip: ""
+	}
+
+	TorchGodEX: {
+		Label: "[i:5043] 火把神的恩宠自动替换放置的火把和已放置的火把"
+		Tooltip: 替换遵循火把运气，可能会和火把神的恩宠的默认选择有所不同
+	}
+
+	BannerRecipes: {
+		Label: "[i:1683] 旗帜合成表"
+		Tooltip: ""
+	}
+
+	ContainerRecipes: {
+		// Label: "[i:WoodenCrate] Container Recipes"
+		// Tooltip: Adds recipes to convert Crates, Treasure Bags, Herb Bags and other containers to various items that can drop from them.
+	}
+
+	MiscRecipes: {
+		// Label: "[i:Wood] Miscellaneous Recipes"
+		// Tooltip: Adds various miscellaneous recipes.
+	}
+
+	NPCSales: {
+		Label: "[i:267] NPC卖额外商品"
+		Tooltip: ""
+	}
+
+	CatchNPCs: {
+		Label: "[i:267] 可以抓城镇NPC"
+		Tooltip: ""
+	}
+
+	Mutant: {
+		Label: "[i:Fargowiltas/MutantMask] [c/ffffff:{$Mods.Fargowiltas.NPCs.Mutant.DisplayName}{$Mods.Fargowiltas.Configs.Common.CanSpawn}]"
+		Tooltip: ""
+	}
+
+	Abom: {
+		Label: "[i:Fargowiltas/AbominationnMask] [c/ffffff:{$Mods.Fargowiltas.NPCs.Abominationn.DisplayName}{$Mods.Fargowiltas.Configs.Common.CanSpawn}]"
+		Tooltip: ""
+	}
+
+	Devi: {
+		Label: "[i:Fargowiltas/DevianttMask] [c/ffffff:{$Mods.Fargowiltas.NPCs.Deviantt.DisplayName}{$Mods.Fargowiltas.Configs.Common.CanSpawn}]"
+		Tooltip: ""
+	}
+
+	Lumber: {
+		Label: "[i:Fargowiltas/LumberjackMask] [c/ffffff:{$Mods.Fargowiltas.NPCs.LumberJack.DisplayName}{$Mods.Fargowiltas.Configs.Common.CanSpawn}]"
+		Tooltip: ""
+	}
+
+	Squirrel: {
+		Label: "[i:239] [c/ffffff:{$Mods.Fargowiltas.NPCs.Squirrel.DisplayName}{$Mods.Fargowiltas.Configs.Common.CanSpawn}]"
+		Tooltip: ""
+	}
+
+	Halloween: {
+		Label: "[i:1774] 万圣节"
+		Tooltip: ""
+	}
+
+	Christmas: {
+		Label: "[i:1869] 圣诞节"
+		Tooltip: ""
+	}
+
+	DrunkWorld: {
+		Label: "[i:353] 醉酒世界（05162020）"
+		Tooltip: ""
+	}
+
+	BeeWorld: {
+		Label: "[i:1133] 蜜蜂世界（Not the bees）"
+		Tooltip: ""
+	}
+
+	WorthyWorld: {
+		Label: "[i:2107] For the worthy"
+		Tooltip: ""
+	}
+
+	CelebrationWorld: {
+		Label: "[i:3732] 庆典世界（Celebrationmk10/05162021/05162011）"
+		Tooltip: ""
+	}
+
+	ConstantWorld: {
+		Label: "[i:5109] 永恒领域（The constant）"
+		Tooltip: ""
+	}
+
+	NoTrapsWorld: {
+		// Label: "[i:510] No Traps World"
+		// Tooltip: ""
+	}
+
+	RemixWorld: {
+		// Label: "[i:4711] Remix World"
+		// Tooltip: ""
+	}
+
+	ZenithWorld: {
+		// Label: "[i:4956] Zenith World"
+		// Tooltip: ""
+	}
+
+	EnemyHealth: {
+		Label: "[i:29] 敌怪生命值"
+		Tooltip: 将所有敌怪生命值按该倍率提升
+	}
+
+	BossHealth: {
+		Label: "[i:29] Boss生命值"
+		Tooltip:
+			'''
+			将所有Boss生命值按该倍率提升
+			此值与上一项之间只会采用一个最高的倍率
+			'''
+	}
+
+	EnemyDamage: {
+		Label: "[i:3507] 敌怪伤害"
+		Tooltip: 将所有敌怪和敌对弹幕造成的伤害在计算伤害减免后按该倍率提升
+	}
+
+	BossDamage: {
+		Label: "[i:3507] Boss伤害"
+		Tooltip:
+			'''
+			将所有Boss的伤害在计算伤害减免后按该倍率提升
+			此值与上一项之间只会采用一个最高的倍率
+			'''
+	}
+
+	BossApplyToAllWhenAlive: {
+		Label: Boss相关数据倍率适用范围扩大
+		Tooltip: Boss生命值和伤害倍率除了对Boss生效外，也对Boss存活时的所有敌怪生效
+	}
+
+	PiggyBankAcc: {
+		Label: "[i:87] 信息饰品和建筑饰品的背包效果在猪猪存钱罐中生效"
+		Tooltip: ""
+	}
+
+	ModdedPiggyBankAcc: {
+		Label: "[i:87] Mod物品的背包效果在猪猪存钱罐中生效"
+		Tooltip: ""
+	}
+
+	StalkerMoneyTrough: {
+		Label: "[i:3213] 钱币槽跟随玩家"
+		Tooltip: ""
+	}
+
+	RottenEggs: {
+		Label: "[i:1809] 强力臭蛋（秒杀城镇NPC）"
+		Tooltip: ""
+	}
+
+	SaferBoundNPCs: {
+		Label: "[i:1274] 可救援的NPC不会受到接触伤害"
+		Tooltip: ""
+	}
+
+	ExtractSpeed: {
+		Label: "[i:997] 增加提炼机速度"
+		Tooltip: ""
+	}
+
+	PylonsIgnoreEvents: {
+		Label: "[i:4876] 事件期间可以使用晶塔"
+		Tooltip: ""
+	}
+
+	SafeTerraformers: {
+		Label: "[i:Fargowiltas/InstaBridge] 安全地形改造器"
+		Tooltip:
+			'''
+			速建平台和城市克星之类的地形改造器会避免破坏重要建筑物
+			这个选项过于安全，连地下小屋都不会破坏
+			'''
+	}
+
+	DisableTombstones: {
+		Label: "[i:Fargowiltas/GraveBuster] 禁止墓碑生成"
+		Tooltip: 玩家死亡后不再生成墓碑
+	}
+
+	ExtraBuffSlots: {
+		// Label: "[i:IronskinPotion] Extra Buff Slots"
+		// Tooltip: Grants 22 additional buff slots for all players.
+	}
+
+	AnglerQuestPity: {
+		// Label: "[i:AnglerTackleBag] Angler Quest Pity"
+		// Tooltip: Makes Angler give his important items at certain quests if he hasn't dropped them yet.
+	}
+
+	InstantItems: {
+		// Label: "[i:Dynamite] Instant Items"
+		// Tooltip: Enables/disables Insta items such as the InstaHouse
+	}
+}
+
+FargoClientConfig: {
+	DisplayName: 客户端配置
+
+	AutoReforge: {
+		// Label: "[s:Fargowiltas/Reforge] Automatic Reforge"
+		// Tooltip: Modifies goblin tinkerer's reforge menu
+	}
+
+	ExpandedTooltips: {
+		Label: "[i:171] 更多说明模组改动的物品信息"
+		Tooltip: ""
+	}
+
+	ExactTooltips: {
+		Label: "[i:171] 工具提示显示精确物品使用速度和击退"
+		Tooltip: 物品使用速度以使用时间表示，数字越大，使用速度越慢
+	}
+
+	ColoredDamageTypes: {
+		// Label: "[i:171] Damage tooltips are colored by damage type"
+		// Tooltip: ""
+	}
+
+	DoubleTapDashDisabled: {
+		Label: "[i:3097] 禁用双击冲刺"
+		Tooltip: 禁用后双击方向键无法再触发冲刺。无论此配置开或关，单独设置的冲刺键都不会受到影响。
+	}
+
+	DoubleTapSetBonusDisabled: {
+		Label: "[i:3776] 禁用双击触发效果"
+		Tooltip: 禁用后双击下键无法再触发套装或饰品效果。无论此配置开或关，单独设置的饰品/套装奖励键都不会受到影响。
+	}
+
+	DebuffOpacity: {
+		Label: "[i:1612] 头顶显示减益的最大不透明度"
+		Tooltip: ""
+	}
+
+	DebuffFaderRatio: {
+		Label: "[i:1612] 头顶显示减益随时间衰减的强度"
+		Tooltip: ""
+	}
+
+	HideTogglerWhenInventoryIsClosed: {
+		Label: 只在开启物品栏时，才会显示饰品效果菜单
+		Tooltip: 如果开启，饰品效果菜单会在你关闭物品栏时自动隐藏
+	}
+
+	ToggleSearchReset: {
+		Label: 饰品效果菜单关闭时重置搜索栏
+		Tooltip: ""
+	}
+
+	TransparentFriendlyProjectiles: {
+		Label: "[i:1309] 友好弹幕不透明度"
+		Tooltip: 把原版的视频质量设置为中/低以获得最佳体验
+	}
+
+	MultiplayerDeathSpectate: {
+		Label: 多人死亡观战
+		Tooltip: ""
+	}
+
+	DisableAllScopeView: {
+		// Label: "[i:RifleScope][i:SniperRifle] Toggle All Scoped Binocular Views"
+		// Tooltip: Allows toggling Scoped Binocular Views
+	}
+
+	Headers: {
+		// UserInterface: User Interface
+		// Misc: Miscellaneous
+	}
+
+	AnimatedRecipeGroups: {
+		// Label: "[i:9] Animated Recipe Groups"
+		// Tooltip: Whether recipe group sprites should flip through the viable items in the recipe group when displayed.
+	}
+
+	HideUnlimitedBuffs: {
+		Label: "[i:292] 隐藏无限增益图标"
+		Tooltip: ""
+	}
+}
+
+SeasonSelections: {
+	Tooltip: ""
+
+	Normal: {
+		Label: 正常
+		// Tooltip: ""
+	}
+
+	AlwaysOn: {
+		Label: 常开
+		// Tooltip: ""
+	}
+
+	AlwaysOff: {
+		Label: 常关
+		// Tooltip: ""
+	}
+}
+
+Common.CanSpawn: 可以生成
+
+ScopedBinocularViews: {
+	// Tooltip: Scoped Binocular Views
+
+	AllDisabled: {
+		// Label: All Disabled
+		// Tooltip: Disables the Rifle Scope and Sniper Rifle binocular views
+	}
+
+	RifleScopeAccessoryDisabled: {
+		// Label: Rifle Scope
+		// Tooltip: Disables the Rifle Scope binocular view
+	}
+
+	SniperRifleScopeDisabled: {
+		// Label: Sniper Rifle
+		// Tooltip: Disables the Sniper Rifle binocular view
+	}
+
+	AllEnabled: {
+		// Label: All Enabled
+		// Tooltip: Does not change scoped binocular view behaviour
+	}
+}

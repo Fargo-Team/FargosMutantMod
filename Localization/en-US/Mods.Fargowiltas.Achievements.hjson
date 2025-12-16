@@ -1,0 +1,54 @@
+MultitaskCenterAchievement: {
+	FriendlyName: A Third Arm
+	Description: Spark your crafting skills by combining basic stations into a compact bench!
+}
+
+CrucibleofTheCosmosAchievement: {
+	FriendlyName: Master of the Craft
+	Description: Perfect your smithing capabilities by combining every possible station into one handy workspace!
+}
+
+ElementalAssemblerAchievement: {
+	FriendlyName: The Avatar
+	Description: Hone your artisanry by combining special crafting stations into a convenient tool!
+}
+
+BuyNPCAchievement: {
+	FriendlyName: Don't Ask Where It Came From
+	Description: Purchase somebody from the Squirrel, beneath the crimson gaze of the blood moon.
+}
+
+LumberjaxeAchievement: {
+	FriendlyName: You Wish You Were This Cool
+	Description: Swing the Lumber Jaxe while wearing a full set of the LumberJack's clothes.
+}
+
+NPCSacrificeAchievement: {
+	FriendlyName: Occult Sacrifice
+	Description: Sacrifice the Dryad to the Squirrel.
+}
+
+OmnistationAchievement: {
+	FriendlyName: A Beacon Of Light
+	Description: Upgrade the Semistation into the Omnistation, the pinnacle of arena support.
+}
+
+SemistationAchievement: {
+	FriendlyName: It's A Beautiful Day
+	Description: Obtain the Semistation.
+}
+
+T1TreeTreasureAchievement: {
+	FriendlyName: Look What I Found!
+	Description: Retrieve a tree treasure from the LumberJack.
+}
+
+T2TreeTreasureAchievement: {
+	FriendlyName: Chronic Hoarder
+	Description: Retrieve your 25th tree treasure from the LumberJack.
+}
+
+WiresAchievement: {
+	FriendlyName: Look Inside
+	Description: Wires.
+}

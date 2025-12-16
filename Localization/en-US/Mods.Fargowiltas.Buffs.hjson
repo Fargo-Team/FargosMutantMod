@@ -1,0 +1,24 @@
+Omnistation: {
+	DisplayName: Omnistation
+	Description: Effects of all vanilla stations
+}
+
+Semistation: {
+	DisplayName: Semistation
+	Description: Effects of some vanilla stations
+}
+
+WoodDrop: {
+	DisplayName: Wood Drop
+	Description: Mods.Fargowiltas.BuffDescription.WoodDrop
+}
+
+BigSuckBuff: {
+	DisplayName: Big Suck
+	Description: You are sucking everything
+}
+
+CoolCrabBuff: {
+	DisplayName: Cool Crab
+	Description: He thinks you should play Elden Ring
+}

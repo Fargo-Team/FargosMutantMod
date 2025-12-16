@@ -10,11 +10,7 @@ namespace Fargowiltas.Content.Projectiles.Explosives
 {
     public class LihzahrdInstactuationBombProj : ModProjectile
     {
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Lihzahrd Instactuation Bomb");
-        }
-
+        public override string Texture => "Fargowiltas/Content/Items/Explosives/LihzahrdInstactuationBomb";
         public override void SetDefaults()
         {
             Projectile.width = 20;

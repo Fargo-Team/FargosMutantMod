@@ -1,0 +1,33 @@
+FountainOcean: 激活后将周围的生物群落环境变为海洋
+FountainDesert: 激活后将周围的生物群落环境变为沙漠
+FountainJungle: 激活后将周围的生物群落环境变为丛林
+FountainSnow: 激活后将周围的生物群落环境变为冰雪
+FountainCorruption: 激活后将周围的生物群落环境变为腐化
+FountainCrimson: 激活后将周围的生物群落环境变为猩红
+FountainHallow: 激活后将周围的生物群落环境变为神圣
+CatchNPCs: 城镇NPC可被抓捕
+ExtraLure1: 多抛出一条鱼线
+Lures2: 能抛出两条鱼线
+Lures3: 能抛出三条鱼线
+Lures5: 能抛出五条鱼线
+AutoTorch: 自动替换已放置的火把来增加运气
+TrueTorchLuck: 替换火把遵循火把运气，可能会与默认的选择有不同
+UnlimitedBuff30: 物品栏，猪猪存钱罐或保险箱中的此物品堆叠30个时获得无尽增益
+UnlimitedUse30: 堆叠30个以上时不消耗
+PermanentEffectNearby: 放置后为附近的玩家提供永久性增益
+WorksFromBanks: 物品栏生效效果在猪猪存钱罐和保险箱中同样生效
+SoldBySquirrel: 获取后高顶礼帽松鼠售卖
+SomeMaterialsSold: 获取后松鼠售卖部分材料
+CraftableMaterialsSold: 获取后松鼠售卖可合成材料
+SoldAtThirtyStack: 堆叠30个时松鼠售卖
+SoldBy: 售卖于
+SeveralVendors: 多个商人
+// SacrificablePlural: Can be fed to the Squirrel {0} more times
+// Sacrificable: Can be fed to the Squirrel 1 more time
+// SacrificeEvent: Feed to the Squirrel for a special event
+// SacrificeEventPlural: Feed {0} to the Squirrel for a special event
+// EnchantedTreeDupable: Can be duplicated with Enchanted Tree
+// ScopeViewToggle: Binocular vision disabled
+// Shimmerable: Shimmerable into
+// ShimmerableFrom: Shimmerable from
+// ShimmerableBoth: Shimmerable from and into

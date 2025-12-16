@@ -1,4 +1,4 @@
-﻿using Fargowiltas.Common.Configs;
+using Fargowiltas.Common.Configs;
 using Fargowiltas.Utilities;
 using Terraria;
 using Terraria.ID;
@@ -348,11 +348,11 @@ namespace Fargowiltas.Common.Systems.Recipes
             CreateCrateRecipe(ItemID.Vilethorn, RecipeGroups.AnyCorruptCrate, 3);
 
             //crimson
-            CreateCrateRecipe(ItemID.TheUndertaker, RecipeGroups.AnyCrimsonCrate, 5);
-            CreateCrateRecipe(ItemID.TheRottedFork, RecipeGroups.AnyCrimsonCrate, 5);
-            CreateCrateRecipe(ItemID.CrimsonRod, RecipeGroups.AnyCrimsonCrate, 5);
-            CreateCrateRecipe(ItemID.PanicNecklace, RecipeGroups.AnyCrimsonCrate, 5);
-            CreateCrateRecipe(ItemID.CrimsonHeart, RecipeGroups.AnyCrimsonCrate, 5);
+            CreateCrateRecipe(ItemID.TheUndertaker, RecipeGroups.AnyCrimsonCrate, 3);
+            CreateCrateRecipe(ItemID.TheRottedFork, RecipeGroups.AnyCrimsonCrate, 3);
+            CreateCrateRecipe(ItemID.CrimsonRod, RecipeGroups.AnyCrimsonCrate, 3);
+            CreateCrateRecipe(ItemID.PanicNecklace, RecipeGroups.AnyCrimsonCrate, 3);
+            CreateCrateRecipe(ItemID.CrimsonHeart, RecipeGroups.AnyCrimsonCrate, 3);
 
             //hallow
 

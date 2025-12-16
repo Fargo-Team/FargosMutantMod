@@ -11,11 +11,7 @@ namespace Fargowiltas.Content.Projectiles.Explosives
 {
     public class ShurikenProj : ModProjectile
     {
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Shuriken");
-        }
-
+        public override string Texture => "Fargowiltas/Content/Items/Explosives/BoomShuriken";
         public override void SetDefaults()
         {
             Projectile.width = 11;

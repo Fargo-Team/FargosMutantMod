@@ -1,0 +1,79 @@
+Close: Закрыть
+CombinedUIButton: Открыть полезные меню
+PotionToggler: "[s:Fargowiltas/PotionToggler] Переключатель зелий"
+
+StatSheet: {
+	// misc
+	CombinedUI: "[s:Fargowiltas/StatSheet] Характеристики"
+	PermaUpgrade: Улучшения
+	// combat
+	Combat: Боевые
+	ArmorPenetration: Пробивание брони: {0}
+	Life: Жизнь: {0}
+	LifeRegen: Восст. здоровья: {0}/сек
+	Defense: Защиты: {0}
+	KnockbackImmunity: Сопротивл. отбрасыванию: {0}
+	Aggro: Агро: {0}
+	DamageReduction: Сопротивление урону: {0}%
+	AttackSpeed: Скорость атаки: {0}%
+	// movement
+	Movement: Передвижение
+	MovementSpeed: Скорость передвижения: {0}%
+	MaxSpeed: Макс. скорость: {0} миль/ч
+	Acceleration: Ускорение: {0}%
+	Deceleration: Замедление: {0}%
+	WingTime: Время полёта: {0}
+	WingTimeMoreThan60Sec: Да
+	WingTimeActual: "{0} сек"
+	WingMaxSpeed: Макс. скорость: {0} миль/ч
+	WingAscentModifier: Верт. множитель: {0}%
+	// utility
+	Utility: Полезные
+	Luck: Удача: {0}
+	BattleCry: Боевой клич: {0}
+	FishingQuests: Задания рыбака: {0}
+	MiningSpeed: Скорость добычи: {0}%
+	ExtraPlacementRange: Дальность размещения: {0}
+	// melee
+	Melee: Ближние
+	MeleeDamage: Урон: {0}%
+	MeleeCritical: Шанс крит. удара: {0}%
+	MeleeSpeed: Скорость атаки: {0}%
+	MeleeSize: Размер оружий: {0}%
+	// ranged
+	Ranged: Стрелковые
+	RangedDamage: Урон: {0}%
+	RangedCritical: Шанс крит. удара: {0}%
+	// magic
+	Magic: Магические
+	MagicDamage: Урон: {0}%
+	MagicCritical: Шанс крит. удара: {0}%
+	Mana: Мана: {0}
+	ManaRegen: Восст. маны: {0}/сек
+	ManaCostReduction: Снижение траты маны: {0}%
+	//summon
+	Summon: Призывательные
+	SummonDamage: Урон: {0}%
+	SummonCritical: Шанс крит. удара: {0}%
+	MaxMinions: Макс. миньоны: {0}
+	MaxSentries: Макс. стражи: {0}
+	WhipSpeed: Скорость атаки: {0}%
+	WhipLength: Длина атаки: {0}%
+}
+
+SearchText: Поиск...
+// Battle & Calming are in Items.BattleCry
+BattleCryNone: Выкл.
+SavedToSlot: Включённые эффекты сохранены в настраиваемый пресет {0}!
+NoTogglesFound: В настраиваемом пресете {0} не найдено включенных эффектов
+TurnAllTogglesOff: Выключить все эффекты
+TurnAllTogglesOn: Включить все эффекты
+SomeEffectsPreset: Пресет с частичными эффектами
+MinimalEffectsPreset: Пресет с минимальными эффектами
+CustomPreset: Настраиваемый пресет {0} (ПКМ для сохранения)
+DisplayAll: Показать все
+DisplayEquipped: Показать доступные
+NoToggles: Переключать нечего!
+// Reforge UI
+InsertText: Поместите предмет сюда для перековки
+ReforgeCost: Стоимость перековки

@@ -5,7 +5,9 @@ using Fargowiltas.Content.Items.CaughtNPCs;
 using Fargowiltas.Content.Items.Misc;
 using Fargowiltas.Content.Items.Tiles;
 using Fargowiltas.Content.Projectiles;
+using Fargowiltas.Content.UI;
 using Fargowiltas.Content.UI.Emotes;
+using Fargowiltas.Content.UI.SquirrelUI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -195,6 +197,8 @@ namespace Fargowiltas.Content.NPCs
             }
             else
             {
+                //FargoUIManager.Open<SquirrelUI>();
+                //return;
                 if (SacrificeThing(Main.LocalPlayer, Main.LocalPlayer.HeldItem))
                     Main.npcChatText = SquirrelChat("FeedSuccess");
                 else
@@ -604,6 +608,7 @@ namespace Fargowiltas.Content.NPCs
             }
         }
 
+        public static bool CanSacrifice(Item item) => EventSacrifice(Main.LocalPlayer.HeldItem, out int consumeCount, false) || FargoSets.Items.SacrificeCount[item.type] > 0;
 
         private static string SquirrelChat(string key) => Language.GetTextValue($"Mods.Fargowiltas.NPCs.Squirrel.Chat.{key}");
 

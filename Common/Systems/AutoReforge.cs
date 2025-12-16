@@ -33,58 +33,69 @@ namespace Fargowiltas.Common.Systems
         }
     }
 
-    public class ItemSlotUI : UIElement
-    {
-        public Item item;
-        private Item[] itemArr = new Item[1];
-        float scale;
-        public Action<Item> OnItemSwap;
+    public class ReforgeItemSlot : FargoItemSlot {
+        private AutoReforgeUI parent; 
+        public Action<Item> OnSwap;
 
-
-        public ItemSlotUI(float scale = 1f)
+        public ReforgeItemSlot(AutoReforgeUI parent)
         {
-            item = new Item();
-            item.TurnToAir();
-            itemArr[0] = item;
-
-            this.scale = scale;
+            this.parent = parent;
         }
 
-        protected override void DrawSelf(SpriteBatch spriteBatch)
+        public override void OnItemSwap(ref Item oldItem, ref Item newItem)
         {
-            Texture2D texture = TextureAssets.InventoryBack.Value;
-            spriteBatch.Draw(texture, GetDimensions().Position(), null, Color.White, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
-            
-            if (!item.IsAir)
-            {
-                ItemSlot.DrawItemIcon(item, ItemSlot.Context.PrefixItem, spriteBatch, GetInnerDimensions().Center(), scale, texture.Width - 12f, Color.White);
+            OnSwap.Invoke(newItem);
+        }
 
-                if (ContainsPoint(Main.MouseScreen))
-                {
-                    Main.HoverItem = item.Clone();
-                    Main.hoverItemName = item.Name;
-                }
-            }
+        public override bool CanHoldItem(Item item) => item.CanHavePrefixes();
+
+        public void Reforge(Item item)
+        {
+            Player player = Main.LocalPlayer;
+            player.BuyItem(ReforgeUtils.GetReforgePrice(item));
+            ItemLoader.PreReforge(item);
+            item.ResetPrefix();
+            item.Prefix(-2);
+
+            ItemLoader.PostReforge(item);
+            item.Center = player.Center; // so item popup text is near player
+            PopupText.NewText(PopupTextContext.ItemReforge, item, item.stack, noStack: true);
+            SoundEngine.PlaySound(in SoundID.Item37);
+            parent.RebuildPrice(item);
+            parent.hammerSwing?.Invoke(); // start swing animation
         }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-        }
 
-        public override void LeftClick(UIMouseEvent evt)
-        {
-            if ((Main.mouseItem.IsAir && !item.IsAir) || Main.mouseItem.CanHavePrefixes())
+            // reforging
+            Player player = Main.LocalPlayer;
+            Item item = Item;
+            if (!parent.isReforging || !HasItem || !player.CanAfford(ReforgeUtils.GetReforgePrice(item))) // no item or can't afford
             {
-                SoundEngine.PlaySound(SoundID.Grab);
-                Utils.Swap<Item>(ref item, ref Main.mouseItem);
-                OnItemSwap?.Invoke(item);
+                parent.isReforging = false;
+                return;
             }
-        }
 
-        public override void MouseOver(UIMouseEvent evt)
-        {
-            //Main.hoverItemName = item.IsAir ? "WTH" : item.Name;
+            if (Main.GameUpdateCount % 5 == 0)
+            {
+                if (parent.reservedPrefixs.Count == 0) // vanilla
+                {
+                    Reforge(Item);
+                    parent.isReforging = false;
+                }
+                else // auto reforge
+                {
+                    if (!parent.reservedPrefixs.Contains(item.prefix))
+                        Reforge(Item);
+                    else
+                    {
+                        SoundEngine.PlaySound(SoundID.ResearchComplete);
+                        parent.isReforging = false;
+                    }
+                }
+            }
         }
     }
 
@@ -227,27 +238,23 @@ namespace Fargowiltas.Common.Systems
         public UIPanel BackPanel;
         public UIPanel PrefixBackPanel;
         public UIList PrefixList;
-        public ItemSlotUI ItemSlotPanel;
+        public ReforgeItemSlot ItemSlotPanel;
 
         public bool isReforging = false;
-        public List<int> reservedPrefixs;
+        public List<int> reservedPrefixs = [];
         public Action hammerSwing;
 
         public void ItemSwap(Item newItem)
         {
             isReforging = false;
-            reservedPrefixs = new List<int>();
+            reservedPrefixs.Clear();
             RebuildChildren(newItem);
         }
 
         public void TogglePrefix(int pre)
         {
             isReforging = false;
-            if (reservedPrefixs.Contains(pre))
-            {
-                reservedPrefixs.Remove(pre);
-            }
-            else
+            if (!reservedPrefixs.Remove(pre))
             {
                 reservedPrefixs.Add(pre);
             }
@@ -255,7 +262,7 @@ namespace Fargowiltas.Common.Systems
 
         public void ToggleReforge()
         {
-            if (!reservedPrefixs.Contains(ItemSlotPanel.item.prefix))
+            if (!reservedPrefixs.Contains(ItemSlotPanel.Item.prefix))
                 isReforging = !isReforging;
         }
 
@@ -269,14 +276,9 @@ namespace Fargowiltas.Common.Systems
 
         public override void OnClose()
         {
-            Item item = ItemSlotPanel.item;
-            if (!item.IsAir) // return item to player
-            {
-                Main.LocalPlayer.QuickSpawnItem(null, item);
-                ItemSlotPanel.item.TurnToAir();
-            }
+            ItemSlotPanel.ReturnItemToPlayer();
             isReforging = false;
-            reservedPrefixs = new List<int>();
+            reservedPrefixs = [];
         }
 
         public override void Update(GameTime gameTime)
@@ -290,60 +292,14 @@ namespace Fargowiltas.Common.Systems
             // prevent mouse inputs when hovering
             if (BackPanel != null && BackPanel.ContainsPoint(Main.MouseScreen))
                 Main.LocalPlayer.mouseInterface = true;
-
-            if (Main.gamePaused || ItemSlotPanel == null)
-                return;
-
-            // reforging
-
-            Player player = Main.LocalPlayer;
-            Item item = ItemSlotPanel.item;
-            RebuildPrice(item);
-            if (!isReforging || item.IsAir || !player.CanAfford(GetReforgePrice(item))) // no item or can't afford
-            {
-                isReforging = false;
-                return;
-            }
-
-            if (Main.GameUpdateCount % 5 == 0)
-            {
-                if (reservedPrefixs.Count == 0) // vanilla
-                {
-                    Reforge(item);
-                    isReforging = false;
-                }
-                else // auto reforge
-                {
-                    if (!reservedPrefixs.Contains(item.prefix))
-                        Reforge(item);
-                    else
-                    {
-                        SoundEngine.PlaySound(SoundID.ResearchComplete);
-                        isReforging = false;
-                    }
-                }
-            }
         }
 
-        private void Reforge(Item item)
-        {
-            Player player = Main.LocalPlayer;
-            player.BuyItem(GetReforgePrice(item));
-            ItemLoader.PreReforge(item);
-            item.ResetPrefix();
-            item.Prefix(-2);
-            
-            ItemLoader.PostReforge(item);
-            item.Center = player.Center; // so item popup text is near player
-            PopupText.NewText(PopupTextContext.ItemReforge, item, item.stack, noStack: true);
-            SoundEngine.PlaySound(in SoundID.Item37);
-            hammerSwing?.Invoke(); // start swing animation
-        }
+        
 
         protected override void DrawSelf(SpriteBatch spriteBatch)
         {
             base.DrawSelf(spriteBatch);
-            if (BackPanel != null && !ItemSlotPanel.item.IsAir)
+            if (BackPanel != null && ItemSlotPanel.HasItem)
                 ItemSlot.DrawSavings(Main.spriteBatch, BackPanel.GetDimensions().X + 10, BackPanel.GetDimensions().Y - 70, true);
 
         }
@@ -364,38 +320,18 @@ namespace Fargowiltas.Common.Systems
             BackPanel.Height.Set(0, 0.2f * Main.UIScale);
             Append(BackPanel);
 
-            ItemSlotPanel = new ItemSlotUI();
+            ItemSlotPanel = new ReforgeItemSlot(this);
             ItemSlotPanel.Top.Set(6, 0.5f);
             ItemSlotPanel.Left.Set(6, 0.1f);
             ItemSlotPanel.Width.Set(52, 0);
             ItemSlotPanel.Height.Set(52, 0);
-            ItemSlotPanel.OnItemSwap = ItemSwap;
+            ItemSlotPanel.OnSwap = ItemSwap;
             Append(ItemSlotPanel);
 
             OnActivate();
         }
 
         private string GetLocalText(string key) => Language.GetTextValue($"Mods.Fargowiltas.UI.{key}");
-
-        public int GetReforgePrice(Item item)
-        {
-            if (item.type <= 0)
-                return -1;
-
-            int num58 = item.value;
-            num58 *= item.stack;
-            bool canApplyDiscount = true;
-            if (ItemLoader.ReforgePrice(item, ref num58, ref canApplyDiscount))
-            {
-                if (canApplyDiscount && Main.LocalPlayer.discountAvailable)
-                {
-                    num58 = (int)((double)num58 * 0.8);
-                }
-                num58 = (int)((double)num58 * Main.LocalPlayer.currentShoppingSettings.PriceAdjustment);
-                num58 /= 3;
-            }
-            return num58;
-        }
 
         private void RebuildChildren(Item item = null)
         {
@@ -428,13 +364,13 @@ namespace Fargowiltas.Common.Systems
             PrefixBackPanel.Height.Set(0, 1f);
             BackPanel.Append(PrefixBackPanel);
 
-            PrefixList = new UIList();
+            PrefixList = [];
             PrefixList.Top.Set(0, 0);
             PrefixList.Left.Set(0, 0);
             PrefixList.Width.Set(0, 0.9f);
             PrefixList.Height.Set(0, 0.98f);
             PrefixList.ListPadding = 6f;
-            List<PrefixOption> options = new List<PrefixOption>();
+            List<PrefixOption> options = [];
             foreach (int prefix in ReforgeUtils.FindPrefixes(item))
             {
                 var option = new PrefixOption(item, prefix);
@@ -448,7 +384,7 @@ namespace Fargowiltas.Common.Systems
             options.Sort();
             PrefixList.AddRange(options);
 
-            UIScrollbar scrollbar = new UIScrollbar();
+            UIScrollbar scrollbar = new();
             scrollbar.Height.Set(0, 0.96f);
             scrollbar.Top.Set(0, 0.02f);
             scrollbar.Left.Set(PrefixBackPanel.GetInnerDimensions().Width - (scrollbar.Width.Pixels / 1.5f), 0);
@@ -462,7 +398,7 @@ namespace Fargowiltas.Common.Systems
             RebuildPrice(item);
         }
     
-        private void RebuildPrice(Item item)
+        public void RebuildPrice(Item item)
         {
             if (PriceTag != null)
                 BackPanel.RemoveChild(PriceTag);

@@ -62,11 +62,11 @@ namespace Fargowiltas.Content.UI.StatSheet
                     for (int n = 0; n < 5; n++)
                     {
                         Vector2 glowOffset = offset + new Vector2((float)Math.Sin(timer / 40f + n * 2f) * 3, (float)Math.Cos(timer / 40f + n * 3f) * 3);
-                        ItemSlot.DrawItemIcon(item, ItemSlot.Context.InventoryItem, spriteBatch, GetOuterDimensions().Center() + glowOffset, 1f, GetOuterDimensions().Width, Color.White * 0.3f);
+                        ItemSlot.DrawItemIcon(item, ItemSlot.Context.InventoryItem, spriteBatch, GetOuterDimensions().Center() + glowOffset, 1f, 50, Color.White * 0.3f);
                     }
                 }
 
-                ItemSlot.DrawItemIcon(item, ItemSlot.Context.InventoryItem, spriteBatch, GetOuterDimensions().Center() + offset, 1f, GetOuterDimensions().Width, drawColor);
+                ItemSlot.DrawItemIcon(item, ItemSlot.Context.InventoryItem, spriteBatch, GetOuterDimensions().Center() + offset, 1f, 50, drawColor);
 
             }
         }

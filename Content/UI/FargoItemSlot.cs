@@ -1,0 +1,240 @@
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
+using Terraria;
+using Terraria.Audio;
+using Terraria.DataStructures;
+using Terraria.GameContent;
+using Terraria.ID;
+using Terraria.UI;
+using Terraria.UI.Chat;
+
+namespace Fargowiltas.Content.UI
+{
+    public class FargoItemSlot : UIElement
+    {
+        const float baseWidth = 52f;
+
+        private static Asset<Texture2D> backPanel => TextureAssets.InventoryBack;
+        private Item _item;
+
+        public Item Item {  get { return _item; } }
+
+        public FargoItemSlot(float scale = 1f)
+        {
+            _item = new Item();
+            _item.TurnToAir();
+
+            this.scale = scale;
+            Width.Set(scale * baseWidth, 0);
+            Height.Set(scale * baseWidth, 0);
+        }
+
+        protected override void DrawSelf(SpriteBatch spriteBatch)
+        {
+            if (PreDrawSelf(spriteBatch))
+            {
+                base.DrawSelf(spriteBatch);
+
+                DrawItemSlot(spriteBatch);
+            }
+            PostDrawSelf(spriteBatch);
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
+
+            if (ContainsPoint(Main.MouseScreen))
+                Main.LocalPlayer.mouseInterface = true;
+        }
+
+        public override void LeftClick(UIMouseEvent evt)
+        {
+            base.LeftClick(evt);
+
+            if (Main.mouseItem.IsAir)
+            {
+                if (_item.IsAir)
+                    return;
+
+                SwapItem();
+            }
+            else
+            {
+                if (!CanHoldItem(Main.mouseItem.Clone()))
+                    return;
+
+                SwapItem();
+            }
+        }
+
+        private void SwapItem()
+        {
+            Utils.Swap(ref Main.mouseItem, ref _item);
+            _item.favorited = false;
+            if (PlaySwapSound)
+                SoundEngine.PlaySound(SoundID.Grab);
+            OnItemSwap(ref Main.mouseItem, ref _item);
+        }
+
+        private void DrawItemSlot(SpriteBatch spriteBatch)
+        {
+            Vector2 position = GetOuterDimensions().Position();
+            Vector2 center = GetOuterDimensions().Center();
+            if (DrawItemFrame)
+                spriteBatch.Draw(backPanel.Value, center, backPanel.Value.Frame(), Main.inventoryBack * opacity, 0f, backPanel.Value.Frame().Size() / 2, scale, SpriteEffects.None, 0);
+
+
+            if (HasItem)
+            {
+                ItemSlot.DrawItemIcon(_item, ItemSlot.Context.InventoryItem, spriteBatch, center, scale, baseWidth - 10 * scale, Color.White * opacity);
+
+                if (_item.stack > 1)
+                {
+                    ChatManager.DrawColorCodedStringWithShadow(spriteBatch, FontAssets.ItemStack.Value, _item.stack.ToString(), position + new Vector2(28f - (18f * scale), 28f - (2f * scale)), Color.White * opacity, 0f, Vector2.Zero, new Vector2(scale), -1f, scale);
+                }
+
+                if (ItemHover && ContainsPoint(Main.MouseScreen))
+                {
+                    Main.HoverItem = _item.Clone();
+                    Main.hoverItemName = _item.Name;
+                }
+            }
+        }
+
+        #region Public Members
+        public float scale = 1f;
+        public float opacity = 1f;
+
+        public bool HasItem { get { return !_item.IsAir; } }
+
+        /// <summary>
+        /// If true, then the frame behind the item will be drawn.
+        /// <para/> Defaults to <see langword="true"/>.
+        /// </summary>
+        public bool DrawItemFrame = true;
+
+        /// <summary>
+        /// If true, then the item will be displayed as an item tooltip.
+        /// <para/> Defaults to <see langword="true"/>.
+        /// </summary>
+        public bool ItemHover = true;
+
+        /// <summary>
+        /// If true, the grab sound will play when the item is swapped.
+        /// <para/> Defaults to <see langword="true"/>.
+        /// </summary>
+        public bool PlaySwapSound = true;
+        #endregion
+
+        #region Public Methods
+        /// <summary>
+        /// Removes the stored item from this item slot.
+        /// <para/> This will do nothing if this item slot does not contain an item.
+        /// </summary>
+        /// <returns>A clone of the removed item, or <see langword="null"/> if there is no item to remove</returns>
+        public Item RemoveItem()
+        {
+            if (!HasItem)
+                return null;
+
+            Item i = _item.Clone();
+            _item.TurnToAir(true);
+            return i;
+        }
+
+        /// <summary>
+        /// Returns the stored item to the client.
+        /// </summary>
+        public void ReturnItemToPlayer()
+        {
+            if (!HasItem)
+                return;
+
+            Main.LocalPlayer.QuickSpawnItem(new EntitySource_WorldEvent(), _item.Clone(), _item.stack);
+            _item.TurnToAir(true);
+        }
+
+        /// <summary>
+        /// Creates a new item in the item slot. Does nothing if the item slot is not empty.
+        /// </summary>
+        /// <param name="typeToClone"></param>
+        /// <param name="prefix"></param>
+        public void CreateItem(Item newItem)
+        {
+            if (HasItem)
+                return;
+            _item = newItem;
+        }
+
+        /// <summary>
+        /// Creates a new item in the item slot. Does nothing if the item slot is not empty.
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="stack"></param>
+        /// <param name="prefix"></param>
+        public void CreateItem(int type, int stack = 1, int prefix = 0) => CreateItem(new Item(type, stack, prefix));
+
+        /// <summary>
+        /// Transforms the stored item into the given item.
+        /// </summary>
+        /// <param name="newItem"></param>
+        public void TransformItem(Item newItem) {
+            if (CanBeTransformed(newItem))
+                _item = newItem;
+        }
+
+        /// <summary>
+        /// Transforms the stored item into a new item of the given type.
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="stack"></param>
+        /// <param name="prefix"></param>
+        public void TransformItem(int type, int stack = 1, int prefix = 0)
+        { 
+            Item newItem = new(type, stack, prefix);
+            TransformItem(newItem);
+        }
+        #endregion
+
+        #region Virtual Methods
+        /// <summary>
+        /// Allows you to draw thing behind this item slot, or to modify the way this item slot is drawn. Return <see langword="false"/> to prevent the default drawing of this item slot.
+        /// <para/> Returns <see langword="true"/> by default.
+        /// </summary>
+        /// <param name="spriteBatch"></param>
+        /// <returns></returns>
+        public virtual bool PreDrawSelf(SpriteBatch spriteBatch) => true;
+
+        /// <summary>
+        /// Allows you to draw things in front of this item slot. This method is called even if PreDrawSelf returns false.
+        /// </summary>
+        /// <param name="spriteBatch"></param>
+        public virtual void PostDrawSelf(SpriteBatch spriteBatch) { }
+
+
+        /// <summary>
+        /// Allows you to make things happen when the held item is swapped.
+        /// <para/> NOTE: Make sure to check <see cref="Item.IsAir"/> before using <paramref name="oldItem"/> or <paramref name="newItem"/>.
+        /// </summary>
+        /// <param name="oldItem"></param>
+        public virtual void OnItemSwap(ref Item oldItem, ref Item newItem) { }
+
+        /// <summary>
+        /// Allows you to determine whether the given item can be stored in the item slot.
+        /// <para/> Returns <see langword="true"/> by default.
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        public virtual bool CanHoldItem(Item item) => true;
+
+        /// <summary>
+        /// Allows you to determine whether the stored item can be transformed into a new item.
+        /// <para/> Returns <see langword="true"/> by default.
+        /// </summary>
+        /// <returns></returns>
+        public virtual bool CanBeTransformed(Item newItem) => true;
+        #endregion
+    }
+}

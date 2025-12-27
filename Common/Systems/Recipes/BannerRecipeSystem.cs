@@ -594,6 +594,8 @@ namespace Fargowiltas.Common.Systems.Recipes
 
         private static void AddBannerToMiscItemRecipes()
         {
+            AddBannerToItemRecipe(AnySlimesBanner, ItemID.SlimeStaff, bannerAmount: 50);
+            AddBannerToItemRecipe(ItemID.PinkyBanner, ItemID.SlimeStaff, bannerAmount: 2);
             AddBannerToItemRecipe(ItemID.DripplerBanner, ItemID.MoneyTrough);
             AddBannerToItemRecipe(ItemID.FlyingFishBanner, ItemID.CarbonGuitar);
             AddBannerGroupToItemRecipe(AnyDungeonSkeletalT1Banner, ItemID.BoneWand);

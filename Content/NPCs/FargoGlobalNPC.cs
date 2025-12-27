@@ -391,8 +391,8 @@ namespace Fargowiltas.Content.NPCs
                         break;
 
                     case NPCID.Steampunker:
-                        AddItem(ItemID.PurpleSolution, condition: Condition.CorruptWorld);
-                        AddItem(ItemID.RedSolution, condition: Condition.CrimsonWorld);
+                        AddItem(ItemID.PurpleSolution, conditions: [Condition.CrimsonWorld, Condition.InGraveyard]);
+                        AddItem(ItemID.RedSolution, conditions: [Condition.CorruptWorld, Condition.InGraveyard]);
                         break;
 
                     case NPCID.DyeTrader:

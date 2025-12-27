@@ -74,6 +74,7 @@ namespace Fargowiltas.Content.NPCs
         public static int beeBoss = -1;
 
         public bool FirstFrame = true;
+        public bool woodDrop;
 
         public override bool InstancePerEntity => true;
 
@@ -94,7 +95,10 @@ namespace Fargowiltas.Content.NPCs
         //                }
         //            }
         //        }
-
+        public override void ResetEffects(NPC npc)
+        {
+            woodDrop = false;
+        }
         public override bool CanHitNPC(NPC npc, NPC target)/* tModPorter Suggestion: Return true instead of null */
         {
             if (target.dontTakeDamage && target.type == NPCType<Squirrel>())
@@ -923,9 +927,29 @@ namespace Fargowiltas.Content.NPCs
         public override bool CheckDead(NPC npc)
         {
             // Lumber Jaxe
-            if (npc.FindBuffIndex(BuffType<Buffs.WoodDrop>()) != -1)
+            if (woodDrop && !npc.SpawnedFromStatue && !npc.friendly)
             {
-                Item.NewItem(npc.GetSource_Loot(), npc.Hitbox, ItemID.Wood, Main.rand.Next(10, 30));
+                int WoodType()
+                {
+                    if (npc.lastInteraction != 255)
+                    {
+                        Player p = Main.player[npc.lastInteraction];
+                        if (p.ZoneUnderworldHeight) return ItemID.AshWood;
+                        if (p.ZoneGlowshroom) return ItemID.GlowingMushroom;
+                        if (p.ZoneRockLayerHeight) return ItemID.StoneBlock;
+                        if (Main.pumpkinMoon) return ItemID.SpookyWood;
+                        if (p.ZoneDesert) return ItemID.Cactus;
+                        if (p.ZoneHallow) return ItemID.Pearlwood;
+                        if (p.ZoneCrimson) return ItemID.Shadewood;
+                        if (p.ZoneCorrupt) return ItemID.Ebonwood;
+                        if (p.ZoneJungle) return ItemID.RichMahogany; 
+                        if (p.ZoneSnow) return ItemID.BorealWood;
+                        if (p.ZoneBeach) return ItemID.PalmWood;
+                    }
+
+                    return ItemID.Wood;
+                }
+                Item.NewItem(npc.GetSource_Loot(), npc.Hitbox, WoodType(), Main.rand.Next(10, 30));
             }
 
             switch (npc.type)
@@ -1195,6 +1219,36 @@ namespace Fargowiltas.Content.NPCs
                     netMessage.Write((byte)PacketID.AnglerReset);
                     netMessage.Send();
                 }
+            }
+        }
+
+        public override void DrawEffects(NPC npc, ref Color drawColor)
+        {
+            if (!npc.canDisplayBuffs) 
+                return;
+
+            if (woodDrop && Main.rand.NextBool(10))
+            {
+                int WoodDustType()
+                {
+                    if (npc.lastInteraction != 255)
+                    {
+                        Player p = Main.player[npc.lastInteraction];
+                        if (p.ZoneUnderworldHeight) return Main.rand.NextBool(3) ? DustID.Torch : DustID.Smoke;
+                        if (p.ZoneGlowshroom) return DustID.Bone; //yes this is the actual dust it uses
+                        if (p.ZoneRockLayerHeight) return DustID.Stone;
+                        if (Main.pumpkinMoon) return DustID.SpookyWood;
+                        if (p.ZoneDesert) return DustID.t_Cactus;
+                        if (p.ZoneHallow) return DustID.Pearlwood;
+                        if (p.ZoneCrimson) return DustID.Shadewood;
+                        if (p.ZoneCorrupt) return DustID.Ebonwood;
+                        if (p.ZoneJungle) return DustID.RichMahogany;
+                        if (p.ZoneSnow) return DustID.BorealWood;
+                        if (p.ZoneBeach) return DustID.PalmWood;
+                    }
+                    return DustID.WoodFurniture;
+                }
+                Dust.NewDustDirect(npc.position, npc.width, npc.height, WoodDustType());
             }
         }
 

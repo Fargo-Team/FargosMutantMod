@@ -194,7 +194,7 @@ namespace Fargowiltas.Content.NPCs
                     break;
             }
 
-            return true;
+            return base.PreAI(npc);
         }
 
         public override void AI(NPC npc)
@@ -685,7 +685,7 @@ namespace Fargowiltas.Content.NPCs
 
             if (!PandoraActive)
             {
-                return true;
+                return base.PreKill(npc);
             }
 
             return false;
@@ -810,7 +810,7 @@ namespace Fargowiltas.Content.NPCs
 
         public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
         {
-            switch (npc.type)
+            /*switch (npc.type)
             {
                 case NPCID.ZombieEskimo:
                 case NPCID.ArmedZombieEskimo:
@@ -918,7 +918,7 @@ namespace Fargowiltas.Content.NPCs
                 case NPCID.MoonLordCore:
                     npcLoot.Add(ItemDropRule.Common(ItemID.MoonLordLegs, 100));
                     break;
-            }
+            }*/
 
             base.ModifyNPCLoot(npc, npcLoot);
         }
@@ -1191,7 +1191,7 @@ namespace Fargowiltas.Content.NPCs
                 FargoWorld.DownedBools["boss"] = true;
             }
 
-            return true;
+            return base.CheckDead(npc);
         }
 
         public override void ModifyHitByProjectile(NPC npc, Projectile projectile, ref NPC.HitModifiers modifiers)

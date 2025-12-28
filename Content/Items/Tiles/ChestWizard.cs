@@ -39,8 +39,8 @@ namespace Fargowiltas.Content.Items.Tiles
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ItemID.StoneBlock, 50)
                 .AddIngredient(ItemID.GoldChest)
+                .AddIngredient(ItemID.StoneBlock, 50)
                 .AddIngredient(ItemID.Lens, 3)
                 .AddIngredient(ItemID.FallenStar, 3)
                 .AddTile(TileID.DemonAltar)

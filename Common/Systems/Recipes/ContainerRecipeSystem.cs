@@ -22,13 +22,13 @@ namespace Fargowiltas.Common.Systems.Recipes
             AddBiomeKeyRecipes();
 
             // Treasure magnet I HATE TREASURE MAGNET TEAR OFF ALL OF YOUR FLESH
-            CreateTreasureGroupRecipe(ItemID.TreasureMagnet,
+            /*CreateTreasureGroupRecipe(ItemID.TreasureMagnet,
                 ItemID.DarkLance,
                 ItemID.HellwingBow,
                 ItemID.Flamelash,
                 ItemID.Sunfury
             );
-            RecipeHelper.CreateSimpleRecipe(ItemID.TreasureMagnet, ItemID.FlowerofFire, TileID.Solidifier, ingredientAmount: 2, disableDecraft: true, conditions: Condition.NotRemixWorld);
+            RecipeHelper.CreateSimpleRecipe(ItemID.TreasureMagnet, ItemID.FlowerofFire, TileID.Solidifier, ingredientAmount: 2, disableDecraft: true, conditions: Condition.NotRemixWorld);*/
         }
 
         private static void AddPreHMTreasureBagRecipes()

@@ -22,8 +22,12 @@ namespace Fargowiltas.Common.Systems.Recipes
 
         public override void AddRecipeGroups()
         {
+            //gold ore
+            var group = new RecipeGroup(() => ItemXOrY(ItemID.GoldOre, ItemID.PlatinumOre), ItemID.GoldOre, ItemID.PlatinumOre);
+            AnyGoldBar = RecipeGroup.RegisterGroup("Fargowiltas:AnyGoldOre", group);
+
             //gold bar
-            var group = new RecipeGroup(() => ItemXOrY(ItemID.GoldBar, ItemID.PlatinumBar), ItemID.GoldBar, ItemID.PlatinumBar);
+            group = new RecipeGroup(() => ItemXOrY(ItemID.GoldBar, ItemID.PlatinumBar), ItemID.GoldBar, ItemID.PlatinumBar);
             AnyGoldBar = RecipeGroup.RegisterGroup("Fargowiltas:AnyGoldBar", group);
 
             //demonite bar

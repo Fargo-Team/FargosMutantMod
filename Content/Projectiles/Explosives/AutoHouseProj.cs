@@ -332,7 +332,7 @@ namespace Fargowiltas.Content.Projectiles.Explosives
         public override void OnKill(int timeLeft)
         {
             Vector2 position = Projectile.Center;
-            SoundEngine.PlaySound(SoundID.Item14, position);
+            SoundEngine.PlaySound(SoundID.Research, position);
             Player player = Main.player[Projectile.owner];
 
             if (Main.netMode == NetmodeID.MultiplayerClient)

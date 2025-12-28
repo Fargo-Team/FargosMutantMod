@@ -7,9 +7,9 @@ FountainCrimson: Forces surrounding biome state to Crimson upon activation
 FountainHallow: Forces surrounding biome state to Hallow (in hardmode only) upon activation
 CatchNPCs: Can also catch townsfolk
 ExtraLure1: Also grants one extra lure
-Lures2: This rod fires 2 lures
-Lures3: This rod fires 3 lures
-Lures5: This rod fires 5 lures
+Lures2: Fires 2 lures at once
+Lures3: Fires 3 lures at once
+Lures5: Fires 5 lures at once
 AutoTorch: Automatically swaps placed torches to boost luck
 TrueTorchLuck: Obeys true torch luck when replacing torches, which may differ from default choices
 UnlimitedBuff30: Unlimited buff at 30 stack in inventory, Piggy Bank, or Safe

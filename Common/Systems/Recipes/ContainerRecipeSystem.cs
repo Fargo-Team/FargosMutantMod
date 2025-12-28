@@ -306,7 +306,6 @@ namespace Fargowiltas.Common.Systems.Recipes
             CreateCrateRecipe(ItemID.FalconBlade, RecipeGroups.AnyIronCrate, 5);
             CreateCrateRecipe(ItemID.TartarSauce, RecipeGroups.AnyIronCrate, 5);
             CreateCrateRecipe(ItemID.GingerBeard, RecipeGroups.AnyIronCrate, 5);
-            CreateCrateRecipe(ItemID.CloudinaBottle, RecipeGroups.AnyIronCrate, 3);
 
             //gold
             CreateCrateRecipe(ItemID.BandofRegeneration, RecipeGroups.AnyGoldCrate, 2);
@@ -315,8 +314,9 @@ namespace Fargowiltas.Common.Systems.Recipes
             CreateCrateRecipe(ItemID.HermesBoots, RecipeGroups.AnyGoldCrate, 2);
             CreateCrateRecipe(ItemID.ShoeSpikes, RecipeGroups.AnyGoldCrate, 2);
             CreateCrateRecipe(ItemID.Mace, RecipeGroups.AnyGoldCrate, 2);
+            CreateCrateRecipe(ItemID.CloudinaBottle, RecipeGroups.AnyGoldCrate, 2);
             CreateCrateRecipe(ItemID.LifeCrystal, RecipeGroups.AnyGoldCrate, 2);
-            CreateCrateRecipe(ItemID.HardySaddle, -1, 2, ItemID.GoldenCrateHard);
+            CreateCrateRecipe(ItemID.HardySaddle, RecipeGroups.AnyGoldCrate, 2);
             CreateCrateRecipe(ItemID.EnchantedSword, RecipeGroups.AnyGoldCrate, 2);
 
             CreateCrateRecipe(ItemID.Sundial, RecipeGroups.AnyGoldCrate, 2); //actually should be hm but fuck it

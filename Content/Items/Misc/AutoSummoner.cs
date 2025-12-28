@@ -33,8 +33,8 @@ namespace Fargowiltas.Content.Items.Misc
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddRecipeGroup(RecipeGroupID.Wood, 10)
-                .AddRecipeGroup(RecipeGroupID.IronBar, 5)
+                .AddIngredient(ItemID.RichMahogany, 10)
+                .AddRecipeGroup(ItemID.Bone, 4)
                 .AddIngredient(ItemID.ManaCrystal)
                 .AddIngredient(ItemID.SummoningPotion, 5)
                 .AddTile(TileID.BewitchingTable)

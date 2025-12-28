@@ -34,7 +34,7 @@ namespace Fargowiltas.Content.Items.Misc
         {
             CreateRecipe()
                 .AddIngredient(ItemID.RichMahogany, 10)
-                .AddRecipeGroup(ItemID.Bone, 4)
+                .AddIngredient(ItemID.Bone, 4)
                 .AddIngredient(ItemID.ManaCrystal)
                 .AddIngredient(ItemID.SummoningPotion, 5)
                 .AddTile(TileID.BewitchingTable)

@@ -69,6 +69,7 @@ namespace Fargowiltas.Content.Items.Explosives
             CreateRecipe()
                 .AddIngredient(ItemID.Dynamite, 50)
                 .AddIngredient(ItemID.RopeCoil, 10)
+                .AddIngredient(ItemID.AshBlock, 50)
                 .AddIngredient(ItemID.Torch, 99)
                 .AddIngredient(ItemID.FallenStar, 3)
                 .AddTile(TileID.Anvils)

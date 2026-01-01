@@ -65,6 +65,9 @@ namespace Fargowiltas.Common.Configs
         [Slider]
         public float TransparentFriendlyProjectiles;
 
+        [DefaultValue(true)]
+        public bool NoTransparentPets;
+
         [OnDeserialized]
         internal void OnDeserializedMethod(StreamingContext context)
         {

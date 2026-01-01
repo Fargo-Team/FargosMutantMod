@@ -336,6 +336,11 @@ FargoClientConfig: {
 		Label: "[i:292] Hide unlimited buffs in tray"
 		Tooltip: ""
 	}
+
+	NoTransparentPets: {
+		Label: "[i:2019] No Transparent Pets"
+		Tooltip: "Pets become exempt from friendly projectile transparency."
+	}
 }
 
 SeasonSelections: {

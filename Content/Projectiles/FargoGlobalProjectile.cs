@@ -198,10 +198,18 @@ namespace Fargowiltas.Content.Projectiles
                 Color? color = projectile.ModProjectile?.GetAlpha(lightColor);
                 if (color != null)
                 {
-                    return color.Value * FargoClientConfig.Instance.TransparentFriendlyProjectiles;
+                    if (FargoClientConfig.Instance.NoTransparentPets && Main.projPet[projectile.type])
+                        return color.Value;
+                    else
+                        return color.Value * FargoClientConfig.Instance.TransparentFriendlyProjectiles;
                 }
-                lightColor *= projectile.Opacity * FargoClientConfig.Instance.TransparentFriendlyProjectiles;
-                return lightColor;
+                if (FargoClientConfig.Instance.NoTransparentPets && Main.projPet[projectile.type])
+                    return lightColor;
+                else
+                {
+                    lightColor *= projectile.Opacity * FargoClientConfig.Instance.TransparentFriendlyProjectiles;
+                    return lightColor;
+                }
 
             }
 

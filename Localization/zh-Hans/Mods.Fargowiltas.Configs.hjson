@@ -344,6 +344,11 @@ FargoClientConfig: {
 		Label: "[i:292] 隐藏无限增益图标"
 		Tooltip: ""
 	}
+
+	NoTransparentPets: {
+		// Label: No Transparent Pets
+		// Tooltip: ""
+	}
 }
 
 SeasonSelections: {

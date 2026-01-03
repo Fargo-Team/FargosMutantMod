@@ -1679,3 +1679,8 @@ ChestWizard: {
 	// DisplayName: Chest Wizard
 	// Tooltip: Searches nearby chests for specific items and retrieves them for you
 }
+
+LuminiteOmniforge: {
+	// DisplayName: Luminite Omniforge
+	// Tooltip: Functions as several high end crafting stations.
+}

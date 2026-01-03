@@ -1678,3 +1678,8 @@ ChestWizard: {
 	DisplayName: Сундучный волшебник
 	Tooltip: Ищет в сундуках определённые предметы и позволяет взять их
 }
+
+LuminiteOmniforge: {
+	// DisplayName: Luminite Omniforge
+	// Tooltip: Functions as several high end crafting stations.
+}

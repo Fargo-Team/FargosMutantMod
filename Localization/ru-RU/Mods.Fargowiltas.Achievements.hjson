@@ -52,3 +52,8 @@ WiresAchievement: {
 	FriendlyName: Посмотрел внутрь
 	Description: Провода.
 }
+
+LuminiteOmniforgeAchievement: {
+	// FriendlyName: Forged In Starfire
+	// Description: Streamline your forging talent by combining advanced crafting stations into a practical furnace!
+}

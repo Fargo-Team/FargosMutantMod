@@ -342,8 +342,8 @@ FargoClientConfig: {
 	}
 
 	NoTransparentPets: {
-		// Label: No Transparent Pets
-		// Tooltip: ""
+		// Label: "[i:2019] No Transparent Pets"
+		// Tooltip: If true, pets become exempt from friendly projectile transparency.
 	}
 }
 

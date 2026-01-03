@@ -29,7 +29,7 @@ namespace Fargowiltas.Common.Systems.Recipes
         }
         public override void PostAddRecipes()
         {
-            if (FargoServerConfig.Instance.MiscRecipes)
+            /*if (FargoServerConfig.Instance.MiscRecipes)
             {
                 foreach (Recipe recipe in Main.recipe.Where(recipe => recipe.HasIngredient(ItemID.BeetleHusk)))
                 {
@@ -51,7 +51,7 @@ namespace Fargowiltas.Common.Systems.Recipes
                         recipe.AddIngredient(ItemID.ChlorophyteGreaves);
                     }
                 }
-            }
+            }*/
 
             //disable shimmer decraft for all summon items
             foreach (Recipe recipe in Main.recipe.Where(recipe => recipe.createItem.ModItem != null && (recipe.createItem.ModItem is BaseSummon || recipe.createItem.ModItem is FleshyDoll)))
@@ -200,8 +200,9 @@ namespace Fargowiltas.Common.Systems.Recipes
 
             var recipe = Recipe.Create(ItemID.Terragrim);
             recipe.AddIngredient(ItemID.EnchantedSword, 1);
+            recipe.AddIngredient(ItemID.Emerald, 10);
+            recipe.AddIngredient(ItemID.JungleSpores, 15);
             recipe.AddIngredient(ItemID.FallenStar, 3);
-            recipe.AddIngredient(ItemID.Diamond, 3);
             recipe.AddTile(TileID.DemonAltar);
             recipe.DisableDecraft();
             recipe.Register();
@@ -256,14 +257,8 @@ namespace Fargowiltas.Common.Systems.Recipes
             recipe.Register();
 
             recipe = Recipe.Create(ItemID.FlowerBoots);
-            recipe.AddIngredient(ItemID.HermesBoots);
-            recipe.AddIngredient(ItemID.Daybloom);
-            recipe.AddIngredient(ItemID.Blinkroot);
-            recipe.AddIngredient(ItemID.Shiverthorn);
-            recipe.AddIngredient(ItemID.Moonglow);
-            recipe.AddIngredient(ItemID.Waterleaf);
-            recipe.AddIngredient(ItemID.Deathweed);
-            recipe.AddIngredient(ItemID.Fireblossom);
+            recipe.AddIngredient(ItemID.GarlandHat);
+            recipe.AddIngredient(ItemID.GrassSeeds, 5);
             recipe.AddTile(TileID.LivingLoom);
             recipe.DisableDecraft();
             recipe.Register();
@@ -318,15 +313,15 @@ namespace Fargowiltas.Common.Systems.Recipes
             recipe.DisableDecraft();
             recipe.Register();
 
-            recipe = Recipe.Create(ItemID.ShroomiteBar);
+            /*recipe = Recipe.Create(ItemID.ShroomiteBar);
             recipe.AddIngredient(ItemID.ChlorophyteBar);
             recipe.AddIngredient(ItemID.DarkBlueSolution);
             recipe.AddTile(TileID.Autohammer);
             recipe.DisableDecraft();
-            recipe.Register();
+            recipe.Register();*/
 
             recipe = Recipe.Create(ItemID.WebSlinger);
-            recipe.AddIngredient(ItemID.GrapplingHook);
+            recipe.AddIngredient(ItemID.Hook);
             recipe.AddIngredient(ItemID.WebRopeCoil, 8);
             recipe.AddTile(TileID.CookingPots);
             recipe.DisableDecraft();
@@ -385,7 +380,7 @@ namespace Fargowiltas.Common.Systems.Recipes
             recipe.AddIngredient(ItemID.Bomb, 1);
             recipe.AddIngredient(ItemID.WaterBucket, 1);
             recipe.AddIngredient(ItemID.Glass, 10);
-            recipe.AddTile(TileID.WorkBenches);
+            recipe.AddTile(TileID.GlassKiln);
             recipe.DisableDecraft();
             recipe.Register();
 

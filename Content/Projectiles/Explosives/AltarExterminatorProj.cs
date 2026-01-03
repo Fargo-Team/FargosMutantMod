@@ -25,11 +25,26 @@ namespace Fargowiltas.Content.Projectiles.Explosives
 
         public override void OnKill(int timeLeft)
         {
-            SoundEngine.PlaySound(SoundID.Item14, Projectile.Center);
+            SoundEngine.PlaySound(SoundID.NPCDeath52 with {Pitch = -0.5f}, Projectile.Center);
 
-            if (Main.netMode == NetmodeID.MultiplayerClient)
+            if (Main.netMode == NetmodeID.MultiplayerClient || !Main.hardMode)
             {
                 return;
+            }
+
+            for (int i = -960; i < 960; i += 16)
+            {
+                for (int j = 0; j < 2; j++)
+                {
+                    Vector2 pos = Main.player[Projectile.owner].Center + (Vector2.UnitX * i) + (Vector2.UnitY * 160);
+                    Dust d = Dust.NewDustDirect(pos, 16, 16, DustID.Wraith, Alpha: 100, Scale: Main.rand.NextFloat(2, 3));
+                    d.noGravity = true;
+                    d.velocity.Y -= Main.rand.NextFloat(1, 12);
+                    d.fadeIn = -0.5f;
+
+                    Point p = FindGround(d.position.ToTileCoordinates());
+                    d.position = p.ToWorldCoordinates();
+                }
             }
 
             for (int i = 0; i < Main.maxTilesX; i++)
@@ -50,6 +65,21 @@ namespace Fargowiltas.Content.Projectiles.Explosives
             }
 
             Main.refreshMap = true;
+        }
+
+        public static Point FindGround(Point p)
+        {
+            if (WorldGen.SolidTile(p))
+            {
+                while (WorldGen.SolidTile(p.X, p.Y + 0) && p.Y >= 1)
+                    p.Y--;
+            }
+            else
+            {
+                while (!WorldGen.SolidTile(p.X, p.Y - 0) && p.Y < Main.maxTilesY)
+                    p.Y++;
+            }
+            return p;
         }
     }
 }

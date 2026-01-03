@@ -22,18 +22,18 @@ namespace Fargowiltas.Common.Systems.Recipes
             AddBiomeKeyRecipes();
 
             // Treasure magnet I HATE TREASURE MAGNET TEAR OFF ALL OF YOUR FLESH
-            CreateTreasureGroupRecipe(ItemID.TreasureMagnet,
+            /*CreateTreasureGroupRecipe(ItemID.TreasureMagnet,
                 ItemID.DarkLance,
                 ItemID.HellwingBow,
                 ItemID.Flamelash,
                 ItemID.Sunfury
             );
-            RecipeHelper.CreateSimpleRecipe(ItemID.TreasureMagnet, ItemID.FlowerofFire, TileID.Solidifier, ingredientAmount: 2, disableDecraft: true, conditions: Condition.NotRemixWorld);
+            RecipeHelper.CreateSimpleRecipe(ItemID.TreasureMagnet, ItemID.FlowerofFire, TileID.Solidifier, ingredientAmount: 2, disableDecraft: true, conditions: Condition.NotRemixWorld);*/
         }
 
         private static void AddPreHMTreasureBagRecipes()
         {
-            CreateTreasureGroupRecipe(ItemID.KingSlimeTrophy, ItemID.SlimeStaff);
+            //CreateTreasureGroupRecipe(ItemID.KingSlimeTrophy, ItemID.SlimeStaff);
             CreateTreasureGroupRecipe(ItemID.EyeofCthulhuTrophy, ItemID.Binoculars);
             CreateTreasureGroupRecipe(ItemID.EaterofWorldsTrophy, ItemID.EatersBone);
             CreateTreasureGroupRecipe(ItemID.BrainofCthulhuTrophy, ItemID.BoneRattle);
@@ -260,25 +260,25 @@ namespace Fargowiltas.Common.Systems.Recipes
 
         private static void AddGrabBagRecipes()
         {
-            RecipeHelper.CreateSimpleRecipe(ItemID.Present, ItemID.DogWhistle, TileID.WorkBenches, ingredientAmount: 10, disableDecraft: true);
-            RecipeHelper.CreateSimpleRecipe(ItemID.Present, ItemID.Toolbox, TileID.WorkBenches, ingredientAmount: 10, disableDecraft: true);
-            RecipeHelper.CreateSimpleRecipe(ItemID.Present, ItemID.HandWarmer, TileID.WorkBenches, ingredientAmount: 10, disableDecraft: true);
-            RecipeHelper.CreateSimpleRecipe(ItemID.Present, ItemID.RedRyder, TileID.WorkBenches, ingredientAmount: 10, disableDecraft: true);
-            RecipeHelper.CreateSimpleRecipe(ItemID.Present, ItemID.CandyCaneSword, TileID.WorkBenches, ingredientAmount: 10, disableDecraft: true);
-            RecipeHelper.CreateSimpleRecipe(ItemID.Present, ItemID.CandyCaneHook, TileID.WorkBenches, ingredientAmount: 10, disableDecraft: true);
-            RecipeHelper.CreateSimpleRecipe(ItemID.Present, ItemID.FruitcakeChakram, TileID.WorkBenches, ingredientAmount: 10, disableDecraft: true);
+            RecipeHelper.CreateSimpleRecipe(ItemID.Present, ItemID.DogWhistle, TileID.Solidifier, ingredientAmount: 10, disableDecraft: true);
+            RecipeHelper.CreateSimpleRecipe(ItemID.Present, ItemID.Toolbox, TileID.Solidifier, ingredientAmount: 10, disableDecraft: true);
+            RecipeHelper.CreateSimpleRecipe(ItemID.Present, ItemID.HandWarmer, TileID.Solidifier, ingredientAmount: 10, disableDecraft: true);
+            RecipeHelper.CreateSimpleRecipe(ItemID.Present, ItemID.RedRyder, TileID.Solidifier, ingredientAmount: 10, disableDecraft: true);
+            RecipeHelper.CreateSimpleRecipe(ItemID.Present, ItemID.CandyCaneSword, TileID.Solidifier, ingredientAmount: 10, disableDecraft: true);
+            RecipeHelper.CreateSimpleRecipe(ItemID.Present, ItemID.CandyCaneHook, TileID.Solidifier, ingredientAmount: 10, disableDecraft: true);
+            RecipeHelper.CreateSimpleRecipe(ItemID.Present, ItemID.FruitcakeChakram, TileID.Solidifier, ingredientAmount: 10, disableDecraft: true);
             
-            RecipeHelper.CreateSimpleRecipe(ItemID.GoodieBag, ItemID.UnluckyYarn, TileID.WorkBenches, ingredientAmount: 10, disableDecraft: true);
-            RecipeHelper.CreateSimpleRecipe(ItemID.GoodieBag, ItemID.BatHook, TileID.WorkBenches, ingredientAmount: 25, disableDecraft: true);
-            RecipeHelper.CreateSimpleRecipe(ItemID.GoodieBag, ItemID.RottenEgg, TileID.WorkBenches, ingredientAmount: 2, resultAmount: 25, disableDecraft: true);
+            RecipeHelper.CreateSimpleRecipe(ItemID.GoodieBag, ItemID.UnluckyYarn, TileID.Solidifier, ingredientAmount: 10, disableDecraft: true);
+            RecipeHelper.CreateSimpleRecipe(ItemID.GoodieBag, ItemID.BatHook, TileID.Solidifier, ingredientAmount: 25, disableDecraft: true);
+            RecipeHelper.CreateSimpleRecipe(ItemID.GoodieBag, ItemID.RottenEgg, TileID.Solidifier, ingredientAmount: 2, resultAmount: 25, disableDecraft: true);
             
-            RecipeHelper.CreateSimpleRecipe(ItemID.HerbBag, ItemID.Daybloom, TileID.WorkBenches, resultAmount: 5, disableDecraft: true);
-            RecipeHelper.CreateSimpleRecipe(ItemID.HerbBag, ItemID.Moonglow, TileID.WorkBenches, resultAmount: 5, disableDecraft: true);
-            RecipeHelper.CreateSimpleRecipe(ItemID.HerbBag, ItemID.Blinkroot, TileID.WorkBenches, resultAmount: 5, disableDecraft: true);
-            RecipeHelper.CreateSimpleRecipe(ItemID.HerbBag, ItemID.Waterleaf, TileID.WorkBenches, resultAmount: 5, disableDecraft: true);
-            RecipeHelper.CreateSimpleRecipe(ItemID.HerbBag, ItemID.Deathweed, TileID.WorkBenches, resultAmount: 5, disableDecraft: true);
-            RecipeHelper.CreateSimpleRecipe(ItemID.HerbBag, ItemID.Fireblossom, TileID.WorkBenches, resultAmount: 5, disableDecraft: true);
-            RecipeHelper.CreateSimpleRecipe(ItemID.HerbBag, ItemID.Shiverthorn, TileID.WorkBenches, resultAmount: 5, disableDecraft: true);
+            RecipeHelper.CreateSimpleRecipe(ItemID.HerbBag, ItemID.Daybloom, TileID.Solidifier, resultAmount: 5, disableDecraft: true);
+            RecipeHelper.CreateSimpleRecipe(ItemID.HerbBag, ItemID.Moonglow, TileID.Solidifier, resultAmount: 5, disableDecraft: true);
+            RecipeHelper.CreateSimpleRecipe(ItemID.HerbBag, ItemID.Blinkroot, TileID.Solidifier, resultAmount: 5, disableDecraft: true);
+            RecipeHelper.CreateSimpleRecipe(ItemID.HerbBag, ItemID.Waterleaf, TileID.Solidifier, resultAmount: 5, disableDecraft: true);
+            RecipeHelper.CreateSimpleRecipe(ItemID.HerbBag, ItemID.Deathweed, TileID.Solidifier, resultAmount: 5, disableDecraft: true);
+            RecipeHelper.CreateSimpleRecipe(ItemID.HerbBag, ItemID.Fireblossom, TileID.Solidifier, resultAmount: 5, disableDecraft: true);
+            RecipeHelper.CreateSimpleRecipe(ItemID.HerbBag, ItemID.Shiverthorn, TileID.Solidifier, resultAmount: 5, disableDecraft: true);
         }
 
         private static void AddCrateRecipes()
@@ -306,7 +306,6 @@ namespace Fargowiltas.Common.Systems.Recipes
             CreateCrateRecipe(ItemID.FalconBlade, RecipeGroups.AnyIronCrate, 5);
             CreateCrateRecipe(ItemID.TartarSauce, RecipeGroups.AnyIronCrate, 5);
             CreateCrateRecipe(ItemID.GingerBeard, RecipeGroups.AnyIronCrate, 5);
-            CreateCrateRecipe(ItemID.CloudinaBottle, RecipeGroups.AnyIronCrate, 3);
 
             //gold
             CreateCrateRecipe(ItemID.BandofRegeneration, RecipeGroups.AnyGoldCrate, 2);
@@ -315,8 +314,9 @@ namespace Fargowiltas.Common.Systems.Recipes
             CreateCrateRecipe(ItemID.HermesBoots, RecipeGroups.AnyGoldCrate, 2);
             CreateCrateRecipe(ItemID.ShoeSpikes, RecipeGroups.AnyGoldCrate, 2);
             CreateCrateRecipe(ItemID.Mace, RecipeGroups.AnyGoldCrate, 2);
+            CreateCrateRecipe(ItemID.CloudinaBottle, RecipeGroups.AnyGoldCrate, 2);
             CreateCrateRecipe(ItemID.LifeCrystal, RecipeGroups.AnyGoldCrate, 2);
-            CreateCrateRecipe(ItemID.HardySaddle, -1, 2, ItemID.GoldenCrateHard);
+            CreateCrateRecipe(ItemID.HardySaddle, RecipeGroups.AnyGoldCrate, 2);
             CreateCrateRecipe(ItemID.EnchantedSword, RecipeGroups.AnyGoldCrate, 2);
 
             CreateCrateRecipe(ItemID.Sundial, RecipeGroups.AnyGoldCrate, 2); //actually should be hm but fuck it

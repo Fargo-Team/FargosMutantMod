@@ -13,9 +13,6 @@ namespace Fargowiltas.Content.Items.Weapons
     {
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("The Lumber Jaxe");
-            /* Tooltip.SetDefault("Hit enemies may drop wood when killed" +
-                               "\n'The former weapon of a true axe wielding hero'"); */
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
@@ -34,6 +31,8 @@ namespace Fargowiltas.Content.Items.Weapons
             Item.rare = ItemRarityID.Orange;
             Item.UseSound = SoundID.Item1;
             Item.autoReuse = true;
+
+            Item.useTurn = true;
         }
 
         public override void UseStyle(Player player, Rectangle heldItemFrame)

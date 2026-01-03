@@ -14,8 +14,6 @@ namespace Fargowiltas.Content.Items.Misc
 	{
 		public override void SetStaticDefaults()
 		{
-			// DisplayName.SetDefault("Pylon Cleaner");
-			// Tooltip.SetDefault("Purifies the area around every pylon\nWill use Blue Solution on Hallow Pylon and Green Solution on others");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 3;
 		}
 
@@ -65,8 +63,9 @@ namespace Fargowiltas.Content.Items.Misc
         public override void AddRecipes()
         {
 			CreateRecipe()
-				.AddIngredient(ItemID.PurificationPowder)
-				.AddTile(TileID.MythrilAnvil)
+                .AddIngredient(ItemID.PurificationPowder, 100)
+                .AddIngredient(ItemID.HolyWater, 10)
+				.AddTile(TileID.Bottles)
 				.Register();
         }
     }

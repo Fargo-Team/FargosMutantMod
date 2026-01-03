@@ -340,6 +340,11 @@ FargoClientConfig: {
 		Label: "[i:292] Прятать бесконечные баффы из списка"
 		Tooltip: ""
 	}
+
+	NoTransparentPets: {
+		// Label: No Transparent Pets
+		// Tooltip: ""
+	}
 }
 
 SeasonSelections: {

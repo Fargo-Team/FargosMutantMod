@@ -216,7 +216,7 @@ namespace Fargowiltas.Content.Items
 
                 if (fargoServerConfig.ExtraLures)
                 {
-                    if (item.type == ItemID.FishingPotion)
+                    /*if (item.type == ItemID.FishingPotion)
                     {
                         line = new TooltipLine(Mod, "Tooltip1", $"[i:2373] [c/AAAAAA:{ExpandedTooltipLoc("ExtraLure1")}]");
                         tooltips.Insert(3, line);
@@ -226,17 +226,17 @@ namespace Fargowiltas.Content.Items
                     {
                         line = new TooltipLine(Mod, "Tooltip1", $"[i:2373] [c/AAAAAA:{ExpandedTooltipLoc("Lures2")}]");
                         tooltips.Insert(3, line);
-                    }
+                    }*/
 
-                    if (item.type == ItemID.MechanicsRod || item.type == ItemID.SittingDucksFishingRod)
+                    if (item.type == ItemID.MechanicsRod || item.type == ItemID.SittingDucksFishingRod || item.type == ItemID.HotlineFishingHook)
                     {
-                        line = new TooltipLine(Mod, "Tooltip1", $"[i:2373] [c/AAAAAA:{ExpandedTooltipLoc("Lures3")}]");
+                        line = new TooltipLine(Mod, "Tooltip1", $"[i:2373] [c/AAAAAA:{ExpandedTooltipLoc("Lures2")}]");
                         tooltips.Insert(3, line);
                     }
 
-                    if (item.type == ItemID.GoldenFishingRod || item.type == ItemID.HotlineFishingHook)
+                    if (item.type == ItemID.GoldenFishingRod)
                     {
-                        line = new TooltipLine(Mod, "Tooltip1", $"[i:2373] [c/AAAAAA:{ExpandedTooltipLoc("Lures5")}]");
+                        line = new TooltipLine(Mod, "Tooltip1", $"[i:2373] [c/AAAAAA:{ExpandedTooltipLoc("Lures3")}]");
                         tooltips.Insert(3, line);
                     }
                 }
@@ -427,7 +427,7 @@ namespace Fargowiltas.Content.Items
                     break;
 
                 case ItemID.GoldenCrate:
-                    itemLoot.Add(ItemDropRule.OneFromOptions(10, ItemID.BandofRegeneration, ItemID.MagicMirror, ItemID.CloudinaBottle, ItemID.EnchantedBoomerang, ItemID.ShoeSpikes, ItemID.FlareGun, ItemID.HermesBoots, ItemID.LavaCharm, ItemID.SandstorminaBottle, ItemID.FlyingCarpet));
+                    itemLoot.Add(ItemDropRule.OneFromOptions(10, ItemID.BandofRegeneration, ItemID.MagicMirror, ItemID.CloudinaBottle, ItemID.EnchantedBoomerang, ItemID.ShoeSpikes, ItemID.FlareGun, ItemID.HermesBoots));
                     itemLoot.Add(ItemDropRule.Common(ItemID.Sundial, 20));
 
                     break;

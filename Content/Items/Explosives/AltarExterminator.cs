@@ -15,18 +15,16 @@ namespace Fargowiltas.Content.Items.Explosives
 
         public override void SetDefaults()
         {
-            Item.width = 10;
-            Item.height = 32;
+            Item.width = 36;
+            Item.height = 34;
             Item.maxStack = 9999;
             Item.consumable = true;
-            Item.useStyle = ItemUseStyleID.Swing;
-            Item.rare = ItemRarityID.Blue;
-            Item.UseSound = SoundID.Item1;
-            Item.useAnimation = 20;
-            Item.useTime = 20;
+            Item.useStyle = ItemUseStyleID.HoldUp;
+            Item.rare = ItemRarityID.LightRed;
+            Item.UseSound = null;
+            Item.useAnimation = 40;
+            Item.useTime = 40;
             Item.value = Item.buyPrice(0, 0, 3);
-            Item.noUseGraphic = true;
-            Item.noMelee = true;
             Item.shoot = ModContent.ProjectileType<AltarExterminatorProj>();
         }
 

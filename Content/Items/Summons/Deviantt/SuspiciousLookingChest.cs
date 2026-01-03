@@ -22,22 +22,22 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
 		}
         public override bool CanUseItem(Player player)
         {
-            if (!Main.hardMode && !FargoUtils.EternityMode) 
+            if (!Main.hardMode && (!FargoUtils.EternityMode || !Main.remixWorld)) 
                 return false;
             return base.CanUseItem(player);
         }
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            if (!FargoUtils.EternityMode)
+            if (!FargoUtils.EternityMode || !Main.remixWorld)
                 tooltips.Insert(4, new TooltipLine(Mod, "HardmodeLock", Language.GetTextValue($"Mods.Fargowiltas.Items.SuspiciousLookingChest.HardmodeLock")));
 
         }
         public override void AddRecipes()
         {
             CreateRecipe()
+                    .AddIngredient(ItemID.Chest, 1)
                     .AddRecipeGroup("Fargowiltas:AnyEvilBar", 10)
                     .AddIngredient(ItemID.GoldCoin, 10)
-                    .AddIngredient(ItemID.Chest, 1)
                     .AddTile(TileID.DemonAltar)
                     .Register();
         }

@@ -41,7 +41,7 @@ FargoServerConfig: {
 
 	ExtraLures: {
 		Label: "[i:2373] Extra Lures on Fishing Rods"
-		Tooltip: Several fishing items grant extra lures, including Fishing Potion and several Fishing Rods.
+		Tooltip: Some higher tier Fishing Rods grant extra lures.
 	}
 
 	FasterLavaFishing: {
@@ -335,6 +335,11 @@ FargoClientConfig: {
 	HideUnlimitedBuffs: {
 		Label: "[i:292] Hide unlimited buffs in tray"
 		Tooltip: ""
+	}
+
+	NoTransparentPets: {
+		Label: "[i:2019] No Transparent Pets"
+		Tooltip: "If true, pets become exempt from friendly projectile transparency."
 	}
 }
 

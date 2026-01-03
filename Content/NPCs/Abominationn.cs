@@ -379,7 +379,7 @@ namespace Fargowiltas.Content.NPCs
                     texture = ModContent.Request<Texture2D>("Fargowiltas/Content/NPCs/Abominationn").Value;
                 else
                     texture = ModContent.Request<Texture2D>("Fargowiltas/Content/NPCs/AbominationnRight").Value;
-                Main.EntitySpriteDraw(texture, NPC.Center - Main.screenPosition + new Vector2(0f, NPC.gfxOffY) + new Vector2(0, -5f), new Microsoft.Xna.Framework.Rectangle?(rectangle), NPC.GetAlpha(drawColor), NPC.rotation, origin2, NPC.scale, effects, 0);
+                Main.EntitySpriteDraw(texture, NPC.Center - Main.screenPosition + new Vector2(0f, NPC.gfxOffY) + new Vector2(0, -6f), new Microsoft.Xna.Framework.Rectangle?(rectangle), NPC.GetAlpha(drawColor), NPC.rotation, origin2, NPC.scale, effects, 0);
                 return false;
             }
             else

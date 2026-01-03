@@ -67,35 +67,35 @@ namespace Fargowiltas.Content.Projectiles
                 
             if (projectile.bobber && projectile.owner == Main.myPlayer && FargoServerConfig.Instance.ExtraLures && source is EntitySource_ItemUse)
             {
-                int split = 1;
-                int itemType = Main.player[Main.myPlayer].HeldItem.type;
+                int split;
+                int itemType = Main.player[projectile.owner].HeldItem.type;
 
                 //check held item type for fishing rods instead of projectile, since bobber projectiles are overridden by the Bobber items
                 switch (itemType)
                 {
                     case ItemID.GoldenFishingRod:
-                    case ItemID.HotlineFishingHook:
-                        split = 5;
-                        break;
-                    case ItemID.SittingDucksFishingRod:
-                    case ItemID.MechanicsRod:
                         split = 3;
                         break;
-                    case ItemID.ScarabFishingRod:
+                    case ItemID.HotlineFishingHook:
+                    case ItemID.SittingDucksFishingRod:
+                    case ItemID.MechanicsRod:
+                        split = 2;
+                        break;
+                    /*case ItemID.ScarabFishingRod:
                     case ItemID.FiberglassFishingPole:
                     case ItemID.BloodFishingRod:
                     case ItemID.Fleshcatcher:
                     case ItemID.FisherofSouls:
                         split = 2;
-                        break;
+                        break;*/
                     default:
                         split = 1;
                         break;
                 }
 
 
-                if (Main.player[projectile.owner].HasBuff(BuffID.Fishing))
-                    split++;
+                //if (Main.player[projectile.owner].HasBuff(BuffID.Fishing))
+                    //split++;
 
                 if (split > 1)
                     SplitProj(projectile, split);
@@ -173,7 +173,6 @@ namespace Fargowiltas.Content.Projectiles
 
                     if (split != null)
                     {
-                        split.friendly = true;
                         split.GetGlobalProjectile<FargoGlobalProjectile>().firstTick = false;
                     }
                 }
@@ -199,10 +198,18 @@ namespace Fargowiltas.Content.Projectiles
                 Color? color = projectile.ModProjectile?.GetAlpha(lightColor);
                 if (color != null)
                 {
-                    return color.Value * FargoClientConfig.Instance.TransparentFriendlyProjectiles;
+                    if (FargoClientConfig.Instance.NoTransparentPets && Main.projPet[projectile.type])
+                        return color.Value;
+                    else
+                        return color.Value * FargoClientConfig.Instance.TransparentFriendlyProjectiles;
                 }
-                lightColor *= projectile.Opacity * FargoClientConfig.Instance.TransparentFriendlyProjectiles;
-                return lightColor;
+                if (FargoClientConfig.Instance.NoTransparentPets && Main.projPet[projectile.type])
+                    return lightColor;
+                else
+                {
+                    lightColor *= projectile.Opacity * FargoClientConfig.Instance.TransparentFriendlyProjectiles;
+                    return lightColor;
+                }
 
             }
 

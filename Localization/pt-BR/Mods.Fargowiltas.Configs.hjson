@@ -336,6 +336,11 @@ FargoClientConfig: {
 		Label: "[i:292] Esconder buffs permanentes"
 		Tooltip: ""
 	}
+
+	NoTransparentPets: {
+		// Label: No Transparent Pets
+		// Tooltip: ""
+	}
 }
 
 SeasonSelections: {

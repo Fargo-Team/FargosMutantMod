@@ -2,6 +2,8 @@ using Fargowiltas.Common.Configs;
 using Fargowiltas.Common.Systems;
 using Fargowiltas.Common.Systems.Recipes;
 using Fargowiltas.Content.Achievements;
+using Fargowiltas.Content.Buffs;
+using Fargowiltas.Content.Dusts;
 using Fargowiltas.Content.Items;
 using Fargowiltas.Content.Items.CaughtNPCs;
 using Fargowiltas.Content.Items.Misc;
@@ -427,6 +429,16 @@ namespace Fargowiltas
                 {
                     Player.buffImmune[potToggle.BuffID] = true;
                 }
+            }
+        }
+        public override void DrawEffects(PlayerDrawSet drawInfo, ref float r, ref float g, ref float b, ref float a, ref bool fullBright)
+        {
+            if (bigSuck && drawInfo.shadow == 0)
+            {
+                Vector2 pos = Player.Center + Main.rand.NextVector2CircularEdge(1000, 500) + Main.rand.NextVector2Square(-100, 100);
+                Dust d = Dust.NewDustPerfect(pos, DustType<BigSuckDust>(), Alpha: 255, Scale: Main.rand.NextFloat(0.8f, 1.5f));
+                d.customData = Player;
+                drawInfo.DustCache.Add(d.dustIndex);
             }
         }
         public override void PostUpdateEquips()

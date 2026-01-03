@@ -27,10 +27,14 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ItemID.DeadMansChest)
+                /*.AddIngredient(ItemID.DeadMansChest)
                 .AddIngredient(ItemID.MiningHelmet)
                 .AddIngredient(ItemID.SpelunkerPotion)
-                .AddTile(TileID.HeavyWorkBench)
+                .AddTile(TileID.HeavyWorkBench)*/
+                .AddRecipeGroup("Fargowiltas:AnyGoldOre", 8)
+                .AddIngredient(ItemID.SpelunkerPotion)
+                .AddIngredient(ItemID.SilverDye)
+                .AddTile(TileID.DyeVat)
                 .Register();
         }
     }

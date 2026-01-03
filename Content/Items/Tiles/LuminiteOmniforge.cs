@@ -1,7 +1,11 @@
-using Fargowiltas.Common.Systems.Recipes;
+﻿using Fargowiltas.Common.Systems.Recipes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
@@ -10,54 +14,37 @@ using Terraria.ObjectData;
 
 namespace Fargowiltas.Content.Items.Tiles
 {
-    public class ElementalAssembler : ModItem
+    public class LuminiteOmniforge : ModItem
     {
-        public override void SetStaticDefaults()
-        {
-            Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-        }
-
         public override void SetDefaults()
         {
             Item.width = 28;
             Item.height = 14;
+            Item.rare = ItemRarityID.Red;
             Item.maxStack = Item.CommonMaxStack;
             Item.useTurn = true;
             Item.autoReuse = true;
             Item.useAnimation = 15;
             Item.useTime = 10;
-            Item.rare = ItemRarityID.Orange;
             Item.useStyle = ItemUseStyleID.Swing;
             Item.consumable = true;
-            Item.value = Item.buyPrice(gold: 50);
-            Item.createTile = ModContent.TileType<ElementalAssemblerSheet>();
+            Item.createTile = ModContent.TileType<LuminiteOmniforgeTile>();
         }
 
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ItemID.AlchemyTable)
-                .AddIngredient(ItemID.TinkerersWorkshop)
-                .AddIngredient(ItemID.ImbuingStation)
-                .AddIngredient(ItemID.DyeVat)
-                .AddIngredient(ItemID.LivingLoom)
-                .AddIngredient(ItemID.GlassKiln)
-                .AddIngredient(ItemID.IceMachine)
-                .AddIngredient(ItemID.HoneyDispenser)
-                .AddIngredient(ItemID.SkyMill)
-                .AddIngredient(ItemID.Solidifier)
-                .AddIngredient(ItemID.BoneWelder)
-                .AddIngredient(ItemID.LavaBucket)
-                .AddIngredient(ItemID.HoneyBucket)
-                .AddIngredient(ItemID.TeaKettle)
-                .AddRecipeGroup(RecipeGroups.AnyTombstone)
-                .AddRecipeGroup(RecipeGroups.AnyDemonAltar)
-                .AddIngredient(ItemID.Bone, 5)
+                .AddRecipeGroup(RecipeGroups.AnyForge)
+                .AddRecipeGroup(RecipeGroups.AnyHMAnvil)
+                .AddIngredient(ItemID.CrystalBall)
+                .AddIngredient(ItemID.Autohammer)
+                .AddIngredient(ItemID.LunarCraftingStation)
+                .AddIngredient(ItemID.LunarBar, 25)
                 .Register();
         }
     }
 
-    public class ElementalAssemblerSheet : ModTile
+    public class LuminiteOmniforgeTile : ModTile
     {
         public override void SetStaticDefaults()
         {
@@ -69,22 +56,30 @@ namespace Fargowiltas.Content.Items.Tiles
             TileObjectData.newTile.CoordinateHeights = [16, 16, 16];
             TileObjectData.addTile(Type);
             LocalizedText name = CreateMapEntryName();
-            AddMapEntry(new Color(200, 200, 200), name);
+            AddMapEntry(new(200, 200, 200), name);
             TileID.Sets.DisableSmartCursor[Type] = true;
-            //counts as
-            AdjTiles = [TileID.Hellforge, TileID.Furnaces, TileID.AlchemyTable, TileID.TinkerersWorkbench, TileID.ImbuingStation, TileID.DyeVat, TileID.LivingLoom, TileID.GlassKiln, TileID.IceMachine, TileID.HoneyDispenser, TileID.SkyMill, TileID.Solidifier, TileID.BoneWelder, TileID.Bottles, TileID.DemonAltar, TileID.Tombstones, TileID.TeaKettle];
 
-            TileID.Sets.CountsAsHoneySource[Type] = true;
-            TileID.Sets.CountsAsLavaSource[Type] = true;
+            #region Counts as
+            AdjTiles =
+                [
+                TileID.Furnaces,
+                TileID.Anvils,
+                TileID.Hellforge,
+                TileID.MythrilAnvil,
+                TileID.AdamantiteForge,
+                TileID.CrystalBall,
+                TileID.Autohammer,
+                TileID.LunarCraftingStation
+                ];
+            #endregion
 
             AnimationFrameHeight = 54;
-
         }
 
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
         {
-            b = 0.5f;
-            g = 0.3f;
+            b = 0.8f;
+            g = 0.5f;
         }
 
         public override void NumDust(int i, int j, bool fail, ref int num)
@@ -95,21 +90,11 @@ namespace Fargowiltas.Content.Items.Tiles
         public override void AnimateTile(ref int frame, ref int frameCounter)
         {
             frameCounter++;
-            if (frameCounter >= 8) //replace with duration of frame in ticks
+            if (frameCounter >= 5) //replace with duration of frame in ticks
             {
                 frameCounter = 0;
                 frame++;
-                frame %= 8;
-            }
-
-            Main.tileLighted[Type] = true;
-        }
-
-        public override void NearbyEffects(int i, int j, bool closer)
-        {
-            if (Main.LocalPlayer.Distance(new Vector2(i * 16 + 8, j * 16 + 8)) < 16 * 5)
-            {
-                Main.LocalPlayer.GetModPlayer<FargoPlayer>().ElementalAssemblerNearby = 6;
+                frame %= 20;
             }
         }
 
@@ -117,7 +102,7 @@ namespace Fargowiltas.Content.Items.Tiles
         {
             Tile tile = Main.tile[i, j];
             Texture2D texture2D13 = Terraria.GameContent.TextureAssets.Tile[Type].Value;
-            int num156 = Terraria.GameContent.TextureAssets.Tile[Type].Value.Height / 8; //ypos of lower right corner of sprite to draw
+            int num156 = Terraria.GameContent.TextureAssets.Tile[Type].Value.Height / 20; //ypos of lower right corner of sprite to draw
             int y3 = num156 * Main.tileFrame[Type]; //ypos of upper left corner of sprite to draw
             Rectangle rectangle = new(tile.TileFrameX, tile.TileFrameY + y3, 16, 16);
             Vector2 origin2 = rectangle.Size() / 2f;

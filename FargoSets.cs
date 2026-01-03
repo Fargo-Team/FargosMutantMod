@@ -131,7 +131,7 @@ namespace Fargowiltas
                 ItemType<Omnistation>(), Items.DupeType.Dupable,
                 ItemType<Omnistation2>(), Items.DupeType.Dupable,
                 ItemType<CrucibleCosmos>(), Items.DupeType.Dupable,
-                ItemType<LuminiteOmniforge>, Items.DupeType.Dupable,
+                ItemType<LuminiteOmniforge>(), Items.DupeType.Dupable,
                 ItemType<ElementalAssembler>(), Items.DupeType.Dupable,
                 ItemType<MultitaskCenter>(), Items.DupeType.Dupable,
                 ItemType<PortableSundial>(), Items.DupeType.Dupable,

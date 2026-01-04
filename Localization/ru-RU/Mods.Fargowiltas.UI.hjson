@@ -34,7 +34,7 @@ StatSheet: {
 	FishingQuests: Задания рыбака: {0}
 	MiningSpeed: Скорость добычи: {0}%
 	ExtraPlacementRange: Дальность размещения: {0}
-	// PlacementSpeed: Extra Placement Speed: {0}
+	PlacementSpeed: Скорость размещения: {0}
 	// melee
 	Melee: Ближние
 	MeleeDamage: Урон: {0}%

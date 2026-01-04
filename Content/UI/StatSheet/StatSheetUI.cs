@@ -208,7 +208,7 @@ namespace Fargowiltas.Content.UI.StatSheet
                 foreach (Stat stat in category.Stats)
                 {
                     if (stat.condition.Invoke())
-                        AddStat(stat.Name, stat.ItemID, stat.Value.Invoke());
+                        AddStat(stat.Name, stat.ModName, stat.Value.Invoke());
                 }
             }
         }
@@ -258,9 +258,9 @@ namespace Fargowiltas.Content.UI.StatSheet
             InnerPanel.Append(star);
         }
 
-        public void AddStat(string key, int item = -1, params object[] args) => AddStat(Language.GetTextValue($"Mods.Fargowiltas.UI.StatSheet.{key}", args), item);
+        public void AddStat(string key, string modName = "Fargowiltas", params object[] args) => AddStat(Language.GetTextValue($"Mods.Fargowiltas.UI.StatSheet.{key}", args), key, modName);
 
-        public void AddStat(string text, int item = -1)
+        public void AddStat(string text, string key, string modName = "Fargowiltas")
         {
             int left = 8 + ColumnCounter * ((BackWidth - 8) / HowManyColumns);
             int top = 8 + LineCounter * 23; // I don't know why but 23 works perfectly
@@ -274,7 +274,7 @@ namespace Fargowiltas.Content.UI.StatSheet
                 ColumnCounter = 0;
             }
 
-            UIText ui = new UIText(item > -1 ? $"[i:{item}] {text}" : text);
+            UIText ui = new UIText(key != null ? $"[s:{modName}/{key}] {text}" : text);
             ui.Left.Set(left, 0f);
             ui.Top.Set(top, 0f);
 

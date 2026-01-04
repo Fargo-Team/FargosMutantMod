@@ -42,65 +42,65 @@ namespace Fargowiltas.Content.UI.StatSheet
 
             // Combat
             FargoCreate("Combat")
-                .FargoStat("Life", ItemID.LifeCrystal, () => Main.LocalPlayer.statLifeMax2)
-                .FargoStat("LifeRegen", ItemID.BandofRegeneration, () => Main.LocalPlayer.lifeRegen / 2)
-                .FargoStat("Defense", ItemID.Shackle, () => Main.LocalPlayer.statDefense)
-                .FargoStat("DamageReduction", ItemID.WormScarf, () => DamageReduction())
-                .FargoStat("KnockbackImmunity", ItemID.CobaltShield, Main.LocalPlayer.noKnockback.ToString)
-                .FargoStat("Aggro", ItemID.FleshKnuckles, () => Main.LocalPlayer.aggro)
-                .FargoStat("ArmorPenetration", ItemID.SharkToothNecklace, () => Main.LocalPlayer.GetArmorPenetration(DamageClass.Generic))
+                .FargoStat("Life", () => Main.LocalPlayer.statLifeMax2)
+                .FargoStat("LifeRegen", () => Main.LocalPlayer.lifeRegen / 2)
+                .FargoStat("Defense", () => Main.LocalPlayer.statDefense)
+                .FargoStat("DamageReduction", () => DamageReduction())
+                .FargoStat("KnockbackImmunity", Main.LocalPlayer.noKnockback.ToString)
+                .FargoStat("Aggro", () => Main.LocalPlayer.aggro)
+                .FargoStat("ArmorPenetration", () => Main.LocalPlayer.GetArmorPenetration(DamageClass.Generic))
                 .RegisterCategory();
 
             // Movement
             FargoCreate("Movement")
-                .FargoStat("MovementSpeed", ItemID.SwiftnessPotion, () => Math.Round(Main.LocalPlayer.moveSpeed * 100))
-                .FargoStat("MaxSpeed", ItemID.HermesBoots, () => MaxSpeed())
-                .FargoStat("Acceleration", ItemID.Magiluminescence, () => Math.Round((1f + Main.LocalPlayer.runAcceleration) * 100f))
-                .FargoStat("Deceleration", ItemID.IceBlock, () => Math.Round((1f + Main.LocalPlayer.runSlowdown) * 100f))
-                .FargoStat("WingTime", ItemID.AngelWings, WingTime, condition: HasWings)
-                .FargoStat("WingMaxSpeed", ItemID.FishronWings, () => Math.Round(Main.LocalPlayer.FargoMutant().StatSheetWingSpeed * 32 / 6.25), condition: HasWings)
-                .FargoStat("WingAscentModifier", ItemID.RainbowWings, () => Math.Round(Main.LocalPlayer.FargoMutant().StatSheetMaxAscentMultiplier * 100), condition: HasWings)
+                .FargoStat("MovementSpeed", () => Math.Round(Main.LocalPlayer.moveSpeed * 100))
+                .FargoStat("MaxSpeed", () => MaxSpeed())
+                .FargoStat("Acceleration", () => Math.Round((1f + Main.LocalPlayer.runAcceleration) * 100f))
+                .FargoStat("Deceleration", () => Math.Round((1f + Main.LocalPlayer.runSlowdown) * 100f))
+                .FargoStat("WingTime", WingTime, condition: HasWings)
+                .FargoStat("WingMaxSpeed", () => Math.Round(Main.LocalPlayer.FargoMutant().StatSheetWingSpeed * 32 / 6.25), condition: HasWings)
+                .FargoStat("WingAscentModifier", () => Math.Round(Main.LocalPlayer.FargoMutant().StatSheetMaxAscentMultiplier * 100), condition: HasWings)
                 .RegisterCategory();
 
             // Utility
             FargoCreate("Utility")
-                .FargoStat("FishingQuests", ItemID.AnglerEarring, () => Main.LocalPlayer.anglerQuestsFinished)
-                .FargoStat("MiningSpeed", ItemID.CopperPickaxe, () => Math.Round(Math.Min(170, 200 - Main.LocalPlayer.pickSpeed * 100)))
-                .FargoStat("Luck", ItemID.LadyBug, () => Math.Round(Main.LocalPlayer.luck, 2))
-                .FargoStat("ExtraPlacementRange", ItemID.ArchitectGizmoPack, () => Main.LocalPlayer.blockRange)
-                .FargoStat("BattleCry", ModContent.ItemType<BattleCry>(), BattleCryText, condition: BattleCryCondition)
+                .FargoStat("FishingQuests", () => Main.LocalPlayer.anglerQuestsFinished)
+                .FargoStat("MiningSpeed", () => Math.Round(Math.Min(170, 200 - Main.LocalPlayer.pickSpeed * 100)))
+                .FargoStat("Luck", () => Math.Round(Main.LocalPlayer.luck, 2))
+                .FargoStat("PlacementSpeed", () => Main.LocalPlayer.tileSpeed)
+                .FargoStat("ExtraPlacementRange", () => Main.LocalPlayer.blockRange)
                 .RegisterCategory();
 
             // Melee
             FargoCreate("Melee")
-                .FargoStat("MeleeDamage", ItemID.CopperBroadsword, () => Damage(DamageClass.Melee))
-                .FargoStat("MeleeCritical", ItemID.CopperBroadsword, () => Crit(DamageClass.Melee))
-                .FargoStat("MeleeSpeed", ItemID.FeralClaws, () => (int)Math.Round(Main.LocalPlayer.GetAttackSpeed(DamageClass.Melee) * 100))
-                .FargoStat("MeleeSize", ItemID.TitanGlove, () => Math.Round(Main.LocalPlayer.GetAdjustedItemScale(Main.LocalPlayer.HeldItem ?? ContentSamples.ItemsByType[ItemID.CopperBroadsword]) * 100f))
+                .FargoStat("MeleeDamage", () => Damage(DamageClass.Melee))
+                .FargoStat("MeleeCritical", () => Crit(DamageClass.Melee))
+                .FargoStat("MeleeSpeed", () => (int)Math.Round(Main.LocalPlayer.GetAttackSpeed(DamageClass.Melee) * 100))
+                .FargoStat("MeleeSize", () => Math.Round(Main.LocalPlayer.GetAdjustedItemScale(Main.LocalPlayer.HeldItem ?? ContentSamples.ItemsByType[ItemID.CopperBroadsword]) * 100f))
                 .RegisterCategory();
 
             // Ranged
             FargoCreate("Ranged")
-                .FargoStat("RangedDamage", ItemID.CopperBow, () => Damage(DamageClass.Ranged))
-                .FargoStat("RangedCritical", ItemID.CopperBow, () => Crit(DamageClass.Ranged))
+                .FargoStat("RangedDamage", () => Damage(DamageClass.Ranged))
+                .FargoStat("RangedCritical", () => Crit(DamageClass.Ranged))
                 .RegisterCategory();
 
             // Magic
             FargoCreate("Magic")
-                .FargoStat("MagicDamage", ItemID.AmethystStaff, () => Damage(DamageClass.Magic))
-                .FargoStat("MagicCritical", ItemID.AmethystStaff, () => Crit(DamageClass.Magic))
-                .FargoStat("Mana", ItemID.ManaCrystal, () => Main.LocalPlayer.statManaMax2)
-                .FargoStat("ManaRegen", ItemID.BandofStarpower, () => Main.LocalPlayer.manaRegen / 2)
-                .FargoStat("ManaCostReduction", ItemID.NaturesGift, () => Math.Round((1.0 - Main.LocalPlayer.manaCost) * 100))
+                .FargoStat("MagicDamage", () => Damage(DamageClass.Magic))
+                .FargoStat("MagicCritical", () => Crit(DamageClass.Magic))
+                .FargoStat("Mana", () => Main.LocalPlayer.statManaMax2)
+                .FargoStat("ManaRegen", () => Main.LocalPlayer.manaRegen / 2)
+                .FargoStat("ManaCostReduction", () => Math.Round((1.0 - Main.LocalPlayer.manaCost) * 100))
                 .RegisterCategory();
 
             // Summon
             FargoCreate("Summon")
-                .FargoStat("SummonDamage", ItemID.SlimeStaff, () => Damage(DamageClass.Summon))
-                .FargoStat("MaxMinions", ItemID.PygmyNecklace, () => Main.LocalPlayer.maxMinions)
-                .FargoStat("MaxSentries", ItemID.StaffoftheFrostHydra, () => Main.LocalPlayer.maxTurrets)
-                .FargoStat("WhipSpeed", ItemID.ThornWhip, () => Math.Round(Main.LocalPlayer.GetAttackSpeed<SummonMeleeSpeedDamageClass>() * 100f))
-                .FargoStat("WhipLength", ItemID.FireWhip, () => Math.Round(Main.LocalPlayer.whipRangeMultiplier * 100f))
+                .FargoStat("SummonDamage", () => Damage(DamageClass.Summon))
+                .FargoStat("MaxMinions", () => Main.LocalPlayer.maxMinions)
+                .FargoStat("MaxSentries", () => Main.LocalPlayer.maxTurrets)
+                .FargoStat("WhipSpeed", () => Math.Round(Main.LocalPlayer.GetAttackSpeed<SummonMeleeSpeedDamageClass>() * 100f))
+                .FargoStat("WhipLength", () => Math.Round(Main.LocalPlayer.whipRangeMultiplier * 100f))
                 .RegisterCategory();
         }
 
@@ -109,8 +109,8 @@ namespace Fargowiltas.Content.UI.StatSheet
             var souls = Fargowiltas.ModLoaded["FargowiltasSouls"] ? ModLoader.GetMod("FargowiltasSouls") : null;
             if (souls != null)
             {
-                StatRegistry.TryAddStatToCategory("Summon", "SummonCritical", souls.Find<ModItem>("SpiderEnchant").Type, () => (int)souls.Call("GetSummonCrit"), () => StatSheetLocal("SummonCritical"), 1 + float.Epsilon);
-                StatRegistry.TryAddStatToCategory("Combat", "AttackSpeed", souls.Find<ModItem>("MythrilEnchant").Type, () => (int)Math.Round(MathF.Max((float)souls.Call("GetCachedAttackSpeed"), (float)souls.Call("GetAttackSpeed")) * 100), () => StatSheetLocal("AttackSpeed"));
+                StatRegistry.TryAddStatToCategory("Summon", "SummonCritical", () => (int)souls.Call("GetSummonCrit"), () => StatSheetLocal("SummonCritical"), 1 + float.Epsilon, modName: "FargowiltasSouls");
+                StatRegistry.TryAddStatToCategory("Combat", "AttackSpeed", () => (int)Math.Round(MathF.Max((float)souls.Call("GetCachedAttackSpeed"), (float)souls.Call("GetAttackSpeed")) * 100), () => StatSheetLocal("AttackSpeed"), modName: "FargowiltasSouls");
 
             }
         }
@@ -141,17 +141,5 @@ namespace Fargowiltas.Content.UI.StatSheet
             }
             return (int)Math.Round(endurance * 100);
         }
-
-        private static string BattleCryText()
-        {
-            FargoPlayer modPlayer = Main.LocalPlayer.FargoMutant();
-            if (modPlayer.BattleCry)
-                return $"[c/ff0000:{Language.GetTextValue("Mods.Fargowiltas.Items.BattleCry.Battle")}]";
-            if (modPlayer.CalmingCry)
-                return $"[c/00ffff:{Language.GetTextValue("Mods.Fargowiltas.Items.BattleCry.Calming")}]";
-            return Language.GetTextValue("Mods.Fargowiltas.UI.BattleCryNone");
-        }
-
-        private static bool BattleCryCondition() => Main.LocalPlayer.HasItem(ModContent.ItemType<BattleCry>()) || Main.LocalPlayer.FargoMutant().BattleCry || Main.LocalPlayer.FargoMutant().CalmingCry;
     }
 }

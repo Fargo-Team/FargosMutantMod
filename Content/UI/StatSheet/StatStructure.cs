@@ -21,17 +21,17 @@ namespace Fargowiltas.Content.UI.StatSheet
     public class Stat : IComparable<Stat>
     {
         public string Name;
+        public string ModName;
         float priority;
-        public int ItemID;
         public Func<bool> condition;
         public Func<string> TextFunction;
         public Func<object> Value;
 
-        public Stat(string name, float priority, int itemID, Func<object> value, Func<string> textFunction, Func<bool> condition = null)
+        public Stat(string name, float priority, Func<object> value, Func<string> textFunction, Func<bool> condition = null, string modName = "Fargowiltas")
         {
             this.condition = condition == null ? () => true : condition;
             Name = name;
-            ItemID = itemID;
+            ModName = modName;
             TextFunction = textFunction;
             Value = value;
             this.priority = priority;
@@ -84,15 +84,15 @@ namespace Fargowiltas.Content.UI.StatSheet
             return new StatCategory(key, HeaderLocalPath, condition, iconPath);
         }
 
-        internal StatCategory FargoStat(string key, int itemID, Func<object> value, string localPath = null, Func<bool> condition = null)
-            => AddStat(key, priorityMax, itemID, value, $"Mods.Fargowiltas.UI.StatSheet.{key}", condition);
+        internal StatCategory FargoStat(string key, Func<object> value, string localPath = null, Func<bool> condition = null)
+            => AddStat(key, priorityMax, value, $"Mods.Fargowiltas.UI.StatSheet.{key}", condition);
 
-        public StatCategory AddStat(string key, float priority, int itemID, Func<object> value, string localPath, Func<bool> condition = null)
+        public StatCategory AddStat(string key, float priority, Func<object> value, string localPath, Func<bool> condition = null)
         {
             condition ??= (() => true);
 
 
-            Stat newStat = new Stat(key, priority, itemID, value, () => Language.GetTextValue(localPath), condition);
+            Stat newStat = new Stat(key, priority, value, () => Language.GetTextValue(localPath), condition);
             if (!Stats.Contains(newStat))
             {
                 Stats.Add(newStat);
@@ -137,12 +137,12 @@ namespace Fargowiltas.Content.UI.StatSheet
         /// </summary>
         /// <param name="categoryName"></param>
         /// <param name="statName"></param>
-        /// <param name="itemID"></param>
+        /// <param name="modName"></param>
         /// <param name="value"></param>
         /// <param name="textFunction"></param>
         /// <param name="priorityOverride"></param>
         /// <returns><see langword="true"/> if the stat was added successfully, <see langword="false"/> otherwise.</returns>
-        public static bool TryAddStatToCategory(string categoryKey, string statKey, int itemID, Func<object> value, Func<string> textFunction, float priorityOverride = -1)
+        public static bool TryAddStatToCategory(string categoryKey, string statKey, Func<object> value, Func<string> textFunction, float priorityOverride = -1, string modName = "Fargowiltas")
         {
             if (finalized)
                 return false;
@@ -156,7 +156,7 @@ namespace Fargowiltas.Content.UI.StatSheet
                     category.priorityMax++;
                 }
 
-                Stat newStat = new Stat(statKey, p, itemID, value, textFunction);
+                Stat newStat = new Stat(statKey, p, value, textFunction, modName: modName);
                 if (!category.Stats.Contains(newStat))
                 {
                     category.Stats.Add(newStat);

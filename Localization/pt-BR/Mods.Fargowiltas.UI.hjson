@@ -34,6 +34,7 @@ StatSheet: {
 	FishingQuests: Miss�es de Pesca: {0}
 	// MiningSpeed: Mining Speed: {0}%
 	// ExtraPlacementRange: Extra Placement Range: {0}
+	// PlacementSpeed: Extra Placement Speed: {0}
 	// melee
 	// Melee: Melee
 	MeleeDamage: Dano f�sico: {0}%

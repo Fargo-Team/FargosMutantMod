@@ -491,12 +491,12 @@ namespace Fargowiltas
                                 throw new Exception($"Call Error (Fargo Mutant Mod AddStat): args[1] must be of type String");
                             if (args[2].GetType() != typeof(string))
                                 throw new Exception($"Call Error (Fargo Mutant Mod AddStat): args[2] must be of type String");
-                            if (args[3].GetType() != typeof(int))
-                                throw new Exception($"Call Error (Fargo Mutant Mod AddStat): args[3] must be of type int");
-                            if (args[4].GetType() != typeof(Func<object>))
-                                throw new Exception($"Call Error (Fargo Mutant Mod AddStat): args[4] must be of type Func<object>");
-                            if (args[5].GetType() != typeof(Func<string>))
-                                throw new Exception($"Call Error (Fargo Mutant Mod AddStat): args[5] must be of type Func<string>");
+                            if (args[3].GetType() != typeof(Func<object>))
+                                throw new Exception($"Call Error (Fargo Mutant Mod AddStat): args[3] must be of type Func<object>");
+                            if (args[4].GetType() != typeof(Func<string>))
+                                throw new Exception($"Call Error (Fargo Mutant Mod AddStat): args[4] must be of type Func<string>");
+                            if (args[5].GetType() != typeof(string))
+                                throw new Exception($"Call Error (Fargo Mutant Mod AddStat): args[5] must be of type String");
 
                             string categoryName = (string)args[1];
                             if (categoryName == "PermaUpgrade")
@@ -504,7 +504,7 @@ namespace Fargowiltas
 
                             float priority = args[6].GetType() == typeof(float) ? (float)args[6] : -1;
 
-                            StatRegistry.TryAddStatToCategory(categoryName, (string)args[2], (int)args[3], (Func<object>)args[4], (Func<string>)args[5], priority);
+                            StatRegistry.TryAddStatToCategory(categoryName, (string)args[2], (Func<object>)args[3], (Func<string>)args[4], priority, (string)args[5]);
                         }
                         break;
                     case "AddPermaUpgrade":

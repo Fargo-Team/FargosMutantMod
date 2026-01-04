@@ -1182,7 +1182,11 @@ EchPainting: {
 
 ElementalAssembler: {
 	DisplayName: Элементальный ассемблер
-	Tooltip: Функционирует как некоторые базовые станции создания
+	Tooltip:
+		'''
+		Функционирует как несколько особенных станций создания
+		«Будто бы череп наблюдает за вами! Жууууууть!»
+		'''
 }
 
 GoldenDippingVat: {
@@ -1192,7 +1196,11 @@ GoldenDippingVat: {
 
 MultitaskCenter: {
 	DisplayName: Центр многозадачности
-	Tooltip: Функционирует как некоторые базовые станции создания
+	Tooltip:
+		'''
+		Функционирует как несколько базовых станций создания
+		«Она гудит и издаёт звуки, наполненные жизнью»
+		'''
 }
 
 Omnistation: {
@@ -1680,10 +1688,10 @@ ChestWizard: {
 }
 
 LuminiteOmniforge: {
-	// DisplayName: Luminite Omniforge
-	/* Tooltip:
+	DisplayName: Люминитовая омникузница
+	Tooltip:
 		'''
-		Functions as several advanced crafting stations.
-		'It's fit to birth un[i:3460]d possibilities'
-		''' */
+		Функционирует как несколько станций создания поздней игры
+		«[i:3460]а возможностей с ней не существует»
+		'''
 }

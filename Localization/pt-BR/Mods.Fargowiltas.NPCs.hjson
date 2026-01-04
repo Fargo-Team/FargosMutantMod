@@ -12,64 +12,64 @@ Abominationn: {
 	// NPCName10: Catastrophe
 	// NPCName11: Bardo
 	// NPCName12: Betson
-	Bestiary: Consegue controlar o clima e para invas�es, mas ele � pregui�oso e as suas armas est�o fundidas com suas m�os. Que bom que ele n�o precisa de comer e as portas se abrem magicamente quando ele est� perto.
+	Bestiary: Consegue controlar o clima e para invasões, mas ele é preguiçoso e as suas armas estão fundidas com suas mãos. Que bom que ele não precisa de comer e as portas se abrem magicamente quando ele está perto.
 
 	TownNPCMood: {
 		Content: Estou Contento.
-		NoHome: Me d� uma casa e eu diminuirei meus pre�os.
-		LoveSpace: N�o estar apertado � bom.
-		FarFromHome: Eu voaria de volta pra minha casa, mas eu n�o quero ser observado.
+		NoHome: Me dê uma casa e eu diminuirei meus preços.
+		LoveSpace: Não estar apertado é bom.
+		FarFromHome: Eu voaria de volta pra minha casa, mas eu não quero ser observado.
 		DislikeCrowded: Tem muitos humanos perto, eles ficam cutucando o meu rosto.
-		HateCrowded: Voc� sabe o qu�o d�ficil � carregar uma foice e n�o cortar algu�m com tanta gente perto?
-		LikeBiome: Eu gosto de {BiomeName}, as correntes s�o relaxantes e eu t� aprendendo a pescar recentemente.
-		LoveBiome: Eu amo o espa�o, � nost�lgico e quieto.
+		HateCrowded: Você sabe o quão díficil é carregar uma foice e não cortar alguém com tanta gente perto?
+		LikeBiome: Eu gosto de {BiomeName}, as correntes são relaxantes e eu tô aprendendo a pescar recentemente.
+		LoveBiome: Eu amo o espaço, é nostálgico e quieto.
 		DislikeBiome: Muitos inimigos fracos vivem na {BiomeName}.
 		HateBiome: Eu odeio a {BiomeName} muito.
-		LikeNPC: "{NPCName} � a minha irm�... ela � um pouco barulhenta, mas tudo bem."
-		LoveNPC: "{NPCName} � o meu irm�o... eu j� lutei contra mais chefes que ele, mas ele � forte."
-		DislikeNPC: eu n�o gosto da {NPCName}.
-		HateNPC: "{NPCName} estraga a gl�ria do combate, n�o quero ficar perto dela."
-		LikeNPC_Princess: "{NPCName} � okay."
-		Princess_LovesNPC: "{NPCName} conta grandes hist�rias de suas batalhas!"
+		LikeNPC: "{NPCName} é a minha irmã... ela é um pouco barulhenta, mas tudo bem."
+		LoveNPC: "{NPCName} é o meu irmão... eu já lutei contra mais chefes que ele, mas ele é forte."
+		DislikeNPC: eu não gosto da {NPCName}.
+		HateNPC: "{NPCName} estraga a glória do combate, não quero ficar perto dela."
+		LikeNPC_Princess: "{NPCName} é okay."
+		Princess_LovesNPC: "{NPCName} conta grandes histórias de suas batalhas!"
 	}
 
 	Chat: {
 		// Special
-		Defeat: ...n�o ouse falar com ningu�m sobre isso. Foi sorte e eu nem tava tentando de verdade.
-		MutantShimmer: Ele virou um esquilo. Coisa mais engra�ada que eu j� vi.
-		StyxArmor: Que armadura nost�liga voc� est� vestindo. Eu estava chateado antes, mas voc� merece o meu conjunto antigo... e voc� lutou bem. Quer uma revanche mais tarde?
-		Graveyard: Todos esses t�mulos espalhados por a� realmente s�o seus?
-		Mechanic: Voc� pode pedir pra {0} parar de tocar no meu bra�o laser? por favor.
+		Defeat: ...não ouse falar com ninguém sobre isso. Foi sorte e eu nem tava tentando de verdade.
+		MutantShimmer: Ele virou um esquilo. Coisa mais engraçada que eu já vi.
+		StyxArmor: Que armadura nostáliga você está vestindo. Eu estava chateado antes, mas você merece o meu conjunto antigo... e você lutou bem. Quer uma revanche mais tarde?
+		Graveyard: Todos esses túmulos espalhados por aí realmente são seus?
+		Mechanic: Você pode pedir pra {0} parar de tocar no meu braço laser? por favor.
 		// Normal
 		Formattable1: De onde eu consegui a minha foice? {0}
 		Formatter1PHM: Me pergunte mais tarde.
-		Formatter1HM: Voc� vai descobrir.
-		Normal1: EU POSSO MATAR TUDO! NADA PODE ME PA- *tosse* *tosse* ...voc� pode me dar um xarope vick? Minha garganta t� seca...
-		Normal2: Eu j� derrotei TUDO nesta terra! O que � um Besta-di�rio? Ah, aquilo... eu nunca contei.
-		Normal3: Voc� j� teve uma arma presa ao seu bra�o? N�o te ajuda muito.
-		Normal4: Quem � Coo-Tu-Lu? Nenhuma ideia de quem voc� t� falando.
-		Normal5: Voc� queria poder se vestir como eu? Ha! Na verdade... �, voc� pode.
-		Normal6: Voc� j� leu os cl�ssicos? Eu amo as lutas.
-		Normal7: Eu sou um poeta mundialmente reconhecido, voc� j� leu minha pe�a sobre a desgra�a certa?
-		Normal8: Voc� j� leu o Rei de Amarelo? Eu amei quando o [REDACTED]... quis dizer quando o [DATA EXPUNGED]... t� deixa pra l�
-		Normal9: Gosta das minhas asas? Valeu, a coisa de onde eu peguei elas n�o gostou muito disso.
-		Normal10: Hero�smo n�o tem lugar nesse mundo, ent�o bora jogar ping pong.
-		Normal11: Por que que voc� t� me olhando desse jeito? Seu senso de beleza n�o vai te ganhar nenhum pr�mio tamb�m.
-		Normal12: N�o, voc� n�o pode pegar o meu chap�u.
-		Normal13: Abrace o sofrimento... ...como assim j� est� em uso?
-		Normal14: Porque que eles chamam de "Casa de Folhas" se voc� n�o pode nem sair? Eles s�o est�pidos?
-		Normal15: Realmente � um crime se todo mundo faz? Mudando de assunto -  hoje � noite de filmes!
-		Normal16: Infligir sofrimento nos outros � maneiro e tals, mas voc� j� pescou um bagre de 3 quilos?
+		Formatter1HM: Você vai descobrir.
+		Normal1: EU POSSO MATAR TUDO! NADA PODE ME PA- *tosse* *tosse* ...você pode me dar um xarope vick? Minha garganta tá seca...
+		Normal2: Eu já derrotei TUDO nesta terra! O que é um Besta-diário? Ah, aquilo... eu nunca contei.
+		Normal3: Você já teve uma arma presa ao seu braço? Não te ajuda muito.
+		Normal4: Quem é Coo-Tu-Lu? Nenhuma ideia de quem você tá falando.
+		Normal5: Você queria poder se vestir como eu? Ha! Na verdade... é, você pode.
+		Normal6: Você já leu os clássicos? Eu amo as lutas.
+		Normal7: Eu sou um poeta mundialmente reconhecido, você já leu minha peça sobre a desgraça certa?
+		Normal8: Você já leu o Rei de Amarelo? Eu amei quando o [REDACTED]... quis dizer quando o [DATA EXPUNGED]... tá deixa pra lá
+		Normal9: Gosta das minhas asas? Valeu, a coisa de onde eu peguei elas não gostou muito disso.
+		Normal10: Heroísmo não tem lugar nesse mundo, então bora jogar ping pong.
+		Normal11: Por que que você tá me olhando desse jeito? Seu senso de beleza não vai te ganhar nenhum prêmio também.
+		Normal12: Não, você não pode pegar o meu chapéu.
+		Normal13: Abrace o sofrimento... ...como assim já está em uso?
+		Normal14: Porque que eles chamam de "Casa de Folhas" se você não pode nem sair? Eles são estúpidos?
+		Normal15: Realmente é um crime se todo mundo faz? Mudando de assunto -  hoje é noite de filmes!
+		Normal16: Infligir sofrimento nos outros é maneiro e tals, mas você já pescou um bagre de 3 quilos?
 		Normal17: Irony is the best kind of humor, isn't that ironic?
-		Normal18: Eu gosto do Gato... como assim quem � Gato?
-		Normal19: Olhe a Wiki se voc� precisar de qualquer coisa, a estrela est� lentamente melhorando ela.
-		Normal20: Eu escutei hist�rias de um lend�rio mergulhador... de qualquer forma o que foi aquilo sobre uma �gua-viva gigante?
-		Normal21: Eventos Sobrecarregados...? Eles s�o bem legais.
-		Normal22: N�o � como se eu n�o gostasse da sua compania, mas voc� pode comprar algo?
+		Normal18: Eu gosto do Gato... como assim quem é Gato?
+		Normal19: Olhe a Wiki se você precisar de qualquer coisa, a estrela está lentamente melhorando ela.
+		Normal20: Eu escutei histórias de um lendário mergulhador... de qualquer forma o que foi aquilo sobre uma água-viva gigante?
+		Normal21: Eventos Sobrecarregados...? Eles são bem legais.
+		Normal22: Não é como se eu não gostasse da sua compania, mas você pode comprar algo?
 		// Cancel Event
 		Canceled: Hocus pocus, o evento acabou.
-		CancelCD: Eu n�o t� com muita vontade agora, volte em {0} segundos.
-		NoEvent: Eu n�o acho que tenha um evento acontecendo.
+		CancelCD: Eu não tô com muita vontade agora, volte em {0} segundos.
+		NoEvent: Eu não acho que tenha um evento acontecendo.
 		// PillarFail: I'm not getting rid of those pillars, that's for you to do.
 		// PillarFail2: Hocus pocus, the event is over. Those pillars are staying though.
 		// PillarFailCD: I'm not feeling it right now, come back in {0} seconds. Still not getting rid of those pillars, by the way.
@@ -84,7 +84,7 @@ Abominationn: {
 		// Solyn: Solyn gave me one of her cinnamon rolls the other day. It was sickeningly sweet... Please don't tell her I said that.
 	}
 
-	Census.SpawnCondition: Quando a Invas�o Goblin for derrotada.
+	Census.SpawnCondition: Quando a Invasão Goblin for derrotada.
 	CancelEvent: Cancelar Evento
 }
 
@@ -103,106 +103,106 @@ Deviantt: {
 	// NPCName11: Flan
 	// NPCName12: Shion
 	// NPCName13: Tewi
-	Bestiary: Oferece invocadores de monstros e (caso ela queira) uma ajudinha. Essa criatura animada e energ�tica gosta de dinheiro quase tanto quanto viol�ncia. S� um pouquinho deformada.
+	Bestiary: Oferece invocadores de monstros e (caso ela queira) uma ajudinha. Essa criatura animada e energética gosta de dinheiro quase tanto quanto violência. Só um pouquinho deformada.
 
 	TownNPCMood: {
 		Content: Estou me sentindo bem!
-		NoHome: Voc� tem alguma casa sobrando? Qualquer uma? At� uma jaula t� bom pra mim!
+		NoHome: Você tem alguma casa sobrando? Qualquer uma? Até uma jaula tá bom pra mim!
 		LoveSpace: Paz e tranquilidade significa que eu posso viver intensamente!
-		FarFromHome: Eu acho que a minha casa era pra l�... A n�o ser que voc� esteja me levando pra algum lugar?
-		DislikeCrowded: Quanto mais, melhor, mas eu t� come�ando a sentir um pouco apertada.
-		HateCrowded: Eu n�o consigo esticar minhas pernas e relaxar sem acertar algu�m...
-		LikeBiome: Ha ha ha, Algo sobre a {BiomeName} me faz incontrol�velmente por alguma raz�o!
-		LoveBiome: As estrelas acim s�o t�o bonitas, eu amo observar elas!
+		FarFromHome: Eu acho que a minha casa era pra lá... A não ser que você esteja me levando pra algum lugar?
+		DislikeCrowded: Quanto mais, melhor, mas eu tô começando a sentir um pouco apertada.
+		HateCrowded: Eu não consigo esticar minhas pernas e relaxar sem acertar alguém...
+		LikeBiome: Ha ha ha, Algo sobre a {BiomeName} me faz incontrolávelmente por alguma razão!
+		LoveBiome: As estrelas acim são tão bonitas, eu amo observar elas!
 		DislikeBiome: Podemos ir para algum lugar mais quente que esse?
-		HateBiome: Eu quero viver em outro lugar! Isso � horr�vel, eu t� suando uma chuva!
-		LikeNPC: "{NPCName} � o meu maior-mas-n�o-o-maior irm�o. Ele � bem legal!"
-		LoveNPC: "{NPCName} est� aqui! Ele � o meu irm�o mais velho, ele n�o � o mais maneiro?!"
-		DislikeNPC: Eu n�o aguento garotas como a {NPCName}, parece que ela s� t� aqui pra uma certa audi�ncia.
-		HateNPC: S� entre n�s. Voc� j� considerou jogar o {NPCName} de volta pra onde voc� achou ele?
-		LikeNPC_Princess: Eu tenho que visitar a {NPCName} de novo, ela � uma garota que me entende!
-		Princess_LovesNPC: "{NPCName} � t�o divertida, n�s poder�amos conversar por horas!"
+		HateBiome: Eu quero viver em outro lugar! Isso é horrível, eu tô suando uma chuva!
+		LikeNPC: "{NPCName} é o meu maior-mas-não-o-maior irmão. Ele é bem legal!"
+		LoveNPC: "{NPCName} está aqui! Ele é o meu irmão mais velho, ele não é o mais maneiro?!"
+		DislikeNPC: Eu não aguento garotas como a {NPCName}, parece que ela só tá aqui pra uma certa audiência.
+		HateNPC: Só entre nós. Você já considerou jogar o {NPCName} de volta pra onde você achou ele?
+		LikeNPC_Princess: Eu tenho que visitar a {NPCName} de novo, ela é uma garota que me entende!
+		Princess_LovesNPC: "{NPCName} é tão divertida, nós poderíamos conversar por horas!"
 	}
 
 	Chat: {
 		// Special
-		GiveGifts: Esse mundo parece mais d�ficil que o normal, ent�o voc� pode ficar com isso aqui! Fale comigo se voc� precisar de dicas, t� bom?
-		NTB: � O MUNDO ENGRA�ADO DE ABELHA!
+		GiveGifts: Esse mundo parece mais díficil que o normal, então você pode ficar com isso aqui! Fale comigo se você precisar de dicas, tá bom?
+		NTB: É O MUNDO ENGRAÇADO DE ABELHA!
 		NTBHA: " HA"
 		NTBHEE: " HEE"
 		NTBHOO: " HOO"
 		NTBHEH: " HEH"
 		NTBHAH: " HAH"
-		EridanusArmor: UWAH! Por favor n�o me machuque... pera, � s� voc�. N�o me assusta assim! E por que essa COISA t� te seguindo?!
-		NekomiArmor: Ooh, � o meu casaco! O que acha? Confort�vel e bom pra jogar, n�? Talvez voc� at� derrote um chefe sem levar dano!
-		Defeat: Bom trabalho ganhando uma de mim! Tomara que eu n�o tenha feito voc� suar muito. Continue evoluindo - Eu quero ver o qu�o longe voc� chega!
-		Stinky: Uau, Voc� t� com cheiro horr�vel. Quando foi a �ltima vez que voc� tomou banho, fedorento?
-		LoveStruck: Voc� t� mostrando muitos cora��es perto de mim! Desculpa, nossa conex�o t� s� no n�vel {0} por enquanto!
-		BloodMoon: Os efeitos da lua de sangue? Eu n�o sou humana mais, ent�o eu n�o ligo!
-		HM: Pensamento aleat�rio. Se eu coloco voc� num triturador de carne e tudo que sobra s�o duas tinturas... Eu provavelmente ficaria rica! N�o que eu faria isso, com voc�, especificamente, quer dizer... deixa pra l�!
-		Mutant1: Voc� pode pedir pro {0} colocar algumas roupas?
-		Mutant2: Um dia, eu vou vender uma invoca��o pra mim mesma! ... T� brincando. Esse � o trabalho do {0}.
-		Lumber: o qu�? Voc� quer lutar contra o {0}? ...at� eu sei pra n�o tentar.
+		EridanusArmor: UWAH! Por favor não me machuque... pera, é só você. Não me assusta assim! E por que essa COISA tá te seguindo?!
+		NekomiArmor: Ooh, é o meu casaco! O que acha? Confortável e bom pra jogar, né? Talvez você até derrote um chefe sem levar dano!
+		Defeat: Bom trabalho ganhando uma de mim! Tomara que eu não tenha feito você suar muito. Continue evoluindo - Eu quero ver o quão longe você chega!
+		Stinky: Uau, Você tá com cheiro horrível. Quando foi a última vez que você tomou banho, fedorento?
+		LoveStruck: Você tá mostrando muitos corações perto de mim! Desculpa, nossa conexão tá só no nível {0} por enquanto!
+		BloodMoon: Os efeitos da lua de sangue? Eu não sou humana mais, então eu não ligo!
+		HM: Pensamento aleatório. Se eu coloco você num triturador de carne e tudo que sobra são duas tinturas... Eu provavelmente ficaria rica! Não que eu faria isso, com você, especificamente, quer dizer... deixa pra lá!
+		Mutant1: Você pode pedir pro {0} colocar algumas roupas?
+		Mutant2: Um dia, eu vou vender uma invocação pra mim mesma! ... Tô brincando. Esse é o trabalho do {0}.
+		Lumber: o quê? Você quer lutar contra o {0}? ...até eu sei pra não tentar.
 		EternityMode: Abrace o sofrimento... E enquanto isso, abrace outra compra!
 		// Normal
-		Formattable1: "{0}! Eu acabei de ver algum roedor! Voc� n�o tem uma infesta��o de hamsters, n�? N�!?"
-		Normal1: N�o, eu com certeza n�o estou jogando po��es de amor em voc� enquanto voc� n�o olha! Um, Quer dizer... ah, compra algo logo!
-		Normal2: Voc� sabia? Os �nicos g�neros musicas de verdade s�o death metal e artcore.
-		Normal3: Eu sou falida moralmente? N�o, eu t� muito bem economicamente.
-		Normal4: Talvez eu consiga comprar um corpo mais alto se voc� continuar comprando!
+		Formattable1: "{0}! Eu acabei de ver algum roedor! Você não tem uma infestação de hamsters, né? NÉ!?"
+		Normal1: Não, eu com certeza não estou jogando poções de amor em você enquanto você não olha! Um, Quer dizer... ah, compra algo logo!
+		Normal2: Você sabia? Os únicos gêneros musicas de verdade são death metal e artcore.
+		Normal3: Eu sou falida moralmente? Não, eu tô muito bem economicamente.
+		Normal4: Talvez eu consiga comprar um corpo mais alto se você continuar comprando!
 		// Normal4: I might be able to afford a taller body if you keep buying!
 		Normal5: Meu tamanho te engana! Eu posso ter 137 cm, mas eu tenho 240 cm quando eu fico em cima do meu dinheiro!
 		// Normal5: My size deceives you! I may be 4'6'' but I'm 7'11'' when I stand on my money!
-		Normal6: Voc� � o Terrariano? Honestamente, eu estava esperando algu�m mais... alto.
-		Normal7: N�o olha pra mim desse jeito! A �nica coisa que eu divergi foi da minha humanidade.
+		Normal6: Você é o Terrariano? Honestamente, eu estava esperando alguém mais... alto.
+		Normal7: Não olha pra mim desse jeito! A única coisa que eu divergi foi da minha humanidade.
 		Normal8: Rasgar e dilacer e comprar de mim mais coisas para rasgar e dilacerar!
-		Normal9: N�o � a altura que importa, mas sim seu imposto de renda!
-		Normal10: Pera a�. Voc� tem certeza que essa casa n�o � o que eles chamam de 'pris�o'?
-		Normal11: Deviantt acordou! R�pido, d� todo o seu dinheiro pra ela se acalmar!
-		Normal12: Um dia, eu vou vender uma invoca��o pra mim mesma! ... T� brincando.
-		Normal13: Hmm, Eu consigo sentir! Voc� matou muitos, mas n�o o suficiente!
-		Normal14: Por que a letra extra, voc� se pergunta? Apenas o irm�o mais forte pode remover a letra dele!
+		Normal9: Não é a altura que importa, mas sim seu imposto de renda!
+		Normal10: Pera aí. Você tem certeza que essa casa não é o que eles chamam de 'prisão'?
+		Normal11: Deviantt acordou! Rápido, dê todo o seu dinheiro pra ela se acalmar!
+		Normal12: Um dia, eu vou vender uma invocação pra mim mesma! ... Tô brincando.
+		Normal13: Hmm, Eu consigo sentir! Você matou muitos, mas não o suficiente!
+		Normal14: Por que a letra extra, você se pergunta? Apenas o irmão mais forte pode remover a letra dele!
 	}
 
 	HelpDialogue: {
 		// About Bosses & Events
-		DownedMutant: O qu� foi isso? Voc� quer lutar comigo pra valer? ...nah, eu n�o consigo lutar bem sozinha.
-		DownedAbom: Hey, voc� t� quase no final! J� tem todos os seus acess�rios de Alma prontos? O que foi? Voc� quer lutar contra o meu irm�o mais velho? ...ele tem que ter um motivo pra lutar.
-		DownedEridanus: Pronto pra lutar contra o meu irm�o? Lembre-se de como voc� aprender a aprender, Continue focado, preocure padr�es, e n�o entre em p�nico. Boa sorte!
-		PostML: Quer criar For�as, mas faltam Encantamentos? Crie o S�mbolo dos Campe�es e eles te dar�o o que voc� quer, mas voc� tem que provar o seu poder.
-		MoonLord: S� um tipo espec�fico de arma funciona contra cada pilar. E pra aquele cara da lua, as fraquezas dele continuam mudando.
-		Cultist: Alguns inimigos poderosos como aquele cara do calabou�o podem criar suas pr�prias arenas. Voc� n�o ser� capaz de escapar, ent�o fa�a uso bom do espa�o que voc� tem.
-		Fishron: Voc� j� derrotou aquele peixe porco drag�o? Ele reduz a sua vida m�xima um pouco sempre que te acerta. Ele tamb�m � forte o suficiente para quebrar suas defesas em um golpe. Se voc� tivesse algum Revestimento Refor�ado pra ajudar com isso...
-		Betsy: Agora � uma boa hora pra derrotar a Betsy! N�o se preocupe. Se voc� chegar na �ltima onda e perder, voc� n�o vai ter que tentar o evento inteiro de novo. Cuidado pra n�o dar bobeira antes disso, e cuidados com os efeitos negativos dela!
-		Golem: Aquele tempo? Chegue no altar para recuperar o controle sobre fios! O golem fica bravo se voc� sair, ent�o � melhor ficar l� mesmo. Plataformas n�o funcionam, mas uma bomba de instatua��o lagharta pode ajudar a limpar espa�o!
-		Plantera: Aquela planta gigante inflige um veneno especial que faz ela ficar enfurecida se ela colocar o suficiente em voc�. Ela tamb�m tem um anel de folhas de cristal, mas lacaios passam por ele.
-		Destroyer: Aquela minhoca de metal tem algumas melhorias, mas suas sondas foram enfraquecidas para compensar. Ele vai come�ar a atirar proj�teis teleguiados e voar. Quando ele gira em volta de voc�, n�o tente escapar!
-		Twins: Eu vi aquele olho met�lico girando enquanto atira um laser gigante outro dia. Ah, e mesmo que voc� mate eles, eles s� morrem se os dois forem mortos!
-		Prime: Foque em derrubar aquela caveria met�lica, n�o os bra�os. N�o tente ultrapassar seus bra�os enquanto giram! Mantenha seus olhos abertos e aprenda a reconhecer o que casa coisa �.
-		WOF: A boca daquela coisa � praticamente imune a danos, ent�o voc� tem que mirar no olho. Apenas um deles � vulner�vel de uma vez. Que coisa? Voc� sabe, aquela coisa!
-		Deviantt: A pr�xima sou eu! Tente identificar qual ataque eu estou prestes a fazer. Bloqueios e virar pro outro lado podem nulificar Petrifica��o!
-		Skeletron: O mestre do calabou�o usa seus beb�s para atacar! O ataque que ele usa depende se ele t� girando ou n�o. Ele tamb�m vai tentar uma �ltima investida, ent�o esteja preparado para correr quando ele estiver prestes a morrer!
-		QueenBee: A Rainha Abelha ir� invocar suas descendentes como refor�os. Ela � mais dif�cil de machucar quando elas est�o vivas, ent�o as ataque antes. Ah, e o seu enxame n�o consegue acertar logo acima ou abaixo dela!
-		Brain: Foque em como o Ichor se move e n�o seja sobrecarregado! Quando o c�rebro fica bravo, ele ir� te confundir por alguns segundos. Quatro an�is para te confundir, uma anel para quando a confus�o acaba!
-		Eater: Quanto mais o devorador se separa, mais minhocas v�o te atacar de uma vez. A cabe�a � resistente, mas n�o deixe eles formarem muitos!
-		GoblinsCrimson: Cuidado ao quebrar o seu segundo Cora��o do Carmim! Isso pode atrair os Goblins, ent�o se prepare antes de fazer isso.
-		GoblinsCorruption: Cuidado ao quebrar o seu segundo Orbe Sombrio! Isso pode atrair os Goblins, ent�o se prepare antes de fazer isso.
-		EOC: Aquele olho gigante tem o poder da lua, mas � muito chamativo para o seu pr�prio bem! Aprenda a focar apenas nos pontos que podem te machucar.
-		Slime: Vai lutar contra aquela geleia rei no futuro? Criar uma Mini Instaponte ou duas pode ajudar, e cuidado com a chuva de geleias. N�o corra para muito longe do seu alcance ou ele enfurecer�!
+		DownedMutant: O quê foi isso? Você quer lutar comigo pra valer? ...nah, eu não consigo lutar bem sozinha.
+		DownedAbom: Hey, você tá quase no final! Já tem todos os seus acessórios de Alma prontos? O que foi? Você quer lutar contra o meu irmão mais velho? ...ele tem que ter um motivo pra lutar.
+		DownedEridanus: Pronto pra lutar contra o meu irmão? Lembre-se de como você aprender a aprender, Continue focado, preocure padrões, e não entre em pânico. Boa sorte!
+		PostML: Quer criar Forças, mas faltam Encantamentos? Crie o Símbolo dos Campeões e eles te darão o que você quer, mas você tem que provar o seu poder.
+		MoonLord: Só um tipo específico de arma funciona contra cada pilar. E pra aquele cara da lua, as fraquezas dele continuam mudando.
+		Cultist: Alguns inimigos poderosos como aquele cara do calabouço podem criar suas próprias arenas. Você não será capaz de escapar, então faça uso bom do espaço que você tem.
+		Fishron: Você já derrotou aquele peixe porco dragão? Ele reduz a sua vida máxima um pouco sempre que te acerta. Ele também é forte o suficiente para quebrar suas defesas em um golpe. Se você tivesse algum Revestimento Reforçado pra ajudar com isso...
+		Betsy: Agora é uma boa hora pra derrotar a Betsy! Não se preocupe. Se você chegar na última onda e perder, você não vai ter que tentar o evento inteiro de novo. Cuidado pra não dar bobeira antes disso, e cuidados com os efeitos negativos dela!
+		Golem: Aquele tempo? Chegue no altar para recuperar o controle sobre fios! O golem fica bravo se você sair, então é melhor ficar lá mesmo. Plataformas não funcionam, mas uma bomba de instatuação lagharta pode ajudar a limpar espaço!
+		Plantera: Aquela planta gigante inflige um veneno especial que faz ela ficar enfurecida se ela colocar o suficiente em você. Ela também tem um anel de folhas de cristal, mas lacaios passam por ele.
+		Destroyer: Aquela minhoca de metal tem algumas melhorias, mas suas sondas foram enfraquecidas para compensar. Ele vai começar a atirar projéteis teleguiados e voar. Quando ele gira em volta de você, não tente escapar!
+		Twins: Eu vi aquele olho metálico girando enquanto atira um laser gigante outro dia. Ah, e mesmo que você mate eles, eles só morrem se os dois forem mortos!
+		Prime: Foque em derrubar aquela caveria metálica, não os braços. Não tente ultrapassar seus braços enquanto giram! Mantenha seus olhos abertos e aprenda a reconhecer o que casa coisa é.
+		WOF: A boca daquela coisa é praticamente imune a danos, então você tem que mirar no olho. Apenas um deles é vulnerável de uma vez. Que coisa? Você sabe, aquela coisa!
+		Deviantt: A próxima sou eu! Tente identificar qual ataque eu estou prestes a fazer. Bloqueios e virar pro outro lado podem nulificar Petrificação!
+		Skeletron: O mestre do calabouço usa seus bebês para atacar! O ataque que ele usa depende se ele tá girando ou não. Ele também vai tentar uma última investida, então esteja preparado para correr quando ele estiver prestes a morrer!
+		QueenBee: A Rainha Abelha irá invocar suas descendentes como reforços. Ela é mais difícil de machucar quando elas estão vivas, então as ataque antes. Ah, e o seu enxame não consegue acertar logo acima ou abaixo dela!
+		Brain: Foque em como o Ichor se move e não seja sobrecarregado! Quando o cérebro fica bravo, ele irá te confundir por alguns segundos. Quatro anéis para te confundir, uma anel para quando a confusão acaba!
+		Eater: Quanto mais o devorador se separa, mais minhocas vão te atacar de uma vez. A cabeça é resistente, mas não deixe eles formarem muitos!
+		GoblinsCrimson: Cuidado ao quebrar o seu segundo Coração do Carmim! Isso pode atrair os Goblins, então se prepare antes de fazer isso.
+		GoblinsCorruption: Cuidado ao quebrar o seu segundo Orbe Sombrio! Isso pode atrair os Goblins, então se prepare antes de fazer isso.
+		EOC: Aquele olho gigante tem o poder da lua, mas é muito chamativo para o seu próprio bem! Aprenda a focar apenas nos pontos que podem te machucar.
+		Slime: Vai lutar contra aquela geleia rei no futuro? Criar uma Mini Instaponte ou duas pode ajudar, e cuidado com a chuva de geleias. Não corra para muito longe do seu alcance ou ele enfurecerá!
 		// Other
-		Auras: Parece que todo mundo t� aprendendo a projetar auras esses dias. Se voc� olhar pras part�culas, voc� pode ver se vai te afetar de perto ou � dist�ncia!
-		Debuffs: Provavelmente existem milhares de itens que te protegem desses efeitos negativos. � uma pena que voc� n�o tem milhares de m�os para carregar todos eles de uma vez!
-		SoulToggle: N�o se esque�a que voc� pode desabilitar seus efeitos! Eles est�o todos naquele bot�o de chave inglesa abaixo do seu invent�rio. Aqueles pequenos bot�es no fundo da lista incluem um conjunto recomendado para reduzir lag!
-		LifeCrystals: Eu n�o tenho nenhum cristal de vida para voc�, mas eu acho que meu irm�o mais velho deixou alguns no rei geleia gordo. Talvez ele comparilhe se voc� espancar ele!
-		Fish: Cuidado com os peixes! Tubar�es v�o te deixar quieto se voc� n�o mexer com eles, mas piranhas ficam loucas quando cheiram sangue. Elas podem pular pra fora da �gua pra te pegar!
-		Underwater: A �gua t� te atrapalhando? Nunca tive problema com ela, pessoalmente... Voc� j� tentou respirar �gua ao inv�s de ar?
-		Underworld: O submundo ficou bem mais quente desde a �ltima vez que eu visitei. Eu ouvi dizer que uma caveira de obsidiana te ajuda a n�o queimar at� a morte!
-		SpaceSuffocation: Quer ter uma competi��o de segurar o f�lego? O espa�o seria perfeito. N�o, eu n�o vou trapacear respirando �gua ao inv�s de ar, ou usando equipamento de mergulho!
-		UndergroundShadowHands: Tem medo do escuro? N�o? Voc� deveria ter! Eu ouvi um rumor de um monstro que pega pessoas no subterr�neo... assustador. Fique longe da escurid�o!
-		UndergroundHallow: Essa � uma cara engra�ada que voc� t� fazendo... o consagrado subterr�neo est� te cegando? Permane�a em �reas mais escuras para mitigar os efeitos!
-		LifeFruit: Se voc� me perguntar, a Plantera realmente t� largada. Uma dieta de Clorofita e Fruta da vida n�o � T�O saud�vel! Por que voc� n�o ajuda ela a emagrecer?
-		CactusDamage: Esses cactus podem ser bem pontudos! Se sentindo picado? Tente se encantar com ess�ncia de cactus e tente de novo!
-		RainLightning: Cuidado com os trov�es ao chover. � bom ter um guarda-chuva para que voc� n�o fique exposto e todo molhado!
+		Auras: Parece que todo mundo tá aprendendo a projetar auras esses dias. Se você olhar pras partículas, você pode ver se vai te afetar de perto ou à distância!
+		Debuffs: Provavelmente existem milhares de itens que te protegem desses efeitos negativos. É uma pena que você não tem milhares de mãos para carregar todos eles de uma vez!
+		SoulToggle: Não se esqueça que você pode desabilitar seus efeitos! Eles estão todos naquele botão de chave inglesa abaixo do seu inventário. Aqueles pequenos botões no fundo da lista incluem um conjunto recomendado para reduzir lag!
+		LifeCrystals: Eu não tenho nenhum cristal de vida para você, mas eu acho que meu irmão mais velho deixou alguns no rei geleia gordo. Talvez ele comparilhe se você espancar ele!
+		Fish: Cuidado com os peixes! Tubarões vão te deixar quieto se você não mexer com eles, mas piranhas ficam loucas quando cheiram sangue. Elas podem pular pra fora da água pra te pegar!
+		Underwater: A água tá te atrapalhando? Nunca tive problema com ela, pessoalmente... Você já tentou respirar água ao invés de ar?
+		Underworld: O submundo ficou bem mais quente desde a última vez que eu visitei. Eu ouvi dizer que uma caveira de obsidiana te ajuda a não queimar até a morte!
+		SpaceSuffocation: Quer ter uma competição de segurar o fôlego? O espaço seria perfeito. Não, eu não vou trapacear respirando água ao invés de ar, ou usando equipamento de mergulho!
+		UndergroundShadowHands: Tem medo do escuro? Não? Você deveria ter! Eu ouvi um rumor de um monstro que pega pessoas no subterrâneo... assustador. Fique longe da escuridão!
+		UndergroundHallow: Essa é uma cara engraçada que você tá fazendo... o consagrado subterrâneo está te cegando? Permaneça em áreas mais escuras para mitigar os efeitos!
+		LifeFruit: Se você me perguntar, a Plantera realmente tá largada. Uma dieta de Clorofita e Fruta da vida não é TÃO saudável! Por que você não ajuda ela a emagrecer?
+		CactusDamage: Esses cactus podem ser bem pontudos! Se sentindo picado? Tente se encantar com essência de cactus e tente de novo!
+		RainLightning: Cuidado com os trovões ao chover. É bom ter um guarda-chuva para que você não fique exposto e todo molhado!
 	}
 
 	WoTGDialogue: {
@@ -233,68 +233,68 @@ LumberJack: {
 	// NPCName10: Woody
 	// NPCName11: Leif
 	// NPCName12: Paul
-	Bestiary: Um Lenhador completamente normal que ama coletar criaturazinhas e cortar v�rios tipos de madeira. Mas ser� que ele esconde algo? Poderes Divinos Secretos?... Provavelmente n�o.
+	Bestiary: Um Lenhador completamente normal que ama coletar criaturazinhas e cortar vários tipos de madeira. Mas será que ele esconde algo? Poderes Divinos Secretos?... Provavelmente não.
 
 	TownNPCMood: {
 		Content: Eu estou feliz enquanto o mundo precisa que madeira seja cortada.
-		NoHome: Nenhum lenhador � completo sem uma cabana de madeira para chamar de casa!
-		LoveSpace: Menos pessoas pr�ximas significa que eu posso balan�ar o meu machado sem ningu�m entrar na frente.
-		FarFromHome: Aqui � muito longe da minha cabana, Eu deveria voltar pra l� e afiar meu machado.
-		DislikeCrowded: Eu acho que t� ficando apertado aqui.
-		HateCrowded: Tem muita gente aqui. Nada arruina as minhas sess�es mais do que acidentalmente cortar alg�em no meio.
-		LikeBiome: Muitas �rvores para cortar na {BiomeName} faz um Lenhador feliz.
-		LoveBiome: N�o tem nada melhor do que cortar madeira na {BiomeName}!
-		DislikeBiome: N�o tem nada pra cortar na {BiomeName}!
-		HateBiome: N�o tem nada pra cortar na {BiomeName}!
-		LikeNPC: Eu corto �rvores, {NPCName} planta mais, somos a dupla perfeita.
-		LoveNPC: Eu fico feliz que a {NPCName} entende a beleza de cortar uma �rvore grande.
-		DislikeNPC: "{NPCName} me disse pra come�ar a abra�ar �rvores... ent�o eu ensinei meu machado a abra�ar elas."
-		HateNPC: "{NPCName} n�o me entende. Bombardear uma floresta n�o � a mesma coisa que cortar madeira!"
-		LikeNPC_Princess: "{NPCName} � melhor com um machado do que eu esperava!"
-		Princess_LovesNPC: "{NPCName} � t�o forte, eu quero tentar cortar madeira alguma hora!"
+		NoHome: Nenhum lenhador é completo sem uma cabana de madeira para chamar de casa!
+		LoveSpace: Menos pessoas próximas significa que eu posso balançar o meu machado sem ninguém entrar na frente.
+		FarFromHome: Aqui é muito longe da minha cabana, Eu deveria voltar pra lá e afiar meu machado.
+		DislikeCrowded: Eu acho que tá ficando apertado aqui.
+		HateCrowded: Tem muita gente aqui. Nada arruina as minhas sessões mais do que acidentalmente cortar algúem no meio.
+		LikeBiome: Muitas árvores para cortar na {BiomeName} faz um Lenhador feliz.
+		LoveBiome: Não tem nada melhor do que cortar madeira na {BiomeName}!
+		DislikeBiome: Não tem nada pra cortar na {BiomeName}!
+		HateBiome: Não tem nada pra cortar na {BiomeName}!
+		LikeNPC: Eu corto árvores, {NPCName} planta mais, somos a dupla perfeita.
+		LoveNPC: Eu fico feliz que a {NPCName} entende a beleza de cortar uma árvore grande.
+		DislikeNPC: "{NPCName} me disse pra começar a abraçar árvores... então eu ensinei meu machado a abraçar elas."
+		HateNPC: "{NPCName} não me entende. Bombardear uma floresta não é a mesma coisa que cortar madeira!"
+		LikeNPC_Princess: "{NPCName} é melhor com um machado do que eu esperava!"
+		Princess_LovesNPC: "{NPCName} é tão forte, eu quero tentar cortar madeira alguma hora!"
 	}
 
 	Chat: {
 		// Special
-		Nurse: Eu sempre vejo a {0} observando meus b�ceps enquanto eu trabalho. Me pergunto se ela quer um pouco da minha madeira.
+		Nurse: Eu sempre vejo a {0} observando meus bíceps enquanto eu trabalho. Me pergunto se ela quer um pouco da minha madeira.
 		LucyTheAxe: Lucy daquele universo.. Coisas interessantes te esperam.
 		// Normal
-		Normal1: Madeira da Dinastia? Entre eu e voc�, aquilo l� nem � madeira de verdade!
-		Normal2: Claro que cacto n�o � madeira, mas eu ainda posso cortar com meu machado.
-		Normal3: Voc� n�o tem nenhuma fantasia sobre mim... certo?
-		Normal4: Eu como um pote de lascas de madeira pro caf� da manh�... sem leite.
+		Normal1: Madeira da Dinastia? Entre eu e você, aquilo lá nem é madeira de verdade!
+		Normal2: Claro que cacto não é madeira, mas eu ainda posso cortar com meu machado.
+		Normal3: Você não tem nenhuma fantasia sobre mim... certo?
+		Normal4: Eu como um pote de lascas de madeira pro café da manhã... sem leite.
 		Normal5: MAAADEEEEEEEEIRAAAA!
 		Normal6: Eu sou um lenhador e estou bem, Eu durmo a noite inteira e trabalho o dia inteiro!
-		Normal7: Voc� nunca mais vai precisar de um machado com eu por perto.
-		Normal8: Eu ouvi dizer que tem gente que corta �rvores com um peixe, quem faz isso?
+		Normal7: Você nunca mais vai precisar de um machado com eu por perto.
+		Normal8: Eu ouvi dizer que tem gente que corta árvores com um peixe, quem faz isso?
 		Normal9: Eu fico feliz que a minha madeira colocou um sorriso no seu rosto.
-		Normal10: Voc� j� viu a �rvore do mundo?ou ever seen the world tree?
-		Normal11: Voc� quer o que? ...Desculpa mas esse n�o � o tipo de madeira que eu t� vendendo.
-		Normal12: Por que eu n�o vendo bolotas? ...Eu refloresto todas as �rvores que eu corto, voc� n�o faz isso tamb�m?
-		Normal13: Qual o melhor tipo de �rvore? ...Qualquer que eu consiga cortar.
+		Normal10: Você já viu a árvore do mundo?ou ever seen the world tree?
+		Normal11: Você quer o que? ...Desculpa mas esse não é o tipo de madeira que eu tô vendendo.
+		Normal12: Por que eu não vendo bolotas? ...Eu refloresto todas as árvores que eu corto, você não faz isso também?
+		Normal13: Qual o melhor tipo de árvore? ...Qualquer que eu consiga cortar.
 		Normal14: Eu posso te machadar algo?
-		Normal15: Vou tirar uma soneca debaixo de uma �rvore mais tarde, quer ir junto comigo?
+		Normal15: Vou tirar uma soneca debaixo de uma árvore mais tarde, quer ir junto comigo?
 		Normal16: Eu sou um perito em todos os tipos de madeira.
-		Normal17: Fico feliz que existam mais �rvores para cortar aqui no Fim da Jornada.
-		Normal18: Vermelho � uma das minhas cores favoritas, logo ap�s madeira.
-		Normal19: � sempre tempo de flanela.
+		Normal17: Fico feliz que existam mais árvores para cortar aqui no Fim da Jornada.
+		Normal18: Vermelho é uma das minhas cores favoritas, logo após madeira.
+		Normal19: É sempre tempo de flanela.
 		// Tree Treasures
-		Desert: Enquanto eu estava cortando um cactus essas coisas pularam em mim, por que voc� n�o fica com elas?
-		Jungle: Essas �rvores de mogno est�o cheias de vida, mas uma �rvore s� tem uma fun��o: ser cortada. Ah sim esses ca�ram da �ltima.
-		Hallow: Esse lugar � um pouquinho muito brilhante pra mim, mas a madeira � t�o cort�vel quanto o resto. Tem esses insetos legais de noite, pegue alguns.
-		GlowshroomHM: O que faz essas �rvores brilharem eu n�o sei, voc� provavelmente vai comer elas mesmo, ent�o fique com isso.
-		Evil: As �rvores aqui s�o provavelmente as mais fortes nesse galho da realidade... Desculpa, piadas de �rvore. Eu tenho esses pra voc�.
-		Snow: Essa parte dos bosques � bem bonita n�? Aqui, eu tenho algumas das minhas madeiras favoritas pra voc�.
-		Beach: At� quando de f�rias, Eu sempre encaixo um pouquinho de trabalho de lenhador. Alguns pass�ros irritantes ca�ram de uma palmeira. Tire eles da minha m�o... talvez cozinhe eles?
-		Underworld: Eu olhei por aqui e achei algumas �rvores estranhas e cinzentas. Muito fr�geis. Eu tamb�m achei essa criatura e vegetal. Por favor leve eles, s�o quentes demais para segurar.
-		DirtRockGem: Eu certamente n�o esperava encontrar �rvores t�o maravilhosas por aqui. Olha isso.
-		DirtRockMouse: Fiz um percurso longo hoje, mas tinham poucas daquelas �rvores estranhas. Eu achei muitos desses, por que voc� n�o d� uma casa pra eles?
-		CommonDayTimeWindy: Parece que o vento trouxe v�rios desses pra fora. Algumas pessoas dizem que eles te d�o boa sorte. Tudo que eu sei �, a �nica sorte que eu preciso � de um machado afiado!
-		CommonDayTimeButterfly: No meu tempo, as pessoas usavam borboletas para criar equipamento poderoso. N�s tentamos esquecer esses dias... mas tome uma.
-		CommonDayTimeEucaluptusSap: Eu achei isso, mas n�o sou uma pessoa apegada. Pode ficar com voc�.
-		CommonDayTimeCritter: Essas pequenas criaturas est�o sempre caindo das �rvores que eu corto, talvez voc� consiga achar um uso para eles?
-		CommonNightTime: Cortar �rvores � noite � sempre relaxante... exceto por olhos voadores. Pode ficar com um desses carinhas, eles v�o te fazer compania.
-		Rest: Eu estou descansando depois de um �timo dia cortando, volte amanh� e talvez eu tenha algo mais para voc�.
+		Desert: Enquanto eu estava cortando um cactus essas coisas pularam em mim, por que você não fica com elas?
+		Jungle: Essas árvores de mogno estão cheias de vida, mas uma árvore só tem uma função: ser cortada. Ah sim esses caíram da última.
+		Hallow: Esse lugar é um pouquinho muito brilhante pra mim, mas a madeira é tão cortável quanto o resto. Tem esses insetos legais de noite, pegue alguns.
+		GlowshroomHM: O que faz essas árvores brilharem eu não sei, você provavelmente vai comer elas mesmo, então fique com isso.
+		Evil: As árvores aqui são provavelmente as mais fortes nesse galho da realidade... Desculpa, piadas de árvore. Eu tenho esses pra você.
+		Snow: Essa parte dos bosques é bem bonita né? Aqui, eu tenho algumas das minhas madeiras favoritas pra você.
+		Beach: Até quando de férias, Eu sempre encaixo um pouquinho de trabalho de lenhador. Alguns passáros irritantes caíram de uma palmeira. Tire eles da minha mão... talvez cozinhe eles?
+		Underworld: Eu olhei por aqui e achei algumas árvores estranhas e cinzentas. Muito frágeis. Eu também achei essa criatura e vegetal. Por favor leve eles, são quentes demais para segurar.
+		DirtRockGem: Eu certamente não esperava encontrar árvores tão maravilhosas por aqui. Olha isso.
+		DirtRockMouse: Fiz um percurso longo hoje, mas tinham poucas daquelas árvores estranhas. Eu achei muitos desses, por que você não dá uma casa pra eles?
+		CommonDayTimeWindy: Parece que o vento trouxe vários desses pra fora. Algumas pessoas dizem que eles te dão boa sorte. Tudo que eu sei é, a única sorte que eu preciso é de um machado afiado!
+		CommonDayTimeButterfly: No meu tempo, as pessoas usavam borboletas para criar equipamento poderoso. Nós tentamos esquecer esses dias... mas tome uma.
+		CommonDayTimeEucaluptusSap: Eu achei isso, mas não sou uma pessoa apegada. Pode ficar com você.
+		CommonDayTimeCritter: Essas pequenas criaturas estão sempre caindo das árvores que eu corto, talvez você consiga achar um uso para eles?
+		CommonNightTime: Cortar árvores à noite é sempre relaxante... exceto por olhos voadores. Pode ficar com um desses carinhas, eles vão te fazer compania.
+		Rest: Eu estou descansando depois de um ótimo dia cortando, volte amanhã e talvez eu tenha algo mais para você.
 	}
 
 	WoTGDialogue: {
@@ -305,8 +305,8 @@ LumberJack: {
 		// RiftEclipseSnow: Looks like the snow biome houses more than just boreal now. Still doesn't change my job though! Neither snow nor heat nor rain nor sleet!
 	}
 
-	Census.SpawnCondition: Pode cair de �rvores ap�s 400 madeiras serem cortadas.
-	TreeTreasures: Tesouros de �rvores
+	Census.SpawnCondition: Pode cair de árvores após 400 madeiras serem cortadas.
+	TreeTreasures: Tesouros de árvores
 }
 
 Mutant: {
@@ -324,102 +324,102 @@ Mutant: {
 	// NPCName11: Tom
 	// NPCName12: Weirdus
 	// NPCName13: Polly
-	Bestiary: Chamado de irm�o por seus irm�os, mas se recusa a confirmar seu g�nero. Mais interessado em assistir lutas e pequenos animais do que falar sobre o seu passado. Parece estar procurando algu�m forte..
+	Bestiary: Chamado de irmão por seus irmãos, mas se recusa a confirmar seu gênero. Mais interessado em assistir lutas e pequenos animais do que falar sobre o seu passado. Parece estar procurando alguém forte...
 
 	TownNPCMood: {
 		Content: Obrigado pela casa, eu acho.
-		NoHome: Uma casa n�o doeria, mas eu n�o ligo de n�o ter uma tamb�m.
-		LoveSpace: Um tempo para descansar entre lutas � bom. Eu n�o tenho muito disso com muitos humanos perto.
-		FarFromHome: Eu como geleias e zumbis, mas comer comida humana em casa seria bom tamb�m.
-		DislikeCrowded: Tem muita gente aqui. E elas ficam chateadas quando eu ven�o as nossas disputas de encarar.
-		HateCrowded: Se mais um humano nessa cidade apertada esbarrar no meu c�rebro de novo... deixa pra l�.
-		LikeBiome: N�s sempre come�amos na {BiomeName}, � um bom lugar.
-		LoveBiome: Viver aqui � confort�vel, mas quando voc� vai encontrar meu templo?
-		DislikeBiome: � pro {BiomeName} me impressionar? porque n�o t� dando certo, nem a fada grande.
-		HateBiome: Voc� quer que eu cobre mais caro? Me fazer viver na {BiomeName} significa que eu vou cobrar mais caro.
-		LikeNPC: Eu esqueci quando a {NPCName} se juntou a fam�lia, mas ela merece o seu lugar.
-		LoveNPC: "{NPCName} e eu lutamos em muitas batalhas, pena que n�o existam mais oportunidades de lutar de novo."
-		DislikeNPC: Por que o {NPCName} est� aqui? Est� bem, eu, � s� n�o olhar ele no olho e ele n�o pode te assustar...
-		HateNPC: "{NPCName} precisa ir embora antes que o meu Penetrador for�e ele a ir."
-		LikeNPC_Princess: "{NPCName} parece amig�vel."
-		Princess_LovesNPC: "{NPCName} tem alguns items incr�veis, eles s�o �timos para conhecer novos amigos!"
+		NoHome: Uma casa não doeria, mas eu não ligo de não ter uma também.
+		LoveSpace: Um tempo para descansar entre lutas é bom. Eu não tenho muito disso com muitos humanos perto.
+		FarFromHome: Eu como geleias e zumbis, mas comer comida humana em casa seria bom também.
+		DislikeCrowded: Tem muita gente aqui. E elas ficam chateadas quando eu venço as nossas disputas de encarar.
+		HateCrowded: Se mais um humano nessa cidade apertada esbarrar no meu cérebro de novo... deixa pra lá.
+		LikeBiome: Nós sempre começamos na {BiomeName}, é um bom lugar.
+		LoveBiome: Viver aqui é confortável, mas quando você vai encontrar meu templo?
+		DislikeBiome: É pro {BiomeName} me impressionar? porque não tá dando certo, nem a fada grande.
+		HateBiome: Você quer que eu cobre mais caro? Me fazer viver na {BiomeName} significa que eu vou cobrar mais caro.
+		LikeNPC: Eu esqueci quando a {NPCName} se juntou a família, mas ela merece o seu lugar.
+		LoveNPC: "{NPCName} e eu lutamos em muitas batalhas, pena que não existam mais oportunidades de lutar de novo."
+		DislikeNPC: Por que o {NPCName} está aqui? Está bem, eu, é só não olhar ele no olho e ele não pode te assustar...
+		HateNPC: "{NPCName} precisa ir embora antes que o meu Penetrador forçe ele a ir."
+		LikeNPC_Princess: "{NPCName} parece amigável."
+		Princess_LovesNPC: "{NPCName} tem alguns items incríveis, eles são ótimos para conhecer novos amigos!"
 	}
 
 	Chat: {
 		// Special
-		EternityDefeat: Parab�ns. Voc� realmente abra�ou a Eternidade... pelo menos, eu acho que voc� conseguiu? E agora? Ascender desse plano da exist�ncia? Lutar contra uma entidade transcendente que se parece com um gato? Destruir o mundo? Todo o poder est� em suas m�os agora.
-		Defeat: Bom trabalho em me derrotar, eu acho. Eu ainda estou com vontade de esticar minhas asas... Por que n�s n�o lutamos de verdade da pr�xima vez?
-		MutantArmor: Armadura bonita que voc� tem, pele muito real�stica. Na verdade, tem algum problema eu pegar ela? Sua pele, quer dizer.
-		SoulsPostML: Agora que voc� derrotou o grand�o, eu diria que � hora de come�ar a coletar aqueles materiais!
-		DefeatCommon: O que foi? Voc� quer lutar comigo? ...claro, eu acho.
-		DefeatAbom: O que foi? Voc� quer lutar comigo? ...talvez se eu tivesse um motivo.
-		SoulsModDisabled: O que foi? Voc� quer lutar comigo? ...voc� n�o merece, seu rato.
-		PumpkinMoon: Est� um pouquinho sinistro hoje, n�o?
-		FrostMoon: Eu pediria um casaco, mas eu n�o acho que voc� tem algum do meu tamanho.
-		SlimeRain: O clima parece meio estranho hoje, voc� n�o concorda?
-		BloodMoon1: Noite bonita hoje, n�o?
-		BloodMoon2: Eu espero que as discuss�es constantes que eu estou escutando n�o sejam culpa minha.
+		EternityDefeat: Parabéns. Você realmente abraçou a Eternidade... pelo menos, eu acho que você conseguiu? E agora? Ascender desse plano da existência? Lutar contra uma entidade transcendente que se parece com um gato? Destruir o mundo? Todo o poder está em suas mãos agora.
+		Defeat: Bom trabalho em me derrotar, eu acho. Eu ainda estou com vontade de esticar minhas asas... Por que nós não lutamos de verdade da próxima vez?
+		MutantArmor: Armadura bonita que você tem, pele muito realística. Na verdade, tem algum problema eu pegar ela? Sua pele, quer dizer.
+		SoulsPostML: Agora que você derrotou o grandão, eu diria que é hora de começar a coletar aqueles materiais!
+		DefeatCommon: O que foi? Você quer lutar comigo? ...claro, eu acho.
+		DefeatAbom: O que foi? Você quer lutar comigo? ...talvez se eu tivesse um motivo.
+		SoulsModDisabled: O que foi? Você quer lutar comigo? ...você não merece, seu rato.
+		PumpkinMoon: Está um pouquinho sinistro hoje, não?
+		FrostMoon: Eu pediria um casaco, mas eu não acho que você tem algum do meu tamanho.
+		SlimeRain: O clima parece meio estranho hoje, você não concorda?
+		BloodMoon1: Noite bonita hoje, não?
+		BloodMoon2: Eu espero que as discussões constantes que eu estou escutando não sejam culpa minha.
 		NightTime: Eu seguiria e ajudaria, mas eu prefiro ficar sentado por enquanto.
-		Party: "{0} � quem me convidou, mas eu n�o entendo o porqu�."
-		PartyWithoutPartyGirl: Eu n�o sei o porqu� todo mundo t� t�o feliz, mas se ningu�m me confundir com uma Pi�ata, eu estou feliz tamb�m.
-		Nurse: Sempre que estamos sozinhos, a {0} fica jogando seringas em mim, n�o importa quantas vezes eu pe�o para que ela pare!
-		WitchDoctor: Por favor pe�a pro {0} parar com esse neg�cio 'm�stico', quer dizer, qual �! Eu entendo, voc� faz �gua com corante ou algo assim.
+		Party: "{0} é quem me convidou, mas eu não entendo o porquê."
+		PartyWithoutPartyGirl: Eu não sei o porquê todo mundo tá tão feliz, mas se ninguém me confundir com uma Piñata, eu estou feliz também.
+		Nurse: Sempre que estamos sozinhos, a {0} fica jogando seringas em mim, não importa quantas vezes eu peço para que ela pare!
+		WitchDoctor: Por favor peça pro {0} parar com esse negócio 'místico', quer dizer, qual é! Eu entendo, você faz água com corante ou algo assim.
 		Dryad: Por que a roupa da {0} faz minhas asas vibrarem?
-		Stylist: "{0} uma vez me deu uma peruca... eu fico horr�vel com cabelo longo."
+		Stylist: "{0} uma vez me deu uma peruca... eu fico horrível com cabelo longo."
 		Truffle: Aquele cogumelo mutado parece ser o meu tipo de pessoa.
-		TaxCollector: "{0} fica me pedindo dinheiro, mas ele n�o aceita minhas invoca��es!"
+		TaxCollector: "{0} fica me pedindo dinheiro, mas ele não aceita minhas invocações!"
 		Guide: Alguma ideia porque o {0} sempre fica se tremendo de medo quando eu me aproximo dele?
-		WitchDoctorTruffleCyborg: Se qualquer um de n�s conseguisse tocar instrumentos, eu com certeza come�aria uma banda com {0}, {1}, e {2}.
+		WitchDoctorTruffleCyborg: Se qualquer um de nós conseguisse tocar instrumentos, eu com certeza começaria uma banda com {0}, {1}, e {2}.
 		PartyGirl: Cara, o confete da {0} sempre fica preso nas minhas asas.
-		Demolitionist: Eu estou surpreso que o {0} n�o explodiu um buraco no ch�o ainda... pensando bem, isso parece legal.
-		Tavernkeep: "{0} continua sugerindo que eu beba cerveja, mas algo me diz que ele n�o gostaria de me ver b�bado de verdade."
-		DyeTrader: "{0} quer ver como eu fico usando azul... eu n�o sei o que pensar."
+		Demolitionist: Eu estou surpreso que o {0} não explodiu um buraco no chão ainda... pensando bem, isso parece legal.
+		Tavernkeep: "{0} continua sugerindo que eu beba cerveja, mas algo me diz que ele não gostaria de me ver bêbado de verdade."
+		DyeTrader: "{0} quer ver como eu fico usando azul... eu não sei o que pensar."
 		// Normal
-		Normal1: Ferocidade, barbaridade, sede por sangue, � isso que eu gosto de ver nas pessoas.
-		Normal2: Quanto mais forte voc� fica, mais coisas eu vendo. Faz sentido, n�?
-		Normal3: Tem uma coisa que voc�s todos t�m que eu n�o tenho... percep��o de profundidade, eu acho?
-		Normal4: Seria bem legal se eu vendesse uma invoca��o pra mim mesmo...
-		Normal5: A �nica forma de ficar mais forte � continuar comprando de mim e no atacado!
-		Normal6: por que voc� t� me olhando desse jeito, tudo que eu fiz foi comer uma ma��.
-		Normal7: N�o se preocupe com mais ningu�m, tudo que voc� precisa est� aqui.
-		Normal8: Voc� tem sorte que eu estou do seu lado.
-		Normal9: Claro que eu gostaria de um sandu�che de presunto.
-		Normal10: Ser� que eu deveria estar vestindo roupas? ...Nah.
-		Normal11: N�o � como se eu conseguisse gastar todo o ouro que voc� t� me dando.
-		Normal12: Viol�ncia por viol�ncia � a lei da besta.
+		Normal1: Ferocidade, barbaridade, sede por sangue, é isso que eu gosto de ver nas pessoas.
+		Normal2: Quanto mais forte você fica, mais coisas eu vendo. Faz sentido, né?
+		Normal3: Tem uma coisa que vocês todos têm que eu não tenho... percepção de profundidade, eu acho?
+		Normal4: Seria bem legal se eu vendesse uma invocação pra mim mesmo...
+		Normal5: A única forma de ficar mais forte é continuar comprando de mim e no atacado!
+		Normal6: por que você tá me olhando desse jeito, tudo que eu fiz foi comer uma maçã.
+		Normal7: Não se preocupe com mais ninguém, tudo que você precisa está aqui.
+		Normal8: Você tem sorte que eu estou do seu lado.
+		Normal9: Claro que eu gostaria de um sanduíche de presunto.
+		Normal10: Será que eu deveria estar vestindo roupas? ...Nah.
+		Normal11: Não é como se eu conseguisse gastar todo o ouro que você tá me dando.
+		Normal12: Violência por violência é a lei da besta.
 		Normal13: Esses caras realmente precisam ser mais criativos. Todos os primeiros chefes deles tem tema de deserto!
-		Normal14: Voc� quer saber como um Mutant e um Abominationn s�o irm�os? � melhor voc� n�o saber.
-		Normal15: Eu sou tudo que voc� precisa para uma Calamity.
-		Normal16: Curve-se diante de mim! ...depois de voc� fazer essa compra.
-		Normal17: � claro que eu estou te ajudando, mas eh... o que eu ganho nisso? Uma casa? Eu como zumbis no caf� da manh�.
-		Normal18: Se eu posso pular? N�o, eu n�o tenho uma 'barra de espa�o'.
+		Normal14: Você quer saber como um Mutant e um Abominationn são irmãos? É melhor você não saber.
+		Normal15: Eu sou tudo que você precisa para uma Calamity.
+		Normal16: Curve-se diante de mim! ...depois de você fazer essa compra.
+		Normal17: É claro que eu estou te ajudando, mas eh... o que eu ganho nisso? Uma casa? Eu como zumbis no café da manhã.
+		Normal18: Se eu posso pular? Não, eu não tenho uma 'barra de espaço'.
 		Normal19: Peguei seu nariz, eu precisava de um para substituir o meu.
-		Normal20: O que � um Terry?
-		Normal21: Por que tantas criaturas carregam um boneco azul estranho? O mundo talvez nunca saber�.
-		Normal22: A desgra�a certa aproxima-se. ...se voc� n�o comprar nada.
-		Normal23: Eu ouvi falar de uma 'terceira dimens�o', eu me pergunto sobre como ela se parece.
-		Normal24: Cara se eu n�o t� bonit�o hoje.
-		Normal25: Voc� tem menos amigos do que eu tenho olhos.
-		Normal26: O oceano � um lugar perigoso, me pergunto onde o Mergulhador est�?
-		Normal27: Voc� sabe o que uma te-era �?
-		Normal28: Eu n�o consigo nem escrever 'apoteose', voc� quer que eu saiba o que isso �?
-		Normal29: De onde os monstros tiram o ouro deles? ...voc� sabe que eu n�o tenho bolsos.
-		Normal30: Cachorros s�o legais e tals, mas gatos n�o tentam morder meu c�rebro.
-		Normal31: Cuidado com o drag�o verde... O que que esse rosto quer dizer?
-		Normal32: Onde � esse Piuau-u� que eu fico ouvindo sobre.
-		Normal33: Eu te disse 56 vezes, eu estou ocupado... opa, voc� quer comprar algo? Acho que eu tenho tempo ent�o.
-		Normal34: Eu ouvi falar de uma 'Alma das almas' que s� existe em 2015.
-		Normal35: Adicionar EX na frente de tudo faz ficar bem mais d�ficil.
+		Normal20: O que é um Terry?
+		Normal21: Por que tantas criaturas carregam um boneco azul estranho? O mundo talvez nunca saberá.
+		Normal22: A desgraça certa aproxima-se. ...se você não comprar nada.
+		Normal23: Eu ouvi falar de uma 'terceira dimensão', eu me pergunto sobre como ela se parece.
+		Normal24: Cara se eu não tô bonitão hoje.
+		Normal25: Você tem menos amigos do que eu tenho olhos.
+		Normal26: O oceano é um lugar perigoso, me pergunto onde o Mergulhador está?
+		Normal27: Você sabe o que uma te-era é?
+		Normal28: Eu não consigo nem escrever 'apoteose', você quer que eu saiba o que isso é?
+		Normal29: De onde os monstros tiram o ouro deles? ...você sabe que eu não tenho bolsos.
+		Normal30: Cachorros são legais e tals, mas gatos não tentam morder meu cérebro.
+		Normal31: Cuidado com o dragão verde... O que que esse rosto quer dizer?
+		Normal32: Onde é esse Piuau-uí que eu fico ouvindo sobre.
+		Normal33: Eu te disse 56 vezes, eu estou ocupado... opa, você quer comprar algo? Acho que eu tenho tempo então.
+		Normal34: Eu ouvi falar de uma 'Alma das almas' que só existe em 2015.
+		Normal35: Adicionar EX na frente de tudo faz ficar bem mais díficil.
 		Normal36: Eu acho que toda arte moderna parece bonita, especialmente as sangrentas.
-		Normal37: Quantos guias voc� precisa pra mudar uma l�mpada? ...N�o sei, pergunta pra ele.
-		Normal38: Que bom que eu n�o tenho uma cama, eu provavelmente nunca sairia dela.
-		Normal39: O que � esse neg�cio de atualiza��o? Parece raro.
-		Normal40: Se voc� precisar de mim eu vou estar fazendo nada em algum lugar.
-		Normal41: Como assim quem � Fargo!
-		Normal42: Voc� j� viu o gato ech?
-		Normal43: Eu n�o entendo de m�sica, mas prefiro jazz suave... ou os gritos de monstros morrendo.
-		Normal44: O Cthulhu n�o tem nada comigo!
-		Normal45: Eu ouvi um rumor de invoca��es de chefe infinitas. Me faz passar mal...
+		Normal37: Quantos guias você precisa pra mudar uma lâmpada? ...Não sei, pergunta pra ele.
+		Normal38: Que bom que eu não tenho uma cama, eu provavelmente nunca sairia dela.
+		Normal39: O que é esse negócio de atualização? Parece raro.
+		Normal40: Se você precisar de mim eu vou estar fazendo nada em algum lugar.
+		Normal41: Como assim quem é Fargo!
+		Normal42: Você já viu o gato ech?
+		Normal43: Eu não entendo de música, mas prefiro jazz suave... ou os gritos de monstros morrendo.
+		Normal44: O Cthulhu não tem nada comigo!
+		Normal45: Eu ouvi um rumor de invocações de chefe infinitas. Me faz passar mal...
 	}
 
 	WoTGDialogue: {
@@ -435,9 +435,9 @@ Mutant: {
 
 	Census.SpawnCondition: Quando qualquer chefe for derrotado.
 	CycleShop: Ciclar Loja
-	PreHM: Pr�-Modo D�ficil
-	HM: Modo D�ficil
-	PostML: P�s Senhor da Lua
+	PreHM: Pré-Modo Díficil
+	HM: Modo Díficil
+	PostML: Pós Senhor da Lua
 }
 
 Squirrel: {
@@ -449,12 +449,12 @@ Squirrel: {
 	// NPCName5: Truffle
 	// NPCName6: Furgo
 	// NPCName7: Squeaks
-	Bestiary: Essa criatura estilosa vende imita��es de itens valiosos que ele v� em seu invent�rio. N�o divulga como ele consegue esses itens, porque n�o consegue falar.
+	Bestiary: Essa criatura estilosa vende imitações de itens valiosos que ele vê em seu inventário. Não divulga como ele consegue esses itens, porque não consegue falar.
 
 	TownNPCMood: {
 		Content: *guincho contente*
 		NoHome: *guincho triste mendigo*
-		LoveSpace: *guincho feliz espa�oso*
+		LoveSpace: *guincho feliz espaçoso*
 		FarFromHome: *guincho triste perdido*
 		DislikeCrowded: *guincho triste apertado*
 		HateCrowded: *guincho muito triste apertado*
@@ -467,12 +467,12 @@ Squirrel: {
 		DislikeNPC: *guincho bravo sobre {NPCName}*
 		HateNPC: *guincho muito bravo sobre {NPCName}*
 		LikeNPC_Princess: *guincho feliz sobre a {NPCName}*
-		Princess_LovesNPC: "{NPCName} � muito ador�vel!"
+		Princess_LovesNPC: "{NPCName} é muito adorável!"
 	}
 
 	Chat: {
 		// Special
-		BloodMoon: "[c/FF0000:Voc� ir� sofrer.]"
+		BloodMoon: "[c/FF0000:Você irá sofrer.]"
 		// Normal
 		Normal1: *guincho*
 		Normal2: *chiado*
@@ -482,7 +482,7 @@ Squirrel: {
 	}
 
 	// WoTGDialogue: "[{0} looks up at you. You can't tell what its expression means.]"
-	Census.SpawnCondition: Tenha um esquilo de cartola no seu invent�rio.
+	Census.SpawnCondition: Tenha um esquilo de cartola no seu inventário.
 	// Feed: Feed Held Item
 	// BlackMarket: Black Market
 }

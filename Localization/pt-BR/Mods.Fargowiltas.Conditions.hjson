@@ -1,9 +1,9 @@
 DownedBoss: Quando qualquer chefe for derrotado
-DutchmanDown: Quando o Holand�s Voador for derrotado
+DutchmanDown: Quando o Holandês Voador for derrotado
 MageDown: Quando o Mago Sombrio for derrotado
 OgreDown: Quando o Ogro for derrotado
 BetsyDown: Quando a Betsy for derrotada
-HorsemanDown: Quando o Cavaleiro sem Cabe�a for derrotado
+HorsemanDown: Quando o Cavaleiro sem Cabeça for derrotado
 PillarsDown: Quando os Pilares Celestiais forem derrotados
 Downed: Quando for derrotado
 WormDown: Quando o Devorador ou Cavador for derrotado
@@ -14,49 +14,49 @@ MinerDown: Quando o Minerador zumbi for derrotado
 TimDown: Quando o Tim for derrotado
 GnomeDown: Quando o Gnomo for derrotado
 GoldSlimeDown: Quando a Geleia dourada for derrotada
-DungeonSlimeDown: Quando a Geleia do calabou�o e o Esqueletron forem derrotados
-MedusaDown: Quando a Medusa for derrotada, no Modo Dif�cil
-ClownDown: Quando o Palha�o for derrotado, no Modo Dif�cil
+DungeonSlimeDown: Quando a Geleia do calabouço e o Esqueletron forem derrotados
+MedusaDown: Quando a Medusa for derrotada, no Modo Difícil
+ClownDown: Quando o Palha�o for derrotado, no Modo Difícil
 NymphDown: Quando a Ninfa for derrotada
-MothDown: Quando a Mariposa for derrotada, no Modo Dif�cil
-RainbowSlimeDown: Quando a Geleia arco-�ris for derrotada, no Modo Dif�cil
-WyvernDown: Quando a Serpe for derrotada, no Modo Dif�cil
-RuneDown: Quando o Mago das Runas for derrotado, no Modo Dif�cil
-MimicDown: Quando o M�mico for derrotado, no Modo Dif�cil
-MimicHallowDown: Quando o M�mico Consagrado for derrotado, no Modo Dif�cil
-MimicCorruptDown: Quando o M�mico Corrompido for derrotado, no Modo Dif�cil
-MimicCrimsonDown: Quando o M�mico de Carmim for derrotado, no Modo Dif�cil
-MimicJungleDown: Quando o M�mico da Selva for derrotado, no Modo Dif�cil
-IceGolemDown: Quando o Golem de Gelo for derrotado, no Modo Dif�cil
-SandDown: Quando a Elemental de Areia for derrotada, no Modo Dif�cil
-DevilDown: Quando o Diabo Vermelho for derrotado, no Modo Dif�cil
-BloodFishDown: Quando o Olho Errante ou Trit�o Zumbi for derrotado
-// BloodFish2Down: After defeating a Hemogoblin Shark or Blood Eel, In hardmode
-BloodNautDown: Quando o Encoran�utilo for derrotado, no Modo Dif�cil
-SummonerDown: Quando o Goblin Invocador e o Ex�rcito Goblin forem derrotados, no Modo Dif�cil
-PirateDown: Quando o Capit�o Pirata e a invas�o pirata forem derrotados, no Modo Dif�cil
-NailheadDown: Quando o Cabe�a de Pregos e todos os chefes mec�nicos forem derrotados
-MothronDown: Quando a Mothron e todos os chefes mec�nicos forem derrotados
+MothDown: Quando a Mariposa for derrotada, no Modo Difícil
+RainbowSlimeDown: Quando a Geleia arco-íris for derrotada, no Modo Difícil
+WyvernDown: Quando a Serpe for derrotada, no Modo Difícil
+RuneDown: Quando o Mago das Runas for derrotado, no Modo Difícil
+MimicDown: Quando o Mímico for derrotado, no Modo Difícil
+MimicHallowDown: Quando o Mímico Consagrado for derrotado, no Modo Difícil
+MimicCorruptDown: Quando o Mímico Corrompido for derrotado, no Modo Difícil
+MimicCrimsonDown: Quando o Mímico de Carmim for derrotado, no Modo Difícil
+MimicJungleDown: Quando o Mímico da Selva for derrotado, no Modo Difícil
+IceGolemDown: Quando o Golem de Gelo for derrotado, no Modo Difícil
+SandDown: Quando a Elemental de Areia for derrotada, no Modo Difícil
+DevilDown: Quando o Diabo Vermelho for derrotado, no Modo Difícil
+BloodFishDown: Quando o Olho Errante ou Tritão Zumbi for derrotado
+BloodFish2Down: Quando o Tubarão Hemogoblin ou Enguia de Sangue for derrotado, no Modo Difícil
+BloodNautDown: Quando o Encoranáutilo for derrotado, no Modo Difícil
+SummonerDown: Quando o Goblin Invocador e o Exército Goblin forem derrotados, no Modo Difícil
+PirateDown: Quando o Capitão Pirata e a invasão pirata forem derrotados, no Modo Difícil
+NailheadDown: Quando o Cabeça de Pregos e todos os chefes mecânicos forem derrotados
+MothronDown: Quando a Mothron e todos os chefes mecânicos forem derrotados
 LeeDown: Quando o Bone lee for derrotado
 PaladinDown: Quando for derrotado
-SkeleGunDown: Quando um Atirador esqueleto, Esqueleto t�tico ou Comando esqueleto forem derrotados
+SkeleGunDown: Quando um Atirador esqueleto, Esqueleto tático ou Comando esqueleto forem derrotados
 SkeleMagesDown: Quando um Necromancer, Satanista ou Mago em Trapos forem derrotados
-SiblingPylon: Se todos os irm�os estiverem presentes
+SiblingPylon: Se todos os irmãos estiverem presentes
 BossDown: Quando qualquer chefe for derrotado
 DownedTheBoss: Quando o chefe for derrotado
-Angler5: Complete 5 miss�es do pescador
-Angler10: Complete 10 miss�es do pescador
-Angler15: Complete 15 miss�es do pescador
-Angler20: Complete 20 miss�es do pescador
-Angler25: Complete 25 miss�es do pescador
-Angler30: Complete 30 miss�es do pescador
-InRockOrDirtLayerHeight: Enquanto no subterr�neo
-BrittleBone: Tenha uma arma que usa Ossos Fr�geis como muni��o no seu invent�rio
-Seeds: Tenha uma arma que usa Sementes como muni��o no seu invent�rio
+Angler5: Complete 5 missões do pescador
+Angler10: Complete 10 missões do pescador
+Angler15: Complete 15 missões do pescador
+Angler20: Complete 20 missões do pescador
+Angler25: Complete 25 missões do pescador
+Angler30: Complete 30 missões do pescador
+InRockOrDirtLayerHeight: Enquanto no subterrâneo
+BrittleBone: Tenha uma arma que usa Ossos Frágeis como munição no seu inventário
+Seeds: Tenha uma arma que usa Sementes como munição no seu inventário
 RedHusk: Depois de pegar uma Casca Vermelha
-OrangeBloodroot: Depois de pegar uma Sanguin�ria Laranja
-YellowMarigold: Depois de pegar uma Cal�ndula Amarela
-LimeKelp: Depois de pegar uma Alga Verde-lim�o
+OrangeBloodroot: Depois de pegar uma Sanguinária Laranja
+YellowMarigold: Depois de pegar uma Calêndula Amarela
+LimeKelp: Depois de pegar uma Alga Verde-limão
 GreenMushroom: Depois de pegar um Cogumelo Verde
 TealMushroom: Depois de pegar um Cogumelo Verde Azulado
 CyanHusk: Depois de pegar uma Casca Ciano

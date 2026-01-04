@@ -1,11 +1,11 @@
 Omnistation: {
-	DisplayName: Omnista��o
-	Description: Efeitos de todas as esta��es do vanilla
+	DisplayName: Omnistação
+	Description: Efeitos de todas as estações do vanilla
 }
 
 Semistation: {
-	DisplayName: Semista��o
-	Description: Efeitos de algumas esta��es do vanilla
+	DisplayName: Semistação
+	Description: Efeitos de algumas estações do vanilla
 }
 
 WoodDrop: {
@@ -14,11 +14,11 @@ WoodDrop: {
 }
 
 BigSuckBuff: {
-	DisplayName: Chup�o
-	Description: Voc� est� chupando tudo
+	DisplayName: Chupão
+	Description: Você está chupando tudo
 }
 
 CoolCrabBuff: {
 	DisplayName: Carangueijo Maneiro
-	Description: Ele acha que voc� deve jogar Elden Ring
+	Description: Ele acha que você deve jogar Elden Ring
 }

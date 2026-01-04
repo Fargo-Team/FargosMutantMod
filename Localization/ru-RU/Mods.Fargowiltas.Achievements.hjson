@@ -54,6 +54,6 @@ WiresAchievement: {
 }
 
 LuminiteOmniforgeAchievement: {
-	// FriendlyName: Forged In Starfire
-	// Description: Streamline your forging talent by combining advanced stations into a practical furnace!
+	FriendlyName: Выковано в звёздном огне
+	Description: Направьте своё кузнечное дело, соединив продвинутые станции создания в практичную печь!
 }

@@ -1,25 +1,25 @@
-FountainOcean: For�a o bioma em volta a se tornar o Oceano ao ativar
-FountainDesert: For�a o bioma em volta a se tornar o Deserto ao ativar
-FountainJungle: For�a o bioma em volta a se tornar a Selva ao ativar
-FountainSnow: For�a o bioma em volta a se tornar a Neve ao ativar
-FountainCorruption: For�a o bioma em volta a se tornar a Corrup��o ao ativar
-FountainCrimson: For�a o bioma em volta a se tornar o Carmim ao ativar
-FountainHallow: For�a o bioma em volta a se tornar o Consagrado (apenas no Modo Dif�cil) ao ativar
-CatchNPCs: Tamb�m pode capturar NPCs de Cidade
-ExtraLure1: Tamb�m oferece uma isca a mais
-Lures2: Essa vara lan�a 2 iscas
-Lures3: Essa vara lan�a 3 iscas
-Lures5: Essa vara lan�a 5 iscas
+FountainOcean: Força  o bioma em volta a se tornar o Oceano ao ativar
+FountainDesert: Força  o bioma em volta a se tornar o Deserto ao ativar
+FountainJungle: Força  o bioma em volta a se tornar a Selva ao ativar
+FountainSnow: Força  o bioma em volta a se tornar a Neve ao ativar
+FountainCorruption: Força  o bioma em volta a se tornar a Corrupção ao ativar
+FountainCrimson: Força  o bioma em volta a se tornar o Carmim ao ativar
+FountainHallow: Força  o bioma em volta a se tornar o Consagrado (apenas no Modo Difícil) ao ativar
+CatchNPCs: Também pode capturar NPCs de Cidade
+ExtraLure1: Também oferece uma isca a mais
+Lures2: Essa vara lança 2 iscas
+Lures3: Essa vara lança 3 iscas
+Lures5: Essa vara lança 5 iscas
 AutoTorch: Automaticamente troca as tochas posicionadas para impulsionar sua sorte
 TrueTorchLuck: Obedece a verdadeira sorte da tocha quando trocando tochas, o que pode diferir das escolhas normais
-UnlimitedBuff30: Buff ilimitado quando 30 s�o obtidos de uma vez no invet�rio, Porquinho, ou Cofre
-UnlimitedUse30: Uso ilimitado quando 30 s�o obtidos de uma vez
+UnlimitedBuff30: Buff ilimitado quando 30 são obtidos de uma vez no invet�rio, Porquinho, ou Cofre
+UnlimitedUse30: Uso ilimitado quando 30 são obtidos de uma vez
 PermanentEffectNearby: Permanentemente providencia o efeito para jogadores pr�ximos ao ser posicionado
-WorksFromBanks: Efeitos do invent�rio tamb�m funcionam do Porquinho e do Cofre
+WorksFromBanks: Efeitos do inventário também funcionam do Porquinho e do Cofre
 SoldBySquirrel: Vendido pelo Esquilo: Quando Obtido
 SomeMaterialsSold: Alguns materiais vendidos pelo Esquilo: Quando Obtido
-CraftableMaterialsSold: Materiais fabric�veis vendidos pelo Esquilo: Quando Obtido
-SoldAtThirtyStack: Vendido pelo Esquilo: Quando 30 de uma vez s�o obtidos
+CraftableMaterialsSold: Materiais fabricáveis vendidos pelo Esquilo: Quando Obtido
+SoldAtThirtyStack: Vendido pelo Esquilo: Quando 30 de uma vez são obtidos
 SoldBy: Vendido por
 SeveralVendors: Diversos comerciantes
 // SacrificablePlural: Can be fed to the Squirrel {0} more times

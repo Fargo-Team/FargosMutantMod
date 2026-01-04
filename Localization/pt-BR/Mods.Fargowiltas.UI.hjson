@@ -8,56 +8,56 @@ StatSheet: {
 	// PermaUpgrade: Permanent Upgrades
 	// combat
 	// Combat: Combat
-	ArmorPenetration: Perfura��o de Blindagem: {0}
+	ArmorPenetration: Perfuração de Blindagem: {0}
 	Life: Vida: {0}
-	LifeRegen: Regenera��o de Vida: {0}/sec
+	LifeRegen: Regeneração de Vida: {0}/sec
 	Defense: Defesa: {0}
 	// KnockbackImmunity: Knockback Immunity: {0}
 	Aggro: Agressividade: {0}
-	DamageReduction: Redu��o de Dano: {0}%{1}
+	DamageReduction: Redução de Dano: {0}%{1}
 	AttackSpeed: Velocidade de ataque: {0}%
 	// movement
 	// Movement: Movement
 	// MovementSpeed: Movement Speed: {0}%
-	MaxSpeed: Velocidade m�xima: {0} mph
+	MaxSpeed: Velocidade máxima: {0} mph
 	// Acceleration: Acceleration: {0}%
 	// Deceleration: Deceleration: {0}%
 	WingTime: Tempo de voo: {0}
 	WingTimeMoreThan60Sec: Sim
 	WingTimeActual: "{0} seg"
-	WingMaxSpeed: Velocidade m�xima de asa: {0} mph
-	WingAscentModifier: Modificador de ascen��o de asa: {0}%
+	WingMaxSpeed: Velocidade máxima de asa: {0} mph
+	WingAscentModifier: Modificador de ascenção de asa: {0}%
 	// utility
 	// Utility: Utility
 	Luck: Sorte: {0}
 	BattleCry: Grito de Guerra: {0}
-	FishingQuests: Miss�es de Pesca: {0}
+	FishingQuests: Missões de Pesca: {0}
 	// MiningSpeed: Mining Speed: {0}%
 	// ExtraPlacementRange: Extra Placement Range: {0}
 	// PlacementSpeed: Extra Placement Speed: {0}
 	// melee
 	// Melee: Melee
-	MeleeDamage: Dano f�sico: {0}%
-	MeleeCritical: Cr�tico f�sico: {0}%
-	MeleeSpeed: Velocidade f�sica: {0}%
+	MeleeDamage: Dano físico: {0}%
+	MeleeCritical: Crítico físico: {0}%
+	MeleeSpeed: Velocidade física: {0}%
 	// MeleeSize: Melee Size: {0}%
 	// ranged
 	// Ranged: Ranged
-	RangedDamage: Dano � dist�ncia: {0}%
-	RangedCritical: Cr�tico � dist�ncia: {0}%
+	RangedDamage: Dano à distância: {0}%
+	RangedCritical: Crítico à distância: {0}%
 	// magic
 	// Magic: Magic
 	MagicDamage: Dano de magia: {0}%
-	MagicCritical: Cr�tico de magia: {0}%
+	MagicCritical: Crítico de magia: {0}%
 	Mana: Mana: {0}
-	ManaRegen: Regenera��o de Mana: {0}/sec
-	ManaCostReduction: Redu��o no custo de mana: {0}%
+	ManaRegen: Regeneração de Mana: {0}/sec
+	ManaCostReduction: Redução no custo de mana: {0}%
 	//summon
 	// Summon: Summon
-	SummonDamage: Dano de invoca��o: {0}%
-	SummonCritical: Cr�tico de Invoca��o: {0}%
-	MaxMinions: Lacaios m�ximos: {0}
-	MaxSentries: Sentinelas m�ximas: {0}
+	SummonDamage: Dano de invocação: {0}%
+	SummonCritical: Crítico de invocação: {0}%
+	MaxMinions: Lacaios máximos: {0}
+	MaxSentries: Sentinelas máximas: {0}
 	// WhipSpeed: Whip Speed: {0}%
 	// WhipLength: Whip Length: {0}%
 }

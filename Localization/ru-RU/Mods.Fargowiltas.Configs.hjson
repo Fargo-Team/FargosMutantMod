@@ -1,5 +1,5 @@
 FargoServerConfig: {
-	DisplayName: Конфигурации: сторона сервера
+	DisplayName: Серверская конфигурация
 
 	Headers: {
 		Gameplay: Изменения геймплея
@@ -259,7 +259,7 @@ FargoServerConfig: {
 }
 
 FargoClientConfig: {
-	DisplayName: Конфигурации: сторона клиента
+	DisplayName: Клиентская конфигурация
 
 	AutoReforge: {
 		Label: "[s:Fargowiltas/Reforge] Автоматическая перековка"
@@ -312,7 +312,7 @@ FargoClientConfig: {
 	}
 
 	TransparentFriendlyProjectiles: {
-		Label: "[i:1309] Прозрачность дружелюбных снарядов"
+		Label: "[i:1309] Прозрачность дружественных снарядов"
 		Tooltip: Используйте с ванильной настройкой качества на среднем или низком для лучших результатов.
 	}
 
@@ -342,8 +342,8 @@ FargoClientConfig: {
 	}
 
 	NoTransparentPets: {
-		// Label: "[i:2019] No Transparent Pets"
-		// Tooltip: If true, pets become exempt from friendly projectile transparency.
+		Label: "[i:2019] Питомцы не становятся прозрачным"
+		Tooltip: Если включена, питомцы станут исключением для настройки «Прозрачность дружественных снарядов».
 	}
 }
 

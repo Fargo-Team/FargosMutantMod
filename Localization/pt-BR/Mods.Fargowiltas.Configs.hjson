@@ -1,27 +1,27 @@
 FargoServerConfig: {
-	DisplayName: Configura��o do Servidor
+	DisplayName: Configuração do Servidor
 
 	Headers: {
 		// Gameplay: Gameplay Changes
 		// Content: New Content
 		// WorldStates: World States
-		StatMultipliers: Multiplicadores de estat�sticas
+		StatMultipliers: Multiplicadores de estatísticas
 		Misc: Diversos
 	}
 
 	UnlimitedAmmo: {
-		Label: "[i:771] Muni��o infinita quando com 3996+ no Modo D�ficil"
+		Label: "[i:771] Munição infinita quando com 3996+ no Modo Díficil"
 		Tooltip: ""
 	}
 
 	UnlimitedConsumableWeapons: {
-		Label: "[i:42] Armas consum�veis infinitas quando com 3996+ no Modo D�ficil"
+		Label: "[i:42] Armas consumíveis infinitas quando com 3996+ no Modo Díficil"
 		Tooltip: ""
 	}
 
 	UnlimitedPotionBuffsOn120: {
 		Label: "[i:292] Buffs e Isca ilimitados quando carregados em certa quantidade"
-		Tooltip: 30+ para po��es e isca
+		Tooltip: 30+ para poções e isca
 	}
 
 	EasySummons: {
@@ -30,12 +30,12 @@ FargoServerConfig: {
 	}
 
 	BossZen: {
-		Label: "[i:3117] Inimigos n�o s�o criados enquanto um chefe est� vivo"
+		Label: "[i:3117] Inimigos não são criados enquanto um chefe está vivo"
 		Tooltip: ""
 	}
 
 	AnglerQuestInstantReset: {
-		Label: "[i:2374] Miss�es do Pescador resetam intantaneamente"
+		Label: "[i:2374] Missões do Pescador resetam intantaneamente"
 		Tooltip: ""
 	}
 
@@ -45,7 +45,7 @@ FargoServerConfig: {
 	}
 
 	FasterLavaFishing: {
-		Label: "[i:4881] Pescaria mais r�pida na Lava"
+		Label: "[i:4881] Pescaria mais rápida na Lava"
 		Tooltip: ""
 	}
 
@@ -55,7 +55,7 @@ FargoServerConfig: {
 	}
 
 	PermanentStationsNearby: {
-		Label: "[i:3198] Buffs de esta��o autom�tico quando pr�ximas"
+		Label: "[i:3198] Buffs de estação automático quando próximas"
 		Tooltip: ""
 	}
 
@@ -125,7 +125,7 @@ FargoServerConfig: {
 	}
 
 	DrunkWorld: {
-		Label: "[i:353] Mundo B�bado"
+		Label: "[i:353] Mundo Bêbado"
 		Tooltip: ""
 	}
 
@@ -140,7 +140,7 @@ FargoServerConfig: {
 	}
 
 	CelebrationWorld: {
-		Label: "[i:3732] Mundo de Celebra��o"
+		Label: "[i:3732] Mundo de Celebração"
 		Tooltip: ""
 	}
 
@@ -160,7 +160,7 @@ FargoServerConfig: {
 	}
 
 	ZenithWorld: {
-		Label: "[i:4956] Mundo Z�nite"
+		Label: "[i:4956] Mundo Zênite"
 		Tooltip: ""
 	}
 
@@ -171,26 +171,26 @@ FargoServerConfig: {
 
 	BossHealth: {
 		Label: "[i:29] Vida do Chefe"
-		Tooltip: Multiplica a vida de todos os chefes. Maior multiplicador entre esse e o multiplicador de inimigo � aplicado.
+		Tooltip: Multiplica a vida de todos os chefes. Maior multiplicador entre esse e o multiplicador de inimigo é aplicado.
 	}
 
 	EnemyDamage: {
 		Label: "[i:3507] Dano do Inimigo"
-		Tooltip: Multiplica o dano de todos os inimigos e proj�teis.
+		Tooltip: Multiplica o dano de todos os inimigos e projéteis.
 	}
 
 	BossDamage: {
 		Label: "[i:3507] Dano do Chefe"
-		Tooltip: Multiplica o dano de todos os chefes. Maior multiplicador entre esse e o multiplicador de inimigo � aplicado.
+		Tooltip: Multiplica o dano de todos os chefes. Maior multiplicador entre esse e o multiplicador de inimigo é aplicado.
 	}
 
 	BossApplyToAllWhenAlive: {
 		Label: Multiplicadores de Chefe se aplicam universalmente
-		Tooltip: Vida do Chefe e Dano do Chefe s�o aplicados para todos os inimigos enquanto um chefe est� vivo, ao inv�s de afetar apenas os chefes.
+		Tooltip: Vida do Chefe e Dano do Chefe são aplicados para todos os inimigos enquanto um chefe está vivo, ao invés de afetar apenas os chefes.
 	}
 
 	PiggyBankAcc: {
-		Label: "[i:87] Efeitos informacionais e de constru��o funcionam no Porquinho"
+		Label: "[i:87] Efeitos informacionais e de construção funcionam no Porquinho"
 		Tooltip: ""
 	}
 
@@ -210,7 +210,7 @@ FargoServerConfig: {
 	}
 
 	SaferBoundNPCs: {
-		Label: "[i:1274] NPCs de cidade resgat�veis n�o recebem danos"
+		Label: "[i:1274] NPCs de cidade resgatáveis não recebem danos"
 		Tooltip: ""
 	}
 
@@ -228,14 +228,14 @@ FargoServerConfig: {
 		Label: "[i:Fargowiltas/InstaBridge] Terraformadores Seguros"
 		Tooltip:
 			'''
-			Terraformadores como a Instaponte ou o Destruidor de Cidade evitam destruir �reas consideradas importantes.
-			Essa op��o � segura at� demais e pode evitar coisas normais, como casas abandonadas.
+			Terraformadores como a Instaponte ou o Destruidor de Cidade evitam destruir áreas consideradas importantes.
+			Essa opção é segura até demais e pode evitar coisas normais, como casas abandonadas.
 			'''
 	}
 
 	DisableTombstones: {
-		Label: "[i:Fargowiltas/GraveBuster] L�pides desativadas"
-		Tooltip: Faz l�pides n�o aparecerem quando um jogador morre.
+		Label: "[i:Fargowiltas/GraveBuster] Lápides desativadas"
+		Tooltip: Faz lápides não aparecerem quando um jogador morre.
 	}
 
 	ExtraBuffSlots: {
@@ -255,7 +255,7 @@ FargoServerConfig: {
 }
 
 FargoClientConfig: {
-	DisplayName: Configura��o de Cliente
+	DisplayName: Configuração de Cliente
 
 	AutoReforge: {
 		// Label: "[s:Fargowiltas/Reforge] Automatic Reforge"
@@ -263,13 +263,13 @@ FargoClientConfig: {
 	}
 
 	ExpandedTooltips: {
-		Label: "[i:171] Descri��es de itens indicam mudan�as do Fargo Mutant"
+		Label: "[i:171] Descrições de itens indicam mudanças do Fargo Mutant"
 		Tooltip: ""
 	}
 
 	ExactTooltips: {
-		Label: "[i:171] Descri��es de itens mostram a velocidade e recuo exatos dos itens"
-		Tooltip: Velocidade do item est� lista no tempo de uso, ent�o n�meros maiores = mais devagar.
+		Label: "[i:171] Descrições de itens mostram a velocidade e recuo exatos dos itens"
+		Tooltip: Velocidade do item está lista no tempo de uso, então números maiores = mais devagar.
 	}
 
 	ColoredDamageTypes: {
@@ -279,21 +279,21 @@ FargoClientConfig: {
 
 	DoubleTapDashDisabled: {
 		Label: "[i:3097] Desabilita toque duplo para corridas"
-		Tooltip: Impede que corridas sejam feitas com o toque duplo normal. O bot�o de corrida est� dispon�vel independente dessa configura��o.
+		Tooltip: Impede que corridas sejam feitas com o toque duplo normal. O botão de corrida está disponível independente dessa configuração.
 	}
 
 	DoubleTapSetBonusDisabled: {
-		Label: "[i:3776] Desabilita toque duplo para Bon�s Definido"
-		Tooltip: Impede que b�nus definidos sejam ativados com o toque duplo normal. O bot�o de b�nus definido est� dispon�vel independente dessa configura��o.
+		Label: "[i:3776] Desabilita toque duplo para Bonûs Definido"
+		Tooltip: Impede que bônus definidos sejam ativados com o toque duplo normal. O botão de bônus definido está disponível independente dessa configuração.
 	}
 
 	DebuffOpacity: {
-		Label: "[i:1612] Opacidade m�xima da exibi��o de efeitos negativos"
+		Label: "[i:1612] Opacidade máxima da exibição de efeitos negativos"
 		Tooltip: ""
 	}
 
 	DebuffFaderRatio: {
-		Label: "[i:1612] For�a do desaparecimento da dura��o de efeitos negativos"
+		Label: "[i:1612] Força do desaparecimento da duração de efeitos negativos"
 		Tooltip: ""
 	}
 
@@ -308,8 +308,8 @@ FargoClientConfig: {
 	}
 
 	TransparentFriendlyProjectiles: {
-		Label: "[i:1309] proj�teis amig�veis transparentes"
-		Tooltip: Use com a qualidade do jogo no m�dio ou baixo para resultados melhores
+		Label: "[i:1309] Projéteis amigáveis transparentes"
+		Tooltip: Use com a qualidade do jogo no médio ou baixo para resultados melhores
 	}
 
 	MultiplayerDeathSpectate: {

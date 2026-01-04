@@ -1691,7 +1691,7 @@ LuminiteOmniforge: {
 	DisplayName: Luminite Omniforge
 	Tooltip:
 		'''
-		Functions as several advanced crafting stations.
+		Functions as several advanced crafting stations
 		'It's fit to birth un[i:3460]d possibilities'
 		'''
 }

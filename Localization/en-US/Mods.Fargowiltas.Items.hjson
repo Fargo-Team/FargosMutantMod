@@ -1182,11 +1182,11 @@ EchPainting: {
 
 ElementalAssembler: {
 	DisplayName: Elemental Assembler
-	Tooltip: 
-	'''
-	Functions as several special crafting stations
-	'It's as if the skull is watching you. Scary!'
-	'''
+	Tooltip:
+		'''
+		Functions as several special crafting stations
+		'It's as if the skull is watching you. Scary!'
+		'''
 }
 
 GoldenDippingVat: {
@@ -1196,11 +1196,11 @@ GoldenDippingVat: {
 
 MultitaskCenter: {
 	DisplayName: Multitask Center
-	Tooltip: 
-	'''
-	Functions as several basic crafting stations
-	'It whirs and hums with life'
-	'''
+	Tooltip:
+		'''
+		Functions as several basic crafting stations
+		'It whirs and hums with life'
+		'''
 }
 
 Omnistation: {
@@ -1689,9 +1689,9 @@ ChestWizard: {
 
 LuminiteOmniforge: {
 	DisplayName: Luminite Omniforge
-	Tooltip: 
-	'''
-	Functions as several advanced crafting stations.
-	'It's fit to birth un[i:3460]d possibilities'
-	'''
+	Tooltip:
+		'''
+		Functions as several advanced crafting stations.
+		'It's fit to birth un[i:3460]d possibilities'
+		'''
 }

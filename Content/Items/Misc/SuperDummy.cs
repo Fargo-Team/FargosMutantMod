@@ -85,7 +85,7 @@ namespace Fargowiltas.Content.Items.Misc
             CreateRecipe()
                 .AddIngredient(ItemID.TargetDummy)
                 .AddIngredient(ItemID.FallenStar)
-                .AddTile(TileID.CookingPots)
+                .AddTile(TileID.Sawmill)
                 .Register();
         }
     }

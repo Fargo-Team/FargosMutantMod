@@ -62,6 +62,74 @@ StatSheet: {
 	WhipLength: Длина атаки: {0}%
 }
 
+LumberJack: {
+	Biomes: {
+		Purity: {
+			// Name: Forest
+			// Description: ""
+		}
+
+		Desert: {
+			// Name: Desert
+			// Description: ""
+		}
+
+		Corrupt: {
+			// Name: Corruption
+			// Description: ""
+		}
+
+		Crimson: {
+			// Name: Crimson
+			// Description: ""
+		}
+
+		Hallow: {
+			// Name: Hallow
+			// Description: ""
+		}
+
+		Snow: {
+			// Name: Snow
+			// Description: ""
+		}
+
+		Jungle: {
+			// Name: Jungle
+			// Description: ""
+		}
+
+		Mushroom: {
+			// Name: Glowing Mushroom
+			// Description: ""
+		}
+
+		Beach: {
+			// Name: Beach
+			// Description: ""
+		}
+
+		Caverns: {
+			// Name: Caverns
+			// Description: ""
+		}
+
+		Underworld: {
+			// Name: Underworld
+			// Description: ""
+		}
+	}
+
+	// Cost: Cost:
+	// Empty: Nothing to find here!
+	// Biome: Biome
+	// WoodTitle: Wood:
+	// FruitTitle: Obtainable Fruits
+	// CritterTitle: Obtainable Critters
+	// Purchase: Purchase
+	// ItemHoverTitle: Possible Drops:
+}
+
 SearchText: Поиск...
 // Battle & Calming are in Items.BattleCry
 BattleCryNone: Выкл.

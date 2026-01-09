@@ -43,7 +43,7 @@ namespace Fargowiltas.Content.NPCs
         public override void AI()
         {
             NPC.life = NPC.lifeMax = maxHP;
-
+            NPC.spriteDirection = NPC.direction;
             if (FargoGlobalNPC.AnyBossAlive())
             {
                 NPC.life = 0;

@@ -1,5 +1,5 @@
 FargoServerConfig: {
-	DisplayName: Серверская конфигурация
+	DisplayName: Серверная конфигурация
 
 	Headers: {
 		Gameplay: Изменения геймплея

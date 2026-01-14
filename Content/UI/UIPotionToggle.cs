@@ -55,7 +55,7 @@ namespace Fargowiltas.Content.UI
                 spriteBatch.Draw(FargoMutantAssets.UI.Toggler.CheckMark.Value, position + new Vector2(0, 4), Color.White);
                 if (IsMouseHovering)
                 {
-                    spriteBatch.Draw(FargoMutantAssets.UI.Toggler.CheckMarkGlow.Value, position + new Vector2(0, 4), Color.Yellow);
+                    spriteBatch.Draw(FargoMutantAssets.UI.Toggler.CheckMarkGlow.Value, position + new Vector2(0, 4), Color.White);
                 }           
             }
                 

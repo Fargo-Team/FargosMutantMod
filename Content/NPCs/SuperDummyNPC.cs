@@ -45,6 +45,7 @@ namespace Fargowiltas.Content.NPCs
         {
             NPC.life = NPC.lifeMax = maxHP;
             NPC.spriteDirection = NPC.direction;
+            DrawOffsetY = -2;
             if (FargoGlobalNPC.AnyBossAlive())
             {
                 NPC.life = 0;

@@ -36,6 +36,8 @@ namespace Fargowiltas
             public static int[] SacrificeCountDefault;
             public static int[] SacrificeCount;
             public static bool[] HardmodeSacrifice;
+
+            public static bool[] TreeTreasureObtainable;
         }
         public class Tiles
         {

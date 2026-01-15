@@ -128,6 +128,9 @@ LumberJack: {
 	// CritterTitle: Obtainable Critters
 	// Purchase: Purchase
 	// ItemHoverTitle: Possible Drops:
+	// ItemHoverRoll: Loot table will be rolled {0} times
+	// MissingPylon: You must construct additional pylons!
+	// Buy: Buy Tree Treasures
 }
 
 SearchText: 搜索……

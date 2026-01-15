@@ -1,14 +1,11 @@
-﻿using Fargowiltas.Content.Achievements;
-using Microsoft.Extensions.Primitives;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
-using ReLogic.Reflection;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Terraria;
 using Terraria.GameContent;
+using Terraria.GameContent.Tile_Entities;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -36,6 +33,9 @@ namespace Fargowiltas.Content.UI.LumberjackUI
         public override void PostSetupContent()
         {
             base.PostSetupContent();
+
+            FargoSets.Items.TreeTreasureObtainable = ItemID.Sets.Factory.CreateBoolSet(false);
+
             AddBiomes();
         }
 
@@ -68,10 +68,10 @@ namespace Fargowiltas.Content.UI.LumberjackUI
 
             LumberJackBiome.Create("Caverns", LocalPath, Item.buyPrice(0, 7), Color.Black, TeleportPylonType.Underground)
                 .SetIcon(vanillaIcons, vanillaIcons.Frame(16, 5, 2, 0))
-                .AddFruit([ItemID.Diamond, ItemID.Ruby, ItemID.Amethyst, ItemID.Emerald, ItemID.Sapphire, ItemID.Topaz, ItemID.Amber], 2, 5, () => 1f)
+                .AddFruit([ItemID.Amethyst, ItemID.Topaz, ItemID.Sapphire, ItemID.Emerald, ItemID.Ruby, ItemID.Amber, ItemID.Diamond], 2, 5, () => 1f)
                 .AddCritter(ItemID.Mouse, 5, () => 0.5f)
-                .AddCritter([ItemID.GemSquirrelDiamond, ItemID.GemSquirrelAmber, ItemID.GemSquirrelAmethyst, ItemID.GemSquirrelEmerald, ItemID.GemSquirrelRuby, ItemID.GemSquirrelSapphire, ItemID.GemSquirrelTopaz], 1, 5, () => 0.25f)
-                .AddCritter([ItemID.GemBunnyAmber, ItemID.GemBunnyAmethyst, ItemID.GemBunnyDiamond, ItemID.GemBunnyEmerald, ItemID.GemBunnyRuby, ItemID.GemBunnySapphire, ItemID.GemBunnyTopaz], 1, 5, () => 0.25f)
+                .AddCritter([ItemID.GemSquirrelAmethyst, ItemID.GemSquirrelTopaz, ItemID.GemSquirrelSapphire, ItemID.GemSquirrelEmerald, ItemID.GemSquirrelRuby, ItemID.GemSquirrelAmber, ItemID.GemSquirrelDiamond], 1, 5, () => 0.25f)
+                .AddCritter([ItemID.GemBunnyAmethyst, ItemID.GemBunnyTopaz, ItemID.GemBunnySapphire, ItemID.GemBunnyEmerald, ItemID.GemBunnyRuby, ItemID.GemBunnyAmber, ItemID.GemBunnyDiamond], 1, 5, () => 0.25f)
                 .Register();
 
             LumberJackBiome.Create("Underworld", LocalPath, Item.buyPrice(0, 25), Color.OrangeRed, TeleportPylonType.Underground)
@@ -148,7 +148,7 @@ namespace Fargowiltas.Content.UI.LumberjackUI
 
         public readonly string ID;
         public readonly string localPath;
-        TeleportPylonType? PylonType;
+        public readonly TeleportPylonType? PylonType;
         public readonly int BuyPrice;
         public readonly Color BackgroundColor;
         public (int type, int amount) Wood; // tuple
@@ -191,6 +191,8 @@ namespace Fargowiltas.Content.UI.LumberjackUI
             {
                 Wood.type = woodType;
                 Wood.amount = stack;
+
+                FargoSets.Items.TreeTreasureObtainable[woodType] = true;
             }
             return this;
         }
@@ -201,6 +203,9 @@ namespace Fargowiltas.Content.UI.LumberjackUI
             {
                 LumberJackItem fruit = new(types, stack, rollAmount, chance);
                 Fruits.Add(fruit);
+
+                foreach(int type in types)
+                    FargoSets.Items.TreeTreasureObtainable[type] = true;
             }
             return this;
         }
@@ -211,6 +216,8 @@ namespace Fargowiltas.Content.UI.LumberjackUI
             {
                 LumberJackItem fruit = new([type], stack, 1, chance);
                 Fruits.Add(fruit);
+
+                FargoSets.Items.TreeTreasureObtainable[type] = true;
             }
             return this;
         }
@@ -222,6 +229,9 @@ namespace Fargowiltas.Content.UI.LumberjackUI
             {
                 LumberJackItem critter = new(types, stack, rollAmount, chance);
                 Critters.Add(critter);
+
+                foreach (int type in types)
+                    FargoSets.Items.TreeTreasureObtainable[type] = true;
             }
             return this;
         }
@@ -232,6 +242,8 @@ namespace Fargowiltas.Content.UI.LumberjackUI
             {
                 LumberJackItem critter = new([type], stack, 1, chance);
                 Critters.Add(critter);
+
+                FargoSets.Items.TreeTreasureObtainable[type] = true;
             }
             return this;
         }
@@ -314,8 +326,10 @@ namespace Fargowiltas.Content.UI.LumberjackUI
             return total;
         }
 
+        public int GetPylonItemType() => PylonType.HasValue ? TETeleportationPylon.GetPylonItemTypeFromTileStyle((int)PylonType) : -1;
+
         public string GetLocalizedText(string suffix) => Language.GetTextValue($"{localPath}.{ID}.{suffix}");
 
-        public bool IsAvailable => !PylonType.HasValue || Main.PylonSystem.HasPylonOfType(PylonType.Value);
+        public bool IsAvailable => Main.PylonSystem.HasAnyPylon() && (!PylonType.HasValue || Main.PylonSystem.HasPylonOfType(PylonType.Value));
     }
 }

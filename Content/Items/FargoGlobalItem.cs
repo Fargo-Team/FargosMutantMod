@@ -325,6 +325,12 @@ namespace Fargowiltas.Content.Items
                     }
                 }
 
+                if (FargoSets.Items.TreeTreasureObtainable[item.type])
+                {
+                    line = new TooltipLine(Mod, "LumberJackTreeTreasure", $"[i:{CaughtNPCItem.CaughtTownies[NPCType<LumberJack>()]}] [c/AAAAAA:{ExpandedTooltipLoc("TreeTreasure")}]");
+                    tooltips.Add(line);
+                }
+
                 int shimmerItem = ItemID.Sets.ShimmerTransformToItem[item.type];
                 int shimmerFromItem = FargoSets.Items.ShimmerTransformsFromItem[item.type];
                 string shimmerText = "";

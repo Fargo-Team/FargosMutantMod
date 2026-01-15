@@ -214,7 +214,7 @@ namespace Fargowiltas.Content.NPCs
             else
             {
                 Main.npcChatText = "";
-                FargoUIManager.Open<LumberjackUI>();
+                FargoUIManager.Open<LumberJackUI>();
                 return;
             }
 

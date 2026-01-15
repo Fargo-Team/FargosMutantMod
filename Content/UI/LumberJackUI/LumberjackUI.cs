@@ -1,16 +1,15 @@
-﻿using Fargowiltas.Content.NPCs;
+﻿using Fargowiltas.Content.Items.Weapons;
+using Fargowiltas.Content.NPCs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using ReLogic.Graphics;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.GameContent.UI.Elements;
-using Terraria.Graphics.Effects;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -20,7 +19,7 @@ using static Fargowiltas.Content.UI.LumberjackUI.LumberJackBiome;
 
 namespace Fargowiltas.Content.UI.LumberjackUI
 {
-    internal class LumberjackUI : FargoUI
+    internal class LumberJackUI : FargoUI
     {
         UIPanel BackPanel;
         LumberjackInfoPanel InnerPanel;
@@ -197,7 +196,7 @@ namespace Fargowiltas.Content.UI.LumberjackUI
             base.LeftClick(evt);
 
             SoundEngine.PlaySound(SoundID.MenuTick);
-            if (selected || !biome.IsAvailable)
+            if (selected)
                 return;
 
             OnPress.Invoke(biome);
@@ -231,6 +230,7 @@ namespace Fargowiltas.Content.UI.LumberjackUI
         LumberJackItemPanel CritterPanel;
         LumberJackItemPanel FruitPanel;
         UIPanel DialoguePanel;
+        LumberJackBottomPanel BottomPanel;
         LumberJackPurchaseButton BuyButton;
 
         public LumberjackInfoPanel(LumberJackBiome biome)
@@ -245,7 +245,7 @@ namespace Fargowiltas.Content.UI.LumberjackUI
         internal void ChangeBiomeScene(LumberJackBiome newBiome)
         {
             if (biome != null)
-                oldColor = biome.BackgroundColor;
+                oldColor = biome.IsAvailable ? biome.BackgroundColor : Color.Transparent;
             biome = newBiome;
             timer = maxTime;
 
@@ -257,6 +257,17 @@ namespace Fargowiltas.Content.UI.LumberjackUI
 
             RemoveAllChildren();
             if (biome == null) return;
+
+            if (!biome.IsAvailable)
+            {
+                var missingText = new UIText(Language.GetTextValue("Mods.Fargowiltas.UI.LumberJack.MissingPylon"))
+                {
+                    HAlign = 0.5f,
+                    VAlign = 0.5f
+                };
+                Append(missingText);
+                return;
+            }
 
             float panelWidth = Width.Pixels;
             float panelHeight = Height.Pixels;
@@ -315,12 +326,22 @@ namespace Fargowiltas.Content.UI.LumberjackUI
             UIText dialogue = new UIText(String.Join('\n', Utils.WordwrapString(biome.GetLocalizedText("Description"), FontAssets.MouseText.Value, (int)DialoguePanel.GetInnerDimensions().Width, 10, out _)));
             DialoguePanel.Append(dialogue);
 
-            BuyButton = new LumberJackPurchaseButton(biome);
-            BuyButton.Top.Set(50 + 200 + 12 + 6 + 200 + 6 + 6, 0);
+            BottomPanel = new LumberJackBottomPanel(biome);
+            BottomPanel.Top.Set(50 + 200 + 12 + 6 + 200, 0);
+            BottomPanel.Left.Set(0, 0);
+            BottomPanel.Width.Set(panelWidth, 0);
+            BottomPanel.Height.Set(56, 0);
+
+            Append(BottomPanel);
+
+            BuyButton = new LumberJackPurchaseButton(biome)
+            {
+                VAlign = 0.5f
+            };
             BuyButton.Left.Set(panelWidth - 100 - 18, 0);
-            BuyButton.Width.Set(100, 0);
-            BuyButton.Height.Set(30, 0);
-            Append(BuyButton);
+            BuyButton.Width.Set(40, 0);
+            BuyButton.Height.Set(40, 0);
+            BottomPanel.Append(BuyButton);
         }
 
         public override void Update(GameTime gameTime)
@@ -339,15 +360,25 @@ namespace Fargowiltas.Content.UI.LumberjackUI
 
             if (biome == null) return;
             
-            Color drawColor = Color.Lerp(biome.BackgroundColor, oldColor, timer / maxTime) * 0.5f;
+            Color drawColor = Color.Lerp(biome.IsAvailable ? biome.BackgroundColor : Color.Transparent, oldColor, timer / maxTime) * 0.5f;
             Vector2 position = GetOuterDimensions().Center() + new Vector2(2 - GetOuterDimensions().Width / 2, GetOuterDimensions().Height / 2 - 2);
             spriteBatch.Draw(line.Value, position, line.Frame(), drawColor, -MathHelper.PiOver2, Vector2.Zero, new Vector2(1f, (Width.Pixels / 2) - 2), SpriteEffects.None, 0f);
 
             if (timer > 0)
                 timer--;
 
-            Vector2 moneyPos = GetInnerDimensions().Position() + new Vector2(GetInnerDimensions().Width / 4, GetInnerDimensions().Height - 70);
-            ItemSlot.DrawMoney(spriteBatch, Language.GetTextValue("Mods.Fargowiltas.UI.LumberJack.Cost"), moneyPos.X, moneyPos.Y, Utils.CoinsSplit(biome.BuyPrice), true);
+            if (!biome.IsAvailable)
+            {
+                Item pylon = new Item(biome.PylonType.HasValue ? biome.GetPylonItemType() : ItemID.TeleportationPylonVictory);
+
+                spriteBatch.End();
+                spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise, null, Main.UIScaleMatrix);
+
+                ItemSlot.DrawItemIcon(pylon, ItemSlot.Context.InventoryItem, spriteBatch, GetInnerDimensions().Center() + new Vector2(0, 56), 2f, 50, Color.Black);
+
+                spriteBatch.End();
+                spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise, null, Main.UIScaleMatrix);
+            }
         }
 
         protected override void DrawChildren(SpriteBatch spriteBatch)
@@ -359,13 +390,31 @@ namespace Fargowiltas.Content.UI.LumberjackUI
         }
     }
 
+    internal class LumberJackBottomPanel : UIPanel
+    {
+        LumberJackBiome biome;
+
+        internal LumberJackBottomPanel(LumberJackBiome biome)
+        {
+            this.biome = biome;
+        }
+
+        protected override void DrawSelf(SpriteBatch spriteBatch)
+        {
+            //base.DrawSelf(spriteBatch);
+
+            Vector2 moneyPos = GetInnerDimensions().Position() + new Vector2(GetInnerDimensions().Width / 4, - GetInnerDimensions().Height - 3);
+            ItemSlot.DrawMoney(spriteBatch, Language.GetTextValue("Mods.Fargowiltas.UI.LumberJack.Cost"), moneyPos.X, moneyPos.Y, Utils.CoinsSplit(biome.BuyPrice), true);
+        }
+    }
+
     internal class LumberJackItemPanel : UIPanel
     {
         string suffix;
 
         UIList ItemList;
 
-        public LumberJackItemPanel(string suffix, List<LumberJackItem> items)
+        internal LumberJackItemPanel(string suffix, List<LumberJackItem> items)
         {
             this.suffix = suffix;
 
@@ -432,14 +481,24 @@ namespace Fargowiltas.Content.UI.LumberjackUI
         int typeIndex = 0;
         int typeTimer = 0;
 
-        public LumberJackItemElement(LumberJackItem item, float totalWeight)
+        internal LumberJackItemElement(LumberJackItem item, float totalWeight)
         {
             this.item = item;
 
-            infoText = new UIText($"{MathF.Round(100 * (item.chance.Invoke() / totalWeight), 1)}%");
-            infoText.Left.Set(50 + 6, 0);
-            infoText.VAlign = 0.5f;
+            infoText = new UIText($"{MathF.Round(100 * (item.chance.Invoke() / totalWeight), 0)}%")
+            {
+                HAlign = 0.4f,
+                VAlign = 0.5f
+            };
             Append(infoText);
+
+            if (item.rollAmount <= 1)
+                return;
+
+            var rollText = new UIText($"[s:Fargowiltas/Dice]x{item.rollAmount}");
+            rollText.VAlign = 0.5f;
+            rollText.HAlign = 1f;
+            Append(rollText);
         }
 
         protected override void DrawSelf(SpriteBatch spriteBatch)
@@ -469,12 +528,14 @@ namespace Fargowiltas.Content.UI.LumberjackUI
 
         string GetHoverText()
         {
-            string text = $"{Language.GetTextValue("Mods.Fargowiltas.UI.LumberJack.ItemHoverTitle", item.rollAmount)}\n";
+            string text = $"{Language.GetTextValue("Mods.Fargowiltas.UI.LumberJack.ItemHoverTitle")} ";
             foreach (var type in item.types)
             {
                 text += $"[i/s{item.stack}:{type}]";
             }
-            
+            if (item.rollAmount > 1)
+                text += $"\n[s:Fargowiltas/Dice] {Language.GetTextValue("Mods.Fargowiltas.UI.LumberJack.ItemHoverRoll", item.rollAmount)}";
+
             return text;
         }
 
@@ -484,26 +545,34 @@ namespace Fargowiltas.Content.UI.LumberjackUI
         }
     }
 
-    internal class LumberJackPurchaseButton : UIPanel
+    internal class LumberJackPurchaseButton : UIElement
     {
         public LumberJackBiome biome;
 
-        public LumberJackPurchaseButton(LumberJackBiome biome)
+        internal LumberJackPurchaseButton(LumberJackBiome biome)
         {
             this.biome = biome;
-
-            UIText text = new UIText(Language.GetTextValue("Mods.Fargowiltas.UI.LumberJack.Purchase"))
-            {
-                HAlign = 0.5f,
-                VAlign = 0.5f
-            };
-            Append(text);
         }
 
-
+        const string filePath = "Fargowiltas/Assets/Textures/UI/LumberJackPurchaseButton";
+        readonly Asset<Texture2D> texture = ModContent.Request<Texture2D>(filePath);
+        readonly Asset<Texture2D> glowTexture = ModContent.Request<Texture2D>(filePath + "_MouseOver");
         protected override void DrawSelf(SpriteBatch spriteBatch)
         {
-            base.DrawSelf(spriteBatch);
+            if (ContainsPoint(Main.MouseScreen))
+            {
+                Rectangle frame = glowTexture.Frame();
+
+                spriteBatch.Draw(glowTexture.Value, GetOuterDimensions().Center(), frame, Color.White, 0f, frame.Size() / 2, 1f, SpriteEffects.None, 0f);
+
+                UICommon.TooltipMouseText(Language.GetTextValue("Mods.Fargowiltas.UI.LumberJack.Buy"));
+            }
+            else
+            {
+                Rectangle frame = texture.Frame();
+
+                spriteBatch.Draw(texture.Value, GetOuterDimensions().Center(), frame, Color.White, 0f, frame.Size() / 2, 1f, SpriteEffects.None, 0f);
+            }
         }
 
         public override void LeftClick(UIMouseEvent evt)
@@ -519,6 +588,17 @@ namespace Fargowiltas.Content.UI.LumberjackUI
                 player.SetTalkNPC(-1);
                 Main.playerInventory = true;
             }
+            else
+            {
+                SoundEngine.PlaySound(SoundID.MenuTick);
+            }
+        }
+
+        public override void MouseOver(UIMouseEvent evt)
+        {
+            base.MouseOver(evt);
+
+            SoundEngine.PlaySound(SoundID.MenuTick);
         }
     }
 }

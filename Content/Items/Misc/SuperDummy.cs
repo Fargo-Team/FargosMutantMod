@@ -59,10 +59,20 @@ namespace Fargowiltas.Content.Items.Misc
                     }
                 }
             }
-            else if (NPC.CountNPCS(ModContent.NPCType<SuperDummyNPC>()) < 50)// && Main.netMode != NetmodeID.MultiplayerClient)
+            else if (NPC.CountNPCS(ModContent.NPCType<SuperDummyNPC>()) < 50 && Main.netMode != NetmodeID.MultiplayerClient)
             {
                 Vector2 pos = new((int)Main.MouseWorld.X - 9, (int)Main.MouseWorld.Y - 20);
-                Projectile.NewProjectile(player.GetSource_ItemUse(Item), pos, Vector2.Zero, ModContent.ProjectileType<SpawnProj>(), 0, 0, player.whoAmI, ModContent.NPCType<SuperDummyNPC>());
+
+                int n = NPC.NewNPC(NPC.GetBossSpawnSource(Main.myPlayer), (int)pos.X, (int)pos.Y, ModContent.NPCType<SuperDummyNPC>());
+                if (n != Main.maxNPCs)
+                {
+                    if (Main.netMode == NetmodeID.Server)
+                        NetMessage.SendData(MessageID.SyncNPC, number: n);
+                    else if (player.whoAmI == Main.myPlayer)
+                        Main.npc[n].direction = Main.npc[n].Center.X < player.Center.X ? 1 : -1;
+                }
+
+                //Projectile.NewProjectile(player.GetSource_ItemUse(Item), pos, Vector2.Zero, ModContent.ProjectileType<SpawnProj>(), 0, 0, player.whoAmI, ModContent.NPCType<SuperDummyNPC>());
 
                 //NPC.NewNPC((int)pos.X, (int)pos.Y, ModContent.NPCType<NPCs.SuperDummy>());
             }
@@ -75,7 +85,7 @@ namespace Fargowiltas.Content.Items.Misc
             CreateRecipe()
                 .AddIngredient(ItemID.TargetDummy)
                 .AddIngredient(ItemID.FallenStar)
-                .AddTile(TileID.CookingPots)
+                .AddTile(TileID.Sawmill)
                 .Register();
         }
     }

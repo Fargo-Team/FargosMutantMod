@@ -1,3 +1,4 @@
+using System;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
@@ -17,7 +18,7 @@ namespace Fargowiltas.Content.NPCs
             };
             NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, bestiaryData);
 
-
+            Main.npcFrameCount[Type] = 11;
         }
         const int maxHP = int.MaxValue / 10;
         public override void SetDefaults()
@@ -43,13 +44,50 @@ namespace Fargowiltas.Content.NPCs
         public override void AI()
         {
             NPC.life = NPC.lifeMax = maxHP;
-
+            NPC.spriteDirection = NPC.direction;
+            DrawOffsetY = -2;
             if (FargoGlobalNPC.AnyBossAlive())
             {
                 NPC.life = 0;
                 NPC.HitEffect();
                 NPC.SimpleStrikeNPC(int.MaxValue, 0, false, 0, null, false, 0, true);
             }
+        }
+
+        public override void HitEffect(NPC.HitInfo hit)
+        {
+            NPC.localAI[0] = hit.Damage;
+            if (NPC.localAI[0] < 20f)
+                NPC.localAI[0] = 20f;
+
+            if (NPC.localAI[0] > 120f)
+                NPC.localAI[0] = 120f;
+
+            NPC.localAI[1] = hit.HitDirection;
+        }
+
+        public override void FindFrame(int frameHeight)
+        {
+            int hitdirection = (int)NPC.localAI[1] * -NPC.direction;
+
+            if (NPC.localAI[0] > 24f)
+                NPC.localAI[0] = 24f;
+
+            if (NPC.localAI[0] > 0f)
+                NPC.localAI[0] -= 1f;
+
+            if (NPC.localAI[0] < 0f)
+                NPC.localAI[0] = 0f;
+
+            int framecounter = (hitdirection == -1) ? 4 : 6;
+            int frame = (int)NPC.localAI[0] / framecounter;
+            if (NPC.localAI[0] % framecounter != 0f)
+                frame++;
+
+            if (frame != 0 && hitdirection == 1)
+                frame += 5;
+
+            NPC.frame.Y = frame * frameHeight;
         }
 
         public override bool CheckDead()

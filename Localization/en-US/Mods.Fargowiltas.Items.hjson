@@ -232,8 +232,7 @@ SuperDummy: {
 	Tooltip:
 		'''
 		Spawns a super dummy at your cursor
-		Same as regular Target Dummy except minions and projectiles detect and home onto it
-		On hit effects get triggered as well
+		Can be detected by minions and homing projectiles, and can activate on hit effects
 		Right click to remove all spawned super dummies
 		Can spawn up to 50 super dummies at once
 		'''

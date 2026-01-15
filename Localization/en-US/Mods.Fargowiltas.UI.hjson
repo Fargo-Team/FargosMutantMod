@@ -1,4 +1,4 @@
-Close: Close
+﻿Close: Close
 CombinedUIButton: Open Utilities
 PotionToggler: "[s:Fargowiltas/PotionToggler] Potion Toggles"
 
@@ -23,7 +23,7 @@ StatSheet: {
 	Acceleration: Acceleration: {0}%
 	Deceleration: Deceleration: {0}%
 	WingTime: Wing Time: {0}
-	WingTimeMoreThan60Sec: Yes
+	WingTimeMoreThan60Sec: ∞
 	WingTimeActual: "{0} sec"
 	WingMaxSpeed: Wing Max Speed: {0} mph
 	WingAscentModifier: Wing Ascent Modifier: {0}

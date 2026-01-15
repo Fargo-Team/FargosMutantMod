@@ -23,7 +23,7 @@ StatSheet: {
 	Acceleration: Ускорение: {0}%
 	Deceleration: Замедление: {0}%
 	WingTime: Время полёта: {0}
-	WingTimeMoreThan60Sec: Да
+	WingTimeMoreThan60Sec: ∞
 	WingTimeActual: "{0} сек"
 	WingMaxSpeed: Макс. скорость: {0} миль/ч
 	WingAscentModifier: Верт. множитель: {0}%

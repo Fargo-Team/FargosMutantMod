@@ -122,6 +122,14 @@ namespace Fargowiltas.Content.UI.LumberjackUI
                 .AddCritter(ItemID.GlowingSnail, 5, () => 0.7f)
                 .Register();
         }
+
+        private static string UnderworldDialogue()
+        {
+            int angler = NPC.FindFirstNPC(NPCID.Angler);
+            if (angler >= 0)
+                return Language.GetTextValue("Mods.Fargowiltas.UI.LumberJack.Biomes.Underworld.DescriptionAlt", Main.npc[angler].GivenName);
+            return "";
+        }
     }
 
     public class LumberJackBiome
@@ -149,17 +157,16 @@ namespace Fargowiltas.Content.UI.LumberjackUI
         public readonly string ID;
         public readonly string localPath;
         public readonly TeleportPylonType? PylonType;
-        public readonly int BuyPrice;
+        private int _price;
         public readonly Color BackgroundColor;
         public (int type, int amount) Wood; // tuple
         public List<LumberJackItem> Fruits { get; internal set; } = [];
         public List<LumberJackItem> Critters { get; internal set; } = [];
-        
 
         private LumberJackBiome(string ID, int BuyPrice, Color bgColor, string localPath, TeleportPylonType? pylonType = null)
         {
             this.ID = ID;
-            this.BuyPrice = BuyPrice;
+            this._price = BuyPrice;
             this.BackgroundColor = bgColor;
             this.localPath = localPath;
             this.PylonType = pylonType;
@@ -306,24 +313,12 @@ namespace Fargowiltas.Content.UI.LumberjackUI
             }
         }
 
-        public float TotalFruitWeight()
+        public int GetBuyPrice()
         {
-            float total = 0;
-            foreach (var fruit in Fruits)
-            {
-                total += fruit.chance.Invoke();
-            }
-            return total;
-        }
-
-        public float TotalCritterWeight()
-        {
-            float total = 0;
-            foreach (var critter in Critters)
-            {
-                total += critter.chance.Invoke();
-            }
-            return total;
+            Item item = new Item();
+            item.value = _price;
+            Main.LocalPlayer.GetItemExpectedPrice(item, out long _, out long buyPrice);
+            return (int)buyPrice;
         }
 
         public int GetPylonItemType() => PylonType.HasValue ? TETeleportationPylon.GetPylonItemTypeFromTileStyle((int)PylonType) : -1;

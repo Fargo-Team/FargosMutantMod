@@ -1,4 +1,4 @@
-﻿Close: Close
+Close: Close
 CombinedUIButton: Open Utilities
 PotionToggler: "[s:Fargowiltas/PotionToggler] Potion Toggles"
 
@@ -66,57 +66,57 @@ LumberJack: {
 	Biomes: {
 		Purity: {
 			Name: Forest
-			Description: ""
+			Description: Nothin' like a nice day of choppin' and planting in the Forest! Did ya know that the trees there drop the widest variety of materials? The ladybugs keep gettin' in the way when the wind's out, so if ya ever need some I got plenty 'round then.
 		}
 
 		Desert: {
 			Name: Desert
-			Description: ""
+			Description: Cacti aren't trees, ya say? Come on, some of them even got little flowers at the top... I guess beautree is in the eye of the beholder, har har!
 		}
 
 		Corrupt: {
 			Name: Corruption
-			Description: ""
+			Description: I always hate it when ya find a really good tree over in the Corruption, and once ya chop it down ya see that it's been hollowed out by them icky microbes and diseases. Such a waste of good Ebonwood... but that makes it all the better when ya find a perfect chop!
 		}
 
 		Crimson: {
 			Name: Crimson
-			Description: ""
+			Description: Some guy wearin' a pumpkin once came up to me as I was gettin' some Shadewood, started ramblin' 'bout this "Dante's Inferno" thingy. Just 'cause a tree is red and bloody doesn't mean there's a person in there! At least, that's what I told 'em.
 		}
 
 		Hallow: {
 			Name: Hallow
-			Description: ""
+			Description: Normally, the inside of a tree has these rings on the stump that you can use to count how old the tree is, but Pearlwood trees have stars instead of circles! Ain't that a hoot? Try not to harm the critters out there durin' the night, ya hear? Someone's very... protective over 'em.
 		}
 
 		Snow: {
 			Name: Snow
-			Description: ""
+			Description: Boreal is one of my favorite woods to gather! Sure, blizzards make it harder to chop, but it just feels so much more rewarding when the world fights back!
 		}
 
 		Jungle: {
 			Name: Jungle
-			Description: ""
+			Description: '''"Bee" careful out there in that Jungle, heard knockin' down the wrong Mahogany tree'll will make its tennants say "hi-ve", har har! And don't think you're safe from being "batted" an eye during the night either! C'mon, my humor wasn't that bad, "wasp" it?'''
 		}
 
 		Mushroom: {
-			Name: Glowing Mushroom
-			Description: ""
+			Name: Mushroom
+			Description: Y'know kid, fungi are actually closer in biology to you humans than they are to plants. Not that my axe discriminates, hoo-boy! You should plant one of 'em on the surface, ya never know who may show up!
 		}
 
 		Beach: {
-			Name: Beach
-			Description: ""
+			Name: Ocean
+			Description: One time while gathering Palm wood over at the Ocean, a stray coconut fell from the tree and hit me right in the noggin! Hoo-boy, I was seeing stars for the next week straight! Careful 'round them crabs, their claws look small but hurt like hellstone!
 		}
 
 		Caverns: {
 			Name: Caverns
-			Description: ""
+			Description: The Caverns? Whaddya want me to do, swing my axe against some rocks? Well you're in luck, pal! I don't got any use for gems, can't even make 'em into a new axe! I gotta wonder how them critters crystalized like that though... hope no one goes poachin' for their shiny skin.
 		}
 
 		Underworld: {
 			Name: Underworld
-			Description: ""
+			Description: Yer wantin' me to go all the way down there? Don't worry, the demons won't make the mistake of interrupting my work again.
 		}
 	}
 

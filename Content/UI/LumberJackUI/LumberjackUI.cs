@@ -30,7 +30,7 @@ namespace Fargowiltas.Content.UI.LumberjackUI
         float swapCooldown = 0;
 
         float BackWidth = 450;
-        float BackHeight = 350 * 1.6f;
+        float BackHeight = 390 * 1.6f;
         float swapCDMax = 30;
 
         public override bool MenuToggleSound => true;
@@ -211,7 +211,7 @@ namespace Fargowiltas.Content.UI.LumberjackUI
                 if (!biome.IsAvailable && opt.biome.IsAvailable)
                     return 1;
 
-                return biome.BuyPrice.CompareTo(opt.biome.BuyPrice);
+                return biome.GetBuyPrice().CompareTo(opt.biome.GetBuyPrice());
             }
             return base.CompareTo(obj);
         }
@@ -317,20 +317,22 @@ namespace Fargowiltas.Content.UI.LumberjackUI
 
             DialoguePanel = new UIPanel();
             DialoguePanel.Width.Set(panelWidth, 0);
-            DialoguePanel.Height.Set(150, 0);
+            DialoguePanel.Height.Set(220, 0);
             DialoguePanel.Top.Set(250 + 12 + 50 + 6, 0);
             DialoguePanel.Left.Set(0, 0);
             DialoguePanel.HAlign = 0.5f;
             Append(DialoguePanel);
 
-            UIText dialogue = new UIText(String.Join('\n', Utils.WordwrapString(biome.GetLocalizedText("Description"), FontAssets.MouseText.Value, (int)DialoguePanel.GetInnerDimensions().Width, 10, out _)));
+            UIText dialogue = new UIText(biome.GetLocalizedText("Description"));
+            dialogue.IsWrapped = true;
+            dialogue.Width.Set(0, 1f);
             DialoguePanel.Append(dialogue);
 
             BottomPanel = new LumberJackBottomPanel(biome);
-            BottomPanel.Top.Set(50 + 200 + 12 + 6 + 200, 0);
+            BottomPanel.Top.Set(50 + 200 + 12 + 6 + 270, 0);
             BottomPanel.Left.Set(0, 0);
             BottomPanel.Width.Set(panelWidth, 0);
-            BottomPanel.Height.Set(56, 0);
+            BottomPanel.Height.Set(50, 0);
 
             Append(BottomPanel);
 
@@ -403,8 +405,8 @@ namespace Fargowiltas.Content.UI.LumberjackUI
         {
             //base.DrawSelf(spriteBatch);
 
-            Vector2 moneyPos = GetInnerDimensions().Position() + new Vector2(GetInnerDimensions().Width / 4, - GetInnerDimensions().Height - 3);
-            ItemSlot.DrawMoney(spriteBatch, Language.GetTextValue("Mods.Fargowiltas.UI.LumberJack.Cost"), moneyPos.X, moneyPos.Y, Utils.CoinsSplit(biome.BuyPrice), true);
+            Vector2 moneyPos = GetInnerDimensions().Position() + new Vector2(GetInnerDimensions().Width / 4, - GetInnerDimensions().Height - 12);
+            ItemSlot.DrawMoney(spriteBatch, Language.GetTextValue("Mods.Fargowiltas.UI.LumberJack.Cost"), moneyPos.X, moneyPos.Y, Utils.CoinsSplit(biome.GetBuyPrice()), true);
         }
     }
 
@@ -580,10 +582,10 @@ namespace Fargowiltas.Content.UI.LumberjackUI
             base.LeftClick(evt);
 
             Player player = Main.LocalPlayer;
-            if (player.CanAfford(biome.BuyPrice))
+            if (player.CanAfford(biome.GetBuyPrice()))
             {
                 SoundEngine.PlaySound(SoundID.Coins);
-                player.BuyItem(biome.BuyPrice);
+                player.BuyItem(biome.GetBuyPrice());
                 biome.RollTreasures(ref player);
                 player.SetTalkNPC(-1);
                 Main.playerInventory = true;

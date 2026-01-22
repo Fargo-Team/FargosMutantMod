@@ -1,4 +1,4 @@
-Close: Закрыть
+﻿Close: Закрыть
 CombinedUIButton: Открыть полезные меню
 PotionToggler: "[s:Fargowiltas/PotionToggler] Переключатель зелий"
 
@@ -66,57 +66,57 @@ LumberJack: {
 	Biomes: {
 		Purity: {
 			Name: Лес
-			// Description: Nothin' like a nice day of choppin' and planting in the Forest! Did ya know that the trees there drop the widest variety of materials? The ladybugs keep gettin' in the way when the wind's out, so if ya ever need some I got plenty 'round then.
+			Description: Нет ничего лучше рубки и посадки деревьев в лесу! С некоторых даже иногда выпадают разные предметы! Одна беда, божьи коровки вылезают на ветру и мешают мне, так что если они тебе понадобятся — могу отдать тебе.
 		}
 
 		Desert: {
 			Name: Пустыня
-			// Description: Cacti aren't trees, ya say? Come on, some of them even got little flowers at the top... I guess beautree is in the eye of the beholder, har har!
+			Description: Кактусы, значит, не деревья? Да ладно тебе, у некоторых даже есть цветочки на верхушке... Полагаю, красота в глазах рубящего, ха-ха!
 		}
 
 		Corrupt: {
 			Name: Порча
-			// Description: I always hate it when ya find a really good tree over in the Corruption, and once ya chop it down ya see that it's been hollowed out by them icky microbes and diseases. Such a waste of good Ebonwood... but that makes it all the better when ya find a perfect chop!
+			Description: Ненавижу, когда ты только находишь хорошее дерево в порче, рубишь его — а оно всё выедено этими гадкими микробами. Такая трата эбонитовой древесины... но когда ты находишь идеальное дерево — настроение только поднимается!
 		}
 
 		Crimson: {
 			Name: Багрянец
-			// Description: Some guy wearin' a pumpkin once came up to me as I was gettin' some Shadewood, started ramblin' 'bout this "Dante's Inferno" thingy. Just 'cause a tree is red and bloody doesn't mean there's a person in there! At least, that's what I told 'em.
+			Description: Ко мне недавно подошёл какой-то чувак в тыкве, пока я рубил мрачную древесину, что-то там рассказывал про «Ад Данте». Если дерево красное и кровавое, это не значит, что в нём сидит человек! По крайней мере, я так сказал ему.
 		}
 
 		Hallow: {
 			Name: Освящение
-			// Description: Normally, the inside of a tree has these rings on the stump that you can use to count how old the tree is, but Pearlwood trees have stars instead of circles! Ain't that a hoot? Try not to harm the critters out there durin' the night, ya hear? Someone's very... protective over 'em.
+			Description: Обычно, кгда ты рубишь деревья, на пеньках есть клльца, которые показывают возраст дерева. А вот у жемчужной древесины вместо кольца звёзды! Разве не круто? Только постарайся там насекомых не убивать. Есть там кое-кто... кто очень о них заботится.
 		}
 
 		Snow: {
 			Name: Тундра
-			// Description: Boreal is one of my favorite woods to gather! Sure, blizzards make it harder to chop, but it just feels so much more rewarding when the world fights back!
+			Description: Таёжная древесина — моя самая любимая древесина, собирать её то ещё удовольствие! Конечно, в метель рубить её тяжелее, но от этого становится только приятнее получить желанное!
 		}
 
 		Jungle: {
 			Name: Джунгли
-			// Description: '''"Bee" careful out there in that Jungle, heard knockin' down the wrong Mahogany tree'll will make its tennants say "hi-ve", har har! And don't think you're safe from being "batted" an eye during the night either! C'mon, my humor wasn't that bad, "wasp" it?'''
+			Description: Джунгли — место опасное, только сунешься туда — сразу отовсюду летучие мыши летят, особенно ночью! Рубить деревья там вообще невозможно, только замахнёшься, а тебя уже окружили пчёлы! Но что-то я всё же да достаю оттуда!
 		}
 
 		Mushroom: {
 			Name: Светящиеся грибы
-			// Description: Y'know kid, fungi are actually closer in biology to you humans than they are to plants. Not that my axe discriminates, hoo-boy! You should plant one of 'em on the surface, ya never know who may show up!
+			Description: Знаешь, грибы с биологической точки зрения ближе к человеку, чем к растениям. Но не думай, я не дискриминирую! Тебе стоит посадить пару семечек на поверхности, может кто да заявится!
 		}
 
 		Beach: {
 			Name: Океан
-			// Description: One time while gathering Palm wood over at the Ocean, a stray coconut fell from the tree and hit me right in the noggin! Hoo-boy, I was seeing stars for the next week straight! Careful 'round them crabs, their claws look small but hurt like hellstone!
+			Description: Однажды, пока я собирал пальмовую древесину на берегу океана, мне прямо на голову с дерева упал кокос! И я тебе скажу, дело было неприятным, голова ещё неделю гудела! И поосторожнее с теми крабами, сами они маленькие, но кусаются по-адски больно!
 		}
 
 		Caverns: {
 			Name: Подземелье
-			// Description: The Caverns? Whaddya want me to do, swing my axe against some rocks? Well you're in luck, pal! I don't got any use for gems, can't even make 'em into a new axe! I gotta wonder how them critters crystalized like that though... hope no one goes poachin' for their shiny skin.
+			Description: Пещеры? Ты что, хочешь, чтоб я своим топором камни рубил? Тогда тебе повезло! Мне не нужны эти самоцветы, я из них даже новый топор сделать не могу! Одно только удивляет, как эти зверьки так кристаллизуются... надеюсь, никто не начнёт охоту на их блестящий мех.
 		}
 
 		Underworld: {
 			Name: Преисподняя
-			// Description: Yer wantin' me to go all the way down there? Don't worry, the demons won't make the mistake of interrupting my work again.
+			Description: Ты хочешь, чтобы я пошёл прям в самый низ? Не переживай, в этот раз демоны не будут настолько глупы, чтобы помешать мне.
 		}
 	}
 
@@ -128,9 +128,9 @@ LumberJack: {
 	CritterTitle: Доступные существа
 	Purchase: Купить
 	ItemHoverTitle: Возможные предметы:
-	// ItemHoverRoll: Loot table will be rolled {0} times
-	// MissingPylon: You must construct additional pylons!
-	// Buy: Buy Tree Treasures
+	ItemHoverRoll: Возможные предметы будут переброшены {0} {^0:раз;раза;раз}
+	MissingPylon: Вам нужны дополнительные пилоны!
+	Buy: Купить дар
 }
 
 SearchText: Поиск...

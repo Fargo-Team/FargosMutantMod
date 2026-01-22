@@ -1,4 +1,4 @@
-Close: Close
+﻿Close: Close
 CombinedUIButton: Open Utilities
 PotionToggler: "[s:Fargowiltas/PotionToggler] Potion Toggles"
 
@@ -96,7 +96,7 @@ LumberJack: {
 
 		Jungle: {
 			Name: Jungle
-			Description: '''"Bee" careful out there in that Jungle, heard knockin' down the wrong Mahogany tree'll will make its tennants say "hi-ve", har har! And don't think you're safe from being "batted" an eye during the night either! C'mon, my humor wasn't that bad, "wasp" it?'''
+			Description: "'Bee' careful out there in that Jungle, heard knockin' down the wrong Mahogany tree'll will make its tennants say 'hi-ve', har har! And don't think you're safe from being 'batted' an eye during the night either! C'mon, my humor wasn't that bad, 'wasp' it?"
 		}
 
 		Mushroom: {

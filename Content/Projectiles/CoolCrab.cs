@@ -11,8 +11,26 @@ namespace Fargowiltas.Content.Projectiles
     {
         public override void SetStaticDefaults()
         {
-            Main.projFrames[Projectile.type] = 8;
-            Main.projPet[Projectile.type] = true;
+            Main.projFrames[Type] = 8;
+            Main.projPet[Type] = true;
+
+            ProjectileID.Sets.CharacterPreviewAnimations[Type] = 
+                ProjectileID.Sets.SimpleLoop(0, 8, 5)
+                .WithOffset(new(-2, -2))
+                .WithCode(CustomPreviewAnimation);
+        }
+
+        private void CustomPreviewAnimation(Projectile proj, bool walking)
+        {
+            if (walking)
+            {   
+                if (proj.frame > 6)
+                    proj.frame = 0;            
+            }
+            else
+            {
+                proj.frame = 0;
+            }
         }
 
         public override void SetDefaults()
@@ -76,7 +94,7 @@ namespace Fargowiltas.Content.Projectiles
             Texture2D texture2D13 = Terraria.GameContent.TextureAssets.Projectile[Projectile.type].Value;
 
             int num156 = texture2D13.Height / 8; //ypos of lower right corner of sprite to draw
-            int y3 = num156 * Frame; //ypos of upper left corner of sprite to draw
+            int y3 = num156 * (Projectile.isAPreviewDummy? Projectile.frame : Frame); //ypos of upper left corner of sprite to draw
             Rectangle rectangle = new(0, y3, texture2D13.Width, num156);
             Vector2 origin2 = rectangle.Size() / 2f;
             Vector2 drawOffset = Vector2.UnitY * 0 * Projectile.scale;

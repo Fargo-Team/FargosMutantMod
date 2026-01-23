@@ -1,11 +1,8 @@
-using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
-using Terraria.DataStructures;
-using Terraria.GameContent.Creative;
+using Terraria.GameContent.Events;
 using Terraria.ID;
 using Terraria.ModLoader;
-using static Fargowiltas.FargoSets;
 
 namespace Fargowiltas.Content.Items.Misc
 {
@@ -65,21 +62,28 @@ namespace Fargowiltas.Content.Items.Misc
 
             int weaponsUsed = 0;
 
+            //only way to check if max sentries have been reached graaaaah
+            int sentrycount = 0;
+            foreach (Projectile p in Main.ActiveProjectiles)
+            {
+                if (p.WipableTurret)
+                    sentrycount++;
+            }
+
             for (int i = 0; i < 10; i++) //hotbar
             {
                 Item item = player.inventory[i];
 
-                if (i != player.selectedItem && item != null && item.DamageType == DamageClass.Summon
-                    && item.damage > 0 && item.shoot > ProjectileID.None && item.ammo <= 0 && !item.channel
-                    && ContentSamples.ProjectilesByType[item.shoot].minion
-                    && ItemID.Sets.StaffMinionSlotsRequired[item.type] <= player.maxMinions - player.slotsMinions)
+                if (item != null && item.DamageType == DamageClass.Summon && item.damage > 0 && item.shoot > ProjectileID.None && item.ammo <= 0 && !item.channel
+                    && ((ContentSamples.ProjectilesByType[item.shoot].minion && ItemID.Sets.StaffMinionSlotsRequired[item.type] <= player.maxMinions - player.slotsMinions) 
+                    || (item.sentry && ContentSamples.ProjectilesByType[item.shoot].sentry && sentrycount < player.maxTurrets && !DD2Event.Ongoing)))
                 {
                     if (!player.HasAmmo(item) || (item.mana > 0 && player.statMana < item.mana))
                         continue;
 
                     if (!PlayerLoader.CanUseItem(player, item) || !ItemLoader.CanUseItem(item, player))
                         continue;
-
+                    
                     weaponsUsed++;
                     if (weaponsUsed > 1)
                         break;
@@ -95,6 +99,7 @@ namespace Fargowiltas.Content.Items.Misc
                     player.itemTimeMax = itemtimemax;
                     player.reuseDelay = reusedelay;
                     player.direction = direction;
+                    player.AddBuff(item.buffType, 3600);
 
                     fargoPlayer.AutoSummonCap -= ItemID.Sets.StaffMinionSlotsRequired[item.type];
 

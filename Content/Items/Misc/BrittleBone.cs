@@ -16,10 +16,10 @@ namespace Fargowiltas.Content.Items.Misc
         public override void SetDefaults()
         {
             Item.CloneDefaults(ItemID.Bone);
-            Item.shoot = ProjectileID.None;
+            /*Item.shoot = ProjectileID.None;
             Item.useAnimation = 0;
             Item.useTime = 0;
-            Item.useStyle = ItemUseStyleID.None;
+            Item.useStyle = ItemUseStyleID.None;*/
             Item.notAmmo = false;
         }
     }

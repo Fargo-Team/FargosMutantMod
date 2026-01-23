@@ -66,10 +66,10 @@ namespace Fargowiltas.Content.Items.CaughtNPCs
             Item.rare = ItemRarityID.Blue;
             Item.UseSound = SoundID.Item44;
 
-            if (AssociatedNpcId == NPCID.Angler)
+            /*if (AssociatedNpcId == NPCID.Angler)
             {
                 Item.bait = 15;
-            }
+            }*/
         }
 
         public override void PostUpdate()

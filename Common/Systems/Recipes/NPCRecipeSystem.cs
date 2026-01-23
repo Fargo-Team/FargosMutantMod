@@ -103,69 +103,81 @@ namespace Fargowiltas.Common.Systems.Recipes
             recipe.DisableDecraft();
             recipe.Register();
 
-            recipe = Recipe.Create(ItemID.LeafWand);
-            recipe.AddIngredient(null, "Dryad");
-            recipe.AddTile(TileID.LivingLoom);
+            recipe = Recipe.Create(ItemID.RedHat);
+            recipe.AddIngredient(null, "Clothier");
+            recipe.AddTile(TileID.DemonAltar);
             recipe.DisableDecraft();
             recipe.Register();
 
-            recipe = Recipe.Create(ItemID.TruffleWorm);
+            /*recipe = Recipe.Create(ItemID.LeafWand);
+            recipe.AddIngredient(null, "Dryad");
+            recipe.AddTile(TileID.LivingLoom);
+            recipe.DisableDecraft();
+            recipe.Register();*/
+
+            /*recipe = Recipe.Create(ItemID.TruffleWorm);
             recipe.AddIngredient(null, "Truffle");
             recipe.AddIngredient(ItemID.EnchantedNightcrawler);
             recipe.AddTile(TileID.Autohammer);
             recipe.DisableDecraft();
-            recipe.Register();
+            recipe.Register();*/
 
             recipe = Recipe.Create(ItemID.DyeTradersScimitar);
             recipe.AddIngredient(null, "DyeTrader");
-            recipe.AddIngredient(ItemID.WoodenSword);
             recipe.AddTile(TileID.DemonAltar);
             recipe.DisableDecraft();
             recipe.Register();
 
             recipe = Recipe.Create(ItemID.AleThrowingGlove);
             recipe.AddIngredient(null, "Tavernkeep");
-            recipe.AddIngredient(ItemID.Ale, 5);
+            recipe.AddTile(TileID.DemonAltar);
+            recipe.DisableDecraft();
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.IvyGuitar);
+            recipe.AddIngredient(null, "Steampunker");
             recipe.AddTile(TileID.DemonAltar);
             recipe.DisableDecraft();
             recipe.Register();
 
             recipe = Recipe.Create(ItemID.StylistKilLaKillScissorsIWish);
             recipe.AddIngredient(null, "Stylist");
-            recipe.AddIngredient(ItemID.WoodenSword);
             recipe.AddTile(TileID.DemonAltar);
             recipe.DisableDecraft();
             recipe.Register();
 
             recipe = Recipe.Create(ItemID.PainterPaintballGun);
             recipe.AddIngredient(null, "Painter");
-            recipe.AddIngredient(ItemID.WoodenBow);
+            recipe.AddTile(TileID.DemonAltar);
+            recipe.DisableDecraft();
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.JimsCap);
+            recipe.AddIngredient(null, "Painter");
             recipe.AddTile(TileID.DemonAltar);
             recipe.DisableDecraft();
             recipe.Register();
 
             recipe = Recipe.Create(ItemID.TaxCollectorsStickOfDoom);
             recipe.AddIngredient(null, "TaxCollector");
-            recipe.AddIngredient(ItemID.WoodenSword);
             recipe.AddTile(TileID.DemonAltar);
             recipe.DisableDecraft();
             recipe.Register();
 
             recipe = Recipe.Create(ItemID.PrincessWeapon);
             recipe.AddIngredient(null, "Princess");
-            recipe.AddIngredient(ItemID.Ectoplasm);
             recipe.AddTile(TileID.DemonAltar);
+            recipe.AddCondition(Condition.Hardmode); //normally only checks for hm, this is intended i think
             recipe.DisableDecraft();
             recipe.Register();
 
             recipe = Recipe.Create(ItemID.CombatWrench);
             recipe.AddIngredient(null, "Mechanic");
-            recipe.AddIngredient(ItemID.WoodenBoomerang);
             recipe.AddTile(TileID.DemonAltar);
             recipe.DisableDecraft();
             recipe.Register();
 
-            recipe = Recipe.Create(ItemID.FishermansGuide);
+            /*recipe = Recipe.Create(ItemID.FishermansGuide);
             recipe.AddIngredient(null, "Angler");
             recipe.AddTile(TileID.TinkerersWorkbench);
             recipe.DisableDecraft();
@@ -188,7 +200,7 @@ namespace Fargowiltas.Common.Systems.Recipes
             recipe.AddIngredient(null, "PartyGirl");
             recipe.AddTile(TileID.Furnaces);
             recipe.DisableDecraft();
-            recipe.Register();
+            recipe.Register();*/
 
             recipe = Recipe.Create(ItemID.Gel, 10);
             recipe.AddRecipeGroup(AnyCaughtSlime);
@@ -205,19 +217,19 @@ namespace Fargowiltas.Common.Systems.Recipes
 
         private static void AddSkeletonMerchantNPCRecipes()
         {
-            var recipe = Recipe.Create(CaughtNPCItem.CaughtTownies[NPCID.TravellingMerchant]);
+            /*var recipe = Recipe.Create(CaughtNPCItem.CaughtTownies[NPCID.TravellingMerchant]);
             recipe.AddIngredient(null, "SkeletonMerchant");
             recipe.AddTile(TileID.MeatGrinder);
             recipe.DisableDecraft();
-            recipe.Register();
+            recipe.Register();*/
 
-            recipe = Recipe.Create(ItemID.Bone, 25);
+            /*recipe = Recipe.Create(ItemID.Bone, 25);
             recipe.AddIngredient(null, "SkeletonMerchant");
             recipe.AddTile(TileID.BoneWelder);
             recipe.DisableDecraft();
-            recipe.Register();
+            recipe.Register();*/
 
-            recipe = Recipe.Create(ItemID.BlueCounterweight);
+            var recipe = Recipe.Create(ItemID.BlueCounterweight);
             recipe.AddIngredient(null, "SkeletonMerchant");
             recipe.AddIngredient(ItemID.GoldCoin, 10);
             recipe.AddIngredient(ItemID.BlueDye);
@@ -266,8 +278,16 @@ namespace Fargowiltas.Common.Systems.Recipes
             recipe.Register();
 
             recipe = Recipe.Create(ItemID.MagicLantern);
-            recipe.AddIngredient(null, "SkeletonMerchant", 2);
+            recipe.AddIngredient(null, "SkeletonMerchant");
             recipe.AddIngredient(ItemID.GoldCoin, 20);
+            recipe.AddTile(TileID.TinkerersWorkbench);
+            recipe.DisableDecraft();
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.ArtisanLoaf);
+            recipe.AddIngredient(null, "SkeletonMerchant");
+            recipe.AddIngredient(ItemID.GoldCoin, 20);
+            recipe.AddRecipeGroup(RecipeGroups.AnyFoodT2);
             recipe.AddTile(TileID.TinkerersWorkbench);
             recipe.DisableDecraft();
             recipe.Register();
@@ -275,17 +295,23 @@ namespace Fargowiltas.Common.Systems.Recipes
 
         private static void AddTravellingMerchantNPCRecipes()
         {
-            var recipe = Recipe.Create(CaughtNPCItem.CaughtTownies[NPCID.SkeletonMerchant]);
+            /*var recipe = Recipe.Create(CaughtNPCItem.CaughtTownies[NPCID.SkeletonMerchant]);
             recipe.AddIngredient(null, "TravellingMerchant");
             recipe.AddIngredient(ItemID.Bone, 5);
             recipe.AddTile(TileID.BoneWelder);
+            recipe.DisableDecraft();
+            recipe.Register();*/
+
+            var recipe = Recipe.Create(ItemID.PeddlersHat);
+            recipe.AddIngredient(null, "TravellingMerchant");
+            recipe.AddTile(TileID.DemonAltar);
             recipe.DisableDecraft();
             recipe.Register();
 
             recipe = Recipe.Create(ItemID.DynastyWood, 500);
             recipe.AddIngredient(ItemID.Wood, 500);
             recipe.AddIngredient(null, "TravellingMerchant");
-            recipe.AddTile(TileID.CookingPots);
+            recipe.AddTile(TileID.TinkerersWorkbench);
             recipe.DisableDecraft();
             recipe.Register();
 
@@ -417,6 +443,7 @@ namespace Fargowiltas.Common.Systems.Recipes
             recipe = Recipe.Create(ItemID.Gi);
             recipe.AddIngredient(null, "TravellingMerchant", 2);
             recipe.AddIngredient(ItemID.GoldCoin, 4);
+            recipe.AddIngredient(ItemID.NinjaShirt);
             recipe.AddTile(TileID.TinkerersWorkbench);
             recipe.DisableDecraft();
             recipe.Register();
@@ -424,6 +451,7 @@ namespace Fargowiltas.Common.Systems.Recipes
             recipe = Recipe.Create(ItemID.GypsyRobe);
             recipe.AddIngredient(null, "TravellingMerchant", 2);
             recipe.AddIngredient(ItemID.GoldCoin, 7);
+            recipe.AddIngredient(ItemID.AmethystRobe);
             recipe.AddTile(TileID.TinkerersWorkbench);
             recipe.DisableDecraft();
             recipe.Register();
@@ -431,6 +459,7 @@ namespace Fargowiltas.Common.Systems.Recipes
             recipe = Recipe.Create(ItemID.MagicHat);
             recipe.AddIngredient(null, "TravellingMerchant", 2);
             recipe.AddIngredient(ItemID.GoldCoin, 6);
+            recipe.AddIngredient(ItemID.WizardHat);
             recipe.AddTile(TileID.TinkerersWorkbench);
             recipe.DisableDecraft();
             recipe.Register();
@@ -524,9 +553,9 @@ namespace Fargowiltas.Common.Systems.Recipes
             recipe.DisableDecraft();
             recipe.Register();
 
-            // Extremely rare - 4 merchant, 2x price
+            // Extremely rare - 3 merchant, 2x price
             recipe = Recipe.Create(ItemID.BouncingShield);
-            recipe.AddIngredient(null, "TravellingMerchant", 4);
+            recipe.AddIngredient(null, "TravellingMerchant", 3);
             recipe.AddIngredient(ItemID.GoldCoin, 70);
             recipe.AddTile(TileID.TinkerersWorkbench);
             recipe.AddCondition(Condition.Hardmode);
@@ -534,7 +563,7 @@ namespace Fargowiltas.Common.Systems.Recipes
             recipe.Register();
 
             recipe = Recipe.Create(ItemID.Gatligator);
-            recipe.AddIngredient(null, "TravellingMerchant", 4);
+            recipe.AddIngredient(null, "TravellingMerchant", 3);
             recipe.AddIngredient(ItemID.GoldCoin, 70);
             recipe.AddTile(TileID.TinkerersWorkbench);
             recipe.AddCondition(Condition.Hardmode);
@@ -542,7 +571,7 @@ namespace Fargowiltas.Common.Systems.Recipes
             recipe.Register();
 
             recipe = Recipe.Create(ItemID.BlackCounterweight);
-            recipe.AddIngredient(null, "TravellingMerchant", 4);
+            recipe.AddIngredient(null, "TravellingMerchant", 3);
             recipe.AddIngredient(ItemID.GoldCoin, 10);
             recipe.AddIngredient(ItemID.BlackDye);
             recipe.AddTile(TileID.TinkerersWorkbench);
@@ -551,7 +580,7 @@ namespace Fargowiltas.Common.Systems.Recipes
 
             // Extraordinarily rare - 5 merchant, 2x price
             recipe = Recipe.Create(ItemID.AngelHalo);
-            recipe.AddIngredient(null, "TravellingMerchant", 5);
+            recipe.AddIngredient(null, "TravellingMerchant", 4);
             recipe.AddIngredient(ItemID.GoldCoin, 80);
             recipe.AddIngredient(ItemID.GoldBar, 5);
             recipe.AddTile(TileID.TinkerersWorkbench);

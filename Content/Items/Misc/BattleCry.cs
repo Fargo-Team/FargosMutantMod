@@ -161,47 +161,6 @@ namespace Fargowiltas.Content.Items.Misc
             return false;
         }
 
-        public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI)
-        {
-            Main.GetItemDrawFrame(Type, out var itemTexture, out var itemFrame);
-            Vector2 drawOrigin = itemFrame.Size() / 2;
-            Vector2 drawPosition = Item.Bottom - Main.screenPosition - new Vector2(0, drawOrigin.Y);
-            Player player = Main.LocalPlayer;
-            FargoPlayer modPlayer = player.FargoMutant();      
-            ++RealFrameCounter;
-            if (player.whoAmI == Main.myPlayer)
-            {
-                if (modPlayer.CalmingCry)
-                {
-                    if (RealFrame <= 5)
-                        RealFrame = 6;
-                    if (RealFrameCounter >= 7)
-                    {
-                        RealFrameCounter = 0;
-                        if (++RealFrame > 10)
-                            RealFrame = 6;
-                    }
-
-                }
-                else if (modPlayer.BattleCry)
-                {
-                    if (RealFrame <= 0)
-                        RealFrame = 1;
-                    if (RealFrameCounter >= 7)
-                    {
-                        RealFrameCounter = 0;
-                        if (++RealFrame > 5)
-                            RealFrame = 1;
-                    }
-                }
-                else
-                    RealFrame = 0;
-            }
-            itemFrame.Y = 48 * RealFrame;
-            spriteBatch.Draw(itemTexture, drawPosition, itemFrame, lightColor, rotation, drawOrigin, scale, SpriteEffects.None, 0);
-            return false;
-        }
-
         public override void AddRecipes()
         {
             CreateRecipe()

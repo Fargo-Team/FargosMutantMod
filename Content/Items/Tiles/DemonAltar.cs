@@ -6,7 +6,8 @@ using Microsoft.Xna.Framework;
 using Terraria;
 
 namespace Fargowiltas.Content.Items.Tiles
-{
+{   
+    // TODO: Delete these items and tiles when 1.4.5 TML is real.
     public class DemonAltar : ModItem
     {
         public override void SetStaticDefaults()

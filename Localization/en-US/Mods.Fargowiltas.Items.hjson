@@ -154,7 +154,7 @@ OmniBridgifier2: {
 }
 
 BattleCry: {
-	DisplayName: Battle Cry
+	DisplayName: Battle Horn
 	Tooltip:
 		'''
 		Left click to toggle 10x increased spawn rates

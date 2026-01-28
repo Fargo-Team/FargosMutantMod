@@ -1,3 +1,4 @@
+﻿using Microsoft.CodeAnalysis;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -5,10 +6,13 @@ using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.Chat;
+using Terraria.DataStructures;
+using Terraria.GameContent.Tile_Entities;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.WorldBuilding;
+using static Fargowiltas.Common.Systems.InstaVisual;
 using static Fargowiltas.Fargowiltas;
 
 namespace Fargowiltas.Content.Items.Misc
@@ -18,13 +22,18 @@ namespace Fargowiltas.Content.Items.Misc
         public override void SetStaticDefaults()
         {
             Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-        }
 
-        int drawTimer = 0;
+            // Done this way to spoof Item visual scale in the inventory and world.
+            // Ticks per second is set to 1 to prevent weird divide by zero error. ¯\_(ツ)_/¯
+            DrawAnimationVertical drawAnim = new DrawAnimationVertical(1, 11);
+            drawAnim.NotActuallyAnimating = true;
+            
+            Main.RegisterItemAnimation(Type, drawAnim);
+        }
         public override void SetDefaults()
         {
-            Item.width = 28;
-            Item.height = 38;
+            Item.width = 46;
+            Item.height = 48;
             Item.value = Item.sellPrice(0, 0, 2);
             Item.rare = ItemRarityID.Pink;
             Item.useAnimation = 30;
@@ -110,36 +119,87 @@ namespace Fargowiltas.Content.Items.Misc
             return true;
         }
 
+        int RealFrame;
+        int RealFrameCounter;
+
         public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
         {
             Player player = Main.LocalPlayer;
             FargoPlayer modPlayer = player.FargoMutant();
-            float glowscale = (Main.mouseTextColor / 400f - 0.35f) * 0.3f + 0.9f;
-            glowscale *= scale;
-            float modifier = 0.5f + (float)Math.Sin(drawTimer / 30f) / 3;
-            Texture2D texture = ModContent.Request<Texture2D>("Fargowiltas/Content/Items/Misc/BattleCry_Glow").Value;
+            Texture2D texture = ModContent.Request<Texture2D>("Fargowiltas/Content/Items/Misc/BattleCry", AssetRequestMode.AsyncLoad).Value;
+            ++RealFrameCounter;
             if (player.whoAmI == Main.myPlayer)
             {
                 if (modPlayer.CalmingCry)
                 {
-                    for (int j = 0; j < 12; j++)
+                    if (RealFrame <= 5)
+                        RealFrame = 6;
+                    if (RealFrameCounter >= 7)
                     {
-                        Vector2 afterimageOffset = (MathHelper.TwoPi * j / 12f).ToRotationVector2() * 2;// + (Vector2.UnitX * 1.8f);
-                        Color glowColor = Color.Lerp(Color.SkyBlue, Color.CornflowerBlue, modifier) * 0.5f;
-                        Main.EntitySpriteDraw(texture, position + afterimageOffset, frame, glowColor, 0, texture.Size() * 0.55f, glowscale, SpriteEffects.None, 0f);
+                        RealFrameCounter = 0;
+                        if (++RealFrame > 10)
+                            RealFrame = 6;
                     }
+
                 }
                 else if (modPlayer.BattleCry)
                 {
-                    for (int j = 0; j < 12; j++)
+                    if (RealFrame <= 0)
+                        RealFrame = 1;
+                    if (RealFrameCounter >= 7)
                     {
-                        Vector2 afterimageOffset = (MathHelper.TwoPi * j / 12f).ToRotationVector2() * 2; // + (Vector2.UnitX * 1.8f);
-                        Color glowColor = Color.Lerp(Color.Red, Color.PaleVioletRed, modifier) * 0.5f;
-                        Main.EntitySpriteDraw(texture, position + afterimageOffset, frame, glowColor, 0, texture.Size() * 0.55f, glowscale, SpriteEffects.None, 0f);
+                        RealFrameCounter = 0;
+                        if (++RealFrame > 5)
+                            RealFrame = 1;
                     }
                 }
-            }   drawTimer++;
-            return base.PreDrawInInventory(spriteBatch, position, frame, drawColor, itemColor, origin, scale);
+                else
+                    RealFrame = 0;
+            }
+            frame.Y = 48 * RealFrame;
+            spriteBatch.Draw(texture, position, frame, drawColor, 0, origin, scale, SpriteEffects.None, 0);
+            return false;
+        }
+
+        public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI)
+        {
+            Main.GetItemDrawFrame(Type, out var itemTexture, out var itemFrame);
+            Vector2 drawOrigin = itemFrame.Size() / 2;
+            Vector2 drawPosition = Item.Bottom - Main.screenPosition - new Vector2(0, drawOrigin.Y);
+            Player player = Main.LocalPlayer;
+            FargoPlayer modPlayer = player.FargoMutant();      
+            ++RealFrameCounter;
+            if (player.whoAmI == Main.myPlayer)
+            {
+                if (modPlayer.CalmingCry)
+                {
+                    if (RealFrame <= 5)
+                        RealFrame = 6;
+                    if (RealFrameCounter >= 7)
+                    {
+                        RealFrameCounter = 0;
+                        if (++RealFrame > 10)
+                            RealFrame = 6;
+                    }
+
+                }
+                else if (modPlayer.BattleCry)
+                {
+                    if (RealFrame <= 0)
+                        RealFrame = 1;
+                    if (RealFrameCounter >= 7)
+                    {
+                        RealFrameCounter = 0;
+                        if (++RealFrame > 5)
+                            RealFrame = 1;
+                    }
+                }
+                else
+                    RealFrame = 0;
+            }
+            itemFrame.Y = 48 * RealFrame;
+            spriteBatch.Draw(itemTexture, drawPosition, itemFrame, lightColor, rotation, drawOrigin, scale, SpriteEffects.None, 0);
+            return false;
         }
 
         public override void AddRecipes()

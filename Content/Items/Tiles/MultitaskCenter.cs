@@ -1,7 +1,12 @@
 ﻿using Fargowiltas.Common.Systems.Recipes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using Terraria;
+using Terraria.DataStructures;
+using Terraria.GameContent;
+using Terraria.GameContent.Drawing;
+using Terraria.GameContent.ObjectInteractions;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -54,20 +59,25 @@ namespace Fargowiltas.Content.Items.Tiles
 
     public class MultitaskCenterSheet : ModTile
     {
+        private Asset<Texture2D> glowTexture;
         public override void SetStaticDefaults()
         {
             Main.tileLighted[Type] = true;
             Main.tileSolidTop[Type] = true;
             Main.tileTable[Type] = true;
             Main.tileFrameImportant[Type] = true;
-            TileObjectData.newTile.CopyFrom(TileObjectData.Style3x3);
-            TileObjectData.newTile.Width = 4;
             Main.tileNoAttach[Type] = false;
+
+            TileID.Sets.HasOutlines[Type] = true;
+            TileID.Sets.DisableSmartCursor[Type] = true;
+
+            TileObjectData.newTile.CopyFrom(TileObjectData.Style3x3);
+            TileObjectData.newTile.Width = 4;           
             TileObjectData.newTile.CoordinateHeights = [16, 16, 16];
             TileObjectData.addTile(Type);
+
             LocalizedText name = CreateMapEntryName();
-            AddMapEntry(new Color(200, 200, 200), name);
-            TileID.Sets.DisableSmartCursor[Type] = true;
+            AddMapEntry(new Color(200, 200, 200), name);         
 
             //counts as
             AdjTiles = 
@@ -87,7 +97,12 @@ namespace Fargowiltas.Content.Items.Tiles
                 ];
             TileID.Sets.CountsAsWaterSource[Type] = true;
             AnimationFrameHeight = 54;
+
+            glowTexture = ModContent.Request<Texture2D>(Texture + "_Glow");
         }
+
+        public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) => true;
+        
 
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
         {
@@ -111,22 +126,29 @@ namespace Fargowiltas.Content.Items.Tiles
             }
         }
 
-        public override void PostDraw(int i, int j, SpriteBatch spriteBatch)
+        public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
         {
             Tile tile = Main.tile[i, j];
-            Texture2D texture2D13 = Terraria.GameContent.TextureAssets.Tile[Type].Value;
-            int num156 = Terraria.GameContent.TextureAssets.Tile[Type].Value.Height / 4; //ypos of lower right corner of sprite to draw
+            int num156 = TextureAssets.Tile[Type].Value.Height / 4; //ypos of lower right corner of sprite to draw
             int y3 = num156 * Main.tileFrame[Type]; //ypos of upper left corner of sprite to draw
             Rectangle rectangle = new(tile.TileFrameX, tile.TileFrameY + y3, 16, 16);
-            Vector2 origin2 = rectangle.Size() / 2f;
-            Vector2 zero = new Vector2(Main.offScreenRange, Main.offScreenRange);
+            Vector2 zero = Main.drawToScreen ? Vector2.Zero : new Vector2(Main.offScreenRange);
+            Color color = Lighting.GetColor(i, j);
 
-            if (Main.drawToScreen)
+            Main.spriteBatch.Draw(TextureAssets.Tile[Type].Value, new Vector2(i * 16 - (int)Main.screenPosition.X, j * 16 - (int)Main.screenPosition.Y) + zero, new Rectangle?(rectangle), color, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(glowTexture.Value, new Vector2(i * 16 - (int)Main.screenPosition.X, j * 16 - (int)Main.screenPosition.Y) + zero, new Rectangle?(rectangle), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+
+            Color highlightColor;
+            if (TileID.Sets.HasOutlines[Type] && Main.InSmartCursorHighlightArea(i, j, out var actuallySelected) && !true)
             {
-                zero = Vector2.Zero;
+                int avgBrightness = (color.R + color.G + color.B) / 3;
+                if (avgBrightness > 10)
+                {
+                    highlightColor = Colors.GetSelectionGlowColor(actuallySelected, avgBrightness);
+                    Main.spriteBatch.Draw(TextureAssets.HighlightMask[Type].Value, new Vector2(i * 16 - (int)Main.screenPosition.X, j * 16 - (int)Main.screenPosition.Y) + zero, new Rectangle?(rectangle), highlightColor, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0);
+                }
             }
-
-            Main.spriteBatch.Draw(ModContent.Request<Texture2D>(Texture + "_Glow").Value, new Vector2(i * 16 - (int)Main.screenPosition.X, j * 16 - (int)Main.screenPosition.Y) + zero, new Rectangle?(rectangle), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+            return false;
         }
     }
 }

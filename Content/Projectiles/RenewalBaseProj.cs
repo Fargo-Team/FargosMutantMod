@@ -70,7 +70,7 @@ namespace Fargowiltas.Content.Projectiles
                         int xPosition = (int)(x + Projectile.Center.X / 16.0f);
                         int yPosition = (int)(y + Projectile.Center.Y / 16.0f);
 
-                        WorldGen.Convert(xPosition, yPosition, convertType, 1); 
+                        WorldGen.Convert(xPosition, yPosition, convertType, 1, true, true);
                     }
                 }
             }
@@ -86,7 +86,7 @@ namespace Fargowiltas.Content.Projectiles
                         // Circle
                         if (Math.Sqrt(x * x + y * y) <= radius + 0.5)
                         {
-                            WorldGen.Convert(xPosition, yPosition, convertType, 1);
+                            WorldGen.Convert(xPosition, yPosition, convertType, 1, true, true);
                         }
                     }
                 }

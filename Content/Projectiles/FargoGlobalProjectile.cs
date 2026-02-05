@@ -273,7 +273,7 @@ namespace Fargowiltas.Content.Projectiles
 
         public static bool TileIsLiterallyAir(Tile tile)
         {
-            return tile.TileType == 0 && tile.WallType == 0 && tile.LiquidAmount == 0 /*&& tile.sTileHeader == 0 && tile.bTileHeader == 0 && tile.bTileHeader2 == 0 && tile.bTileHeader3 == 0*/ && tile.TileFrameX == 0 && tile.TileFrameY == 0;
+            return tile.TileType == TileID.Dirt && tile.WallType == WallID.None && tile.LiquidAmount == 0 /*&& tile.sTileHeader == 0 && tile.bTileHeader == 0 && tile.bTileHeader2 == 0 && tile.bTileHeader3 == 0*/ && tile.TileFrameX == 0 && tile.TileFrameY == 0;
         }
 
         public static bool TileBelongsToMagicStorage(Tile tile)

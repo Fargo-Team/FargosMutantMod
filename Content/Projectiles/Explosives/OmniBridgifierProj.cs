@@ -50,7 +50,7 @@ namespace Fargowiltas.Content.Projectiles.Explosives
                         if (WorldGen.InWorld(x, y))
                         {
                             Tile tile = Framing.GetTileSafely(x, y);
-                            if (tile == null || tile.TileType != 0)
+                            if (tile == null || tile.TileType != TileID.Dirt)
                                 return false;
                         }
                     }
@@ -93,7 +93,7 @@ namespace Fargowiltas.Content.Projectiles.Explosives
                                 i = interval;
                             }
                         }
-                        else if (platformTile.TileType == 0) //if air, allow one gap
+                        else if (platformTile.TileType == TileID.Dirt) //if air, allow one gap
                         {
                             if (allowOneGap)
                                 allowOneGap = false;

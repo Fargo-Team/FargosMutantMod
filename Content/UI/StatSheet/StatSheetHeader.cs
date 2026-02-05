@@ -5,6 +5,7 @@ using ReLogic.Graphics;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.GameContent.UI.Elements;
+using Terraria.ID;
 
 namespace Fargowiltas.Content.UI.StatSheet
 {
@@ -21,7 +22,7 @@ namespace Fargowiltas.Content.UI.StatSheet
             this.key = key;
             BackgroundColor = Color.White;
 
-            line = TextureAssets.Extra[178];
+            line = TextureAssets.Extra[ExtrasID.FairyQueenLance];
 
             text = new UIText($"[c/{Color.Pink.Hex3()}:{headerString}]");
             text.Left.Set(0, 0f);

@@ -33,7 +33,7 @@ namespace Fargowiltas.Content.Projectiles
         {
             Projectile.width = 20;
             Projectile.height = 20;
-            Projectile.aiStyle = 2;
+            Projectile.aiStyle = ProjAIStyleID.ThrownProjectile;
             Projectile.friendly = true;
             Projectile.penetrate = -1;
             Projectile.timeLeft = 170;

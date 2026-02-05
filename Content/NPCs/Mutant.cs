@@ -94,7 +94,7 @@ namespace Fargowiltas.Content.NPCs
             NPC.friendly = true;
             NPC.width = 36;
             NPC.height = 40;
-            NPC.aiStyle = 7;
+            NPC.aiStyle = NPCAIStyleID.Passive;
             NPC.damage = 10;
             NPC.defense = NPC.downedMoonlord ? 50 : 15;
             NPC.lifeMax = NPC.downedMoonlord ? 5000 : Main.hardMode ? 1000 : 250;

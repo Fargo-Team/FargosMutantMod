@@ -414,7 +414,7 @@ namespace Fargowiltas.Common.Systems
     {
         public static int GetReforgePrice(Item item)
         {
-            if (item.type <= 0)
+            if (item.type <= ItemID.None)
                 return -1;
 
             int num58 = item.value;

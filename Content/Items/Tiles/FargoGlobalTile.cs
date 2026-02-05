@@ -217,7 +217,7 @@ namespace Fargowiltas.Content.Items.Tiles
             {
                 for (int j = y; j < y + 2; j++)
                 {
-                    Main.tile[i, j].TileType = 0;
+                    Main.tile[i, j].TileType = TileID.Dirt;
                     //Main.tile[i, j].sTileHeader = 0;
                     Main.tile[i, j].TileFrameX = 0;
                     Main.tile[i, j].TileFrameY = 0;

@@ -22,7 +22,7 @@ namespace Fargowiltas.Content.Projectiles
         {
             Projectile.width = 8;
             Projectile.height = 12;
-            Projectile.aiStyle = 1;
+            Projectile.aiStyle = ProjAIStyleID.Arrow;
             Projectile.friendly = true;
             Projectile.npcProj = true;
             Projectile.penetrate = 5;

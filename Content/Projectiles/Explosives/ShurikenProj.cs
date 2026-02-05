@@ -19,9 +19,9 @@ namespace Fargowiltas.Content.Projectiles.Explosives
             Projectile.friendly = true;
             Projectile.DamageType = DamageClass.Default;
             Projectile.penetrate = 5;
-            Projectile.aiStyle = 2;
+            Projectile.aiStyle = ProjAIStyleID.ThrownProjectile;
             Projectile.timeLeft = 600;
-            AIType = 48;
+            AIType = ProjectileID.ThrowingKnife;
         }
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)

@@ -18,7 +18,7 @@ namespace Fargowiltas.Content.Projectiles.Explosives
         {
             Projectile.width = 30;
             Projectile.height = 30;
-            Projectile.aiStyle = 16;
+            Projectile.aiStyle = ProjAIStyleID.Explosive;
             Projectile.friendly = true;
             Projectile.penetrate = -1;
             Projectile.timeLeft = 180;

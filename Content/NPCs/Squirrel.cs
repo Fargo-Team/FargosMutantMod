@@ -727,7 +727,7 @@ namespace Fargowiltas.Content.NPCs
                 ItemID.BloodFishingRod, 1,
 
                 // shadow orb drops
-                ItemID.Musket, 1,
+                /*ItemID.Musket, 1,
                 ItemID.ShadowOrb, 1,
                 ItemID.Vilethorn, 1,
                 ItemID.BallOHurt, 1,
@@ -737,7 +737,7 @@ namespace Fargowiltas.Content.NPCs
                 ItemID.CrimsonHeart, 1,
                 ItemID.CrimsonRod, 1,
                 ItemID.TheRottedFork, 1,
-                ItemID.PanicNecklace, 1,
+                ItemID.PanicNecklace, 1,*/
 
                 // enemy weapon drops
                 ItemID.BatBat, 1,

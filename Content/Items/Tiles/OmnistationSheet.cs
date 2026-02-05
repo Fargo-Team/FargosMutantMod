@@ -15,17 +15,18 @@ namespace Fargowiltas.Content.Items.Tiles
         public virtual Color color => new Color(221, 85, 125);
 
         public override void SetStaticDefaults()
-        {   
-            
+        {            
             Main.tileLighted[Type] = true;
             Main.tileFrameImportant[Type] = true;
+
             TileObjectData.newTile.CopyFrom(TileObjectData.Style2xX);
             TileObjectData.newTile.Height = 4;
             TileObjectData.newTile.CoordinateHeights = [16, 16, 16, 16];
             TileObjectData.addTile(Type);
+
             LocalizedText name = CreateMapEntryName();
-            // name.SetDefault("Omnistation");
             AddMapEntry(color, name);
+
             AnimationFrameHeight = 72;
         }
 

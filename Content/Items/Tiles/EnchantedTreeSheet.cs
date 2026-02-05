@@ -22,11 +22,9 @@ namespace Fargowiltas.Content.Items.Tiles
             Main.tileSolid[Type] = false;
             Main.tileMergeDirt[Type] = false;
             Main.tileBlockLight[Type] = false;
-            DustType = DustID.Stone;
-            LocalizedText name = CreateMapEntryName();
-            AddMapEntry(Color.DarkGray, name);
             Main.tileNoAttach[Type] = true;
             Main.tileFrameImportant[Type] = true;
+
             TileObjectData.newTile.CopyFrom(TileObjectData.Style3x4);
             TileObjectData.newTile.Width = 3;
             TileObjectData.newTile.Height = 4;
@@ -35,6 +33,11 @@ namespace Fargowiltas.Content.Items.Tiles
             TileObjectData.newTile.UsesCustomCanPlace = true;
             TileObjectData.newTile.Origin = new Point16(0, 3);
             TileObjectData.addTile(Type);
+
+            LocalizedText name = CreateMapEntryName();
+            AddMapEntry(Color.DarkGray, name);
+
+            DustType = DustID.Stone;
         }
         public override void RandomUpdate(int i, int j)
         {

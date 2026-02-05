@@ -26,12 +26,11 @@ namespace Fargowiltas.Content.Items.Tiles
             Main.tileSolid[Type] = false;
             Main.tileMergeDirt[Type] = false;
             Main.tileBlockLight[Type] = false;
-            DustType = DustID.Stone;
-            LocalizedText name = CreateMapEntryName();
-            AddMapEntry(Color.DarkGray, name);
             Main.tileNoAttach[Type] = true;
             Main.tileFrameImportant[Type] = true;
+
             TileID.Sets.HasOutlines[Type] = true;
+
             TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
             TileObjectData.newTile.Width = 2;
             TileObjectData.newTile.Height = 2;
@@ -40,6 +39,12 @@ namespace Fargowiltas.Content.Items.Tiles
             TileObjectData.newTile.UsesCustomCanPlace = true;
             TileObjectData.newTile.Origin = new Point16(0, 1);
             TileObjectData.addTile(Type);
+
+            LocalizedText name = CreateMapEntryName();
+            AddMapEntry(Color.DarkGray, name);
+
+            DustType = DustID.Stone;
+
             AnimationFrameHeight = 38;
         }
         public override void AnimateIndividualTile(int type, int i, int j, ref int frameXOffset, ref int frameYOffset)

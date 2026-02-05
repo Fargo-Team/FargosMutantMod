@@ -14,20 +14,16 @@ namespace Fargowiltas.Content.Items.Tiles
         public override void SetStaticDefaults()
         {
             Main.tileFrameImportant[Type] = true;
+
+            TileID.Sets.DisableSmartCursor[Type] = true;
+
             TileObjectData.newTile.CopyFrom(TileObjectData.Style3x4);
             TileObjectData.newTile.Height = 4;
             TileObjectData.newTile.CoordinateHeights = [16, 16, 16, 16];
             TileObjectData.addTile(Type);
+
             LocalizedText name = CreateMapEntryName();
-            // name.SetDefault("Regal Statue");
             AddMapEntry(new Color(200, 200, 200), name);
-            TileID.Sets.DisableSmartCursor[Type] = true;
         }
-        /*
-        public override void KillMultiTile(int i, int j, int frameX, int frameY)
-        {
-            Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 32, 16, ItemType<RegalStatue>());
-        }
-        */
     }
 }

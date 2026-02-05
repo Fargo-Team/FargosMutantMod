@@ -20,12 +20,13 @@ namespace Fargowiltas.Content.Items.Tiles
         {
             Main.tileLighted[Type] = true;
             Main.tileFrameImportant[Type] = true;
+
             TileObjectData.newTile.CopyFrom(TileObjectData.Style2xX);
             TileObjectData.newTile.Height = 3;
             TileObjectData.newTile.CoordinateHeights = [16, 16, 16, 16];
             TileObjectData.addTile(Type);
+
             LocalizedText name = CreateMapEntryName();
-            // name.SetDefault("Purity Totem");
             AddMapEntry(Color.Yellow, name);
         }
         public override bool CanDrop(int i, int j) => false;

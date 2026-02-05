@@ -14,11 +14,6 @@ namespace Fargowiltas.Content.Items.Tiles
 {
     public class ElementalAssembler : ModItem
     {
-        public override void SetStaticDefaults()
-        {
-            Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-        }
-
         public override void SetDefaults()
         {
             Item.width = 28;

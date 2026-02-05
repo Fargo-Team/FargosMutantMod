@@ -57,7 +57,7 @@ namespace Fargowiltas.Content.Items.CaughtNPCs
         {
             Main.RegisterItemAnimation(Type, new DrawAnimationVertical(6, Main.npcFrameCount[AssociatedNpcId]));
             ItemID.Sets.AnimatesAsSoul[Type] = true;
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 5;
+            Item.ResearchUnlockCount = 5;
         }
 
         public override void SetDefaults()

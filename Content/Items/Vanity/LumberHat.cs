@@ -9,8 +9,6 @@ namespace Fargowiltas.Content.Items.Vanity
     {
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("LumberJack Hat");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
             ArmorIDs.Head.Sets.DrawHatHair[Item.headSlot] = true;
         }
 

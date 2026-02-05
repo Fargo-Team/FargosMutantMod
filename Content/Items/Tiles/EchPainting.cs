@@ -5,13 +5,6 @@ namespace Fargowiltas.Content.Items.Tiles
 {
     public class EchPainting : ModItem
     {
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Ech Painting");
-            // Tooltip.SetDefault("'Groalt W. Fai'");
-            Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-        }
-
         public override void SetDefaults()
         {
             Item.width = 20;

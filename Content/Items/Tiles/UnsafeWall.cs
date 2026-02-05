@@ -23,7 +23,7 @@ namespace Fargowiltas.Content.Items.Tiles
         {
             ItemID.Sets.ShimmerTransformToItem[Type] = wall;
             ItemID.Sets.DrawUnsafeIndicator[Type] = true;
-            Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 400;
+            Item.ResearchUnlockCount = 400;
         }
 
         public override void SetDefaults()

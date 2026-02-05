@@ -14,11 +14,7 @@ namespace Fargowiltas.Content.Items.Summons.Mutant
     {
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Ancient Seal");
-            /* Tooltip.SetDefault("Summons ALL the bosses modded included" +
-                               "\nCan only be used at night" +
-                               "\n'Use at your own risk'"); */
-            Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 3;
+            Item.ResearchUnlockCount = 3;
 
 			ItemID.Sets.SortingPriorityBossSpawns[Type] = 19; // Places it right after Celestial Sigil
 

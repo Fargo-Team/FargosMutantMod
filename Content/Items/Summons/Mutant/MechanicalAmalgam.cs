@@ -9,9 +9,7 @@ namespace Fargowiltas.Content.Items.Summons.Mutant
     {
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Mechanical Amalgam");
-            // Tooltip.SetDefault("Summons all 3 Mechanical bosses");
-            Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 3;
+            Item.ResearchUnlockCount = 3;
 
 			ItemID.Sets.SortingPriorityBossSpawns[Type] = 10; // Places it right after the three mech summons
 		}

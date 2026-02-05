@@ -10,7 +10,7 @@ namespace Fargowiltas.Content.Items.Misc
 	{
         public override void SetStaticDefaults()
         {
-            Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 20;
+            Item.ResearchUnlockCount = 20;
         }
 
         public override void SetDefaults()

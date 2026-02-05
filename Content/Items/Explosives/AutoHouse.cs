@@ -16,7 +16,7 @@ namespace Fargowiltas.Content.Items.Explosives
 
         public override void SetStaticDefaults()
         {
-            Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 3;
+            Item.ResearchUnlockCount = 3;
         }
 
         public override void SetDefaults()

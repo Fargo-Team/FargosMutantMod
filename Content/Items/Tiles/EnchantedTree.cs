@@ -12,11 +12,6 @@ namespace Fargowiltas.Content.Items.Tiles
 {
     public class EnchantedTree : ModItem
     {
-        public override void SetStaticDefaults()
-        {
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-        }
-
         public override void SetDefaults()
         {
             Item.width = 32;

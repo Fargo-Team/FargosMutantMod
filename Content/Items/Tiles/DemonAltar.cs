@@ -10,12 +10,6 @@ namespace Fargowiltas.Content.Items.Tiles
     // TODO: Delete these items and tiles when 1.4.5 TML is real.
     public class DemonAltar : ModItem
     {
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Demon Altar");
-            Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-        }
-
         public override void SetDefaults()
         {
             Item.width = 28;
@@ -43,12 +37,6 @@ namespace Fargowiltas.Content.Items.Tiles
 
     public class CrimsonAltar : ModItem
     {
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Crimson Altar");
-            Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-        }
-
         public override void SetDefaults()
         {
             Item.width = 28;

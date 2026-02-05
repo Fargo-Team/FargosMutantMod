@@ -9,10 +9,7 @@ namespace Fargowiltas.Content.Items.Summons.Mutant
     {
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Fleshy Doll");
-            /* Tooltip.SetDefault("Summons the Wall of Flesh" +
-                               "\nMake sure you use it in the Underworld"); */
-            Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 3;
+            Item.ResearchUnlockCount = 3;
 
 			ItemID.Sets.SortingPriorityBossSpawns[Type] = 5; // Places it right after Deer Thing and Abeemination, and before Gelatin Crystal
 		}

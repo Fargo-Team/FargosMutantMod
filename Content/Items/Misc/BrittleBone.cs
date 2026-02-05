@@ -9,8 +9,7 @@ namespace Fargowiltas.Content.Items.Misc
 
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Brittle Bone");
-            Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 99;
+            Item.ResearchUnlockCount = 99;
         }
 
         public override void SetDefaults()

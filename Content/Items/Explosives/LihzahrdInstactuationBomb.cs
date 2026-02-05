@@ -19,11 +19,7 @@ namespace Fargowiltas.Content.Items.Explosives
 
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Lihzahrd Instactuation Bomb");
-            /* Tooltip.SetDefault(@"Clears a space around the Lihzahrd Altar when used while standing in front of it
-Actuates Lihzahrd Brick and destroys others
-Only works in the Jungle Temple and after Plantera is defeated"); */
-            Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 10;
+            Item.ResearchUnlockCount = 10;
         }
 
         public override void SetDefaults()

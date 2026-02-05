@@ -9,16 +9,6 @@ namespace Fargowiltas.Content.Items.Misc
 {
     public class PortableSundial : ModItem
     {
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Portable Sundial");
-            /* Tooltip.SetDefault("Left click to instantly change time" +
-                               "\nTime cycles between dawn, noon, dusk, and midnight" +
-                               "\nRight click to activate the Enchanted Sundial effect" +
-                               "\nCycling to dawn will reset travelling merchant's shops"); */
-            Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-        }
-
         public override void SetDefaults()
         {
             Item.width = 20;

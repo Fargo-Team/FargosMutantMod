@@ -11,7 +11,7 @@ namespace Fargowiltas.Content.Items.Summons.Abom
     {
         public override void SetStaticDefaults()
         {
-            Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 3;
+            Item.ResearchUnlockCount = 3;
 			ItemID.Sets.SortingPriorityBossSpawns[Type] = 0; // Places it before any other boss summons
 		}
 

@@ -9,12 +9,6 @@ namespace Fargowiltas.Content.Items.Vanity
 {
     public class CrabSizedGlasses : ModItem
     {
-
-        public override void SetStaticDefaults()
-        {
-            Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-        }
-
         public override void SetDefaults()
         {
             Item.DefaultToVanitypet(ModContent.ProjectileType<CoolCrab>(), ModContent.BuffType<CoolCrabBuff>());

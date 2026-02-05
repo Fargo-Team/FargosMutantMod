@@ -9,9 +9,7 @@ namespace Fargowiltas.Content.Items.Explosives
     {
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Boom Shuriken");
-            // Tooltip.SetDefault("Rapid firing explosives\nUses your pickaxe's mining power\n'The fastest way to dig through anything is always to blow it up!'");
-            Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 999;
+            Item.ResearchUnlockCount = 999;
         }
 
         public override void SetDefaults()

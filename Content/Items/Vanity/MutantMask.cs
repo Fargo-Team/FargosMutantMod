@@ -7,12 +7,6 @@ namespace Fargowiltas.Content.Items.Vanity
     [AutoloadEquip(EquipType.Head)]
     public class MutantMask : ModItem
     {
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Mutant Mask");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-        }
-
         public override void SetDefaults()
         {
             Item.width = 18;

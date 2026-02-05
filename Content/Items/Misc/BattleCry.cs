@@ -21,8 +21,6 @@ namespace Fargowiltas.Content.Items.Misc
     {
         public override void SetStaticDefaults()
         {
-            Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-
             // Done this way to spoof Item visual scale in the inventory and world.
             // Ticks per second is set to 1 to prevent weird divide by zero error. ¯\_(ツ)_/¯
             DrawAnimationVertical drawAnim = new DrawAnimationVertical(1, 11);

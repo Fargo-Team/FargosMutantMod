@@ -6,17 +6,6 @@ namespace Fargowiltas.Content.Items.Tiles
 {
     public class PurityTotem : ModItem
     {
-
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Purity Totem");
-            /* Tooltip.SetDefault(@"Can be reused infinitely
-Allows town NPCs to inhabit evil biomes
-Prevents evil tiles from forming an evil biome
-Prevents tombstones from forming Graveyards"); */
-            Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-        }
-
         public override void SetDefaults()
         {
             Item.width = 20;

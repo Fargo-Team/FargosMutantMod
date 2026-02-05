@@ -12,10 +12,6 @@ namespace Fargowiltas.Content.Items.Misc
 {
     public class ModeToggle : ModItem
     {
-        public override void SetStaticDefaults()
-        {
-            Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-        }
         public override string Texture => "Fargowiltas/Content/Items/Misc/ModeToggle_0";
         public override void SetDefaults()
         {

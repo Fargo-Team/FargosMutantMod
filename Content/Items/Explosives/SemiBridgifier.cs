@@ -17,13 +17,6 @@ namespace Fargowiltas.Content.Items.Explosives
             return FargoServerConfig.Instance.InstantItems;
         }
 
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Semi-Bridgifier");
-            // Tooltip.SetDefault("Can be reused infinitely\nUpgrades the platform you are standing on to use Semistations\nDoes NOT build a platform!");
-            Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-        }
-
         public override void SetDefaults()
         {
             base.SetDefaults();

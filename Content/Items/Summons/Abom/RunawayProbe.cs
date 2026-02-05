@@ -9,7 +9,7 @@ namespace Fargowiltas.Content.Items.Summons.Abom
     {
         public override void SetStaticDefaults()
         {
-            Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 3;
+            Item.ResearchUnlockCount = 3;
 			ItemID.Sets.SortingPriorityBossSpawns[Type] = 17; // Places it right after Lihzahrd Power Cell and Solar Tablet
 		}
 

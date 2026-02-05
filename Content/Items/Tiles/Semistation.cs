@@ -6,14 +6,6 @@ namespace Fargowiltas.Content.Items.Tiles
 {
     public class Semistation : ModItem
     {
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Semistation");
-            /* Tooltip.SetDefault(@"Can be reused infinitely
-Effects of some vanilla buff stations"); */
-            Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-        }
-
         public override void SetDefaults()
         {
             Item.width = 20;

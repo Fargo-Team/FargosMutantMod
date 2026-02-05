@@ -9,13 +9,6 @@ namespace Fargowiltas.Content.Items.Misc
     {
         public override string Texture => "Terraria/Images/Map_4";
 
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("The Ancient Master's Map of the Lost King's Great Ancestors");
-            // Tooltip.SetDefault("Reveals the map");
-            Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-        }
-
         public override void SetDefaults()
         {
             Item.width = 20;

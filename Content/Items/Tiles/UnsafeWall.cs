@@ -22,6 +22,7 @@ namespace Fargowiltas.Content.Items.Tiles
         public override void SetStaticDefaults()
         {
             ItemID.Sets.ShimmerTransformToItem[Type] = wall;
+            ItemID.Sets.DrawUnsafeIndicator[Type] = true;
             Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 400;
         }
 
@@ -33,11 +34,13 @@ namespace Fargowiltas.Content.Items.Tiles
 
     public class UnsafeMarbleWall : UnsafeWall
     {
+        public override string Texture => $"Terraria/Images/Item_{ItemID.MarbleWall}";
         public UnsafeMarbleWall() : base("Unsafe Marble Wall", WallID.MarbleUnsafe, ItemID.MarbleWall, ItemID.Marble) { }
     }
 
     public class UnsafeGraniteWall : UnsafeWall
     {
+        public override string Texture => $"Terraria/Images/Item_{ItemID.GraniteWall}";
         public UnsafeGraniteWall() : base("Unsafe Granite Wall", WallID.GraniteUnsafe, ItemID.GraniteWall, ItemID.Granite) { }
     }
 }

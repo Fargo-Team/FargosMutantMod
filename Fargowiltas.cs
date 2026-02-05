@@ -212,6 +212,8 @@ namespace Fargowiltas
 
             On_Player.GetAnglerReward_Bait += AnglerPitty;
 
+            On_NPC.CountKillForBannersAndDropThem += PreventBannerDrop;
+
             On_DD2Event.DropMedals += BetsyMedals;
         }
 
@@ -331,6 +333,8 @@ namespace Fargowiltas
             On_Main.DrawPlayers_AfterProjectiles -= DrawEnchantedTrees;
 
             On_Item.GetShimmered -= FixRecipeGroupsShimmerInteraction;
+
+            On_NPC.CountKillForBannersAndDropThem -= PreventBannerDrop;
 
             On_DD2Event.DropMedals -= BetsyMedals;
 
@@ -1351,6 +1355,14 @@ namespace Fargowiltas
                     }
                 }
             }
+        }
+
+        private void PreventBannerDrop(On_NPC.orig_CountKillForBannersAndDropThem orig, NPC npc)
+        {
+            if (FargoServerConfig.Instance.BannerRecipes && npc.SpawnedFromStatue)
+                return;
+
+            orig(npc);
         }
 
         private void BetsyMedals(On_DD2Event.orig_DropMedals orig, int medals)

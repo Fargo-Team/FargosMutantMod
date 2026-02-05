@@ -66,7 +66,7 @@ FargoServerConfig: {
 
 	BannerRecipes: {
 		Label: "[i:1683] Banner Recipes"
-		Tooltip: Adds recipes to convert banners into rare items dropped by the banner's enemy.
+		Tooltip: Adds recipes to convert banners into rare items dropped by the banner's enemy. Prevents statue spawned enemies from incrementing banner counts.
 	}
 
 	ContainerRecipes: {

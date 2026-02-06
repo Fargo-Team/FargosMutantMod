@@ -217,7 +217,7 @@ namespace Fargowiltas.Content.NPCs
             Condition angler20 = new Condition("Mods.Fargowiltas.Conditions.Angler20", () => Main.LocalPlayer.anglerQuestsFinished >= 20);
             Condition angler25 = new Condition("Mods.Fargowiltas.Conditions.Angler25", () => Main.LocalPlayer.anglerQuestsFinished >= 25);
             Condition angler30 = new Condition("Mods.Fargowiltas.Conditions.Angler30", () => Main.LocalPlayer.anglerQuestsFinished >= 30);
-            Condition InRockOrDirtLayerHeight = new Condition("Mods.Fargowiltas.Conditions.InRockOrDirtLayerHeight", () => Condition.InDirtLayerHeight.IsMet() || Condition.InRockLayerHeight.IsMet());
+            Condition InRockOrDirtLayerHeight = new Condition("Mods.Fargowiltas.Conditions.InRockOrDirtLayerHeight", () => (Condition.InDirtLayerHeight.IsMet() || Condition.InRockLayerHeight.IsMet()) && !(Condition.InUndergroundDesert.IsMet() || Condition.InDungeon.IsMet()));
             #endregion
             
 
@@ -253,18 +253,18 @@ namespace Fargowiltas.Content.NPCs
                         break;
 
                     case NPCID.Clothier:
-                        AddItem(ItemID.PharaohsMask, Item.buyPrice(gold: 1));
-                        AddItem(ItemID.PharaohsRobe, Item.buyPrice(gold: 1));
+                        //AddItem(ItemID.PharaohsMask, Item.buyPrice(gold: 1));
+                        //AddItem(ItemID.PharaohsRobe, Item.buyPrice(gold: 1));
 
                         //AddItem(ItemID.AnglerHat, condition: angler10);
                         //AddItem(ItemID.AnglerVest, condition: angler15);
                         //AddItem(ItemID.AnglerPants, condition: angler20);
 
-                        AddItem(ItemID.BlueBrick, Item.buyPrice(silver: 1));
+                        //AddItem(ItemID.BlueBrick, Item.buyPrice(silver: 1));
 
-                        AddItem(ItemID.GreenBrick, Item.buyPrice(silver: 1));
+                        //AddItem(ItemID.GreenBrick, Item.buyPrice(silver: 1));
 
-                        AddItem(ItemID.PinkBrick, Item.buyPrice(silver: 1));
+                        //AddItem(ItemID.PinkBrick, Item.buyPrice(silver: 1));
 
                         AddItem(ItemType<BrittleBone>(), condition: new Condition("Mods.Fargowiltas.Conditions.BrittleBone", () => Main.LocalPlayer.inventory.Any(i => !i.IsAir && i.useAmmo == ItemID.Bone)));
                         break;
@@ -289,66 +289,93 @@ namespace Fargowiltas.Content.NPCs
 
                     case NPCID.Painter:
 
-                        AddItem(ItemID.BloodMoonRising, condition: Condition.InDungeon);
-                        AddItem(ItemID.BoneWarp, condition: Condition.InDungeon);
-                        AddItem(ItemID.TheCreationoftheGuide, condition: Condition.InDungeon);
-                        AddItem(ItemID.TheCursedMan, condition: Condition.InDungeon);
-                        AddItem(ItemID.TheDestroyer, condition: Condition.InDungeon);
-                        AddItem(ItemID.Dryadisque, condition: Condition.InDungeon);
-                        AddItem(ItemID.TheEyeSeestheEnd, condition: Condition.InDungeon);
-                        AddItem(ItemID.FacingtheCerebralMastermind, condition: Condition.InDungeon);
-                        AddItem(ItemID.GloryoftheFire, condition: Condition.InDungeon);
-                        AddItem(ItemID.GoblinsPlayingPoker, condition: Condition.InDungeon);
-                        AddItem(ItemID.GreatWave, condition: Condition.InDungeon);
-                        AddItem(ItemID.TheGuardiansGaze, condition: Condition.InDungeon);
-                        AddItem(ItemID.TheHangedMan, condition: Condition.InDungeon);
-                        AddItem(ItemID.Impact, condition: Condition.InDungeon);
-                        AddItem(ItemID.ThePersistencyofEyes, condition: Condition.InDungeon);
-                        AddItem(ItemID.PoweredbyBirds, condition: Condition.InDungeon);
-                        AddItem(ItemID.TheScreamer, condition: Condition.InDungeon);
-                        AddItem(ItemID.SkellingtonJSkellingsworth, condition: Condition.InDungeon);
-                        AddItem(ItemID.SparkyPainting, condition: Condition.InDungeon);
-                        AddItem(ItemID.SomethingEvilisWatchingYou, condition: Condition.InDungeon);
-                        AddItem(ItemID.StarryNight, condition: Condition.InDungeon);
-                        AddItem(ItemID.TrioSuperHeroes, condition: Condition.InDungeon);
-                        AddItem(ItemID.TheTwinsHaveAwoken, condition: Condition.InDungeon);
-                        AddItem(ItemID.UnicornCrossingtheHallows, condition: Condition.InDungeon);
-                            
-                        AddItem(ItemID.AmericanExplosive, condition: InRockOrDirtLayerHeight);
-                        AddItem(ItemID.CrownoDevoursHisLunch, condition: InRockOrDirtLayerHeight);
-                        AddItem(ItemID.Discover, condition: InRockOrDirtLayerHeight);
-                        AddItem(ItemID.FatherofSomeone, condition: InRockOrDirtLayerHeight);
-                        AddItem(ItemID.FindingGold, condition: InRockOrDirtLayerHeight);
-                        AddItem(ItemID.GloriousNight, condition: InRockOrDirtLayerHeight);
-                        AddItem(ItemID.GuidePicasso, condition: InRockOrDirtLayerHeight);
-                        AddItem(ItemID.Land, condition: InRockOrDirtLayerHeight);
-                        AddItem(ItemID.TheMerchant, condition: InRockOrDirtLayerHeight);
-                        AddItem(ItemID.NurseLisa, condition: InRockOrDirtLayerHeight);
-                        AddItem(ItemID.OldMiner, condition: InRockOrDirtLayerHeight);
-                        AddItem(ItemID.RareEnchantment, condition: InRockOrDirtLayerHeight);
-                        AddItem(ItemID.Sunflowers, condition: InRockOrDirtLayerHeight);
-                        AddItem(ItemID.TerrarianGothic, condition: InRockOrDirtLayerHeight);
-                        AddItem(ItemID.Waldo, condition: InRockOrDirtLayerHeight);
+                        bool decorTab = true;
+                        foreach (NPCShop.Entry entry in shop.Entries)
+                        {
+                            if (!entry.Item.IsAir && entry.Item.type == ItemID.Paintbrush)
+                            {
+                                decorTab = false;
+                                break;
+                            }
+                        }
 
-                        AddItem(ItemID.DarkSoulReaper, condition: Condition.InUnderworldHeight);
-                        AddItem(ItemID.Darkness, condition: Condition.InUnderworldHeight);
-                        AddItem(ItemID.DemonsEye, condition: Condition.InUnderworldHeight);
-                        AddItem(ItemID.FlowingMagma, condition: Condition.InUnderworldHeight);
-                        AddItem(ItemID.HandEarth, condition: Condition.InUnderworldHeight);
-                        AddItem(ItemID.ImpFace, condition: Condition.InUnderworldHeight);
-                        AddItem(ItemID.LakeofFire, condition: Condition.InUnderworldHeight);
-                        AddItem(ItemID.LivingGore, condition: Condition.InUnderworldHeight);
-                        AddItem(ItemID.OminousPresence, condition: Condition.InUnderworldHeight);
-                        AddItem(ItemID.ShiningMoon, condition: Condition.InUnderworldHeight);
-                        AddItem(ItemID.Skelehead, condition: Condition.InUnderworldHeight);
-                        AddItem(ItemID.TrappedGhost, condition: Condition.InUnderworldHeight);
+                        if (!decorTab) 
+                            break; //dont sell in normal tab to prevent overflow
+
+                        AddItem(ItemID.BloodMoonRising, Item.buyPrice(gold: 1), condition: Condition.InDungeon);
+                        AddItem(ItemID.BoneWarp, Item.buyPrice(gold: 1), condition: Condition.InDungeon);
+                        AddItem(ItemID.TheCreationoftheGuide, Item.buyPrice(gold: 1), condition: Condition.InDungeon);
+                        AddItem(ItemID.TheCursedMan, Item.buyPrice(gold: 1), condition: Condition.InDungeon);
+                        AddItem(ItemID.TheDestroyer, Item.buyPrice(gold: 1), condition: Condition.InDungeon);
+                        AddItem(ItemID.Dryadisque, Item.buyPrice(gold: 1), condition: Condition.InDungeon);
+                        AddItem(ItemID.TheEyeSeestheEnd, Item.buyPrice(gold: 1), condition: Condition.InDungeon);
+                        AddItem(ItemID.FacingtheCerebralMastermind, Item.buyPrice(gold: 1), condition: Condition.InDungeon);
+                        AddItem(ItemID.GloryoftheFire, Item.buyPrice(gold: 1), condition: Condition.InDungeon);
+                        AddItem(ItemID.GoblinsPlayingPoker, Item.buyPrice(gold: 1), condition: Condition.InDungeon);
+                        AddItem(ItemID.GreatWave, Item.buyPrice(gold: 1), condition: Condition.InDungeon);
+                        AddItem(ItemID.TheGuardiansGaze, Item.buyPrice(gold: 1), condition: Condition.InDungeon);
+                        AddItem(ItemID.TheHangedMan, Item.buyPrice(gold: 1), condition: Condition.InDungeon);
+                        AddItem(ItemID.Impact, Item.buyPrice(gold: 1), condition: Condition.InDungeon);
+                        AddItem(ItemID.ThePersistencyofEyes, Item.buyPrice(gold: 1), condition: Condition.InDungeon);
+                        AddItem(ItemID.PoweredbyBirds, Item.buyPrice(gold: 1), condition: Condition.InDungeon);
+                        AddItem(ItemID.TheScreamer, Item.buyPrice(gold: 1), condition: Condition.InDungeon);
+                        AddItem(ItemID.SkellingtonJSkellingsworth, Item.buyPrice(gold: 1), condition: Condition.InDungeon);
+                        AddItem(ItemID.SparkyPainting, Item.buyPrice(gold: 1), condition: Condition.InDungeon);
+                        AddItem(ItemID.SomethingEvilisWatchingYou, Item.buyPrice(gold: 1), condition: Condition.InDungeon);
+                        AddItem(ItemID.StarryNight, Item.buyPrice(gold: 1), condition: Condition.InDungeon);
+                        AddItem(ItemID.TrioSuperHeroes, Item.buyPrice(gold: 1), condition: Condition.InDungeon);
+                        AddItem(ItemID.TheTwinsHaveAwoken, Item.buyPrice(gold: 1), condition: Condition.InDungeon);
+                        AddItem(ItemID.UnicornCrossingtheHallows, Item.buyPrice(gold: 1), condition: Condition.InDungeon);
+
+                        AddItem(ItemID.AmericanExplosive, Item.buyPrice(gold: 1), condition: InRockOrDirtLayerHeight);
+                        AddItem(ItemID.CrownoDevoursHisLunch, Item.buyPrice(gold: 1), condition: InRockOrDirtLayerHeight);
+                        AddItem(ItemID.Discover, Item.buyPrice(gold: 1), condition: InRockOrDirtLayerHeight);
+                        AddItem(ItemID.FatherofSomeone, Item.buyPrice(gold: 1), condition: InRockOrDirtLayerHeight);
+                        AddItem(ItemID.FindingGold, Item.buyPrice(gold: 1), condition: InRockOrDirtLayerHeight);
+                        AddItem(ItemID.GloriousNight, Item.buyPrice(gold: 1), condition: InRockOrDirtLayerHeight);
+                        AddItem(ItemID.GuidePicasso, Item.buyPrice(gold: 1), condition: InRockOrDirtLayerHeight);
+                        AddItem(ItemID.Land, Item.buyPrice(gold: 1), condition: InRockOrDirtLayerHeight);
+                        AddItem(ItemID.TheMerchant, Item.buyPrice(gold: 1), condition: InRockOrDirtLayerHeight);
+                        AddItem(ItemID.NurseLisa, Item.buyPrice(gold: 1), condition: InRockOrDirtLayerHeight);
+                        AddItem(ItemID.OldMiner, Item.buyPrice(gold: 1), condition: InRockOrDirtLayerHeight);
+                        AddItem(ItemID.RareEnchantment, Item.buyPrice(gold: 1), condition: InRockOrDirtLayerHeight);
+                        AddItem(ItemID.Sunflowers, Item.buyPrice(gold: 1), condition: InRockOrDirtLayerHeight);
+                        AddItem(ItemID.TerrarianGothic, Item.buyPrice(gold: 1), condition: InRockOrDirtLayerHeight);
+                        AddItem(ItemID.Waldo, Item.buyPrice(gold: 1), condition: InRockOrDirtLayerHeight);
+
+                        AddItem(ItemID.DarkSoulReaper, Item.buyPrice(gold: 1), condition: Condition.InUnderworldHeight);
+                        AddItem(ItemID.Darkness, Item.buyPrice(gold: 1), condition: Condition.InUnderworldHeight);
+                        AddItem(ItemID.DemonsEye, Item.buyPrice(gold: 1), condition: Condition.InUnderworldHeight);
+                        AddItem(ItemID.FlowingMagma, Item.buyPrice(gold: 1), condition: Condition.InUnderworldHeight);
+                        AddItem(ItemID.HandEarth, Item.buyPrice(gold: 1), condition: Condition.InUnderworldHeight);
+                        AddItem(ItemID.ImpFace, Item.buyPrice(gold: 1), condition: Condition.InUnderworldHeight);
+                        AddItem(ItemID.LakeofFire, Item.buyPrice(gold: 1), condition: Condition.InUnderworldHeight);
+                        AddItem(ItemID.LivingGore, Item.buyPrice(gold: 1), condition: Condition.InUnderworldHeight);
+                        AddItem(ItemID.OminousPresence, Item.buyPrice(gold: 1), condition: Condition.InUnderworldHeight);
+                        AddItem(ItemID.ShiningMoon, Item.buyPrice(gold: 1), condition: Condition.InUnderworldHeight);
+                        AddItem(ItemID.Skelehead, Item.buyPrice(gold: 1), condition: Condition.InUnderworldHeight);
+                        AddItem(ItemID.TrappedGhost, Item.buyPrice(gold: 1), condition: Condition.InUnderworldHeight);
+
                         //deserttt
-
+                        AddItem(ItemID.AndrewSphinx, Item.buyPrice(gold: 1), condition: Condition.InUndergroundDesert);
+                        AddItem(ItemID.WatchfulAntlion, Item.buyPrice(gold: 1), condition: Condition.InUndergroundDesert);
+                        AddItem(ItemID.BurningSpirit, Item.buyPrice(gold: 1), condition: Condition.InUndergroundDesert);
+                        AddItem(ItemID.JawsOfDeath, Item.buyPrice(gold: 1), condition: Condition.InUndergroundDesert);
+                        AddItem(ItemID.TheSandsOfSlime, Item.buyPrice(gold: 1), condition: Condition.InUndergroundDesert);
+                        AddItem(ItemID.SnakesIHateSnakes, Item.buyPrice(gold: 1), condition: Condition.InUndergroundDesert);
+                        AddItem(ItemID.LifeAboveTheSand, Item.buyPrice(gold: 1), condition: Condition.InUndergroundDesert);
+                        AddItem(ItemID.Oasis, Item.buyPrice(gold: 1), condition: Condition.InUndergroundDesert);
+                        AddItem(ItemID.PrehistoryPreserved, Item.buyPrice(gold: 1), condition: Condition.InUndergroundDesert);
+                        AddItem(ItemID.AncientTablet, Item.buyPrice(gold: 1), condition: Condition.InUndergroundDesert);
+                        AddItem(ItemID.Uluru, Item.buyPrice(gold: 1), condition: Condition.InUndergroundDesert);
+                        AddItem(ItemID.VisitingThePyramids, Item.buyPrice(gold: 1), condition: Condition.InUndergroundDesert);
+                        AddItem(ItemID.BandageBoy, Item.buyPrice(gold: 1), condition: Condition.InUndergroundDesert);
+                        AddItem(ItemID.DivineEye, Item.buyPrice(gold: 1), condition: Condition.InUndergroundDesert);
                         break;
 
                     case NPCID.Demolitionist:
                         AddItem(ItemType<BoomShuriken>(), Item.buyPrice(0, 0, 2, 50));
-                        AddItem(ItemID.CopperOre, condition: Condition.Hardmode);
+                        /*AddItem(ItemID.CopperOre, condition: Condition.Hardmode);
                         AddItem(ItemID.TinOre, condition: Condition.Hardmode);
                         AddItem(ItemID.IronOre, condition: Condition.Hardmode);
                         AddItem(ItemID.LeadOre, condition: Condition.Hardmode);
@@ -368,7 +395,7 @@ namespace Fargowiltas.Content.NPCs
                         AddItem(ItemID.OrichalcumOre, condition: Condition.DownedMoonLord);
                         AddItem(ItemID.AdamantiteOre, condition: Condition.DownedMoonLord);
                         AddItem(ItemID.TitaniumOre, condition: Condition.DownedMoonLord);
-                        AddItem(ItemID.ChlorophyteOre, condition: Condition.DownedMoonLord);
+                        AddItem(ItemID.ChlorophyteOre, condition: Condition.DownedMoonLord);*/
 
                         break;
 
@@ -393,30 +420,30 @@ namespace Fargowiltas.Content.NPCs
                         break;
 
                     case NPCID.DyeTrader:
-                        AddItem(ItemID.RedHusk, condition: new Condition("Mods.Fargowiltas.Conditions.RedHusk", () => Main.LocalPlayer.GetModPlayer<FargoPlayer>().FirstDyeIngredients["RedHusk"]));
-                        AddItem(ItemID.OrangeBloodroot, condition: new Condition("Mods.Fargowiltas.Conditions.OrangeBloodroot", () => Main.LocalPlayer.GetModPlayer<FargoPlayer>().FirstDyeIngredients["OrangeBloodroot"]));
-                        AddItem(ItemID.YellowMarigold, condition: new Condition("Mods.Fargowiltas.Conditions.YellowMarigold", () => Main.LocalPlayer.GetModPlayer<FargoPlayer>().FirstDyeIngredients["YellowMarigold"]));
-                        AddItem(ItemID.LimeKelp, condition: new Condition("Mods.Fargowiltas.Conditions.LimeKelp", () => Main.LocalPlayer.GetModPlayer<FargoPlayer>().FirstDyeIngredients["LimeKelp"]));
-                        AddItem(ItemID.GreenMushroom, condition: new Condition("Mods.Fargowiltas.Conditions.GreenMushroom", () => Main.LocalPlayer.GetModPlayer<FargoPlayer>().FirstDyeIngredients["GreenMushroom"]));
-                        AddItem(ItemID.TealMushroom, condition: new Condition("Mods.Fargowiltas.Conditions.TealMushroom", () => Main.LocalPlayer.GetModPlayer<FargoPlayer>().FirstDyeIngredients["TealMushroom"]));
-                        AddItem(ItemID.CyanHusk, condition: new Condition("Mods.Fargowiltas.Conditions.CyanHusk", () => Main.LocalPlayer.GetModPlayer<FargoPlayer>().FirstDyeIngredients["CyanHusk"]));
-                        AddItem(ItemID.SkyBlueFlower, condition: new Condition("Mods.Fargowiltas.Conditions.SkyBlueFlower", () => Main.LocalPlayer.GetModPlayer<FargoPlayer>().FirstDyeIngredients["SkyBlueFlower"]));
-                        AddItem(ItemID.BlueBerries, condition: new Condition("Mods.Fargowiltas.Conditions.BlueBerries", () => Main.LocalPlayer.GetModPlayer<FargoPlayer>().FirstDyeIngredients["BlueBerries"]));
-                        AddItem(ItemID.PurpleMucos, condition: new Condition("Mods.Fargowiltas.Conditions.PurpleMucos", () => Main.LocalPlayer.GetModPlayer<FargoPlayer>().FirstDyeIngredients["PurpleMucos"]));
-                        AddItem(ItemID.VioletHusk, condition: new Condition("Mods.Fargowiltas.Conditions.VioletHusk", () => Main.LocalPlayer.GetModPlayer<FargoPlayer>().FirstDyeIngredients["VioletHusk"]));
-                        AddItem(ItemID.PinkPricklyPear, condition: new Condition("Mods.Fargowiltas.Conditions.PinkPricklyPear", () => Main.LocalPlayer.GetModPlayer<FargoPlayer>().FirstDyeIngredients["PinkPricklyPear"]));
-                        AddItem(ItemID.BlackInk, condition: new Condition("Mods.Fargowiltas.Conditions.BlackInk", () => Main.LocalPlayer.GetModPlayer<FargoPlayer>().FirstDyeIngredients["BlackInk"]));
+                        AddItem(ItemID.RedDye, condition: new Condition("Mods.Fargowiltas.Conditions.RedHusk", () => Main.LocalPlayer.GetModPlayer<FargoPlayer>().FirstDyeIngredients["RedHusk"]));
+                        AddItem(ItemID.OrangeDye, condition: new Condition("Mods.Fargowiltas.Conditions.OrangeBloodroot", () => Main.LocalPlayer.GetModPlayer<FargoPlayer>().FirstDyeIngredients["OrangeBloodroot"]));
+                        AddItem(ItemID.YellowDye, condition: new Condition("Mods.Fargowiltas.Conditions.YellowMarigold", () => Main.LocalPlayer.GetModPlayer<FargoPlayer>().FirstDyeIngredients["YellowMarigold"]));
+                        AddItem(ItemID.LimeDye, condition: new Condition("Mods.Fargowiltas.Conditions.LimeKelp", () => Main.LocalPlayer.GetModPlayer<FargoPlayer>().FirstDyeIngredients["LimeKelp"]));
+                        AddItem(ItemID.GreenDye, condition: new Condition("Mods.Fargowiltas.Conditions.GreenMushroom", () => Main.LocalPlayer.GetModPlayer<FargoPlayer>().FirstDyeIngredients["GreenMushroom"]));
+                        AddItem(ItemID.TealDye, condition: new Condition("Mods.Fargowiltas.Conditions.TealMushroom", () => Main.LocalPlayer.GetModPlayer<FargoPlayer>().FirstDyeIngredients["TealMushroom"]));
+                        AddItem(ItemID.CyanDye, condition: new Condition("Mods.Fargowiltas.Conditions.CyanHusk", () => Main.LocalPlayer.GetModPlayer<FargoPlayer>().FirstDyeIngredients["CyanHusk"]));
+                        AddItem(ItemID.SkyBlueDye, condition: new Condition("Mods.Fargowiltas.Conditions.SkyBlueFlower", () => Main.LocalPlayer.GetModPlayer<FargoPlayer>().FirstDyeIngredients["SkyBlueFlower"]));
+                        AddItem(ItemID.BlueDye, condition: new Condition("Mods.Fargowiltas.Conditions.BlueBerries", () => Main.LocalPlayer.GetModPlayer<FargoPlayer>().FirstDyeIngredients["BlueBerries"]));
+                        AddItem(ItemID.PurpleDye, condition: new Condition("Mods.Fargowiltas.Conditions.PurpleMucos", () => Main.LocalPlayer.GetModPlayer<FargoPlayer>().FirstDyeIngredients["PurpleMucos"]));
+                        AddItem(ItemID.VioletDye, condition: new Condition("Mods.Fargowiltas.Conditions.VioletHusk", () => Main.LocalPlayer.GetModPlayer<FargoPlayer>().FirstDyeIngredients["VioletHusk"]));
+                        AddItem(ItemID.PinkDye, condition: new Condition("Mods.Fargowiltas.Conditions.PinkPricklyPear", () => Main.LocalPlayer.GetModPlayer<FargoPlayer>().FirstDyeIngredients["PinkPricklyPear"]));
+                        AddItem(ItemID.BlackDye, condition: new Condition("Mods.Fargowiltas.Conditions.BlackInk", () => Main.LocalPlayer.GetModPlayer<FargoPlayer>().FirstDyeIngredients["BlackInk"]));
 
                         break;
 
                     case NPCID.Dryad:
-                        AddItem(ItemID.NaturesGift, Item.buyPrice(gold: 20), condition: Condition.Hardmode);
-                        AddItem(ItemID.JungleRose, Item.buyPrice(gold: 10), condition: Condition.Hardmode);
+                        AddItem(ItemID.NaturesGift, Item.buyPrice(gold: 10));
+                        AddItem(ItemID.JungleRose, Item.buyPrice(gold: 20));
 
-                        AddItem(ItemID.StrangePlant1, Item.buyPrice(gold: 5), condition: Condition.Hardmode);
-                        AddItem(ItemID.StrangePlant2, Item.buyPrice(gold: 5), condition: Condition.Hardmode);
-                        AddItem(ItemID.StrangePlant3, Item.buyPrice(gold: 5), condition: Condition.Hardmode);
-                        AddItem(ItemID.StrangePlant4, Item.buyPrice(gold: 5), condition: Condition.Hardmode);
+                        AddItem(ItemID.StrangePlant1, Item.buyPrice(gold: 20), condition: Condition.Hardmode);
+                        AddItem(ItemID.StrangePlant2, Item.buyPrice(gold: 20), condition: Condition.Hardmode);
+                        AddItem(ItemID.StrangePlant3, Item.buyPrice(gold: 20), condition: Condition.Hardmode);
+                        AddItem(ItemID.StrangePlant4, Item.buyPrice(gold: 20), condition: Condition.Hardmode);
                         break;
 
                     case NPCID.Wizard:

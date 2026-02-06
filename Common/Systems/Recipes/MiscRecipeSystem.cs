@@ -285,7 +285,7 @@ namespace Fargowiltas.Common.Systems.Recipes
             recipe.DisableDecraft();
             recipe.Register();
 
-            recipe = Recipe.Create(ItemID.JungleRose);
+            /*recipe = Recipe.Create(ItemID.JungleRose);
             recipe.AddIngredient(ItemID.NaturesGift);
             recipe.AddIngredient(ItemID.RedHusk);
             recipe.AddTile(TileID.LivingLoom);
@@ -297,7 +297,7 @@ namespace Fargowiltas.Common.Systems.Recipes
             recipe.AddIngredient(ItemID.CyanHusk);
             recipe.AddTile(TileID.LivingLoom);
             recipe.DisableDecraft();
-            recipe.Register();
+            recipe.Register();*/
 
             recipe = Recipe.Create(ItemID.AmberMosquito);
             recipe.AddIngredient(ItemID.Amber, 15);
@@ -306,12 +306,12 @@ namespace Fargowiltas.Common.Systems.Recipes
             recipe.DisableDecraft();
             recipe.Register();
 
-            recipe = Recipe.Create(ItemID.NaturesGift);
+            /*recipe = Recipe.Create(ItemID.NaturesGift);
             recipe.AddIngredient(ItemID.Moonglow, 15);
             recipe.AddIngredient(ItemID.ManaCrystal);
             recipe.AddTile(TileID.AlchemyTable);
             recipe.DisableDecraft();
-            recipe.Register();
+            recipe.Register();*/
 
             /*recipe = Recipe.Create(ItemID.ShroomiteBar);
             recipe.AddIngredient(ItemID.ChlorophyteBar);

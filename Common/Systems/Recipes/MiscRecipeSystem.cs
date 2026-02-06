@@ -192,10 +192,10 @@ namespace Fargowiltas.Common.Systems.Recipes
 
         private static void AddMiscRecipes()
         {
-            RecipeHelper.CreateSimpleRecipe(ItemID.IceBlade, ItemID.EnchantedSword, TileID.CrystalBall, disableDecraft: true);
+            //RecipeHelper.CreateSimpleRecipe(ItemID.IceBlade, ItemID.EnchantedSword, TileID.CrystalBall, disableDecraft: true);
             RecipeHelper.CreateSimpleRecipe(ItemID.Pumpkin, ItemID.MagicalPumpkinSeed, TileID.LivingLoom, ingredientAmount: 500, disableDecraft: true);
-            RecipeHelper.CreateSimpleRecipe(ItemID.FishingSeaweed, ItemID.Seaweed, TileID.LivingLoom, ingredientAmount: 5, disableDecraft: true);
-            RecipeHelper.CreateSimpleRecipe(ItemID.Deathweed, ItemID.AbigailsFlower, TileID.Tombstones, ingredientAmount: 5, disableDecraft: true, conditions: Condition.InGraveyard);
+            //RecipeHelper.CreateSimpleRecipe(ItemID.FishingSeaweed, ItemID.Seaweed, TileID.LivingLoom, ingredientAmount: 5, disableDecraft: true);
+            //RecipeHelper.CreateSimpleRecipe(ItemID.Deathweed, ItemID.AbigailsFlower, TileID.Tombstones, ingredientAmount: 5, disableDecraft: true, conditions: Condition.InGraveyard);
 
 
             var recipe = Recipe.Create(ItemID.Terragrim);

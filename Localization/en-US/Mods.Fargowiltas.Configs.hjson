@@ -19,14 +19,19 @@ FargoServerConfig: {
 		Tooltip: All consumable weapons are not consumed if you have a stack of at least 3996, in Hardmode.
 	}
 
-	UnlimitedPotionBuffsOn120: {
-		Label: "[i:292] Unlimited Buffs and Bait when carried in certain stacks"
-		Tooltip: 30+ for potions and bait
+	UnlimitedPotionBuffs: {
+		Label: "[i:292] Unlimited Potion Buffs"
+		Tooltip: Potions with buff durations of at least 2 minutes or more are granted infinitely.
+	}
+
+	UnlimitedPotionBuffsAmount: {
+		Label: "[i:IronskinPotion] Unlimited Potion Buffs Amount"
+		Tooltip: Stack size of potions that must be carried to grant infinite buffs.
 	}
 
 	EasySummons: {
-		Label: "[i:Fargowiltas/SuspiciousSkull] Easy Summons"
-		Tooltip: Boss and event summons ignore requirements and set the time to meet their requirements.
+		Label: "[i:Fargowiltas/SuspiciousSkull] Improved Boss Summons"
+		Tooltip: Boss and event summon items ignore requirements and set the time to meet their requirements.
 	}
 
 	BossZen: {
@@ -385,5 +390,24 @@ ScopedBinocularViews: {
 	AllEnabled: {
 		Label: All Enabled
 		Tooltip: Does not change scoped binocular view behaviour
+	}
+}
+
+UnlimitedBuffSelections: {
+	Tooltip: ""
+
+	On: {
+		Label: Enabled
+		Tooltip: ""
+	}
+
+	BossOnly: {
+		Label: Enabled during bossfights
+		Tooltip: "Only enabled while any boss is alive"
+	}
+
+	Off: {
+		Label: Disabled
+		Tooltip: ""
 	}
 }

@@ -249,21 +249,19 @@ namespace Fargowiltas.Content.Items
                     tooltips.Add(line);
                 }
 
-                if (FargoServerConfig.Instance.UnlimitedPotionBuffsOn120 && item.maxStack > 1)
+                if (FargoServerConfig.Instance.UnlimitedPotionBuffs is UnlimitedBuffSelections.On || (FargoServerConfig.Instance.UnlimitedPotionBuffs is UnlimitedBuffSelections.BossOnly && FargoGlobalNPC.AnyBossAlive()) 
+                    && item.maxStack > 1)
                 {
-                    //if (!FargoSets.Items.PotionCannotBeInfinite[item.type])
-                    //{
-                    if (item.buffType != 0)
+                    if (item.buffType != 0 && item.buffTime >= 60 * 60 * 2)
                     {
-                        line = new TooltipLine(Mod, "TooltipUnlim", $"[i:87] [c/AAAAAA:{ExpandedTooltipLoc("UnlimitedBuff30")}]");
+                        line = new TooltipLine(Mod, "TooltipUnlim", $"[i:{item.type}] [c/AAAAAA:{Language.GetTextValue($"Mods.Fargowiltas.ExpandedTooltips.UnlimitedBuff30", FargoServerConfig.Instance.UnlimitedPotionBuffsAmount)}]");
                         tooltips.Add(line);
                     }
-                    else if (item.bait > 0)
+                    /*else if (item.bait > 0)
                     {
                         line = new TooltipLine(Mod, "TooltipUnlim", $"[i:5139] [c/AAAAAA:{ExpandedTooltipLoc("UnlimitedUse30")}]");
                         tooltips.Add(line);
-                    }
-                    //}
+                    }*/
                 }
 
                 if (fargoServerConfig.PermanentStationsNearby && FargoSets.Items.BuffStation[item.type])
@@ -512,13 +510,10 @@ namespace Fargowiltas.Content.Items
         }
         public static void TryUnlimBuff(Item item, Player player)
         {
-            if (item.IsAir || !FargoServerConfig.Instance.UnlimitedPotionBuffsOn120)
+            if (item.IsAir || !(FargoServerConfig.Instance.UnlimitedPotionBuffs is UnlimitedBuffSelections.On || (FargoServerConfig.Instance.UnlimitedPotionBuffs is UnlimitedBuffSelections.BossOnly && FargoGlobalNPC.AnyBossAlive())))
                 return;
 
-            //if (FargoSets.Items.PotionCannotBeInfinite[item.type])
-            //    return;
-
-            if (item.stack >= 30 && item.buffType != 0 && item.buffTime >= 60 * 60 * 2)
+            if (item.stack >= FargoServerConfig.Instance.UnlimitedPotionBuffsAmount && item.buffType != 0 && item.buffTime >= 60 * 60 * 2)
             {
                 player.AddBuff(item.buffType, 2);
 
@@ -668,8 +663,8 @@ namespace Fargowiltas.Content.Items
 
         public override bool? CanConsumeBait(Player player, Item bait)
         {
-            if (FargoServerConfig.Instance.UnlimitedAmmo && bait.stack >= 30)
-                return false;
+            //if (FargoServerConfig.Instance.UnlimitedAmmo && bait.stack >= 30)
+                //return false;
 
             return base.CanConsumeBait(player, bait);
         }
@@ -678,9 +673,9 @@ namespace Fargowiltas.Content.Items
         {
             if (FargoServerConfig.Instance.UnlimitedConsumableWeapons && Main.hardMode && item.damage > 0 && item.ammo == 0 && item.stack >= 3996)
                 return false;
-            if (FargoServerConfig.Instance.UnlimitedPotionBuffsOn120 && (item.buffType > 0 || FargoSets.Items.NonBuffPotion[item.type]) && (item.stack >= 30 || player.inventory.Any(i => i.type == item.type && !i.IsAir && i.stack >= 30)))
+            if ((FargoServerConfig.Instance.UnlimitedPotionBuffs is UnlimitedBuffSelections.On || (FargoServerConfig.Instance.UnlimitedPotionBuffs is UnlimitedBuffSelections.BossOnly && FargoGlobalNPC.AnyBossAlive())) && (item.buffType > 0 || FargoSets.Items.NonBuffPotion[item.type]) && (item.stack >= 30 || player.inventory.Any(i => i.type == item.type && !i.IsAir && i.stack >= 30)))
                 return false;
-            return true;
+            return base.ConsumeItem(item, player);
         }
 
         public override bool OnPickup(Item item, Player player)

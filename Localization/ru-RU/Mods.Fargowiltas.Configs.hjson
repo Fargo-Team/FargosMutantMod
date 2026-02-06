@@ -19,9 +19,14 @@ FargoServerConfig: {
 		Tooltip: Тратящиеся оружия в стаках 3996 и выше не будут тратиться по наступлении хардмода
 	}
 
-	UnlimitedPotionBuffsOn120: {
+	UnlimitedPotionBuffs: {
 		Label: "[i:292] Бесконечные баффы и наживка в определённых стаках"
 		Tooltip: 30+ для зелий и наживки
+	}
+
+	UnlimitedPotionBuffsAmount: {
+		// Label: "[i:IronskinPotion] Unlimited Potion Buffs Amount"
+		// Tooltip: Stack size of potions that must be carried to grant infinite buffs.
 	}
 
 	EasySummons: {
@@ -389,5 +394,24 @@ ScopedBinocularViews: {
 	AllEnabled: {
 		Label: Все вкл
 		Tooltip: Не меняет поведение предметов, отдаляющих обзор
+	}
+}
+
+UnlimitedBuffSelections: {
+	// Tooltip: ""
+
+	On: {
+		// Label: On
+		// Tooltip: ""
+	}
+
+	BossOnly: {
+		// Label: Boss Only
+		// Tooltip: ""
+	}
+
+	Off: {
+		// Label: Off
+		// Tooltip: ""
 	}
 }

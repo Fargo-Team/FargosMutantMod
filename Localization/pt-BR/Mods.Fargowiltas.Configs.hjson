@@ -19,14 +19,19 @@ FargoServerConfig: {
 		Tooltip: ""
 	}
 
-	UnlimitedPotionBuffsOn120: {
+	UnlimitedPotionBuffs: {
 		Label: "[i:292] Buffs e Isca ilimitados quando carregados em certa quantidade"
 		Tooltip: 30+ para poções e isca
 	}
 
+	UnlimitedPotionBuffsAmount: {
+		// Label: "[i:IronskinPotion] Unlimited Potion Buffs Amount"
+		// Tooltip: Stack size of potions that must be carried to grant infinite buffs.
+	}
+
 	EasySummons: {
-		// Label: "[i:Fargowiltas/SuspiciousSkull] Easy Summons"
-		// Tooltip: Boss and event summons ignore requirements and set the time to meet their requirements.
+		// Label: "[i:Fargowiltas/SuspiciousSkull] Improved Boss Summons"
+		// Tooltip: Boss and event summon items ignore requirements and set the time to meet their requirements.
 	}
 
 	BossZen: {
@@ -385,5 +390,24 @@ ScopedBinocularViews: {
 	AllEnabled: {
 		// Label: All Enabled
 		// Tooltip: Does not change scoped binocular view behaviour
+	}
+}
+
+UnlimitedBuffSelections: {
+	// Tooltip: ""
+
+	On: {
+		// Label: On
+		// Tooltip: ""
+	}
+
+	BossOnly: {
+		// Label: Boss Only
+		// Tooltip: ""
+	}
+
+	Off: {
+		// Label: Off
+		// Tooltip: ""
 	}
 }

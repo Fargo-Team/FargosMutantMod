@@ -392,7 +392,7 @@ namespace Fargowiltas
         }
         public override void PostUpdateBuffs()
         {
-            if (FargoServerConfig.Instance.UnlimitedPotionBuffsOn120)
+            if (FargoServerConfig.Instance.UnlimitedPotionBuffs is UnlimitedBuffSelections.On || (FargoServerConfig.Instance.UnlimitedPotionBuffs is UnlimitedBuffSelections.BossOnly && FargoGlobalNPC.AnyBossAlive()))
             {
                 foreach (Item item in Player.bank.item)
                 {

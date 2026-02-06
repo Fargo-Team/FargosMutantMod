@@ -1,4 +1,4 @@
-FargoServerConfig: {
+﻿FargoServerConfig: {
 	DisplayName: Серверная конфигурация
 
 	Headers: {
@@ -20,13 +20,13 @@ FargoServerConfig: {
 	}
 
 	UnlimitedPotionBuffs: {
-		Label: "[i:292] Бесконечные баффы и наживка в определённых стаках"
-		Tooltip: 30+ для зелий и наживки
+		Label: "[i:292] Бесконечные баффы"
+		Tooltip: Зелья с длительностью 2 минуты и выше длятся вечно.
 	}
 
 	UnlimitedPotionBuffsAmount: {
-		// Label: "[i:IronskinPotion] Unlimited Potion Buffs Amount"
-		// Tooltip: Stack size of potions that must be carried to grant infinite buffs.
+		Label: "[i:IronskinPotion] Количество зелий для бесконечных баффов"
+		Tooltip: Определяет, сколько зелий одного вида нужно держать, чтобы их бафф длился вечно.
 	}
 
 	EasySummons: {
@@ -75,7 +75,7 @@ FargoServerConfig: {
 
 	BannerRecipes: {
 		Label: "[i:1683] Рецепты из знамён"
-		Tooltip: Добавляет рецепты для создания редких предметов, выпадающих с мобов, используя знамёна этих мобов.
+		Tooltip: Добавляет рецепты для создания редких предметов, выпадающих с врагов, используя знамёна этих врагов. Враги из статуй не идут в счётчик для знамён.
 	}
 
 	ContainerRecipes: {
@@ -361,12 +361,12 @@ SeasonSelections: {
 	}
 
 	AlwaysOn: {
-		Label: Всегда вкл
+		Label: Всегда вкл.
 		// Tooltip: ""
 	}
 
 	AlwaysOff: {
-		Label: Всегда выкл
+		Label: Всегда выкл.
 		// Tooltip: ""
 	}
 }
@@ -377,7 +377,7 @@ ScopedBinocularViews: {
 	// Tooltip: Scoped Binocular Views
 
 	AllDisabled: {
-		Label: Все выкл
+		Label: Все выкл.
 		Tooltip: Отключает отдаление обзора и для прицела, и для винтовки
 	}
 
@@ -392,7 +392,7 @@ ScopedBinocularViews: {
 	}
 
 	AllEnabled: {
-		Label: Все вкл
+		Label: Все вкл.
 		Tooltip: Не меняет поведение предметов, отдаляющих обзор
 	}
 }
@@ -401,17 +401,17 @@ UnlimitedBuffSelections: {
 	// Tooltip: ""
 
 	On: {
-		// Label: Enabled
+		Label: Включено
 		// Tooltip: ""
 	}
 
 	BossOnly: {
-		// Label: Enabled during bossfights
-		// Tooltip: Only enabled while any boss is alive
+		Label: Битвы с боссами
+		Tooltip: Включается только если в мире есть босс
 	}
 
 	Off: {
-		// Label: Disabled
+		Label: Выключено
 		// Tooltip: ""
 	}
 }

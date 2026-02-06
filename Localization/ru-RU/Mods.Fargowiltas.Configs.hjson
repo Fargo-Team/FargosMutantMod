@@ -401,17 +401,17 @@ UnlimitedBuffSelections: {
 	// Tooltip: ""
 
 	On: {
-		// Label: On
+		// Label: Enabled
 		// Tooltip: ""
 	}
 
 	BossOnly: {
-		// Label: Boss Only
-		// Tooltip: ""
+		// Label: Enabled during bossfights
+		// Tooltip: Only enabled while any boss is alive
 	}
 
 	Off: {
-		// Label: Off
+		// Label: Disabled
 		// Tooltip: ""
 	}
 }

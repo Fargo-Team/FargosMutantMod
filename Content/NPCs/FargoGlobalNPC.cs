@@ -249,10 +249,7 @@ namespace Fargowiltas.Content.NPCs
                 switch (shop.NpcType)
                 {
                     case NPCID.PartyGirl:
-                        if (BirthdayParty.PartyIsUp)
-                        {
-                            AddItem(ItemID.SliceOfCake);
-                        }
+                        AddItem(ItemID.SliceOfCake, condition: Condition.BirthdayParty);
                         break;
 
                     case NPCID.Clothier:

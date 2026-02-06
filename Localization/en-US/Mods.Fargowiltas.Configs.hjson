@@ -403,7 +403,7 @@ UnlimitedBuffSelections: {
 
 	BossOnly: {
 		Label: Enabled during bossfights
-		Tooltip: "Only enabled while any boss is alive"
+		Tooltip: Only enabled while any boss is alive
 	}
 
 	Off: {

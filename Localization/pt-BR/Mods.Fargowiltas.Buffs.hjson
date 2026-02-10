@@ -22,3 +22,8 @@ CoolCrabBuff: {
 	DisplayName: Carangueijo Maneiro
 	Description: Ele acha que você deve jogar Elden Ring
 }
+
+TestBoosterBuff: {
+	// DisplayName: Test Booster Buff
+	// Description: Mods.Fargowiltas.Buffs.TestBoosterBuff.Description
+}

@@ -597,6 +597,19 @@ namespace Fargowiltas.Content.NPCs
                 pool[NPCID.GrayGrunt] = 1f;
                 pool[NPCID.BrainScrambler] = 1f;
             }
+
+            foreach (var spawnBooster in Main.LocalPlayer.FargoMutant().ActiveSpawnBoosters)
+            {
+                if (!spawnBooster.SpawnCondition.IsMet())
+                    continue;
+                foreach (var npcID in spawnBooster.NPCTypes)
+                {
+                    if (!pool.ContainsKey(npcID))
+                        pool[npcID] = spawnBooster.SpawnRate;
+                    else
+                        pool[npcID] += spawnBooster.SpawnRate;
+                }
+            }
         }
 
         public override bool PreKill(NPC npc)

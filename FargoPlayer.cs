@@ -3,6 +3,7 @@ using Fargowiltas.Common.Systems;
 using Fargowiltas.Common.Systems.Recipes;
 using Fargowiltas.Content.Achievements;
 using Fargowiltas.Content.Buffs;
+using Fargowiltas.Content.Buffs.SpawnBoosters;
 using Fargowiltas.Content.Dusts;
 using Fargowiltas.Content.Items;
 using Fargowiltas.Content.Items.CaughtNPCs;
@@ -86,6 +87,8 @@ namespace Fargowiltas
         public Fruit? grabbedFruit = null;
 #pragma warning restore CS8632
         public Vector2 LastInteractedChizard = Vector2.Zero;
+
+        public List<BaseSpawnBoosterBuff> ActiveSpawnBoosters = [];
 
         private readonly string[] tags =
         [
@@ -355,6 +358,7 @@ namespace Fargowiltas
                 grabbedFruit = null;
             }
             ActivePotions.Clear();
+            ActiveSpawnBoosters.Clear();
         }
         public override void ProcessTriggers(TriggersSet triggersSet)
         {
@@ -796,7 +800,6 @@ namespace Fargowiltas
                 yield return createItem(ItemType<CrabSizedGlasses>());
             }
         }
-
 
 
         //        /*public override void clientClone(ModPlayer clientClone)

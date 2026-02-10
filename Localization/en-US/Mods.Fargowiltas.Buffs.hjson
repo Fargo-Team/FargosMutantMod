@@ -22,3 +22,8 @@ CoolCrabBuff: {
 	DisplayName: Cool Crab
 	Description: He thinks you should play Elden Ring
 }
+
+TestBoosterBuff: {
+	DisplayName: Test Booster Buff
+	Description: Mods.Fargowiltas.Buffs.TestBoosterBuff.Description
+}

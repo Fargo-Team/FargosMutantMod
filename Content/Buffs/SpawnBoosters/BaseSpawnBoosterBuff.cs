@@ -47,7 +47,7 @@ namespace Fargowiltas.Content.Buffs.SpawnBoosters
         }
     }
 
-    public class TestBoosterBuff : BaseSpawnBoosterBuff
+    public class TestBoosterBuff : BaseSpawnBoosterBuff // Remove this when the real ones are implemented
     {
         public override string Texture => "Fargowiltas/Content/Buffs/PlaceholderBuff";
         public TestBoosterBuff() : base([NPCID.GoblinScout], Condition.TimeDay, 3f)

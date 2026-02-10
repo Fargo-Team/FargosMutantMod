@@ -604,6 +604,8 @@ namespace Fargowiltas.Content.NPCs
                     continue;
                 foreach (var npcID in spawnBooster.NPCTypes)
                 {
+                    if (NPC.AnyNPCs(npcID))
+                        continue;
                     if (!pool.ContainsKey(npcID))
                         pool[npcID] = spawnBooster.SpawnRate;
                     else

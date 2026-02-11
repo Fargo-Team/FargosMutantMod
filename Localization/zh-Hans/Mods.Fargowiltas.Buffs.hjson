@@ -22,3 +22,8 @@ CoolCrabBuff: {
 	DisplayName: 时髦螃蟹
 	Description: 他觉得你应该游玩《艾尔登法环》
 }
+
+TestBoosterBuff: {
+	// DisplayName: Test Booster Buff
+	// Description: Mods.Fargowiltas.Buffs.TestBoosterBuff.Description
+}

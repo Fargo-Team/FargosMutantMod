@@ -449,8 +449,7 @@ AmalgamatedSkull: {
 	DisplayName: Amalgamated Skull
 	Tooltip:
 		'''
-		Summons the skeleton gunners
-		Only usable at night or underground
+		Greatly increases dungeon skeleton gunner spawn rates
 		'''
 }
 
@@ -458,8 +457,7 @@ AmalgamatedSpirit: {
 	DisplayName: Amalgamated Spirit
 	Tooltip:
 		'''
-		Summons the skeleton mages
-		Only usable at night or underground
+		Greatly increases dungeon skeleton mages spawn rates
 		'''
 }
 
@@ -467,8 +465,7 @@ AthenianIdol: {
 	DisplayName: Athenian Idol
 	Tooltip:
 		'''
-		Summons Medusa
-		Only usable at night or underground
+		Greatly increases Medusa spawn rates
 		'''
 }
 
@@ -476,8 +473,7 @@ AttractiveOre: {
 	DisplayName: Attractive Ore
 	Tooltip:
 		'''
-		Summons Undead Miner
-		Only usable at night or underground
+		Greatly increases Undead Miner spawn rates
 		'''
 }
 
@@ -501,96 +497,91 @@ BloodUrchin: {
 
 CloudSnack: {
 	DisplayName: Cloud Snack
-	Tooltip: Summons Wyvern
+	Tooltip: Greatly increases Wyvern spawn rates
 }
 
 ClownLicense: {
 	DisplayName: Clown License
 	Tooltip:
 		'''
-		Summons Clown
-		Only usable at night or underground
+		Greatly increases Clown spawn rates
 		'''
 }
 
 CoreoftheFrostCore: {
 	DisplayName: Core of the Frost Core
-	Tooltip: Summons Ice Golem
+	Tooltip: Greatly increases Ice Golem spawn rates
 }
 
 CorruptChest: {
 	DisplayName: Corrupt Chest
-	Tooltip: Summons Corrupt Mimic
+	Tooltip: Causes Corrupt Mimics to spawn in the underground Corruption
 }
 
 CrimsonChest: {
 	DisplayName: Crimson Chest
-	Tooltip: Summons Crimson Mimic
+	Tooltip: Causes Crimson Mimics to spawn in the underground Crimson
 }
 
 DemonicPlushie: {
 	DisplayName: Demonic Plushie
 	Tooltip:
 		'''
-		Summons Red Devil
-		Only usable in the Underworld
+		Greatly increases Red Devil spawn rates
 		'''
 }
 
 DilutedRainbowMatter: {
 	DisplayName: Diluted Rainbow Matter
-	Tooltip: Summons Rainbow Slime
+	Tooltip: Greatly increases Rainbow Slime spawn rates
 }
 
 Eggplant: {
 	DisplayName: Eggplant
 	Tooltip:
 		'''
-		Summons Doctor Bones
-		Only usable at night or underground
+		Greatly increases Doctor Bones spawn rates
 		'''
 }
 
 ForbiddenForbiddenFragment: {
 	DisplayName: Forbidden Forbidden Fragment
-	Tooltip: Summons Sand Elemental
+	Tooltip: Greatly increases Sand Elemental spawn rates
 }
 
 GnomeHat: {
 	DisplayName: Gnome Hat
-	Tooltip: Summons Gnome
+	Tooltip: Greatly increases Gnome spawn rates
 }
 
 GoblinScrap: {
 	DisplayName: Goblin Scrap
-	Tooltip: Summons Goblin Scout
+	Tooltip: Greatly increases Goblin Scout spawn rates
 }
 
 GoldenSlimeCrown: {
 	DisplayName: Golden Slime Crown
-	Tooltip: Summons Golden Slime
+	Tooltip: Greatly increases Golden Slime spawn rates
 }
 
 GrandCross: {
 	DisplayName: Grand Cross
 	Tooltip:
 		'''
-		Summons Paladin
-		Only usable at night or underground
+		Greatly increases Paladin spawn rates
 		'''
 }
 
 HallowChest: {
 	DisplayName: Hallow Chest
-	Tooltip: Summons Hallowed Mimic
+	Tooltip: Causes Hallowed Mimics to spawn in the underground Hallow
 }
 
 HeartChocolate: {
 	DisplayName: Heart Chocolate
 	Tooltip:
 		'''
-		Summons Nymph
-		Only usable at night or underground
+		Greatly increases Nymph spawn rates
 		'''
 }
 
@@ -598,8 +589,7 @@ HemoclawCrab: {
 	DisplayName: Hemoclaw Crab
 	Tooltip:
 		'''
-		Summons Hemogoblin Shark and Blood Eel
-		Only usable during Blood Moon
+		Causes Hemogoblin Shark and Blood Eel to spawn at the Ocean during a Blood Moon
 		'''
 }
 
@@ -607,36 +597,33 @@ HolyGrail: {
 	DisplayName: Holy Grail
 	Tooltip:
 		'''
-		Summons Tim
-		Only usable at night or underground
+		Greatly increases Tim spawn rates
 		'''
 }
 
 JungleChest: {
 	DisplayName: Jungle Chest
-	Tooltip: Summons Jungle Mimic
+	Tooltip: Causes Jungle Mimics to spawn in the underground Jungle
 }
 
 LeesHeadband: {
 	DisplayName: Lee's Headband
 	Tooltip:
 		'''
-		Summons Bone Lee
-		Only usable at night or underground
+		Greatly increases Bone Lee spawn rates
 		'''
 }
 
 MothLamp: {
 	DisplayName: Moth Lamp
-	Tooltip: Summons Moth
+	Tooltip: Greatly increases Moth spawn rates
 }
 
 MothronEgg: {
 	DisplayName: Mothron Egg
 	Tooltip:
 		'''
-		Summons Mothron
-		Only usable during Solar Eclipse
+		Greatly increases Mothron spawn rates
 		'''
 }
 
@@ -644,19 +631,18 @@ Pincushion: {
 	DisplayName: Pincushion
 	Tooltip:
 		'''
-		Summons Nailhead
-		Only usable during Solar Eclipse
+		Greatly increases Nailhead spawn rates
 		'''
 }
 
 PinkSlimeCrown: {
 	DisplayName: Pink Slime Tiara
-	Tooltip: Summons Pinky
+	Tooltip: Greatly increases Pinky spawn rates
 }
 
 PirateFlag: {
 	DisplayName: Pirate Flag
-	Tooltip: Summons Pirate Captain
+	Tooltip: Greatly increases Pirate Captain spawn rates
 }
 
 PlunderedBooty: {
@@ -668,8 +654,7 @@ RuneOrb: {
 	DisplayName: Rune Orb
 	Tooltip:
 		'''
-		Summons Rune Wizard
-		Only usable at night or underground
+		Greatly increases Rune Wizard spawn rates
 		'''
 }
 
@@ -677,22 +662,21 @@ ShadowflameIcon: {
 	DisplayName: Shadowflame Icon
 	Tooltip:
 		'''
-		Summons Goblin Warlock
-		Only usable during Goblin Army
+		Greatly increases Goblin Warlock spawn rates
 		'''
 }
 
 SlimyLockBox: {
 	DisplayName: Slimy Lock
-	Tooltip: Summons Dungeon Slime
+	Tooltip: Greatly increases Dungeon Slime spawn rates
 }
 
 SuspiciousLookingChest: {
 	DisplayName: Suspicious Looking Chest
 	Tooltip:
 		'''
-		Summons Mimic
-		Summons Ice Mimic when in snow biome
+		Greatly increases Mimic spawn rates
+		Greatly increases Ice Mimic spawn rates when in the ice biome
 		'''
 	HardmodeLock: Only usable in Hardmode
 }
@@ -701,8 +685,7 @@ SuspiciousLookingLure: {
 	DisplayName: Suspicious Looking Lure
 	Tooltip:
 		'''
-		Summons Wandering Eye Fish and Zombie Merman
-		Only usable during Blood Moon
+		Causes Wandering Eye Fish and Zombie Merman to spawn at the Ocean during a Blood Moon
 		'''
 }
 
@@ -1634,9 +1617,8 @@ WormSnack: {
 	DisplayName: Worm Snack
 	Tooltip:
 		'''
-		Summons Giant Worm in pre-Hardmode
-		Summons Digger in Hardmode
-		Only usable underground
+		Greatly increases Giant Worm spawn rates
+		Greatly increases Digger spawn rates in Hardmode
 		'''
 }
 

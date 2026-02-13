@@ -1,19 +1,21 @@
+using Fargowiltas.Content.Buffs.SpawnBoosters;
 using Fargowiltas.Content.Items.Summons;
+using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Fargowiltas.Content.Items.Summons.Deviantt
 {
-    public class DilutedRainbowMatter : BaseSummon
+    public class DilutedRainbowMatter : BaseSpawnBooster
     {
-        public override int NPCType => NPCID.RainbowSlime;
-        
-        public override void SetStaticDefaults()
-        {
-            base.SetStaticDefaults();
-			// DisplayName.SetDefault("Diluted Rainbow Matter");
-			// Tooltip.SetDefault("Summons Rainbow Slime");
+        public override int BuffType => ModContent.BuffType<DilutedRainbowMatterBuff>();
 
-			ItemID.Sets.SortingPriorityBossSpawns[Type] = 6; // Places it right after Gelatin Crystal
-		}
+    }
+    public class DilutedRainbowMatterBuff : BaseSpawnBoosterBuff
+    {
+        public override string Texture => "Fargowiltas/Content/Buffs/PlaceholderBuff";
+        public DilutedRainbowMatterBuff() : base(() => [NPCID.RainbowSlime], () => Main.LocalPlayer.ZoneHallow && Main.IsItRaining, 0.2f)
+        {
+        }
     }
 }

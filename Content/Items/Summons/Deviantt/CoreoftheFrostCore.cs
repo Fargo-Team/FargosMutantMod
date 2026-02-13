@@ -1,23 +1,29 @@
+using Fargowiltas.Content.Buffs.SpawnBoosters;
 using Fargowiltas.Content.Items.Summons;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Fargowiltas.Content.Items.Summons.Deviantt
 {
-    public class CoreoftheFrostCore : BaseSummon
+    public class CoreoftheFrostCore : BaseSpawnBooster
     {
-        public override int NPCType => NPCID.IceGolem;
-        
+        public override int BuffType => ModContent.BuffType<CoreoftheFrostCoreBuff>();
+
         public override void SetStaticDefaults()
         {
             base.SetStaticDefaults();
-            // DisplayName.SetDefault("Core of the Frost Core");
-            // Tooltip.SetDefault("Summons Ice Golem");
             Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(6, 6));
             ItemID.Sets.AnimatesAsSoul[Item.type] = true;
 
-			ItemID.Sets.SortingPriorityBossSpawns[Type] = 6; // Places it right after Gelatin Crystal
 		}
+    }
+    public class CoreoftheFrostCoreBuff : BaseSpawnBoosterBuff
+    {
+        public override string Texture => "Fargowiltas/Content/Buffs/PlaceholderBuff";
+        public CoreoftheFrostCoreBuff() : base(() => [NPCID.IceGolem], () => Main.LocalPlayer.ZoneSnow && Main.IsItStorming, 0.2f)
+        {
+        }
     }
 }

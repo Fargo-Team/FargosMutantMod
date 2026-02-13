@@ -1,19 +1,20 @@
+using Fargowiltas.Content.Buffs.SpawnBoosters;
 using Fargowiltas.Content.Items.Summons;
+using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Fargowiltas.Content.Items.Summons.Deviantt
 {
-    public class SlimyLockBox : BaseSummon
+    public class SlimyLockBox : BaseSpawnBooster
     {
-        public override int NPCType => NPCID.DungeonSlime;
-        
-        public override void SetStaticDefaults()
+        public override int BuffType => ModContent.BuffType<SlimyLockBoxBuff>();
+    }
+    public class SlimyLockBoxBuff : BaseSpawnBoosterBuff
+    {
+        public override string Texture => "Fargowiltas/Content/Buffs/PlaceholderBuff";
+        public SlimyLockBoxBuff() : base(() => [NPCID.DungeonSlime], () => Main.LocalPlayer.ZoneDungeon, 0.2f)
         {
-            base.SetStaticDefaults();
-			// DisplayName.SetDefault("Slimy Lock Box");
-			// Tooltip.SetDefault("Summons Dungeon Slime");
-
-			ItemID.Sets.SortingPriorityBossSpawns[Type] = 5; // Places it right after Deer Thing and Abeemination
-		}
+        }
     }
 }

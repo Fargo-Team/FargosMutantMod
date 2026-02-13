@@ -1,19 +1,21 @@
+using Fargowiltas.Content.Buffs.SpawnBoosters;
 using Fargowiltas.Content.Items.Summons;
+using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Fargowiltas.Content.Items.Summons.Deviantt
 {
-    public class ForbiddenForbiddenFragment : BaseSummon
+    public class ForbiddenForbiddenFragment : BaseSpawnBooster
     {
-        public override int NPCType => NPCID.SandElemental;
-        
-        public override void SetStaticDefaults()
-        {
-            base.SetStaticDefaults();
-			// DisplayName.SetDefault("Forbidden Forbidden Fragment");
-			// Tooltip.SetDefault("Summons Sand Elemental");
+        public override int BuffType => ModContent.BuffType<ForbiddenForbiddenFragmentBuff>();
 
-			ItemID.Sets.SortingPriorityBossSpawns[Type] = 6; // Places it right after Gelatin Crystal
-		}
+    }
+    public class ForbiddenForbiddenFragmentBuff : BaseSpawnBoosterBuff
+    {
+        public override string Texture => "Fargowiltas/Content/Buffs/PlaceholderBuff";
+        public ForbiddenForbiddenFragmentBuff() : base(() => [NPCID.SandElemental], () => Main.LocalPlayer.ZoneSandstorm, 0.2f)
+        {
+        }
     }
 }

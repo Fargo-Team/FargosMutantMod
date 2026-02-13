@@ -1,3 +1,4 @@
+using Fargowiltas.Content.Buffs.SpawnBoosters;
 using Fargowiltas.Content.Items.Summons;
 using Terraria;
 using Terraria.ID;
@@ -5,24 +6,10 @@ using Terraria.ModLoader;
 
 namespace Fargowiltas.Content.Items.Summons.Deviantt
 {
-    public class Eggplant : BaseSummon
+    public class Eggplant : BaseSpawnBooster
     {
-        public override int NPCType => NPCID.DoctorBones;
-        
-        public override void SetStaticDefaults()
-        {
-            base.SetStaticDefaults();
-			// DisplayName.SetDefault("Eggplant");
-			/* Tooltip.SetDefault("Summons Doctor Bones" +
-                               "\nOnly usable at night or underground"); */
-
-			ItemID.Sets.SortingPriorityBossSpawns[Type] = 0; // Places it before any other bosses
-		}
-
-        public override bool CanUseItem(Player player)
-        {
-            return FargoUtils.ActuallyNight || player.ZoneDirtLayerHeight || player.ZoneRockLayerHeight || player.ZoneUnderworldHeight;
-        }
+        public override int BuffType => ModContent.BuffType<EggplantBuff>();
+       
 
         public override void AddRecipes()
         {
@@ -39,6 +26,13 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
 
             Recipe(ItemID.Mango);
             Recipe(ItemID.Pineapple);
+        }
+    }
+    public class EggplantBuff : BaseSpawnBoosterBuff
+    {
+        public override string Texture => "Fargowiltas/Content/Buffs/PlaceholderBuff";
+        public EggplantBuff() : base(() => [NPCID.DoctorBones], () => !Main.IsItDay() && Main.LocalPlayer.ZoneJungle, 0.2f)
+        {
         }
     }
 }

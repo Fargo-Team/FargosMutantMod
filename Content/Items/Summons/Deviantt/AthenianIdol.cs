@@ -1,26 +1,20 @@
+using Fargowiltas.Content.Buffs.SpawnBoosters;
 using Fargowiltas.Content.Items.Summons;
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Fargowiltas.Content.Items.Summons.Deviantt
 {
-    public class AthenianIdol : BaseSummon
+    public class AthenianIdol : BaseSpawnBooster
     {
-        public override int NPCType => NPCID.Medusa;
-        
-        public override void SetStaticDefaults()
+        public override int BuffType => ModContent.BuffType<AthenianIdolBuff>();
+    }
+    public class AthenianIdolBuff : BaseSpawnBoosterBuff
+    {
+        public override string Texture => "Fargowiltas/Content/Buffs/PlaceholderBuff";
+        public AthenianIdolBuff() : base(() => [NPCID.Medusa], () => Main.LocalPlayer.ZoneMarble, 0.2f)
         {
-            base.SetStaticDefaults();
-			// DisplayName.SetDefault("Athenian Idol");
-			/* Tooltip.SetDefault("Summons Medusa" +
-                               "\nOnly usable at night or underground"); */
-
-			ItemID.Sets.SortingPriorityBossSpawns[Type] = 6; // Places it right after Gelatin Crystal
-		}
-
-        public override bool CanUseItem(Player player)
-        {
-            return FargoUtils.ActuallyNight || player.ZoneDirtLayerHeight || player.ZoneRockLayerHeight || player.ZoneUnderworldHeight;
         }
     }
 }

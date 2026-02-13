@@ -1,4 +1,4 @@
-﻿DownedBoss: После победы над любым боссом
+DownedBoss: После победы над любым боссом
 DutchmanDown: После победы над летучим голландцем
 MageDown: После победы над тёмным магом
 OgreDown: После победы над огром
@@ -67,3 +67,5 @@ VioletHusk: После того, как вы подобрали фиолетов
 PinkPricklyPear: После того, как вы подобрали розовую колючую грушу
 BlackInk: После того, как вы подобрали чернила
 OwnsRegionalWood: После того, как вы подобрали этот тип древесины
+// BloodEelDown: Mods.Fargowiltas.Conditions.BloodEelDown
+// BloodGoblinDown: Mods.Fargowiltas.Conditions.BloodGoblinDown

@@ -1,3 +1,4 @@
+using Fargowiltas.Content.Buffs.SpawnBoosters;
 using Fargowiltas.Content.Items.Summons;
 using Terraria;
 using Terraria.ID;
@@ -5,24 +6,9 @@ using Terraria.ModLoader;
 
 namespace Fargowiltas.Content.Items.Summons.Deviantt
 {
-    public class AttractiveOre : BaseSummon
+    public class AttractiveOre : BaseSpawnBooster
     {
-        public override int NPCType => NPCID.UndeadMiner;
-        
-        public override void SetStaticDefaults()
-        {
-            base.SetStaticDefaults();
-			// DisplayName.SetDefault("Attractive Ore");
-			/* Tooltip.SetDefault("Summons Undead Miner" +
-                               "\nOnly usable at night or underground"); */
-
-			ItemID.Sets.SortingPriorityBossSpawns[Type] = 0; // Places it before any other bosses
-		}
-
-        public override bool CanUseItem(Player player)
-        {
-            return FargoUtils.ActuallyNight || player.ZoneDirtLayerHeight || player.ZoneRockLayerHeight || player.ZoneUnderworldHeight;
-        }
+        public override int BuffType => ModContent.BuffType<AttractiveOreBuff>();
 
         public override void AddRecipes()
         {
@@ -36,6 +22,13 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
                 .AddIngredient(ItemID.SilverDye)
                 .AddTile(TileID.DyeVat)
                 .Register();
+        }
+    }
+    public class AttractiveOreBuff : BaseSpawnBoosterBuff
+    {
+        public override string Texture => "Fargowiltas/Content/Buffs/PlaceholderBuff";
+        public AttractiveOreBuff() : base(() => [NPCID.UndeadMiner], () => Main.LocalPlayer.ZoneRockLayerHeight, 0.2f)
+        {
         }
     }
 }

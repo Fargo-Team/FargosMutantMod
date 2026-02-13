@@ -1,4 +1,5 @@
 using Fargowiltas.Common.Systems.Recipes;
+using Fargowiltas.Content.Buffs.SpawnBoosters;
 using Fargowiltas.Content.Items.Summons;
 using Terraria;
 using Terraria.ID;
@@ -6,24 +7,10 @@ using Terraria.ModLoader;
 
 namespace Fargowiltas.Content.Items.Summons.Deviantt
 {
-    public class HeartChocolate : BaseSummon
+    public class HeartChocolate : BaseSpawnBooster
     {
-        public override int NPCType => NPCID.Nymph;
-        
-        public override void SetStaticDefaults()
-        {
-            base.SetStaticDefaults();
-			// DisplayName.SetDefault("Heart Chocolate");
-			/* Tooltip.SetDefault("Summons Nymph" +
-                               "\nOnly usable at night or underground"); */
+        public override int BuffType => ModContent.BuffType<HeartChocolateBuff>();
 
-			ItemID.Sets.SortingPriorityBossSpawns[Type] = 0; // Places it before any other bosses
-		}
-
-        public override bool CanUseItem(Player player)
-        {
-            return FargoUtils.ActuallyNight || player.ZoneDirtLayerHeight || player.ZoneRockLayerHeight || player.ZoneUnderworldHeight;
-        }
 
         public override void AddRecipes()
         {
@@ -32,6 +19,13 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
                   .AddRecipeGroup(RecipeGroups.AnyFoodT2)
                   .AddTile(TileID.CookingPots)
                   .Register();
+        }
+    }
+    public class HeartChocolateBuff : BaseSpawnBoosterBuff
+    {
+        public override string Texture => "Fargowiltas/Content/Buffs/PlaceholderBuff";
+        public HeartChocolateBuff() : base(() => [NPCID.Nymph], () => Main.LocalPlayer.ZoneRockLayerHeight, 0.2f)
+        {
         }
     }
 }

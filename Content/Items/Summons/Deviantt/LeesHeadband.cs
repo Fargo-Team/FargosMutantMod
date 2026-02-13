@@ -1,26 +1,20 @@
+using Fargowiltas.Content.Buffs.SpawnBoosters;
 using Fargowiltas.Content.Items.Summons;
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Fargowiltas.Content.Items.Summons.Deviantt
 {
-    public class LeesHeadband : BaseSummon
+    public class LeesHeadband : BaseSpawnBooster
     {
-        public override int NPCType => NPCID.BoneLee;
-
-        public override void SetStaticDefaults()
+        public override int BuffType => ModContent.BuffType<LeesHeadbandBuff>();
+    }
+    public class LeesHeadbandBuff : BaseSpawnBoosterBuff
+    {
+        public override string Texture => "Fargowiltas/Content/Buffs/PlaceholderBuff";
+        public LeesHeadbandBuff() : base(() => [NPCID.BoneLee], () => Main.LocalPlayer.ZoneDungeon, 0.2f)
         {
-            base.SetStaticDefaults();
-			// DisplayName.SetDefault("Lee's Headband");
-			/* Tooltip.SetDefault("Summons Bone Lee" +
-                               "\nOnly usable at night or underground"); */
-
-			ItemID.Sets.SortingPriorityBossSpawns[Type] = 13; // Places it right before Pumpkin Moon Medallion and Naughty Present
-		}
-
-        public override bool CanUseItem(Player player)
-        {
-            return FargoUtils.ActuallyNight || player.ZoneDirtLayerHeight || player.ZoneRockLayerHeight || player.ZoneUnderworldHeight;
         }
     }
 }

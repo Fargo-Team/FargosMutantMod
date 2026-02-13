@@ -27,3 +27,173 @@ TestBoosterBuff: {
 	// DisplayName: Test Booster Buff
 	// Description: Mods.Fargowiltas.Buffs.TestBoosterBuff.Description
 }
+
+WormSnackBuff: {
+	// DisplayName: Worm Snack Buff
+	// Description: Mods.Fargowiltas.Buffs.WormSnackBuff.Description
+}
+
+AmalgamatedSkullBuff: {
+	// DisplayName: Amalgamated Skull Buff
+	// Description: Mods.Fargowiltas.Buffs.AmalgamatedSkullBuff.Description
+}
+
+AmalgamatedSpiritBuff: {
+	// DisplayName: Amalgamated Spirit Buff
+	// Description: Mods.Fargowiltas.Buffs.AmalgamatedSpiritBuff.Description
+}
+
+AthenianIdolBuff: {
+	// DisplayName: Athenian Idol Buff
+	// Description: Mods.Fargowiltas.Buffs.AthenianIdolBuff.Description
+}
+
+AttractiveOreBuff: {
+	// DisplayName: Attractive Ore Buff
+	// Description: Mods.Fargowiltas.Buffs.AttractiveOreBuff.Description
+}
+
+CloudSnackBuff: {
+	// DisplayName: Cloud Snack Buff
+	// Description: Mods.Fargowiltas.Buffs.CloudSnackBuff.Description
+}
+
+ClownLicenseBuff: {
+	// DisplayName: Clown License Buff
+	// Description: Mods.Fargowiltas.Buffs.ClownLicenseBuff.Description
+}
+
+CoreoftheFrostCoreBuff: {
+	// DisplayName: Coreofthe Frost Core Buff
+	// Description: Mods.Fargowiltas.Buffs.CoreoftheFrostCoreBuff.Description
+}
+
+CorruptChestBuff: {
+	// DisplayName: Corrupt Chest Buff
+	// Description: Mods.Fargowiltas.Buffs.CorruptChestBuff.Description
+}
+
+CrimsonChestBuff: {
+	// DisplayName: Crimson Chest Buff
+	// Description: Mods.Fargowiltas.Buffs.CrimsonChestBuff.Description
+}
+
+DemonicPlushieBuff: {
+	// DisplayName: Demonic Plushie Buff
+	// Description: Mods.Fargowiltas.Buffs.DemonicPlushieBuff.Description
+}
+
+DilutedRainbowMatterBuff: {
+	// DisplayName: Diluted Rainbow Matter Buff
+	// Description: Mods.Fargowiltas.Buffs.DilutedRainbowMatterBuff.Description
+}
+
+EggplantBuff: {
+	// DisplayName: Eggplant Buff
+	// Description: Mods.Fargowiltas.Buffs.EggplantBuff.Description
+}
+
+ForbiddenForbiddenFragmentBuff: {
+	// DisplayName: Forbidden Forbidden Fragment Buff
+	// Description: Mods.Fargowiltas.Buffs.ForbiddenForbiddenFragmentBuff.Description
+}
+
+GnomeHatBuff: {
+	// DisplayName: Gnome Hat Buff
+	// Description: Mods.Fargowiltas.Buffs.GnomeHatBuff.Description
+}
+
+GoblinScrapBuff: {
+	// DisplayName: Goblin Scrap Buff
+	// Description: Mods.Fargowiltas.Buffs.GoblinScrapBuff.Description
+}
+
+GoldenSlimeCrownBuff: {
+	// DisplayName: Golden Slime Crown Buff
+	// Description: Mods.Fargowiltas.Buffs.GoldenSlimeCrownBuff.Description
+}
+
+GrandCrossBuff: {
+	// DisplayName: Grand Cross Buff
+	// Description: Mods.Fargowiltas.Buffs.GrandCrossBuff.Description
+}
+
+HallowChestBuff: {
+	// DisplayName: Hallow Chest Buff
+	// Description: Mods.Fargowiltas.Buffs.HallowChestBuff.Description
+}
+
+HeartChocolateBuff: {
+	// DisplayName: Heart Chocolate Buff
+	// Description: Mods.Fargowiltas.Buffs.HeartChocolateBuff.Description
+}
+
+HemoclawCrabBuff: {
+	// DisplayName: Hemoclaw Crab Buff
+	// Description: Mods.Fargowiltas.Buffs.HemoclawCrabBuff.Description
+}
+
+HolyGrailBuff: {
+	// DisplayName: Holy Grail Buff
+	// Description: Mods.Fargowiltas.Buffs.HolyGrailBuff.Description
+}
+
+JungleChestBuff: {
+	// DisplayName: Jungle Chest Buff
+	// Description: Mods.Fargowiltas.Buffs.JungleChestBuff.Description
+}
+
+LeesHeadbandBuff: {
+	// DisplayName: Lees Headband Buff
+	// Description: Mods.Fargowiltas.Buffs.LeesHeadbandBuff.Description
+}
+
+MothLampBuff: {
+	// DisplayName: Moth Lamp Buff
+	// Description: Mods.Fargowiltas.Buffs.MothLampBuff.Description
+}
+
+MothronEggBuff: {
+	// DisplayName: Mothron Egg Buff
+	// Description: Mods.Fargowiltas.Buffs.MothronEggBuff.Description
+}
+
+PincushionBuff: {
+	// DisplayName: Pincushion Buff
+	// Description: Mods.Fargowiltas.Buffs.PincushionBuff.Description
+}
+
+PinkSlimeCrownBuff: {
+	// DisplayName: Pink Slime Crown Buff
+	// Description: Mods.Fargowiltas.Buffs.PinkSlimeCrownBuff.Description
+}
+
+PirateFlagBuff: {
+	// DisplayName: Pirate Flag Buff
+	// Description: Mods.Fargowiltas.Buffs.PirateFlagBuff.Description
+}
+
+RuneOrbBuff: {
+	// DisplayName: Rune Orb Buff
+	// Description: Mods.Fargowiltas.Buffs.RuneOrbBuff.Description
+}
+
+ShadowflameIconBuff: {
+	// DisplayName: Shadowflame Icon Buff
+	// Description: Mods.Fargowiltas.Buffs.ShadowflameIconBuff.Description
+}
+
+SlimyLockBoxBuff: {
+	// DisplayName: Slimy Lock Box Buff
+	// Description: Mods.Fargowiltas.Buffs.SlimyLockBoxBuff.Description
+}
+
+SuspiciousLookingChestBuff: {
+	// DisplayName: Suspicious Looking Chest Buff
+	// Description: Mods.Fargowiltas.Buffs.SuspiciousLookingChestBuff.Description
+}
+
+SuspiciousLookingLureBuff: {
+	// DisplayName: Suspicious Looking Lure Buff
+	// Description: Mods.Fargowiltas.Buffs.SuspiciousLookingLureBuff.Description
+}

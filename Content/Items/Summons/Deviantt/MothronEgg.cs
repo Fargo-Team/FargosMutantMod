@@ -1,26 +1,20 @@
+using Fargowiltas.Content.Buffs.SpawnBoosters;
 using Fargowiltas.Content.Items.Summons;
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Fargowiltas.Content.Items.Summons.Deviantt
 {
-    public class MothronEgg : BaseSummon
+    public class MothronEgg : BaseSpawnBooster
     {
-        public override int NPCType => NPCID.Mothron;
-        
-        public override void SetStaticDefaults()
+        public override int BuffType => ModContent.BuffType<MothronEggBuff>();
+    }
+    public class MothronEggBuff : BaseSpawnBoosterBuff
+    {
+        public override string Texture => "Fargowiltas/Content/Buffs/PlaceholderBuff";
+        public MothronEggBuff() : base(() => [NPCID.Mothron], () => Main.eclipse, 0.2f)
         {
-            base.SetStaticDefaults();
-			// DisplayName.SetDefault("Mothron Egg");
-			/* Tooltip.SetDefault("Summons Mothron" +
-                               "\nOnly usable during Solar Eclipse"); */
-
-			ItemID.Sets.SortingPriorityBossSpawns[Type] = ItemID.Sets.SortingPriorityBossSpawns[ItemID.SolarTablet]; // 17
-		}
-
-        public override bool CanUseItem(Player player)
-        {
-            return Main.eclipse;
         }
     }
 }

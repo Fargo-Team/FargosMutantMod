@@ -1,26 +1,21 @@
+using Fargowiltas.Content.Buffs.SpawnBoosters;
 using Fargowiltas.Content.Items.Summons;
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Fargowiltas.Content.Items.Summons.Deviantt
 {
-    public class ClownLicense : BaseSummon
+    public class ClownLicense : BaseSpawnBooster
     {
-        public override int NPCType => NPCID.Clown;
-        
-        public override void SetStaticDefaults()
-        {
-            base.SetStaticDefaults();
-			// DisplayName.SetDefault("Clown License");
-			/* Tooltip.SetDefault("Summons Clown" +
-                               "\nOnly usable at night or underground"); */
+        public override int BuffType => ModContent.BuffType<ClownLicenseBuff>();
 
-			ItemID.Sets.SortingPriorityBossSpawns[Type] = ItemID.Sets.SortingPriorityBossSpawns[ItemID.BloodMoonStarter]; // 18
-		}
-
-        public override bool CanUseItem(Player player)
+    }
+    public class ClownLicenseBuff : BaseSpawnBoosterBuff
+    {
+        public override string Texture => "Fargowiltas/Content/Buffs/PlaceholderBuff";
+        public ClownLicenseBuff() : base(() => [NPCID.Clown], () => Main.bloodMoon, 0.2f)
         {
-            return FargoUtils.ActuallyNight || player.ZoneDirtLayerHeight || player.ZoneRockLayerHeight || player.ZoneUnderworldHeight;
         }
     }
 }

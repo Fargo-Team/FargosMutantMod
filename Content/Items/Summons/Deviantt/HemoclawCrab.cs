@@ -1,4 +1,5 @@
 using Fargowiltas.Common.Systems.Recipes;
+using Fargowiltas.Content.Buffs.SpawnBoosters;
 using Fargowiltas.Content.Items.Summons;
 using Fargowiltas.Content.Projectiles;
 using Microsoft.Xna.Framework;
@@ -10,45 +11,9 @@ using Terraria.ModLoader;
 
 namespace Fargowiltas.Content.Items.Summons.Deviantt
 {
-    public class HemoclawCrab : ModItem
+    public class HemoclawCrab : BaseSpawnBooster
     {
-        public override void SetStaticDefaults()
-        {
-            base.SetStaticDefaults();
-			ItemID.Sets.SortingPriorityBossSpawns[Type] = ItemID.Sets.SortingPriorityBossSpawns[ItemID.BloodMoonStarter]; // 18
-		}
-
-        public override void SetDefaults()
-        {
-            Item.width = 20;
-            Item.height = 20;
-            Item.maxStack = 9999;
-            Item.value = Item.sellPrice(0, 0, 2);
-            Item.rare = ItemRarityID.Blue;
-            Item.useAnimation = 30;
-            Item.useTime = 30;
-            Item.useStyle = ItemUseStyleID.Shoot;
-            Item.consumable = true;
-            Item.shoot = ModContent.ProjectileType<SpawnProj>();
-        }
-
-        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-        {
-            Vector2 pos = new Vector2((int)player.position.X + Main.rand.Next(-800, 800), (int)player.position.Y + Main.rand.Next(-1000, -250));
-            Projectile.NewProjectile(player.GetSource_ItemUse(source.Item), pos, Vector2.Zero, ModContent.ProjectileType<SpawnProj>(), 0, 0, Main.myPlayer, NPCID.BloodEelHead);
-
-            pos = new Vector2((int)player.position.X + Main.rand.Next(-800, 800), (int)player.position.Y + Main.rand.Next(-1000, -250));
-            Projectile.NewProjectile(player.GetSource_ItemUse(source.Item), pos, Vector2.Zero, ModContent.ProjectileType<SpawnProj>(), 0, 0, Main.myPlayer, NPCID.GoblinShark);
-
-            SoundEngine.PlaySound(SoundID.Roar, player.position);
-
-            return true;
-        }
-
-        public override bool CanUseItem(Player player)
-        {
-            return FargoUtils.ActuallyNight && Main.bloodMoon;
-        }
+        public override int BuffType => ModContent.BuffType<HemoclawCrabBuff>();
 
         public override void AddRecipes()
         {
@@ -58,6 +23,13 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
                 .AddIngredient(ItemID.SoulofNight, 6)
                 .AddTile(TileID.MythrilAnvil)
                 .Register();
+        }
+    }
+    public class HemoclawCrabBuff : BaseSpawnBoosterBuff
+    {
+        public override string Texture => "Fargowiltas/Content/Buffs/PlaceholderBuff";
+        public HemoclawCrabBuff() : base(() => [NPCID.BloodEelHead, NPCID.GoblinShark], () => Main.bloodMoon && Main.LocalPlayer.ZoneBeach, 0.2f)
+        {
         }
     }
 }

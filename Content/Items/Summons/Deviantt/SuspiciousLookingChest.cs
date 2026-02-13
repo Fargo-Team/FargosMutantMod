@@ -1,3 +1,4 @@
+using Fargowiltas.Content.Buffs.SpawnBoosters;
 using Fargowiltas.Content.Items.Summons;
 using System.Collections.Generic;
 using Terraria;
@@ -7,19 +8,10 @@ using Terraria.ModLoader;
 
 namespace Fargowiltas.Content.Items.Summons.Deviantt
 {
-    public class SuspiciousLookingChest : BaseSummon
+    public class SuspiciousLookingChest : BaseSpawnBooster
     {
-        public override int NPCType => Main.LocalPlayer.ZoneSnow ? NPCID.IceMimic : NPCID.Mimic;
-        
-        public override void SetStaticDefaults()
-        {
-            base.SetStaticDefaults();
-			// DisplayName.SetDefault("Suspicious Looking Chest");
-			/* Tooltip.SetDefault("Summons Mimic"
-            + "\nSummons Ice Mimic when in snow biome"); */
+        public override int BuffType => ModContent.BuffType<SuspiciousLookingChestBuff>();
 
-			ItemID.Sets.SortingPriorityBossSpawns[Type] = 6; // Places it right after Gelatin Crystal
-		}
         public override bool CanUseItem(Player player)
         {
             if (!Main.hardMode && (!FargoUtils.EternityMode || !Main.remixWorld)) 
@@ -40,6 +32,13 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
                     .AddIngredient(ItemID.GoldCoin, 10)
                     .AddTile(TileID.DemonAltar)
                     .Register();
+        }
+    }
+    public class SuspiciousLookingChestBuff : BaseSpawnBoosterBuff
+    {
+        public override string Texture => "Fargowiltas/Content/Buffs/PlaceholderBuff";
+        public SuspiciousLookingChestBuff() : base(() => Main.LocalPlayer.ZoneSnow ? [NPCID.IceMimic] : [NPCID.Mimic], () => Main.LocalPlayer.ZoneDirtLayerHeight || Main.LocalPlayer.ZoneRockLayerHeight, 0.2f)
+        {
         }
     }
 }

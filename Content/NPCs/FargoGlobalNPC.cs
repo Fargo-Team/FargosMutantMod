@@ -519,6 +519,7 @@ namespace Fargowiltas.Content.NPCs
         public override void EditSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)
         {
             Player player = Main.LocalPlayer;
+            bool normalSpawn = !spawnInfo.PlayerInTown && !spawnInfo.Invasion && !spawnInfo.Player.ZoneOldOneArmy;
 
             if (FargoWorld.OverloadGoblins && player.position.X > Main.invasionX * 16.0 - 3000 && player.position.X < Main.invasionX * 16.0 + 3000)
             {
@@ -598,18 +599,21 @@ namespace Fargowiltas.Content.NPCs
                 pool[NPCID.BrainScrambler] = 1f;
             }
 
-            foreach (var spawnBooster in Main.LocalPlayer.FargoMutant().ActiveSpawnBoosters)
+            if (normalSpawn)
             {
-                if (!spawnBooster.SpawnCondition.IsMet())
-                    continue;
-                foreach (var npcID in spawnBooster.NPCTypes)
+                foreach (var spawnBooster in Main.LocalPlayer.FargoMutant().ActiveSpawnBoosters)
                 {
-                    if (NPC.AnyNPCs(npcID))
+                    if (!spawnBooster.SpawnCondition.Invoke())
                         continue;
-                    if (!pool.ContainsKey(npcID))
-                        pool[npcID] = spawnBooster.SpawnRate;
-                    else
-                        pool[npcID] += spawnBooster.SpawnRate;
+                    foreach (var npcID in spawnBooster.NPCTypes.Invoke())
+                    {
+                        if (NPC.AnyNPCs(npcID))
+                            continue;
+                        if (!pool.ContainsKey(npcID))
+                            pool[npcID] = spawnBooster.SpawnRate;
+                        else
+                            pool[npcID] += spawnBooster.SpawnRate;
+                    }
                 }
             }
         }

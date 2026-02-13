@@ -1,28 +1,15 @@
+using Fargowiltas.Content.Buffs.SpawnBoosters;
 using Fargowiltas.Content.Items.Summons;
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Fargowiltas.Content.Items.Summons.Deviantt
 {
-    public class HolyGrail : BaseSummon
+    public class HolyGrail : BaseSpawnBooster
     {
-        public override int NPCType => NPCID.Tim;
-        
-        public override void SetStaticDefaults()
-        {
-            base.SetStaticDefaults();
-			// DisplayName.SetDefault("Holy Grail");
-			/* Tooltip.SetDefault("Summons Tim" +
-                               "\nOnly usable at night or underground"); */
-
-			ItemID.Sets.SortingPriorityBossSpawns[Type] = 0; // Places it before any other bosses
-		}
-
-        public override bool CanUseItem(Player player)
-        {
-            return FargoUtils.ActuallyNight || player.ZoneDirtLayerHeight || player.ZoneRockLayerHeight || player.ZoneUnderworldHeight;
-        }
-
+        public override int BuffType => ModContent.BuffType<HolyGrailBuff>();
+       
         public override void AddRecipes()
         {
 			CreateRecipe()
@@ -31,6 +18,13 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
 					.AddIngredient(ItemID.Ruby)
 					.AddTile(TileID.DemonAltar)
 					.Register();
+        }
+    }
+    public class HolyGrailBuff : BaseSpawnBoosterBuff
+    {
+        public override string Texture => "Fargowiltas/Content/Buffs/PlaceholderBuff";
+        public HolyGrailBuff() : base(() => [NPCID.Tim], () => Main.LocalPlayer.ZoneRockLayerHeight && (double)Main.LocalPlayer.Center.Y / 16 > (Main.rockLayer + Main.maxTilesY) / 2.0, 0.2f)
+        {
         }
     }
 }

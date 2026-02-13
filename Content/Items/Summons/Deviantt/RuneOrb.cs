@@ -1,4 +1,5 @@
 using Fargowiltas.Common.Systems.Recipes;
+using Fargowiltas.Content.Buffs.SpawnBoosters;
 using Fargowiltas.Content.Items.Summons;
 using Terraria;
 using Terraria.ID;
@@ -6,20 +7,9 @@ using Terraria.ModLoader;
 
 namespace Fargowiltas.Content.Items.Summons.Deviantt
 {
-    public class RuneOrb : BaseSummon
+    public class RuneOrb : BaseSpawnBooster
     {
-        public override int NPCType => NPCID.RuneWizard;
-        
-        public override void SetStaticDefaults()
-        {
-            base.SetStaticDefaults();
-			ItemID.Sets.SortingPriorityBossSpawns[Type] = 6; // Places it right after Gelatin Crystal
-		}
-
-        public override bool CanUseItem(Player player)
-        {
-            return FargoUtils.ActuallyNight || player.ZoneDirtLayerHeight || player.ZoneRockLayerHeight || player.ZoneUnderworldHeight;
-        }
+        public override int BuffType => ModContent.BuffType<RuneOrbBuff>();
 
         public override void AddRecipes()
         {
@@ -33,6 +23,13 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
                   .AddIngredient(ItemID.SoulofNight, 8)
                   .AddTile(TileID.CrystalBall)
                   .Register();
+        }
+    }
+    public class RuneOrbBuff : BaseSpawnBoosterBuff
+    {
+        public override string Texture => "Fargowiltas/Content/Buffs/PlaceholderBuff";
+        public RuneOrbBuff() : base(() => [NPCID.RuneWizard], () => Main.LocalPlayer.ZoneRockLayerHeight && (double)Main.LocalPlayer.Center.Y / 16 > (Main.rockLayer + Main.maxTilesY) / 2.0, 0.2f)
+        {
         }
     }
 }

@@ -14,11 +14,11 @@ namespace Fargowiltas.Content.Buffs.SpawnBoosters
 {
     public abstract class BaseSpawnBoosterBuff : ModBuff
     {
-        public List<int> NPCTypes;
-        public Condition SpawnCondition;
+        public Func<List<int>> NPCTypes;
+        public Func<bool> SpawnCondition;
         public float SpawnRate;
 
-        protected BaseSpawnBoosterBuff(List<int> npcTypes, Condition spawnCondition, float spawnRate)
+        protected BaseSpawnBoosterBuff(Func<List<int>> npcTypes, Func<bool> spawnCondition, float spawnRate)
         {
             NPCTypes = npcTypes;
             SpawnCondition = spawnCondition;
@@ -32,7 +32,7 @@ namespace Fargowiltas.Content.Buffs.SpawnBoosters
         public override bool PreDraw(SpriteBatch spriteBatch, int buffIndex, ref BuffDrawParams drawParams)
         {
             Texture2D ourTexture = drawParams.Texture;
-            if (SpawnCondition.IsMet())
+            if (SpawnCondition.Invoke())
             {
                 var color = Color.Purple;
                 spriteBatch.End();
@@ -44,14 +44,6 @@ namespace Fargowiltas.Content.Buffs.SpawnBoosters
             }
             spriteBatch.Draw(ourTexture, drawParams.Position, drawParams.SourceRectangle, drawParams.DrawColor, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
             return false;
-        }
-    }
-
-    public class TestBoosterBuff : BaseSpawnBoosterBuff // Remove this when the real ones are implemented
-    {
-        public override string Texture => "Fargowiltas/Content/Buffs/PlaceholderBuff";
-        public TestBoosterBuff() : base([NPCID.GoblinScout], Condition.TimeDay, 3f)
-        {
         }
     }
 }

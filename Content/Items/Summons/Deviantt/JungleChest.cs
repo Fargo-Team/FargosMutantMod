@@ -1,21 +1,14 @@
+using Fargowiltas.Content.Buffs.SpawnBoosters;
 using Fargowiltas.Content.Items.Summons;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Fargowiltas.Content.Items.Summons.Deviantt
 {
-    public class JungleChest : BaseSummon
+    public class JungleChest : BaseSpawnBooster
     {
-        public override int NPCType => NPCID.BigMimicJungle;
-        
-        public override void SetStaticDefaults()
-        {
-            base.SetStaticDefaults();
-			// DisplayName.SetDefault("Jungle Chest");
-			// Tooltip.SetDefault("Summons Jungle Mimic");
-
-			ItemID.Sets.SortingPriorityBossSpawns[Type] = 6; // Places it right after Gelatin Crystal
-		}
+        public override int BuffType => ModContent.BuffType<JungleChestBuff>();
         /*
         public override void AddRecipes()
         {
@@ -31,5 +24,12 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
             }
         }
         */
+    }
+    public class JungleChestBuff : BaseSpawnBoosterBuff
+    {
+        public override string Texture => "Fargowiltas/Content/Buffs/PlaceholderBuff";
+        public JungleChestBuff() : base(() => [NPCID.BigMimicJungle], () => Main.LocalPlayer.ZoneJungle && (Main.LocalPlayer.ZoneDirtLayerHeight || Main.LocalPlayer.ZoneRockLayerHeight), 0.2f)
+        {
+        }
     }
 }

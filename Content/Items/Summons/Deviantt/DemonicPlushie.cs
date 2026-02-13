@@ -1,26 +1,21 @@
+using Fargowiltas.Content.Buffs.SpawnBoosters;
 using Fargowiltas.Content.Items.Summons;
+using System;
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Fargowiltas.Content.Items.Summons.Deviantt
 {
-    public class DemonicPlushie : BaseSummon
+    public class DemonicPlushie : BaseSpawnBooster
     {
-        public override int NPCType => NPCID.RedDevil;
-        
-        public override void SetStaticDefaults()
+        public override int BuffType => ModContent.BuffType<DemonicPlushieBuff>();
+    }
+    public class DemonicPlushieBuff : BaseSpawnBoosterBuff
+    {
+        public override string Texture => "Fargowiltas/Content/Buffs/PlaceholderBuff";
+        public DemonicPlushieBuff() : base(() => [NPCID.RedDevil], () => Main.LocalPlayer.ZoneUnderworldHeight && MathF.Abs(Main.LocalPlayer.Center.X / 16f - Main.spawnTileX) > Main.maxTilesX / 3, 0.2f)
         {
-            base.SetStaticDefaults();
-			// DisplayName.SetDefault("Demonic Plushie");
-			/* Tooltip.SetDefault("Summons Red Devil" +
-                               "\nOnly usable in the Underworld"); */
-
-			ItemID.Sets.SortingPriorityBossSpawns[Type] = 10; // Places it right after the three mech boss summons
-		}
-
-        public override bool CanUseItem(Player player)
-        {
-            return player.ZoneUnderworldHeight;
         }
     }
 }

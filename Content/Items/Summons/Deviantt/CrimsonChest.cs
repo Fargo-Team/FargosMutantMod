@@ -1,19 +1,20 @@
+using Fargowiltas.Content.Buffs.SpawnBoosters;
 using Fargowiltas.Content.Items.Summons;
+using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Fargowiltas.Content.Items.Summons.Deviantt
 {
-    public class CrimsonChest : BaseSummon
+    public class CrimsonChest : BaseSpawnBooster
     {
-        public override int NPCType => NPCID.BigMimicCrimson;
-        
-        public override void SetStaticDefaults()
+        public override int BuffType => ModContent.BuffType<CrimsonChestBuff>();
+    }
+    public class CrimsonChestBuff : BaseSpawnBoosterBuff
+    {
+        public override string Texture => "Fargowiltas/Content/Buffs/PlaceholderBuff";
+        public CrimsonChestBuff() : base(() => [NPCID.BigMimicCrimson], () => Main.LocalPlayer.ZoneCrimson && (Main.LocalPlayer.ZoneDirtLayerHeight || Main.LocalPlayer.ZoneRockLayerHeight), 0.2f)
         {
-            base.SetStaticDefaults();
-			// DisplayName.SetDefault("Crimson Chest");
-			// Tooltip.SetDefault("Summons Crimson Mimic");
-
-			ItemID.Sets.SortingPriorityBossSpawns[Type] = 6; // Places it right after Gelatin Crystal
-		}
+        }
     }
 }

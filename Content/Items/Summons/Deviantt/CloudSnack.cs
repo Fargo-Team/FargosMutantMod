@@ -1,19 +1,20 @@
+using Fargowiltas.Content.Buffs.SpawnBoosters;
 using Fargowiltas.Content.Items.Summons;
+using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Fargowiltas.Content.Items.Summons.Deviantt
 {
-    public class CloudSnack : BaseSummon
+    public class CloudSnack : BaseSpawnBooster
     {
-        public override int NPCType => NPCID.WyvernHead;
-        
-        public override void SetStaticDefaults()
+        public override int BuffType => ModContent.BuffType<CloudSnackBuff>();
+    }
+    public class CloudSnackBuff : BaseSpawnBoosterBuff
+    {
+        public override string Texture => "Fargowiltas/Content/Buffs/PlaceholderBuff";
+        public CloudSnackBuff() : base(() => [NPCID.WyvernHead], () => Main.LocalPlayer.ZoneSkyHeight, 0.2f)
         {
-            base.SetStaticDefaults();
-			// DisplayName.SetDefault("Cloud Snack");
-			// Tooltip.SetDefault("Summons Wyvern");
-
-			ItemID.Sets.SortingPriorityBossSpawns[Type] = 6; // Places it right after Gelatin Crystal
-		}
+        }
     }
 }

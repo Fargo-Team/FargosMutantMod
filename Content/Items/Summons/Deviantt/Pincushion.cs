@@ -1,26 +1,20 @@
+using Fargowiltas.Content.Buffs.SpawnBoosters;
 using Fargowiltas.Content.Items.Summons;
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Fargowiltas.Content.Items.Summons.Deviantt
 {
-    public class Pincushion : BaseSummon
+    public class Pincushion : BaseSpawnBooster
     {
-        public override int NPCType => NPCID.Nailhead;
-        
-        public override void SetStaticDefaults()
+        public override int BuffType => ModContent.BuffType<PincushionBuff>();
+    }
+    public class PincushionBuff : BaseSpawnBoosterBuff
+    {
+        public override string Texture => "Fargowiltas/Content/Buffs/PlaceholderBuff";
+        public PincushionBuff() : base(() => [NPCID.Nailhead], () => Main.eclipse, 0.2f)
         {
-            base.SetStaticDefaults();
-			// DisplayName.SetDefault("Pincushion");
-			/* Tooltip.SetDefault("Summons Nailhead" +
-                               "\nOnly usable during Solar Eclipse"); */
-
-			ItemID.Sets.SortingPriorityBossSpawns[Type] = ItemID.Sets.SortingPriorityBossSpawns[ItemID.SolarTablet]; // 17
-		}
-
-        public override bool CanUseItem(Player player)
-        {
-            return Main.eclipse;
         }
     }
 }

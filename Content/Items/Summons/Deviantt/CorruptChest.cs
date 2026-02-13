@@ -1,19 +1,21 @@
+using Fargowiltas.Content.Buffs.SpawnBoosters;
 using Fargowiltas.Content.Items.Summons;
+using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Fargowiltas.Content.Items.Summons.Deviantt
 {
-    public class CorruptChest : BaseSummon
+    public class CorruptChest : BaseSpawnBooster
     {
-        public override int NPCType => NPCID.BigMimicCorruption;
-        
-        public override void SetStaticDefaults()
-        {
-            base.SetStaticDefaults();
-			// DisplayName.SetDefault("Corrupt Chest");
-			// Tooltip.SetDefault("Summons Corrupt Mimic");
+        public override int BuffType => ModContent.BuffType<CorruptChestBuff>();
 
-			ItemID.Sets.SortingPriorityBossSpawns[Type] = 6; // Places it right after Gelatin Crystal
-		}
+    }
+    public class CorruptChestBuff : BaseSpawnBoosterBuff
+    {
+        public override string Texture => "Fargowiltas/Content/Buffs/PlaceholderBuff";
+        public CorruptChestBuff() : base(() => [NPCID.BigMimicCorruption], () => Main.LocalPlayer.ZoneCorrupt && (Main.LocalPlayer.ZoneDirtLayerHeight || Main.LocalPlayer.ZoneRockLayerHeight), 0.2f)
+        {
+        }
     }
 }

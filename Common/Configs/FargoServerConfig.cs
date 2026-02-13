@@ -30,7 +30,7 @@ namespace Fargowiltas.Common.Configs
         //[DefaultValue(true)]
         //public bool UnlimitedPotionBuffsOn120;
 
-        [DefaultValue(3)]
+        [DefaultValue(0)]
         [Slider]
         public UnlimitedBuffSelections UnlimitedPotionBuffs;
 

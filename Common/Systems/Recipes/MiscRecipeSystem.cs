@@ -395,7 +395,7 @@ namespace Fargowiltas.Common.Systems.Recipes
             for (int i = 0; i < familiars.Count; i++)
             {
                 recipe = Recipe.Create(familiars[i]);
-                recipe.AddIngredient(ItemID.Silk, 12);
+                recipe.AddIngredient(ItemID.Silk, 4);
                 recipe.AddTile(familiarStations[i]);
                 recipe.DisableDecraft();
                 recipe.Register();

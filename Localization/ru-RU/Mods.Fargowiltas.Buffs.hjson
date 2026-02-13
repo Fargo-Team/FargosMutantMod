@@ -23,177 +23,180 @@ CoolCrabBuff: {
 	Description: Он думает, что вы должны поиграть в Elden Ring
 }
 
-TestBoosterBuff: {
-	// DisplayName: Test Booster Buff
-	// Description: Mods.Fargowiltas.Buffs.TestBoosterBuff.Description
-}
-
 WormSnackBuff: {
 	// DisplayName: Worm Snack Buff
-	// Description: Mods.Fargowiltas.Buffs.WormSnackBuff.Description
+	/* Description:
+		'''
+		Greatly increases Giant Worm spawn rates
+		Greatly increases Digger spawn rates in Hardmode
+		''' */
 }
 
 AmalgamatedSkullBuff: {
 	// DisplayName: Amalgamated Skull Buff
-	// Description: Mods.Fargowiltas.Buffs.AmalgamatedSkullBuff.Description
+	// Description: Greatly increases dungeon skeleton gunner spawn rates
 }
 
 AmalgamatedSpiritBuff: {
 	// DisplayName: Amalgamated Spirit Buff
-	// Description: Mods.Fargowiltas.Buffs.AmalgamatedSpiritBuff.Description
+	// Description: Greatly increases dungeon skeleton mages spawn rates
 }
 
 AthenianIdolBuff: {
 	// DisplayName: Athenian Idol Buff
-	// Description: Mods.Fargowiltas.Buffs.AthenianIdolBuff.Description
+	// Description: Greatly increases Medusa spawn rates
 }
 
 AttractiveOreBuff: {
 	// DisplayName: Attractive Ore Buff
-	// Description: Mods.Fargowiltas.Buffs.AttractiveOreBuff.Description
+	// Description: Greatly increases Undead Miner spawn rates
 }
 
 CloudSnackBuff: {
 	// DisplayName: Cloud Snack Buff
-	// Description: Mods.Fargowiltas.Buffs.CloudSnackBuff.Description
+	// Description: Greatly increases Wyvern spawn rates
 }
 
 ClownLicenseBuff: {
 	// DisplayName: Clown License Buff
-	// Description: Mods.Fargowiltas.Buffs.ClownLicenseBuff.Description
+	// Description: Greatly increases Clown spawn rates
 }
 
 CoreoftheFrostCoreBuff: {
-	// DisplayName: Coreofthe Frost Core Buff
-	// Description: Mods.Fargowiltas.Buffs.CoreoftheFrostCoreBuff.Description
+	// DisplayName: Core of the Frost Core Buff
+	// Description: Greatly increases Ice Golem spawn rates
 }
 
 CorruptChestBuff: {
 	// DisplayName: Corrupt Chest Buff
-	// Description: Mods.Fargowiltas.Buffs.CorruptChestBuff.Description
+	// Description: Causes Corrupt Mimics to spawn in the underground Corruption
 }
 
 CrimsonChestBuff: {
 	// DisplayName: Crimson Chest Buff
-	// Description: Mods.Fargowiltas.Buffs.CrimsonChestBuff.Description
+	// Description: Causes Crimson Mimics to spawn in the underground Crimson
 }
 
 DemonicPlushieBuff: {
 	// DisplayName: Demonic Plushie Buff
-	// Description: Mods.Fargowiltas.Buffs.DemonicPlushieBuff.Description
+	// Description: Greatly increases Red Devil spawn rates
 }
 
 DilutedRainbowMatterBuff: {
 	// DisplayName: Diluted Rainbow Matter Buff
-	// Description: Mods.Fargowiltas.Buffs.DilutedRainbowMatterBuff.Description
+	// Description: Greatly increases Rainbow Slime spawn rates
 }
 
 EggplantBuff: {
 	// DisplayName: Eggplant Buff
-	// Description: Mods.Fargowiltas.Buffs.EggplantBuff.Description
+	// Description: Greatly increases Doctor Bones spawn rates
 }
 
 ForbiddenForbiddenFragmentBuff: {
 	// DisplayName: Forbidden Forbidden Fragment Buff
-	// Description: Mods.Fargowiltas.Buffs.ForbiddenForbiddenFragmentBuff.Description
+	// Description: Greatly increases Sand Elemental spawn rates
 }
 
 GnomeHatBuff: {
 	// DisplayName: Gnome Hat Buff
-	// Description: Mods.Fargowiltas.Buffs.GnomeHatBuff.Description
+	// Description: Greatly increases Gnome spawn rates
 }
 
 GoblinScrapBuff: {
 	// DisplayName: Goblin Scrap Buff
-	// Description: Mods.Fargowiltas.Buffs.GoblinScrapBuff.Description
+	// Description: Greatly increases Goblin Scout spawn rates
 }
 
 GoldenSlimeCrownBuff: {
 	// DisplayName: Golden Slime Crown Buff
-	// Description: Mods.Fargowiltas.Buffs.GoldenSlimeCrownBuff.Description
+	// Description: Greatly increases Golden Slime spawn rates
 }
 
 GrandCrossBuff: {
 	// DisplayName: Grand Cross Buff
-	// Description: Mods.Fargowiltas.Buffs.GrandCrossBuff.Description
+	// Description: Greatly increases Paladin spawn rates
 }
 
 HallowChestBuff: {
 	// DisplayName: Hallow Chest Buff
-	// Description: Mods.Fargowiltas.Buffs.HallowChestBuff.Description
+	// Description: Causes Hallowed Mimics to spawn in the underground Hallow
 }
 
 HeartChocolateBuff: {
 	// DisplayName: Heart Chocolate Buff
-	// Description: Mods.Fargowiltas.Buffs.HeartChocolateBuff.Description
+	// Description: Greatly increases Nymph spawn rates
 }
 
 HemoclawCrabBuff: {
 	// DisplayName: Hemoclaw Crab Buff
-	// Description: Mods.Fargowiltas.Buffs.HemoclawCrabBuff.Description
+	// Description: Causes Hemogoblin Shark and Blood Eel to spawn at the Ocean during a Blood Moon
 }
 
 HolyGrailBuff: {
 	// DisplayName: Holy Grail Buff
-	// Description: Mods.Fargowiltas.Buffs.HolyGrailBuff.Description
+	// Description: Greatly increases Tim spawn rates
 }
 
 JungleChestBuff: {
 	// DisplayName: Jungle Chest Buff
-	// Description: Mods.Fargowiltas.Buffs.JungleChestBuff.Description
+	// Description: Causes Jungle Mimics to spawn in the underground Jungle
 }
 
 LeesHeadbandBuff: {
 	// DisplayName: Lees Headband Buff
-	// Description: Mods.Fargowiltas.Buffs.LeesHeadbandBuff.Description
+	// Description: Greatly increases Bone Lee spawn rates
 }
 
 MothLampBuff: {
 	// DisplayName: Moth Lamp Buff
-	// Description: Mods.Fargowiltas.Buffs.MothLampBuff.Description
+	// Description: Greatly increases Moth spawn rates
 }
 
 MothronEggBuff: {
 	// DisplayName: Mothron Egg Buff
-	// Description: Mods.Fargowiltas.Buffs.MothronEggBuff.Description
+	// Description: Greatly increases Mothron spawn rates
 }
 
 PincushionBuff: {
 	// DisplayName: Pincushion Buff
-	// Description: Mods.Fargowiltas.Buffs.PincushionBuff.Description
+	// Description: Greatly increases Nailhead spawn rates
 }
 
 PinkSlimeCrownBuff: {
-	// DisplayName: Pink Slime Crown Buff
-	// Description: Mods.Fargowiltas.Buffs.PinkSlimeCrownBuff.Description
+	// DisplayName: Pink Slime Tiara Buff
+	// Description: Greatly increases Pinky spawn rates
 }
 
 PirateFlagBuff: {
 	// DisplayName: Pirate Flag Buff
-	// Description: Mods.Fargowiltas.Buffs.PirateFlagBuff.Description
+	// Description: Greatly increases Pirate Captain spawn rates
 }
 
 RuneOrbBuff: {
 	// DisplayName: Rune Orb Buff
-	// Description: Mods.Fargowiltas.Buffs.RuneOrbBuff.Description
+	// Description: Greatly increases Rune Wizard spawn rates
 }
 
 ShadowflameIconBuff: {
 	// DisplayName: Shadowflame Icon Buff
-	// Description: Mods.Fargowiltas.Buffs.ShadowflameIconBuff.Description
+	// Description: Greatly increases Goblin Warlock spawn rates
 }
 
 SlimyLockBoxBuff: {
-	// DisplayName: Slimy Lock Box Buff
-	// Description: Mods.Fargowiltas.Buffs.SlimyLockBoxBuff.Description
+	// DisplayName: Slimy Lock Buff
+	// Description: Greatly increases Dungeon Slime spawn rates
 }
 
 SuspiciousLookingChestBuff: {
 	// DisplayName: Suspicious Looking Chest Buff
-	// Description: Mods.Fargowiltas.Buffs.SuspiciousLookingChestBuff.Description
+	/* Description:
+		'''
+		Greatly increases Mimic spawn rates
+		Greatly increases Ice Mimic spawn rates when in the ice biome
+		''' */
 }
 
 SuspiciousLookingLureBuff: {
 	// DisplayName: Suspicious Looking Lure Buff
-	// Description: Mods.Fargowiltas.Buffs.SuspiciousLookingLureBuff.Description
+	// Description: Causes Wandering Eye Fish and Zombie Merman to spawn at the Ocean during a Blood Moon
 }

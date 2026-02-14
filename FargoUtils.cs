@@ -139,7 +139,7 @@ namespace Fargowiltas
             return 0;
         }
 
-        public static bool ConsumeItemHeld(this Player player, int type)
+        public static bool ConsumeItemHeld(this Player player, int type, bool ignoreCanConsumeItem = false)
         {
             if (player.selectedItem == 58) // Cursor
                 return false;
@@ -147,7 +147,7 @@ namespace Fargowiltas
             Item item = player.inventory[player.selectedItem];
             if (item != null && item.stack > 0 && item.type == type)
             {
-                if (ItemLoader.ConsumeItem(item, player))
+                if (ItemLoader.ConsumeItem(item, player) || ignoreCanConsumeItem)
                     item.stack--;
 
                 if (item.stack <= 0)

@@ -447,34 +447,22 @@ WeatherBalloon: {
 
 AmalgamatedSkull: {
 	DisplayName: Amalgamated Skull
-	Tooltip:
-		'''
-		Greatly increases dungeon skeleton gunner spawn rates
-		'''
+	Tooltip: Greatly increases dungeon skeleton gunner spawn rates
 }
 
 AmalgamatedSpirit: {
 	DisplayName: Amalgamated Spirit
-	Tooltip:
-		'''
-		Greatly increases dungeon skeleton mages spawn rates
-		'''
+	Tooltip: Greatly increases dungeon skeleton mages spawn rates
 }
 
 AthenianIdol: {
 	DisplayName: Athenian Idol
-	Tooltip:
-		'''
-		Greatly increases Medusa spawn rates
-		'''
+	Tooltip: Greatly increases Medusa spawn rates
 }
 
 AttractiveOre: {
 	DisplayName: Attractive Ore
-	Tooltip:
-		'''
-		Greatly increases Undead Miner spawn rates
-		'''
+	Tooltip: Greatly increases Undead Miner spawn rates
 }
 
 BloodSushiPlatter: {
@@ -502,10 +490,7 @@ CloudSnack: {
 
 ClownLicense: {
 	DisplayName: Clown License
-	Tooltip:
-		'''
-		Greatly increases Clown spawn rates
-		'''
+	Tooltip: Greatly increases Clown spawn rates
 }
 
 CoreoftheFrostCore: {
@@ -525,10 +510,7 @@ CrimsonChest: {
 
 DemonicPlushie: {
 	DisplayName: Demonic Plushie
-	Tooltip:
-		'''
-		Greatly increases Red Devil spawn rates
-		'''
+	Tooltip: Greatly increases Red Devil spawn rates
 }
 
 DilutedRainbowMatter: {
@@ -538,10 +520,7 @@ DilutedRainbowMatter: {
 
 Eggplant: {
 	DisplayName: Eggplant
-	Tooltip:
-		'''
-		Greatly increases Doctor Bones spawn rates
-		'''
+	Tooltip: Greatly increases Doctor Bones spawn rates
 }
 
 ForbiddenForbiddenFragment: {
@@ -566,10 +545,7 @@ GoldenSlimeCrown: {
 
 GrandCross: {
 	DisplayName: Grand Cross
-	Tooltip:
-		'''
-		Greatly increases Paladin spawn rates
-		'''
+	Tooltip: Greatly increases Paladin spawn rates
 }
 
 HallowChest: {
@@ -579,26 +555,17 @@ HallowChest: {
 
 HeartChocolate: {
 	DisplayName: Heart Chocolate
-	Tooltip:
-		'''
-		Greatly increases Nymph spawn rates
-		'''
+	Tooltip: Greatly increases Nymph spawn rates
 }
 
 HemoclawCrab: {
 	DisplayName: Hemoclaw Crab
-	Tooltip:
-		'''
-		Causes Hemogoblin Shark and Blood Eel to spawn at the Ocean during a Blood Moon
-		'''
+	Tooltip: Causes Hemogoblin Shark and Blood Eel to spawn at the Ocean during a Blood Moon
 }
 
 HolyGrail: {
 	DisplayName: Holy Grail
-	Tooltip:
-		'''
-		Greatly increases Tim spawn rates
-		'''
+	Tooltip: Greatly increases Tim spawn rates
 }
 
 JungleChest: {
@@ -608,10 +575,7 @@ JungleChest: {
 
 LeesHeadband: {
 	DisplayName: Lee's Headband
-	Tooltip:
-		'''
-		Greatly increases Bone Lee spawn rates
-		'''
+	Tooltip: Greatly increases Bone Lee spawn rates
 }
 
 MothLamp: {
@@ -621,18 +585,12 @@ MothLamp: {
 
 MothronEgg: {
 	DisplayName: Mothron Egg
-	Tooltip:
-		'''
-		Greatly increases Mothron spawn rates
-		'''
+	Tooltip: Greatly increases Mothron spawn rates
 }
 
 Pincushion: {
 	DisplayName: Pincushion
-	Tooltip:
-		'''
-		Greatly increases Nailhead spawn rates
-		'''
+	Tooltip: Greatly increases Nailhead spawn rates
 }
 
 PinkSlimeCrown: {
@@ -652,18 +610,12 @@ PlunderedBooty: {
 
 RuneOrb: {
 	DisplayName: Rune Orb
-	Tooltip:
-		'''
-		Greatly increases Rune Wizard spawn rates
-		'''
+	Tooltip: Greatly increases Rune Wizard spawn rates
 }
 
 ShadowflameIcon: {
 	DisplayName: Shadowflame Icon
-	Tooltip:
-		'''
-		Greatly increases Goblin Warlock spawn rates
-		'''
+	Tooltip: Greatly increases Goblin Warlock spawn rates
 }
 
 SlimyLockBox: {
@@ -683,10 +635,7 @@ SuspiciousLookingChest: {
 
 SuspiciousLookingLure: {
 	DisplayName: Suspicious Looking Lure
-	Tooltip:
-		'''
-		Causes Wandering Eye Fish and Zombie Merman to spawn at the Ocean during a Blood Moon
-		'''
+	Tooltip: Causes Wandering Eye Fish and Zombie Merman to spawn at the Ocean during a Blood Moon
 }
 
 AncientSeal: {

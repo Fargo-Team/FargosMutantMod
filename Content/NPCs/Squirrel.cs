@@ -624,7 +624,7 @@ namespace Fargowiltas.Content.NPCs
                 {
                     for (int consume = 0; consume < consumeCount; consume++)
                     {
-                        Main.LocalPlayer.ConsumeItemHeld(itemType);
+                        Main.LocalPlayer.ConsumeItemHeld(itemType, true);
                     }
                     if (FargoSets.Items.SacrificeCount[itemType] > 0)
                         FargoSets.Items.SacrificeCount[itemType]--;

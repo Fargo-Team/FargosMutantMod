@@ -72,6 +72,7 @@ namespace Fargowiltas
                     drawPos += player.MountedCenter;
                     drawPos -= Main.screenPosition;
                     drawPos += Vector2.UnitY * player.gfxOffY;
+    
 
                     if (!TextureAssets.Buff[debuffID].IsLoaded)
                         continue;
@@ -118,7 +119,7 @@ namespace Fargowiltas
                                 Color portionColor = buffColor * faderRatio;
 
                                 drawInfo.DrawDataCache.Add(new DrawData(
-                                    buffIcon, drawPortion, buffIconPortion, buffColor,
+                                    buffIcon, drawPortion.Floor(), buffIconPortion, buffColor,
                                     rotation, buffIcon.Bounds.Size() / 2,
                                     1f, effects, 0));
 
@@ -135,7 +136,7 @@ namespace Fargowiltas
                     }
 
                     drawInfo.DrawDataCache.Add(new DrawData(
-                        buffIcon, drawPos, buffIcon.Bounds, buffColor,
+                        buffIcon, drawPos.Floor(), buffIcon.Bounds, buffColor,
                         rotation, buffIcon.Bounds.Size() / 2,
                         1f, effects, 0));
 

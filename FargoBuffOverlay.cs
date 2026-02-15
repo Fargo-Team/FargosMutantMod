@@ -91,7 +91,6 @@ namespace Fargowiltas
                     drawPos.X += (36f * Main.UIScale) * (i - midpoint);              
 
                     drawPos -= player.MountedCenter; //turn it into just the offset from player center
-                    drawPos = drawPos.RotatedBy(-player.fullRotation); //correct for player rotation????
                     drawPos += player.MountedCenter;
                     drawPos -= Main.screenPosition;
                     drawPos += Vector2.UnitY * player.gfxOffY;

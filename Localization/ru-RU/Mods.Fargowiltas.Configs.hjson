@@ -1,4 +1,4 @@
-FargoServerConfig: {
+﻿FargoServerConfig: {
 	DisplayName: Серверная конфигурация
 
 	Headers: {
@@ -352,13 +352,13 @@ FargoClientConfig: {
 	}
 
 	DebuffDisplayMode: {
-		// Label: "[i:1612] Debuff Display Mode"
-		// Tooltip: ""
+		Label: "[i:1612] Режим отображения дебаффов"
+		Tooltip: ""
 	}
 
 	DebuffDisplayPosition: {
-		// Label: "[i:1612] Debuff Display Position"
-		// Tooltip: ""
+		Label: "[i:1612] Положения отображения дебаффов"
+		Tooltip: ""
 	}
 }
 
@@ -427,34 +427,34 @@ UnlimitedBuffSelections: {
 }
 
 DebuffDisplayMode: {
-	// Tooltip: Whether Debuffs should be displayed near the player
+	Tooltip: Как дебаффы будут отображаться рядом с игроком
 
 	Disabled: {
-		// Label: Disabled
-		// Tooltip: Debuffs will not be displayed near the player
+		Label: Откл.
+		Tooltip: Дебаффы не будут отображаться рядом с игроком
 	}
 
 	Icon: {
-		// Label: Icon Only
-		// Tooltip: Debuffs will be displayed near the player
+		Label: Только иконки
+		Tooltip: Дебаффы будут отображаться рядом с игроком
 	}
 
 	IconTimer: {
-		// Label: Icon and Timer
-		// Tooltip: Debuffs will be displayed near the player and feature a timer
+		Label: Иконки и таймеры
+		Tooltip: Дебаффы будут отображаться рядом с игроком вместе с таймеров
 	}
 }
 
 DebuffDisplayPosition: {
-	// Tooltip: Dictates where the Debuff Display is positioned
+	Tooltip: Определяет положение отображения дебаффов
 
 	Top: {
-		// Label: Top
-		// Tooltip: Debuffs are displayed above the player
+		Label: Сверху
+		Tooltip: Дебаффы будут отображаться над игроком
 	}
 
 	Bottom: {
-		// Label: Bottom
-		// Tooltip: Debuffs are displayed below the player
+		Label: Снизу
+		Tooltip: Дебаффы будут отображаться под игроком
 	}
 }

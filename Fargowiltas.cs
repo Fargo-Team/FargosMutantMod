@@ -630,6 +630,14 @@ namespace Fargowiltas
                             symbolTracker.AddSymbolPath(modName, filePath);
                         }
                         break;
+                    case "AddToDebuffDisplayBlacklist":
+                        {
+                            if (args[1].GetType() != typeof(int))
+                                throw new Exception($"Call Error (Fargo Mutant Mod AddToDebuffDisplayBlacklist): args[1] must be of type int");
+                            int type = (int)args[1];
+                            FargoSets.Buffs.BuffDisplayBlacklist[type] = true;
+                        }
+                        break;
                 }
 
             }

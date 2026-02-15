@@ -31,6 +31,9 @@ namespace Fargowiltas.Assets.Textures
 
             public static Asset<Texture2D> CombinedUITab => ModContent.Request<Texture2D>(Filepath + "UI/CombinedUITab", AssetRequestMode.ImmediateLoad);
 
+
+            public static Asset<Texture2D> DebuffOverlayLine => ModContent.Request<Texture2D>(Filepath + "UI/DebuffLine", AssetRequestMode.ImmediateLoad);
+
             public class Toggler
             {
                 public static Asset<Texture2D> SoulTogglerButtonTexture => ModContent.Request<Texture2D>(Filepath + "UI/SoulTogglerToggle", AssetRequestMode.ImmediateLoad);

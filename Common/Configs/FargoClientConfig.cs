@@ -32,6 +32,14 @@ namespace Fargowiltas.Common.Configs
         [DefaultValue(true)]
         public bool AnimatedRecipeGroups;
 
+        [DefaultValue(1)]
+        [Slider]
+        public DebuffDisplayMode DebuffDisplayMode;
+
+        [DefaultValue(0)]
+        [Slider]
+        public DebuffDisplayPosition DebuffDisplayPosition;
+
         [DefaultValue(0.75f)]
         [Slider]
         public float DebuffOpacity;

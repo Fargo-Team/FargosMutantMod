@@ -1,6 +1,9 @@
-﻿using Fargowiltas.Common.Configs;
+﻿using Fargowiltas.Assets.Textures;
+using Fargowiltas.Common.Configs;
+using Fargowiltas.Common.Systems;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,50 +12,39 @@ using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.Config;
+using Terraria.ModLoader.Config.UI;
+using Terraria.UI;
 using Terraria.UI.Chat;
 
 namespace Fargowiltas
 {
-    public class FargoPlayerBuffDrawLayer : PlayerDrawLayer
+    public class FargoBuffOverlay
     {
-        public override bool IsHeadLayer => false;
 
-        private readonly int[] debuffsToIgnore = [
-            BuffID.Campfire,
-            BuffID.HeartLamp,
-            BuffID.Sunflower,
-            BuffID.PeaceCandle,
-            BuffID.StarInBottle,
-            BuffID.Tipsy,
-            BuffID.MonsterBanner,
-            BuffID.Werewolf,
-            BuffID.Merfolk,
-            BuffID.CatBast,
-            BuffID.BrainOfConfusionBuff,
-            BuffID.NeutralHunger
-        ];
-
-        public override bool GetDefaultVisibility(PlayerDrawSet drawInfo)
+        public static bool ShouldDraw(Player player)
             => !Main.hideUI 
-            && drawInfo.drawPlayer.whoAmI == Main.myPlayer 
-            && drawInfo.drawPlayer.active 
-            && !drawInfo.drawPlayer.dead 
-            && !drawInfo.drawPlayer.ghost
-            && drawInfo.shadow == 0 
+            && player.whoAmI == Main.myPlayer 
+            && player.active 
+            && !player.dead 
+            && !player.ghost
             && FargoClientConfig.Instance.DebuffOpacity > 0 
-            && drawInfo.drawPlayer.buffType.Count(d => Main.debuff[d] && !debuffsToIgnore.Contains(d)) > 0;
+            && FargoClientConfig.Instance.DebuffDisplayMode != DebuffDisplayMode.Disabled
+            && player.buffType.Any(d => Main.debuff[d] && !FargoSets.Buffs.BuffDisplayBlacklist[d]);
 
-        public override Position GetDefaultPosition() => new Between();
 
         //key is buff id
         //value is <old duration, max duration>
         //purpose of knowing old duration: get debuffed for 15sec, it decrease to 4sec, debuffed again for 10sec, recalculate ratio to match
-        private Dictionary<int, Tuple<int, int>> memorizedDebuffDurations = new Dictionary<int, Tuple<int, int>>();
+        private static Dictionary<int, Tuple<int, int>> memorizedDebuffDurations = new Dictionary<int, Tuple<int, int>>();
 
-        protected override void Draw(ref PlayerDrawSet drawInfo)
+        public static void Draw(SpriteBatch spriteBatch, Player player)
         {
-            Player player = drawInfo.drawPlayer;
-            List<int> debuffs = player.buffType.Where(d => Main.debuff[d]).Except(debuffsToIgnore).ToList();
+            if (!ShouldDraw(player))
+                return;
+
+            
+            List<int> debuffs = player.buffType.Where(d => Main.debuff[d] && !FargoSets.Buffs.BuffDisplayBlacklist[d]).ToList();
             const int maxPerLine = 10;
             int yOffset = 0;
             for (int j = 0; j < debuffs.Count; j += maxPerLine)
@@ -63,16 +55,51 @@ namespace Fargowiltas
                 {
                     int debuffID = debuffs[j + i];
 
+                    float position = 32f;
+                    if (FargoClientConfig.Instance.DebuffDisplayPosition == DebuffDisplayPosition.Bottom)
+                        position = -74f;
+                    if (Main.ingameOptionsWindow || Main.InGameUI.IsVisible)
+                    {
+                        if (FargoClientConfig.Instance.DebuffDisplayPosition == DebuffDisplayPosition.Bottom)
+                        {
+                            position = -300;
+                        }
+                        else
+                            position = 260;
+                    }
+                   
+                    //Main.NewText(Main.menuMode);
+                    if (player.lavaTime != player.lavaMax || player.breath != player.breathMax)
+                    {   
+                        if (Main.playerInventory && FargoClientConfig.Instance.DebuffDisplayPosition == DebuffDisplayPosition.Bottom)
+                            position = -96f;
+
+                        if (Main.ingameOptionsWindow || Main.InGameUI.IsVisible)
+                        {
+                            if (FargoClientConfig.Instance.DebuffDisplayPosition == DebuffDisplayPosition.Bottom)
+                            {
+                                position = -330;
+                            }
+                        }
+                            
+                    }
+                    
                     Vector2 drawPos = (player.gravDir > 0 ? player.Top : player.Bottom);
-                    drawPos.Y -= (32f + yOffset) * player.gravDir;
-                    drawPos.X += 32f * (i - midpoint);
+                    drawPos.Y -= (position * Main.UIScale + yOffset) * player.gravDir;
+                    drawPos.X += (36f * Main.UIScale) * (i - midpoint);              
 
                     drawPos -= player.MountedCenter; //turn it into just the offset from player center
                     drawPos = drawPos.RotatedBy(-player.fullRotation); //correct for player rotation????
                     drawPos += player.MountedCenter;
                     drawPos -= Main.screenPosition;
                     drawPos += Vector2.UnitY * player.gfxOffY;
-    
+
+                    drawPos.Y = Vector2.Transform(drawPos.Floor(), Matrix.Invert(Main.GameViewMatrix.ZoomMatrix)).Y;
+                    drawPos.Y = Vector2.Transform(drawPos.Floor(), Main.GameViewMatrix.ZoomMatrix).Y;
+
+                    drawPos.Y = (int)drawPos.Y;
+                    drawPos.X = (int)drawPos.X;
+                    drawPos /= Main.UIScale;
 
                     if (!TextureAssets.Buff[debuffID].IsLoaded)
                         continue;
@@ -118,10 +145,38 @@ namespace Fargowiltas
                                 Vector2 drawPortion = drawPos + y * Vector2.UnitY.RotatedBy(rotation);
                                 Color portionColor = buffColor * faderRatio;
 
-                                drawInfo.DrawDataCache.Add(new DrawData(
+                                Texture2D line = FargoMutantAssets.UI.DebuffOverlayLine.Value;
+
+                                spriteBatch.Draw(
                                     buffIcon, drawPortion.Floor(), buffIconPortion, buffColor,
                                     rotation, buffIcon.Bounds.Size() / 2,
-                                    1f, effects, 0));
+                                    1, effects, 0);
+
+                                Color lineColor = (Color.White * FargoClientConfig.Instance.DebuffOpacity) * (Main.cursorAlpha * 1.2f);
+                                if (buffIconPortion.Y >= 30)
+                                    lineColor = new(0, 0, 0, 0);
+                                spriteBatch.Draw(
+                                    line, new Vector2(drawPortion.X, drawPortion.Y + (buffIconPortion.Y / 34)).Floor(), null, lineColor,
+                                    rotation, buffIcon.Bounds.Size() / 2,
+                                    1, effects, 0);
+
+                                if (FargoClientConfig.Instance.DebuffDisplayMode == DebuffDisplayMode.IconTimer)
+                                {
+                                    string text = Math.Round(currentDuration / 60.0, MidpointRounding.AwayFromZero).ToString();
+                                    Vector2 textSize = FontAssets.ItemStack.Value.MeasureString(text);
+                                    Vector2 textPos = drawPos - new Vector2(textSize.X / 2, textSize.Y * 1.5f);
+                                    if (FargoClientConfig.Instance.DebuffDisplayPosition == DebuffDisplayPosition.Bottom)
+                                        textPos = drawPos + new Vector2(-textSize.X / 2, textSize.Y / 1.5f);
+                                    ChatManager.DrawColorCodedStringWithShadow(
+                                        Main.spriteBatch,
+                                        FontAssets.ItemStack.Value,
+                                        Math.Round(currentDuration / 60.0, MidpointRounding.AwayFromZero).ToString(),
+                                        textPos.Floor(),
+                                        Color.Lerp(Color.Red, Color.White, (Main.cursorAlpha * 0.9f)),
+                                        0f,
+                                        Vector2.Zero,
+                                        Vector2.One);
+                                }
 
                                 buffColor *= 1f - faderRatio;
 
@@ -135,24 +190,10 @@ namespace Fargowiltas
                         }
                     }
 
-                    drawInfo.DrawDataCache.Add(new DrawData(
+                    spriteBatch.Draw(
                         buffIcon, drawPos.Floor(), buffIcon.Bounds, buffColor,
                         rotation, buffIcon.Bounds.Size() / 2,
-                        1f, effects, 0));
-
-                    //if (ModContent.GetInstance<FargoConfig>().DebuffCountdown)
-                    //{
-                    //    Vector2 textPos = drawPos;
-                    //    ChatManager.DrawColorCodedStringWithShadow(
-                    //        Main.spriteBatch, 
-                    //        FontAssets.ItemStack.Value, 
-                    //        Math.Round(currentDuration / 60.0, MidpointRounding.AwayFromZero).ToString(), 
-                    //        textPos,
-                    //        Color.White, 
-                    //        0f,
-                    //        Vector2.Zero,
-                    //        Vector2.One);
-                    //}
+                        1, effects, 0);
                 }
                 yOffset += (int)(32 * player.gravDir);
             }

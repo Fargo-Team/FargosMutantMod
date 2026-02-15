@@ -55,6 +55,10 @@ namespace Fargowiltas
         {
             public static int[] SwarmHealth;
         }
+        public class Buffs
+        {
+            public static bool[] BuffDisplayBlacklist;
+        }
 
         public override void PostSetupContent()
         {
@@ -239,6 +243,25 @@ namespace Fargowiltas
             SetFactory npcFactory = NPCID.Sets.Factory;
 
             NPCs.SwarmHealth = npcFactory.CreateIntSet(0);
+            #endregion
+
+            #region Buffs
+
+            SetFactory buffFactory = BuffID.Sets.Factory;
+            Buffs.BuffDisplayBlacklist = buffFactory.CreateBoolSet(false,
+                BuffID.Campfire,
+                BuffID.HeartLamp,
+                BuffID.Sunflower,
+                BuffID.PeaceCandle,
+                BuffID.StarInBottle,
+                BuffID.Tipsy,
+                BuffID.MonsterBanner,
+                BuffID.Werewolf,
+                BuffID.Merfolk,
+                BuffID.CatBast,
+                BuffID.BrainOfConfusionBuff,
+                BuffID.NeutralHunger
+                );
             #endregion
         }
     }

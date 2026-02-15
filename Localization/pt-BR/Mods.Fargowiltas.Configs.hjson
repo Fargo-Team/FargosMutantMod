@@ -346,6 +346,16 @@ FargoClientConfig: {
 		// Label: "[i:2019] No Transparent Pets"
 		// Tooltip: If true, pets become exempt from friendly projectile transparency.
 	}
+
+	DebuffDisplayMode: {
+		// Label: "[i:1612] Debuff Display Mode"
+		// Tooltip: ""
+	}
+
+	DebuffDisplayPosition: {
+		// Label: "[i:1612] Debuff Display Position"
+		// Tooltip: ""
+	}
 }
 
 SeasonSelections: {
@@ -409,5 +419,38 @@ UnlimitedBuffSelections: {
 	Off: {
 		// Label: Disabled
 		// Tooltip: ""
+	}
+}
+
+DebuffDisplayMode: {
+	// Tooltip: Whether Debuffs should be displayed near the player
+
+	Disabled: {
+		// Label: Disabled
+		// Tooltip: Debuffs will not be displayed near the player
+	}
+
+	Icon: {
+		// Label: Icon Only
+		// Tooltip: Debuffs will be displayed near the player
+	}
+
+	IconTimer: {
+		// Label: Icon and Timer
+		// Tooltip: Debuffs will be displayed near the player and feature a timer
+	}
+}
+
+DebuffDisplayPosition: {
+	// Tooltip: Dictates where the Debuff Display is positioned
+
+	Top: {
+		// Label: Top
+		// Tooltip: Debuffs are displayed above the player
+	}
+
+	Bottom: {
+		// Label: Bottom
+		// Tooltip: Debuffs are displayed below the player
 	}
 }

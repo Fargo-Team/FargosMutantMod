@@ -70,7 +70,9 @@ namespace Fargowiltas
                    
                     //Main.NewText(Main.menuMode);
                     if (player.lavaTime != player.lavaMax || player.breath != player.breathMax)
-                    {   
+                    {
+                        if (FargoClientConfig.Instance.DebuffDisplayPosition == DebuffDisplayPosition.Top && !Main.playerInventory)
+                            position = 88f;
                         if (Main.playerInventory && FargoClientConfig.Instance.DebuffDisplayPosition == DebuffDisplayPosition.Bottom)
                             position = -96f;
 

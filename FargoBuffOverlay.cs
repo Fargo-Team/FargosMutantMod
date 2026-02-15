@@ -86,8 +86,8 @@ namespace Fargowiltas
                             
                     }
                     
-                    Vector2 drawPos = (player.gravDir > 0 ? player.Top : player.Bottom);
-                    drawPos.Y -= (position * Main.UIScale + yOffset) * player.gravDir;
+                    Vector2 drawPos = player.Top;
+                    drawPos.Y -= (position * Main.UIScale + yOffset);
                     drawPos.X += (36f * Main.UIScale) * (i - midpoint);              
 
                     drawPos -= player.MountedCenter; //turn it into just the offset from player center
@@ -98,7 +98,6 @@ namespace Fargowiltas
 
                     drawPos.Y = Vector2.Transform(drawPos.Floor(), Matrix.Invert(Main.GameViewMatrix.ZoomMatrix)).Y;
                     drawPos.Y = Vector2.Transform(drawPos.Floor(), Main.GameViewMatrix.ZoomMatrix).Y;
-
                     drawPos.Y = (int)drawPos.Y;
                     drawPos.X = (int)drawPos.X;
                     drawPos /= Main.UIScale;
@@ -113,8 +112,8 @@ namespace Fargowiltas
                     int index = Array.FindIndex(player.buffType, id => id == debuffID);
                     int currentDuration = player.buffTime[index];
 
-                    float rotation = (player.gravDir > 0 ? 0 : MathHelper.Pi) - player.fullRotation;
-                    SpriteEffects effects = player.gravDir > 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
+                    float rotation = 0;
+                    SpriteEffects effects = SpriteEffects.None;
 
                     float faderRatio = FargoClientConfig.Instance.DebuffFaderRatio;
                     if (faderRatio > 0 && !Main.buffNoTimeDisplay[debuffID])
@@ -148,15 +147,17 @@ namespace Fargowiltas
                                 Color portionColor = buffColor * faderRatio;
 
                                 Texture2D line = FargoMutantAssets.UI.DebuffOverlayLine.Value;
-
+                               
                                 spriteBatch.Draw(
                                     buffIcon, drawPortion.Floor(), buffIconPortion, buffColor,
                                     rotation, buffIcon.Bounds.Size() / 2,
                                     1, effects, 0);
 
                                 Color lineColor = (Color.White * FargoClientConfig.Instance.DebuffOpacity) * (Main.cursorAlpha * 1.2f);
+
                                 if (buffIconPortion.Y >= 30)
                                     lineColor = new(0, 0, 0, 0);
+
                                 spriteBatch.Draw(
                                     line, new Vector2(drawPortion.X, drawPortion.Y + (buffIconPortion.Y / 34)).Floor(), null, lineColor,
                                     rotation, buffIcon.Bounds.Size() / 2,
@@ -165,10 +166,13 @@ namespace Fargowiltas
                                 if (FargoClientConfig.Instance.DebuffDisplayMode == DebuffDisplayMode.IconTimer)
                                 {
                                     string text = Math.Round(currentDuration / 60.0, MidpointRounding.AwayFromZero).ToString();
+
                                     Vector2 textSize = FontAssets.ItemStack.Value.MeasureString(text);
                                     Vector2 textPos = drawPos - new Vector2(textSize.X / 2, textSize.Y * 1.5f);
+
                                     if (FargoClientConfig.Instance.DebuffDisplayPosition == DebuffDisplayPosition.Bottom)
                                         textPos = drawPos + new Vector2(-textSize.X / 2, textSize.Y / 1.5f);
+
                                     ChatManager.DrawColorCodedStringWithShadow(
                                         Main.spriteBatch,
                                         FontAssets.ItemStack.Value,
@@ -197,7 +201,7 @@ namespace Fargowiltas
                         rotation, buffIcon.Bounds.Size() / 2,
                         1, effects, 0);
                 }
-                yOffset += (int)(32 * player.gravDir);
+                yOffset += 32;
             }
         }
     }

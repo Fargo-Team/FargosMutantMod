@@ -1,4 +1,4 @@
-Omnistation: {
+﻿Omnistation: {
 	DisplayName: Омнистанция
 	Description: Эффекты всех ванильных бафф-станций
 }
@@ -24,179 +24,179 @@ CoolCrabBuff: {
 }
 
 WormSnackBuff: {
-	// DisplayName: Worm Snack Buff
-	/* Description:
+	DisplayName: Закуска для червя
+	Description:
 		'''
-		Greatly increases Giant Worm spawn rates
-		Greatly increases Digger spawn rates in Hardmode
-		''' */
+		Скорость появления гигантского червя значительно увеличена
+		Скорость появления землекопа в хардмоде значительно увеличена
+		'''
 }
 
 AmalgamatedSkullBuff: {
-	// DisplayName: Amalgamated Skull Buff
-	// Description: Greatly increases dungeon skeleton gunner spawn rates
+	DisplayName: Слившийся череп
+	Description: Скорость появления скелетов-стрелков значительно увеличена
 }
 
 AmalgamatedSpiritBuff: {
-	// DisplayName: Amalgamated Spirit Buff
-	// Description: Greatly increases dungeon skeleton mages spawn rates
+	DisplayName: Слившийся дух
+	Description: Скорость появления скелетов-магов значительно увеличена
 }
 
 AthenianIdolBuff: {
-	// DisplayName: Athenian Idol Buff
-	// Description: Greatly increases Medusa spawn rates
+	DisplayName: Идол Афин
+	Description: Скорость появления Медуз Горгон значительно увеличена
 }
 
 AttractiveOreBuff: {
-	// DisplayName: Attractive Ore Buff
-	// Description: Greatly increases Undead Miner spawn rates
+	DisplayName: Привлекательная руда
+	Description: Скорость появления скелетов-шахтёров значительно увеличена
 }
 
 CloudSnackBuff: {
-	// DisplayName: Cloud Snack Buff
-	// Description: Greatly increases Wyvern spawn rates
+	DisplayName: Облако на закуску
+	Description: Скорость появления виверн значительно увеличена
 }
 
 ClownLicenseBuff: {
-	// DisplayName: Clown License Buff
-	// Description: Greatly increases Clown spawn rates
+	DisplayName: Лицензия клоуна
+	Description: Скорость появления клоунов значительно увеличена
 }
 
 CoreoftheFrostCoreBuff: {
-	// DisplayName: Core of the Frost Core Buff
-	// Description: Greatly increases Ice Golem spawn rates
+	DisplayName: Ядро морозного ядра
+	Description: Скорость появления ледяных големов значительно увеличена
 }
 
 CorruptChestBuff: {
-	// DisplayName: Corrupt Chest Buff
-	// Description: Causes Corrupt Mimics to spawn in the underground Corruption
+	DisplayName: Порченый сундук
+	Description: Мимики порчи теперь появляются в подземной порче
 }
 
 CrimsonChestBuff: {
-	// DisplayName: Crimson Chest Buff
-	// Description: Causes Crimson Mimics to spawn in the underground Crimson
+	DisplayName: Багряный сундук
+	Description: Мимики багрянца теперь появляются в подземном багрянце
 }
 
 DemonicPlushieBuff: {
-	// DisplayName: Demonic Plushie Buff
-	// Description: Greatly increases Red Devil spawn rates
+	DisplayName: Плюшевый демон
+	Description: Скорость появления красных дьяволов значительно увеличена
 }
 
 DilutedRainbowMatterBuff: {
-	// DisplayName: Diluted Rainbow Matter Buff
-	// Description: Greatly increases Rainbow Slime spawn rates
+	DisplayName: Разбавленная радужная материя
+	Description: Скорость появления радужных слизней значительно увеличена
 }
 
 EggplantBuff: {
-	// DisplayName: Eggplant Buff
-	// Description: Greatly increases Doctor Bones spawn rates
+	DisplayName: Баклажан
+	Description: Скорость появления доктора Бонса значительно увеличена
 }
 
 ForbiddenForbiddenFragmentBuff: {
-	// DisplayName: Forbidden Forbidden Fragment Buff
-	// Description: Greatly increases Sand Elemental spawn rates
+	DisplayName: Запретный запретный фрагмент
+	Description: Скорость появления песчаных элементалей значительно увеличена
 }
 
 GnomeHatBuff: {
-	// DisplayName: Gnome Hat Buff
-	// Description: Greatly increases Gnome spawn rates
+	DisplayName: Шляпа гнома
+	Description: Скорость появления гномов значительно увеличена
 }
 
 GoblinScrapBuff: {
-	// DisplayName: Goblin Scrap Buff
-	// Description: Greatly increases Goblin Scout spawn rates
+	DisplayName: Гоблинский лоскут
+	Description: Скорость появления гоблинов-разведчиков значительно увеличена
 }
 
 GoldenSlimeCrownBuff: {
-	// DisplayName: Golden Slime Crown Buff
-	// Description: Greatly increases Golden Slime spawn rates
+	DisplayName: Золотая корона слизней
+	Description: Скорость появления золотых слизней значительно увеличена
 }
 
 GrandCrossBuff: {
-	// DisplayName: Grand Cross Buff
-	// Description: Greatly increases Paladin spawn rates
+	DisplayName: Великий крест
+	Description: Скорость появления паладинов значительно увеличена
 }
 
 HallowChestBuff: {
-	// DisplayName: Hallow Chest Buff
-	// Description: Causes Hallowed Mimics to spawn in the underground Hallow
+	DisplayName: Святой сундук
+	Description: Мимики освящения теперь появляются в подземном освящении
 }
 
 HeartChocolateBuff: {
-	// DisplayName: Heart Chocolate Buff
-	// Description: Greatly increases Nymph spawn rates
+	DisplayName: Шоколадное сердце
+	Description: Скорость появления нимф значительно увеличена
 }
 
 HemoclawCrabBuff: {
-	// DisplayName: Hemoclaw Crab Buff
-	// Description: Causes Hemogoblin Shark and Blood Eel to spawn at the Ocean during a Blood Moon
+	DisplayName: Гемоклешнистый краб
+	Description: Кровавые угри и гемогоблиновые акулы теперь появляются во время кровавой луны
 }
 
 HolyGrailBuff: {
-	// DisplayName: Holy Grail Buff
-	// Description: Greatly increases Tim spawn rates
+	DisplayName: Священный грааль
+	Description: Скорость появления Тима значительно увеличена
 }
 
 JungleChestBuff: {
-	// DisplayName: Jungle Chest Buff
-	// Description: Causes Jungle Mimics to spawn in the underground Jungle
+	DisplayName: Сундук джунглей
+	Description: Мимики джунглей теперь появляются в подземных джунглях
 }
 
 LeesHeadbandBuff: {
-	// DisplayName: Lees Headband Buff
-	// Description: Greatly increases Bone Lee spawn rates
+	DisplayName: Головная повязка Ли
+	Description: Скорость появления Костюса Ли значительно увеличена
 }
 
 MothLampBuff: {
-	// DisplayName: Moth Lamp Buff
-	// Description: Greatly increases Moth spawn rates
+	DisplayName: Ночник для мотыльков
+	Description: Скорость появления мотыльков значительно увеличена
 }
 
 MothronEggBuff: {
-	// DisplayName: Mothron Egg Buff
-	// Description: Greatly increases Mothron spawn rates
+	DisplayName: Яйцо Мотрона
+	Description: Скорость появления Мотрона значительно увеличена
 }
 
 PincushionBuff: {
-	// DisplayName: Pincushion Buff
-	// Description: Greatly increases Nailhead spawn rates
+	DisplayName: Подушка для иголок
+	Description: Скорость появления гвоздеголовых значительно увеличена
 }
 
 PinkSlimeCrownBuff: {
-	// DisplayName: Pink Slime Tiara Buff
-	// Description: Greatly increases Pinky spawn rates
+	DisplayName: Розовая тиара слизней
+	Description: Скорость появления Пинки значительно увеличена
 }
 
 PirateFlagBuff: {
-	// DisplayName: Pirate Flag Buff
-	// Description: Greatly increases Pirate Captain spawn rates
+	DisplayName: Пиратский флаг
+	Description: Скорость появления капитана пиратов значительно увеличена
 }
 
 RuneOrbBuff: {
-	// DisplayName: Rune Orb Buff
-	// Description: Greatly increases Rune Wizard spawn rates
+	DisplayName: Руническая сфера
+	Description: Скорость появления рунических магов значительно увеличена
 }
 
 ShadowflameIconBuff: {
-	// DisplayName: Shadowflame Icon Buff
-	// Description: Greatly increases Goblin Warlock spawn rates
+	DisplayName: Икона теневого пламени
+	Description: Скорость появления гоблинов-чернокнижников значительно увеличена
 }
 
 SlimyLockBoxBuff: {
-	// DisplayName: Slimy Lock Buff
-	// Description: Greatly increases Dungeon Slime spawn rates
+	DisplayName: Склизкий замок
+	Description: Скорость появления слизней темницы значительно увеличена
 }
 
 SuspiciousLookingChestBuff: {
-	// DisplayName: Suspicious Looking Chest Buff
-	/* Description:
+	DisplayName: Подозрительно выглядящий сундук
+	Description:
 		'''
-		Greatly increases Mimic spawn rates
-		Greatly increases Ice Mimic spawn rates when in the ice biome
-		''' */
+		Скорость появления мимиков значительно увеличена
+		Скорость появления ледяных мимиков в тундре значительно увеличена
+		'''
 }
 
 SuspiciousLookingLureBuff: {
-	// DisplayName: Suspicious Looking Lure Buff
-	// Description: Causes Wandering Eye Fish and Zombie Merman to spawn at the Ocean during a Blood Moon
+	DisplayName: Подозрительно выглядящая наживка
+	Description: Зомби-тритоны и блуждающие глаза-рыбы теперь появляются во время кровавой луны
 }

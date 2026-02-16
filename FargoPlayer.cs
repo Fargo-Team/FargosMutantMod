@@ -3,7 +3,6 @@ using Fargowiltas.Common.Systems;
 using Fargowiltas.Common.Systems.Recipes;
 using Fargowiltas.Content.Achievements;
 using Fargowiltas.Content.Buffs;
-using Fargowiltas.Content.Buffs.SpawnBoosters;
 using Fargowiltas.Content.Dusts;
 using Fargowiltas.Content.Items;
 using Fargowiltas.Content.Items.CaughtNPCs;

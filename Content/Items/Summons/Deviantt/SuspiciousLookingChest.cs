@@ -1,4 +1,4 @@
-using Fargowiltas.Content.Buffs.SpawnBoosters;
+using Fargowiltas.Content.Buffs;
 using Fargowiltas.Content.Items.Summons;
 using System.Collections.Generic;
 using Terraria;
@@ -36,7 +36,6 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
     }
     public class SuspiciousLookingChestBuff : BaseSpawnBoosterBuff
     {
-        public override string Texture => "Fargowiltas/Content/Buffs/PlaceholderBuff";
         public SuspiciousLookingChestBuff() : base(() => Main.LocalPlayer.ZoneSnow ? [NPCID.IceMimic] : [NPCID.Mimic], () => Main.LocalPlayer.ZoneDirtLayerHeight || Main.LocalPlayer.ZoneRockLayerHeight, 0.2f)
         {
         }

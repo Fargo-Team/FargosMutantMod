@@ -1,5 +1,4 @@
 using Fargowiltas.Common.Systems.Recipes;
-using Fargowiltas.Content.Items.Summons;
 using Fargowiltas.Content.Projectiles;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -10,7 +9,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace Fargowiltas.Content.Items.Summons.Deviantt
+namespace Fargowiltas.Content.Items.Summons.Abom
 {
     public class BloodSushiPlatter : ModItem
     {

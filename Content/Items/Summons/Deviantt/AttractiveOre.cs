@@ -1,4 +1,4 @@
-using Fargowiltas.Content.Buffs.SpawnBoosters;
+using Fargowiltas.Content.Buffs;
 using Fargowiltas.Content.Items.Summons;
 using Terraria;
 using Terraria.ID;
@@ -26,7 +26,6 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
     }
     public class AttractiveOreBuff : BaseSpawnBoosterBuff
     {
-        public override string Texture => "Fargowiltas/Content/Buffs/PlaceholderBuff";
         public AttractiveOreBuff() : base(() => [NPCID.UndeadMiner], () => Main.LocalPlayer.ZoneRockLayerHeight, 0.2f)
         {
         }

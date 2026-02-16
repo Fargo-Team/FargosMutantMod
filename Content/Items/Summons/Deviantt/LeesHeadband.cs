@@ -1,4 +1,4 @@
-using Fargowiltas.Content.Buffs.SpawnBoosters;
+using Fargowiltas.Content.Buffs;
 using Fargowiltas.Content.Items.Summons;
 using Terraria;
 using Terraria.ID;
@@ -12,7 +12,6 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
     }
     public class LeesHeadbandBuff : BaseSpawnBoosterBuff
     {
-        public override string Texture => "Fargowiltas/Content/Buffs/PlaceholderBuff";
         public LeesHeadbandBuff() : base(() => [NPCID.BoneLee], () => Main.LocalPlayer.ZoneDungeon, 0.2f)
         {
         }

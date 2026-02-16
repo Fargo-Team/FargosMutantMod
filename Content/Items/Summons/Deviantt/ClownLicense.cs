@@ -1,4 +1,4 @@
-using Fargowiltas.Content.Buffs.SpawnBoosters;
+using Fargowiltas.Content.Buffs;
 using Fargowiltas.Content.Items.Summons;
 using Terraria;
 using Terraria.ID;
@@ -13,7 +13,6 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
     }
     public class ClownLicenseBuff : BaseSpawnBoosterBuff
     {
-        public override string Texture => "Fargowiltas/Content/Buffs/PlaceholderBuff";
         public ClownLicenseBuff() : base(() => [NPCID.Clown], () => Main.bloodMoon, 0.2f)
         {
         }

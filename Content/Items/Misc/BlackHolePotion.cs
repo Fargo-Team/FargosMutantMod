@@ -1,4 +1,5 @@
 using Fargowiltas.Content.Buffs;
+using Microsoft.Xna.Framework;
 using System.Linq;
 using Terraria;
 using Terraria.ID;
@@ -6,11 +7,16 @@ using Terraria.ModLoader;
 
 namespace Fargowiltas.Content.Items.Misc
 {
-	public class BigSuckPotion : ModItem
+	public class BlackHolePotion : ModItem
 	{
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 20;
+
+            ItemID.Sets.DrinkParticleColors[Type] = [
+                Color.Orange,
+                Color.Black
+            ];
         }
 
         public override void SetDefaults()

@@ -184,7 +184,7 @@ namespace Fargowiltas
                 ItemID.PotionOfReturn,
                 ItemID.WormholePotion,
                 ItemID.TeleportationPotion,
-                ItemType<BigSuckPotion>());
+                ItemType<BlackHolePotion>());
 
             //Items.PotionCannotBeInfinite = itemFactory.CreateBoolSet(false,
             //    ItemID.BottledHoney);

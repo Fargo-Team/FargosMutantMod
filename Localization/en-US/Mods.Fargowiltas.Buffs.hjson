@@ -14,8 +14,8 @@ WoodDrop: {
 }
 
 BigSuckBuff: {
-	DisplayName: Big Suck
-	Description: You are sucking everything
+	DisplayName: Black Hole
+	Description: Every item is being pulled into your inventory
 }
 
 CoolCrabBuff: {

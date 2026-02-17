@@ -1497,10 +1497,10 @@ KohaCrystal: {
 }
 
 BigSuckPotion: {
-	DisplayName: Big Suck Potion
+	DisplayName: Black Hole Potion
 	Tooltip:
 		'''
-		Makes you suck everything
+		Pulls every dropped item into your inventory
 		Must be consumed manually
 		'''
 }

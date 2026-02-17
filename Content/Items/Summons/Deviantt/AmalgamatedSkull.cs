@@ -1,4 +1,4 @@
-using Fargowiltas.Content.Buffs.SpawnBoosters;
+using Fargowiltas.Content.Buffs;
 using Fargowiltas.Content.Projectiles;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -15,7 +15,6 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
     }
     public class AmalgamatedSkullBuff : BaseSpawnBoosterBuff
     {
-        public override string Texture => "Fargowiltas/Content/Buffs/PlaceholderBuff";
         public AmalgamatedSkullBuff() : base(() => [NPCID.SkeletonSniper, NPCID.TacticalSkeleton, NPCID.SkeletonCommando], () => Main.LocalPlayer.ZoneDungeon, 0.2f)
         {
         }

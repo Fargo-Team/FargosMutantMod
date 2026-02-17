@@ -854,7 +854,7 @@ namespace Fargowiltas
                                 NPC.waveNumber = 6;
                                 NPC.waveKills = 220;
                                 DD2Event.CheckProgress(NPCID.DD2GoblinT3);
-                                player.QuickSpawnItem(egg.GetSource_FromThis(), ItemID.DD2EnergyCrystal, 140); // give all missing crystals
+                                player.QuickSpawnItem(egg.GetSource_FromThis(), ItemID.DD2EnergyCrystal, (int)(140f * NPC.GetBalance())); // give all missing crystals
                                 BetsyEggUsed = false;
                                 NetMessage.SendData(MessageID.WorldData);
                             }

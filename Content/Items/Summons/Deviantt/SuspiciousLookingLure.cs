@@ -1,5 +1,5 @@
 using Fargowiltas.Common.Systems.Recipes;
-using Fargowiltas.Content.Buffs.SpawnBoosters;
+using Fargowiltas.Content.Buffs;
 using Fargowiltas.Content.Projectiles;
 using Microsoft.Xna.Framework;
 using Terraria;

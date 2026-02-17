@@ -1,4 +1,4 @@
-using Fargowiltas.Content.Buffs.SpawnBoosters;
+using Fargowiltas.Content.Buffs;
 using Fargowiltas.Content.Items.Summons;
 using Terraria;
 using Terraria.ID;
@@ -30,7 +30,6 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
     }
     public class EggplantBuff : BaseSpawnBoosterBuff
     {
-        public override string Texture => "Fargowiltas/Content/Buffs/PlaceholderBuff";
         public EggplantBuff() : base(() => [NPCID.DoctorBones], () => !Main.IsItDay() && Main.LocalPlayer.ZoneJungle, 0.2f)
         {
         }

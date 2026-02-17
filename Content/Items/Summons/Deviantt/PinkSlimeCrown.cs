@@ -1,4 +1,4 @@
-using Fargowiltas.Content.Buffs.SpawnBoosters;
+using Fargowiltas.Content.Buffs;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
@@ -30,7 +30,6 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
     }
     public class PinkSlimeCrownBuff : BaseSpawnBoosterBuff
     {
-        public override string Texture => "Fargowiltas/Content/Buffs/PlaceholderBuff";
         public PinkSlimeCrownBuff() : base(() => [NPCID.Pinky], () => Main.LocalPlayer.ZoneForest || Main.LocalPlayer.ZoneDirtLayerHeight || Main.LocalPlayer.ZoneRockLayerHeight, 0.2f)
         {
         }

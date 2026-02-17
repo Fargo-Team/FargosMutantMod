@@ -1,4 +1,4 @@
-using Fargowiltas.Content.Buffs.SpawnBoosters;
+using Fargowiltas.Content.Buffs;
 using Fargowiltas.Content.Items.Summons;
 using System;
 using Terraria;
@@ -13,7 +13,6 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
     }
     public class DemonicPlushieBuff : BaseSpawnBoosterBuff
     {
-        public override string Texture => "Fargowiltas/Content/Buffs/PlaceholderBuff";
         public DemonicPlushieBuff() : base(() => [NPCID.RedDevil], () => Main.LocalPlayer.ZoneUnderworldHeight && MathF.Abs(Main.LocalPlayer.Center.X / 16f - Main.spawnTileX) > Main.maxTilesX / 3, 0.2f)
         {
         }

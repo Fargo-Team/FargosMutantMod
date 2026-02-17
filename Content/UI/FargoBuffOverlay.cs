@@ -17,7 +17,7 @@ using Terraria.ModLoader.Config.UI;
 using Terraria.UI;
 using Terraria.UI.Chat;
 
-namespace Fargowiltas
+namespace Fargowiltas.Content.UI
 {
     public class FargoBuffOverlay
     {

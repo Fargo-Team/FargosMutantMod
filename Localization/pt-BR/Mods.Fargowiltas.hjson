@@ -3,10 +3,10 @@ Biome.Sky: Céu
 
 BuilderToggles: {
 	PlacementReachBuilderToggle: {
-		// FullViewText: Placement Range Full View
-		// OutlineViewText: Placement Range Outline View
-		// DisabledText: Placement Range preview disabled.
-		// NormalOpacityText: Mods.Fargowiltas.BuilderToggles.PlacementReachBuilderToggle.NormalOpacityText
-		// InverseOpacityText: Mods.Fargowiltas.BuilderToggles.PlacementReachBuilderToggle.InverseOpacityText
+		// FullViewText: Placement Range preview full view
+		// OutlineViewText: Placement Range preview outline
+		// DisabledText: Placement Range preview off
+		// NormalOpacityText: Right Click to cycle: Normal Opacity
+		// InverseOpacityText: Right Click to cycle: Inverse Opacity
 	}
 }

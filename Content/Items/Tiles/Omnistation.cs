@@ -22,7 +22,7 @@ namespace Fargowiltas.Content.Items.Tiles
             Item.useAnimation = 15;
             Item.useTime = 10;
             Item.useStyle = ItemUseStyleID.Swing;
-            Item.rare = ItemRarityID.Blue;
+            Item.rare = ItemRarityID.LightRed;
             Item.value = Item.buyPrice(gold: 50);
             Item.createTile = ModContent.TileType<OmnistationSheet>();
         }

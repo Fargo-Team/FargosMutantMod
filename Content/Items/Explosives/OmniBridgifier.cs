@@ -24,7 +24,7 @@ namespace Fargowiltas.Content.Items.Explosives
             Item.maxStack = 1;
             Item.consumable = false;
             Item.useStyle = ItemUseStyleID.Swing;
-            Item.rare = ItemRarityID.Green;
+            Item.rare = ItemRarityID.LightRed;
             Item.UseSound = SoundID.Item1;
             Item.useAnimation = 20;
             Item.useTime = 20;
@@ -79,7 +79,7 @@ namespace Fargowiltas.Content.Items.Explosives
             Item.maxStack = 1;
             Item.consumable = false;
             Item.useStyle = ItemUseStyleID.Swing;
-            Item.rare = ItemRarityID.Green;
+            Item.rare = ItemRarityID.LightRed;
             Item.UseSound = SoundID.Item1;
             Item.useAnimation = 20;
             Item.useTime = 20;

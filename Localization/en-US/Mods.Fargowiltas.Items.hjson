@@ -190,7 +190,11 @@ InstantResearch: {
 
 MapViewer: {
 	DisplayName: The Ancient Master's Map of the Lost King's Great Ancestors
-	Tooltip: Reveals the map
+	Tooltip: 
+	'''
+	Reveals the entire map
+	Only reveals a small portion of the map in multiplayer
+	'''
 }
 
 ModeToggle: {

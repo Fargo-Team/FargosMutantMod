@@ -6,7 +6,7 @@ BuilderToggles: {
 		FullViewText: Placement Range preview full view
 		OutlineViewText: Placement Range preview outline
 		DisabledText: Placement Range preview off
-		NormalOpacityText: "Right Click to cycle: Normal Opacity"
-		InverseOpacityText: "Right Click to cycle: Inverse Opacity"
+		NormalOpacityText: Right Click to cycle: Normal Opacity
+		InverseOpacityText: Right Click to cycle: Inverse Opacity
 	}
 }

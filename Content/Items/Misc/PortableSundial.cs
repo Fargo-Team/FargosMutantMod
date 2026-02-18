@@ -48,20 +48,22 @@ namespace Fargowiltas.Content.Items.Misc
         {
             if (player.altFunctionUse == ItemAlternativeFunctionID.ActivatedAndUsed)
             {
-                Main.sundialCooldown = 0;
-                SoundEngine.PlaySound(SoundID.Item4, player.position);
-
-                if (Main.netMode == NetmodeID.MultiplayerClient)
+                if (Main.sundialCooldown == 0)
                 {
-                    NetMessage.SendData(MessageID.MiscDataSync, number: Main.myPlayer, number2: 3f);
-                    return true;
-                }
+                    Main.sundialCooldown = 8;
+                    SoundEngine.PlaySound(SoundID.Item4, player.position);
 
-                //Main.fastForwardTime/* tModPorter Note: Removed. Suggestion: IsFastForwardingTime(), fastForwardTimeToDawn or fastForwardTimeToDusk */ = true;
-                if (Main.dayTime)
-                    Main.fastForwardTimeToDusk = true;
-                else
-                    Main.fastForwardTimeToDawn = true;
+                    if (Main.netMode == NetmodeID.MultiplayerClient)
+                    {
+                        NetMessage.SendData(MessageID.MiscDataSync, number: Main.myPlayer, number2: 3f);
+                        return true;
+                    }
+
+                    if (Main.dayTime)
+                        Main.fastForwardTimeToDusk = true;
+                    else
+                        Main.fastForwardTimeToDawn = true;
+                }
             }
             else
             {

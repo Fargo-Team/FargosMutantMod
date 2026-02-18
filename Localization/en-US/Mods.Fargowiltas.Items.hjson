@@ -1496,15 +1496,6 @@ KohaCrystal: {
 	Tooltip: Decreases the amount of Mana Crystals you have by 1
 }
 
-BigSuckPotion: {
-	DisplayName: Black Hole Potion
-	Tooltip:
-		'''
-		Pulls every dropped item into your inventory
-		Must be consumed manually
-		'''
-}
-
 MiniDirtInstaBridge: {
 	DisplayName: Mini Dirt Instabridge
 	Tooltip:
@@ -1628,4 +1619,9 @@ LuminiteOmniforge: {
 		Functions as several advanced crafting stations
 		'It's fit to birth un[i:3460]d possibilities'
 		'''
+}
+
+BlackHolePotion: {
+	DisplayName: Black Hole Potion
+	Tooltip: "Absorbs dropped items around you in a massive radius"
 }

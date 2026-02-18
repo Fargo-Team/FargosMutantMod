@@ -756,7 +756,7 @@ namespace Fargowiltas.Content.Items
         public override void GrabRange(Item item, Player player, ref int grabRange)
         {
             if (player.FargoMutant().bigSuck && !ItemID.Sets.IsAPickup[item.type])
-                grabRange += 9000 * 16; //corner to corner diagonally across a large world is 8736 units
+                grabRange += Main.LogicCheckScreenWidth * 3; //360 blocks
         }
 
         public override bool GrabStyle(Item item, Player player)

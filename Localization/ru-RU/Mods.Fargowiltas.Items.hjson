@@ -1,4 +1,4 @@
-﻿BrittleBone: {
+BrittleBone: {
 	DisplayName: Хрупкая кость
 	Tooltip: ""
 }
@@ -1625,4 +1625,9 @@ LuminiteOmniforge: {
 		Функционирует как несколько станций создания поздней игры
 		«[i:3460]а возможностей с ней не существует»
 		'''
+}
+
+BlackHolePotion: {
+	// DisplayName: Black Hole Potion
+	// Tooltip: ""
 }

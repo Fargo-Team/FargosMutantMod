@@ -21,24 +21,13 @@ namespace Fargowiltas.Content.Items.Misc
 
         public override void SetDefaults()
 		{
-			Item.width = 14;
-			Item.height = 24;
-			Item.maxStack = 9999;
-			Item.rare = ItemRarityID.Blue;
-			Item.useStyle = ItemUseStyleID.DrinkLiquid;
-			Item.useAnimation = 17;
-			Item.useTime = 17;
-			Item.consumable = true;
-			Item.useTurn = true;
-
-			Item.UseSound = SoundID.Item3;
-			Item.value = Item.buyPrice(silver: 10);
+            Item.DefaultToFood(14, 24, ModContent.BuffType<BigSuckBuff>(), 60 * 10, true);
 		}
 
         public override bool? UseItem(Player player)
         {
-			player.AddBuff(ModContent.BuffType<BigSuckBuff>(), 180);
-            return true;
+			//player.AddBuff(ModContent.BuffType<BigSuckBuff>(), 180);
+            return base.UseItem(player);
         }
 
         public override void AddRecipes()

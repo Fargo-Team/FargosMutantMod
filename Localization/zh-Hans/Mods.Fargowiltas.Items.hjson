@@ -1554,15 +1554,6 @@ KohaCrystal: {
 	Tooltip: 撤销一次魔力水晶的使用
 }
 
-BigSuckPotion: {
-	DisplayName: 超级黑洞药水
-	Tooltip:
-		'''
-		使你将一切物品吸入囊中
-		必须要手动使用消耗
-		'''
-}
-
 MiniDirtInstaBridge: {
 	DisplayName: 迷你泥土平台
 	Tooltip:
@@ -1691,5 +1682,5 @@ LuminiteOmniforge: {
 
 BlackHolePotion: {
 	// DisplayName: Black Hole Potion
-	// Tooltip: ""
+	// Tooltip: Absorbs dropped items around you in a massive radius
 }

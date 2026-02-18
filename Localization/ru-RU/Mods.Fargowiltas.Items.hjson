@@ -1493,15 +1493,6 @@ KohaCrystal: {
 	Tooltip: Уменьшает количество имеющихся кристаллов маны на 1
 }
 
-BigSuckPotion: {
-	DisplayName: Зелье большого всасывания
-	Tooltip:
-		'''
-		Заставляет вас всасывать всё
-		Должно быть использовано вручную
-		'''
-}
-
 MiniDirtInstaBridge: {
 	DisplayName: Маленький грязевой МоментМост
 	Tooltip:
@@ -1629,5 +1620,5 @@ LuminiteOmniforge: {
 
 BlackHolePotion: {
 	// DisplayName: Black Hole Potion
-	// Tooltip: ""
+	// Tooltip: Absorbs dropped items around you in a massive radius
 }

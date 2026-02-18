@@ -1556,15 +1556,6 @@ KohaCrystal: {
 	Tooltip: Diminui a quantidade Cristais de Mana que você tem por 1
 }
 
-BigSuckPotion: {
-	DisplayName: Poção Chupão
-	Tooltip:
-		'''
-		Faz você puxar tudo
-		Deve ser consumida manualmente
-		'''
-}
-
 MiniDirtInstaBridge: {
 	DisplayName: Mini Instaponte de Terra
 	Tooltip:
@@ -1693,5 +1684,5 @@ LuminiteOmniforge: {
 
 BlackHolePotion: {
 	// DisplayName: Black Hole Potion
-	// Tooltip: ""
+	// Tooltip: Absorbs dropped items around you in a massive radius
 }

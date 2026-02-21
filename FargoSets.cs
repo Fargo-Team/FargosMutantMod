@@ -260,7 +260,13 @@ namespace Fargowiltas
                 BuffID.Merfolk,
                 BuffID.CatBast,
                 BuffID.BrainOfConfusionBuff,
-                BuffID.NeutralHunger
+                BuffID.NeutralHunger,
+                BuffID.WaterCandle,
+                BuffID.ShadowCandle,
+                BuffID.WindPushed,
+                BuffID.Shimmer,
+                BuffID.NoBuilding,
+                BuffID.Horrified
                 );
             #endregion
         }

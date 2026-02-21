@@ -1,4 +1,4 @@
-Omnistation: {
+﻿Omnistation: {
 	DisplayName: Омнистанция
 	Description: Эффекты всех ванильных бафф-станций
 }
@@ -14,8 +14,8 @@ WoodDrop: {
 }
 
 BigSuckBuff: {
-	DisplayName: Большое всасывание
-	Description: Вы всасываете в себя всё
+	DisplayName: Чёрная дыра
+	Description: Вы притягиваете к себе все предметы
 }
 
 CoolCrabBuff: {
@@ -103,7 +103,7 @@ GnomeHatBuff: {
 }
 
 GoblinScrapBuff: {
-	DisplayName: Гоблинский лоскут
+	DisplayName: Печенье гоблинов-разведчиков
 	Description: Скорость появления гоблинов-разведчиков значительно увеличена
 }
 

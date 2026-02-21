@@ -1,4 +1,4 @@
-Close: Закрыть
+﻿Close: Закрыть
 CombinedUIButton: Открыть полезные меню
 PotionToggler: "[s:Fargowiltas/PotionToggler] Переключатель зелий"
 
@@ -149,4 +149,4 @@ NoToggles: Переключать нечего!
 // Reforge UI
 InsertText: Поместите предмет сюда для перековки
 ReforgeCost: Стоимость перековки
-// PlacementRange: Placement Range:
+PlacementRange: Дальность размещения:

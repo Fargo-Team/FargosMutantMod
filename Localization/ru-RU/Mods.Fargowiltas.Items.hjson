@@ -1,4 +1,4 @@
-BrittleBone: {
+﻿BrittleBone: {
 	DisplayName: Хрупкая кость
 	Tooltip: ""
 }
@@ -189,8 +189,12 @@ InstantResearch: {
 }
 
 MapViewer: {
-	DisplayName: Карта великих предков Потерянного короля, авт. Древнего мастера
-	Tooltip: Раскрывает всю карту
+	DisplayName: Карта великих предков потерянного короля, авт. древнего мастера
+	Tooltip:
+		'''
+		Раскрывает всю карту
+		Раскрывает небольшую часть карты в мультиплеере
+		'''
 }
 
 ModeToggle: {
@@ -535,7 +539,7 @@ GnomeHat: {
 }
 
 GoblinScrap: {
-	DisplayName: Гоблинский лоскут
+	DisplayName: Печенье гоблинов-разведчиков
 	Tooltip: Значительно увеличивает скорость появления гоблинов-разведчиков
 }
 
@@ -1619,6 +1623,6 @@ LuminiteOmniforge: {
 }
 
 BlackHolePotion: {
-	// DisplayName: Black Hole Potion
-	// Tooltip: Absorbs dropped items around you in a massive radius
+	DisplayName: Зелье чёрной дыры
+	Tooltip: Поглощает лежащие предметы вокруг вас в огромном радиусе
 }

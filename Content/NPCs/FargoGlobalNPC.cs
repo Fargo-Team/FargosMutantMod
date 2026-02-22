@@ -462,24 +462,13 @@ namespace Fargowiltas.Content.NPCs
 
             if (fargoPlayer.BattleCry)
             {
-                spawnRate = (int)(spawnRate * 0.1);
-                maxSpawns = (int)(maxSpawns * 10f);
+                spawnRate = (int)(spawnRate * 0.25);
+                maxSpawns = (int)(maxSpawns * 4f);
             }
 
             if (fargoPlayer.CalmingCry)
             {
-                float cryStrength = 1.15f; // 1 + strength of spawn rate decrease
-                const float strPerBoss = 0.15f;
-                if (Main.hardMode)
-                    cryStrength += strPerBoss;
-                if (NPC.downedMechBossAny)
-                    cryStrength += strPerBoss;
-                if (NPC.downedPlantBoss)
-                    cryStrength += strPerBoss;
-                if (NPC.downedGolemBoss)
-                    cryStrength += strPerBoss;
-                if (NPC.downedAncientCultist)
-                    cryStrength += strPerBoss;
+                float cryStrength = 1.25f; // 1 + strength of spawn rate decrease
 
                 spawnRate = (int)(spawnRate * cryStrength);
                 maxSpawns = (int)(maxSpawns * (1 / cryStrength));

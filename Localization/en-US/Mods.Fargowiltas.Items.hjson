@@ -157,8 +157,8 @@ BattleCry: {
 	DisplayName: Battle Horn
 	Tooltip:
 		'''
-		Left click to toggle 10x increased spawn rates
-		Right click to toggle decreased spawn rates, improved through progression
+		Left click to toggle increased spawn rates
+		Right click to toggle decreased spawn rates
 		'''
 	Battle: Battle
 	Calming: Calming

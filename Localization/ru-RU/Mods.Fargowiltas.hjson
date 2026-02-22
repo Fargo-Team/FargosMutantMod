@@ -1,2 +1,12 @@
-// Used for TownNPCMood "{BiomeName}" Format (unused now)
+﻿// Used for TownNPCMood "{BiomeName}" Format (unused now)
 Biome.Sky: Небо
+
+BuilderToggles: {
+	PlacementReachBuilderToggle: {
+		FullViewText: Предпоказ дальности размещения: полный
+		OutlineViewText: Предпоказ дальности размещения: граница
+		DisabledText: Предпоказ дальности размещения: откл.
+		NormalOpacityText: ПКМ, чтобы изменить режим: прозрачность
+		InverseOpacityText: ПКМ, чтобы изменить режим: подсветка
+	}
+}

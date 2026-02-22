@@ -673,7 +673,7 @@ namespace Fargowiltas.Content.Items
         {
             if (FargoServerConfig.Instance.UnlimitedConsumableWeapons && Main.hardMode && item.damage > 0 && item.ammo == 0 && item.stack >= 3996)
                 return false;
-            if ((FargoServerConfig.Instance.UnlimitedPotionBuffs is UnlimitedBuffSelections.On || (FargoServerConfig.Instance.UnlimitedPotionBuffs is UnlimitedBuffSelections.BossOnly && FargoGlobalNPC.AnyBossAlive())) && (item.buffType > 0 || FargoSets.Items.NonBuffPotion[item.type]) && (item.stack >= 30 || player.inventory.Any(i => i.type == item.type && !i.IsAir && i.stack >= 30)))
+            if ((FargoServerConfig.Instance.UnlimitedPotionBuffs is UnlimitedBuffSelections.On || (FargoServerConfig.Instance.UnlimitedPotionBuffs is UnlimitedBuffSelections.BossOnly && FargoGlobalNPC.AnyBossAlive())) && (item.buffType > 0 || FargoSets.Items.NonBuffPotion[item.type]) && (item.stack >= 30 || player.inventory.Any(i => i.type == item.type && !i.IsAir && i.stack >= 30)) && item.buffTime >= 60 * 60 * 2)
                 return false;
             return base.ConsumeItem(item, player);
         }
@@ -756,7 +756,7 @@ namespace Fargowiltas.Content.Items
         public override void GrabRange(Item item, Player player, ref int grabRange)
         {
             if (player.FargoMutant().bigSuck && !ItemID.Sets.IsAPickup[item.type])
-                grabRange += 9000 * 16; //corner to corner diagonally across a large world is 8736 units
+                grabRange += Main.LogicCheckScreenWidth * 3; //360 blocks
         }
 
         public override bool GrabStyle(Item item, Player player)

@@ -149,3 +149,4 @@ BattleCryNone: 关闭
 // Reforge UI
 // InsertText: Place an item here to reforge
 // ReforgeCost: Reforge Cost
+// PlacementRange: Placement Range:

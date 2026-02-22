@@ -33,7 +33,7 @@ namespace Fargowiltas.Content.Items.Misc
             Item.width = 46;
             Item.height = 48;
             Item.value = Item.sellPrice(0, 0, 2);
-            Item.rare = ItemRarityID.Pink;
+            Item.rare = ItemRarityID.Orange;
             Item.useAnimation = 30;
             Item.useTime = 30;
             Item.useStyle = ItemUseStyleID.Shoot;

@@ -190,7 +190,11 @@ InstantResearch: {
 
 MapViewer: {
 	DisplayName: The Ancient Master's Map of the Lost King's Great Ancestors
-	Tooltip: Reveals the map
+	Tooltip:
+		'''
+		Reveals the entire map
+		Only reveals a small portion of the map in multiplayer
+		'''
 }
 
 ModeToggle: {
@@ -534,7 +538,7 @@ GnomeHat: {
 }
 
 GoblinScrap: {
-	DisplayName: Goblin Scrap
+	DisplayName: Goblin Scout Cookies
 	Tooltip: Greatly increases Goblin Scout spawn rates
 }
 
@@ -1492,15 +1496,6 @@ KohaCrystal: {
 	Tooltip: Decreases the amount of Mana Crystals you have by 1
 }
 
-BigSuckPotion: {
-	DisplayName: Big Suck Potion
-	Tooltip:
-		'''
-		Makes you suck everything
-		Must be consumed manually
-		'''
-}
-
 MiniDirtInstaBridge: {
 	DisplayName: Mini Dirt Instabridge
 	Tooltip:
@@ -1624,4 +1619,9 @@ LuminiteOmniforge: {
 		Functions as several advanced crafting stations
 		'It's fit to birth un[i:3460]d possibilities'
 		'''
+}
+
+BlackHolePotion: {
+	DisplayName: Black Hole Potion
+	Tooltip: Absorbs dropped items around you in a massive radius
 }

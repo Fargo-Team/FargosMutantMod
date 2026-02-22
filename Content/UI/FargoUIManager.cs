@@ -151,16 +151,6 @@ namespace Fargowiltas.Content.UI
                 }
 
             }
-
-            int resourceIndex = layers.FindIndex((layer) => layer.Name == "Vanilla: Ingame Options");
-            if (resourceIndex != -1)
-            {
-                layers.Insert(resourceIndex, new LegacyGameInterfaceLayer("Fargo's Mutant: Buff Overlay", delegate ()
-                {
-                    FargoBuffOverlay.Draw(Main.spriteBatch, Main.LocalPlayer);
-                    return true;
-                }, InterfaceScaleType.UI));
-            }
                 
             if (FargoUIManager.IsOpen<DevianttNPCUI>())
             {

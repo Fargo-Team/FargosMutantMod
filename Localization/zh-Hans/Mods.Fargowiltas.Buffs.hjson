@@ -103,7 +103,7 @@ GnomeHatBuff: {
 }
 
 GoblinScrapBuff: {
-	// DisplayName: Goblin Scrap Buff
+	// DisplayName: Goblin Scout Cookies Buff
 	// Description: Greatly increases Goblin Scout spawn rates
 }
 

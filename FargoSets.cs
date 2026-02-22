@@ -184,7 +184,7 @@ namespace Fargowiltas
                 ItemID.PotionOfReturn,
                 ItemID.WormholePotion,
                 ItemID.TeleportationPotion,
-                ItemType<BigSuckPotion>());
+                ItemType<BlackHolePotion>());
 
             //Items.PotionCannotBeInfinite = itemFactory.CreateBoolSet(false,
             //    ItemID.BottledHoney);
@@ -260,7 +260,13 @@ namespace Fargowiltas
                 BuffID.Merfolk,
                 BuffID.CatBast,
                 BuffID.BrainOfConfusionBuff,
-                BuffID.NeutralHunger
+                BuffID.NeutralHunger,
+                BuffID.WaterCandle,
+                BuffID.ShadowCandle,
+                BuffID.WindPushed,
+                BuffID.Shimmer,
+                BuffID.NoBuilding,
+                BuffID.Horrified
                 );
             #endregion
         }

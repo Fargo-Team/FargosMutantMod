@@ -1,4 +1,4 @@
-﻿Close: Close
+Close: Close
 CombinedUIButton: Open Utilities
 PotionToggler: "[s:Fargowiltas/PotionToggler] Potion Toggles"
 
@@ -149,3 +149,4 @@ NoToggles: No togglable effects equipped!
 // Reforge UI
 InsertText: Place an item here to reforge
 ReforgeCost: Reforge Cost
+PlacementRange: Placement Range:

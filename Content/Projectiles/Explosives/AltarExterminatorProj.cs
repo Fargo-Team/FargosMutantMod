@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Fargowiltas.Common.Systems.Collections;
+using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 using Terraria.Audio;
@@ -54,7 +55,7 @@ namespace Fargowiltas.Content.Projectiles.Explosives
                     if (WorldGen.InWorld(i, j))
                     {
                         Tile tile = Framing.GetTileSafely(i, j);
-                        if (FargoSets.Tiles.EvilAltars[tile.TileType])
+                        if (FargoTileSets.EvilAltars[tile.TileType])
                         {
                             WorldGen.KillTile(i, j);
                             if (Main.netMode == NetmodeID.Server)

@@ -1,4 +1,5 @@
 using Fargowiltas.Common.Configs;
+using Fargowiltas.Common.Systems.Collections;
 using Fargowiltas.Content;
 using Fargowiltas.Content.Achievements;
 using Fargowiltas.Content.Items.CaughtNPCs;
@@ -236,7 +237,7 @@ namespace Fargowiltas.Content.NPCs
             //    return SquirrelShopGroup.Other;
             //}
 
-            //if (item.makeNPC != 0 || FargoSets.Items.SquirrelSellsDirectly[item.type])
+            //if (item.makeNPC != 0 || FargoItemSets.SquirrelSellsDirectly[item.type])
             //{
             //    sellType = SquirrelSellType.SoldBySquirrel;
             //    return SquirrelShopGroup.Other;
@@ -244,7 +245,7 @@ namespace Fargowiltas.Content.NPCs
 
             if (!Main.bloodMoon)
             {
-                bool Potion = item.buffType != 0 && item.type != ItemID.GrilledSquirrel || FargoSets.Items.NonBuffPotion[item.type];
+                bool Potion = item.buffType != 0 && item.type != ItemID.GrilledSquirrel || FargoItemSets.NonBuffPotion[item.type];
                 if (Potion && item.maxStack >= 30)
                 {
                     sellType = SquirrelSellType.SoldAtThirtyStack;
@@ -608,7 +609,7 @@ namespace Fargowiltas.Content.NPCs
             }
         }
 
-        public static bool CanSacrifice(Item item) => EventSacrifice(Main.LocalPlayer.HeldItem, out int consumeCount, false) || FargoSets.Items.SacrificeCount[item.type] > 0;
+        public static bool CanSacrifice(Item item) => EventSacrifice(Main.LocalPlayer.HeldItem, out int consumeCount, false) || FargoItemSets.SacrificeCount[item.type] > 0;
 
         private static string SquirrelChat(string key) => Language.GetTextValue($"Mods.Fargowiltas.NPCs.Squirrel.Chat.{key}");
 
@@ -618,7 +619,7 @@ namespace Fargowiltas.Content.NPCs
             if (item == null || item.favorited)
                 return false;
             int itemType = item.type;
-            if (EventSacrifice(Main.LocalPlayer.HeldItem, out int consumeCount, false) || FargoSets.Items.SacrificeCount[itemType] > 0) // item sacrificable; do the sacrifice thing
+            if (EventSacrifice(Main.LocalPlayer.HeldItem, out int consumeCount, false) || FargoItemSets.SacrificeCount[itemType] > 0) // item sacrificable; do the sacrifice thing
             {
                 if (Main.LocalPlayer.CountItemHeld(itemType) >= consumeCount)
                 {
@@ -626,8 +627,8 @@ namespace Fargowiltas.Content.NPCs
                     {
                         Main.LocalPlayer.ConsumeItemHeld(itemType, true);
                     }
-                    if (FargoSets.Items.SacrificeCount[itemType] > 0)
-                        FargoSets.Items.SacrificeCount[itemType]--;
+                    if (FargoItemSets.SacrificeCount[itemType] > 0)
+                        FargoItemSets.SacrificeCount[itemType]--;
 
                     //Vector2 spawnPos = Main.MouseWorld;
                     //SoundEngine.PlaySound(a, spawnPos);
@@ -640,13 +641,13 @@ namespace Fargowiltas.Content.NPCs
                     else
                     {
                         int multiplier = 1;
-                        if (FargoSets.Items.SacrificeCountDefault[itemType] == 1) // things that can only be sacrificed once give increased output
+                        if (FargoItemSets.SacrificeCountDefault[itemType] == 1) // things that can only be sacrificed once give increased output
                             multiplier = 3;
                         for (int i = 0; i < multiplier; i++)
                         {
                             int result;
                             int amount;
-                            if (FargoSets.Items.HardmodeSacrifice[itemType] && Main.hardMode)
+                            if (FargoItemSets.HardmodeSacrifice[itemType] && Main.hardMode)
                                 result = SacrificeResultHardmode(out amount);
                             else
                                 result = SacrificeResult(out amount);
@@ -883,11 +884,6 @@ namespace Fargowiltas.Content.NPCs
                 ItemID.UnicornHorn, 3,
             ];
 
-            for (int i = 0; i < hardmode.Length; i += 2) // skip amounts, only grab item IDs
-            {
-                FargoSets.Items.HardmodeSacrifice[hardmode[i]] = true;
-            }
-
             return itemFactory.CreateIntSet(0, [.. prehardmode, .. hardmode]);
         }
         public readonly struct Result(int type, int amount)
@@ -1015,7 +1011,7 @@ namespace Fargowiltas.Content.NPCs
         public static bool EventSacrifice(Item item, out int consumeCount, bool action = true)
         {
             consumeCount = 1;
-            if (!action && FargoSets.Items.SacrificeCount[item.type] <= 0)
+            if (!action && FargoItemSets.SacrificeCount[item.type] <= 0)
                 return false;
 
             // spawn blood moon
@@ -1023,7 +1019,7 @@ namespace Fargowiltas.Content.NPCs
             {
                 if (action)
                 {
-                    FargoSets.Items.SacrificeCount[item.type]--;
+                    FargoItemSets.SacrificeCount[item.type]--;
                     SoundEngine.PlaySound(SoundID.Roar);
 
                     ModContent.GetInstance<NPCSacrificeAchievement>().Condition.Complete();
@@ -1057,7 +1053,7 @@ namespace Fargowiltas.Content.NPCs
                 consumeCount = 10;
                 if (action)
                 {
-                    FargoSets.Items.SacrificeCount[item.type]--;
+                    FargoItemSets.SacrificeCount[item.type]--;
                     if (!Main.slimeRain)
                     {
                         Main.StartSlimeRain();
@@ -1075,8 +1071,8 @@ namespace Fargowiltas.Content.NPCs
                 consumeCount = 10;
                 if (action)
                 {
-                    FargoSets.Items.SacrificeCount[ItemID.ShadowScale]--;
-                    FargoSets.Items.SacrificeCount[ItemID.TissueSample]--;
+                    FargoItemSets.SacrificeCount[ItemID.ShadowScale]--;
+                    FargoItemSets.SacrificeCount[ItemID.TissueSample]--;
 
                     if (Main.netMode == NetmodeID.SinglePlayer)
                         WorldGen.dropMeteor();
@@ -1095,7 +1091,7 @@ namespace Fargowiltas.Content.NPCs
             {
                 if (action)
                 {
-                    FargoSets.Items.SacrificeCount[ModContent.ItemType<WiresPainting>()]--;
+                    FargoItemSets.SacrificeCount[ModContent.ItemType<WiresPainting>()]--;
                     for (int i = 0; i < 20; i++)
                     {
                         NPC.NewNPC(new EntitySource_WorldEvent(), (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, NPCID.TownCat);

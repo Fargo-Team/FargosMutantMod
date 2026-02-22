@@ -1,6 +1,7 @@
 ﻿using Fargowiltas.Assets.Textures;
 using Fargowiltas.Common.Configs;
 using Fargowiltas.Common.Systems;
+using Fargowiltas.Common.Systems.Collections;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Graphics;
@@ -30,7 +31,7 @@ namespace Fargowiltas.Content.UI
             && !player.ghost
             && FargoClientConfig.Instance.DebuffOpacity > 0 
             && FargoClientConfig.Instance.DebuffDisplayMode != DebuffDisplayMode.Disabled
-            && player.buffType.Any(d => Main.debuff[d] && !FargoSets.Buffs.BuffDisplayBlacklist[d]);
+            && player.buffType.Any(d => Main.debuff[d] && !FargoBuffSets.BuffDisplayBlacklist[d]);
 
 
         //key is buff id
@@ -44,7 +45,7 @@ namespace Fargowiltas.Content.UI
                 return;
 
             
-            List<int> debuffs = player.buffType.Where(d => Main.debuff[d] && !FargoSets.Buffs.BuffDisplayBlacklist[d]).ToList();
+            List<int> debuffs = player.buffType.Where(d => Main.debuff[d] && !FargoBuffSets.BuffDisplayBlacklist[d]).ToList();
             const int maxPerLine = 10;
             int yOffset = 0;
             for (int j = 0; j < debuffs.Count; j += maxPerLine)

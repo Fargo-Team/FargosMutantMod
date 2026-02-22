@@ -1,5 +1,4 @@
-﻿using Fargowiltas;
-using Fargowiltas.Common.Configs;
+﻿using Fargowiltas.Common.Configs;
 using Fargowiltas.Common.Systems;
 using Fargowiltas.Common.Systems.Recipes;
 using Fargowiltas.Content.Items;
@@ -31,7 +30,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using static Fargowiltas.Content.Items.Tiles.EnchantedTreeTileEntity;
-using static Fargowiltas.FargoSets;
+using Fargowiltas.Common.Systems.Collections;
 
 namespace Fargowiltas
 {
@@ -443,7 +442,7 @@ namespace Fargowiltas
                             if (args[1].GetType() == typeof(int))
                             {
                                 int tile = (int)args[1];
-                                FargoSets.Tiles.InstaCannotDestroy[tile] = true;
+                                FargoTileSets.InstaCannotDestroy[tile] = true;
                             }
                         }
                         break;
@@ -452,7 +451,7 @@ namespace Fargowiltas
                             if (args[1].GetType() == typeof(int))
                             {
                                 int wall = (int)args[1];
-                                FargoSets.Walls.InstaCannotDestroy[wall] = true;
+                                FargoWallSets.InstaCannotDestroy[wall] = true;
                             }
                         }
                         break;
@@ -461,7 +460,7 @@ namespace Fargowiltas
                             if (args[1].GetType() == typeof(int))
                             {
                                 int tile = (int)args[1];
-                                FargoSets.Tiles.EvilAltars[tile] = true;
+                                FargoTileSets.EvilAltars[tile] = true;
                             }
                         }
                         break;
@@ -635,7 +634,7 @@ namespace Fargowiltas
                             if (args[1].GetType() != typeof(int))
                                 throw new Exception($"Call Error (Fargo Mutant Mod AddToDebuffDisplayBlacklist): args[1] must be of type int");
                             int type = (int)args[1];
-                            FargoSets.Buffs.BuffDisplayBlacklist[type] = true;
+                            FargoBuffSets.BuffDisplayBlacklist[type] = true;
                         }
                         break;
                 }

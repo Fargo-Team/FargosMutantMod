@@ -17,7 +17,6 @@ using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
-using static Fargowiltas.FargoSets;
 
 namespace Fargowiltas.Content.UI.SquirrelUI
 {

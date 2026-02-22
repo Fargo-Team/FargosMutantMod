@@ -1,4 +1,5 @@
 using Fargowiltas.Common.Configs;
+using Fargowiltas.Common.Systems.Collections;
 using Fargowiltas.Content.NPCs;
 using Microsoft.Xna.Framework;
 using System;
@@ -221,9 +222,9 @@ namespace Fargowiltas.Content.Projectiles
             {
                 return false;
             }
-            bool noDungeon = !NPC.downedBoss3 && (FargoSets.Walls.DungeonWall[tile.WallType] || FargoSets.Tiles.DungeonTile[tile.TileType]);
+            bool noDungeon = !NPC.downedBoss3 && (FargoWallSets.DungeonWall[tile.WallType] || FargoTileSets.DungeonTile[tile.TileType]);
 
-            bool noHMOre = FargoSets.Tiles.HardmodeOre[tile.TileType] && !NPC.downedMechBossAny;
+            bool noHMOre = FargoTileSets.HardmodeOre[tile.TileType] && !NPC.downedMechBossAny;
             bool noChloro = tile.TileType == TileID.Chlorophyte && !(NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3);
             bool noLihzahrd = (tile.TileType == TileID.LihzahrdBrick || tile.WallType == WallID.LihzahrdBrickUnsafe) && !NPC.downedGolemBoss;
             bool noAbyss = false;
@@ -235,8 +236,8 @@ namespace Fargowiltas.Content.Projectiles
             }
 
             if (noDungeon || noHMOre || noChloro || noLihzahrd || noAbyss || TileBelongsToMagicStorage(tile) ||
-                FargoSets.Tiles.InstaCannotDestroy[tile.TileType] ||
-                FargoSets.Walls.InstaCannotDestroy[tile.WallType])
+                FargoTileSets.InstaCannotDestroy[tile.TileType] ||
+                FargoWallSets.InstaCannotDestroy[tile.WallType])
                 return false;
 
             return true;

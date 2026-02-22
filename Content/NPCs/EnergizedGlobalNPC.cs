@@ -1,4 +1,5 @@
 using System;
+using Fargowiltas.Common.Systems.Collections;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -224,10 +225,10 @@ namespace Fargowiltas.Content.NPCs
                             break;
                     }
                 }
-                if (FargoSets.NPCs.SwarmHealth[npc.type] != 0)
+                if (FargoNPCSets.SwarmHealth[npc.type] != 0)
                 {
                     validBoss = true;
-                    npc.lifeMax = FargoSets.NPCs.SwarmHealth[npc.type];
+                    npc.lifeMax = FargoNPCSets.SwarmHealth[npc.type];
                 }
 
                 if (validBoss && Fargowiltas.SwarmItemsUsed > 1)

@@ -16,7 +16,6 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI;
-using static Fargowiltas.FargoSets;
 
 namespace Fargowiltas.Common.Systems
 {

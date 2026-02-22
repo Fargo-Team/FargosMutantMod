@@ -1,4 +1,5 @@
 ﻿using Fargowiltas.Common.Configs;
+using Fargowiltas.Common.Systems.Collections;
 using Fargowiltas.Content.Items.CaughtNPCs;
 using Fargowiltas.Content.Items.Summons.Abom;
 using Fargowiltas.Content.Items.Tiles;
@@ -74,7 +75,7 @@ namespace Fargowiltas.Content.Items
             {
                 TooltipLine line;
                 //Shop sale tooltips. Very engineered. Adds tooltips to ALL npc shop sales. Aims to handle any edge case as well as possible.
-                if (FargoSets.Items.RegisteredShopTooltips[item.type] == null)
+                if (FargoItemSets.RegisteredShopTooltips[item.type] == null)
                 {
                     List<ShopTooltip> registeredShopTooltips = [];
                     foreach (var shop in NPCShopDatabase.AllShops)
@@ -134,10 +135,10 @@ namespace Fargowiltas.Content.Items
                             break; //only one line per npc
                         }
                     }
-                    FargoSets.Items.RegisteredShopTooltips[item.type] = registeredShopTooltips;
+                    FargoItemSets.RegisteredShopTooltips[item.type] = registeredShopTooltips;
                 }
 
-                foreach (ShopTooltip tooltip in FargoSets.Items.RegisteredShopTooltips[item.type])
+                foreach (ShopTooltip tooltip in FargoItemSets.RegisteredShopTooltips[item.type])
                 {
 
                     List<int> displayIDs = tooltip.NpcItemIDs.Where(i => i != item.type)?.ToList();
@@ -264,13 +265,13 @@ namespace Fargowiltas.Content.Items
                     }*/
                 }
 
-                if (fargoServerConfig.PermanentStationsNearby && FargoSets.Items.BuffStation[item.type])
+                if (fargoServerConfig.PermanentStationsNearby && FargoItemSets.BuffStation[item.type])
                 {
                     line = new TooltipLine(Mod, "TooltipUnlim", $"[i:{item.type}] [c/AAAAAA:{ExpandedTooltipLoc("PermanentEffectNearby")}]");
                     tooltips.Add(line);
                 }
 
-                if (fargoServerConfig.PiggyBankAcc && (FargoSets.Items.InfoAccessory[item.type] || FargoSets.Items.MechanicalAccessory[item.type]))
+                if (fargoServerConfig.PiggyBankAcc && (FargoItemSets.InfoAccessory[item.type] || FargoItemSets.MechanicalAccessory[item.type]))
                 {
                     line = new TooltipLine(Mod, "TooltipUnlim", $"[i:87] [c/AAAAAA:{ExpandedTooltipLoc("WorksFromBanks")}]");
                     tooltips.Add(line);
@@ -289,7 +290,7 @@ namespace Fargowiltas.Content.Items
                     tooltips.Add(line);
                 }
 
-                int sacCount = FargoSets.Items.SacrificeCount[item.type];
+                int sacCount = FargoItemSets.SacrificeCount[item.type];
                 if (Squirrel.EventSacrifice(item, out int consumeCount, false))
                 {
                     if (consumeCount > 1)
@@ -323,14 +324,14 @@ namespace Fargowiltas.Content.Items
                     }
                 }
 
-                if (FargoSets.Items.TreeTreasureObtainable[item.type])
+                if (FargoItemSets.TreeTreasureObtainable[item.type])
                 {
                     line = new TooltipLine(Mod, "LumberJackTreeTreasure", $"[i:{CaughtNPCItem.CaughtTownies[NPCType<LumberJack>()]}] [c/AAAAAA:{ExpandedTooltipLoc("TreeTreasure")}]");
                     tooltips.Add(line);
                 }
 
                 int shimmerItem = ItemID.Sets.ShimmerTransformToItem[item.type];
-                int shimmerFromItem = FargoSets.Items.ShimmerTransformsFromItem[item.type];
+                int shimmerFromItem = FargoItemSets.ShimmerTransformsFromItem[item.type];
                 string shimmerText = "";
                 if (shimmerItem > 0 && shimmerFromItem <= 0)
                     shimmerText = $"[s:Fargowiltas/Shimmer] [c/FFC0CB:{ExpandedTooltipLoc("Shimmerable")}] [i:{shimmerItem}] [c/FFC0CB:{ContentSamples.ItemsByType[shimmerItem].Name}]";
@@ -673,7 +674,7 @@ namespace Fargowiltas.Content.Items
         {
             if (FargoServerConfig.Instance.UnlimitedConsumableWeapons && Main.hardMode && item.damage > 0 && item.ammo == 0 && item.stack >= 3996)
                 return false;
-            if ((FargoServerConfig.Instance.UnlimitedPotionBuffs is UnlimitedBuffSelections.On || (FargoServerConfig.Instance.UnlimitedPotionBuffs is UnlimitedBuffSelections.BossOnly && FargoGlobalNPC.AnyBossAlive())) && (item.buffType > 0 || FargoSets.Items.NonBuffPotion[item.type]) && (item.stack >= 30 || player.inventory.Any(i => i.type == item.type && !i.IsAir && i.stack >= 30)) && item.buffTime >= 60 * 60 * 2)
+            if ((FargoServerConfig.Instance.UnlimitedPotionBuffs is UnlimitedBuffSelections.On || (FargoServerConfig.Instance.UnlimitedPotionBuffs is UnlimitedBuffSelections.BossOnly && FargoGlobalNPC.AnyBossAlive())) && (item.buffType > 0 || FargoItemSets.NonBuffPotion[item.type]) && (item.stack >= 30 || player.inventory.Any(i => i.type == item.type && !i.IsAir && i.stack >= 30)) && item.buffTime >= 60 * 60 * 2)
                 return false;
             return base.ConsumeItem(item, player);
         }

@@ -1,4 +1,5 @@
 using Fargowiltas.Common.Configs;
+using Fargowiltas.Common.Systems.Collections;
 using Fargowiltas.Content.Items.Tiles;
 using Fargowiltas.Content.NPCs;
 using Fargowiltas.Content.Projectiles;
@@ -13,7 +14,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.UI;
-using static Fargowiltas.FargoSets;
+using static Fargowiltas.Common.Systems.Collections.FargoItemSets;
 using static Fargowiltas.Fargowiltas;
 using static Terraria.ModLoader.ModContent;
 
@@ -110,7 +111,7 @@ namespace Fargowiltas
                 DownedBools[tag] = false;
             }
 
-            FargoSets.Items.SacrificeCount = FargoSets.Items.SacrificeCountDefault.Clone() as int[];
+            FargoItemSets.SacrificeCount = FargoItemSets.SacrificeCountDefault.Clone() as int[];
             GeneratedSacrificeCounts = true;
 
             WoodChopped = 0;
@@ -158,7 +159,7 @@ namespace Fargowiltas
             ResetFlags();
             if (!GeneratedSacrificeCounts)
             {
-                FargoSets.Items.SacrificeCount = FargoSets.Items.SacrificeCountDefault.Clone() as int[];
+                FargoItemSets.SacrificeCount = FargoItemSets.SacrificeCountDefault.Clone() as int[];
                 GeneratedSacrificeCounts = true;
             }
         }
@@ -188,9 +189,9 @@ namespace Fargowiltas
             tag.Add("FargoIndestructibleRectangles", FargoGlobalProjectile.CannotDestroyRectangle.ToList());
 
             List<string> sacrificeItems = [];
-            for (int i = 0; i < FargoSets.Items.SacrificeCount.Length; i++)
+            for (int i = 0; i < FargoItemSets.SacrificeCount.Length; i++)
             {
-                int count = FargoSets.Items.SacrificeCount[i];
+                int count = FargoItemSets.SacrificeCount[i];
                 if (count > 0)
                 {
                     if (i >= ItemID.Count) // modded item, variable type, add name instead
@@ -234,12 +235,12 @@ namespace Fargowiltas
                 {
                     if (int.TryParse(name, out int type) && type < ItemID.Count) // vanilla item
                     {
-                        Items.SacrificeCount[type] = count;
+                        SacrificeCount[type] = count;
                     }
                     else // modded item
                     {
                         if (TryFind(name, out ModItem item))
-                            Items.SacrificeCount[item.Type] = count;
+                            SacrificeCount[item.Type] = count;
                     }
                 }
             }

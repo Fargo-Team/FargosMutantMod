@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Fargowiltas.Common.Systems.Collections;
 using Fargowiltas.Common.Systems.Recipes;
 using Fargowiltas.Content.Items.Misc;
 using Microsoft.Xna.Framework;
@@ -137,7 +138,7 @@ namespace Fargowiltas.Content.Items.Tiles
 
         public static bool IsItemDupable(int type)
         {
-            if (FargoSets.Items.DuplicatableItems[type] != FargoSets.Items.DupeType.NotDupable && FargoSets.Items.DuplicatableItems[type] != FargoSets.Items.DupeType.NotDupableFromDupable) return true;
+            if (FargoItemSets.DuplicatableItems[type] != DupeType.NotDupable && FargoItemSets.DuplicatableItems[type] != DupeType.NotDupableFromDupable) return true;
             ModItem moditem = ContentSamples.ItemsByType[type].ModItem;
             //is an enchant force or soul
             if (moditem != null)
@@ -207,15 +208,15 @@ namespace Fargowiltas.Content.Items.Tiles
                                     fruit2.despawnTimer = 1;
                                 }
                             }
-                            if (expand && FargoSets.Items.DuplicatableRecipes.ContainsKey(fruit.type) && FargoSets.Items.DuplicatableRecipes[fruit.type].Count > 0)
+                            if (expand && FargoItemSets.DuplicatableRecipes.ContainsKey(fruit.type) && FargoItemSets.DuplicatableRecipes[fruit.type].Count > 0)
                             {
                                 SoundEngine.PlaySound(SoundID.Item130, fruit.center);
                                 netsync = true;
-                                for (int d = 0; d < FargoSets.Items.DuplicatableRecipes[fruit.type].Count; d++)
+                                for (int d = 0; d < FargoItemSets.DuplicatableRecipes[fruit.type].Count; d++)
                                 {
                                     float side = (d % 2 == 0 ? -1 : 1);
-                                    Vector2 position = fruit.targetPosition + new Vector2(0, 250) - new Vector2(0, 500).RotatedBy(MathHelper.ToRadians((d) * 7 - FargoSets.Items.DuplicatableRecipes[fruit.type].Count * 7 / 2 + 3f));
-                                    tree.Fruits.Add(new Fruit(FargoSets.Items.DuplicatableRecipes[fruit.type][d], fruit.center, position, Vector2.Zero, i, fruit.layer + 1));
+                                    Vector2 position = fruit.targetPosition + new Vector2(0, 250) - new Vector2(0, 500).RotatedBy(MathHelper.ToRadians((d) * 7 - FargoItemSets.DuplicatableRecipes[fruit.type].Count * 7 / 2 + 3f));
+                                    tree.Fruits.Add(new Fruit(FargoItemSets.DuplicatableRecipes[fruit.type][d], fruit.center, position, Vector2.Zero, i, fruit.layer + 1));
                                 }
                             }
                             if (netsync && Main.netMode == NetmodeID.MultiplayerClient)

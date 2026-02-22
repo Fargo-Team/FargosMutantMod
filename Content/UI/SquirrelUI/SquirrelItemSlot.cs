@@ -1,4 +1,5 @@
-﻿using Fargowiltas.Content.NPCs;
+﻿using Fargowiltas.Common.Systems.Collections;
+using Fargowiltas.Content.NPCs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -75,7 +76,7 @@ namespace Fargowiltas.Content.UI.SquirrelUI
             if (item.IsAir)
                 return "";
 
-            int stack = FargoSets.Items.SacrificeCount[item.type];
+            int stack = FargoItemSets.SacrificeCount[item.type];
             return $"{stack}/30";
         }
 

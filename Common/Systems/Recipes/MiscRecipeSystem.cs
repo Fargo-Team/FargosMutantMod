@@ -1,4 +1,5 @@
 ﻿using Fargowiltas.Common.Configs;
+using Fargowiltas.Common.Systems.Collections;
 using Fargowiltas.Content.Items;
 using Fargowiltas.Content.Items.Summons;
 using Fargowiltas.Content.Items.Summons.Mutant;
@@ -13,7 +14,7 @@ using System.Threading.Tasks;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using static Fargowiltas.FargoSets;
+using static Fargowiltas.Common.Systems.Collections.FargoItemSets;
 
 namespace Fargowiltas.Common.Systems.Recipes
 {
@@ -66,15 +67,15 @@ namespace Fargowiltas.Common.Systems.Recipes
             foreach (Recipe recipe in Main.recipe.Where(recipe => EnchantedTreeTileEntity.IsItemDupable(recipe.createItem.type)))
             {
                 int result = recipe.createItem.type;
-                if (!Items.DuplicatableRecipes.ContainsKey(result))
+                if (!DuplicatableRecipes.ContainsKey(result))
                 {
-                    Items.DuplicatableRecipes.Add(result, []);
+                    DuplicatableRecipes.Add(result, []);
                 }
                 foreach (Item item in recipe.requiredItem)
                 {
-                    if (EnchantedTreeTileEntity.IsItemDupable(item.type) || (Items.DuplicatableItems[recipe.createItem.type] == Items.DupeType.MaterialsDupable && Items.DuplicatableItems[item.type] != Items.DupeType.NotDupableFromDupable))
+                    if (EnchantedTreeTileEntity.IsItemDupable(item.type) || (DuplicatableItems[recipe.createItem.type] == DupeType.MaterialsDupable && DuplicatableItems[item.type] != DupeType.NotDupableFromDupable))
                     {
-                        Items.DuplicatableRecipes[recipe.createItem.type].Add(item.type);
+                        DuplicatableRecipes[recipe.createItem.type].Add(item.type);
                     }
                 }
             }

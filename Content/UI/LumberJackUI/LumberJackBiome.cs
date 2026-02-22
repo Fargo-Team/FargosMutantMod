@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Fargowiltas.Common.Systems.Collections;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System;
@@ -33,8 +34,6 @@ namespace Fargowiltas.Content.UI.LumberjackUI
         public override void PostSetupContent()
         {
             base.PostSetupContent();
-
-            FargoSets.Items.TreeTreasureObtainable = ItemID.Sets.Factory.CreateBoolSet(false);
 
             AddBiomes();
         }
@@ -199,7 +198,7 @@ namespace Fargowiltas.Content.UI.LumberjackUI
                 Wood.type = woodType;
                 Wood.amount = stack;
 
-                FargoSets.Items.TreeTreasureObtainable[woodType] = true;
+                FargoItemSets.TreeTreasureObtainable[woodType] = true;
             }
             return this;
         }
@@ -212,7 +211,7 @@ namespace Fargowiltas.Content.UI.LumberjackUI
                 Fruits.Add(fruit);
 
                 foreach(int type in types)
-                    FargoSets.Items.TreeTreasureObtainable[type] = true;
+                    FargoItemSets.TreeTreasureObtainable[type] = true;
             }
             return this;
         }
@@ -224,7 +223,7 @@ namespace Fargowiltas.Content.UI.LumberjackUI
                 LumberJackItem fruit = new([type], stack, 1, chance);
                 Fruits.Add(fruit);
 
-                FargoSets.Items.TreeTreasureObtainable[type] = true;
+                FargoItemSets.TreeTreasureObtainable[type] = true;
             }
             return this;
         }
@@ -238,7 +237,7 @@ namespace Fargowiltas.Content.UI.LumberjackUI
                 Critters.Add(critter);
 
                 foreach (int type in types)
-                    FargoSets.Items.TreeTreasureObtainable[type] = true;
+                    FargoItemSets.TreeTreasureObtainable[type] = true;
             }
             return this;
         }
@@ -250,7 +249,7 @@ namespace Fargowiltas.Content.UI.LumberjackUI
                 LumberJackItem critter = new([type], stack, 1, chance);
                 Critters.Add(critter);
 
-                FargoSets.Items.TreeTreasureObtainable[type] = true;
+                FargoItemSets.TreeTreasureObtainable[type] = true;
             }
             return this;
         }

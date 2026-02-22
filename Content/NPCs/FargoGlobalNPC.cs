@@ -601,18 +601,21 @@ namespace Fargowiltas.Content.NPCs
 
             if (normalSpawn)
             {
-                foreach (var spawnBooster in Main.LocalPlayer.FargoMutant().ActiveSpawnBoosters)
+                foreach (var spawnPlayer in Main.ActivePlayers)
                 {
-                    if (!spawnBooster.SpawnCondition.Invoke())
-                        continue;
-                    foreach (var npcID in spawnBooster.NPCTypes.Invoke())
+                    foreach (var spawnBooster in spawnPlayer.FargoMutant().ActiveSpawnBoosters)
                     {
-                        if (NPC.AnyNPCs(npcID))
+                        if (!spawnBooster.SpawnCondition.Invoke())
                             continue;
-                        if (!pool.ContainsKey(npcID))
-                            pool[npcID] = spawnBooster.SpawnRate;
-                        else
-                            pool[npcID] += spawnBooster.SpawnRate;
+                        foreach (var npcID in spawnBooster.NPCTypes.Invoke())
+                        {
+                            if (NPC.AnyNPCs(npcID))
+                                continue;
+                            if (!pool.ContainsKey(npcID))
+                                pool[npcID] = spawnBooster.SpawnRate;
+                            else
+                                pool[npcID] += spawnBooster.SpawnRate;
+                        }
                     }
                 }
             }

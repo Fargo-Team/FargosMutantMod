@@ -1,4 +1,5 @@
-﻿using Microsoft.CodeAnalysis;
+﻿using Fargowiltas.Common.Systems.Recipes;
+using Microsoft.CodeAnalysis;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -162,10 +163,11 @@ namespace Fargowiltas.Content.Items.Misc
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ItemID.BattlePotion, 15)
-                .AddIngredient(ItemID.WaterCandle, 5)
-                .AddIngredient(ItemID.CalmingPotion, 15)
-                .AddIngredient(ItemID.PeaceCandle, 5)
+                .AddRecipeGroup(RecipeGroups.AnyEvilBar, 5)
+                .AddIngredient(ItemID.BattlePotion, 5)
+                .AddIngredient(ItemID.WaterCandle, 3)
+                .AddIngredient(ItemID.CalmingPotion, 5)
+                .AddIngredient(ItemID.PeaceCandle, 3)
                 .AddTile(TileID.DemonAltar)
                 .Register();
         }

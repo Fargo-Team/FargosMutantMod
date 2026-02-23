@@ -179,7 +179,7 @@ namespace Fargowiltas
             pot.stack -= 1;
 
             if (pot.stack <= 0)
-                pot.SetDefaults(0, false);
+                pot.SetDefaults(ItemID.None, false);
         }
 
         private static void DisableTombstones(Terraria.On_Player.orig_DropTombstone orig, Player self, long coinsOwned, NetworkText deathText, int hitDirection)
@@ -469,6 +469,15 @@ namespace Fargowiltas
                         else
                             dialogueTracker.AddDialogue(args[1] as string, (byte)args[2], args[3] as Predicate<string>);
 
+                        break;
+                    case "AddIgnoreDebuffDisplay":
+                        {
+                            if (args[1].GetType() != typeof(int))
+                                throw new Exception($"Call Error (Fargo Mutant Mod AddIgnoreDebuffDisplay): args[1] must be of type int");
+
+                            ModContent.GetInstance<FargoPlayerBuffDrawLayer>().debuffsToIgnore.Add((int)args[1]);
+                            
+                        }
                         break;
 
                     case "LowRenderProj":

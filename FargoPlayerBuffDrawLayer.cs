@@ -16,8 +16,12 @@ namespace Fargowiltas
     public class FargoPlayerBuffDrawLayer : PlayerDrawLayer
     {
         public override bool IsHeadLayer => false;
+        public override void Unload()
+        {
+            debuffsToIgnore = null;
+        }
 
-        private readonly int[] debuffsToIgnore = [
+        public List<int> debuffsToIgnore = [
             BuffID.Campfire,
             BuffID.HeartLamp,
             BuffID.Sunflower,

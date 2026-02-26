@@ -21,6 +21,8 @@ namespace Fargowiltas.Content.BuilderToggles
         public static LocalizedText DisabledText { get; private set; }
         public static LocalizedText InverseOpacityText { get; private set; }
         public static LocalizedText NormalOpacityText { get; private set; }
+
+        public override string HoverTexture => Texture;
         public override int NumberOfStates => 3;
 
         public static int RightClickState = 0;
@@ -68,14 +70,35 @@ namespace Fargowiltas.Content.BuilderToggles
             InverseOpacityText = this.GetLocalization(nameof(InverseOpacityText));
         }
 
+
         public override bool Draw(SpriteBatch spriteBatch, ref BuilderToggleDrawParams drawParams)
         {
+            int frame = 0;          
+            drawParams.Position.X += 1;
             switch (CurrentState)
             {
-                case 0: drawParams.Color = Color.DarkGray; break;
-                case 1: drawParams.Color = Color.Gray; break;
-                case 2: drawParams.Color = Color.White; break;
+                case 0: frame = 2; break;
+                case 1: frame = 1; break;
+                case 2: frame = 0; break;
             }
+            drawParams.Frame = new(24 * frame, 0, 24, 22);
+
+            if (RightClickState == 1)
+                drawParams.Color *= 0.5f;
+            return true;
+        }
+
+        public override bool DrawHover(SpriteBatch spriteBatch, ref BuilderToggleDrawParams drawParams)
+        {
+            int frame = 0;
+            drawParams.Position.X += 1;
+            switch (CurrentState)
+            {
+                case 0: frame = 5; break;
+                case 1: frame = 4; break;
+                case 2: frame = 3; break;
+            }
+            drawParams.Frame = new(24 * frame, 0, 24, 22);
             return true;
         }
     }

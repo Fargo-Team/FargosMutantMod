@@ -191,8 +191,7 @@ namespace Fargowiltas
         {
             foreach (string tag in tags)
             {
-                if (DownedBools.ContainsKey(tag))
-                    DownedBools[tag] = reader.ReadBoolean();
+                DownedBools[tag] = reader.ReadBoolean();
             }
 
             AbomClearCD = reader.ReadInt32();
@@ -207,8 +206,7 @@ namespace Fargowiltas
         {
             foreach (string tag in tags)
             {
-                if (DownedBools.TryGetValue(tag, out bool down))
-                    writer.Write(down);
+                writer.Write(DownedBools.TryGetValue(tag, out bool value) && value);
             }
 
             writer.Write(AbomClearCD);

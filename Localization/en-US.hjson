@@ -313,9 +313,21 @@ Mods: {
 
 			SeasonSelections: {
 				Tooltip: ""
-				Normal.Label: Normal
-				AlwaysOn.Label: Always On
-				AlwaysOff.Label: Always Off
+
+				Normal: {
+					Label: Normal
+					Tooltip: ""
+				}
+
+				AlwaysOn: {
+					Label: Always On
+					Tooltip: ""
+				}
+
+				AlwaysOff: {
+					Label: Always Off
+					Tooltip: ""
+				}
 			}
 
 			Common.CanSpawn: Can Spawn

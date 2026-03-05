@@ -20,6 +20,7 @@ namespace Fargowiltas.Content.Items.Summons.Mutant
             Item.height = 20;
             Item.maxStack = 9999;
             Item.value = Item.sellPrice(0, 0, 2);
+            Item.rare = ItemRarityID.Blue;
             Item.useAnimation = 30;
             Item.useTime = 30;
             Item.rare = ItemRarityID.Blue;

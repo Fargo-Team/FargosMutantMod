@@ -151,7 +151,7 @@ namespace Fargowiltas.Common.Systems.Recipes
                 ItemID.RichGravestone5
             );
             AnyTombstone = RecipeGroup.RegisterGroup("Fargowiltas:AnyTombstone", group);
-           
+
             //wooden tables
             group = new RecipeGroup(() => RecipeHelper.GenerateAnyItemRecipeGroupText(ItemID.WoodenTable),
                 ItemID.WoodenTable,
@@ -185,7 +185,7 @@ namespace Fargowiltas.Common.Systems.Recipes
                 ItemID.BambooChair
             );
             AnyWoodenChair = RecipeGroup.RegisterGroup("Fargowiltas:AnyWoodenChair", group);
-           
+
             //wooden sinks
             group = new RecipeGroup(() => RecipeHelper.GenerateAnyItemRecipeGroupText(ItemID.WoodenSink),
                 ItemID.WoodenSink,

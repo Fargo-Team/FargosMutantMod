@@ -124,5 +124,17 @@ namespace Fargowiltas.Content.Items.Summons.SwarmSummons
                 .AddTile(TileID.DemonAltar)
                 .Register();
         }
+
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            base.ModifyTooltips(tooltips);
+            int count = Math.Min(Item.stack, 10);
+            int bags = 5 * count;
+            int trophies = (count - (count % 3)) / 3;
+            int energizers = count == 10 ? 1 : 0;
+            string line = Language.GetTextValue("Mods.Fargowiltas.Items.OverloaderRewards", bags, trophies, energizers);
+            tooltips.Add(new TooltipLine(Mod, "SwarmSummon", line));
+        }
+
     }
 }

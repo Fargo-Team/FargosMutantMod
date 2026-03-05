@@ -1,5 +1,6 @@
 ﻿using Fargowiltas.Common.Configs;
 using Fargowiltas.Utilities;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
@@ -738,13 +739,15 @@ namespace Fargowiltas.Common.Systems.Recipes
 
         private static void AddBannerSetToItemRecipe(bool[] set, int resultID)
         {
+            List<int> bannersAdded = [];
             for (int i = 0; i < NPCID.Count; i++)
             {
                 if (set[i])
                 {
                     int bannerId = Item.NPCtoBanner(i);
-                    if (bannerId > 0)
+                    if (bannerId > 0 && !bannersAdded.Contains(bannerId))
                     {
+                        bannersAdded.Add(bannerId);
                         RecipeHelper.CreateSimpleRecipe(Item.BannerToItem(bannerId), resultID, TileID.Solidifier, disableDecraft: true);
                     }
                 }

@@ -187,33 +187,33 @@ namespace Fargowiltas
 
             BetsyEggUsed = false;
 
-            Terraria.On_Player.DoCommonDashHandle += OnVanillaDash;
-            Terraria.On_Player.KeyDoubleTap += OnVanillaDoubleTapSetBonus;
-            Terraria.On_Player.KeyHoldDown += OnVanillaHoldSetBonus;
+            On_DD2Event.DropMedals += BetsyMedals;
 
-            Terraria.On_Recipe.FindRecipes += FindRecipes_ElementalAssemblerGraveyardHack;
-            Terraria.On_WorldGen.CountTileTypesInArea += CountTileTypesInArea_PurityTotemHack;
-            Terraria.On_SceneMetrics.ExportTileCountsToMain += ExportTileCountsToMain_PurityTotemHack;
-            Terraria.On_Player.HasUnityPotion += OnHasUnityPotion;
-            Terraria.On_Player.TakeUnityPotion += OnTakeUnityPotion;
-            Terraria.On_Player.DropTombstone += DisableTombstones;
+            On_Item.GetShimmered += FixRecipeGroupsShimmerInteraction;
+            
+            On_Main.DoUpdateInWorld += UpdateEnchantedTreeFruit;
+            On_Main.DrawPlayers_AfterProjectiles += DrawEnchantedTrees;
+            
+            On_NPC.CountKillForBannersAndDropThem += PreventBannerDrop;
 
+            On_Player.AddBuff += AddBuff;
+            On_Player.DoCommonDashHandle += OnVanillaDash;
+            On_Player.DropTombstone += DisableTombstones;
+            On_Player.GetAnglerReward_Bait += AnglerPitty;
+            On_Player.HasUnityPotion += OnHasUnityPotion;
             On_Player.ItemCheck_CheckCanUse += AllowUseSummons;
             On_Player.ItemCheck_UseBossSpawners += AllowUseSummons2EvilEdition;
             On_Player.ItemCheck_UseEventItems += AllowUseEventSummons;
+            On_Player.KeyDoubleTap += OnVanillaDoubleTapSetBonus;
+            On_Player.KeyHoldDown += OnVanillaHoldSetBonus;
             On_Player.SummonItemCheck += AllowMultipleBosses;
-            On_Player.AddBuff += AddBuff;
+            On_Player.TakeUnityPotion += OnTakeUnityPotion;
 
-            On_Main.DoUpdateInWorld += UpdateEnchantedTreeFruit;
-            On_Main.DrawPlayers_AfterProjectiles += DrawEnchantedTrees;
+            On_Recipe.FindRecipes += FindRecipes_ElementalAssemblerGraveyardHack;
 
-            On_Item.GetShimmered += FixRecipeGroupsShimmerInteraction;
+            On_SceneMetrics.ExportTileCountsToMain += ExportTileCountsToMain_PurityTotemHack;
 
-            On_Player.GetAnglerReward_Bait += AnglerPitty;
-
-            On_NPC.CountKillForBannersAndDropThem += PreventBannerDrop;
-
-            On_DD2Event.DropMedals += BetsyMedals;
+            On_WorldGen.CountTileTypesInArea += CountTileTypesInArea_PurityTotemHack;
         }
 
         private static IEnumerable<Item> GetWormholes(Player self) =>
@@ -311,31 +311,33 @@ namespace Fargowiltas
 
         public override void Unload()
         {
-            Terraria.On_Player.DoCommonDashHandle -= OnVanillaDash;
-            Terraria.On_Player.KeyDoubleTap -= OnVanillaDoubleTapSetBonus;
-            Terraria.On_Player.KeyHoldDown -= OnVanillaHoldSetBonus;
-
-            Terraria.On_Recipe.FindRecipes -= FindRecipes_ElementalAssemblerGraveyardHack;
-            Terraria.On_WorldGen.CountTileTypesInArea -= CountTileTypesInArea_PurityTotemHack;
-            Terraria.On_SceneMetrics.ExportTileCountsToMain -= ExportTileCountsToMain_PurityTotemHack;
-            Terraria.On_Player.HasUnityPotion -= OnHasUnityPotion;
-            Terraria.On_Player.TakeUnityPotion -= OnTakeUnityPotion;
-            Terraria.On_Player.DropTombstone -= DisableTombstones;
-
-            On_Player.ItemCheck_CheckCanUse -= AllowUseSummons;
-            On_Player.ItemCheck_UseBossSpawners -= AllowUseSummons2EvilEdition;
-            On_Player.ItemCheck_UseEventItems -= AllowUseEventSummons;
-            On_Player.SummonItemCheck -= AllowMultipleBosses;
-            On_Player.AddBuff -= AddBuff;
+            On_DD2Event.DropMedals -= BetsyMedals;
+            
+            On_Item.GetShimmered -= FixRecipeGroupsShimmerInteraction;
 
             On_Main.DoUpdateInWorld -= UpdateEnchantedTreeFruit;
             On_Main.DrawPlayers_AfterProjectiles -= DrawEnchantedTrees;
 
-            On_Item.GetShimmered -= FixRecipeGroupsShimmerInteraction;
-
             On_NPC.CountKillForBannersAndDropThem -= PreventBannerDrop;
 
-            On_DD2Event.DropMedals -= BetsyMedals;
+            On_Player.AddBuff -= AddBuff;
+            On_Player.DoCommonDashHandle -= OnVanillaDash;
+            On_Player.DropTombstone -= DisableTombstones;
+            On_Player.HasUnityPotion -= OnHasUnityPotion;
+            On_Player.ItemCheck_CheckCanUse -= AllowUseSummons;
+            On_Player.ItemCheck_UseBossSpawners -= AllowUseSummons2EvilEdition;
+            On_Player.ItemCheck_UseEventItems -= AllowUseEventSummons;
+            On_Player.KeyDoubleTap -= OnVanillaDoubleTapSetBonus;
+            On_Player.KeyHoldDown -= OnVanillaHoldSetBonus;
+            On_Player.SummonItemCheck -= AllowMultipleBosses;
+            On_Player.TakeUnityPotion -= OnTakeUnityPotion;
+
+            On_Recipe.FindRecipes -= FindRecipes_ElementalAssemblerGraveyardHack;
+
+            On_SceneMetrics.ExportTileCountsToMain -= ExportTileCountsToMain_PurityTotemHack;
+
+            On_WorldGen.CountTileTypesInArea -= CountTileTypesInArea_PurityTotemHack;
+
 
             summonTracker = null;
             dialogueTracker = null;

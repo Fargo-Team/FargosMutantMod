@@ -1,6 +1,5 @@
 ﻿using Fargowiltas.Common.Configs;
 using Fargowiltas.Common.Systems;
-using Fargowiltas.Common.Systems.Recipes;
 using Fargowiltas.Content.Items;
 using Fargowiltas.Content.Items.CaughtNPCs;
 using Fargowiltas.Content.Items.Misc;
@@ -12,19 +11,14 @@ using Fargowiltas.Content.UI;
 using Fargowiltas.Content.UI.StatSheet;
 using Fargowiltas.Utilities.Extensions;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Content;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Xml.Schema;
 using Terraria;
 using Terraria.Audio;
 using Terraria.Chat;
 using Terraria.DataStructures;
-using Terraria.GameContent;
 using Terraria.GameContent.Events;
 using Terraria.ID;
 using Terraria.Localization;
@@ -136,9 +130,9 @@ namespace Fargowiltas
 
             FargoUIManager.LoadUI();
 
-			ModStats = new();
-            PermaUpgrades = new List<PermaUpgrade>
-            {
+            ModStats = [];
+            PermaUpgrades =
+            [
                 new(ContentSamples.ItemsByType[ItemID.AegisCrystal], () => Main.LocalPlayer.usedAegisCrystal),
                 new(ContentSamples.ItemsByType[ItemID.AegisFruit], () => Main.LocalPlayer.usedAegisFruit),
                 new(ContentSamples.ItemsByType[ItemID.ArcaneCrystal], () => Main.LocalPlayer.usedArcaneCrystal),
@@ -146,7 +140,7 @@ namespace Fargowiltas
                 new(ContentSamples.ItemsByType[ItemID.GummyWorm], () => Main.LocalPlayer.usedGummyWorm),
                 new(ContentSamples.ItemsByType[ItemID.GalaxyPearl], () => Main.LocalPlayer.usedGalaxyPearl),
                 new(ContentSamples.ItemsByType[ItemID.ArtisanLoaf], () => Main.LocalPlayer.ateArtisanBread),
-            };
+            ];
 
             summonTracker = new MutantSummonTracker();
             dialogueTracker = new DevianttDialogueTracker();
@@ -175,7 +169,7 @@ namespace Fargowiltas
                 "WikiThis"
             ];
 
-            ModLoaded = new Dictionary<string, bool>();
+            ModLoaded = [];
             foreach (string mod in mods)
             {
                 ModLoaded.Add(mod, false);
@@ -187,33 +181,33 @@ namespace Fargowiltas
 
             BetsyEggUsed = false;
 
-            Terraria.On_Player.DoCommonDashHandle += OnVanillaDash;
-            Terraria.On_Player.KeyDoubleTap += OnVanillaDoubleTapSetBonus;
-            Terraria.On_Player.KeyHoldDown += OnVanillaHoldSetBonus;
+            On_DD2Event.DropMedals += BetsyMedals;
 
-            Terraria.On_Recipe.FindRecipes += FindRecipes_ElementalAssemblerGraveyardHack;
-            Terraria.On_WorldGen.CountTileTypesInArea += CountTileTypesInArea_PurityTotemHack;
-            Terraria.On_SceneMetrics.ExportTileCountsToMain += ExportTileCountsToMain_PurityTotemHack;
-            Terraria.On_Player.HasUnityPotion += OnHasUnityPotion;
-            Terraria.On_Player.TakeUnityPotion += OnTakeUnityPotion;
-            Terraria.On_Player.DropTombstone += DisableTombstones;
-
-            On_Player.ItemCheck_CheckCanUse += AllowUseSummons;
-            On_Player.ItemCheck_UseBossSpawners += AllowUseSummons2EvilEdition;
-            On_Player.ItemCheck_UseEventItems += AllowUseEventSummons;
-            On_Player.SummonItemCheck += AllowMultipleBosses;
-            On_Player.AddBuff += AddBuff;
+            On_Item.GetShimmered += FixRecipeGroupsShimmerInteraction;
 
             On_Main.DoUpdateInWorld += UpdateEnchantedTreeFruit;
             On_Main.DrawPlayers_AfterProjectiles += DrawEnchantedTrees;
 
-            On_Item.GetShimmered += FixRecipeGroupsShimmerInteraction;
-
-            On_Player.GetAnglerReward_Bait += AnglerPitty;
-
             On_NPC.CountKillForBannersAndDropThem += PreventBannerDrop;
 
-            On_DD2Event.DropMedals += BetsyMedals;
+            On_Player.AddBuff += AddBuff;
+            On_Player.DoCommonDashHandle += OnVanillaDash;
+            On_Player.DropTombstone += DisableTombstones;
+            On_Player.GetAnglerReward_Bait += AnglerPitty;
+            On_Player.HasUnityPotion += OnHasUnityPotion;
+            On_Player.ItemCheck_CheckCanUse += AllowUseSummons;
+            On_Player.ItemCheck_UseBossSpawners += AllowUseSummons2EvilEdition;
+            On_Player.ItemCheck_UseEventItems += AllowUseEventSummons;
+            On_Player.KeyDoubleTap += OnVanillaDoubleTapSetBonus;
+            On_Player.KeyHoldDown += OnVanillaHoldSetBonus;
+            On_Player.SummonItemCheck += AllowMultipleBosses;
+            On_Player.TakeUnityPotion += OnTakeUnityPotion;
+
+            On_Recipe.FindRecipes += FindRecipes_ElementalAssemblerGraveyardHack;
+
+            On_SceneMetrics.ExportTileCountsToMain += ExportTileCountsToMain_PurityTotemHack;
+
+            On_WorldGen.CountTileTypesInArea += CountTileTypesInArea_PurityTotemHack;
         }
 
         private static IEnumerable<Item> GetWormholes(Player self) =>
@@ -311,37 +305,39 @@ namespace Fargowiltas
 
         public override void Unload()
         {
-            Terraria.On_Player.DoCommonDashHandle -= OnVanillaDash;
-            Terraria.On_Player.KeyDoubleTap -= OnVanillaDoubleTapSetBonus;
-            Terraria.On_Player.KeyHoldDown -= OnVanillaHoldSetBonus;
+            On_DD2Event.DropMedals -= BetsyMedals;
 
-            Terraria.On_Recipe.FindRecipes -= FindRecipes_ElementalAssemblerGraveyardHack;
-            Terraria.On_WorldGen.CountTileTypesInArea -= CountTileTypesInArea_PurityTotemHack;
-            Terraria.On_SceneMetrics.ExportTileCountsToMain -= ExportTileCountsToMain_PurityTotemHack;
-            Terraria.On_Player.HasUnityPotion -= OnHasUnityPotion;
-            Terraria.On_Player.TakeUnityPotion -= OnTakeUnityPotion;
-            Terraria.On_Player.DropTombstone -= DisableTombstones;
-
-            On_Player.ItemCheck_CheckCanUse -= AllowUseSummons;
-            On_Player.ItemCheck_UseBossSpawners -= AllowUseSummons2EvilEdition;
-            On_Player.ItemCheck_UseEventItems -= AllowUseEventSummons;
-            On_Player.SummonItemCheck -= AllowMultipleBosses;
-            On_Player.AddBuff -= AddBuff;
+            On_Item.GetShimmered -= FixRecipeGroupsShimmerInteraction;
 
             On_Main.DoUpdateInWorld -= UpdateEnchantedTreeFruit;
             On_Main.DrawPlayers_AfterProjectiles -= DrawEnchantedTrees;
 
-            On_Item.GetShimmered -= FixRecipeGroupsShimmerInteraction;
-
             On_NPC.CountKillForBannersAndDropThem -= PreventBannerDrop;
 
-            On_DD2Event.DropMedals -= BetsyMedals;
+            On_Player.AddBuff -= AddBuff;
+            On_Player.DoCommonDashHandle -= OnVanillaDash;
+            On_Player.DropTombstone -= DisableTombstones;
+            On_Player.HasUnityPotion -= OnHasUnityPotion;
+            On_Player.ItemCheck_CheckCanUse -= AllowUseSummons;
+            On_Player.ItemCheck_UseBossSpawners -= AllowUseSummons2EvilEdition;
+            On_Player.ItemCheck_UseEventItems -= AllowUseEventSummons;
+            On_Player.KeyDoubleTap -= OnVanillaDoubleTapSetBonus;
+            On_Player.KeyHoldDown -= OnVanillaHoldSetBonus;
+            On_Player.SummonItemCheck -= AllowMultipleBosses;
+            On_Player.TakeUnityPotion -= OnTakeUnityPotion;
+
+            On_Recipe.FindRecipes -= FindRecipes_ElementalAssemblerGraveyardHack;
+
+            On_SceneMetrics.ExportTileCountsToMain -= ExportTileCountsToMain_PurityTotemHack;
+
+            On_WorldGen.CountTileTypesInArea -= CountTileTypesInArea_PurityTotemHack;
+
 
             summonTracker = null;
             dialogueTracker = null;
             symbolTracker = null;
             statTracker = null;
-            
+
 
             HomeKey = null;
             StatKey = null;
@@ -370,10 +366,10 @@ namespace Fargowiltas
                 Logger.Error("Fargowiltas PostSetupContent Error: " + e.StackTrace + e.Message);
             }
 
-			FargoUIManager.InitializeUI();
+            FargoUIManager.InitializeUI();
             statTracker.AddSoulsStats();
 
-			if (ModLoader.TryGetMod("Wikithis", out Mod wikithis) && !Main.dedServ)
+            if (ModLoader.TryGetMod("Wikithis", out Mod wikithis) && !Main.dedServ)
             {
                 wikithis.Call("AddModURL", this, "https://fargosmods.wiki.gg/wiki/{}");
 
@@ -1045,10 +1041,10 @@ namespace Fargowiltas
                             Main.NewText(Language.GetTextValue("Mods.Fargowiltas.MessageInfo.HaveAwoken", npcName), 175, 75);
                         }
                         else
-                        if (Main.netMode == NetmodeID.Server)
-                        {
-                            ChatHelper.BroadcastChatMessage(NetworkText.FromKey("Mods.Fargowiltas.MessageInfo.HaveAwoken", npcName), new Color(175, 75, 255));
-                        }
+                            if (Main.netMode == NetmodeID.Server)
+                            {
+                                ChatHelper.BroadcastChatMessage(NetworkText.FromKey("Mods.Fargowiltas.MessageInfo.HaveAwoken", npcName), new Color(175, 75, 255));
+                            }
                     }
                     else
                     {
@@ -1057,10 +1053,10 @@ namespace Fargowiltas
                             Main.NewText(Language.GetTextValue("Announcement.HasAwoken", npcName), 175, 75);
                         }
                         else
-                        if (Main.netMode == NetmodeID.Server)
-                        {
-                            ChatHelper.BroadcastChatMessage(NetworkText.FromKey("Announcement.HasAwoken", npcName), new Color(175, 75, 255));
-                        }
+                            if (Main.netMode == NetmodeID.Server)
+                            {
+                                ChatHelper.BroadcastChatMessage(NetworkText.FromKey("Announcement.HasAwoken", npcName), new Color(175, 75, 255));
+                            }
                     }
                 }
             }
@@ -1347,7 +1343,7 @@ namespace Fargowiltas
             {
                 foreach (KeyValuePair<int, int> pair in AnglerPityAmounts)
                 {
-                    if (questsDone >= pair.Value  && !self.FargoMutant().ItemHasBeenOwned[pair.Key])
+                    if (questsDone >= pair.Value && !self.FargoMutant().ItemHasBeenOwned[pair.Key])
                     {
                         if (((pair.Key == ItemID.HotlineFishingHook || pair.Key == ItemID.FinWings) && Main.hardMode) || ((pair.Key == ItemID.HoneyAbsorbantSponge || pair.Key == ItemID.BottomlessHoneyBucket) && NPC.downedQueenBee))
                         {

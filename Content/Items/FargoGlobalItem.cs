@@ -92,10 +92,7 @@ namespace Fargowiltas.Content.Items
                                 break;
                             }
 
-                            if (npcItem == null)
-                            {
-                                npcItem = item;
-                            }
+                            npcItem ??= item;
 
                             string conditions = "";
                             int i = 0;
@@ -143,7 +140,7 @@ namespace Fargowiltas.Content.Items
 
                     List<int> displayIDs = tooltip.NpcItemIDs.Where(i => i != item.type)?.ToList();
                     int id = item.type;
-                    if (displayIDs.Any())
+                    if (displayIDs.Count != 0)
                     {
                         int timer = (int)(Main.GlobalTimeWrappedHourly * 60);
                         int index = timer / 60;
@@ -547,97 +544,37 @@ namespace Fargowiltas.Content.Items
         {
             if (item.type == ItemID.MusicBox && Main.curMusic > 0 && Main.curMusic <= 41)
             {
-                int itemId;
-
-                //still better than vanilla (fear)
-                switch (Main.curMusic)
+                var itemId = Main.curMusic switch
                 {
-                    case 1:
-                        itemId = 0 + 562;
-                        break;
-                    case 2:
-                        itemId = 1 + 562;
-                        break;
-                    case 3:
-                        itemId = 2 + 562;
-                        break;
-                    case 4:
-                        itemId = 4 + 562;
-                        break;
-                    case 5:
-                        itemId = 5 + 562;
-                        break;
-                    case 6:
-                        itemId = 3 + 562;
-                        break;
-                    case 7:
-                        itemId = 6 + 562;
-                        break;
-                    case 8:
-                        itemId = 7 + 562;
-                        break;
-                    case 9:
-                        itemId = 9 + 562;
-                        break;
-                    case 10:
-                        itemId = 8 + 562;
-                        break;
-                    case 11:
-                        itemId = 11 + 562;
-                        break;
-                    case 12:
-                        itemId = 10 + 562;
-                        break;
-                    case 13:
-                        itemId = 12 + 562;
-                        break;
-                    case 28:
-                        itemId = 1963;
-                        break;
-                    case 29:
-                        itemId = 1610;
-                        break;
-                    case 30:
-                        itemId = 1963;
-                        break;
-                    case 31:
-                        itemId = 1964;
-                        break;
-                    case 32:
-                        itemId = 1965;
-                        break;
-                    case 33:
-                        itemId = 2742;
-                        break;
-                    case 34:
-                        itemId = 3370;
-                        break;
-                    case 35:
-                        itemId = 3236;
-                        break;
-                    case 36:
-                        itemId = 3237;
-                        break;
-                    case 37:
-                        itemId = 3235;
-                        break;
-                    case 38:
-                        itemId = 3044;
-                        break;
-                    case 39:
-                        itemId = 3371;
-                        break;
-                    case 40:
-                        itemId = 3796;
-                        break;
-                    case 41:
-                        itemId = 3869;
-                        break;
-                    default:
-                        itemId = 1596 + Main.curMusic - 14;
-                        break;
-                }
-
+                    1 => 0 + 562,
+                    2 => 1 + 562,
+                    3 => 2 + 562,
+                    4 => 4 + 562,
+                    5 => 5 + 562,
+                    6 => 3 + 562,
+                    7 => 6 + 562,
+                    8 => 7 + 562,
+                    9 => 9 + 562,
+                    10 => 8 + 562,
+                    11 => 11 + 562,
+                    12 => 10 + 562,
+                    13 => 12 + 562,
+                    28 => 1963,
+                    29 => 1610,
+                    30 => 1963,
+                    31 => 1964,
+                    32 => 1965,
+                    33 => 2742,
+                    34 => 3370,
+                    35 => 3236,
+                    36 => 3237,
+                    37 => 3235,
+                    38 => 3044,
+                    39 => 3371,
+                    40 => 3796,
+                    41 => 3869,
+                    _ => 1596 + Main.curMusic - 14,
+                };
                 for (int i = 0; i < player.armor.Length; i++)
                 {
                     Item accessory = player.armor[i];

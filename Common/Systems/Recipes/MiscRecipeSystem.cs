@@ -143,7 +143,7 @@ namespace Fargowiltas.Common.Systems.Recipes
             AddStatueRecipe(ItemID.SunflowerStatue);
             AddStatueRecipe(ItemID.SwordStatue);
             AddStatueRecipe(ItemID.PotionStatue);
-            AddStatueRecipe(ItemID.AngelStatue);
+            AddStatueRecipe(ItemID.AngelStatue, isAngelStatue: true);
             AddStatueRecipe(ItemID.CrossStatue);
             AddStatueRecipe(ItemID.GargoyleStatue);
             AddStatueRecipe(ItemID.GloomStatue);
@@ -175,7 +175,7 @@ namespace Fargowiltas.Common.Systems.Recipes
             recipe.Register();
         }
 
-        private static void AddStatueRecipe(int statue, int extraIngredient = -1, int extraIngredientAmount = 1, bool isLihzahrdStatue = false)
+        private static void AddStatueRecipe(int statue, int extraIngredient = -1, int extraIngredientAmount = 1, bool isLihzahrdStatue = false, bool isAngelStatue = false)
         {
             var recipe = Recipe.Create(statue);
 
@@ -184,7 +184,7 @@ namespace Fargowiltas.Common.Systems.Recipes
                 recipe.AddIngredient(extraIngredient, extraIngredientAmount);
             }
 
-            recipe.AddIngredient(isLihzahrdStatue ? ItemID.LihzahrdBrick : ItemID.StoneBlock, 50);
+            recipe.AddIngredient(isLihzahrdStatue ? ItemID.LihzahrdBrick : isAngelStatue ? ItemID.ShimmerBlock : ItemID.StoneBlock, 50);
             recipe.AddTile(TileID.HeavyWorkBench);
             recipe.DisableDecraft();
             recipe.Register();

@@ -124,6 +124,5 @@ namespace Fargowiltas.Content.Items.Summons.SwarmSummons
                 .AddTile(TileID.DemonAltar)
                 .Register();
         }
-
     }
 }

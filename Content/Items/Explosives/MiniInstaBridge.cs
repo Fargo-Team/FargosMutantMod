@@ -72,7 +72,7 @@ namespace Fargowiltas.Content.Items.Explosives
         {
             CreateRecipe()
                 .AddIngredient(ItemID.Dynamite)
-                .AddIngredient(ItemID.WoodPlatform, 100)
+                .AddRecipeGroup("Fargowiltas:AnyWoodenPlatform", 100)
                 .AddIngredient(ItemID.FallenStar)
                 .AddTile(TileID.Anvils)
                 .Register();

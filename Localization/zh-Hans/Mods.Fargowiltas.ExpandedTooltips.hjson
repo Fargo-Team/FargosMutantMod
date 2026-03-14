@@ -32,3 +32,4 @@ SeveralVendors: 多个商人
 // ShimmerableFrom: Shimmerable from
 // ShimmerableBoth: Shimmerable from and into
 // TreeTreasure: Obtainable from LumberJack Tree Treasures
+// FasterBedSpeed: Further fast forwards time by {0}x when fully asleep

@@ -347,6 +347,14 @@ namespace Fargowiltas.Content.Items
                     line = new TooltipLine(Mod, "TooltipShimmerable", shimmerText);
                     tooltips.Add(line);
                 }
+
+                int bedSpeed = FargoServerConfig.Instance.FasterBedSpeed;
+                if (bedSpeed != 1f && item.createTile != -1 && TileID.Sets.CanBeSleptIn[item.createTile])
+                {
+                    TooltipLine bed = new(Mod, "TooltipFasterBedSpeedConfig",
+                        $"[i:Bed] [c/AAAAAA:{Language.GetText("Mods.Fargowiltas.ExpandedTooltips.FasterBedSpeed").WithFormatArgs(bedSpeed)}]");
+                    tooltips.Add(bed);
+                }
             }
 
             if (FargoClientConfig.Instance.ExactTooltips)

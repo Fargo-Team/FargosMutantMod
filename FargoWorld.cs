@@ -394,6 +394,20 @@ namespace Fargowiltas
             }
         }
 
+        public override void ModifyTimeRate(ref double timeRate, ref double tileUpdateRate, ref double eventUpdateRate)
+        {
+            if (Main.gameMenu)
+                return;
+            int sleeping = Main.CurrentFrameFlags.SleepingPlayersCount;
+            if (sleeping > 0 && sleeping == Main.CurrentFrameFlags.ActivePlayersCount)
+            {
+                double speed = FargoServerConfig.Instance.FasterBedSpeed;
+                timeRate *= speed;
+                tileUpdateRate *= speed;
+                eventUpdateRate *= speed;
+            }
+        }
+
         private bool NoBosses() => Main.npc.All(i => !i.active || !i.boss);
 
         public override void UpdateUI(GameTime gameTime)

@@ -1,4 +1,4 @@
-﻿FargoServerConfig: {
+FargoServerConfig: {
 	DisplayName: Серверная конфигурация
 
 	Headers: {
@@ -260,6 +260,11 @@
 	InstantItems: {
 		Label: "[i:Dynamite] Моментальные предметы"
 		Tooltip: Включает/выключает моментальные предметы по типу МоментМоста
+	}
+
+	FasterBedSpeed: {
+		// Label: Faster Bed Speed
+		// Tooltip: ""
 	}
 }
 

@@ -14,13 +14,13 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
 
         public override bool CanUseItem(Player player)
         {
-            if (!Main.hardMode && (!FargoUtils.EternityMode || !Main.remixWorld)) 
+            if (!(Main.hardMode || Main.remixWorld) && !FargoUtils.EternityMode)
                 return false;
             return base.CanUseItem(player);
         }
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            if (!FargoUtils.EternityMode || !Main.remixWorld)
+            if (!(FargoUtils.EternityMode || Main.remixWorld))
                 tooltips.Insert(4, new TooltipLine(Mod, "HardmodeLock", Language.GetTextValue($"Mods.Fargowiltas.Items.SuspiciousLookingChest.HardmodeLock")));
 
         }

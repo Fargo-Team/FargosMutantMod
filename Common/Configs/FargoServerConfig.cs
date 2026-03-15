@@ -191,9 +191,9 @@ namespace Fargowiltas.Common.Configs
         [DefaultValue(true)]
         public bool ExtractSpeed;
 
-        [Range(1, 5)]
-        [Increment(1)]
-        [DefaultValue(2)]
+        [Range(5, 25)]
+        [Increment(5)]
+        [DefaultValue(10)]
         [Slider]
         public int FasterBedSpeed;
 

@@ -401,7 +401,7 @@ namespace Fargowiltas
             int sleeping = Main.CurrentFrameFlags.SleepingPlayersCount;
             if (sleeping > 0 && sleeping == Main.CurrentFrameFlags.ActivePlayersCount)
             {
-                double speed = FargoServerConfig.Instance.FasterBedSpeed;
+                double speed = FargoServerConfig.Instance.FasterBedSpeed / 5;
                 timeRate *= speed;
                 tileUpdateRate *= speed;
                 eventUpdateRate *= speed;

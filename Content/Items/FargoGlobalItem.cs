@@ -348,7 +348,7 @@ namespace Fargowiltas.Content.Items
                     tooltips.Add(line);
                 }
 
-                int bedSpeed = FargoServerConfig.Instance.FasterBedSpeed;
+                int bedSpeed = FargoServerConfig.Instance.FasterBedSpeed / 5;
                 if (bedSpeed != 1f && item.createTile != -1 && TileID.Sets.CanBeSleptIn[item.createTile])
                 {
                     TooltipLine bed = new(Mod, "TooltipFasterBedSpeedConfig",

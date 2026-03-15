@@ -1,4 +1,4 @@
-FargoServerConfig: {
+﻿FargoServerConfig: {
 	DisplayName: Серверная конфигурация
 
 	Headers: {
@@ -263,8 +263,8 @@ FargoServerConfig: {
 	}
 
 	FasterBedSpeed: {
-		// Label: Faster Bed Speed
-		// Tooltip: ""
+		Label: "[i:Bed] Ускорение времени в кровати"
+		Tooltip: Изменяет то, во сколько раз ускоряется время, пока вы спите.
 	}
 }
 

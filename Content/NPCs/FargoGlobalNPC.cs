@@ -1,26 +1,19 @@
 using System;
-using System.Linq;
 using System.Collections.Generic;
-using Fargowiltas.Buffs;
-////using Fargowiltas.Items.Vanity;
+using System.Linq;
+using Fargowiltas.Common.Configs;
+using Fargowiltas.Content.Items.Explosives;
+using Fargowiltas.Content.Items.Misc;
+using Fargowiltas.Content.Items.Summons.SwarmSummons.Energizers;
+using Fargowiltas.Content.Items.Tiles;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria;
-using Terraria.Chat;
-using Terraria.GameContent.Events;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
-using Fargowiltas.Content.Items.Summons.Abom;
-using Fargowiltas.Common.Configs;
-using Fargowiltas.Content.Items.Explosives;
-using Fargowiltas.Content.Items.Tiles;
-using Fargowiltas.Content.Items.Summons.Deviantt;
-using Fargowiltas.Content.Items.Summons.SwarmSummons.Energizers;
-using Fargowiltas.Content.Items.Misc;
 using static Fargowiltas.Fargowiltas;
+using static Terraria.ModLoader.ModContent;
 
 namespace Fargowiltas.Content.NPCs
 {
@@ -95,6 +88,74 @@ namespace Fargowiltas.Content.NPCs
         //                }
         //            }
         //        }
+
+        #region moon event drop fixes
+
+        public override void Load()
+        {
+            On_Conditions.PumpkinMoonDropGatingChance.CanDrop += PMoonDropOverride;
+            On_Conditions.FrostMoonDropGatingChance.CanDrop += FMoonDropOverride;
+        }
+
+        public override void Unload()
+        {
+            On_Conditions.PumpkinMoonDropGatingChance.CanDrop -= PMoonDropOverride;
+            On_Conditions.FrostMoonDropGatingChance.CanDrop -= FMoonDropOverride;
+        }
+
+        public bool PMoonDropOverride(On_Conditions.PumpkinMoonDropGatingChance.orig_CanDrop orig, Conditions.PumpkinMoonDropGatingChance self, DropAttemptInfo info)
+        {
+            if (info.npc.type is NPCID.MourningWood or NPCID.Pumpking or NPCID.HeadlessHorseman && FargoUtils.ActuallyNight && !Main.pumpkinMoon)
+            {
+                int simulatedWaveCounter = 12; //drop chance acts like it would be wave 12 (minimum for weapon drops)
+                //for this reason, we also intentionally exclude trophies (needs wave 15+)
+
+                if (Main.expertMode)
+                {
+                    simulatedWaveCounter += 5;
+                }
+                int num2 = (int)((double)(24 - simulatedWaveCounter) / 2.5);
+                if (Main.expertMode)
+                {
+                    num2--;
+                }
+                if (num2 < 1)
+                {
+                    num2 = 1;
+                }
+                return info.player.RollLuck(num2) == 0;
+            }
+
+            return orig(self, info);
+        }
+
+        public bool FMoonDropOverride(On_Conditions.FrostMoonDropGatingChance.orig_CanDrop orig, Conditions.FrostMoonDropGatingChance self, DropAttemptInfo info)
+        {
+            if (info.npc.type is NPCID.Everscream or NPCID.SantaNK1 or NPCID.IceQueen && FargoUtils.ActuallyNight && !Main.pumpkinMoon)
+            {
+                int simulatedWaveCounter = 14; //drop chance acts like it would be wave 14 (minimum for weapon drops)
+                //for this reason, we also intentionally exclude trophies (needs wave 15+)
+
+                if (Main.expertMode)
+                {
+                    simulatedWaveCounter += 5;
+                }
+                int num2 = (int)((double)(28 - simulatedWaveCounter) / 2.5);
+                if (Main.expertMode)
+                {
+                    num2 -= 2;
+                }
+                if (num2 < 1)
+                {
+                    num2 = 1;
+                }
+                return info.player.RollLuck(num2) == 0;
+            }
+
+            return orig(self, info);
+        }
+        #endregion
+
         public override void ResetEffects(NPC npc)
         {
             woodDrop = false;
@@ -735,8 +796,9 @@ namespace Fargowiltas.Content.NPCs
                         Item.NewItem(npc.GetSource_Loot(), npc.Hitbox, ItemType<EchPainting>());
                     break;
 
-                case NPCID.DD2OgreT2:
-                case NPCID.DD2OgreT3:
+                //there is nothing blocking ooa minibosses from dropping items outside the event. why were these here
+                /*case NPCID.DD2OgreT2:
+                case NPCID.DD2OgreT3: 
                     if (!DD2Event.Ongoing)
                     {
                         if (Main.rand.NextBool(14))
@@ -761,82 +823,7 @@ namespace Fargowiltas.Content.NPCs
                         if (Main.rand.NextBool(6))
                             Item.NewItem(npc.GetSource_Loot(), npc.Hitbox, Main.rand.Next(new int[] { ItemID.DD2PetGato, ItemID.DD2PetDragon }));
                     }
-                    break;
-
-                case NPCID.HeadlessHorseman:
-                    if (FargoUtils.ActuallyNight && !Main.pumpkinMoon)
-                    {
-                        if (Main.rand.NextBool(10))
-                            Item.NewItem(npc.GetSource_Loot(), npc.Hitbox, ItemID.JackOLanternMask);
-                    }
-                    break;
-
-                case NPCID.MourningWood:
-                    if (FargoUtils.ActuallyNight && !Main.pumpkinMoon)
-                    {
-                        Item.NewItem(npc.GetSource_Loot(), npc.Hitbox, ItemID.SpookyWood, 30);
-
-                        Item.NewItem(npc.GetSource_Loot(), npc.Hitbox, Main.rand.Next(new int[] {
-                            ItemID.SpookyHook,
-                            ItemID.SpookyTwig,
-                            ItemID.StakeLauncher,
-                            ItemID.CursedSapling,
-                            ItemID.NecromanticScroll,
-                            Main.expertMode ? ItemID.WitchBroom : ItemID.SpookyWood
-                        }));
-                    }
-                    break;
-
-                case NPCID.Pumpking:
-                    if (FargoUtils.ActuallyNight && !Main.pumpkinMoon)
-                    {
-                        Item.NewItem(npc.GetSource_Loot(), npc.Hitbox, Main.rand.Next(new int[] {
-                            ItemID.TheHorsemansBlade,
-                            ItemID.BatScepter,
-                            ItemID.BlackFairyDust,
-                            ItemID.SpiderEgg,
-                            ItemID.RavenStaff,
-                            ItemID.CandyCornRifle,
-                            ItemID.JackOLanternLauncher,
-                            ItemID.ScytheWhip
-                        }));
-                    }
-                    break;
-
-                case NPCID.Everscream:
-                    if (FargoUtils.ActuallyNight && !Main.snowMoon)
-                    {
-                        Item.NewItem(npc.GetSource_Loot(), npc.Hitbox, Main.rand.Next(new int[] {
-                            ItemID.ChristmasTreeSword,
-                            ItemID.ChristmasHook,
-                            ItemID.Razorpine,
-                            ItemID.FestiveWings
-                        }));
-                    }
-                    break;
-
-                case NPCID.SantaNK1:
-                    if (FargoUtils.ActuallyNight && !Main.snowMoon)
-                    {
-                        Item.NewItem(npc.GetSource_Loot(), npc.Hitbox, Main.rand.Next(new int[] {
-                            ItemID.ElfMelter,
-                            ItemID.ChainGun
-                        }));
-                    }
-                    break;
-
-                case NPCID.IceQueen:
-                    if (FargoUtils.ActuallyNight && !Main.snowMoon)
-                    {
-                        Item.NewItem(npc.GetSource_Loot(), npc.Hitbox, Main.rand.Next(new int[] {
-                            ItemID.BlizzardStaff,
-                            ItemID.SnowmanCannon,
-                            ItemID.NorthPole,
-                            ItemID.BabyGrinchMischiefWhistle,
-                            ItemID.ReindeerBells
-                        }));
-                    }
-                    break;
+                    break;*/
 
                 default:
                     break;

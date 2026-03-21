@@ -31,6 +31,8 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using static Fargowiltas.Content.Items.Tiles.EnchantedTreeTileEntity;
 using Fargowiltas.Common.Systems.Collections;
+using Terraria.UI.Chat;
+using ReLogic.Graphics;
 
 namespace Fargowiltas
 {
@@ -214,8 +216,16 @@ namespace Fargowiltas
             On_NPC.CountKillForBannersAndDropThem += PreventBannerDrop;
 
             On_DD2Event.DropMedals += BetsyMedals;
+
+            On_ChatManager.DrawColorCodedStringShadow_SpriteBatch_DynamicSpriteFont_TextSnippetArray_Vector2_Color_float_Vector2_Vector2_float_float += SymbolsFix;
         }
 
+        private void SymbolsFix(On_ChatManager.orig_DrawColorCodedStringShadow_SpriteBatch_DynamicSpriteFont_TextSnippetArray_Vector2_Color_float_Vector2_Vector2_float_float orig, SpriteBatch spriteBatch,  DynamicSpriteFont font, IEnumerable<TextSnippet> snippets, Vector2 position, Color shadowColor, float rotation, Vector2 origin, Vector2 scale, float maxWidth, float spread = 2f)
+        {
+            SymbolTagHandler.SymbolSnippet.ShouldDraw = false;
+            orig(spriteBatch, font, snippets.ToArray(), position, shadowColor, rotation, origin, scale, maxWidth, spread);
+            SymbolTagHandler.SymbolSnippet.ShouldDraw = true;
+        }
         private static IEnumerable<Item> GetWormholes(Player self) =>
             self.inventory
                 .Concat(self.bank.item)
@@ -336,6 +346,8 @@ namespace Fargowiltas
             On_NPC.CountKillForBannersAndDropThem -= PreventBannerDrop;
 
             On_DD2Event.DropMedals -= BetsyMedals;
+
+            On_ChatManager.DrawColorCodedStringShadow_SpriteBatch_DynamicSpriteFont_TextSnippetArray_Vector2_Color_float_Vector2_Vector2_float_float -= SymbolsFix;
 
             summonTracker = null;
             dialogueTracker = null;

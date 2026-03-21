@@ -27,6 +27,7 @@ using static Fargowiltas.Content.Items.Tiles.EnchantedTreeTileEntity;
 using Fargowiltas.Common.Systems.Collections;
 using Terraria.UI.Chat;
 using ReLogic.Graphics;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Fargowiltas
 {
@@ -210,6 +211,8 @@ namespace Fargowiltas
             On_SceneMetrics.ExportTileCountsToMain += ExportTileCountsToMain_PurityTotemHack;
 
             On_WorldGen.CountTileTypesInArea += CountTileTypesInArea_PurityTotemHack;
+
+            On_ChatManager.DrawColorCodedStringShadow_SpriteBatch_DynamicSpriteFont_TextSnippetArray_Vector2_Color_float_Vector2_Vector2_float_float += SymbolsFix;
         }
 
         private void SymbolsFix(On_ChatManager.orig_DrawColorCodedStringShadow_SpriteBatch_DynamicSpriteFont_TextSnippetArray_Vector2_Color_float_Vector2_Vector2_float_float orig, SpriteBatch spriteBatch,  DynamicSpriteFont font, IEnumerable<TextSnippet> snippets, Vector2 position, Color shadowColor, float rotation, Vector2 origin, Vector2 scale, float maxWidth, float spread = 2f)

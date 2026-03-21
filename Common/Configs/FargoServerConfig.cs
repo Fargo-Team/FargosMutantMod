@@ -191,6 +191,12 @@ namespace Fargowiltas.Common.Configs
         [DefaultValue(true)]
         public bool ExtractSpeed;
 
+        [Range(5, 25)]
+        [Increment(5)]
+        [DefaultValue(10)]
+        [Slider]
+        public int FasterBedSpeed;
+
         [DefaultValue(true)]
         public bool PylonsIgnoreEvents;
 

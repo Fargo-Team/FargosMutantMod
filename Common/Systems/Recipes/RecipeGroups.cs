@@ -15,7 +15,7 @@ namespace Fargowiltas.Common.Systems.Recipes
     {
         public static string ItemXOrY(int id1, int id2) => $"{Lang.GetItemName(id1)} {Language.GetTextValue($"Mods.Fargowiltas.RecipeGroups.Or")} {Lang.GetItemName(id2)}";
         internal static int AnyGoldBar, AnyEvilBar;
-        internal static int AnyDemonAltar, AnyAnvil, AnyHMAnvil, AnyForge, AnyBookcase, AnyCookingPot, AnyTombstone, AnyWoodenTable, AnyWoodenChair, AnyWoodenSink, AnyDecayChamber;
+        internal static int AnyDemonAltar, AnyAnvil, AnyHMAnvil, AnyForge, AnyBookcase, AnyCookingPot, AnyTombstone, AnyWoodenTable, AnyWoodenChair, AnyWoodenSink, AnyDecayChamber, AnyWoodenPlatform;
         internal static int AnyButterfly, /*AnySquirrel,*/ AnyCommonFish, AnyDragonfly, AnyBird, AnyDuck;
         internal static int AnyFoodT2, AnyFoodT3, AnyGemRobe;
         internal static int AnyWoodCrate, AnyIronCrate, AnyGoldCrate, AnyJungleCrate, AnySkyCrate, AnyCorruptCrate, AnyCrimsonCrate, AnyHallowedCrate, AnyDungeonCrate, AnyFrozenCrate, AnySandCrate, AnyLavaCrate, AnyOceanCrate;
@@ -151,7 +151,7 @@ namespace Fargowiltas.Common.Systems.Recipes
                 ItemID.RichGravestone5
             );
             AnyTombstone = RecipeGroup.RegisterGroup("Fargowiltas:AnyTombstone", group);
-           
+
             //wooden tables
             group = new RecipeGroup(() => RecipeHelper.GenerateAnyItemRecipeGroupText(ItemID.WoodenTable),
                 ItemID.WoodenTable,
@@ -185,7 +185,7 @@ namespace Fargowiltas.Common.Systems.Recipes
                 ItemID.BambooChair
             );
             AnyWoodenChair = RecipeGroup.RegisterGroup("Fargowiltas:AnyWoodenChair", group);
-           
+
             //wooden sinks
             group = new RecipeGroup(() => RecipeHelper.GenerateAnyItemRecipeGroupText(ItemID.WoodenSink),
                 ItemID.WoodenSink,
@@ -262,6 +262,23 @@ namespace Fargowiltas.Common.Systems.Recipes
                 ItemID.TopazRobe
             );
             AnyGemRobe = RecipeGroup.RegisterGroup("Fargowiltas:AnyGemRobe", group);
+
+            //any wood platforms
+            group = new RecipeGroup(() => RecipeHelper.GenerateAnyItemRecipeGroupText("WoodenPlatform"),
+                ItemID.WoodPlatform,
+                ItemID.BorealWoodPlatform,
+                ItemID.AshWoodPlatform,
+                ItemID.RichMahoganyPlatform,
+                ItemID.LivingWoodPlatform,
+                ItemID.PearlwoodPlatform,
+                ItemID.SpookyPlatform,
+                ItemID.EbonwoodPlatform,
+                ItemID.ShadewoodPlatform,
+                ItemID.PalmWoodPlatform,
+                ItemID.DynastyPlatform,
+                ItemID.BambooPlatform
+            );
+            AnyWoodenPlatform = RecipeGroup.RegisterGroup("Fargowiltas:AnyWoodenPlatform", group);
 
             //wooden crates
             group = new RecipeGroup(() => ItemXOrY(ItemID.WoodenCrate, ItemID.WoodenCrateHard), ItemID.WoodenCrate, ItemID.WoodenCrateHard);

@@ -4,9 +4,11 @@ using System.Linq;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Utilities;
 
 namespace Fargowiltas.Content.Items.Misc
 {
+    [LegacyName("BigSuckPotion")]
 	public class BlackHolePotion : ModItem
 	{
         public override void SetStaticDefaults()

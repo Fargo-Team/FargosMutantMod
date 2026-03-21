@@ -36,7 +36,7 @@ namespace Fargowiltas
         internal static bool GeneratedSacrificeCounts;
 
         internal static bool[] CurrentSpawnRateTile;
-        internal static Dictionary<string, bool> DownedBools = new Dictionary<string, bool>();
+        internal static Dictionary<string, bool> DownedBools = [];
 
         // Do not change the order or name of any of these value names, it will fuck up loading. Any new additions should be added at the end.
         private readonly string[] tags =
@@ -111,7 +111,7 @@ namespace Fargowiltas
                 DownedBools[tag] = false;
             }
 
-            FargoItemSets.SacrificeCount = FargoItemSets.SacrificeCountDefault.Clone() as int[];
+            SacrificeCount = SacrificeCountDefault.Clone() as int[];
             GeneratedSacrificeCounts = true;
 
             WoodChopped = 0;
@@ -159,7 +159,7 @@ namespace Fargowiltas
             ResetFlags();
             if (!GeneratedSacrificeCounts)
             {
-                FargoItemSets.SacrificeCount = FargoItemSets.SacrificeCountDefault.Clone() as int[];
+                SacrificeCount = SacrificeCountDefault.Clone() as int[];
                 GeneratedSacrificeCounts = true;
             }
         }
@@ -175,7 +175,7 @@ namespace Fargowiltas
 
         public override void SaveWorldData(TagCompound tag)
         {
-            List<string> downed = new List<string>();
+            List<string> downed = [];
 
             foreach (string downedTag in tags)
             {
@@ -189,9 +189,9 @@ namespace Fargowiltas
             tag.Add("FargoIndestructibleRectangles", FargoGlobalProjectile.CannotDestroyRectangle.ToList());
 
             List<string> sacrificeItems = [];
-            for (int i = 0; i < FargoItemSets.SacrificeCount.Length; i++)
+            for (int i = 0; i < SacrificeCount.Length; i++)
             {
-                int count = FargoItemSets.SacrificeCount[i];
+                int count = SacrificeCount[i];
                 if (count > 0)
                 {
                     if (i >= ItemID.Count) // modded item, variable type, add name instead
@@ -257,9 +257,9 @@ namespace Fargowiltas
             AbomClearCD = reader.ReadInt32();
             WoodChopped = reader.ReadInt32();
             Matsuri = reader.ReadBoolean();
-            Fargowiltas.SwarmActive = reader.ReadBoolean();
-            Fargowiltas.HardmodeSwarmActive = reader.ReadBoolean();
-            Fargowiltas.SwarmNoHyperActive = reader.ReadBoolean();
+            SwarmActive = reader.ReadBoolean();
+            HardmodeSwarmActive = reader.ReadBoolean();
+            SwarmNoHyperActive = reader.ReadBoolean();
         }
 
         public override void NetSend(BinaryWriter writer)
@@ -272,9 +272,9 @@ namespace Fargowiltas
             writer.Write(AbomClearCD);
             writer.Write(WoodChopped);
             writer.Write(Matsuri);
-            writer.Write(Fargowiltas.SwarmActive);
-            writer.Write(Fargowiltas.HardmodeSwarmActive);
-            writer.Write(Fargowiltas.SwarmNoHyperActive);
+            writer.Write(SwarmActive);
+            writer.Write(HardmodeSwarmActive);
+            writer.Write(SwarmNoHyperActive);
         }
 
         public override void PostUpdateWorld()
@@ -303,12 +303,12 @@ namespace Fargowiltas
             }
 
             // swarm reset in case something goes wrong
-            if (Main.netMode != NetmodeID.MultiplayerClient && Fargowiltas.SwarmActive
+            if (Main.netMode != NetmodeID.MultiplayerClient && SwarmActive
                 && NoBosses() && !NPC.AnyNPCs(NPCID.EaterofWorldsHead) && !NPC.AnyNPCs(NPCID.DungeonGuardian) && !NPC.AnyNPCs(NPCID.DD2DarkMageT1))
             {
-                Fargowiltas.SwarmActive = false;
-                Fargowiltas.HardmodeSwarmActive = false;
-                Fargowiltas.SwarmNoHyperActive = false;
+                SwarmActive = false;
+                HardmodeSwarmActive = false;
+                SwarmNoHyperActive = false;
                 FargoGlobalNPC.LastWoFIndex = -1;
                 FargoGlobalNPC.WoFDirection = 0;
                 if (Main.netMode == NetmodeID.Server)
@@ -355,11 +355,11 @@ namespace Fargowiltas
         {
             ref bool current = ref CurrentSpawnRateTile[0];
             bool oldSpawnRateTile = current;
-            current = tileCounts[ModContent.TileType<RegalStatueSheet>()] > 0;
+            current = tileCounts[TileType<RegalStatueSheet>()] > 0;
 
             if (Main.netMode == NetmodeID.MultiplayerClient && current != oldSpawnRateTile)
             {
-                ModPacket packet = Fargowiltas.Instance.GetPacket();
+                ModPacket packet = Instance.GetPacket();
                 packet.Write((byte)PacketID.RegalStatue);
                 packet.Write(current);
                 packet.Send();
@@ -394,6 +394,20 @@ namespace Fargowiltas
             }
         }
 
+        public override void ModifyTimeRate(ref double timeRate, ref double tileUpdateRate, ref double eventUpdateRate)
+        {
+            if (Main.gameMenu)
+                return;
+            int sleeping = Main.CurrentFrameFlags.SleepingPlayersCount;
+            if (sleeping > 0 && sleeping == Main.CurrentFrameFlags.ActivePlayersCount)
+            {
+                double speed = FargoServerConfig.Instance.FasterBedSpeed / 5;
+                timeRate *= speed;
+                tileUpdateRate *= speed;
+                eventUpdateRate *= speed;
+            }
+        }
+
         private bool NoBosses() => Main.npc.All(i => !i.active || !i.boss);
 
         public override void UpdateUI(GameTime gameTime)
@@ -410,9 +424,9 @@ namespace Fargowiltas
 
         public override void AddRecipes()
         {
-            Fargowiltas.summonTracker.FinalizeSummonData();
-            Fargowiltas.symbolTracker.FinalizeSymbols();
-            Fargowiltas.statTracker.FinalizeStats();
+            summonTracker.FinalizeSummonData();
+            symbolTracker.FinalizeSymbols();
+            statTracker.FinalizeStats();
         }
     }
 }

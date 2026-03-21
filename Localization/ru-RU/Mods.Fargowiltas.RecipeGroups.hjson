@@ -1,4 +1,4 @@
-EvilWood: дерево биома зла
+﻿EvilWood: дерево биома зла
 CommonFish: обычная рыба
 CaughtNPC: пойманный городской НИП
 CaughtSlime: пойманный городской слизень
@@ -6,6 +6,7 @@ ArmoredBonesBanner: знамя бронированного скелета
 FoodT2: еда полного удовлетворения
 FoodT3: еда изысканного удовлетворения
 GemRobe: роба из камней
+WoodenPlatform: деревянная платформа
 WoodCrate: деревянный ящик
 IronCrate: железный ящик
 GoldCrate: золотой ящик

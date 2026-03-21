@@ -1,6 +1,9 @@
 using System.Linq;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.Audio;
+using Terraria.Enums;
 using Terraria.GameContent.Events;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -14,13 +17,15 @@ namespace Fargowiltas.Content.Items.Misc
             Item.width = 20;
             Item.height = 20;
             Item.value = Item.sellPrice(0, 5);
-            Item.rare = ItemRarityID.LightRed;
+            Item.rare = ItemRarityID.Lime;
             Item.useAnimation = 30;
             Item.useTime = 30;
-            Item.useStyle = ItemUseStyleID.Shoot;
+            Item.useStyle = ItemUseStyleID.HoldUp;
             Item.mana = 15;
             Item.UseSound = SoundID.Item4;
         }
+
+        int drawTimer;
 
         public override bool AltFunctionUse(Player player)
         {
@@ -40,7 +45,6 @@ namespace Fargowiltas.Content.Items.Misc
                 Item.useTime = 30;
             }
 
-            //return !Main.fastForwardTime/* tModPorter Note: Removed. Suggestion: IsFastForwardingTime(), fastForwardTimeToDawn or fastForwardTimeToDusk */;
             return !Main.IsFastForwardingTime();
         }
 
@@ -87,19 +91,58 @@ namespace Fargowiltas.Content.Items.Misc
                         BirthdayParty.CheckMorning();
 
                         Chest.SetupTravelShop();
+
+                        Main.AnglerQuestSwap();
+
+                        Main.CheckForMoonEventsScoreDisplay();
+                        Main.CheckForMoonEventsStartingTemporarySeasons();
+                        Main.checkXMas();
+                        Main.checkHalloween();
+
+                        Main.moonPhase++;
+                        if (Main.moonPhase >= 8)
+                            Main.moonPhase = 0;
+
+                        if (Main.drunkWorld && Main.netMode != NetmodeID.MultiplayerClient)
+                            WorldGen.crimson = !WorldGen.crimson;
                     }
                     else
                     {
                         BirthdayParty.CheckNight();
-
-                        //change moon phases when switching to night
-                        if (!Main.dayTime && ++Main.moonPhase > 7)
-                            Main.moonPhase = 0;
                     }
                 }
             }
             NetMessage.SendData(MessageID.WorldData);
             return true;
+        }
+
+        public override void PostDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
+        {
+            if (Main.sundialCooldown == 0)
+            {
+                Texture2D texture = ModContent.Request<Texture2D>(Texture + "_glow").Value;
+                Color color3 = new(100, 100, 100, 0);
+                for (int j = 0; j < 4; j++)
+                {
+                    int rng = Main.rand.Next(-5, 6);
+                    spriteBatch.Draw(texture, position + new Vector2(rng * 0.15f, rng * 0.35f), frame, color3, 0f, origin, scale, SpriteEffects.None, 0f);
+                }
+            }
+        }
+
+        public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
+        {
+            if (Main.sundialCooldown == 0)
+            {
+                Texture2D texture = ModContent.Request<Texture2D>(Texture + "_glow").Value;
+                Vector2 cent = Item.Bottom - Main.screenPosition - new Vector2(0, (texture.Size() / 2).Y).RotatedBy(rotation);
+                Color color3 = new(100, 100, 100, 0);
+                for (int j = 0; j < 4; j++)
+                {
+                    int rng = Main.rand.Next(-5, 6);
+                    spriteBatch.Draw(texture, cent + new Vector2(rng * 0.15f, rng * 0.35f), null, color3, 0f, texture.Size() / 2, scale, SpriteEffects.None, 0f);
+                }
+            }
         }
 
         public override void AddRecipes()

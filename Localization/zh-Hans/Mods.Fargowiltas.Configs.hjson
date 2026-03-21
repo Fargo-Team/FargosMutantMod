@@ -265,6 +265,11 @@ FargoServerConfig: {
 		// Label: "[i:Dynamite] Instant Items"
 		// Tooltip: Enables/disables Insta items such as the InstaHouse
 	}
+
+	FasterBedSpeed: {
+		// Label: "[i:Bed] Faster Bed Speed"
+		// Tooltip: Changes how much sleeping in bed speeds up the game.
+	}
 }
 
 FargoClientConfig: {
@@ -272,7 +277,7 @@ FargoClientConfig: {
 
 	AutoReforge: {
 		// Label: "[s:Fargowiltas/Reforge] Automatic Reforge"
-		// Tooltip: Modifies goblin tinkerer's reforge menu
+		// Tooltip: Modifies goblin tinkerer's reforge menu.
 	}
 
 	ExpandedTooltips: {
@@ -332,7 +337,7 @@ FargoClientConfig: {
 
 	DisableAllScopeView: {
 		// Label: "[i:RifleScope][i:SniperRifle] Toggle All Scoped Binocular Views"
-		// Tooltip: Allows toggling Scoped Binocular Views
+		// Tooltip: Allows toggling Scoped Binocular Views.
 	}
 
 	Headers: {

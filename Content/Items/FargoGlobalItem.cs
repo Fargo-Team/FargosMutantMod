@@ -228,14 +228,14 @@ namespace Fargowiltas.Content.Items
 
                     if (item.type == ItemID.MechanicsRod || item.type == ItemID.SittingDucksFishingRod || item.type == ItemID.HotlineFishingHook)
                     {
-                        line = new TooltipLine(Mod, "Tooltip1", $"[i:2373] [c/AAAAAA:{ExpandedTooltipLoc("Lures2")}]");
+                        line = new TooltipLine(Mod, "Tooltip1", $"[s:Fargowiltas/ExtraLures] [c/AAAAAA:{ExpandedTooltipLoc("Lures2")}]");
                         tooltips.Insert(3, line);
                     }
 
                     if (item.type == ItemID.GoldenFishingRod)
                     {
-                        line = new TooltipLine(Mod, "Tooltip1", $"[i:2373] [c/AAAAAA:{ExpandedTooltipLoc("Lures3")}]");
-                        tooltips.Insert(3, line);
+                        line = new TooltipLine(Mod, "Tooltip1", $"[s:Fargowiltas/ExtraLures] [c/AAAAAA:{ExpandedTooltipLoc("Lures3")}]");
+                        tooltips.Add(line);
                     }
                 }
 
@@ -283,7 +283,7 @@ namespace Fargowiltas.Content.Items
                 if (EnchantedTreeTileEntity.IsItemDupable(item.type))
                 {
                     line = new TooltipLine(Mod, "TooltipEnchantedTree",
-                        $"[i:Fargowiltas/EnchantedTree] [c/AAAAAA:{ExpandedTooltipLoc("EnchantedTreeDupable")}]");
+                        $"[s:Fargowiltas/DuplicatableAtTree] [c/AAAAAA:{ExpandedTooltipLoc("EnchantedTreeDupable")}]");
                     tooltips.Add(line);
                 }
 
@@ -400,12 +400,12 @@ namespace Fargowiltas.Content.Items
 
             if (FargoClientConfig.Instance.DisableAllScopeView is ScopedBinocularViews.AllDisabled or ScopedBinocularViews.SniperRifleScopeDisabled && item.type == ItemID.SniperRifle)
             {
-                TooltipLine line = new(Mod, "TooltipSniperRifleScopeView", $"[i:RifleScope] [c/AAAAAA:{ExpandedTooltipLoc("ScopeViewToggle")}]");
+                TooltipLine line = new(Mod, "TooltipSniperRifleScopeView", $"[s:Fargowiltas/BinocularDisabled] [c/AAAAAA:{ExpandedTooltipLoc("ScopeViewToggle")}]");
                 tooltips.Add(line);
             }
             if (FargoClientConfig.Instance.DisableAllScopeView is ScopedBinocularViews.AllDisabled or ScopedBinocularViews.RifleScopeAccessoryDisabled && item.type is ItemID.RifleScope or ItemID.SniperScope or ItemID.ReconScope)
             {
-                TooltipLine line = new(Mod, "TooltipRifleScopeView", $"[i:RifleScope] [c/AAAAAA:{ExpandedTooltipLoc("ScopeViewToggle")}]");
+                TooltipLine line = new(Mod, "TooltipRifleScopeView", $"[s:Fargowiltas/BinocularDisabled] [c/AAAAAA:{ExpandedTooltipLoc("ScopeViewToggle")}]");
                 tooltips.Add(line);
             }
         }

@@ -58,7 +58,7 @@ namespace Fargowiltas.Content.Items
 
         //public override bool CloneNewInstances => true;
 
-        TooltipLine FountainTooltip(string biome) => new TooltipLine(Mod, "Tooltip0", $"[i:909] [c/AAAAAA:{ExpandedTooltipLoc($"Fountain{biome}")}]");
+        TooltipLine FountainTooltip(string biome) => new TooltipLine(Mod, "Tooltip0", $"[s:Fargowiltas/FountainEffect] [c/AAAAAA:{ExpandedTooltipLoc($"Fountain{biome}")}]");
 
         //For the shop sale tooltip system.
         public class ShopTooltip
@@ -207,7 +207,7 @@ namespace Fargowiltas.Content.Items
                     case ItemID.GoldenBugNet:
                     case ItemID.FireproofBugNet:
                         if (fargoServerConfig.CatchNPCs)
-                            tooltips.Add(new TooltipLine(Mod, "Tooltip0", $"[i:1991] [c/AAAAAA:{ExpandedTooltipLoc("CatchNPCs")}]"));
+                            tooltips.Add(new TooltipLine(Mod, "Tooltip0", $"[s:Fargowiltas/CatchNPCs] [c/AAAAAA:{ExpandedTooltipLoc("CatchNPCs")}]"));
                         break;
 
                 }
@@ -252,7 +252,7 @@ namespace Fargowiltas.Content.Items
                 {
                     if (item.buffType != 0 && item.buffTime >= 60 * 60 * 2)
                     {
-                        line = new TooltipLine(Mod, "TooltipUnlim", $"[i:{item.type}] [c/AAAAAA:{Language.GetTextValue($"Mods.Fargowiltas.ExpandedTooltips.UnlimitedBuff30", FargoServerConfig.Instance.UnlimitedPotionBuffsAmount)}]");
+                        line = new TooltipLine(Mod, "TooltipUnlim", $"[s:Fargowiltas/InfinitePotions] [c/AAAAAA:{Language.GetTextValue($"Mods.Fargowiltas.ExpandedTooltips.UnlimitedBuff30", FargoServerConfig.Instance.UnlimitedPotionBuffsAmount)}]");
                         tooltips.Add(line);
                     }
                     /*else if (item.bait > 0)
@@ -270,7 +270,7 @@ namespace Fargowiltas.Content.Items
 
                 if (fargoServerConfig.PiggyBankAcc && (FargoItemSets.InfoAccessory[item.type] || FargoItemSets.MechanicalAccessory[item.type]))
                 {
-                    line = new TooltipLine(Mod, "TooltipUnlim", $"[i:87] [c/AAAAAA:{ExpandedTooltipLoc("WorksFromBanks")}]");
+                    line = new TooltipLine(Mod, "TooltipUnlim", $"[s:Fargowiltas/WorksInPiggy] [c/AAAAAA:{ExpandedTooltipLoc("WorksFromBanks")}]");
                     tooltips.Add(line);
                 }
 
@@ -323,7 +323,7 @@ namespace Fargowiltas.Content.Items
 
                 if (FargoItemSets.TreeTreasureObtainable[item.type])
                 {
-                    line = new TooltipLine(Mod, "LumberJackTreeTreasure", $"[i:{CaughtNPCItem.CaughtTownies[NPCType<LumberJack>()]}] [c/AAAAAA:{ExpandedTooltipLoc("TreeTreasure")}]");
+                    line = new TooltipLine(Mod, "LumberJackTreeTreasure", $"[s:Fargowiltas/TreeTreasure] [c/AAAAAA:{ExpandedTooltipLoc("TreeTreasure")}]");
                     tooltips.Add(line);
                 }
 
@@ -352,7 +352,7 @@ namespace Fargowiltas.Content.Items
                 if (bedSpeed != 1f && item.createTile != -1 && TileID.Sets.CanBeSleptIn[item.createTile])
                 {
                     TooltipLine bed = new(Mod, "TooltipFasterBedSpeedConfig",
-                        $"[i:Bed] [c/AAAAAA:{Language.GetText("Mods.Fargowiltas.ExpandedTooltips.FasterBedSpeed").WithFormatArgs(bedSpeed)}]");
+                        $"[s:Fargowiltas/BedSpeed] [c/AAAAAA:{Language.GetText("Mods.Fargowiltas.ExpandedTooltips.FasterBedSpeed").WithFormatArgs(bedSpeed)}]");
                     tooltips.Add(bed);
                 }
             }

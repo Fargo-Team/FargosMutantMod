@@ -264,7 +264,7 @@ namespace Fargowiltas.Content.Items
 
                 if (fargoServerConfig.PermanentStationsNearby && FargoItemSets.BuffStation[item.type])
                 {
-                    line = new TooltipLine(Mod, "TooltipUnlim", $"[i:{item.type}] [c/AAAAAA:{ExpandedTooltipLoc("PermanentEffectNearby")}]");
+                    line = new TooltipLine(Mod, "TooltipUnlim", $"[s:Fargowiltas/PermanentStationsNearby] [c/AAAAAA:{ExpandedTooltipLoc("PermanentEffectNearby")}]");
                     tooltips.Add(line);
                 }
 

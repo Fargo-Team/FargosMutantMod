@@ -1,4 +1,5 @@
-﻿using Fargowiltas.Common.Configs;
+﻿using Fargowiltas.Assets.Textures;
+using Fargowiltas.Common.Configs;
 using Fargowiltas.Common.Systems.Collections;
 using Fargowiltas.Content.Items.CaughtNPCs;
 using Fargowiltas.Content.Items.Summons.Abom;
@@ -241,9 +242,9 @@ namespace Fargowiltas.Content.Items
 
                 if (fargoServerConfig.TorchGodEX && item.type == ItemID.TorchGodsFavor)
                 {
-                    line = new TooltipLine(Mod, "TooltipTorchGod1", $"[i:5043] [c/AAAAAA:{ExpandedTooltipLoc("AutoTorch")}]");
+                    line = new TooltipLine(Mod, "TooltipTorchGod1", $"[s:Fargowiltas/AbidesTrueTorchLuck] [c/AAAAAA:{ExpandedTooltipLoc("AutoTorch")}]");
                     tooltips.Add(line);
-                    line = new TooltipLine(Mod, "TooltipTorchGod2", $"[i:5043] [c/AAAAAA:{ExpandedTooltipLoc("TrueTorchLuck")}]");
+                    line = new TooltipLine(Mod, "TooltipTorchGod2", $"[s:Fargowiltas/AbidesTrueTorchLuck] [c/AAAAAA:{ExpandedTooltipLoc("TrueTorchLuck")}]");
                     tooltips.Add(line);
                 }
 
@@ -599,6 +600,13 @@ namespace Fargowiltas.Content.Items
         {
             return FargoServerConfig.Instance.UnlimitedAmmo && Main.hardMode && ammo.ammo != 0 && (ammo.stack >= 3996);
         }
+        public bool UnlimitedBuff(Item buff)
+        {
+            return FargoServerConfig.Instance.UnlimitedPotionBuffs is UnlimitedBuffSelections.On 
+                && (buff.buffType > 0 || FargoItemSets.NonBuffPotion[buff.type])
+                && buff.stack >= FargoServerConfig.Instance.UnlimitedPotionBuffsAmount
+                && buff.buffTime >= 60 * 60 * 2;
+        }
         public override bool CanBeConsumedAsAmmo(Item ammo, Item weapon, Player player)
         {
             if (UnlimitedAmmo(ammo))
@@ -619,7 +627,7 @@ namespace Fargowiltas.Content.Items
         {
             if (FargoServerConfig.Instance.UnlimitedConsumableWeapons && Main.hardMode && item.damage > 0 && item.ammo == 0 && item.stack >= 3996)
                 return false;
-            if ((FargoServerConfig.Instance.UnlimitedPotionBuffs is UnlimitedBuffSelections.On || (FargoServerConfig.Instance.UnlimitedPotionBuffs is UnlimitedBuffSelections.BossOnly && FargoGlobalNPC.AnyBossAlive())) && (item.buffType > 0 || FargoItemSets.NonBuffPotion[item.type]) && (item.stack >= 30 || player.inventory.Any(i => i.type == item.type && !i.IsAir && i.stack >= 30)) && item.buffTime >= 60 * 60 * 2)
+            if ((FargoServerConfig.Instance.UnlimitedPotionBuffs is UnlimitedBuffSelections.On || (FargoServerConfig.Instance.UnlimitedPotionBuffs is UnlimitedBuffSelections.BossOnly && FargoGlobalNPC.AnyBossAlive())) && (item.buffType > 0 || FargoItemSets.NonBuffPotion[item.type]) && (item.stack >= FargoServerConfig.Instance.UnlimitedPotionBuffsAmount || player.inventory.Any(i => i.type == item.type && !i.IsAir && i.stack >= FargoServerConfig.Instance.UnlimitedPotionBuffsAmount)) && item.buffTime >= 60 * 60 * 2)
                 return false;
             return base.ConsumeItem(item, player);
         }
@@ -778,19 +786,12 @@ namespace Fargowiltas.Content.Items
                     item.stack = stack;
                 }
             }
-            if (UnlimitedAmmo(item) && !item.IsACoin)
+            if ((UnlimitedAmmo(item) || UnlimitedBuff(item)) && !item.IsACoin)
             {
-                ChatManager.DrawColorCodedStringWithShadow(spriteBatch, FontAssets.ItemStack.Value, "∞", position + new Vector2(8f, -24f) * scale, drawColor, 0f, Vector2.Zero, new Vector2(scale), -1f, scale);
-                /*
-                for (int j = 0; j < 12; j++)
-                {
-                    Vector2 afterimageOffset = (MathHelper.TwoPi * j / 12f).ToRotationVector2() * 1f;
-                    Color glowColor = Color.Gray with { A = 0 };
+                //ChatManager.DrawColorCodedStringWithShadow(spriteBatch, FontAssets.ItemStack.Value, "∞", position + new Vector2(8f, -24f) * scale, drawColor, 0f, Vector2.Zero, new Vector2(scale), -1f, scale);
 
-                    Texture2D texture = Terraria.GameContent.TextureAssets.Item[item.type].Value;
-                    Main.EntitySpriteDraw(texture, position + afterimageOffset, null, glowColor, 0, texture.Size() * 0.5f, scale, SpriteEffects.None, 0f);
-                }
-                */
+                Texture2D texture = ModContent.Request<Texture2D>("Fargowiltas/Assets/Symbols/Infinity").Value;
+                Main.EntitySpriteDraw(texture, position + new Vector2(14f, -16f) * scale, null, Color.White, 0, texture.Size() * 0.5f, scale, SpriteEffects.None, 0);
             }
             return base.PreDrawInInventory(item, spriteBatch, position, frame, drawColor, itemColor, origin, scale);
         }

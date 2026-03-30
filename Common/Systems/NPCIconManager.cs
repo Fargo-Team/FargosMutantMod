@@ -75,7 +75,7 @@ namespace Fargowiltas.Common.Systems
         {
             int npcID = int.Parse(text);
                        
-            if (!text.IsWhiteSpace() && npcID != -1)
+            if (!text.AsSpan().IsWhiteSpace() && npcID != -1)
             {
                 return new NPCIconSnippet(npcID)
                 {

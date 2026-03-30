@@ -2,7 +2,6 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Fargowiltas.Content.Projectiles;
 using Fargowiltas.Content.NPCs;
 using static Fargowiltas.Fargowiltas;
 

@@ -2,11 +2,7 @@
 using Fargowiltas.Content.Items.Tiles;
 using Fargowiltas.Content.NPCs;
 using ReLogic.Reflection;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Fargowiltas.Content.Items.FargoGlobalItem;

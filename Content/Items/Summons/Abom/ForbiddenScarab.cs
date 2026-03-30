@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using System.Reflection;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent.Events;

@@ -2,7 +2,6 @@ using Fargowiltas.Content.Items.Summons.Mutant;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.ModLoader.Config;
 
 namespace Fargowiltas.Content.Items.Summons.SwarmSummons
 {

@@ -1,19 +1,9 @@
 ﻿using Fargowiltas.Common.Systems.Collections;
 using Fargowiltas.Content.NPCs;
-using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Content;
-using ReLogic.Graphics;
 using System;
 using Terraria;
-using Terraria.Audio;
-using Terraria.DataStructures;
-using Terraria.GameContent;
 using Terraria.GameContent.UI.Elements;
-using Terraria.ID;
-using Terraria.ModLoader.UI;
-using Terraria.UI;
-using Terraria.UI.Chat;
 
 namespace Fargowiltas.Content.UI.SquirrelUI
 {

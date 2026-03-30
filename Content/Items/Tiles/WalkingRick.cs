@@ -1,8 +1,6 @@
-using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.Localization;
 
 namespace Fargowiltas.Content.Items.Tiles
 {

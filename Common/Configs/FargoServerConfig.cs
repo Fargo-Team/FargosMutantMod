@@ -1,9 +1,5 @@
 ﻿using System.ComponentModel;
-using System.Reflection;
-using System.Runtime.Serialization;
-using Terraria;
 using Terraria.Localization;
-using Terraria.ModLoader;
 using Terraria.ModLoader.Config;
 
 namespace Fargowiltas.Common.Configs

@@ -1,5 +1,4 @@
-﻿using Fargowiltas.Common.Systems;
-using Fargowiltas.Utilities.Extensions;
+﻿using Fargowiltas.Utilities.Extensions;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.IO;
@@ -9,7 +8,6 @@ using Terraria.ID;
 using Terraria.IO;
 using Terraria.Localization;
 using Terraria.ModLoader;
-using static Fargowiltas.Assets.Textures.FargoMutantAssets.UI;
 
 namespace Fargowiltas.Common.Systems
 {

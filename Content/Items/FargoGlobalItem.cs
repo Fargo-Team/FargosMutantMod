@@ -1,5 +1,4 @@
-﻿using Fargowiltas.Assets.Textures;
-using Fargowiltas.Common.Configs;
+﻿using Fargowiltas.Common.Configs;
 using Fargowiltas.Common.Systems.Collections;
 using Fargowiltas.Content.Items.CaughtNPCs;
 using Fargowiltas.Content.Items.Summons.Abom;
@@ -8,21 +7,17 @@ using Fargowiltas.Content.NPCs;
 using Fargowiltas.Content.UI.Emotes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Content;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Terraria;
-using Terraria.GameContent;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.GameContent.UI;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Default;
-using Terraria.UI;
-using Terraria.UI.Chat;
 using static Terraria.ModLoader.ModContent;
 
 namespace Fargowiltas.Content.Items

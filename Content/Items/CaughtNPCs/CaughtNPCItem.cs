@@ -1,11 +1,9 @@
 ﻿using Fargowiltas.Common.Configs;
 using Fargowiltas.Content.NPCs;
-using Fargowiltas.Utilities.Extensions;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
 using Terraria.DataStructures;
-using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 

@@ -1,14 +1,11 @@
-﻿using Fargowiltas.Content.Items.Weapons;
-using Fargowiltas.Content.NPCs;
+﻿using Fargowiltas.Content.NPCs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
-using ReLogic.Graphics;
 using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;
-using Terraria.GameContent;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
 using Terraria.Localization;

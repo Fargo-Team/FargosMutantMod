@@ -10,7 +10,6 @@ using Terraria.ModLoader.Default;
 using Terraria.ObjectData;
 using Fargowiltas.TileEntities;
 using Terraria.GameContent.ObjectInteractions;
-using Terraria.Audio;
 using Terraria.GameContent;
 using System.Linq;
 using Terraria.Map;

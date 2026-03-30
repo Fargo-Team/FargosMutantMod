@@ -1,17 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
-using Terraria.GameContent.UI.Elements;
-using Terraria.GameContent;
 using Terraria.ModLoader;
 using Terraria.UI;
-using Terraria.Localization;
-using SteelSeries.GameSense;
 
 namespace Fargowiltas.Common.Systems
 {

@@ -2,7 +2,6 @@ using Fargowiltas.Content.Achievements;
 using Fargowiltas.Content.Buffs;
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;

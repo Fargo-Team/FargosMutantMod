@@ -1,19 +1,13 @@
 ﻿using Fargowiltas.Common.Systems.Recipes;
-using Microsoft.CodeAnalysis;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
-using System;
 using Terraria;
 using Terraria.Audio;
-using Terraria.Chat;
 using Terraria.DataStructures;
-using Terraria.GameContent.Tile_Entities;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
-using Terraria.WorldBuilding;
-using static Fargowiltas.Common.Systems.InstaVisual;
 using static Fargowiltas.Fargowiltas;
 
 namespace Fargowiltas.Content.Items.Misc

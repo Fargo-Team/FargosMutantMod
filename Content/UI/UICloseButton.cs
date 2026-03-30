@@ -1,7 +1,6 @@
 ﻿using Fargowiltas.Assets.Textures;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using Terraria;
 using Terraria.Localization;
 using Terraria.UI;

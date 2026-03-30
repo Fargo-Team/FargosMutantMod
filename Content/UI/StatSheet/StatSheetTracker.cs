@@ -1,6 +1,4 @@
-﻿using Fargowiltas.Content.Items.Misc;
-using Steamworks;
-using System;
+﻿using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;

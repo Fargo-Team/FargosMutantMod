@@ -1,21 +1,17 @@
 ﻿using Fargowiltas.Assets.Textures;
 using Fargowiltas.Common.Configs;
 using Fargowiltas.Common.Systems;
-using Fargowiltas.Content.UI;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.GameContent.UI.Elements;
 using Terraria.GameInput;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI;
-using XPT.Core.Audio.MP3Sharp.Decoding;
-using static Fargowiltas.Assets.Textures.FargoMutantAssets.UI;
 
 namespace Fargowiltas.Content.UI
 {

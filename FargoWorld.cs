@@ -1,5 +1,4 @@
 using Fargowiltas.Common.Configs;
-using Fargowiltas.Common.Systems.Collections;
 using Fargowiltas.Content.Items.Tiles;
 using Fargowiltas.Content.NPCs;
 using Fargowiltas.Content.Projectiles;

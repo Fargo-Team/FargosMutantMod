@@ -1,7 +1,5 @@
 ﻿using Fargowiltas.Common.Systems;
 using Terraria;
-using Terraria.ModLoader;
-using static Fargowiltas.Assets.Textures.FargoMutantAssets.UI;
 
 namespace Fargowiltas.Utilities.Extensions
 {

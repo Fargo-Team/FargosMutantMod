@@ -1,5 +1,4 @@
 ﻿using Fargowiltas.Common.Configs;
-using Mono.Cecil.Cil;
 using MonoMod.Cil;
 using System;
 using Terraria;

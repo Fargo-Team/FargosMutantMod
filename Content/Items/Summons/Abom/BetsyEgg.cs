@@ -1,9 +1,7 @@
-using Fargowiltas.Content.Items.Summons;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent.Events;
 using Terraria.ID;
-using Terraria.ModLoader;
 using static Fargowiltas.Fargowiltas;
 
 namespace Fargowiltas.Content.Items.Summons.Abom

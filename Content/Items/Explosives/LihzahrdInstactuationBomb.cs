@@ -2,7 +2,6 @@
 using Fargowiltas.Content.Projectiles.Explosives;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
-using System.Linq;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;

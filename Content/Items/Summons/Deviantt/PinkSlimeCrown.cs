@@ -1,10 +1,6 @@
 using Fargowiltas.Content.Buffs;
-using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.Audio;
-using Terraria.Chat;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Fargowiltas.Content.Items.Summons.Deviantt

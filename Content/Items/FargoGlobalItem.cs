@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Terraria;
+using Terraria.GameContent;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.GameContent.UI;
 using Terraria.ID;
@@ -59,7 +60,7 @@ namespace Fargowiltas.Content.Items
         //For the shop sale tooltip system.
         public class ShopTooltip
         {
-            public List<int> NpcItemIDs = new();
+            public List<int> NpcIDs = new();
             public List<string> NpcNames = new();
             public string Condition;
         }
@@ -81,6 +82,7 @@ namespace Fargowiltas.Content.Items
 
                         foreach (var entry in shop.ActiveEntries.Where(e => !e.Item.IsAir && e.Item.type == item.type))
                         {
+                            /*
                             Item npcItem = null;
                             foreach (var tryNPCItem in ContentSamples.ItemsByType.Where(i => i.Value.ModItem != null && i.Value.ModItem is CaughtNPCItem modItem && modItem.AssociatedNpcId == shop.NpcType))
                             {
@@ -89,6 +91,7 @@ namespace Fargowiltas.Content.Items
                             }
 
                             npcItem ??= item;
+                            */
 
                             string conditions = "";
                             int i = 0;
@@ -100,6 +103,7 @@ namespace Fargowiltas.Content.Items
                             }
                             string conditionLine = i > 0 ? ": " + conditions : "";
                             string npcName = ContentSamples.NpcsByNetId[shop.NpcType].FullName;
+                            int npcID = TownNPCProfiles.GetHeadIndexSafe(ContentSamples.NpcsByNetId[shop.NpcType]);
 
                             if (registeredShopTooltips.Any(t => t.NpcNames.Any(n => n == npcName) && t.Condition == conditionLine)) //sometimes it makes duplicates otherwise
                                 continue;
@@ -111,7 +115,7 @@ namespace Fargowiltas.Content.Items
                                 if (regTooltip.Condition == conditionLine && !regTooltip.NpcNames.Contains(npcName))
                                 {
                                     regTooltip.NpcNames.Add(npcName);
-                                    regTooltip.NpcItemIDs.Add(npcItem.type);
+                                    regTooltip.NpcIDs.Add(npcID);
                                     registered = true;
                                     break;
                                 }
@@ -119,7 +123,7 @@ namespace Fargowiltas.Content.Items
                             if (!registered)
                             {
                                 ShopTooltip tooltip = new();
-                                tooltip.NpcItemIDs.Add(npcItem.type);
+                                tooltip.NpcIDs.Add(npcID);
                                 tooltip.NpcNames.Add(npcName);
                                 tooltip.Condition = conditionLine;
                                 registeredShopTooltips.Add(tooltip);
@@ -134,8 +138,8 @@ namespace Fargowiltas.Content.Items
                 foreach (ShopTooltip tooltip in FargoItemSets.RegisteredShopTooltips[item.type])
                 {
 
-                    List<int> displayIDs = tooltip.NpcItemIDs.Where(i => i != item.type)?.ToList();
-                    int id = item.type;
+                    List<int> displayIDs = tooltip.NpcIDs?.ToList();
+                    int id = 0;
                     if (displayIDs.Count != 0)
                     {
                         int timer = (int)(Main.GlobalTimeWrappedHourly * 60);
@@ -154,7 +158,10 @@ namespace Fargowiltas.Content.Items
                     }
                     if (i > 5)
                         names = ExpandedTooltipLoc("SeveralVendors");
-                    string text = $"[i:{id}] [c/AAAAAA:{ExpandedTooltipLoc("SoldBy")} {names}{tooltip.Condition}]";
+                    string text = $"[h:{id}] [c/AAAAAA:{ExpandedTooltipLoc("SoldBy")} {names}{tooltip.Condition}]";
+                    //todo: fallback icon.
+                    if (id == -1)
+                        text = $"[c/AAAAAA:{ExpandedTooltipLoc("SoldBy")} {names}{tooltip.Condition}]";
                     line = new TooltipLine(Mod, "TooltipNPCSold", text);
                     tooltips.Add(line);
                 }
@@ -225,7 +232,7 @@ namespace Fargowiltas.Content.Items
                     if (item.type == ItemID.MechanicsRod || item.type == ItemID.SittingDucksFishingRod || item.type == ItemID.HotlineFishingHook)
                     {
                         line = new TooltipLine(Mod, "Tooltip1", $"[s:Fargowiltas/ExtraLures] [c/AAAAAA:{ExpandedTooltipLoc("Lures2")}]");
-                        tooltips.Insert(3, line);
+                        tooltips.Add(line);
                     }
 
                     if (item.type == ItemID.GoldenFishingRod)
@@ -273,7 +280,7 @@ namespace Fargowiltas.Content.Items
                 if (Squirrel.SquirrelSells(item, out SquirrelSellType sellType) != SquirrelShopGroup.End)
                 {
                     line = new TooltipLine(Mod, "TooltipSquirrel",
-                        $"[i:{CaughtNPCItem.CaughtTownies[NPCType<Squirrel>()]}] [c/AAAAAA:{ExpandedTooltipLoc(sellType.ToString())}]");
+                        $"[h:{TownNPCProfiles.GetHeadIndexSafe(ContentSamples.NpcsByNetId[ModContent.NPCType<Squirrel>()])}] [c/AAAAAA:{ExpandedTooltipLoc(sellType.ToString())}]");
                     tooltips.Add(line);
                 }
                 if (EnchantedTreeTileEntity.IsItemDupable(item.type))
@@ -289,14 +296,14 @@ namespace Fargowiltas.Content.Items
                     if (consumeCount > 1)
                     {
                         line = new TooltipLine(Mod, "TooltipSacrificable",
-                            $"[i:{CaughtNPCItem.CaughtTownies[NPCType<Squirrel>()]}] [c/AAAAAA:{Language.GetTextValue($"Mods.Fargowiltas.ExpandedTooltips.SacrificeEventPlural", consumeCount)}]");
+                            $"[h:{TownNPCProfiles.GetHeadIndexSafe(ContentSamples.NpcsByNetId[ModContent.NPCType<Squirrel>()])}] [c/AAAAAA:{Language.GetTextValue($"Mods.Fargowiltas.ExpandedTooltips.SacrificeEventPlural", consumeCount)}]");
                         tooltips.Add(line);
 
                     }
                     else
                     {
                         line = new TooltipLine(Mod, "TooltipSacrificable",
-                            $"[i:{CaughtNPCItem.CaughtTownies[NPCType<Squirrel>()]}] [c/AAAAAA:{ExpandedTooltipLoc("SacrificeEvent")}]");
+                            $"[h:{TownNPCProfiles.GetHeadIndexSafe(ContentSamples.NpcsByNetId[ModContent.NPCType<Squirrel>()])}] [c/AAAAAA:{ExpandedTooltipLoc("SacrificeEvent")}]");
                         tooltips.Add(line);
                     }
 
@@ -306,13 +313,13 @@ namespace Fargowiltas.Content.Items
                     if (sacCount > 1)
                     {
                         line = new TooltipLine(Mod, "TooltipSacrificable",
-                        $"[i:{CaughtNPCItem.CaughtTownies[NPCType<Squirrel>()]}] [c/AAAAAA:{Language.GetTextValue($"Mods.Fargowiltas.ExpandedTooltips.SacrificablePlural", sacCount)}]");
+                        $"[h:{TownNPCProfiles.GetHeadIndexSafe(ContentSamples.NpcsByNetId[ModContent.NPCType<Squirrel>()])}] [c/AAAAAA:{Language.GetTextValue($"Mods.Fargowiltas.ExpandedTooltips.SacrificablePlural", sacCount)}]");
                         tooltips.Add(line);
                     }
                     else
                     {
                         line = new TooltipLine(Mod, "TooltipSacrificable",
-                        $"[i:{CaughtNPCItem.CaughtTownies[NPCType<Squirrel>()]}] [c/AAAAAA:{ExpandedTooltipLoc("Sacrificable")}]");
+                        $"[h:{TownNPCProfiles.GetHeadIndexSafe(ContentSamples.NpcsByNetId[ModContent.NPCType<Squirrel>()])}] [c/AAAAAA:{ExpandedTooltipLoc("Sacrificable")}]");
                         tooltips.Add(line);
                     }
                 }

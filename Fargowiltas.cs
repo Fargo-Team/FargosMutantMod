@@ -218,7 +218,9 @@ namespace Fargowiltas
         private void SymbolsFix(On_ChatManager.orig_DrawColorCodedStringShadow_SpriteBatch_DynamicSpriteFont_TextSnippetArray_Vector2_Color_float_Vector2_Vector2_float_float orig, SpriteBatch spriteBatch,  DynamicSpriteFont font, IEnumerable<TextSnippet> snippets, Vector2 position, Color shadowColor, float rotation, Vector2 origin, Vector2 scale, float maxWidth, float spread = 2f)
         {
             SymbolTagHandler.SymbolSnippet.ShouldDraw = false;
+            NPCIconTagHandler.NPCIconSnippet.ShouldDraw = false;
             orig(spriteBatch, font, snippets.ToArray(), position, shadowColor, rotation, origin, scale, maxWidth, spread);
+            NPCIconTagHandler.NPCIconSnippet.ShouldDraw = true;
             SymbolTagHandler.SymbolSnippet.ShouldDraw = true;
         }
         private static IEnumerable<Item> GetWormholes(Player self) =>

@@ -65,7 +65,7 @@ namespace Fargowiltas.Content.UI.StatSheet
                 .FargoStat("FishingQuests", () => Main.LocalPlayer.anglerQuestsFinished)
                 .FargoStat("MiningSpeed", () => Math.Round(Math.Min(170, 200 - Main.LocalPlayer.pickSpeed * 100)))
                 .FargoStat("Luck", () => Math.Round(Main.LocalPlayer.luck, 2))
-                .FargoStat("PlacementSpeed", () => Main.LocalPlayer.tileSpeed)
+                .FargoStat("PlacementSpeed", () => Math.Round((1f / Main.LocalPlayer.tileSpeed - 0.25f) * 100))
                 .FargoStat("ExtraPlacementRange", () => Main.LocalPlayer.blockRange)
                 .RegisterCategory();
 

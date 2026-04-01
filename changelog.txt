@@ -1,3 +1,2 @@
 NEW UPDATE - V {ModVersion}
-- Fixed some issues with crate recipes
-- Slight russian/chinese localization updates
+- Fixed rare crash when entering subworlds in multiplayer

@@ -1,4 +1,4 @@
-﻿BrittleBone: {
+BrittleBone: {
 	DisplayName: Хрупкая кость
 	Tooltip: ""
 }
@@ -1625,4 +1625,9 @@ LuminiteOmniforge: {
 BlackHolePotion: {
 	DisplayName: Зелье чёрной дыры
 	Tooltip: Поглощает лежащие предметы вокруг вас в огромном радиусе
+}
+
+BridgeAtomizer: {
+	// DisplayName: Bridge Atomizer
+	// Tooltip: ""
 }

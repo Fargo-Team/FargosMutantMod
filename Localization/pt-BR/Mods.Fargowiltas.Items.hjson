@@ -1686,3 +1686,8 @@ BlackHolePotion: {
 	// DisplayName: Black Hole Potion
 	// Tooltip: Absorbs dropped items around you in a massive radius
 }
+
+BridgeAtomizer: {
+	// DisplayName: Bridge Atomizer
+	// Tooltip: ""
+}

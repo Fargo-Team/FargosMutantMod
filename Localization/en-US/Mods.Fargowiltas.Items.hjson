@@ -1628,5 +1628,5 @@ BlackHolePotion: {
 
 BridgeAtomizer: {
 	DisplayName: Bridge Atomizer
-	Tooltip: ""
+	Tooltip: "Deletes all platforms connected horizontally"
 }

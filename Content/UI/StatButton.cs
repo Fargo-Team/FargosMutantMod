@@ -1,10 +1,4 @@
-﻿using Microsoft.Xna.Framework.Graphics;
-using Terraria;
-using Terraria.GameContent.UI.Elements;
-using Terraria.Localization;
-using Terraria.UI;
-
-namespace Fargowiltas.Content.UI
+﻿namespace Fargowiltas.Content.UI
 {
     /*
     public class StatButton : UIState

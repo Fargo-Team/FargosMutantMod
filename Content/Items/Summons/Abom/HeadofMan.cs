@@ -1,4 +1,3 @@
-using Fargowiltas.Content.Items.Summons;
 using Terraria;
 using Terraria.ID;
 

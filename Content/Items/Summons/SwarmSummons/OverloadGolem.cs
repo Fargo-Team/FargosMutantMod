@@ -1,7 +1,5 @@
-﻿using Fargowiltas.Content.Items.Summons.VanillaCopy;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 
 namespace Fargowiltas.Content.Items.Summons.SwarmSummons

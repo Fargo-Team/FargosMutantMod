@@ -1,5 +1,4 @@
-﻿using Terraria.GameContent.Creative;
-using Terraria.ID;
+﻿using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Fargowiltas.Content.Items.Vanity

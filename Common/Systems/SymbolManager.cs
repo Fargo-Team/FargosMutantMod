@@ -1,18 +1,11 @@
-﻿using Microsoft.Extensions.Primitives;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using ReLogic.Graphics;
-using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
-using Terraria.GameContent;
-using Terraria.GameContent.UI.Chat;
 using Terraria.ModLoader;
 using Terraria.UI.Chat;
 
@@ -39,7 +32,7 @@ namespace Fargowiltas.Common.Systems
 
     public class SymbolTagHandler : ITagHandler
     {
-        private class SymbolSnippet : TextSnippet
+        public class SymbolSnippet : TextSnippet
         {
             private string texturePath;
             private Vector2 frameSize;
@@ -51,14 +44,17 @@ namespace Fargowiltas.Common.Systems
                 base.Color = Color.White;
             }
 
+            public static bool ShouldDraw = true;
+
             public override bool UniqueDraw(bool justCheckingString, out Vector2 size, SpriteBatch spriteBatch, Vector2 position = default(Vector2), Color color = default(Color), float scale = 1f)
-            {
+            {   
                 if (!justCheckingString && color != Color.Black)
                 {
                     Texture2D value = ModContent.Request<Texture2D>(texturePath, AssetRequestMode.ImmediateLoad).Value;
                     Rectangle frame = value.Frame();
                     Vector2 origin2 = frame.Size() / 2f;
-                    spriteBatch.Draw(value, position + origin2, frame, color, 0f, origin2, scale, SpriteEffects.None, 0f);                
+                    if (ShouldDraw)
+                        spriteBatch.Draw(value, position + origin2, frame, Color.White, 0f, origin2, scale, SpriteEffects.None, 0f);                
                 }
                 size = frameSize;
                 return true;

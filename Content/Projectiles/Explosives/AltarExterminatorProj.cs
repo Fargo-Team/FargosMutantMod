@@ -1,11 +1,9 @@
 ﻿using Fargowiltas.Common.Systems.Collections;
 using Microsoft.Xna.Framework;
-using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.ObjectData;
 
 namespace Fargowiltas.Content.Projectiles.Explosives
 {

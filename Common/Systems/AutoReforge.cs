@@ -1,6 +1,5 @@
 ﻿using Fargowiltas.Common.Configs;
 using Fargowiltas.Content.UI;
-using Microsoft.Build.Framework;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

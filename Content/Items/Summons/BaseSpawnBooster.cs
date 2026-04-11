@@ -1,11 +1,5 @@
-﻿using Fargowiltas.Content.Projectiles;
-using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.Audio;
-using Terraria.Chat;
-using Terraria.DataStructures;
+﻿using Terraria;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Fargowiltas.Content.Items.Summons

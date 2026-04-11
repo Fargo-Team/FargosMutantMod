@@ -1,5 +1,4 @@
 using Fargowiltas.Content.Buffs;
-using Fargowiltas.Content.Items.Summons;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;

@@ -1,9 +1,7 @@
 ﻿using Fargowiltas.Content.Items.Summons.Abom;
-using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Fargowiltas.Content.Items.Summons.SwarmSummons

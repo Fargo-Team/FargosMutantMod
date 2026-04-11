@@ -1,4 +1,3 @@
-using Fargowiltas.Content.Items.Summons;
 using Terraria.ID;
 
 namespace Fargowiltas.Content.Items.Summons.Deviantt

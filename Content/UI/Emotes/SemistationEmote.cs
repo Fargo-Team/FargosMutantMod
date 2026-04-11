@@ -1,6 +1,4 @@
-﻿using Fargowiltas.Content.Items.Tiles;
-using Terraria;
-using Terraria.GameContent.UI;
+﻿using Terraria.GameContent.UI;
 using Terraria.ModLoader;
 
 namespace Fargowiltas.Content.UI.Emotes

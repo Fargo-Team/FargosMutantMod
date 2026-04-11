@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria.GameContent.Achievements;
+﻿using Terraria.GameContent.Achievements;
 using Terraria.ModLoader;
-using Terraria.ModLoader.Config;
 
 namespace Fargowiltas.Content.Achievements
 {   

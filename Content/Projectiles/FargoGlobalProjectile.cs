@@ -2,7 +2,6 @@ using Fargowiltas.Common.Configs;
 using Fargowiltas.Common.Systems.Collections;
 using Fargowiltas.Content.NPCs;
 using Microsoft.Xna.Framework;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
@@ -10,7 +9,6 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.WorldBuilding;
-using static Terraria.ModLoader.ModContent;
 
 namespace Fargowiltas.Content.Projectiles
 {

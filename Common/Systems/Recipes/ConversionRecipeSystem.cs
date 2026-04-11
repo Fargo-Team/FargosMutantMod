@@ -1,5 +1,4 @@
 ﻿using Fargowiltas.Common.Configs;
-using Fargowiltas.Content.Items.Summons;
 using Fargowiltas.Content.Items.Summons.Mutant;
 using Fargowiltas.Content.Items.Summons.VanillaCopy;
 using Fargowiltas.Utilities;

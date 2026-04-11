@@ -1,28 +1,15 @@
-﻿using Fargowiltas.Assets.Textures;
-using Fargowiltas.Common.Configs;
-using Fargowiltas.Content.Items;
+﻿using Fargowiltas.Common.Configs;
 using Fargowiltas.Content.Items.Tiles;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Steamworks;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
 using Terraria.Audio;
-using Terraria.Enums;
 using Terraria.GameContent.UI;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
-using Terraria.ModLoader.UI;
 using Terraria.UI;
-using Terraria.UI.Chat;
 
 namespace Fargowiltas.Content.UI
 {

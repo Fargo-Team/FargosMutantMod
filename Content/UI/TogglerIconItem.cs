@@ -1,5 +1,4 @@
 ﻿using Fargowiltas.Assets.Textures;
-using Fargowiltas.Content.Items.Vanity;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

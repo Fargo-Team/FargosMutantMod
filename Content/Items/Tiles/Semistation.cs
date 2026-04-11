@@ -1,4 +1,3 @@
-using Fargowiltas.Content.Buffs;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;

@@ -1,5 +1,3 @@
-using Fargowiltas.Content.Items.Summons;
-using Terraria;
 using Terraria.ID;
 
 namespace Fargowiltas.Content.Items.Summons.Abom

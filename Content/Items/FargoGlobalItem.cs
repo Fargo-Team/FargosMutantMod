@@ -7,7 +7,6 @@ using Fargowiltas.Content.NPCs;
 using Fargowiltas.Content.UI.Emotes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Content;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -20,8 +19,6 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Default;
-using Terraria.UI;
-using Terraria.UI.Chat;
 using static Terraria.ModLoader.ModContent;
 
 namespace Fargowiltas.Content.Items
@@ -58,12 +55,12 @@ namespace Fargowiltas.Content.Items
 
         //public override bool CloneNewInstances => true;
 
-        TooltipLine FountainTooltip(string biome) => new TooltipLine(Mod, "Tooltip0", $"[i:909] [c/AAAAAA:{ExpandedTooltipLoc($"Fountain{biome}")}]");
+        TooltipLine FountainTooltip(string biome) => new TooltipLine(Mod, "Tooltip0", $"[s:Fargowiltas/FountainEffect] [c/AAAAAA:{ExpandedTooltipLoc($"Fountain{biome}")}]");
 
         //For the shop sale tooltip system.
         public class ShopTooltip
         {
-            public List<int> NpcItemIDs = new();
+            public List<int> NpcIDs = new();
             public List<string> NpcNames = new();
             public string Condition;
         }
@@ -85,6 +82,7 @@ namespace Fargowiltas.Content.Items
 
                         foreach (var entry in shop.ActiveEntries.Where(e => !e.Item.IsAir && e.Item.type == item.type))
                         {
+                            /*
                             Item npcItem = null;
                             foreach (var tryNPCItem in ContentSamples.ItemsByType.Where(i => i.Value.ModItem != null && i.Value.ModItem is CaughtNPCItem modItem && modItem.AssociatedNpcId == shop.NpcType))
                             {
@@ -93,6 +91,7 @@ namespace Fargowiltas.Content.Items
                             }
 
                             npcItem ??= item;
+                            */
 
                             string conditions = "";
                             int i = 0;
@@ -104,6 +103,7 @@ namespace Fargowiltas.Content.Items
                             }
                             string conditionLine = i > 0 ? ": " + conditions : "";
                             string npcName = ContentSamples.NpcsByNetId[shop.NpcType].FullName;
+                            int npcID = TownNPCProfiles.GetHeadIndexSafe(ContentSamples.NpcsByNetId[shop.NpcType]);
 
                             if (registeredShopTooltips.Any(t => t.NpcNames.Any(n => n == npcName) && t.Condition == conditionLine)) //sometimes it makes duplicates otherwise
                                 continue;
@@ -115,7 +115,7 @@ namespace Fargowiltas.Content.Items
                                 if (regTooltip.Condition == conditionLine && !regTooltip.NpcNames.Contains(npcName))
                                 {
                                     regTooltip.NpcNames.Add(npcName);
-                                    regTooltip.NpcItemIDs.Add(npcItem.type);
+                                    regTooltip.NpcIDs.Add(npcID);
                                     registered = true;
                                     break;
                                 }
@@ -123,7 +123,7 @@ namespace Fargowiltas.Content.Items
                             if (!registered)
                             {
                                 ShopTooltip tooltip = new();
-                                tooltip.NpcItemIDs.Add(npcItem.type);
+                                tooltip.NpcIDs.Add(npcID);
                                 tooltip.NpcNames.Add(npcName);
                                 tooltip.Condition = conditionLine;
                                 registeredShopTooltips.Add(tooltip);
@@ -138,8 +138,8 @@ namespace Fargowiltas.Content.Items
                 foreach (ShopTooltip tooltip in FargoItemSets.RegisteredShopTooltips[item.type])
                 {
 
-                    List<int> displayIDs = tooltip.NpcItemIDs.Where(i => i != item.type)?.ToList();
-                    int id = item.type;
+                    List<int> displayIDs = tooltip.NpcIDs?.ToList();
+                    int id = 0;
                     if (displayIDs.Count != 0)
                     {
                         int timer = (int)(Main.GlobalTimeWrappedHourly * 60);
@@ -158,7 +158,10 @@ namespace Fargowiltas.Content.Items
                     }
                     if (i > 5)
                         names = ExpandedTooltipLoc("SeveralVendors");
-                    string text = $"[i:{id}] [c/AAAAAA:{ExpandedTooltipLoc("SoldBy")} {names}{tooltip.Condition}]";
+                    string text = $"[h:{id}] [c/AAAAAA:{ExpandedTooltipLoc("SoldBy")} {names}{tooltip.Condition}]";
+                    //todo: fallback icon.
+                    if (id == -1)
+                        text = $"[c/AAAAAA:{ExpandedTooltipLoc("SoldBy")} {names}{tooltip.Condition}]";
                     line = new TooltipLine(Mod, "TooltipNPCSold", text);
                     tooltips.Add(line);
                 }
@@ -207,7 +210,7 @@ namespace Fargowiltas.Content.Items
                     case ItemID.GoldenBugNet:
                     case ItemID.FireproofBugNet:
                         if (fargoServerConfig.CatchNPCs)
-                            tooltips.Add(new TooltipLine(Mod, "Tooltip0", $"[i:1991] [c/AAAAAA:{ExpandedTooltipLoc("CatchNPCs")}]"));
+                            tooltips.Add(new TooltipLine(Mod, "Tooltip0", $"[s:Fargowiltas/CatchNPCs] [c/AAAAAA:{ExpandedTooltipLoc("CatchNPCs")}]"));
                         break;
 
                 }
@@ -228,22 +231,22 @@ namespace Fargowiltas.Content.Items
 
                     if (item.type == ItemID.MechanicsRod || item.type == ItemID.SittingDucksFishingRod || item.type == ItemID.HotlineFishingHook)
                     {
-                        line = new TooltipLine(Mod, "Tooltip1", $"[i:2373] [c/AAAAAA:{ExpandedTooltipLoc("Lures2")}]");
-                        tooltips.Insert(3, line);
+                        line = new TooltipLine(Mod, "Tooltip1", $"[s:Fargowiltas/ExtraLures] [c/AAAAAA:{ExpandedTooltipLoc("Lures2")}]");
+                        tooltips.Add(line);
                     }
 
                     if (item.type == ItemID.GoldenFishingRod)
                     {
-                        line = new TooltipLine(Mod, "Tooltip1", $"[i:2373] [c/AAAAAA:{ExpandedTooltipLoc("Lures3")}]");
-                        tooltips.Insert(3, line);
+                        line = new TooltipLine(Mod, "Tooltip1", $"[s:Fargowiltas/ExtraLures] [c/AAAAAA:{ExpandedTooltipLoc("Lures3")}]");
+                        tooltips.Add(line);
                     }
                 }
 
                 if (fargoServerConfig.TorchGodEX && item.type == ItemID.TorchGodsFavor)
                 {
-                    line = new TooltipLine(Mod, "TooltipTorchGod1", $"[i:5043] [c/AAAAAA:{ExpandedTooltipLoc("AutoTorch")}]");
+                    line = new TooltipLine(Mod, "TooltipTorchGod1", $"[s:Fargowiltas/AbidesTrueTorchLuck] [c/AAAAAA:{ExpandedTooltipLoc("AutoTorch")}]");
                     tooltips.Add(line);
-                    line = new TooltipLine(Mod, "TooltipTorchGod2", $"[i:5043] [c/AAAAAA:{ExpandedTooltipLoc("TrueTorchLuck")}]");
+                    line = new TooltipLine(Mod, "TooltipTorchGod2", $"[s:Fargowiltas/AbidesTrueTorchLuck] [c/AAAAAA:{ExpandedTooltipLoc("TrueTorchLuck")}]");
                     tooltips.Add(line);
                 }
 
@@ -252,7 +255,7 @@ namespace Fargowiltas.Content.Items
                 {
                     if (item.buffType != 0 && item.buffTime >= 60 * 60 * 2)
                     {
-                        line = new TooltipLine(Mod, "TooltipUnlim", $"[i:{item.type}] [c/AAAAAA:{Language.GetTextValue($"Mods.Fargowiltas.ExpandedTooltips.UnlimitedBuff30", FargoServerConfig.Instance.UnlimitedPotionBuffsAmount)}]");
+                        line = new TooltipLine(Mod, "TooltipUnlim", $"[s:Fargowiltas/InfinitePotions] [c/AAAAAA:{Language.GetTextValue($"Mods.Fargowiltas.ExpandedTooltips.UnlimitedBuff30", FargoServerConfig.Instance.UnlimitedPotionBuffsAmount)}]");
                         tooltips.Add(line);
                     }
                     /*else if (item.bait > 0)
@@ -264,26 +267,26 @@ namespace Fargowiltas.Content.Items
 
                 if (fargoServerConfig.PermanentStationsNearby && FargoItemSets.BuffStation[item.type])
                 {
-                    line = new TooltipLine(Mod, "TooltipUnlim", $"[i:{item.type}] [c/AAAAAA:{ExpandedTooltipLoc("PermanentEffectNearby")}]");
+                    line = new TooltipLine(Mod, "TooltipUnlim", $"[s:Fargowiltas/PermanentStationsNearby] [c/AAAAAA:{ExpandedTooltipLoc("PermanentEffectNearby")}]");
                     tooltips.Add(line);
                 }
 
                 if (fargoServerConfig.PiggyBankAcc && (FargoItemSets.InfoAccessory[item.type] || FargoItemSets.MechanicalAccessory[item.type]))
                 {
-                    line = new TooltipLine(Mod, "TooltipUnlim", $"[i:87] [c/AAAAAA:{ExpandedTooltipLoc("WorksFromBanks")}]");
+                    line = new TooltipLine(Mod, "TooltipUnlim", $"[s:Fargowiltas/WorksInPiggy] [c/AAAAAA:{ExpandedTooltipLoc("WorksFromBanks")}]");
                     tooltips.Add(line);
                 }
 
                 if (Squirrel.SquirrelSells(item, out SquirrelSellType sellType) != SquirrelShopGroup.End)
                 {
                     line = new TooltipLine(Mod, "TooltipSquirrel",
-                        $"[i:{CaughtNPCItem.CaughtTownies[NPCType<Squirrel>()]}] [c/AAAAAA:{ExpandedTooltipLoc(sellType.ToString())}]");
+                        $"[h:{TownNPCProfiles.GetHeadIndexSafe(ContentSamples.NpcsByNetId[ModContent.NPCType<Squirrel>()])}] [c/AAAAAA:{ExpandedTooltipLoc(sellType.ToString())}]");
                     tooltips.Add(line);
                 }
                 if (EnchantedTreeTileEntity.IsItemDupable(item.type))
                 {
                     line = new TooltipLine(Mod, "TooltipEnchantedTree",
-                        $"[i:Fargowiltas/EnchantedTree] [c/AAAAAA:{ExpandedTooltipLoc("EnchantedTreeDupable")}]");
+                        $"[s:Fargowiltas/DuplicatableAtTree] [c/AAAAAA:{ExpandedTooltipLoc("EnchantedTreeDupable")}]");
                     tooltips.Add(line);
                 }
 
@@ -293,14 +296,14 @@ namespace Fargowiltas.Content.Items
                     if (consumeCount > 1)
                     {
                         line = new TooltipLine(Mod, "TooltipSacrificable",
-                            $"[i:{CaughtNPCItem.CaughtTownies[NPCType<Squirrel>()]}] [c/AAAAAA:{Language.GetTextValue($"Mods.Fargowiltas.ExpandedTooltips.SacrificeEventPlural", consumeCount)}]");
+                            $"[h:{TownNPCProfiles.GetHeadIndexSafe(ContentSamples.NpcsByNetId[ModContent.NPCType<Squirrel>()])}] [c/AAAAAA:{Language.GetTextValue($"Mods.Fargowiltas.ExpandedTooltips.SacrificeEventPlural", consumeCount)}]");
                         tooltips.Add(line);
 
                     }
                     else
                     {
                         line = new TooltipLine(Mod, "TooltipSacrificable",
-                            $"[i:{CaughtNPCItem.CaughtTownies[NPCType<Squirrel>()]}] [c/AAAAAA:{ExpandedTooltipLoc("SacrificeEvent")}]");
+                            $"[h:{TownNPCProfiles.GetHeadIndexSafe(ContentSamples.NpcsByNetId[ModContent.NPCType<Squirrel>()])}] [c/AAAAAA:{ExpandedTooltipLoc("SacrificeEvent")}]");
                         tooltips.Add(line);
                     }
 
@@ -310,20 +313,20 @@ namespace Fargowiltas.Content.Items
                     if (sacCount > 1)
                     {
                         line = new TooltipLine(Mod, "TooltipSacrificable",
-                        $"[i:{CaughtNPCItem.CaughtTownies[NPCType<Squirrel>()]}] [c/AAAAAA:{Language.GetTextValue($"Mods.Fargowiltas.ExpandedTooltips.SacrificablePlural", sacCount)}]");
+                        $"[h:{TownNPCProfiles.GetHeadIndexSafe(ContentSamples.NpcsByNetId[ModContent.NPCType<Squirrel>()])}] [c/AAAAAA:{Language.GetTextValue($"Mods.Fargowiltas.ExpandedTooltips.SacrificablePlural", sacCount)}]");
                         tooltips.Add(line);
                     }
                     else
                     {
                         line = new TooltipLine(Mod, "TooltipSacrificable",
-                        $"[i:{CaughtNPCItem.CaughtTownies[NPCType<Squirrel>()]}] [c/AAAAAA:{ExpandedTooltipLoc("Sacrificable")}]");
+                        $"[h:{TownNPCProfiles.GetHeadIndexSafe(ContentSamples.NpcsByNetId[ModContent.NPCType<Squirrel>()])}] [c/AAAAAA:{ExpandedTooltipLoc("Sacrificable")}]");
                         tooltips.Add(line);
                     }
                 }
 
                 if (FargoItemSets.TreeTreasureObtainable[item.type])
                 {
-                    line = new TooltipLine(Mod, "LumberJackTreeTreasure", $"[i:{CaughtNPCItem.CaughtTownies[NPCType<LumberJack>()]}] [c/AAAAAA:{ExpandedTooltipLoc("TreeTreasure")}]");
+                    line = new TooltipLine(Mod, "LumberJackTreeTreasure", $"[s:Fargowiltas/TreeTreasure] [c/AAAAAA:{ExpandedTooltipLoc("TreeTreasure")}]");
                     tooltips.Add(line);
                 }
 
@@ -352,7 +355,7 @@ namespace Fargowiltas.Content.Items
                 if (bedSpeed != 1f && item.createTile != -1 && TileID.Sets.CanBeSleptIn[item.createTile])
                 {
                     TooltipLine bed = new(Mod, "TooltipFasterBedSpeedConfig",
-                        $"[i:Bed] [c/AAAAAA:{Language.GetText("Mods.Fargowiltas.ExpandedTooltips.FasterBedSpeed").WithFormatArgs(bedSpeed)}]");
+                        $"[s:Fargowiltas/BedSpeed] [c/AAAAAA:{Language.GetText("Mods.Fargowiltas.ExpandedTooltips.FasterBedSpeed").WithFormatArgs(bedSpeed)}]");
                     tooltips.Add(bed);
                 }
             }
@@ -400,12 +403,12 @@ namespace Fargowiltas.Content.Items
 
             if (FargoClientConfig.Instance.DisableAllScopeView is ScopedBinocularViews.AllDisabled or ScopedBinocularViews.SniperRifleScopeDisabled && item.type == ItemID.SniperRifle)
             {
-                TooltipLine line = new(Mod, "TooltipSniperRifleScopeView", $"[i:RifleScope] [c/AAAAAA:{ExpandedTooltipLoc("ScopeViewToggle")}]");
+                TooltipLine line = new(Mod, "TooltipSniperRifleScopeView", $"[s:Fargowiltas/BinocularDisabled] [c/AAAAAA:{ExpandedTooltipLoc("ScopeViewToggle")}]");
                 tooltips.Add(line);
             }
             if (FargoClientConfig.Instance.DisableAllScopeView is ScopedBinocularViews.AllDisabled or ScopedBinocularViews.RifleScopeAccessoryDisabled && item.type is ItemID.RifleScope or ItemID.SniperScope or ItemID.ReconScope)
             {
-                TooltipLine line = new(Mod, "TooltipRifleScopeView", $"[i:RifleScope] [c/AAAAAA:{ExpandedTooltipLoc("ScopeViewToggle")}]");
+                TooltipLine line = new(Mod, "TooltipRifleScopeView", $"[s:Fargowiltas/BinocularDisabled] [c/AAAAAA:{ExpandedTooltipLoc("ScopeViewToggle")}]");
                 tooltips.Add(line);
             }
         }
@@ -599,6 +602,13 @@ namespace Fargowiltas.Content.Items
         {
             return FargoServerConfig.Instance.UnlimitedAmmo && Main.hardMode && ammo.ammo != 0 && (ammo.stack >= 3996);
         }
+        public bool UnlimitedBuff(Item buff)
+        {
+            return FargoServerConfig.Instance.UnlimitedPotionBuffs is UnlimitedBuffSelections.On 
+                && (buff.buffType > 0 || FargoItemSets.NonBuffPotion[buff.type])
+                && buff.stack >= FargoServerConfig.Instance.UnlimitedPotionBuffsAmount
+                && buff.buffTime >= 60 * 60 * 2;
+        }
         public override bool CanBeConsumedAsAmmo(Item ammo, Item weapon, Player player)
         {
             if (UnlimitedAmmo(ammo))
@@ -619,7 +629,7 @@ namespace Fargowiltas.Content.Items
         {
             if (FargoServerConfig.Instance.UnlimitedConsumableWeapons && Main.hardMode && item.damage > 0 && item.ammo == 0 && item.stack >= 3996)
                 return false;
-            if ((FargoServerConfig.Instance.UnlimitedPotionBuffs is UnlimitedBuffSelections.On || (FargoServerConfig.Instance.UnlimitedPotionBuffs is UnlimitedBuffSelections.BossOnly && FargoGlobalNPC.AnyBossAlive())) && (item.buffType > 0 || FargoItemSets.NonBuffPotion[item.type]) && (item.stack >= 30 || player.inventory.Any(i => i.type == item.type && !i.IsAir && i.stack >= 30)) && item.buffTime >= 60 * 60 * 2)
+            if ((FargoServerConfig.Instance.UnlimitedPotionBuffs is UnlimitedBuffSelections.On || (FargoServerConfig.Instance.UnlimitedPotionBuffs is UnlimitedBuffSelections.BossOnly && FargoGlobalNPC.AnyBossAlive())) && (item.buffType > 0 || FargoItemSets.NonBuffPotion[item.type]) && (item.stack >= FargoServerConfig.Instance.UnlimitedPotionBuffsAmount || player.inventory.Any(i => i.type == item.type && !i.IsAir && i.stack >= FargoServerConfig.Instance.UnlimitedPotionBuffsAmount)) && item.buffTime >= 60 * 60 * 2)
                 return false;
             return base.ConsumeItem(item, player);
         }
@@ -778,19 +788,12 @@ namespace Fargowiltas.Content.Items
                     item.stack = stack;
                 }
             }
-            if (UnlimitedAmmo(item) && !item.IsACoin)
+            if ((UnlimitedAmmo(item) || UnlimitedBuff(item)) && !item.IsACoin)
             {
-                ChatManager.DrawColorCodedStringWithShadow(spriteBatch, FontAssets.ItemStack.Value, "∞", position + new Vector2(8f, -24f) * scale, drawColor, 0f, Vector2.Zero, new Vector2(scale), -1f, scale);
-                /*
-                for (int j = 0; j < 12; j++)
-                {
-                    Vector2 afterimageOffset = (MathHelper.TwoPi * j / 12f).ToRotationVector2() * 1f;
-                    Color glowColor = Color.Gray with { A = 0 };
+                //ChatManager.DrawColorCodedStringWithShadow(spriteBatch, FontAssets.ItemStack.Value, "∞", position + new Vector2(8f, -24f) * scale, drawColor, 0f, Vector2.Zero, new Vector2(scale), -1f, scale);
 
-                    Texture2D texture = Terraria.GameContent.TextureAssets.Item[item.type].Value;
-                    Main.EntitySpriteDraw(texture, position + afterimageOffset, null, glowColor, 0, texture.Size() * 0.5f, scale, SpriteEffects.None, 0f);
-                }
-                */
+                Texture2D texture = ModContent.Request<Texture2D>("Fargowiltas/Assets/Symbols/Infinity").Value;
+                Main.EntitySpriteDraw(texture, position + new Vector2(14f, -16f) * scale, null, Color.White, 0, texture.Size() * 0.5f, scale, SpriteEffects.None, 0);
             }
             return base.PreDrawInInventory(item, spriteBatch, position, frame, drawColor, itemColor, origin, scale);
         }

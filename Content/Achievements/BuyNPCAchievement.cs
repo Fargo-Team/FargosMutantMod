@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria.Achievements;
+﻿using Terraria.Achievements;
 using Terraria.GameContent.Achievements;
 using Terraria.ModLoader;
 

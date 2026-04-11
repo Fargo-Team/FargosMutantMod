@@ -51,9 +51,11 @@ namespace Fargowiltas.Content.Projectiles.Explosives
             }
 
             // Seven across
+            int yStart = (int)(1 + position.Y / 16.0f);
+            int yEnd = Main.maxTilesY - 40;
             for (int x = -3; x <= 3; x++)
             {
-                for (int y = (int)(1 + position.Y / 16.0f); y <= Main.maxTilesY - 40; y++)
+                for (int y = yStart; y <= yEnd; y++)
                 {
                     int xPosition = (int)(x + position.X / 16.0f);
 
@@ -85,10 +87,10 @@ namespace Fargowiltas.Content.Projectiles.Explosives
                     {
                         WorldGen.PlaceTile(xPosition, y, TileID.Rope);
                     }
-
-                    NetMessage.SendTileSquare(-1, xPosition, y, 1);
                 }
             }
+
+            NetMessage.SendTileSquare(-1, (int)(position.X / 16.0f) - 3, yStart, 7, yEnd - yStart + 1);
         }
     }
 }

@@ -76,9 +76,12 @@ namespace Fargowiltas.Content.Projectiles.Explosives
                         WorldGen.PlaceTile(xPosition, y, TileID.Rope);
                     }
 
-                    NetMessage.SendTileSquare(-1, xPosition, y, 1);
+                    
                 }
             }
+
+            int yStart = (int)(1 + position.Y / 16.0f);
+            NetMessage.SendTileSquare(-1, (int)(position.X / 16f) - 2, yStart, 5, yEndpoint + 1 - yStart);
         }
     }
 }

@@ -73,8 +73,9 @@ namespace Fargowiltas.Content.Projectiles.Explosives
                 // Spawn platforms
                 WorldGen.PlaceTile(xPosition, yPosition, TileID.Dirt);
 
-                NetMessage.SendTileSquare(-1, xPosition, yPosition, 1);
+                
             }
+            NetMessage.SendTileSquare(-1, (int)(min + position.X / 16.0f), (int)(position.Y / 16.0f), max - min + 1, 1);
         }
     }
 }

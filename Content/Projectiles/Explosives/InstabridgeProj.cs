@@ -62,8 +62,6 @@ namespace Fargowiltas.Content.Projectiles.Explosives
                         FargoGlobalTile.ClearEverything(xPosition, yPosition, false);
                         // Spawn platforms
                         WorldGen.PlaceTile(xPosition, yPosition, TileID.Platforms);
-                        if (Main.netMode == NetmodeID.Server)
-                            NetMessage.SendTileSquare(-1, xPosition, yPosition, 1);
                     }
                     else
                     {
@@ -72,6 +70,9 @@ namespace Fargowiltas.Content.Projectiles.Explosives
                     }
                 }
             }
+
+            if (Projectile.ai[2] != 2 && Main.netMode == NetmodeID.Server)
+                NetMessage.SendTileSquare(-1, 0, (int)(position.Y / 16f), Main.maxTilesX, 1, TileChangeType.None);
         }
     }
 }

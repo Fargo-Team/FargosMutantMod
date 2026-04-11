@@ -68,7 +68,7 @@ namespace Fargowiltas.Content.Projectiles.Explosives
 
                 if (deletableTiles.Contains(tile.TileType))
                 {
-                    FargoGlobalTile.ClearEverything(xPosition, yPosition);
+                    FargoGlobalTile.ClearEverything(xPosition, yPosition, false);
                 }
                 else if (x > min + 10 && tile.HasTile && Main.tileSolid[tile.TileType])
                 {
@@ -77,9 +77,10 @@ namespace Fargowiltas.Content.Projectiles.Explosives
 
                 // Spawn platforms
                 WorldGen.PlaceTile(xPosition, yPosition, TileID.Platforms);
-
-                NetMessage.SendTileSquare(-1, xPosition, yPosition, 1);
             }
+
+            int xx = goLeft ? -min - max : min;
+            NetMessage.SendTileSquare(-1, (int)(xx + position.X / 16.0f), (int)(position.Y / 16.0f), max - min + 1, 1);
         }
     }
 }

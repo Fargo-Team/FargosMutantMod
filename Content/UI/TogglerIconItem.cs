@@ -26,10 +26,5 @@ namespace Fargowiltas.Content.UI
             FargoUIManager.Toggle<CombinedUI>();
             return true;
         }
-
-        public override void AddRecipes()
-        {
-            CreateRecipe().AddIngredient(RecipeGroupID.IronBar).AddTile(TileID.Anvils).Register();
-        }
     }
 }

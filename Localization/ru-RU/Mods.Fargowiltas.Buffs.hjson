@@ -1,15 +1,15 @@
 ﻿Omnistation: {
 	DisplayName: Омнистанция
-	Description: Эффекты всех ванильных бафф-станций
+	Description: Эффекты всех ванильных станций-усилителей
 }
 
 Semistation: {
 	DisplayName: Полустанция
-	Description: Эффекты некоторых ванильных бафф-станций
+	Description: Эффекты некоторых ванильных станций-усилителей
 }
 
 WoodDrop: {
-	DisplayName: Дебафф на выпадение древесины
+	DisplayName: Выпадение древесины
 	Description: Mods.Fargowiltas.BuffDescription.WoodDrop
 }
 

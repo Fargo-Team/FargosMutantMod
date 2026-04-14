@@ -1,11 +1,11 @@
-MultitaskCenterAchievement: {
+﻿MultitaskCenterAchievement: {
 	FriendlyName: Как третья рука
 	Description: Зажгите своё творчество, соединив несколько станций создания в компактный верстачок!
 }
 
 CrucibleofTheCosmosAchievement: {
 	FriendlyName: Мастер создания
-	Description: Усовершенствуйте своё мастертво, соединив все возможные станции создания в одну сподручную мастерскую!
+	Description: Усовершенствуйте своё мастертво, соединив все возможные станции создания в сподручную мастерскую!
 }
 
 ElementalAssemblerAchievement: {
@@ -30,7 +30,7 @@ NPCSacrificeAchievement: {
 
 OmnistationAchievement: {
 	FriendlyName: Лучик света
-	Description: Улучшите Полустанцию до Омнистанции — кульминации баффовых станций.
+	Description: Улучшите Полустанцию до Омнистанции, кульминации станций-усилителей.
 }
 
 SemistationAchievement: {

@@ -567,11 +567,6 @@ GoblinScrap: {
 	Tooltip: 召唤哥布林侦察兵
 }
 
-GoldenSlimeCrown: {
-	DisplayName: 金史莱姆王冠
-	Tooltip: 召唤金史莱姆
-}
-
 GrandCross: {
 	DisplayName: 圣之十字
 	Tooltip:

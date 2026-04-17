@@ -107,11 +107,6 @@ GoblinScrapBuff: {
 	Description: Greatly increases Goblin Scout spawn rates
 }
 
-GoldenSlimeCrownBuff: {
-	DisplayName: Golden Slime Crown Buff
-	Description: Greatly increases Golden Slime spawn rates
-}
-
 GrandCrossBuff: {
 	DisplayName: Grand Cross Buff
 	Description: Greatly increases Paladin spawn rates

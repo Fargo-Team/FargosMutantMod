@@ -107,11 +107,6 @@ GoblinScrapBuff: {
 	Description: Скорость появления гоблинов-разведчиков значительно увеличена
 }
 
-GoldenSlimeCrownBuff: {
-	DisplayName: Золотая корона слизней
-	Description: Скорость появления золотых слизней значительно увеличена
-}
-
 GrandCrossBuff: {
 	DisplayName: Великий крест
 	Description: Скорость появления паладинов значительно увеличена

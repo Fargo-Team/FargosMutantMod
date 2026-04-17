@@ -85,7 +85,6 @@ namespace Fargowiltas
             "dreadnautilus",
             "gnome",
             "redDevil",
-            "goldenSlime",
             "goblinScout",
             "pumpking",
             "mourningWood",

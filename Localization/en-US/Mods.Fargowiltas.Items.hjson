@@ -542,11 +542,6 @@ GoblinScrap: {
 	Tooltip: Greatly increases Goblin Scout spawn rates
 }
 
-GoldenSlimeCrown: {
-	DisplayName: Golden Slime Crown
-	Tooltip: Greatly increases Golden Slime spawn rates
-}
-
 GrandCross: {
 	DisplayName: Grand Cross
 	Tooltip: Greatly increases Paladin spawn rates

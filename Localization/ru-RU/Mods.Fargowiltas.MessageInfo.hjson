@@ -1,11 +1,11 @@
-Common: {
+﻿Common: {
 	Exclamation: !
 	Period: .
 }
 
 SiblingPylonNotNearSiblings: Этот пилон нуждается в мутировавших собратьях, чтобы работать.
 NearbySiblingPylonNotNearSiblings: Ближайший пилон нуждается в мутировавших собратьях, чтобы работать.
-NewItemUnlocked: Новый предмет доступен в магазине НИПа {0}!
+NewItemUnlocked: Новый предмет доступен в магазине у: {0}!
 HaveAwoken: "{0} пробудился!"
 // Cancel Event
 CancelEvent: Нашествие было прекращено!

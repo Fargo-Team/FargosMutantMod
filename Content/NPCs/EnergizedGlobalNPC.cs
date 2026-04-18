@@ -385,11 +385,34 @@ namespace Fargowiltas.Content.NPCs
             }
             return stats;
         }
+        public static int GetHookType()
+        {
+            return Fargowiltas.Binding switch
+            {
+                Binding.PreHardmode => ItemID.DiamondHook,
+                Binding.PreMechs => ItemID.DualHook,
+                Binding.PostMechs => ItemID.DualHook,
+                Binding.PostPlantera => ItemID.SpookyHook,
+                Binding.PreMoonLord => ItemID.SpookyHook,
+                _ => 0
+            };
+        }
+        internal static Item QuickGrapple_GetItemToUse_Detour(On_Player.orig_QuickGrapple_GetItemToUse orig, Player self)
+        {
+            var item = orig(self);
+            int hookOverride = GetHookType();
+            if (hookOverride != 0)
+            {
+                item = ContentSamples.ItemsByType[hookOverride];
+            }
+            return item;
+        }
         public override void Load()
         {
             MonoModHooks.Add(VerticalWingSpeeds_Method, VerticalWingSpeeds_Detour);
             MonoModHooks.Add(HorizontalWingSpeeds_Method, HorizontalWingSpeeds_Detour);
             On_Player.GetWingStats += GetWingStats_Detour;
+            On_Player.QuickGrapple_GetItemToUse += QuickGrapple_GetItemToUse_Detour;
         }
     }
 }

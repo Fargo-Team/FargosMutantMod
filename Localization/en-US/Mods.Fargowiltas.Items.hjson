@@ -960,13 +960,13 @@ Overloader: {
 		'''
 }
 
-OverloaderRewards: 
-		'''
-		When used, all summons in the stack will be consumed, up to 10
-		The more consumed, the stronger the boss will be
-		The boss binds your movement to the appropriate tier
-		The boss will drop {0} treasure bags, {1} {^1:trophy;trophies}, and {2} {^2:energizer;energizers} when defeated (rewards increase with stack size)
-		'''
+OverloaderRewards:
+	'''
+	When used, all summons in the stack will be consumed, up to 10
+	The more consumed, the stronger the boss will be
+	The boss binds your movement to the appropriate tier
+	The boss will drop {0} treasure bags, {1} {^1:trophy;trophies}, and {2} {^2:energizer;energizers} when defeated (rewards increase with stack size)
+	'''
 
 OverloadEye: {
 	DisplayName: Demon Eye Tears

@@ -1,13 +1,25 @@
 using Fargowiltas.Common.Systems.Collections;
 using Microsoft.Xna.Framework;
+using System.Reflection;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
+using static Fargowiltas.Content.NPCs.EnergizedGlobalNPC;
 
 namespace Fargowiltas.Content.NPCs
 {
     public class EnergizedGlobalNPC : GlobalNPC
     {
+        public enum Binding
+        {
+            None,
+            PreHardmode,
+            PreMechs,
+            PostMechs,
+            PostPlantera,
+            PreMoonLord
+        }
         public override bool InstancePerEntity => true;
         public bool SwarmActive(NPC npc) => npc.GetGlobalNPC<FargoGlobalNPC>().SwarmActive;
         public bool SwarmHealth = false;
@@ -58,108 +70,124 @@ namespace Fargowiltas.Content.NPCs
                 {
                     case NPCID.KingSlime:
                         npc.lifeMax = baseHealth;
+                        Fargowiltas.Binding = Binding.PreHardmode;
                         break;
 
                     case NPCID.EyeofCthulhu:
                         npc.lifeMax = baseHealth;
+                        Fargowiltas.Binding = Binding.PreHardmode;
                         break;
 
                     case NPCID.EaterofWorldsHead:
                         npc.lifeMax = baseHealth / 12;
+                        Fargowiltas.Binding = Binding.PreHardmode;
                         break;
 
                     case NPCID.BrainofCthulhu:
                         npc.lifeMax = (int)(baseHealth / 2.5f);
+                        Fargowiltas.Binding = Binding.PreHardmode;
                         break;
 
                     case NPCID.DD2DarkMageT1:
                         npc.lifeMax = (int)(baseHealth / 1.5f);
+                        Fargowiltas.Binding = Binding.PreHardmode;
                         break;
 
                     case NPCID.Deerclops:
                         npc.lifeMax = baseHealth;
+                        Fargowiltas.Binding = Binding.PreHardmode;
                         break;
 
                     case NPCID.QueenBee:
                         npc.lifeMax = baseHealth;
+                        Fargowiltas.Binding = Binding.PreHardmode;
                         break;
 
                     case NPCID.SkeletronHead:
                         npc.lifeMax = baseHealth / 2;
+                        Fargowiltas.Binding = Binding.PreHardmode;
                         break;
 
                     case NPCID.WallofFlesh:
                         npc.lifeMax = baseHealth;
+                        Fargowiltas.Binding = Binding.PreHardmode;
                         break;
 
                     case NPCID.QueenSlimeBoss:
                         npc.lifeMax = (int)(baseHealthHM * 0.6f);
                         Fargowiltas.HardmodeSwarmActive = true;
+                        Fargowiltas.Binding = Binding.PreMechs;
                         break;
 
                     case NPCID.TheDestroyer:
                         npc.lifeMax = (int)(baseHealthHM * 1.5f);
                         Fargowiltas.HardmodeSwarmActive = true;
+                        Fargowiltas.Binding = Binding.PreMechs;
                         break;
 
                     case NPCID.Retinazer:
                         npc.lifeMax = baseHealthHM / 2;
                         Fargowiltas.HardmodeSwarmActive = true;
+                        Fargowiltas.Binding = Binding.PreMechs;
                         break;
 
                     case NPCID.Spazmatism:
                         npc.lifeMax = baseHealthHM / 2;
                         Fargowiltas.HardmodeSwarmActive = true;
+                        Fargowiltas.Binding = Binding.PreMechs;
                         break;
 
                     case NPCID.SkeletronPrime:
                         npc.lifeMax = (int)(baseHealthHM / 1.5f);
                         Fargowiltas.HardmodeSwarmActive = true;
+                        Fargowiltas.Binding = Binding.PreMechs;
                         break;
 
                     case NPCID.Plantera:
                         npc.lifeMax = baseHealthHM / 2;
                         Fargowiltas.HardmodeSwarmActive = true;
+                        Fargowiltas.Binding = Binding.PostMechs;
                         break;
 
                     case NPCID.Golem:
                         npc.lifeMax = baseHealthHM / 6;
                         Fargowiltas.HardmodeSwarmActive = true;
+                        Fargowiltas.Binding = Binding.PostPlantera;
                         break;
 
                     case NPCID.DD2Betsy:
                         npc.lifeMax = (int)(baseHealthHM / 1.5f);
                         Fargowiltas.HardmodeSwarmActive = true;
+                        Fargowiltas.Binding = Binding.PostPlantera;
                         break;
 
                     case NPCID.DukeFishron:
                         npc.lifeMax = (int)(baseHealthHM / 1.5f);
                         Fargowiltas.HardmodeSwarmActive = true;
-                        Fargowiltas.LateHardmodeSwarmActive = true;
+                        Fargowiltas.Binding = Binding.PostPlantera;
                         break;
 
                     case NPCID.HallowBoss:
                         npc.lifeMax = (int)(baseHealthHM / 1.5f);
                         Fargowiltas.HardmodeSwarmActive = true;
-                        Fargowiltas.LateHardmodeSwarmActive = true;
+                        Fargowiltas.Binding = Binding.PostPlantera;
                         break;
 
                     case NPCID.CultistBoss:
                         npc.lifeMax = baseHealthHM / 4;
                         Fargowiltas.HardmodeSwarmActive = true;
-                        Fargowiltas.LateHardmodeSwarmActive = true;
+                        Fargowiltas.Binding = Binding.PreMoonLord;
                         break;
 
                     case NPCID.MoonLordCore:
                         npc.lifeMax = (int)(baseHealthHM / 2.5f);
                         Fargowiltas.HardmodeSwarmActive = true;
-                        Fargowiltas.LateHardmodeSwarmActive = true;
+                        Fargowiltas.Binding = Binding.PreMoonLord;
                         break;
 
                     case NPCID.DungeonGuardian:
                         npc.lifeMax += 100 * Fargowiltas.SwarmItemsUsed;
                         validBoss = false;
-                        Fargowiltas.SwarmNoHyperActive = true;
                         break;
 
                     default:
@@ -241,40 +269,127 @@ namespace Fargowiltas.Content.NPCs
                     npc.damage = minDamage;
             }
         }
-        private int go = 1;
 
-        public override bool PreAI(NPC npc)
+    }
+
+    public class EnergizedModPlayer : ModPlayer
+    {
+        public void SetMovement(float runSpeed, int dashType, bool infFlight)
         {
-            if (Fargowiltas.SwarmNoHyperActive)
-                return true;
-            if (Fargowiltas.LateHardmodeSwarmActive && Main.GameUpdateCount % 3 == 0)
-                return true;
-            if (Fargowiltas.HardmodeSwarmActive && Main.GameUpdateCount % 2 == 0)
-                return true;
+            Player.accRunSpeed = runSpeed;
 
-            if (npc.type == NPCID.MoonLordFreeEye)
-                return true;
-
-            if (Fargowiltas.SwarmActive && !npc.townNPC && npc.lifeMax > 1 && go < 2)
-            {
-                go++;
-                npc.AI();
-                float speedToAdd = 0.5f;
-                Vector2 newPos = npc.position + npc.velocity * speedToAdd;
-                if (!Collision.SolidCollision(newPos, npc.width, npc.height))
-                {
-                    npc.position = newPos;
-                }
-            }
-            return true;
+            if (Player.dashType != 0)
+                Player.dashType = dashType;
+            Player.empressBrooch = false;
+            Player.blockExtraJumps = true;
+            if (Player.mount.Active)
+                Player.mount.Dismount(Player);
         }
-
-        public override void PostAI(NPC npc)
+        public void SetMoveStats()
         {
-            if (go == 2)
+            switch (Fargowiltas.Binding)
             {
-                go = 1;
+                case Binding.None:
+                    return;
+                case Binding.PreHardmode:
+                    SetMovement(6.75f, DashID.ShieldOfCthulhu, false);
+                    break;
+                case Binding.PreMechs:
+                    SetMovement(7.5f, DashID.CrystalAssassin, false);
+                    break;
+                case Binding.PostMechs:
+                    SetMovement(7.5f, DashID.CrystalAssassin, false);
+                    break;
+                case Binding.PostPlantera:
+                    SetMovement(7.5f, DashID.TabiAndMasterNinjaGear, false);
+                    break;
+                case Binding.PreMoonLord:
+                    SetMovement(7.5f, DashID.TabiAndMasterNinjaGear, true);
+                    break;
             }
+        }
+        public override void PostUpdateEquips()
+        {
+            SetMoveStats();
+        }
+        public override void PostUpdateRunSpeeds()
+        {
+            SetMoveStats();
+        }
+        private static readonly MethodInfo VerticalWingSpeeds_Method = typeof(ItemLoader).GetMethod("VerticalWingSpeeds", FargoUtils.UniversalBindingFlags);
+        public delegate void Orig_VerticalWingSpeeds(Player player, ref float ascentWhenFalling, ref float ascentWhenRising,
+            ref float maxCanAscendMultiplier, ref float maxAscentMultiplier, ref float constantAscend);
+        internal static void VerticalWingSpeeds_Detour(Orig_VerticalWingSpeeds orig, Player player, ref float ascentWhenFalling, ref float ascentWhenRising,
+            ref float maxCanAscendMultiplier, ref float maxAscentMultiplier, ref float constantAscend)
+        {
+            switch (Fargowiltas.Binding)
+            {
+                case Binding.None:
+                    orig(player, ref ascentWhenFalling, ref ascentWhenRising, ref maxCanAscendMultiplier, ref maxAscentMultiplier, ref constantAscend);
+                    return;
+                case Binding.PreHardmode:
+                    break;
+                case Binding.PreMechs:
+                    break;
+                case Binding.PostMechs:
+                    break;
+                case Binding.PostPlantera:
+                    break;
+                case Binding.PreMoonLord:
+                    break;
+            }
+        }
+        private static readonly MethodInfo HorizontalWingSpeeds_Method = typeof(ItemLoader).GetMethod("HorizontalWingSpeeds", FargoUtils.UniversalBindingFlags);
+        public delegate void Orig_HorizontalWingSpeeds(Player player);
+        internal static void HorizontalWingSpeeds_Detour(Orig_HorizontalWingSpeeds orig, Player player)
+        {
+            switch (Fargowiltas.Binding)
+            {
+                case Binding.None:
+                    orig(player);
+                    return;
+                case Binding.PreHardmode:
+                    break;
+                case Binding.PreMechs:
+                    break;
+                case Binding.PostMechs:
+                    break;
+                case Binding.PostPlantera:
+                    break;
+                case Binding.PreMoonLord:
+                    break;
+            }
+        }
+        internal static WingStats GetWingStats_Detour(On_Player.orig_GetWingStats orig, Player self, int wingID)
+        {
+            var stats = orig(self, wingID);
+            switch (Fargowiltas.Binding)
+            {
+                case Binding.None:
+                    break;
+                case Binding.PreHardmode:
+                    stats = ArmorIDs.Wing.Sets.Stats[ArmorIDs.Wing.CreativeWings];
+                    break;
+                case Binding.PreMechs:
+                    stats = ArmorIDs.Wing.Sets.Stats[ArmorIDs.Wing.HarpyWings];
+                    break;
+                case Binding.PostMechs:
+                    stats = ArmorIDs.Wing.Sets.Stats[ArmorIDs.Wing.FlameWings];
+                    break;
+                case Binding.PostPlantera:
+                    stats = ArmorIDs.Wing.Sets.Stats[ArmorIDs.Wing.SpectreWings];
+                    break;
+                case Binding.PreMoonLord:
+                    stats = ArmorIDs.Wing.Sets.Stats[ArmorIDs.Wing.FishronWings];
+                    break;
+            }
+            return stats;
+        }
+        public override void Load()
+        {
+            MonoModHooks.Add(VerticalWingSpeeds_Method, VerticalWingSpeeds_Detour);
+            MonoModHooks.Add(HorizontalWingSpeeds_Method, HorizontalWingSpeeds_Detour);
+            On_Player.GetWingStats += GetWingStats_Detour;
         }
     }
 }

@@ -257,7 +257,7 @@ namespace Fargowiltas
             Matsuri = reader.ReadBoolean();
             SwarmActive = reader.ReadBoolean();
             HardmodeSwarmActive = reader.ReadBoolean();
-            SwarmNoHyperActive = reader.ReadBoolean();
+            Binding = (EnergizedGlobalNPC.Binding)reader.ReadInt32();
         }
 
         public override void NetSend(BinaryWriter writer)
@@ -272,7 +272,7 @@ namespace Fargowiltas
             writer.Write(Matsuri);
             writer.Write(SwarmActive);
             writer.Write(HardmodeSwarmActive);
-            writer.Write(SwarmNoHyperActive);
+            writer.Write((int)Binding);
         }
 
         public override void PostUpdateWorld()
@@ -306,7 +306,7 @@ namespace Fargowiltas
             {
                 SwarmActive = false;
                 HardmodeSwarmActive = false;
-                SwarmNoHyperActive = false;
+                Binding = EnergizedGlobalNPC.Binding.None;
                 FargoGlobalNPC.LastWoFIndex = -1;
                 FargoGlobalNPC.WoFDirection = 0;
                 if (Main.netMode == NetmodeID.Server)

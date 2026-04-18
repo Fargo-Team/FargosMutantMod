@@ -953,7 +953,7 @@ Overloader: {
 		Used to craft energized summons
 		When used, all summons in the stack will be consumed, up to 10
 		The more consumed, the stronger the boss will be
-		If more than 5 are consumed, the boss is faster
+		The boss binds your movement to the appropriate tier
 		5 Treasure Bags will drop per consumed item
 		A Trophy will drop for every 3 consumed items
 		An Energizer will drop for every 10 consumed items

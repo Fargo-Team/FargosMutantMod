@@ -79,7 +79,11 @@ namespace Fargowiltas.Content.Items.Tiles
         }
         public override void SpecialDraw(int i, int j, SpriteBatch spriteBatch)
         {
-            FargoUtils.TryGetTileEntityAs(i, j, out ChestWizardTileEntity TE);
+            if (!FargoUtils.TryGetTileEntityAs(i, j, out ChestWizardTileEntity TE))
+            {
+                return;
+            }
+            
             Asset<Texture2D> eye = ModContent.Request<Texture2D>("Fargowiltas/Content/Items/Tiles/ChestWizardEyeAssembly");
             Rectangle ball = new(2, 6, 18, 18);
             Rectangle pupil = new(26, 10, 8, 8);
@@ -129,8 +133,7 @@ namespace Fargowiltas.Content.Items.Tiles
                     {
                         if (Main.chest[c] != null && new Vector2(Main.chest[c].x*16, Main.chest[c].y*16).Distance(Main.LocalPlayer.Center) < 1000)
                         {
-                            
-                            NetMessage.SendData(MessageID.RequestChestOpen, number: Main.chest[c].x, number2: Main.chest[c].y);
+                            FargoNet.SendChizardRequestChestContents(Main.chest[c].x, Main.chest[c].y);
                         }
                     }
                 }

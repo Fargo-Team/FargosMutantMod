@@ -128,7 +128,29 @@ namespace Fargowiltas.Content.UI
             SoundEngine.PlaySound(SoundID.MenuClose);
             Main.LocalPlayer.FargoMutant().LastInteractedChizard = Vector2.Zero;
         }
+        public void HandleTakeItem(Chest chest, Item item)
+        {
+            //Chest chest = Main.chest[ChestWithItem[index]];
+            //Item item = chest.item[IndexOfItem[index]];
 
+            Point tilepos = Main.LocalPlayer.FargoMutant().LastInteractedChizard.ToPoint();
+            Vector2 pos = Main.LocalPlayer.FargoMutant().LastInteractedChizard.ToWorldCoordinates();
+
+            FargoUtils.TryGetTileEntityAs(tilepos.X, tilepos.Y, out ChestWizardTileEntity entity);
+            Chest.VisualizeChestTransfer(new Vector2(chest.x, chest.y).ToWorldCoordinates(), Main.LocalPlayer.Center, item, item.stack);
+            Main.LocalPlayer.QuickSpawnItem(Main.LocalPlayer.GetSource_TileInteraction(tilepos.X, tilepos.Y), item, item.stack);
+
+            item.TurnToAir();
+            chest.frame = 2;
+            chest.frameCounter = 60;
+
+            if (Main.netMode == NetmodeID.MultiplayerClient)
+            {
+                FargoNet.SendChizardTookItem(chest.item.ToList().IndexOf(item), chest.x, chest.y);
+            }
+            SoundEngine.PlaySound(SoundID.Item8, new Vector2(chest.x, chest.y).ToWorldCoordinates());
+            SearchBar_OnTextChange(search.Input, search.Input);
+        }
         private void SelectButton_OnLeftClick(UIMouseEvent evt, UIElement listeningElement)
         {
             int index = -1;
@@ -144,55 +166,21 @@ namespace Fargowiltas.Content.UI
             {
                 
                 Chest chest = Main.chest[ChestWithItem[index]];
-                //make sure the item is still there before spawning it in multiplayer
-                if (Main.netMode == NetmodeID.MultiplayerClient)
-                {
-                    int beforeItem = chest.item[IndexOfItem[index]].type;
-                    NetMessage.SendData(MessageID.RequestChestOpen, number: chest.x, number2: chest.y);
-                    SearchBar_OnTextChange(search.Input, search.Input);
-                    if (chest == null || beforeItem != chest.item[IndexOfItem[index]].type || chest.frame != 0)
-                    {
-                        SoundEngine.PlaySound(SoundID.MenuTick);
-                        return;
-                    }
-                }
-
-                Point tilepos = Main.LocalPlayer.FargoMutant().LastInteractedChizard.ToPoint();
-                Vector2 pos = Main.LocalPlayer.FargoMutant().LastInteractedChizard.ToWorldCoordinates();
-
-                //int i = Item.NewItem(Main.LocalPlayer.GetSource_TileInteraction(tilepos.X, tilepos.Y), new Vector2(chest.x, chest.y) * 16 + new Vector2(16, 16), chest.item[IndexOfItem[index]]);
-                //Item item = Main.item[i];
-                //item.stack = chest.item[IndexOfItem[index]].stack;
-                //item.GetGlobalItem<FargoGlobalItem>().ChestLocation = new Vector2(chest.x, chest.y).ToWorldCoordinates() + new Vector2(16, 0);
-                //item.GetGlobalItem<FargoGlobalItem>().ChizardLocation = pos;
-                //item.GetGlobalItem<FargoGlobalItem>().ChizardMovementTimer = 60;
                 
+                if (Main.netMode == NetmodeID.MultiplayerClient)
+                {
+                    //makes sure the item is still there before spawning it in multiplayer
+                    FargoNet.RequestTakeItemOut(IndexOfItem[index], chest.item[IndexOfItem[index]], chest.x, chest.y);
+                }
+                else
+                {
+                    HandleTakeItem(chest, chest.item[IndexOfItem[index]]);
+                }
 
-                FargoUtils.TryGetTileEntityAs(tilepos.X, tilepos.Y, out ChestWizardTileEntity entity);
-                //entity.item = item.whoAmI;
-                Chest.VisualizeChestTransfer(new Vector2(chest.x, chest.y).ToWorldCoordinates(), Main.LocalPlayer.Center, chest.item[IndexOfItem[index]], chest.item[IndexOfItem[index]].stack);
-                Main.LocalPlayer.QuickSpawnItem(Main.LocalPlayer.GetSource_TileInteraction(tilepos.X, tilepos.Y), chest.item[IndexOfItem[index]], chest.item[IndexOfItem[index]].stack);
-                if (Main.netMode == NetmodeID.MultiplayerClient)
-                {
-                    //NetMessage.SendData(MessageID.SyncItem, Main.myPlayer, number: i, number2: 1f);
-                    //NetMessage.SendData(MessageID.TileEntitySharing, Main.myPlayer, number: entity.ID);
-                }
-                //Main.NewText(Main.LocalPlayer.position);
-                //Main.LocalPlayer.QuickSpawnItem(Item.GetSource_NaturalSpawn(), ChestWithItem.item[IndexOfItem], ChestWithItem.item[IndexOfItem].stack);
-                chest.item[IndexOfItem[index]].TurnToAir();
-                chest.frame = 2;
-                chest.frameCounter = 60;
-                if (Main.netMode == NetmodeID.MultiplayerClient)
-                {
-                    NetMessage.SendData(MessageID.SyncChestItem, number: ChestWithItem[index], number2: IndexOfItem[index]);
-                }
-                SoundEngine.PlaySound(SoundID.Item8, new Vector2(chest.x, chest.y).ToWorldCoordinates());
-                SearchBar_OnTextChange(search.Input, search.Input);
-                
             }
         }
-
-        private void SearchBar_OnTextChange(string oldText, string currentText)
+        
+        public void SearchBar_OnTextChange(string oldText, string currentText)
         {
             Player player = Main.LocalPlayer;
             Vector2 pos = player.Center;
@@ -204,7 +192,7 @@ namespace Fargowiltas.Content.UI
             for (int i = 0; i < Main.chest.Length; i++)
             {
                 Chest chest = Main.chest[i];
-                if (chest == null) continue;
+                if (chest == null || TileLoader.IsLockedChest(chest.x, chest.y, Main.tile[chest.x,chest.y].TileType) || Chest.IsLocked(chest.x,chest.y)) continue;
                 
                 if (new Point(chest.x, chest.y).ToWorldCoordinates().Distance(pos) < 1000)
                 {

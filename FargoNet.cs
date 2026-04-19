@@ -8,6 +8,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 using static Fargowiltas.Fargowiltas;
 
 namespace Fargowiltas
@@ -278,6 +279,53 @@ namespace Fargowiltas
                 packet.Write((int)vec.Y);
             }
             packet.Send();
+        }
+        public static void SendChizardRequestChestContents(int chestX, int chestY)
+        {
+            ModPacket packet = Instance.GetPacket();
+            packet.Write((byte)PacketID.SyncChestContents);
+            packet.Write(chestX);
+            packet.Write(chestY);
+            packet.Send();
+        }
+        public static void SendChizardChestContentsToClient(int client, int chestX, int chestY)
+        {
+           
+            int c = Chest.FindChest(chestX, chestY);
+            if (c >= 0)
+            {
+                Chest chest = Main.chest[c];
+                for (int i = 0; i < chest.item.Length; i++)
+                {
+                    NetMessage.SendData(MessageID.SyncChestItem, client, -1, null, c, i);
+                }
+            }
+
+        }
+        public static void SendChizardTookItem(int itemIndex, int chestX, int chestY)
+        {
+            int c = Chest.FindChest(chestX, chestY);
+            if (c >= 0)
+            {
+                NetMessage.SendData(MessageID.SyncChestItem, -1, -1, null, c, itemIndex);
+            }   
+        }
+        public static void RequestTakeItemOut(int itemIndex, Item expectedItem, int chestX, int chestY)
+        {
+            
+            int c = Chest.FindChest(chestX, chestY);
+            if (c >= 0)
+            {
+                ModPacket packet = Instance.GetPacket();
+                packet.Write((byte)PacketID.RequestTakeItemFromChest);
+                packet.Write(chestX);
+                packet.Write(chestY);
+                packet.Write(itemIndex);
+                packet.Write(expectedItem.type);
+                packet.Write(expectedItem.stack);
+                packet.Write(expectedItem.prefix);
+                packet.Send();
+            }
         }
     }
 }

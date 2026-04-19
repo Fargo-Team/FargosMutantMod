@@ -1,5 +1,6 @@
 ﻿using Fargowiltas.Common.Configs;
 using Fargowiltas.Common.Systems;
+using Fargowiltas.Common.Systems.Collections;
 using Fargowiltas.Content.Items;
 using Fargowiltas.Content.Items.CaughtNPCs;
 using Fargowiltas.Content.Items.Misc;
@@ -11,6 +12,9 @@ using Fargowiltas.Content.UI;
 using Fargowiltas.Content.UI.StatSheet;
 using Fargowiltas.Utilities.Extensions;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using rail;
+using ReLogic.Graphics;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -23,11 +27,9 @@ using Terraria.GameContent.Events;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
-using static Fargowiltas.Content.Items.Tiles.EnchantedTreeTileEntity;
-using Fargowiltas.Common.Systems.Collections;
+using Terraria.UI;
 using Terraria.UI.Chat;
-using ReLogic.Graphics;
-using Microsoft.Xna.Framework.Graphics;
+using static Fargowiltas.Content.Items.Tiles.EnchantedTreeTileEntity;
 
 namespace Fargowiltas
 {
@@ -674,7 +676,9 @@ namespace Fargowiltas
             SyncTreeEntities,
             SyncPotionToggles,
             SyncOnePotionToggle,
-            BetsySummon
+            BetsySummon,
+            SyncChestContents,
+            RequestTakeItemFromChest
         }
 
         public override void HandlePacket(BinaryReader reader, int whoAmI)
@@ -866,6 +870,61 @@ namespace Fargowiltas
                                 player.QuickSpawnItem(egg.GetSource_FromThis(), ItemID.DD2EnergyCrystal, (int)(140f * NPC.GetBalance())); // give all missing crystals
                                 BetsyEggUsed = false;
                                 NetMessage.SendData(MessageID.WorldData);
+                            }
+                        }
+                        break;
+                    case PacketID.SyncChestContents:
+                        if (Main.dedServ)
+                        {
+                            int chestX = reader.ReadInt32();
+                            int chestY = reader.ReadInt32();
+                            FargoNet.SendChizardChestContentsToClient(whoAmI, chestX, chestY);
+                        }
+                        break;
+                    case PacketID.RequestTakeItemFromChest:
+                        int chestx = reader.ReadInt32();
+                        int chesty = reader.ReadInt32();
+                        int itemindex = reader.ReadInt32();
+                        
+                        int c = Chest.FindChest(chestx, chesty);
+                        if (c >= 0) {
+                            if (Main.dedServ)
+                            {
+                                int itemtype = reader.ReadInt32();
+                                int itemstack = reader.ReadInt32();
+                                int itemprefix = reader.ReadInt32();
+                                Item testItem = Main.chest[c].item[itemindex];
+                                ModPacket packet = Instance.GetPacket();
+                                packet.Write((byte)PacketID.RequestTakeItemFromChest);
+                                packet.Write(chestx);
+                                packet.Write(chesty);
+                                packet.Write(itemindex);
+                                if (testItem.type == itemtype && testItem.stack == itemstack && testItem.prefix == itemprefix && Main.chest[c].frame == 0)
+                                {
+                                    packet.Write(true);
+                                }
+                                else
+                                {
+                                    packet.Write(false);
+                                }
+                                packet.Send(whoAmI);
+                                NetMessage.SendData(MessageID.SyncChestItem, whoAmI, -1, null, c, itemindex);
+                            }else if (Main.netMode == NetmodeID.MultiplayerClient)
+                            {
+                                bool success = reader.ReadBoolean();
+                                if (success)
+                                {
+                                    //give the item
+                                    ChizardSearchBar bar = FargoUIManager.Get<ChizardSearchBar>();
+                                    bar.HandleTakeItem(Main.chest[c], Main.chest[c].item[itemindex]);
+                                }
+                                else
+                                {
+                                    //update the item list if the request failed
+                                    ChizardSearchBar bar = FargoUIManager.Get<ChizardSearchBar>();
+                                    bar.SearchBar_OnTextChange(bar.search.Input, bar.search.Input);
+                                    SoundEngine.PlaySound(SoundID.MenuTick);
+                                }
                             }
                         }
                         break;

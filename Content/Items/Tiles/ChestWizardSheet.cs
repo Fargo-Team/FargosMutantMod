@@ -99,7 +99,7 @@ namespace Fargowiltas.Content.Items.Tiles
             {
                 TE.hatID = Main.rand.Next([ItemID.WizardHat, ItemID.WizardsHat, ItemID.RuneHat, ItemID.MagicHat]);
             }
-            int armor = Item.headType.IndexOf(TE.hatID);
+            int armor = Array.IndexOf(Item.headType, TE.hatID);
             Asset<Texture2D> hat = TextureAssets.ArmorHead[armor];
             Main.instance.LoadArmorHead(armor);
             SpriteEffects hatSide = Main.LocalPlayer.Center.X > TE.Position.ToWorldCoordinates().X ? SpriteEffects.None : SpriteEffects.FlipHorizontally;

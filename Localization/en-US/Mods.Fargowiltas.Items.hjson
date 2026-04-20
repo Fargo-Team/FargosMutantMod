@@ -1611,6 +1611,16 @@ StatSheetItem: {
 ChestWizard: {
 	DisplayName: Chest Wizard
 	Tooltip: Searches nearby chests for specific items and retrieves them for you
+	Ruminate: "[c/FF3399:Hold Left Shift for more details]"
+	Rumination:
+		'''
+		Right Click on the tile to use
+		Use the search bar to find items
+		Select the item to retrieve it
+		Right Click the search bar to reset the text
+		Place items in the slot to insert items into nearby chests
+		Items can be quick moved in like chests
+		'''
 }
 
 LuminiteOmniforge: {

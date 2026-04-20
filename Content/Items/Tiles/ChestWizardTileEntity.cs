@@ -1,7 +1,9 @@
-﻿using Terraria;
+﻿using System.IO;
+using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 
 namespace Fargowiltas.Content.Items.Tiles
 {
@@ -14,6 +16,22 @@ namespace Fargowiltas.Content.Items.Tiles
         {
                        
             base.Update();
+        }
+        public override void NetSend(BinaryWriter writer)
+        {
+            writer.Write(hatID);
+        }
+        public override void NetReceive(BinaryReader reader)
+        {
+            hatID = reader.ReadInt32();
+        }
+        public override void SaveData(TagCompound tag)
+        {
+            tag["hat"] = hatID;
+        }
+        public override void LoadData(TagCompound tag)
+        {
+            hatID = tag.GetInt("hat");
         }
         public override bool IsTileValidForEntity(int x, int y)
         {
@@ -35,8 +53,10 @@ namespace Fargowiltas.Content.Items.Tiles
         }
         public override void OnNetPlace()
         {
+            
             if (Main.netMode == NetmodeID.Server)
             {
+                hatID = Main.rand.Next([ItemID.WizardHat, ItemID.WizardsHat, ItemID.RuneHat, ItemID.MagicHat]);
                 NetMessage.SendData(MessageID.TileEntitySharing, number: ID, number2: Position.X, number3: Position.Y);
             }
         }

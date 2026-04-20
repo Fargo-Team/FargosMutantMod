@@ -310,7 +310,7 @@ namespace Fargowiltas
                 NetMessage.SendData(MessageID.SyncChestItem, -1, -1, null, c, itemIndex);
             }   
         }
-        public static void RequestTakeItemOut(int itemIndex, Item expectedItem, int chestX, int chestY)
+        public static void RequestTakeItemOut(int itemIndex, Item expectedItem, int amount, int chestX, int chestY)
         {
             
             int c = Chest.FindChest(chestX, chestY);
@@ -320,6 +320,7 @@ namespace Fargowiltas
                 packet.Write((byte)PacketID.RequestTakeItemFromChest);
                 packet.Write(chestX);
                 packet.Write(chestY);
+                packet.Write(amount);
                 packet.Write(itemIndex);
                 packet.Write(expectedItem.type);
                 packet.Write(expectedItem.stack);

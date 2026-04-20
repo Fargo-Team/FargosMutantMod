@@ -150,3 +150,4 @@ BattleCryNone: 关闭
 // InsertText: Place an item here to reforge
 // ReforgeCost: Reforge Cost
 // PlacementRange: Placement Range:
+// ChizardItemInsert: Place items in nearby chests

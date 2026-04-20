@@ -12,6 +12,7 @@ using Terraria.Audio;
 using Terraria.GameContent.ObjectInteractions;
 using ReLogic.Content;
 using Terraria.GameContent;
+using Fargowiltas.Common.Systems.Collections;
 
 namespace Fargowiltas.Content.Items.Tiles
 {
@@ -98,8 +99,11 @@ namespace Fargowiltas.Content.Items.Tiles
             {
                 TE.hatID = Main.rand.Next([ItemID.WizardHat, ItemID.WizardsHat, ItemID.RuneHat, ItemID.MagicHat]);
             }
-            Asset<Texture2D> hat = TextureAssets.Item[TE.hatID];
-            Main.instance.LoadItem(TE.hatID);
+            int armor = Item.headType.IndexOf(TE.hatID);
+            Asset<Texture2D> hat = TextureAssets.ArmorHead[armor];
+            Main.instance.LoadArmorHead(armor);
+            SpriteEffects hatSide = Main.LocalPlayer.Center.X > TE.Position.ToWorldCoordinates().X ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
+            Rectangle headSource = new(0, 0, hat.Width(), hat.Height() / 20);
             Vector2 pos = new Vector2(i, j).ToWorldCoordinates() - Main.screenPosition + new Vector2(8, MathF.Sin(TE.drawTimer) - 24);
             spriteBatch.Draw(eye.Value, pos, ball, Lighting.GetColor(new Point(i, j)), 0, ball.Size() / 2, 1, SpriteEffects.None, 1);
             
@@ -107,13 +111,29 @@ namespace Fargowiltas.Content.Items.Tiles
             //Main.NewText(TE.item);
             spriteBatch.Draw(eye.Value, pos + new Vector2(3, 0).RotatedBy(angle), pupil, Lighting.GetColor(new Point(i, j)), 0, pupil.Size() / 2, 1, SpriteEffects.None, 1);
             spriteBatch.Draw(eye.Value, pos + new Vector2(0, 10), beard, Lighting.GetColor(new Point(i, j)), 0, beard.Size() / 2, 1, SpriteEffects.None, 1);
-            spriteBatch.Draw(hat.Value, new Vector2(i, j).ToWorldCoordinates() - Main.screenPosition + new Vector2(8, MathF.Sin(TE.drawTimer) * 2 - 40), null, Lighting.GetColor(new Point(i, j)), 0, hat.Size() / 2, 1, SpriteEffects.None, 1);
+            spriteBatch.Draw(hat.Value, new Vector2(i, j).ToWorldCoordinates() - Main.screenPosition + new Vector2(8, MathF.Sin(TE.drawTimer) * 2 - 25), headSource, Lighting.GetColor(new Point(i, j)), 0, headSource.Size() / 2, 1, hatSide, 1);
             base.SpecialDraw(i, j, spriteBatch);
         }
         public override bool RightClick(int i, int j)
         {
-            Main.LocalPlayer.FargoMutant().LastInteractedChizard = FargoUtils.GetTopLeftTileInMultitile(i, j).ToVector2();
+            
             FargoUtils.TryGetTileEntityAs(i, j, out ChestWizardTileEntity TE);
+            int type = Main.LocalPlayer.HeldItem.type;
+            if (FargoItemSets.ChizardHats[type] && TE.hatID != type)
+            {
+                TE.hatID = type;
+                if (Main.netMode == NetmodeID.MultiplayerClient)
+                {
+                    ModPacket packet = Fargowiltas.Instance.GetPacket();
+                    packet.Write((byte)Fargowiltas.PacketID.ChangeChizardHat);
+                    packet.Write(TE.ID);
+                    packet.Write(type);
+                    packet.Send();
+                }
+                SoundEngine.PlaySound(SoundID.Grab);
+                return true;
+            }
+            Main.LocalPlayer.FargoMutant().LastInteractedChizard = FargoUtils.GetTopLeftTileInMultitile(i, j).ToVector2();
             FargoUI ui = FargoUIManager.Get<ChizardSearchBar>();
             if (FargoUIManager.IsOpen(ui))
             {

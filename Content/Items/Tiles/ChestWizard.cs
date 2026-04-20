@@ -1,6 +1,9 @@
-﻿using Terraria;
+﻿using Microsoft.Xna.Framework.Input;
+using System.Collections.Generic;
+using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Fargowiltas.Content.Items.Tiles
@@ -28,7 +31,18 @@ namespace Fargowiltas.Content.Items.Tiles
             Item.createTile = ModContent.TileType<ChestWizardSheet>();
             Item.value = Terraria.Item.sellPrice(gold: 3);
         }
-
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            if (Keyboard.GetState().IsKeyDown(Keys.LeftShift))
+            {
+                tooltips.Add(new TooltipLine(Fargowiltas.Instance, "ChizardInstructions", Language.GetTextValue("Mods.Fargowiltas.Items.ChestWizard.Rumination")));
+            }
+            else
+            {
+                tooltips.Add(new TooltipLine(Fargowiltas.Instance, "ChizardInstructionsRuminated", Language.GetTextValue("Mods.Fargowiltas.Items.ChestWizard.Ruminate")));
+            }
+                base.ModifyTooltips(tooltips);
+        }
         public override void AddRecipes()
         {
             CreateRecipe()

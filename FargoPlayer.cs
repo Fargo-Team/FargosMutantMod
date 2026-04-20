@@ -18,6 +18,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using Terraria;
+using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent.Events;
 using Terraria.GameInput;
@@ -367,6 +368,18 @@ namespace Fargowiltas
 
             if (Fargowiltas.PotionTogglerKey.JustPressed)
                 CombinedUI.ToggleUI<PotionToggler>();
+        }
+        public override bool ShiftClickSlot(Item[] inventory, int context, int slot)
+        {
+            
+            if (Player.chest == -1 && FargoUIManager.IsOpen<ChizardSearchBar>())
+            {
+                ChizardSearchBar bar = FargoUIManager.Get<ChizardSearchBar>();
+                bar.ItemInsert.CreateItem(inventory[slot].Clone());
+                inventory[slot].TurnToAir();
+                SoundEngine.PlaySound(SoundID.Grab);
+            }
+            return base.ShiftClickSlot(inventory, context, slot);
         }
         public override void PreUpdate()
         {

@@ -678,7 +678,8 @@ namespace Fargowiltas
             SyncOnePotionToggle,
             BetsySummon,
             SyncChestContents,
-            RequestTakeItemFromChest
+            RequestTakeItemFromChest,
+            ChangeChizardHat
         }
 
         public override void HandlePacket(BinaryReader reader, int whoAmI)
@@ -884,6 +885,7 @@ namespace Fargowiltas
                     case PacketID.RequestTakeItemFromChest:
                         int chestx = reader.ReadInt32();
                         int chesty = reader.ReadInt32();
+                        int itemAmount = reader.ReadInt32();
                         int itemindex = reader.ReadInt32();
                         
                         int c = Chest.FindChest(chestx, chesty);
@@ -898,6 +900,7 @@ namespace Fargowiltas
                                 packet.Write((byte)PacketID.RequestTakeItemFromChest);
                                 packet.Write(chestx);
                                 packet.Write(chesty);
+                                packet.Write(itemAmount);
                                 packet.Write(itemindex);
                                 if (testItem.type == itemtype && testItem.stack == itemstack && testItem.prefix == itemprefix && Main.chest[c].frame == 0)
                                 {
@@ -916,7 +919,7 @@ namespace Fargowiltas
                                 {
                                     //give the item
                                     ChizardSearchBar bar = FargoUIManager.Get<ChizardSearchBar>();
-                                    bar.HandleTakeItem(Main.chest[c], Main.chest[c].item[itemindex]);
+                                    bar.HandleTakeItem(Main.chest[c], Main.chest[c].item[itemindex], itemAmount);
                                 }
                                 else
                                 {
@@ -926,6 +929,16 @@ namespace Fargowiltas
                                     SoundEngine.PlaySound(SoundID.MenuTick);
                                 }
                             }
+                        }
+                        break;
+                    case PacketID.ChangeChizardHat:
+                        int chizard = reader.ReadInt32();
+                        int hat = reader.ReadInt32();
+                        if (Main.dedServ)
+                        {
+                            ChestWizardTileEntity chizardEntity = (ChestWizardTileEntity)TileEntity.ByID[chizard];
+                            chizardEntity.hatID = hat;
+                            NetMessage.SendData(MessageID.TileEntitySharing, -1, -1, null, chizard);
                         }
                         break;
                     default:

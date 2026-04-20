@@ -722,8 +722,8 @@ namespace Fargowiltas.Content.NPCs
                 ItemID.VampireFrogStaff, 1,
                 ItemID.BloodFishingRod, 1,
 
-                // shadow orb drops
-                /*ItemID.Musket, 1,
+                // crate/orb/cabin loot
+                ItemID.Musket, 1,
                 ItemID.ShadowOrb, 1,
                 ItemID.Vilethorn, 1,
                 ItemID.BallOHurt, 1,
@@ -733,7 +733,45 @@ namespace Fargowiltas.Content.NPCs
                 ItemID.CrimsonHeart, 1,
                 ItemID.CrimsonRod, 1,
                 ItemID.TheRottedFork, 1,
-                ItemID.PanicNecklace, 1,*/
+                ItemID.PanicNecklace, 1,
+
+                ItemID.FalconBlade, 1,
+
+                ItemID.MagicMirror, 1,
+                ItemID.BandofRegeneration, 1,
+                ItemID.CloudinaBottle, 1,
+                ItemID.HermesBoots, 1,
+                ItemID.Mace, 1,
+                ItemID.ShoeSpikes, 1,
+                ItemID.FlareGun, 1,
+                ItemID.LavaCharm, 1,
+
+                ItemID.Muramasa, 1,
+                ItemID.CobaltShield, 1,
+                ItemID.AquaScepter, 1,
+                ItemID.BlueMoon, 1,
+                ItemID.MagicMissile, 1,
+                ItemID.Valor, 1,
+                ItemID.Handgun, 1,
+
+                ItemID.Starfury, 1,
+                ItemID.ShinyRedBalloon, 1,
+                ItemID.LuckyHorseshoe, 1,
+
+                ItemID.IceBoomerang, 1,
+                ItemID.IceBlade, 1,
+                ItemID.IceSkates, 1,
+                ItemID.SnowballCannon, 1,
+                ItemID.BlizzardinaBottle, 1,
+                ItemID.FlurryBoots, 1,
+                ItemID.IceMirror, 1,
+
+                ItemID.AnkletoftheWind, 1,
+                ItemID.FeralClaws, 1,
+                ItemID.StaffofRegrowth, 1,
+                ItemID.FiberglassFishingPole, 1,
+                ItemID.Boomstick, 1,
+                ItemID.FlowerBoots, 1,
 
                 // enemy weapon drops
                 ItemID.BatBat, 1,
@@ -887,14 +925,11 @@ namespace Fargowiltas.Content.NPCs
             public readonly int Amount = amount;
         }
         // some common values to help modded entries
-        public static int OreCount = 80;
+        public static int OreCount = 50;
         public static double OreWeight = 0.5;
 
-        public static int FishCount = 10;
+        public static int FishCount = 6;
         public static double FishWeight = 0.75;
-
-        public static int CrateCount = 3;
-        public static double CrateWeight = 0.5;
         public static int SacrificeResult(out int amount)
         {
             WeightedRandom<Result> result = new(Main.rand.Next(int.MaxValue));
@@ -905,7 +940,7 @@ namespace Fargowiltas.Content.NPCs
             result.Add(new(ItemID.Vertebrae, 6), 0.5);
             result.Add(new(ItemID.Mushroom, 50), 1);
             result.Add(new(ItemID.Gel, 200), 0.5);
-            result.Add(new(ItemID.Feather, 15), 0.25);
+            result.Add(new(ItemID.Feather, 6), 0.25);
             result.Add(new(ItemID.FallenStar, 6), 0.2);
 
             // ores
@@ -918,24 +953,7 @@ namespace Fargowiltas.Content.NPCs
             result.Add(new(ItemID.GoldOre, OreCount), OreWeight);
             result.Add(new(ItemID.PlatinumOre, OreCount), OreWeight);
 
-            // lootboxes
-            result.Add(new(ItemID.DesertFossil, 100), 0.25);
-
             result.Add(new(ItemID.HerbBag, 3), 2);
-            result.Add(new(ItemID.Geode, 5), 0.5);
-            result.Add(new(ItemID.Oyster, 3), 0.2);
-
-            result.Add(new(ItemID.WoodenCrate, CrateCount), 1);
-            result.Add(new(ItemID.IronCrate, CrateCount), 0.25);
-            result.Add(new(ItemID.GoldenCrate, CrateCount), 0.05);
-
-            result.Add(new(ItemID.JungleFishingCrate, CrateCount), CrateWeight);
-            result.Add(new(ItemID.FloatingIslandFishingCrate, CrateCount), CrateWeight);
-            result.Add(new(ItemID.CorruptFishingCrate, CrateCount), CrateWeight);
-            result.Add(new(ItemID.CrimsonFishingCrate, CrateCount), CrateWeight);
-            result.Add(new(ItemID.FrozenCrate, CrateCount), CrateWeight);
-            result.Add(new(ItemID.OceanCrate, CrateCount), CrateWeight);
-            result.Add(new(ItemID.OasisCrate, CrateCount), CrateWeight);
 
             // fishe
             result.Add(new(ItemID.ArmoredCavefish, FishCount), FishWeight);
@@ -947,13 +965,6 @@ namespace Fargowiltas.Content.NPCs
             result.Add(new(ItemID.Hemopiranha, FishCount), FishWeight);
             result.Add(new(ItemID.SpecularFish, FishCount), FishWeight);
             result.Add(new(ItemID.VariegatedLardfish, FishCount), FishWeight);
-
-            // misc
-            result.Add(new(ItemID.Torch, 500), 0.25);
-
-            // rare
-            result.Add(new(ItemID.LifeCrystal, 1), 0.1);
-            result.Add(new(ItemID.PlatinumCoin, 1), 0.001); // lol
 
             Result real = result.Get();
             result.Clear();
@@ -967,9 +978,6 @@ namespace Fargowiltas.Content.NPCs
             WeightedRandom<Result> result = new(Main.rand.Next(int.MaxValue));
 
             // misc materials
-            result.Add(new(ItemID.SoulofNight, 5), 1);
-            result.Add(new(ItemID.SoulofLight, 5), 1);
-            result.Add(new(ItemID.SoulofFlight, 5), 1);
             result.Add(new(ItemID.Ichor, 10), 1);
             result.Add(new(ItemID.CursedFlame, 10), 1);
 
@@ -979,22 +987,6 @@ namespace Fargowiltas.Content.NPCs
 
             // lootboxes
             result.Add(new(ItemID.HerbBag, 6), 1);
-
-            result.Add(new(ItemID.WoodenCrateHard, CrateCount), 1);
-            result.Add(new(ItemID.IronCrateHard, CrateCount), 0.25);
-            result.Add(new(ItemID.GoldenCrateHard, CrateCount), 0.05);
-
-            result.Add(new(ItemID.JungleFishingCrateHard, CrateCount), CrateWeight);
-            result.Add(new(ItemID.FloatingIslandFishingCrateHard, CrateCount), CrateWeight);
-            result.Add(new(ItemID.CorruptFishingCrateHard, CrateCount), CrateWeight);
-            result.Add(new(ItemID.CrimsonFishingCrateHard, CrateCount), CrateWeight);
-            result.Add(new(ItemID.FrozenCrateHard, CrateCount), CrateWeight);
-            result.Add(new(ItemID.OceanCrateHard, CrateCount), CrateWeight);
-            result.Add(new(ItemID.OasisCrateHard, CrateCount), CrateWeight);
-
-
-            result.Add(new(ItemID.PlatinumCoin, 1), 0.25);
-            result.Add(new(ItemID.RodofDiscord, 1), 0.001); // lol
 
             Result real = result.Get();
             result.Clear();

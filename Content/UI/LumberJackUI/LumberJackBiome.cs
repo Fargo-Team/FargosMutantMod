@@ -71,6 +71,7 @@ namespace Fargowiltas.Content.UI.LumberjackUI
                 .AddCritter(ItemID.Mouse, 5, () => 0.5f)
                 .AddCritter([ItemID.GemSquirrelAmethyst, ItemID.GemSquirrelTopaz, ItemID.GemSquirrelSapphire, ItemID.GemSquirrelEmerald, ItemID.GemSquirrelRuby, ItemID.GemSquirrelAmber, ItemID.GemSquirrelDiamond], 1, 5, () => 0.25f)
                 .AddCritter([ItemID.GemBunnyAmethyst, ItemID.GemBunnyTopaz, ItemID.GemBunnySapphire, ItemID.GemBunnyEmerald, ItemID.GemBunnyRuby, ItemID.GemBunnyAmber, ItemID.GemBunnyDiamond], 1, 5, () => 0.25f)
+                .AddCritter([ItemID.FairyCritterBlue, ItemID.FairyCritterGreen, ItemID.FairyCritterPink], 1, 3, () => 0.25f)
                 .Register();
 
             LumberJackBiome.Create("Underworld", LocalPath, Item.buyPrice(0, 25), Color.OrangeRed, TeleportPylonType.Underground)

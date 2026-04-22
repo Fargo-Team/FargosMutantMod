@@ -109,7 +109,6 @@ namespace Fargowiltas.Content.NPCs
             //    NPC.catchItem = (short)Mod.ItemType("Mutant");
             }
 
-            NPC.buffImmune[BuffID.Suffocation] = true;
 
             if (Fargowiltas.ModLoaded["FargowiltasSouls"] && (bool)ModLoader.GetMod("FargowiltasSouls").Call("DownedMutant"))
             {

@@ -197,8 +197,14 @@ namespace Fargowiltas
             AddDialogue("Underworld", HelpDialogueType.Environment,
                 (name) => !Main.LocalPlayer.fireWalk && !(Main.LocalPlayer.lavaMax > 0) && !Main.LocalPlayer.buffImmune[BuffID.OnFire] && !(bool)(ModLoader.GetMod("FargowiltasSouls").Call("PureHeart") ?? false));
 
+            static bool SuffocationImmune()
+            {
+                Player player = Main.LocalPlayer;
+                Item helm = player.armor[0];
+                return helm.type == ItemID.FishBowl || helm.type == ItemID.GoldGoldfishBowl || player.accDivingHelm || player.spaceGun || player.buffImmune[BuffID.Suffocation];
+            }
             AddDialogue("SpaceSuffocation", HelpDialogueType.Environment,
-                (name) => !Main.LocalPlayer.buffImmune[BuffID.Suffocation] && !(bool)(ModLoader.GetMod("FargowiltasSouls").Call("PureHeart") ?? false));
+                (name) => !SuffocationImmune() && !(bool)(ModLoader.GetMod("FargowiltasSouls").Call("PureHeart") ?? false));
 
             //AddDialogue("The spirits of light and dark stopped by and they sounded pretty upset with you. Don't be too surprised if something happens to you for entering their territory!", HelpDialogueType.Environment, (name) => Main.hardMode && !(bool)(ModLoader.GetMod("FargowiltasSouls").Call("PureHeart") ?? false));
 

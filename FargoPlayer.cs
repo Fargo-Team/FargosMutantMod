@@ -436,10 +436,10 @@ namespace Fargowiltas
                     ActivePotions.Add(potToggle.BuffID);
                 }
 
-                if (!Player.GetPotionToggleValue(potToggle.ItemID))
+                /*if (!Player.GetPotionToggleValue(potToggle.ItemID))
                 {
                     Player.buffImmune[potToggle.BuffID] = true;
-                }
+                }*/
             }
         }
         public override void DrawEffects(PlayerDrawSet drawInfo, ref float r, ref float g, ref float b, ref float a, ref bool fullBright)

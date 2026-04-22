@@ -1,4 +1,5 @@
 ﻿using Fargowiltas.Common.Configs;
+using Fargowiltas.Common.Systems;
 using Fargowiltas.Common.Systems.Collections;
 using Fargowiltas.Content.Items.CaughtNPCs;
 using Fargowiltas.Content.Items.Summons.Abom;
@@ -522,7 +523,9 @@ namespace Fargowiltas.Content.Items
             if (item.IsAir || !(FargoServerConfig.Instance.UnlimitedPotionBuffs is UnlimitedBuffSelections.On || (FargoServerConfig.Instance.UnlimitedPotionBuffs is UnlimitedBuffSelections.BossOnly && FargoGlobalNPC.AnyBossAlive())))
                 return;
 
-            if (item.stack >= FargoServerConfig.Instance.UnlimitedPotionBuffsAmount && item.buffType != 0 && item.buffTime >= 60 * 60 * 2)
+            Dictionary<int, PotionToggle> toggles = player.FargoMutant().PotionToggler.Toggles;
+
+            if (item.stack >= FargoServerConfig.Instance.UnlimitedPotionBuffsAmount && item.buffType != 0 && item.buffTime >= 60 * 60 * 2 && toggles.TryGetValue(item.type, out PotionToggle value) && value.ToggleBool)
             {
                 player.AddBuff(item.buffType, 2);
 

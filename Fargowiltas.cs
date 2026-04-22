@@ -1274,7 +1274,7 @@ namespace Fargowiltas
 
         private void AddBuff(Terraria.On_Player.orig_AddBuff orig, Player self, int type, int timeToAdd, bool quiet, bool foodHack)
         {
-            self.FargoMutant().ActivePotions.Add(type);
+            //self.FargoMutant().ActivePotions.Add(type);
             orig(self, type, timeToAdd, quiet, foodHack);
         }
 

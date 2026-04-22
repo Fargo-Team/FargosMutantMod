@@ -6,6 +6,7 @@ using Fargowiltas.Content.Items.Summons.Abom;
 using Fargowiltas.Content.Items.Tiles;
 using Fargowiltas.Content.NPCs;
 using Fargowiltas.Content.UI.Emotes;
+using Fargowiltas.Utilities.Extensions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -523,17 +524,20 @@ namespace Fargowiltas.Content.Items
             if (item.IsAir || !(FargoServerConfig.Instance.UnlimitedPotionBuffs is UnlimitedBuffSelections.On || (FargoServerConfig.Instance.UnlimitedPotionBuffs is UnlimitedBuffSelections.BossOnly && FargoGlobalNPC.AnyBossAlive())))
                 return;
 
-            Dictionary<int, PotionToggle> toggles = player.FargoMutant().PotionToggler.Toggles;
-
-            if (item.stack >= FargoServerConfig.Instance.UnlimitedPotionBuffsAmount && item.buffType != 0 && item.buffTime >= 60 * 60 * 2 && toggles.TryGetValue(item.type, out PotionToggle value) && value.ToggleBool)
+            if (item.stack >= FargoServerConfig.Instance.UnlimitedPotionBuffsAmount && item.buffType != 0 && item.buffTime >= 60 * 60 * 2)
             {
-                player.AddBuff(item.buffType, 2);
+                player.FargoMutant().ActivePotions.Add(item.buffType);
 
-                //compensate to account for luck potion being weaker based on remaining duration wtf
-                if (item.type == ItemID.LuckPotion)
-                    player.GetModPlayer<FargoPlayer>().luckPotionBoost = Math.Max(player.GetModPlayer<FargoPlayer>().luckPotionBoost, 0.1f);
-                else if (item.type == ItemID.LuckPotionGreater)
-                    player.GetModPlayer<FargoPlayer>().luckPotionBoost = Math.Max(player.GetModPlayer<FargoPlayer>().luckPotionBoost, 0.2f);
+                if (player.GetPotionToggleValue(item.type))
+                {
+                    player.AddBuff(item.buffType, 2);
+
+                    //compensate to account for luck potion being weaker based on remaining duration wtf
+                    if (item.type == ItemID.LuckPotion)
+                        player.GetModPlayer<FargoPlayer>().luckPotionBoost = Math.Max(player.GetModPlayer<FargoPlayer>().luckPotionBoost, 0.1f);
+                    else if (item.type == ItemID.LuckPotionGreater)
+                        player.GetModPlayer<FargoPlayer>().luckPotionBoost = Math.Max(player.GetModPlayer<FargoPlayer>().luckPotionBoost, 0.2f);
+                }
             }
 
         }

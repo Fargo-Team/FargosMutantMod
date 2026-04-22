@@ -435,6 +435,10 @@ namespace Fargowiltas
                 {
                     ActivePotions.Add(potToggle.BuffID);
                 }
+                else if (Player.buffImmune[potToggle.BuffID])
+                {
+                    ActivePotions.Remove(potToggle.BuffID);
+                }
 
                 /*if (!Player.GetPotionToggleValue(potToggle.ItemID))
                 {

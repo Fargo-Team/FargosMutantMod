@@ -36,6 +36,7 @@ using static Fargowiltas.Content.Items.Tiles.EnchantedTreeTileEntity;
 [assembly: InternalsVisibleTo("FargowiltasMusic")]
 [assembly: InternalsVisibleTo("FargoSeeds")]
 [assembly: InternalsVisibleTo("FargowiltasCrossmod")]
+[assembly: InternalsVisibleTo("FargowiltasSoulsDLC")]
 namespace Fargowiltas
 {
     public class Fargowiltas : Mod

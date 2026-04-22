@@ -19,6 +19,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Terraria;
 using Terraria.Audio;
 using Terraria.Chat;
@@ -31,6 +32,10 @@ using Terraria.UI;
 using Terraria.UI.Chat;
 using static Fargowiltas.Content.Items.Tiles.EnchantedTreeTileEntity;
 
+[assembly: InternalsVisibleTo("FargowiltasSouls")]
+[assembly: InternalsVisibleTo("FargowiltasMusic")]
+[assembly: InternalsVisibleTo("FargoSeeds")]
+[assembly: InternalsVisibleTo("FargowiltasCrossmod")]
 namespace Fargowiltas
 {
     public class Fargowiltas : Mod

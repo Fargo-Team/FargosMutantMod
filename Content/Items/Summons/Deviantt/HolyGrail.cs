@@ -21,7 +21,7 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
     }
     public class HolyGrailBuff : BaseSpawnBoosterBuff
     {
-        public HolyGrailBuff() : base(() => [NPCID.Tim], () => Main.LocalPlayer.ZoneRockLayerHeight && (double)Main.LocalPlayer.Center.Y / 16 > (Main.rockLayer + Main.maxTilesY) / 2.0, 0.2f)
+        public HolyGrailBuff() : base(() => [NPCID.Tim], () => Main.LocalPlayer.ZoneRockLayerHeight && (double)Main.LocalPlayer.Center.Y / 16 > (Main.rockLayer + Main.maxTilesY) / 2.0, 0.1f)
         {
         }
     }

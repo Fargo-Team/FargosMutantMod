@@ -19,6 +19,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Terraria;
 using Terraria.Audio;
 using Terraria.Chat;
@@ -31,6 +32,12 @@ using Terraria.UI;
 using Terraria.UI.Chat;
 using static Fargowiltas.Content.Items.Tiles.EnchantedTreeTileEntity;
 
+[assembly: InternalsVisibleTo("FargowiltasSouls")]
+[assembly: InternalsVisibleTo("FargowiltasMusic")]
+[assembly: InternalsVisibleTo("FargoSeeds")]
+[assembly: InternalsVisibleTo("FargowiltasCrossmod")]
+[assembly: InternalsVisibleTo("FargowiltasSoulsDLC")]
+[assembly: InternalsVisibleTo("Satanist")]
 namespace Fargowiltas
 {
     public class Fargowiltas : Mod
@@ -1267,7 +1274,7 @@ namespace Fargowiltas
 
         private void AddBuff(Terraria.On_Player.orig_AddBuff orig, Player self, int type, int timeToAdd, bool quiet, bool foodHack)
         {
-            self.FargoMutant().ActivePotions.Add(type);
+            //self.FargoMutant().ActivePotions.Add(type);
             orig(self, type, timeToAdd, quiet, foodHack);
         }
 

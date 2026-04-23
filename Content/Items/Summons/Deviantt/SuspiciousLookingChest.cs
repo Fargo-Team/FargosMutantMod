@@ -35,7 +35,7 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
     }
     public class SuspiciousLookingChestBuff : BaseSpawnBoosterBuff
     {
-        public SuspiciousLookingChestBuff() : base(() => Main.LocalPlayer.ZoneSnow ? [NPCID.IceMimic] : [NPCID.Mimic], () => Main.LocalPlayer.ZoneDirtLayerHeight || Main.LocalPlayer.ZoneRockLayerHeight, 0.2f)
+        public SuspiciousLookingChestBuff() : base(() => Main.LocalPlayer.ZoneSnow ? [NPCID.IceMimic] : [NPCID.Mimic], () => Main.LocalPlayer.ZoneDirtLayerHeight || Main.LocalPlayer.ZoneRockLayerHeight, 0.3f)
         {
         }
     }

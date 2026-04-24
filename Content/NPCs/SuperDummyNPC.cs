@@ -39,6 +39,8 @@ namespace Fargowiltas.Content.NPCs
         public override void OnSpawn(IEntitySource source)
         {
             NPC.life = NPC.lifeMax = maxHP;
+            NPC.TargetClosest();
+            NPC.spriteDirection = NPC.direction;
         }
         public override void AI()
         {

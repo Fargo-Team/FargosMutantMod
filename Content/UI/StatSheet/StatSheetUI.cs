@@ -258,7 +258,7 @@ namespace Fargowiltas.Content.UI.StatSheet
             InnerPanel.Append(star);
         }
 
-        public void AddStat(string key, string modName = "Fargowiltas", params object[] args) => AddStat(Language.GetTextValue($"Mods.Fargowiltas.UI.StatSheet.{key}", args), key, modName);
+        public void AddStat(string key, string modName = "Fargowiltas", params object[] args) => AddStat(Language.GetTextValue($"Mods.{modName}.UI.StatSheet.{key}", args), key, modName);
 
         public void AddStat(string text, string key, string modName = "Fargowiltas")
         {

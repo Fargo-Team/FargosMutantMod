@@ -161,9 +161,9 @@ namespace Fargowiltas.Content.Items
                     if (i > 5)
                         names = ExpandedTooltipLoc("SeveralVendors");
                     string text = $"[h:{id}] [c/AAAAAA:{ExpandedTooltipLoc("SoldBy")} {names}{tooltip.Condition}]";
-                    //todo: fallback icon.
+
                     if (id == -1)
-                        text = $"[c/AAAAAA:{ExpandedTooltipLoc("SoldBy")} {names}{tooltip.Condition}]";
+                        text = $"[s:Fargowiltas/UnknownNPC] [c/AAAAAA:{ExpandedTooltipLoc("SoldBy")} {names}{tooltip.Condition}]";
                     line = new TooltipLine(Mod, "TooltipNPCSold", text);
                     tooltips.Add(line);
                 }

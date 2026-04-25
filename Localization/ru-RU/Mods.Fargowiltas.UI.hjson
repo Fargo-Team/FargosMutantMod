@@ -9,7 +9,7 @@ StatSheet: {
 	// combat
 	Combat: Боевые
 	ArmorPenetration: Пробивание брони: {0}
-	Life: Жизнь: {0}
+	Life: Здоровье: {0}
 	LifeRegen: Восст. здоровья: {0}/сек
 	Defense: Защиты: {0}
 	KnockbackImmunity: Сопротивл. отбрасыванию: {0}

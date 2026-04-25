@@ -1,4 +1,5 @@
-﻿using Fargowiltas.Content.Items.Weapons;
+﻿using Fargowiltas.Common.Systems.Shaders;
+using Fargowiltas.Content.Items.Weapons;
 using Fargowiltas.Content.NPCs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -219,7 +220,8 @@ namespace Fargowiltas.Content.UI.LumberjackUI
 
     internal class LumberjackInfoPanel : UIPanel
     {
-        readonly Asset<Texture2D> line = Main.Assets.Request<Texture2D>("Images/Extra_178");
+        readonly static Asset<Texture2D> panelBG = Main.Assets.Request<Texture2D>("Images/UI/PanelBackground");
+        readonly static Asset<Texture2D> panelBorder = Main.Assets.Request<Texture2D>("Images/UI/PanelBorder");
         public Color oldColor;
         public LumberJackBiome biome;
         private float maxTime = 30;
@@ -358,13 +360,31 @@ namespace Fargowiltas.Content.UI.LumberjackUI
 
         protected override void DrawSelf(SpriteBatch spriteBatch)
         {
-            base.DrawSelf(spriteBatch);
+            if (biome == null)
+            {
+                base.DrawSelf(spriteBatch);
+                return;
+            }
 
-            if (biome == null) return;
-            
-            Color drawColor = Color.Lerp(biome.IsAvailable ? biome.BackgroundColor : Color.Transparent, oldColor, timer / maxTime) * 0.5f;
+            Color drawColor = Color.Lerp(biome.IsAvailable ? biome.BackgroundColor : Color.Transparent, oldColor, timer / maxTime);
             Vector2 position = GetOuterDimensions().Center() + new Vector2(2 - GetOuterDimensions().Width / 2, GetOuterDimensions().Height / 2 - 2);
-            spriteBatch.Draw(line.Value, position, line.Frame(), drawColor, -MathHelper.PiOver2, Vector2.Zero, new Vector2(1f, (Width.Pixels / 2) - 2), SpriteEffects.None, 0f);
+
+            FargoShader fade = ShaderSystem.TryGetShader("Fargowiltas:ColorFade");
+            fade.TrySetParameter("screenSize", Main.ScreenSize);
+            fade.TrySetParameter("screenPosition", Vector2.Zero);
+            fade.TrySetParameter("rotation", MathHelper.PiOver2);
+            fade.TrySetParameter("fadeColor", drawColor.ToVector4());
+            fade.TrySetParameter("fadeSize", GetDimensions().Height);
+            fade.TrySetParameter("opacity", 1f);
+            fade.TrySetParameter("anchorPoint", GetDimensions().Center() + new Vector2(0, GetDimensions().Height / 4));
+
+            spriteBatch.End(out var state);
+            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.LinearWrap, DepthStencilState.None, Main.Rasterizer, fade.Effect.Value, state.TransformMatrix);
+            FargoUtils.DrawUIPanel(spriteBatch, GetDimensions(), panelBG.Value, BackgroundColor);
+            spriteBatch.End();
+            spriteBatch.Begin(state);
+
+            FargoUtils.DrawUIPanel(spriteBatch, GetDimensions(), panelBorder.Value, BorderColor);
 
             if (timer > 0)
                 timer--;

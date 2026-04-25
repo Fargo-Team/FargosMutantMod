@@ -31,6 +31,8 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using static Fargowiltas.Content.Items.Tiles.EnchantedTreeTileEntity;
 using Fargowiltas.Common.Systems.Collections;
+using Terraria.Graphics.Effects;
+using Fargowiltas.Common.Systems.Shaders;
 
 namespace Fargowiltas
 {
@@ -214,6 +216,8 @@ namespace Fargowiltas
             On_NPC.CountKillForBannersAndDropThem += PreventBannerDrop;
 
             On_DD2Event.DropMedals += BetsyMedals;
+
+            On_FilterManager.EndCapture += ApplyFargoFilters;
         }
 
         private static IEnumerable<Item> GetWormholes(Player self) =>
@@ -336,6 +340,8 @@ namespace Fargowiltas
             On_NPC.CountKillForBannersAndDropThem -= PreventBannerDrop;
 
             On_DD2Event.DropMedals -= BetsyMedals;
+
+            On_FilterManager.EndCapture -= ApplyFargoFilters;
 
             summonTracker = null;
             dialogueTracker = null;
@@ -1378,6 +1384,13 @@ namespace Fargowiltas
                 return;
 
             orig(medals);
+        }
+
+        private void ApplyFargoFilters(On_FilterManager.orig_EndCapture orig, FilterManager self, RenderTarget2D finalTexture, RenderTarget2D screentarget1, RenderTarget2D screentarget2, Color clearColor)
+        {
+            ShaderSystem.ApplyFilters(finalTexture, screentarget1, screentarget2, clearColor);
+
+            orig(self, finalTexture, screentarget1, screentarget2, clearColor);
         }
 
         //        private static void HookIntoLoad()

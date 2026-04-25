@@ -1,5 +1,4 @@
-
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <Import Project="..\tModLoader.targets" />
   <PropertyGroup>
     <AssemblyName>Fargowiltas</AssemblyName>
@@ -11,6 +10,8 @@
     <None Remove="Content\Projectiles\CoolCrab.png" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Assets\AutoloadedEffects\Filters\" />
+    <Folder Include="Assets\AutoloadedEffects\Compiler\" />
     <Folder Include="Localization\pt-BR\" />
     <Folder Include="Localization\zh-Hans\" />
     <Folder Include="Localization\ru-RU\" />

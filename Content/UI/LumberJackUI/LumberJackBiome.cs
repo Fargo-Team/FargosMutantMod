@@ -87,7 +87,7 @@ namespace Fargowiltas.Content.UI.LumberjackUI
                 .AddFruit([ItemID.Mango, ItemID.Pineapple], 5, 1, () => 1f)
                 .Register();
 
-            LumberJackBiome.Create("Crimson", LocalPath, Item.buyPrice(0, 20), Color.Crimson)
+            LumberJackBiome.Create("Crimson", LocalPath, Item.buyPrice(0, 20), Color.Red)
                 .SetIcon(vanillaIcons, vanillaIcons.Frame(16, 5, 12, 0))
                 .SetWood(ItemID.Shadewood, 50)
                 .AddFruit([ItemID.BloodOrange, ItemID.Rambutan], 5, 1, () => 1f)
@@ -106,7 +106,7 @@ namespace Fargowiltas.Content.UI.LumberjackUI
                 .AddFruit([ItemID.Banana, ItemID.Coconut], 5, 1, () => 1f)
                 .Register();
 
-            LumberJackBiome.Create("Hallow", LocalPath, Item.buyPrice(0, 20), Color.DeepPink, TeleportPylonType.Hallow)
+            LumberJackBiome.Create("Hallow", LocalPath, Item.buyPrice(0, 20), Color.HotPink, TeleportPylonType.Hallow)
                 .SetIcon(vanillaIcons, vanillaIcons.Frame(16, 5, 1, 1))
                 .SetWood(ItemID.Pearlwood, 50)
                 .AddFruit([ItemID.Starfruit, ItemID.Dragonfruit], 5, 1, () => 1f)

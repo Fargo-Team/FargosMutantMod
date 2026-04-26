@@ -34,13 +34,13 @@ namespace Fargowiltas.Common.Systems
     {
         public class SymbolSnippet : TextSnippet
         {
-            private string texturePath;
             private Vector2 frameSize;
+            Asset<Texture2D> Texture;
 
-            public SymbolSnippet(string texturePath)
+            public SymbolSnippet(Asset<Texture2D> texture)
             {
-                this.texturePath = texturePath;
-                this.frameSize = ModContent.Request<Texture2D>(texturePath, AssetRequestMode.ImmediateLoad).Value.Frame().Size();
+                this.Texture = texture;
+                this.frameSize = Texture.Value.Frame().Size();
                 base.Color = Color.White;
             }
 
@@ -50,11 +50,10 @@ namespace Fargowiltas.Common.Systems
             {   
                 if (!justCheckingString && color != Color.Black)
                 {
-                    Texture2D value = ModContent.Request<Texture2D>(texturePath, AssetRequestMode.ImmediateLoad).Value;
-                    Rectangle frame = value.Frame();
+                    Rectangle frame = Texture.Frame();
                     Vector2 origin2 = frame.Size() / 2f;
                     if (ShouldDraw)
-                        spriteBatch.Draw(value, position + origin2, frame, Color.White, 0f, origin2, scale, SpriteEffects.None, 0f);                
+                        spriteBatch.Draw(Texture.Value, position + origin2, frame, Color.White, 0f, origin2, scale, SpriteEffects.None, 0f);                
                 }
                 size = frameSize;
                 return true;
@@ -73,11 +72,15 @@ namespace Fargowiltas.Common.Systems
             if (args.Length == 2 && SymbolPathRegistry.ContainsMod(args[0]))
             {
                 string filePath = $"{SymbolPathRegistry.GetFilePath(args[0])}/{args[1]}";
-                return new SymbolSnippet(filePath)
+                bool result = ModContent.RequestIfExists<Texture2D>(filePath, out Asset<Texture2D> icon, AssetRequestMode.ImmediateLoad);
+                if (result)
                 {
-                    DeleteWhole = true,
-                    Text = "[s:" + text + "]"
-                };
+                    return new SymbolSnippet(icon)
+                    {
+                        DeleteWhole = true,
+                        Text = "[s:" + text + "]"
+                    };
+                }
             }
 
             return new TextSnippet(text);

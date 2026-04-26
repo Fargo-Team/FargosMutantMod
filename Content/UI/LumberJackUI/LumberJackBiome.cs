@@ -281,7 +281,7 @@ namespace Fargowiltas.Content.UI.LumberjackUI
                 foreach (var fruit in Fruits)
                 {
                     if (fruit.chance.Invoke() <= 0)
-                        return;
+                        continue;
 
                     wr.Add(fruit, fruit.chance.Invoke());
                 }
@@ -300,7 +300,7 @@ namespace Fargowiltas.Content.UI.LumberjackUI
                 foreach (var critter in Critters)
                 {
                     if (critter.chance.Invoke() <= 0)
-                        return;
+                        continue;
 
                     wr.Add(critter, critter.chance.Invoke());
                 }

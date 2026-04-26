@@ -5,14 +5,14 @@ using Terraria.ModLoader;
 
 namespace Fargowiltas.Content.Items.Summons.Deviantt
 {
-    public class CrimsonChest : BaseSpawnBooster
+    public class CrimsonChest : BaseSummon
     {
-        public override int BuffType => ModContent.BuffType<CrimsonChestBuff>();
-    }
-    public class CrimsonChestBuff : BaseSpawnBoosterBuff
-    {
-        public CrimsonChestBuff() : base(() => [NPCID.BigMimicCrimson], () => Main.LocalPlayer.ZoneCrimson && (Main.LocalPlayer.ZoneDirtLayerHeight || Main.LocalPlayer.ZoneRockLayerHeight), 0.2f)
+        public override int NPCType => NPCID.BigMimicCrimson;
+
+        public override void SetStaticDefaults()
         {
+            base.SetStaticDefaults();
+            ItemID.Sets.SortingPriorityBossSpawns[Type] = 6; // Places it right after Gelatin Crystal
         }
     }
 }

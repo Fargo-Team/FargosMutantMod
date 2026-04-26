@@ -3,16 +3,17 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
+
 namespace Fargowiltas.Content.Items.Summons.Deviantt
 {
-    public class HallowChest : BaseSpawnBooster
+    public class HallowChest : BaseSummon
     {
-        public override int BuffType => ModContent.BuffType<HallowChestBuff>();
-    }
-    public class HallowChestBuff : BaseSpawnBoosterBuff
-    {
-        public HallowChestBuff() : base(() => [NPCID.BigMimicHallow], () => Main.LocalPlayer.ZoneHallow && (Main.LocalPlayer.ZoneDirtLayerHeight || Main.LocalPlayer.ZoneRockLayerHeight), 0.2f)
+        public override int NPCType => NPCID.BigMimicHallow;
+
+        public override void SetStaticDefaults()
         {
+            base.SetStaticDefaults();
+            ItemID.Sets.SortingPriorityBossSpawns[Type] = 6; // Places it right after Gelatin Crystal
         }
     }
 }

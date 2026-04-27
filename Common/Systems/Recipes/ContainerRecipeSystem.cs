@@ -250,12 +250,12 @@ namespace Fargowiltas.Common.Systems.Recipes
 
         private static void AddBiomeKeyRecipes()
         {
-            RecipeHelper.CreateSimpleRecipe(ItemID.CrimsonKey, ItemID.VampireKnives, TileID.MythrilAnvil, disableDecraft: true, conditions: Condition.DownedPlantera);
-            RecipeHelper.CreateSimpleRecipe(ItemID.CorruptionKey, ItemID.ScourgeoftheCorruptor, TileID.MythrilAnvil, disableDecraft: true, conditions: Condition.DownedPlantera);
-            RecipeHelper.CreateSimpleRecipe(ItemID.JungleKey, ItemID.PiranhaGun, TileID.MythrilAnvil, disableDecraft: true, conditions: Condition.DownedPlantera);
-            RecipeHelper.CreateSimpleRecipe(ItemID.FrozenKey, ItemID.StaffoftheFrostHydra, TileID.MythrilAnvil, disableDecraft: true, conditions: Condition.DownedPlantera);
-            RecipeHelper.CreateSimpleRecipe(ItemID.HallowedKey, ItemID.RainbowGun, TileID.MythrilAnvil, disableDecraft: true, conditions: Condition.DownedPlantera);
-            RecipeHelper.CreateSimpleRecipe(ItemID.DungeonDesertKey, ItemID.StormTigerStaff, TileID.MythrilAnvil, disableDecraft: true, conditions: Condition.DownedPlantera);
+            CreateBiomeKeyRecipe(ItemID.CrimsonKey, ItemID.VampireKnives, TileID.MythrilAnvil, disableDecraft: true);
+            CreateBiomeKeyRecipe(ItemID.CorruptionKey, ItemID.ScourgeoftheCorruptor, TileID.MythrilAnvil, disableDecraft: true);
+            CreateBiomeKeyRecipe(ItemID.JungleKey, ItemID.PiranhaGun, TileID.MythrilAnvil, disableDecraft: true);
+            CreateBiomeKeyRecipe(ItemID.FrozenKey, ItemID.StaffoftheFrostHydra, TileID.MythrilAnvil, disableDecraft: true);
+            CreateBiomeKeyRecipe(ItemID.HallowedKey, ItemID.RainbowGun, TileID.MythrilAnvil, disableDecraft: true);
+            CreateBiomeKeyRecipe(ItemID.DungeonDesertKey, ItemID.StormTigerStaff, TileID.MythrilAnvil, disableDecraft: true);
         }
 
         private static void AddGrabBagRecipes()
@@ -466,6 +466,33 @@ namespace Fargowiltas.Common.Systems.Recipes
             {
                 RecipeHelper.CreateSimpleRecipe(input, output, TileID.Solidifier, ingredientAmount: amount, disableDecraft: true);
             }
+        }
+
+        public static void CreateBiomeKeyRecipe(int ingredientID, int resultID, int tileID, int ingredientAmount = 1, int resultAmount = 1, bool disableDecraft = false, bool usesRecipeGroup = false, params Condition[] conditions)
+        {
+            var recipe = Recipe.Create(resultID, resultAmount);
+            if (usesRecipeGroup)
+            {
+                recipe.AddRecipeGroup(ingredientID, ingredientAmount);
+            }
+            else
+            {
+                recipe.AddIngredient(ingredientID, ingredientAmount);
+            }
+            recipe.AddIngredient(ItemID.Ectoplasm, 20);
+            recipe.AddTile(tileID);
+
+            foreach (Condition condition in conditions)
+            {
+                recipe.AddCondition(condition);
+            }
+
+            if (disableDecraft)
+            {
+                recipe.DisableDecraft();
+            }
+
+            recipe.Register();
         }
     }
 }

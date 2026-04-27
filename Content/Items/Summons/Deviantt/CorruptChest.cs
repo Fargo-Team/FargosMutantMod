@@ -5,15 +5,14 @@ using Terraria.ModLoader;
 
 namespace Fargowiltas.Content.Items.Summons.Deviantt
 {
-    public class CorruptChest : BaseSpawnBooster
+    public class CorruptChest : BaseSummon
     {
-        public override int BuffType => ModContent.BuffType<CorruptChestBuff>();
+        public override int NPCType => NPCID.BigMimicCorruption;
 
-    }
-    public class CorruptChestBuff : BaseSpawnBoosterBuff
-    {
-        public CorruptChestBuff() : base(() => [NPCID.BigMimicCorruption], () => Main.LocalPlayer.ZoneCorrupt && (Main.LocalPlayer.ZoneDirtLayerHeight || Main.LocalPlayer.ZoneRockLayerHeight), 0.2f)
+        public override void SetStaticDefaults()
         {
+            base.SetStaticDefaults();
+            ItemID.Sets.SortingPriorityBossSpawns[Type] = 6; // Places it right after Gelatin Crystal
         }
     }
 }

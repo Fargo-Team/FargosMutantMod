@@ -1,18 +1,19 @@
 ﻿
-using System;
-using System.Collections.Generic;
-using System.IO;
 using Fargowiltas.Common.Systems.Collections;
 using Fargowiltas.Content.Items.Misc;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
+using System;
+using System.Collections.Generic;
+using System.IO;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.Config;
 using Terraria.ModLoader.IO;
 
 namespace Fargowiltas.Content.Items.Tiles
@@ -85,14 +86,12 @@ namespace Fargowiltas.Content.Items.Tiles
         public int Prefix = 0;
         public override void SaveData(TagCompound tag)
         {
-            //dont save item if its null because ItemIO.Save will fuck up
-            tag["ItemID"] = ItemType;
+            tag["ItemDefinition"] = new ItemDefinition(ItemType);
             tag["Prefix"] = Prefix;
         }
         public override void LoadData(TagCompound tag)
         {
-            //only load if the bool sent indicated item is not null
-            ItemType = tag.GetAsInt("ItemID");
+            ItemType = tag.Get<ItemDefinition>("ItemDefinition").Type;
             Prefix = tag.GetAsInt("Prefix");
         }
         //same concept as save and load

@@ -24,6 +24,7 @@ using Terraria.GameContent.Events;
 using Terraria.GameInput;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.Config;
 using Terraria.ModLoader.IO;
 using static Fargowiltas.Content.Items.Misc.BattleCry;
 using static Fargowiltas.Content.Items.Tiles.EnchantedTreeTileEntity;
@@ -141,65 +142,40 @@ namespace Fargowiltas
             if (HasClickedWrench)
                 tag.Add("HasClickedWrench", true);
 
-            List<string> ownedItemsData = [];
+            List<ItemDefinition> ownedItemsData = [];
             for (int i = 0; i < ItemHasBeenOwned.Length; i++)
             {
                 if (ItemHasBeenOwned[i])
                 {
-                    if (i >= ItemID.Count) // modded item, variable type, add name instead
-                    {
-                        if (ItemLoader.GetItem(i) is ModItem modItem && modItem != null)
-                            ownedItemsData.Add($"{modItem.FullName}");
-                    }
-                    else // vanilla item
-                    {
-                        ownedItemsData.Add($"{i}");
-                    }
+                    ownedItemsData.Add(new ItemDefinition(i));
                 }
             }
-            tag.Add("OwnedItemsList", ownedItemsData);
+            tag.Add("OwnedItemsListDef", ownedItemsData);
 
-            List<string> ownedItemsAtThirtyData = [];
+            List<ItemDefinition> ownedItemsAtThirtyData = [];
             for (int i = 0; i < ItemHasBeenOwnedAtThirtyStack.Length; i++)
             {
                 if (ItemHasBeenOwnedAtThirtyStack[i])
                 {
-                    if (i >= ItemID.Count) //modded item, variable type, add name instead
-                    {
-                        if (ItemLoader.GetItem(i) is ModItem modItem && modItem != null)
-                            ownedItemsAtThirtyData.Add($"{modItem.FullName}");
-                    }
-                    else //vanilla item
-                    {
-                        ownedItemsAtThirtyData.Add($"{i}");
-                    }
+                    ownedItemsAtThirtyData.Add(new ItemDefinition(i));
                 }
             }
-            tag.Add("OwnedItemsAtThirtyList", ownedItemsAtThirtyData);
+            tag.Add("OwnedItemsAtThirtyListDef", ownedItemsAtThirtyData);
 
-            var togglesOff = new List<string>();
+            var togglesOff = new List<ItemDefinition>();
             if (PotionToggler != null && PotionToggler.Toggles != null)
             {
                 foreach (KeyValuePair<int, PotionToggle> entry in PotionToggler.Toggles)
                 {
                     if (!PotionToggler.Toggles[entry.Key].ToggleBool)
                     {
-                        string key;
                         int itemID = entry.Key;
-                        if (itemID < ItemID.Count)
-                            key = itemID.ToString();
-                        else if (ContentSamples.ItemsByType[itemID] is Item item && item.ModItem is ModItem modItem)
-                        {
-                            key = modItem.FullName;
-                        }
-                        else // how?
-                            continue;
-                        togglesOff.Add(key);
+                        togglesOff.Add(new ItemDefinition(itemID));
                     }
 
                 }
             }
-            tag.Add($"{Mod.Name}.{Player.name}.PotionTogglesOff", togglesOff);
+            tag.Add($"{Mod.Name}.{Player.name}.PotionTogglesOffDef", togglesOff);
         }
 
         //        public override void Initialize()
@@ -222,44 +198,21 @@ namespace Fargowiltas
             HasClickedWrench = tag.ContainsKey("HasClickedWrench");
 
             ItemHasBeenOwned = ItemID.Sets.Factory.CreateBoolSet(false);
-            var ownedItemsData = tag.GetList<string>("OwnedItemsList");
+            var ownedItemsData = tag.GetList<ItemDefinition>("OwnedItemsListDef");
             foreach (var entry in ownedItemsData)
             {
-                if (int.TryParse(entry, out int type) && type < ItemID.Count)
-                {
-                    ItemHasBeenOwned[type] = true;
-                }
-                else
-                {
-                    if (ModContent.TryFind<ModItem>(entry, out ModItem item))
-                        ItemHasBeenOwned[item.Type] = true;
-                }
+                ItemHasBeenOwned[entry.Type] = true;
             }
             ItemHasBeenOwnedAtThirtyStack = ItemID.Sets.Factory.CreateBoolSet(false);
-            var ownedItemsAtThirtyData = tag.GetList<string>("OwnedItemsAtThirtyList");
+            var ownedItemsAtThirtyData = tag.GetList<ItemDefinition>("OwnedItemsAtThirtyListDef");
             foreach (var entry in ownedItemsAtThirtyData)
             {
-                if (int.TryParse(entry, out int type) && type < ItemID.Count)
-                {
-                    ItemHasBeenOwnedAtThirtyStack[type] = true;
-                }
-                else
-                {
-                    if (ModContent.TryFind<ModItem>(entry, out ModItem item))
-                        ItemHasBeenOwnedAtThirtyStack[item.Type] = true;
-                }
+                ItemHasBeenOwnedAtThirtyStack[entry.Type] = true;
             }
 
-            List<string> disabledToggleNames = tag.GetList<string>($"{Mod.Name}.{Player.name}.PotionTogglesOff").ToList();
-            List<int> disabledToggleIDs = [];
-            foreach (var key in disabledToggleNames)
-            {
-                if (int.TryParse(key, out int id) && id < ItemID.Count)
-                    disabledToggleIDs.Add(id);
-                else if (ModContent.TryFind(key, out ModItem item))
-                    disabledToggleIDs.Add(item.Type);
-            }
-            DisabledPotionToggles = PotionToggleLoader.LoadedToggles.Keys.Where(disabledToggleIDs.Contains).ToList();
+            var disabledToggleIDs = tag.GetList<ItemDefinition>($"{Mod.Name}.{Player.name}.PotionTogglesOffDef").Select(t => t.Type).ToHashSet();
+
+            DisabledPotionToggles = [.. PotionToggleLoader.LoadedToggles.Keys.Where(disabledToggleIDs.Contains)];
         }
         public void SyncPotionToggle(int itemID)
         {

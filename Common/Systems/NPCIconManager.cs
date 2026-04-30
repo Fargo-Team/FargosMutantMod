@@ -73,18 +73,27 @@ namespace Fargowiltas.Common.Systems
 
         public TextSnippet Parse(string text, Color baseColor = default(Color), string options = null)
         {
-            int npcID = int.Parse(text);
-                       
-            if (!text.AsSpan().IsWhiteSpace() && npcID != -1)
+            int headID = -1;
+            if (int.TryParse(text, out int id) && id < NPCHeadLoader.NPCHeadCount)
             {
-                return new NPCIconSnippet(npcID)
-                {
-                    DeleteWhole = true,
-                    Text = "[h:" + text + "]"
-                };
+                headID = id;
             }
-
-            return new TextSnippet("");
+            if (NPCID.Search.TryGetId(text, out int npcID)) // Allow searches of npcs by mod full name (i.e. "Fargowiltas/Abominationn")
+            {
+                // Check if npc has a head type
+                int headType = TownNPCProfiles.GetHeadIndexSafe(ContentSamples.NpcsByNetId[npcID]);
+                if (headType >= 0)
+                    headID = headType;
+            }
+            if (headID <= 0)
+            {
+                return new TextSnippet(text);
+            }
+            return new NPCIconSnippet(headID)
+            {
+                DeleteWhole = true,
+                Text = "[h:" + text + "]"
+            };
         }
     }
 }

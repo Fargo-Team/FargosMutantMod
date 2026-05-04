@@ -1,4 +1,4 @@
-Sandstorm: {
-	// Keyword: Sandstorm
-	// Description: Summonable via [i:Fargowiltas/ForbiddenScarab] sold by [h:Fargowiltas/Abominationn]
+﻿Sandstorm: {
+	Keyword: Песчаная буря
+	Description: Призывается с помощью [i:Fargowiltas/ForbiddenScarab], можно купить у [h:Fargowiltas/Abominationn]
 }

@@ -15,7 +15,7 @@ ElementalAssemblerAchievement: {
 
 BuyNPCAchievement: {
 	FriendlyName: Не спрашивай, откуда они у меня
-	Description: Под багровым покровом кровавой луны, купите кого-нибудь у бельчонка.
+	Description: Купите кого-нибудь у бельчонка под багровым покровом кровавой луны.
 }
 
 LumberjaxeAchievement: {
@@ -30,7 +30,7 @@ NPCSacrificeAchievement: {
 
 OmnistationAchievement: {
 	FriendlyName: Лучик света
-	Description: Улучшите Полустанцию до Омнистанции, кульминации станций-усилителей.
+	Description: Улучшите Полустанцию до Омнистанции — кульминации станций-усилителей.
 }
 
 SemistationAchievement: {

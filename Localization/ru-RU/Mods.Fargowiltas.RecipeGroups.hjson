@@ -1,11 +1,11 @@
-﻿EvilWood: дерево биома зла
+﻿EvilWood: древесина зла
 CommonFish: обычная рыба
 CaughtNPC: пойманный поселенец
 CaughtSlime: пойманный городской слизень
 ArmoredBonesBanner: знамя бронированного скелета
 FoodT2: еда полного удовлетворения
-FoodT3: еда изысканного удовлетворения
-GemRobe: роба из камней
+FoodT3: еда изысканного насыщения
+GemRobe: самоцветная мантия
 WoodenPlatform: деревянная платформа
 WoodCrate: деревянный ящик
 IronCrate: железный ящик
@@ -14,8 +14,8 @@ JungleCrate: джунглевый ящик
 SkyCrate: небесный ящик
 CorruptCrate: порченный ящик
 CrimsonCrate: багряный ящик
-HallowedCrate: святой ящик
-DungeonCrate: ящик темницы
+HallowedCrate: освящённый ящик
+DungeonCrate: темничный ящик
 FrozenCrate: замороженный ящик
 SandCrate: оазисный ящик
 LavaCrate: обсидиановый ящик

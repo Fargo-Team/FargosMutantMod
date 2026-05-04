@@ -1,4 +1,4 @@
-﻿BrittleBone: {
+BrittleBone: {
 	DisplayName: Хрупкая кость
 	Tooltip: ""
 }
@@ -154,7 +154,7 @@ OmniBridgifier2: {
 }
 
 BattleCry: {
-	DisplayName: Боевой горн 
+	DisplayName: Боевой горн
 	Tooltip:
 		'''
 		Нажмите ЛКМ, чтобы увеличить скорость появления существ

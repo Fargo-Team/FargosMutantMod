@@ -75,7 +75,9 @@ namespace Fargowiltas
         internal Dictionary<string, bool> FirstDyeIngredients = [];
 
         public bool[] ItemHasBeenOwned; // If you've owned this item type ever
+        public HashSet<ItemDefinition> ItemHasBeenOwnedCache = []; // Only used for saving and loading
         public bool[] ItemHasBeenOwnedAtThirtyStack; // If you've owned this 30 of this item type ever
+        public HashSet<ItemDefinition> ItemHasBeenOwnedAtThirtyStackCache = []; // Only used for saving and loading
 
         public int DeathCamTimer = 0;
         public int SpectatePlayer = 0;
@@ -142,25 +144,23 @@ namespace Fargowiltas
             if (HasClickedWrench)
                 tag.Add("HasClickedWrench", true);
 
-            List<ItemDefinition> ownedItemsData = [];
             for (int i = 0; i < ItemHasBeenOwned.Length; i++)
             {
                 if (ItemHasBeenOwned[i])
                 {
-                    ownedItemsData.Add(new ItemDefinition(i));
+                    ItemHasBeenOwnedCache.Add(new ItemDefinition(i));
                 }
             }
-            tag.Add("OwnedItemsListDef", ownedItemsData);
+            tag.Add("OwnedItemsListDef", ItemHasBeenOwnedCache.ToList());
 
-            List<ItemDefinition> ownedItemsAtThirtyData = [];
             for (int i = 0; i < ItemHasBeenOwnedAtThirtyStack.Length; i++)
             {
                 if (ItemHasBeenOwnedAtThirtyStack[i])
                 {
-                    ownedItemsAtThirtyData.Add(new ItemDefinition(i));
+                    ItemHasBeenOwnedAtThirtyStackCache.Add(new ItemDefinition(i));
                 }
             }
-            tag.Add("OwnedItemsAtThirtyListDef", ownedItemsAtThirtyData);
+            tag.Add("OwnedItemsAtThirtyListDef", ItemHasBeenOwnedAtThirtyStackCache.ToList());
 
             var togglesOff = new List<ItemDefinition>();
             if (PotionToggler != null && PotionToggler.Toggles != null)
@@ -198,21 +198,28 @@ namespace Fargowiltas
             HasClickedWrench = tag.ContainsKey("HasClickedWrench");
 
             ItemHasBeenOwned = ItemID.Sets.Factory.CreateBoolSet(false);
-            var ownedItemsData = tag.GetList<ItemDefinition>("OwnedItemsListDef");
-            foreach (var entry in ownedItemsData)
+            if (tag.TryGet<IList<ItemDefinition>>("OwnedItemsListDef", out var ownedList))
             {
-                ItemHasBeenOwned[entry.Type] = true;
+                ItemHasBeenOwnedCache = [.. ownedList];
+                foreach (var entry in ItemHasBeenOwnedCache.Where(i => i.Type != -1))
+                {
+                    ItemHasBeenOwned[entry.Type] = true;
+                }
             }
             ItemHasBeenOwnedAtThirtyStack = ItemID.Sets.Factory.CreateBoolSet(false);
-            var ownedItemsAtThirtyData = tag.GetList<ItemDefinition>("OwnedItemsAtThirtyListDef");
-            foreach (var entry in ownedItemsAtThirtyData)
+            if (tag.TryGet<IList<ItemDefinition>>("OwnedItemsAtThirtyListDef", out var ownedAtThirtyStackList))
             {
-                ItemHasBeenOwnedAtThirtyStack[entry.Type] = true;
+                ItemHasBeenOwnedAtThirtyStackCache = [.. ownedAtThirtyStackList];
+                foreach (var entry in ItemHasBeenOwnedAtThirtyStackCache.Where(i => i.Type != -1))
+                {
+                    ItemHasBeenOwnedAtThirtyStack[entry.Type] = true;
+                }
             }
 
-            var disabledToggleIDs = tag.GetList<ItemDefinition>($"{Mod.Name}.{Player.name}.PotionTogglesOffDef").Select(t => t.Type).ToHashSet();
-
-            DisabledPotionToggles = [.. PotionToggleLoader.LoadedToggles.Keys.Where(disabledToggleIDs.Contains)];
+            if (tag.TryGet<IList<ItemDefinition>>($"{Mod.Name}.{Player.name}.PotionTogglesOffDef", out var disabledToggleIDs))
+            {
+                DisabledPotionToggles = [.. PotionToggleLoader.LoadedToggles.Keys.Where(disabledToggleIDs.Select(t => t.Type).ToHashSet().Contains)];
+            }
         }
         public void SyncPotionToggle(int itemID)
         {

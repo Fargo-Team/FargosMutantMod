@@ -353,18 +353,18 @@ namespace Fargowiltas.Common.Systems.Recipes
             //hallow
 
             //dungeon
-            CreateCrateRecipe(ItemID.WaterBolt, RecipeGroups.AnyDungeonCrate, 3, ItemID.GoldenKey);
-            CreateCrateRecipe(ItemID.Muramasa, RecipeGroups.AnyDungeonCrate, 3, ItemID.GoldenKey);
-            CreateCrateRecipe(ItemID.CobaltShield, RecipeGroups.AnyDungeonCrate, 3, ItemID.GoldenKey);
-            CreateCrateRecipe(ItemID.MagicMissile, RecipeGroups.AnyDungeonCrate, 3, ItemID.GoldenKey);
-            CreateCrateRecipe(ItemID.AquaScepter, RecipeGroups.AnyDungeonCrate, 3, ItemID.GoldenKey, conditions: Condition.NotRemixWorld);
-            CreateCrateRecipe(ItemID.Valor, RecipeGroups.AnyDungeonCrate, 3, ItemID.GoldenKey);
-            CreateCrateRecipe(ItemID.Handgun, RecipeGroups.AnyDungeonCrate, 3, ItemID.GoldenKey);
-            CreateCrateRecipe(ItemID.ShadowKey, RecipeGroups.AnyDungeonCrate, 3, ItemID.GoldenKey);
-            CreateCrateRecipe(ItemID.BlueMoon, RecipeGroups.AnyDungeonCrate, 3, ItemID.GoldenKey);
-            CreateCrateRecipe(ItemID.BoneWelder, RecipeGroups.AnyDungeonCrate, 3, ItemID.GoldenKey);
-            CreateCrateRecipe(ItemID.AlchemyTable, RecipeGroups.AnyDungeonCrate, 3, ItemID.GoldenKey);
-            CreateCrateRecipe(ItemID.BewitchingTable, RecipeGroups.AnyDungeonCrate, 3, ItemID.GoldenKey);
+            CreateCrateRecipe(ItemID.WaterBolt, RecipeGroups.AnyDungeonCrate, 3, -1, ItemID.GoldenKey);
+            CreateCrateRecipe(ItemID.Muramasa, RecipeGroups.AnyDungeonCrate, 3, -1, ItemID.GoldenKey);
+            CreateCrateRecipe(ItemID.CobaltShield, RecipeGroups.AnyDungeonCrate, 3, -1, ItemID.GoldenKey);
+            CreateCrateRecipe(ItemID.MagicMissile, RecipeGroups.AnyDungeonCrate, 3, -1, ItemID.GoldenKey);
+            CreateCrateRecipe(ItemID.AquaScepter, RecipeGroups.AnyDungeonCrate, 3, -1, ItemID.GoldenKey, conditions: Condition.NotRemixWorld);
+            CreateCrateRecipe(ItemID.Valor, RecipeGroups.AnyDungeonCrate, 3, -1, ItemID.GoldenKey);
+            CreateCrateRecipe(ItemID.Handgun, RecipeGroups.AnyDungeonCrate, 3, -1, ItemID.GoldenKey);
+            CreateCrateRecipe(ItemID.ShadowKey, RecipeGroups.AnyDungeonCrate, 3, -1, ItemID.GoldenKey);
+            CreateCrateRecipe(ItemID.BlueMoon, RecipeGroups.AnyDungeonCrate, 3, -1, ItemID.GoldenKey);
+            CreateCrateRecipe(ItemID.BoneWelder, RecipeGroups.AnyDungeonCrate, 3, -1, ItemID.GoldenKey);
+            CreateCrateRecipe(ItemID.AlchemyTable, RecipeGroups.AnyDungeonCrate, 3, -1, ItemID.GoldenKey);
+            CreateCrateRecipe(ItemID.BewitchingTable, RecipeGroups.AnyDungeonCrate, 3, -1, ItemID.GoldenKey);
 
             //frozen crate
             CreateCrateRecipe(ItemID.SnowballCannon, RecipeGroups.AnyFrozenCrate, 3, conditions: Condition.NotRemixWorld);
@@ -392,12 +392,12 @@ namespace Fargowiltas.Common.Systems.Recipes
             CreateCrateRecipe(ItemID.SandstorminaBottle, RecipeGroups.AnySandCrate, 5);
 
             //obsidian
-            CreateCrateRecipe(ItemID.DarkLance, RecipeGroups.AnyLavaCrate, 3, ItemID.ShadowKey);
-            CreateCrateRecipe(ItemID.HellwingBow, RecipeGroups.AnyLavaCrate, 3, ItemID.ShadowKey);
-            CreateCrateRecipe(ItemID.Flamelash, RecipeGroups.AnyLavaCrate, 3, ItemID.ShadowKey);
-            CreateCrateRecipe(ItemID.FlowerofFire, RecipeGroups.AnyLavaCrate, 3, ItemID.ShadowKey, conditions: Condition.NotRemixWorld);
-            CreateCrateRecipe(ItemID.Sunfury, RecipeGroups.AnyLavaCrate, 3, ItemID.ShadowKey);
-            CreateCrateRecipe(ItemID.TreasureMagnet, RecipeGroups.AnyLavaCrate, 3, ItemID.ShadowKey);
+            CreateCrateRecipe(ItemID.DarkLance, RecipeGroups.AnyLavaCrate, 3, -1, ItemID.ShadowKey);
+            CreateCrateRecipe(ItemID.HellwingBow, RecipeGroups.AnyLavaCrate, 3, -1, ItemID.ShadowKey);
+            CreateCrateRecipe(ItemID.Flamelash, RecipeGroups.AnyLavaCrate, 3, -1, ItemID.ShadowKey);
+            CreateCrateRecipe(ItemID.FlowerofFire, RecipeGroups.AnyLavaCrate, 3, -1, ItemID.ShadowKey, conditions: Condition.NotRemixWorld);
+            CreateCrateRecipe(ItemID.Sunfury, RecipeGroups.AnyLavaCrate, 3, -1, ItemID.ShadowKey);
+            CreateCrateRecipe(ItemID.TreasureMagnet, RecipeGroups.AnyLavaCrate, 3, -1, ItemID.ShadowKey);
 
             CreateCrateRecipe(ItemID.LavaCharm, RecipeGroups.AnyLavaCrate, 5);
             CreateCrateRecipe(ItemID.HellCake, RecipeGroups.AnyLavaCrate, 5);
@@ -418,7 +418,7 @@ namespace Fargowiltas.Common.Systems.Recipes
             CreateCrateRecipe(ItemID.SharkBait, RecipeGroups.AnyOceanCrate, 5);
         }
 
-        private static void CreateCrateRecipe(int result, int crate, int crateAmount, int extraItem = -1, params Condition[] conditions)
+        private static void CreateCrateRecipe(int result, int crate, int crateAmount, int hardmodeCrate = -1, int extraItem = -1, params Condition[] conditions)
         {
             if (crate != -1)
             {
@@ -437,7 +437,7 @@ namespace Fargowiltas.Common.Systems.Recipes
                 recipe.Register();
             }
 
-            /*if (hardmodeCrate != -1)
+            if (hardmodeCrate != -1)
             {
                 var recipe = Recipe.Create(result);
                 recipe.AddIngredient(hardmodeCrate, crateAmount);
@@ -452,7 +452,7 @@ namespace Fargowiltas.Common.Systems.Recipes
                 }
                 recipe.DisableDecraft();
                 recipe.Register();
-            } */
+            }
         }
 
         private static void CreateTreasureGroupRecipe(int input, params int[] outputs)

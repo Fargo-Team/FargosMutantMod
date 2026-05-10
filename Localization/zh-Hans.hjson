@@ -99,18 +99,18 @@ Mods: {
 				}
 
 				NoTrapsWorld: {
-					// Label: "[i:510] No Traps World"
-					// Tooltip: ""
+					Label: "[i:510] 陷阱世界（No Traps）"
+					Tooltip: ""
 				}
 
 				RemixWorld: {
-					// Label: "[i:4711] Remix World"
-					// Tooltip: ""
+					Label: "[i:4711] 颠倒世界（Don't dig up）"
+					Tooltip: ""
 				}
 
 				ZenithWorld: {
-					// Label: "[i:4956] Zenith World"
-					// Tooltip: ""
+					Label: "[i:4956] 天顶世界（Get fixed boi）"
+					Tooltip: ""
 				}
 
 				UnlimitedAmmo: {
@@ -279,8 +279,8 @@ Mods: {
 				}
 
 				AnimatedRecipeGroups: {
-					// Label: "[i:9] Animated Recipe Groups"
-					// Tooltip: Whether recipe group sprites should flip through the viable items in the recipe group when displayed.
+					Label: "[i:9] 合成组动画"
+					Tooltip: 显示合成组时，合成组贴图是否在合成组中的可用物品间切换。
 				}
 
 				HideUnlimitedBuffs: {
@@ -321,9 +321,21 @@ Mods: {
 
 			SeasonSelections: {
 				Tooltip: ""
-				Normal.Label: 正常
-				AlwaysOn.Label: 常开
-				AlwaysOff.Label: 常关
+
+				Normal: {
+					Label: 正常
+					// Tooltip: ""
+				}
+
+				AlwaysOn: {
+					Label: 常开
+					// Tooltip: ""
+				}
+
+				AlwaysOff: {
+					Label: 常关
+					// Tooltip: ""
+				}
 			}
 
 			Common.CanSpawn: 可以生成
@@ -338,19 +350,19 @@ Mods: {
 			FoodT2: 二级饱食食物
 			FoodT3: 三级饱食食物
 			GemRobe: 宝石长袍
-			WoodenCrate: Wooden Crate
-			IronCrate: Iron Crate
-			GoldenCrate: Golden Crate
-			JungleCrate: Jungle Crate
-			SkyCrate: Sky Crate
-			CorruptCrate: Corrupt Crate
-			CrimsonCrate: Crimson Crate
+			WoodenCrate: 木匣
+			IronCrate: 铁匣
+			GoldenCrate: 金匣
+			JungleCrate: 丛林匣
+			SkyCrate: 天空匣
+			CorruptCrate: 腐化匣
+			CrimsonCrate: 猩红匣
 			// HallowedCrate: Hallowed Crate
-			DungeonCrate: Dungeon Crate
-			FrozenCrate: Frozen Crate
-			SandCrate: Oasis Crate
-			LavaCrate: Obsidian Crate
-			OceanCrate: Ocean Crate
+			DungeonCrate: 地牢匣
+			FrozenCrate: 冰冻匣
+			SandCrate: 绿洲匣
+			LavaCrate: 黑曜石匣
+			OceanCrate: 海洋匣
 			Or: 或
 		}
 
@@ -1808,7 +1820,7 @@ Mods: {
 					'''
 			}
 
-			// OverloaderRewards: The boss will drop {0} treasure bags, {1} trophies, and {2} energizers when defeated (rewards increase with stack size)
+			OverloaderRewards: Boss会掉落{0}个宝藏袋，{1}个纪念章和{2}个强化剂（随堆叠数量提升）
 
 			OverloadEye: {
 				DisplayName: 融合眼球

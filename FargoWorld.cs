@@ -206,7 +206,7 @@ namespace Fargowiltas
         {
             foreach (string tag in tags)
             {
-                writer.Write(DownedBools[tag]);
+                writer.Write(DownedBools.TryGetValue(tag, out bool value) && value);
             }
 
             writer.Write(AbomClearCD);

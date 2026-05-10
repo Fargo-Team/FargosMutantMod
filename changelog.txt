@@ -1,3 +1,2 @@
 NEW UPDATE - V {ModVersion}
-Animated recipe groups config: Fixed shimmer ingredients being jumbled around and potentially giving access to normally unavailable items
-Tweaked text of some recipe groups that use 2 items
+- Fixed rare crash when entering subworlds in multiplayer

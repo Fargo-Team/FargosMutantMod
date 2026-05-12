@@ -13,7 +13,7 @@ namespace Fargowiltas.Content.Items.Tiles
             Item.maxStack = 9999;
             Item.useTurn = true;
             Item.autoReuse = true;
-            Item.rare = ItemRarityID.Purple;
+            Item.rare = ItemRarityID.Green;
             Item.useAnimation = 15;
             Item.useTime = 15;
             Item.useStyle = ItemUseStyleID.Swing;

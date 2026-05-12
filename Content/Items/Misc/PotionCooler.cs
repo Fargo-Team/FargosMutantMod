@@ -26,7 +26,7 @@ namespace Fargowiltas.Content.Items.Misc
             Item.width = 20;
             Item.height = 20;
             Item.value = Terraria.Item.buyPrice(gold: 1);
-            Item.rare = ItemRarityID.Blue;
+            Item.rare = ItemRarityID.Green;
             Item.useAnimation = 30;
             Item.useTime = 30;
             Item.useStyle = ItemUseStyleID.HoldUp;

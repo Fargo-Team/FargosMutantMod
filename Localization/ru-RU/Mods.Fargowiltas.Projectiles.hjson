@@ -1,4 +1,4 @@
-CorruptNukeProj.DisplayName: ПорчПреобразователь
+﻿CorruptNukeProj.DisplayName: ПорчПреобразователь
 CorruptNukeSupremeProj.DisplayName: ПорчаПреобразовательВысш
 CrimsonNukeProj.DisplayName: БагрПреобразователь
 CrimsonNukeSupremeProj.DisplayName: БагрПреобразовательВысш
@@ -45,4 +45,4 @@ InstaPondProj.DisplayName: МоментОзеро Снар
 MiniDirtInstabridgeProj.DisplayName: Мини Грязь МоментМост Снар
 CoolCrab.DisplayName: Крутой краб
 LumberJaxeProjectile.DisplayName: Снаряд Древопила
-// BridgeAtomizerProj.DisplayName: Bridge Atomizer Proj
+BridgeAtomizerProj.DisplayName: Уничтожитель Мостов

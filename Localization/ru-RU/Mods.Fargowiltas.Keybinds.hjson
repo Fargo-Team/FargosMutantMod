@@ -1,5 +1,5 @@
-Home.DisplayName: Быстрый возврат/зеркало
-Stat.DisplayName: Открыть таблицу показателей
-Dash.DisplayName: Кнопка рывка
-SetBonus.DisplayName: Кнопка бонуса комплекта
+﻿Home.DisplayName: Быстрый возврат/зеркало
+Stat.DisplayName: Таблица характеристик
+Dash.DisplayName: Рывок
+SetBonus.DisplayName: Бонус комплекта
 PotionToggler.DisplayName: Переключатель зелий

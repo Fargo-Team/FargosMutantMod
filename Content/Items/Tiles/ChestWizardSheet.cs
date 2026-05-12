@@ -146,6 +146,8 @@ namespace Fargowiltas.Content.Items.Tiles
                 Vector2 pos = Main.LocalPlayer.FargoMutant().LastInteractedChizard.ToWorldCoordinates();
 
                 FargoUIManager.Open(ui);
+                if (!Main.playerInventory)
+                    Main.LocalPlayer.ToggleInv();
                 SoundEngine.PlaySound(SoundID.MenuOpen);
                 if (Main.netMode == NetmodeID.MultiplayerClient)
                 {

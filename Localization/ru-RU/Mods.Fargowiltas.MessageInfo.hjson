@@ -8,34 +8,34 @@ NearbySiblingPylonNotNearSiblings: Ближайший пилон нуждает�
 NewItemUnlocked: Новый предмет доступен в магазине у: {0}!
 HaveAwoken: "{0} пробудился!"
 // Cancel Event
-CancelEvent: Нашествие было прекращено!
+CancelEvent: Нашествие прекратилось!
 CancelPumpkinMoon: Тыквенная луна скрывается...
 CancelFrostMoon: Морозная луна скрывается...
 CancelEclipse: Солнечное затмение не происходит!
 CancelBloodMoon: Кровавая луна уходит за горизонт...
 CancelWindyDay: Ветер прекратился!
-CancelOOA: Армия древних уходит!
+CancelOOA: Армия Древнего уходит!
 CancelSandstorm: Песчаная буря закончилась!
 CancelLunarEvent: Небесные существа не наступают!
-CancelRain: Дождь закончился!
+CancelRain: Дождь прекратился!
 // Summons
 StartWindyDay: Ветер начинает завывать.
 StartSandStorm: Началась песчаная буря.
 StartLanternNight: Ночь фонарей появляется чаще!
-StopLanternNight: Ночь фонарей появляется в обычном режиме.
+StopLanternNight: Ночь фонарей появляется как обычно.
 StartLunarEvent: Небесные башни пробудились!
 StartRain: Тучи закрывают собой небо.
 AncientSeal: Пробудились все боссы!
 SeveralBossesAwoken: Пробудились некоторые боссы!
 // Swarm Summons
 OverloadBee: Оглушающее жужжание проходит через вас!
-OverloadBetsy: Настоящая армия древних наступает!
+OverloadBetsy: Настоящая армия Древнего наступает!
 OverloadBrain: Галактический разум спускается с небес!
 OverloadCultist: Оглущающие песнопения заполняют ваши уши!
 OverloadDarkMage: Чувство, будто вы разозлили библиотекаря!
-OverloadDeer: Константа начинает брать верх!
+OverloadDeer: Постоянство начинает брать верх!
 OverloadDestroyer: Планета трясётся от самого ядра!
-OverloadEmpress: «Рай пуль» опускается за горизонт!
+OverloadEmpress: «Рай пуль» спускается на землю!
 OverloadEye: Неисчисляемые уставившиеся глаза проникают чрез занавес, сливаясь воедино!
 OverloadFish: Океан содрогается в ужасе!
 OverloadGolem: Сейчас у вас будут неприятности!

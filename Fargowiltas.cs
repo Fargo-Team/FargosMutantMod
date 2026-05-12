@@ -1210,6 +1210,7 @@ namespace Fargowiltas
                 //{
                 //    dir = player.direction;
                 //}
+                player.timeSinceLastDashStarted = 0;
                 player.direction = dir;
                 dashing = true;
                 if (player.dashTime > 0)
@@ -1227,7 +1228,7 @@ namespace Fargowiltas
                 }
                 dashing = true;
                 player.dashTime = 0;
-                player.timeSinceLastDashStarted = 0;
+                
                 if (dashStartAction != null)
                     dashStartAction?.Invoke(dir);
             }

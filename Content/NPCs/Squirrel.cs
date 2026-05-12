@@ -3,6 +3,7 @@ using Fargowiltas.Common.Systems.Collections;
 using Fargowiltas.Content.Achievements;
 using Fargowiltas.Content.Items.CaughtNPCs;
 using Fargowiltas.Content.Items.Misc;
+using Fargowiltas.Content.Items.Summons.Deviantt;
 using Fargowiltas.Content.Items.Tiles;
 using Fargowiltas.Content.UI.Emotes;
 using Microsoft.Xna.Framework;
@@ -24,14 +25,13 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.Utilities;
 using static Fargowiltas.Fargowiltas;
+using static Terraria.ModLoader.ModContent;
 
 namespace Fargowiltas.Content.NPCs
 {
     [AutoloadHead]
     public class Squirrel : ModNPC
     {
-        private static int shopNum;
-        private static bool showCycleShop;
         private static Profiles.StackedNPCProfile NPCProfile;
         private static int ShimmerHeadIndex;
 
@@ -159,8 +159,6 @@ namespace Fargowiltas.Content.NPCs
 
         public override string GetChat()
         {
-            showCycleShop = GetSellableItems().Count / MaxItems > 0; // && !ModLoader.TryGetMod("ShopExpander", out _);
-
             return Main.rand.Next(3) switch
             {
                 0 => SquirrelChat("Normal1"),
@@ -192,218 +190,23 @@ namespace Fargowiltas.Content.NPCs
                     Main.npcChatText = SquirrelChat("FeedFail");
             }
         }
-        public static SquirrelShopGroup SquirrelSells(Item item, out SquirrelSellType sellType)
-        {
-            bool Potion = item.buffType != 0 && item.type != ItemID.GrilledSquirrel || FargoItemSets.NonBuffPotion[item.type];
-            if (Potion && item.maxStack >= 30)
-            {
-                sellType = SquirrelSellType.SoldAtThirtyStack;
-                return SquirrelShopGroup.Potion;
-            }
-
-            sellType = SquirrelSellType.End;
-            return SquirrelShopGroup.End;
-        }
-        public void TryAddItem(Item item, Dictionary<SquirrelShopGroup, SortedSet<int>> itemCollections)
-        {
-            var shopGroup = SquirrelSells(item, out SquirrelSellType sellType);
-            switch (sellType)
-            {
-                case SquirrelSellType.SoldBySquirrel:
-                    {
-                        itemCollections[shopGroup].Add(item.type);
-                    }
-                    break;
-
-                case SquirrelSellType.SomeMaterialsSold:
-                    foreach (var recipe in Main.recipe.Where(recipe => recipe.HasResult(item.type)))
-                    {
-                        foreach (var material in recipe.requiredItem)
-                        {
-                            if (material.ModItem is not null && material.ModItem.Name.EndsWith(shopGroup.ToString()))
-                            {
-                                itemCollections[shopGroup].Add(material.type);
-                            }
-                        }
-                    }
-                    break;
-
-                case SquirrelSellType.CraftableMaterialsSold:
-                    //var materialTypes = new HashSet<int>(Main.recipe.SelectMany(recipe => recipe.requiredItem.Select(item => item.type)).Where(type => type != ItemID.None));
-                    foreach (var recipe in Main.recipe.Where(recipe => recipe.HasResult(item.type)))
-                    {
-                        foreach (var material in recipe.requiredItem)
-                        {
-                            if (material.type != ItemID.None && Main.recipe.Any(r => r.HasResult(material.type)))
-                            {
-                                itemCollections[shopGroup].Add(material.type);
-                            }
-                        }
-                    }
-                    break;
-
-                case SquirrelSellType.SoldAtThirtyStack:
-                    foreach (Player player in Main.player.Where(p => p.active))
-                    {
-                        if (player.FargoMutant().ItemHasBeenOwnedAtThirtyStack[item.type])
-                            itemCollections[shopGroup].Add(item.type);
-                    }
-                    break;
-
-                default:
-                    break;
-            }
-        }
-
-        private List<int> GetSellableItems()
-        {
-            Dictionary<SquirrelShopGroup, SortedSet<int>> itemCollections = new();
-            for (int i = 0; i < (int)SquirrelShopGroup.End; i++)
-            {
-                itemCollections[(SquirrelShopGroup)i] = [];
-            }
-
-            foreach (var player in Main.player.Where(p => p.active))
-            {
-                FargoPlayer modPlayer = player.FargoMutant();
-
-                foreach (var item in player.inventory)
-                {
-                    if (SquirrelSells(item, out SquirrelSellType _) == SquirrelShopGroup.End)
-                        continue;
-                    modPlayer.ItemHasBeenOwned[item.type] = true;
-                    if (item.stack >= 30)
-                        modPlayer.ItemHasBeenOwnedAtThirtyStack[item.type] = true;
-                }
-
-                foreach (var item in player.bank.item)
-                {
-                    if (SquirrelSells(item, out SquirrelSellType _) == SquirrelShopGroup.End)
-                        continue;
-                    modPlayer.ItemHasBeenOwned[item.type] = true;
-                    if (item.stack >= 30)
-                        modPlayer.ItemHasBeenOwnedAtThirtyStack[item.type] = true;
-                }
-
-                foreach (var item in player.armor)
-                {
-                    if (SquirrelSells(item, out SquirrelSellType _) == SquirrelShopGroup.End)
-                        continue;
-                    modPlayer.ItemHasBeenOwned[item.type] = true;
-                    if (item.stack >= 30)
-                        modPlayer.ItemHasBeenOwnedAtThirtyStack[item.type] = true;
-                }
-
-                foreach (var item in ContentSamples.ItemsByType)
-                {
-                    if (modPlayer.ItemHasBeenOwned[item.Key])
-                    {
-                        TryAddItem(item.Value, itemCollections);
-                    }
-                }
-            }
-            itemCollections[SquirrelShopGroup.Other].Add(ModContent.ItemType<EnchantedTree>());
-            itemCollections[SquirrelShopGroup.Other].Add(ModContent.ItemType<EnchantedAcorn>());
-
-            return itemCollections.OrderBy(kv => kv.Key).SelectMany(kv => kv.Value).ToList();
-        }
-        public static bool IsFargoSoulsItem(Item item)
-        {
-            if (item.ModItem is not null)
-            {
-                string modName = item.ModItem.Mod.Name;
-                return modName.Equals("FargowiltasSouls") || modName.Equals("FargowiltasSoulsDLC");
-            }
-
-            return false;
-        }
         public override void AddShops()
         {
             var npcShop = new NPCShop(Type, ShopName);
 
+            if (ModContent.TryFind("FargowiltasSouls", "TopHatSquirrelCaught", out ModItem tophatSqurl))
+            {
+                npcShop.Add(new Item(tophatSqurl.Type) { shopCustomPrice = Item.buyPrice(copper: 100000) });
+            }
+
+            npcShop
+                .Add(new Item(ItemType<GizmoParts>()))
+                .Add(new Item(ItemType<EnchantedAcorn>()))
+                .Add(new Item(ItemType<EnchantedTree>()))
+                .Add(new Item(ItemType<PotionCooler>()))
+            ;
+
             npcShop.Register();
-        }
-        public static int MaxItems => ModLoader.HasMod("ShopExpander") ? Chest.maxItems - 2 : Chest.maxItems;
-        public override void ModifyActiveShop(string shopName, Item[] items)
-        {
-            int nextSlot = 0; //ignore pylon and anything else inserted into shop ( how does this work in new system?
-            int index = 0;
-            int startOffset = shopNum * MaxItems;
-
-            List<int> sellableItems = GetSellableItems();
-            if (shopNum == 0 && ModContent.TryFind("FargowiltasSouls", "TopHatSquirrelCaught", out ModItem modItem)) //only on page 1
-            {
-                items[nextSlot] = new Item(modItem.Type) { shopCustomPrice = Item.buyPrice(copper: 100000) };
-                nextSlot++;
-            }
-            foreach (int type in sellableItems)
-            {
-                if (++index < startOffset) //skip up to the minimum
-                {
-                    continue;
-                }
-
-                if (nextSlot >= MaxItems) //only fill shop up to capacity
-                {
-                    break;
-                }
-
-                var item = new Item(type);
-                int price;
-                bool medals = false;
-
-                if (item.makeNPC != 0)
-                {
-                    price = Item.buyPrice(gold: 10);
-                    int[] pricier =
-                    [
-                        ItemID.TruffleWorm,
-                        ItemID.EmpressButterfly,
-                        ItemID.GoldBird,
-                        ItemID.GoldBunny,
-                        ItemID.GoldButterfly,
-                        ItemID.GoldDragonfly,
-                        ItemID.GoldFrog,
-                        ItemID.GoldGoldfish,
-                        ItemID.GoldGrasshopper,
-                        ItemID.GoldLadyBug,
-                        ItemID.GoldMouse,
-                        ItemID.GoldSeahorse,
-                        ItemID.SquirrelGold,
-                        ItemID.GoldWaterStrider,
-                        ItemID.GoldWorm
-                    ];
-
-                    if (pricier.Contains(item.type))
-                    {
-                        price *= 5;
-                    }
-                    else if (item.ModItem is Items.CaughtNPCs.CaughtNPCItem)
-                    {
-                        price *= 2;
-                    }
-                }
-                else if (type == ItemID.RodofDiscord)
-                {
-                    price = 250;
-                    medals = true;
-                }
-                else
-                {
-                    price = item.value * 2;
-                }
-
-                if (medals)
-                {
-                    items[nextSlot] = new Item(type) { shopCustomPrice = Item.buyPrice(copper: price), shopSpecialCurrency = CustomCurrencyID.DefenderMedals };
-                }
-                else
-                {
-                    items[nextSlot] = new Item(type) { shopCustomPrice = Item.buyPrice(copper: price) };
-                }
-
-                nextSlot++;
-            }
         }
 
         public override bool CanGoToStatue(bool toKingStatue)

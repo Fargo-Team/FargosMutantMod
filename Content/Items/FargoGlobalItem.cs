@@ -278,12 +278,6 @@ namespace Fargowiltas.Content.Items
                     tooltips.Add(line);
                 }
 
-                if (Squirrel.SquirrelSells(item, out SquirrelSellType sellType) != SquirrelShopGroup.End)
-                {
-                    line = new TooltipLine(Mod, "TooltipSquirrel",
-                        $"[h:{TownNPCProfiles.GetHeadIndexSafe(ContentSamples.NpcsByNetId[ModContent.NPCType<Squirrel>()])}] [c/AAAAAA:{ExpandedTooltipLoc(sellType.ToString())}]");
-                    tooltips.Add(line);
-                }
                 if (EnchantedTreeTileEntity.IsItemDupable(item.type))
                 {
                     line = new TooltipLine(Mod, "TooltipEnchantedTree",

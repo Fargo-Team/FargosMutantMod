@@ -25,7 +25,7 @@ namespace Fargowiltas.Content.Items.Misc
         {
             Item.width = 20;
             Item.height = 20;
-            Item.value = Item.sellPrice(0, 0, 20);
+            Item.value = Terraria.Item.buyPrice(gold: 1);
             Item.rare = ItemRarityID.Blue;
             Item.useAnimation = 30;
             Item.useTime = 30;
@@ -64,10 +64,10 @@ namespace Fargowiltas.Content.Items.Misc
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddRecipeGroup(RecipeGroupID.IronBar, 10)
+                .AddIngredient<GizmoParts>(2)
+                .AddRecipeGroup(RecipeGroupID.IronBar, 5)
                 .AddIngredient(ItemID.IceBlock, 20)
                 .AddIngredient(ItemID.FallenStar, 3)
-                .AddIngredient<GizmoParts>(2)
                 .AddTile(TileID.Anvils)
                 .Register();
         }

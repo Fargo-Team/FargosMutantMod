@@ -12,7 +12,7 @@ Lures3: Fires 3 lures at once
 Lures5: Fires 5 lures at once
 AutoTorch: Automatically swaps placed torches to boost luck
 TrueTorchLuck: Obeys true torch luck when replacing torches, which may differ from default choices
-UnlimitedBuff30: Unlimited buff at {0} stack in inventory or portable storage
+UnlimitedBuff30: Unlimited buff at {0} stack in Potion Cooler
 UnlimitedUse30: Unlimited use at 30 stack
 PermanentEffectNearby: Permanently provides effect to nearby players when placed
 WorksFromBanks: Inventory effects also work from Piggy Bank and Safe

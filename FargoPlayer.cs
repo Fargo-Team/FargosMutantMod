@@ -46,6 +46,10 @@ namespace Fargowiltas
         public Dictionary<int, bool> PotionTogglesToSync = [];
         public int ToggleRebuildCooldown = 0;
 
+        public bool PotionCooler = false;
+        public bool NeedRefreshCooler = false;
+        public int ActiveFlask = -1;
+
         public bool HasClickedWrench;
 
         public bool extractSpeed;
@@ -299,10 +303,12 @@ namespace Fargowiltas
             PotionToggler.TryLoad();
             PotionToggler.LoadPlayerToggles(Player);
             DisabledPotionToggles.Clear();
+            NeedRefreshCooler = true;
         }
 
         public override void ResetEffects()
         {
+            PotionCooler = false;
             extractSpeed = false;
             HasDrawnDebuffLayer = false;
             bigSuck = false;
@@ -363,19 +369,6 @@ namespace Fargowiltas
         }
         public override void PostUpdateBuffs()
         {
-            if (FargoServerConfig.Instance.UnlimitedPotionBuffs is UnlimitedBuffSelections.On || (FargoServerConfig.Instance.UnlimitedPotionBuffs is UnlimitedBuffSelections.BossOnly && FargoGlobalNPC.AnyBossAlive()))
-            {
-                foreach (Item item in Player.bank.item)
-                {
-                    FargoGlobalItem.TryUnlimBuff(item, Player);
-                }
-
-                foreach (Item item in Player.bank2.item)
-                {
-                    FargoGlobalItem.TryUnlimBuff(item, Player);
-                }
-            }
-
             if (FargoServerConfig.Instance.PiggyBankAcc || FargoServerConfig.Instance.ModdedPiggyBankAcc)
             {
                 foreach (Item item in Player.bank.item)
@@ -389,22 +382,8 @@ namespace Fargowiltas
                 }
             }
 
-            foreach (var potToggle in PotionToggleLoader.LoadedToggles.Values)
-            {
-                if (Player.HasBuff(potToggle.BuffID))
-                {
-                    ActivePotions.Add(potToggle.BuffID);
-                }
-                else if (Player.buffImmune[potToggle.BuffID])
-                {
-                    ActivePotions.Remove(potToggle.BuffID);
-                }
-
-                /*if (!Player.GetPotionToggleValue(potToggle.ItemID))
-                {
-                    Player.buffImmune[potToggle.BuffID] = true;
-                }*/
-            }
+            if (Player.HasItem(ModContent.ItemType<PotionCooler>()))
+                PotionBagSystem.ApplyCoolerBuffs(Player);
         }
         public override void DrawEffects(PlayerDrawSet drawInfo, ref float r, ref float g, ref float b, ref float a, ref bool fullBright)
         {

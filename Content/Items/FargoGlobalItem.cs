@@ -252,8 +252,7 @@ namespace Fargowiltas.Content.Items
                     tooltips.Add(line);
                 }
 
-                if (FargoServerConfig.Instance.UnlimitedPotionBuffs is UnlimitedBuffSelections.On || (FargoServerConfig.Instance.UnlimitedPotionBuffs is UnlimitedBuffSelections.BossOnly && FargoGlobalNPC.AnyBossAlive()) 
-                    && item.maxStack > 1)
+                if (FargoServerConfig.Instance.PotionCooler && item.maxStack > 1)
                 {
                     if (item.buffType != 0 && item.buffTime >= 60 * 60 * 2)
                     {
@@ -519,28 +518,6 @@ namespace Fargowiltas.Content.Items
             }
             return base.UseItem(item, player);
         }
-        public static void TryUnlimBuff(Item item, Player player)
-        {
-            if (item.IsAir || !(FargoServerConfig.Instance.UnlimitedPotionBuffs is UnlimitedBuffSelections.On || (FargoServerConfig.Instance.UnlimitedPotionBuffs is UnlimitedBuffSelections.BossOnly && FargoGlobalNPC.AnyBossAlive())))
-                return;
-
-            if (item.stack >= FargoServerConfig.Instance.UnlimitedPotionBuffsAmount && item.buffType != 0 && item.buffTime >= 60 * 60 * 2)
-            {
-                player.FargoMutant().ActivePotions.Add(item.buffType);
-
-                if (player.GetPotionToggleValue(item.type))
-                {
-                    player.AddBuff(item.buffType, 2);
-
-                    //compensate to account for luck potion being weaker based on remaining duration wtf
-                    if (item.type == ItemID.LuckPotion)
-                        player.GetModPlayer<FargoPlayer>().luckPotionBoost = Math.Max(player.GetModPlayer<FargoPlayer>().luckPotionBoost, 0.1f);
-                    else if (item.type == ItemID.LuckPotionGreater)
-                        player.GetModPlayer<FargoPlayer>().luckPotionBoost = Math.Max(player.GetModPlayer<FargoPlayer>().luckPotionBoost, 0.2f);
-                }
-            }
-
-        }
         public static void TryPiggyBankAcc(Item item, Player player)
         {
             if (item.IsAir || item.maxStack > 1)
@@ -555,7 +532,6 @@ namespace Fargowiltas.Content.Items
         }
         public override void UpdateInventory(Item item, Player player)
         {
-            TryUnlimBuff(item, player);
             CheckForIsOldUnlimitedAmmo(item);
         }
         public override void UpdateAccessory(Item item, Player player, bool hideVisual)
@@ -609,13 +585,7 @@ namespace Fargowiltas.Content.Items
         {
             return FargoServerConfig.Instance.UnlimitedAmmo && Main.hardMode && ammo.ammo != 0 && (ammo.stack >= 3996);
         }
-        public bool UnlimitedBuff(Item buff)
-        {
-            return FargoServerConfig.Instance.UnlimitedPotionBuffs is UnlimitedBuffSelections.On 
-                && (buff.buffType > 0 || FargoItemSets.NonBuffPotion[buff.type])
-                && buff.stack >= FargoServerConfig.Instance.UnlimitedPotionBuffsAmount
-                && buff.buffTime >= 60 * 60 * 2;
-        }
+
         public override bool CanBeConsumedAsAmmo(Item ammo, Item weapon, Player player)
         {
             if (UnlimitedAmmo(ammo))
@@ -795,7 +765,7 @@ namespace Fargowiltas.Content.Items
                     item.stack = stack;
                 }
             }
-            if ((UnlimitedAmmo(item) || UnlimitedBuff(item)) && !item.IsACoin)
+            if (UnlimitedAmmo(item) && !item.IsACoin)
             {
                 //ChatManager.DrawColorCodedStringWithShadow(spriteBatch, FontAssets.ItemStack.Value, "∞", position + new Vector2(8f, -24f) * scale, drawColor, 0f, Vector2.Zero, new Vector2(scale), -1f, scale);
 

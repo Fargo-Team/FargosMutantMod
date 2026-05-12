@@ -19,14 +19,19 @@
 		Tooltip: All consumable weapons are not consumed if you have a stack of at least 3996, in Hardmode.
 	}
 
+	PotionCooler: {
+		Label: "[i:Fargowiltas/PotionCooler] Potion Cooler"
+		Tooltip: Enables the Potion Cooler that stores potions to provide infinite buffs.
+	}
+
 	UnlimitedPotionBuffs: {
-		Label: "[i:292] Unlimited Potion Buffs"
-		Tooltip: Potions with buff durations of at least 2 minutes or more are granted infinitely.
+		Label: "[i:Fargowiltas/PotionCooler] Potion Cooler Availability"
+		Tooltip: When the Potion Cooler should grant infinite buffs.
 	}
 
 	UnlimitedPotionBuffsAmount: {
-		Label: "[i:IronskinPotion] Unlimited Potion Buffs Amount"
-		Tooltip: Stack size of potions that must be carried to grant infinite buffs.
+		Label: "[i:Fargowiltas/PotionCooler] Potion Cooler Amount"
+		Tooltip: Stack size of potions that must be stored to grant infinite buffs.
 	}
 
 	EasySummons: {
@@ -412,18 +417,13 @@ UnlimitedBuffSelections: {
 	Tooltip: ""
 
 	On: {
-		Label: Enabled
+		Label: Always
 		Tooltip: ""
 	}
 
 	BossOnly: {
-		Label: Enabled during bossfights
+		Label: During bossfights
 		Tooltip: Only enabled while any boss is alive
-	}
-
-	Off: {
-		Label: Disabled
-		Tooltip: ""
 	}
 }
 

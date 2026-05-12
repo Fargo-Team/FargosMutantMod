@@ -1,4 +1,4 @@
-﻿Close: Закрыть
+Close: Закрыть
 CombinedUIButton: Открыть полезные меню
 PotionToggler: "[s:Fargowiltas/PotionToggler] Переключатель зелий"
 
@@ -151,3 +151,15 @@ InsertText: Поместите предмет сюда для перековки
 ReforgeCost: Стоимость перековки
 PlacementRange: Дальность размещения:
 ChizardItemInsert: Поместить предеты в ближайшие сундуки
+
+PotionCooler: {
+	// EmptyInfo: Insert a potion!
+	// Maxed: This potion is already maxed!
+	// Enabled: effect is currently [c/77FF77:enabled].
+	// Disabled: effect is currently [c/FF7777:disabled].
+	// Progress: Progress ({0}%)
+	// MaxEffect: On max stack, grants [c/9999FF:{0}] effect.
+	// FlaskWarn: "[c/FFFF99:Warning:] Only one flask can be active at a time! (Active Flask: {0})"
+	// Store: Store
+	// Completion: "{0} more until completion"
+}

@@ -23,7 +23,7 @@ namespace Fargowiltas.Content.UI.SquirrelUI
 
         public override bool PreDrawSelf(SpriteBatch spriteBatch)
         {
-            opacity = IsSelected ? 1f : 0.5f;
+            Opacity = IsSelected ? 1f : 0.5f;
             return base.PreDrawSelf(spriteBatch);
         }
 

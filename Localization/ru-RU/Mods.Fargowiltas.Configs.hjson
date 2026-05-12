@@ -1,4 +1,4 @@
-﻿FargoServerConfig: {
+FargoServerConfig: {
 	DisplayName: Серверная конфигурация
 
 	Headers: {
@@ -17,6 +17,11 @@
 	UnlimitedConsumableWeapons: {
 		Label: "[i:42] Бесконечные тратящиеся оружия в стаке 3996+ в хардмоде"
 		Tooltip: Тратящиеся оружия в стаках 3996 и выше не будут тратиться по наступлении хардмода
+	}
+
+	PotionCooler: {
+		// Label: "[i:Fargowiltas/PotionCooler] Potion Cooler"
+		// Tooltip: Enables the Potion Cooler that stores potions to provide infinite buffs.
 	}
 
 	UnlimitedPotionBuffs: {
@@ -423,11 +428,6 @@ UnlimitedBuffSelections: {
 	BossOnly: {
 		Label: Битвы с боссами
 		Tooltip: Включается только если в мире есть босс
-	}
-
-	Off: {
-		Label: Выключено
-		// Tooltip: ""
 	}
 }
 

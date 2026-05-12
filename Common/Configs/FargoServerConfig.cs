@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using Fargowiltas.Common.Systems;
+using System.ComponentModel;
 using Terraria.Localization;
 using Terraria.ModLoader.Config;
 
@@ -25,16 +26,6 @@ namespace Fargowiltas.Common.Configs
 
         //[DefaultValue(true)]
         //public bool UnlimitedPotionBuffsOn120;
-
-        [DefaultValue(0)]
-        [Slider]
-        public UnlimitedBuffSelections UnlimitedPotionBuffs;
-
-        [Range(30, 120)]
-        [Increment(1)]
-        [DefaultValue(30)]
-        [Slider]
-        public int UnlimitedPotionBuffsAmount;
 
         [DefaultValue(true)]
         public bool EasySummons;
@@ -101,6 +92,20 @@ namespace Fargowiltas.Common.Configs
         [DefaultValue(true)]
         [ReloadRequired]
         public bool InstantItems;
+
+        [DefaultValue(true)]
+        [ReloadRequired]
+        public bool PotionCooler;
+
+        [DefaultValue(0)]
+        [Slider]
+        public UnlimitedBuffSelections UnlimitedPotionBuffs;
+
+        [Range(30, 120)]
+        [Increment(1)]
+        [DefaultValue(30)]
+        [Slider]
+        public int UnlimitedPotionBuffsAmount;
 
         [Header("$Mods.Fargowiltas.Configs.FargoServerConfig.Headers.WorldStates")]
         [DefaultValue(0)]

@@ -183,7 +183,7 @@ namespace Fargowiltas.Content.UI
             ItemInsertVisual.Height.Set(52, 0);
             ItemInsertVisual.BackgroundColor = new Color(104, 52, 52);
             ItemInsertVisual.Append(ItemInsert);
-            ItemInsert.opacity = 0;
+            ItemInsert.Opacity = 0;
             
             Append(panel);
             panel.Append(search);

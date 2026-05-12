@@ -328,5 +328,14 @@ namespace Fargowiltas
                 packet.Send();
             }
         }
+
+        public static void AddPotionToPotionBag(int itemID, int count)
+        {
+            ModPacket packet = Instance.GetPacket();
+            packet.Write((byte)PacketID.AddPotionToBag);
+            packet.Write(itemID);
+            packet.Write(count);
+            packet.Send();
+        }
     }
 }

@@ -1641,3 +1641,19 @@ BridgeAtomizer: {
 	DisplayName: Bridge Atomizer
 	Tooltip: Deletes all platforms connected horizontally
 }
+
+PotionCooler: {
+	DisplayName: Potion Cooler
+	Tooltip:
+		'''
+		Stores potions and grants you their buffs
+		'Cracking open a cold one'
+		'''
+	Ruminate: "[c/FF3399:Hold Left Shift for more details]"
+	Rumination:
+		'''
+		Potions stored within are shared between all players
+		Toggles are not shared between players
+		This item works from the inventory
+		'''
+}

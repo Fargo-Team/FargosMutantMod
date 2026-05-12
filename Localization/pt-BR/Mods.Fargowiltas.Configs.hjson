@@ -19,14 +19,19 @@ FargoServerConfig: {
 		Tooltip: ""
 	}
 
+	PotionCooler: {
+		// Label: "[i:Fargowiltas/PotionCooler] Potion Cooler"
+		// Tooltip: Enables the Potion Cooler that stores potions to provide infinite buffs.
+	}
+
 	UnlimitedPotionBuffs: {
 		Label: "[i:292] Buffs e Isca ilimitados quando carregados em certa quantidade"
 		Tooltip: 30+ para poções e isca
 	}
 
 	UnlimitedPotionBuffsAmount: {
-		// Label: "[i:IronskinPotion] Unlimited Potion Buffs Amount"
-		// Tooltip: Stack size of potions that must be carried to grant infinite buffs.
+		// Label: "[i:Fargowiltas/PotionCooler] Potion Cooler Amount"
+		// Tooltip: Stack size of potions that must be stored to grant infinite buffs.
 	}
 
 	EasySummons: {
@@ -412,18 +417,13 @@ UnlimitedBuffSelections: {
 	// Tooltip: ""
 
 	On: {
-		// Label: Enabled
+		// Label: Always
 		// Tooltip: ""
 	}
 
 	BossOnly: {
-		// Label: Enabled during bossfights
+		// Label: During bossfights
 		// Tooltip: Only enabled while any boss is alive
-	}
-
-	Off: {
-		// Label: Disabled
-		// Tooltip: ""
 	}
 }
 

@@ -1,11 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
+using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.ID;
+using Terraria.ModLoader;
 using Terraria.UI;
 using Terraria.UI.Chat;
 
@@ -53,6 +55,9 @@ namespace Fargowiltas.Content.UI
         {
             base.LeftClick(evt);
 
+            if (Unchangable)
+                return;
+
             if (Main.mouseItem.IsAir)
             {
                 if (_item.IsAir)
@@ -62,16 +67,29 @@ namespace Fargowiltas.Content.UI
             }
             else
             {
-                if (!CanHoldItem(Main.mouseItem.Clone()))
+                if (!CanAcceptItem(Main.mouseItem.Clone()))
                     return;
 
                 SwapItem();
             }
         }
 
+        private bool HandleStacking()
+        {
+            if (Main.mouseItem.IsAir || _item.IsAir || Main.mouseItem.type != _item.type)
+                return false;
+
+            if (_item.stack == _item.maxStack || Main.mouseItem.stack == Main.mouseItem.maxStack)
+                return false;
+
+            return ItemLoader.TryStackItems(_item, Main.mouseItem, out _);
+        }
+
         private void SwapItem()
         {
-            Utils.Swap(ref Main.mouseItem, ref _item);
+            if (!HandleStacking())
+                Utils.Swap(ref Main.mouseItem, ref _item);
+
             _item.favorited = false;
             if (PlaySwapSound)
                 SoundEngine.PlaySound(SoundID.Grab);
@@ -83,16 +101,16 @@ namespace Fargowiltas.Content.UI
             Vector2 position = GetOuterDimensions().Position();
             Vector2 center = GetOuterDimensions().Center();
             if (DrawItemFrame)
-                spriteBatch.Draw(backPanel.Value, center, backPanel.Value.Frame(), Main.inventoryBack * opacity, 0f, backPanel.Value.Frame().Size() / 2, scale, SpriteEffects.None, 0);
+                spriteBatch.Draw(backPanel.Value, center, backPanel.Value.Frame(), Main.inventoryBack * Opacity, 0f, backPanel.Value.Frame().Size() / 2, scale, SpriteEffects.None, 0);
 
 
             if (HasItem)
             {
-                ItemSlot.DrawItemIcon(_item, ItemSlot.Context.InventoryItem, spriteBatch, center, scale, baseWidth - 10 * scale, Color.White * opacity);
+                ItemSlot.DrawItemIcon(_item, ItemSlot.Context.InventoryItem, spriteBatch, center, scale, baseWidth - 10 * scale, ItemColor * Opacity);
 
                 if (_item.stack > 1)
                 {
-                    ChatManager.DrawColorCodedStringWithShadow(spriteBatch, FontAssets.ItemStack.Value, _item.stack.ToString(), position + new Vector2(28f - (18f * scale), 28f - (2f * scale)), Color.White * opacity, 0f, Vector2.Zero, new Vector2(scale), -1f, scale);
+                    ChatManager.DrawColorCodedStringWithShadow(spriteBatch, FontAssets.ItemStack.Value, _item.stack.ToString(), position + new Vector2(28f - (18f * scale), 28f - (2f * scale)), Color.White * Opacity, 0f, Vector2.Zero, new Vector2(scale), -1f, scale);
                 }
 
                 if (ItemHover && ContainsPoint(Main.MouseScreen))
@@ -104,10 +122,17 @@ namespace Fargowiltas.Content.UI
         }
 
         #region Public Members
+        /// <summary>
+        /// The scale to draw the item slot. <para/>
+        /// </summary>
         public float scale = 1f;
-        public float opacity = 1f;
 
-        public bool HasItem { get { return !_item.IsAir; } }
+        /// <summary>
+        /// The opacity to draw the item slot. <para/>
+        /// </summary>
+        public float Opacity = 1f;
+
+        public bool HasItem => !_item.IsAir;
 
         /// <summary>
         /// If true, then the frame behind the item will be drawn.
@@ -116,7 +141,7 @@ namespace Fargowiltas.Content.UI
         public bool DrawItemFrame = true;
 
         /// <summary>
-        /// If true, then the item will be displayed as an item tooltip.
+        /// If true, then the item will be displayed as an item tooltip when hovered.
         /// <para/> Defaults to <see langword="true"/>.
         /// </summary>
         public bool ItemHover = true;
@@ -126,6 +151,18 @@ namespace Fargowiltas.Content.UI
         /// <para/> Defaults to <see langword="true"/>.
         /// </summary>
         public bool PlaySwapSound = true;
+
+        /// <summary>
+        /// If true, this item slot cannot be affected by the player in any way.
+        /// <para/> Defaults to <see langword="false"/>.
+        /// </summary>
+        public bool Unchangable = false;
+
+        /// <summary>
+        /// Determines what color the item should be drawn as.
+        /// <para/> Defaults to <see cref="Color.White"/>.
+        /// </summary>
+        public Color ItemColor = Color.White;
         #endregion
 
         #region Public Methods
@@ -227,7 +264,7 @@ namespace Fargowiltas.Content.UI
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
-        public virtual bool CanHoldItem(Item item) => true;
+        public virtual bool CanAcceptItem(Item item) => true;
 
         /// <summary>
         /// Allows you to determine whether the stored item can be transformed into a new item.

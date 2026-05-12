@@ -45,7 +45,7 @@ namespace Fargowiltas.Common.Systems
             OnSwap.Invoke(newItem);
         }
 
-        public override bool CanHoldItem(Item item) => item.CanHavePrefixes();
+        public override bool CanAcceptItem(Item item) => item.CanHavePrefixes();
 
         public void Reforge(Item item)
         {

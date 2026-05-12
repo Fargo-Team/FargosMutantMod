@@ -688,7 +688,8 @@ namespace Fargowiltas
             BetsySummon,
             SyncChestContents,
             RequestTakeItemFromChest,
-            ChangeChizardHat
+            ChangeChizardHat,
+            AddPotionToBag,
         }
 
         public override void HandlePacket(BinaryReader reader, int whoAmI)
@@ -948,6 +949,17 @@ namespace Fargowiltas
                             ChestWizardTileEntity chizardEntity = (ChestWizardTileEntity)TileEntity.ByID[chizard];
                             chizardEntity.hatID = hat;
                             NetMessage.SendData(MessageID.TileEntitySharing, -1, -1, null, chizard);
+                        }
+                        break;
+                    case PacketID.AddPotionToBag:
+                        {
+                            int id = reader.ReadInt32();
+                            int count = reader.ReadInt32();
+                            if (Main.dedServ)
+                            {
+                                PotionBagSystem.AddPotion(id, count);
+                                NetMessage.SendData(MessageID.WorldData);
+                            }
                         }
                         break;
                     default:

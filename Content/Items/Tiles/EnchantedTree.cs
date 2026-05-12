@@ -1,4 +1,5 @@
-﻿using Terraria.ID;
+﻿using Fargowiltas.Content.Items.Misc;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Fargowiltas.Content.Items.Tiles
@@ -18,17 +19,19 @@ namespace Fargowiltas.Content.Items.Tiles
             Item.useStyle = ItemUseStyleID.Swing;
             Item.consumable = true;
             Item.createTile = ModContent.TileType<EnchantedTreeSheet>();
-            Item.value = Terraria.Item.sellPrice(gold: 3);
+            Item.value = Terraria.Item.buyPrice(gold: 1);
         }
 
         public override void AddRecipes()
         {
             CreateRecipe()
+                .AddIngredient<GizmoParts>(3)
                 .AddRecipeGroup(RecipeGroupID.Wood, 50)
                 .AddIngredient(ItemID.Mushroom, 3)
                 .AddIngredient(ItemID.GlowingMushroom, 3)
                 .AddIngredient(ItemID.FallenStar, 3)
                 .AddTile(TileID.DemonAltar)
+                .DisableDecraft()
                 .Register();
         }
     }

@@ -1,4 +1,5 @@
 using Fargowiltas.Content.Buffs;
+using Fargowiltas.Content.Items.Misc;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -12,10 +13,7 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
         public override void AddRecipes()
         {
             CreateRecipe()
-                /*.AddIngredient(ItemID.DeadMansChest)
-                .AddIngredient(ItemID.MiningHelmet)
-                .AddIngredient(ItemID.SpelunkerPotion)
-                .AddTile(TileID.HeavyWorkBench)*/
+                .AddIngredient<GizmoParts>(2)
                 .AddRecipeGroup("Fargowiltas:AnyGoldOre", 8)
                 .AddIngredient(ItemID.SpelunkerPotion)
                 .AddIngredient(ItemID.SilverDye)

@@ -66,6 +66,7 @@ namespace Fargowiltas.Content.Items.Misc
         public override void AddRecipes()
         {
             CreateRecipe()
+                .AddIngredient<GizmoParts>(4)
                 .AddIngredient(ItemID.TargetDummy)
                 .AddIngredient(ItemID.FallenStar)
                 .AddTile(TileID.Sawmill)

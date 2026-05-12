@@ -1,4 +1,5 @@
 ﻿using Fargowiltas.Common.Systems.Recipes;
+using Fargowiltas.Content.Items.Misc;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -33,6 +34,8 @@ namespace Fargowiltas.Content.Items.Tiles
         public override void AddRecipes()
         {
             CreateRecipe()
+                .AddIngredient<GizmoParts>(5)
+                .AddRecipeGroup(RecipeGroupID.IronBar, 5)
                 .AddIngredient(ItemID.WorkBench)
                 .AddIngredient(ItemID.HeavyWorkBench)
                 .AddIngredient(ItemID.Furnace)
@@ -45,7 +48,6 @@ namespace Fargowiltas.Content.Items.Tiles
                 .AddRecipeGroup(RecipeGroups.AnyCookingPot)
                 .AddRecipeGroup(RecipeGroups.AnyWoodenSink)
                 .AddIngredient(ItemID.Keg)
-                .AddRecipeGroup(RecipeGroupID.IronBar, 5)
                 .Register();
         }
     }

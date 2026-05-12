@@ -147,6 +147,7 @@ namespace Fargowiltas.Content.Items.Misc
         public override void AddRecipes()
         {
             CreateRecipe()
+                .AddIngredient<GizmoParts>(5)
                 .AddIngredient(ItemID.Sundial)
                 .AddIngredient(ItemID.Moondial)
                 .AddTile(TileID.SkyMill)

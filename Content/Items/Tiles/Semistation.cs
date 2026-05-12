@@ -1,3 +1,4 @@
+using Fargowiltas.Content.Items.Misc;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -26,6 +27,7 @@ namespace Fargowiltas.Content.Items.Tiles
         public override void AddRecipes()
         {
             CreateRecipe()
+                .AddIngredient<GizmoParts>(5)
                 .AddIngredient(ItemID.Sunflower, 5)
                 .AddIngredient(ItemID.Campfire, 5)
                 .AddIngredient(ItemID.HeartLantern, 5)

@@ -1,4 +1,5 @@
 ﻿using Fargowiltas.Common.Systems.Recipes;
+using Fargowiltas.Content.Items.Misc;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -33,6 +34,7 @@ namespace Fargowiltas.Content.Items.Explosives
         public override void AddRecipes()
         {
             CreateRecipe()
+                .AddIngredient<GizmoParts>(2)
                 .AddIngredient(ItemID.Dynamite, 5)
                 .AddIngredient(ItemID.FallenStar, 1)
                 .AddRecipeGroup(RecipeGroups.AnyTombstone)

@@ -1,3 +1,4 @@
+using Fargowiltas.Content.Items.Misc;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -23,6 +24,7 @@ namespace Fargowiltas.Content.Items.Tiles
         public override void AddRecipes()
         {
             CreateRecipe()
+                .AddIngredient<GizmoParts>(3)
                 .AddIngredient(ItemID.Sunflower, 50)
                 .AddIngredient(ItemID.PurificationPowder, 100)
                 .AddTile(TileID.Anvils)

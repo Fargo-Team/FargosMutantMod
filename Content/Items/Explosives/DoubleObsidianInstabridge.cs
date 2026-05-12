@@ -1,5 +1,6 @@
 ﻿using Fargowiltas.Common.Configs;
 using Fargowiltas.Common.Systems;
+using Fargowiltas.Content.Items.Misc;
 using Fargowiltas.Content.Projectiles.Explosives;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -66,6 +67,7 @@ namespace Fargowiltas.Content.Items.Explosives
         public override void AddRecipes()
         {
             CreateRecipe()
+                .AddIngredient<GizmoParts>(5)
                 .AddIngredient(ModContent.ItemType<ObsidianInstaBridge>(), 2)
                 .AddTile(TileID.Anvils)
                 .Register();

@@ -1,5 +1,6 @@
 using Fargowiltas.Common.Configs;
 using Fargowiltas.Common.Systems;
+using Fargowiltas.Content.Items.Misc;
 using Fargowiltas.Content.Projectiles.Explosives;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -67,6 +68,7 @@ namespace Fargowiltas.Content.Items.Explosives
         public override void AddRecipes()
         {
             CreateRecipe()
+                .AddIngredient<GizmoParts>(20)
                 .AddIngredient(ItemID.Dynamite, 50)
                 .AddIngredient(ItemID.RopeCoil, 10)
                 .AddIngredient(ItemID.AshBlock, 50)

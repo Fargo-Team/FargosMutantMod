@@ -1,6 +1,7 @@
-﻿using Terraria.ID;
-using Terraria.ModLoader;
+﻿using Fargowiltas.Content.Items.Misc;
 using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Fargowiltas.Content.Items.Tiles
 {   
@@ -25,6 +26,7 @@ namespace Fargowiltas.Content.Items.Tiles
         public override void AddRecipes()
         {
             CreateRecipe()
+                .AddIngredient<GizmoParts>(3)
                 .AddIngredient(ItemID.DemoniteBar, 10)
                 .AddIngredient(ItemID.ShadowScale, 5)
                 .AddTile(TileID.Anvils)
@@ -52,6 +54,7 @@ namespace Fargowiltas.Content.Items.Tiles
         public override void AddRecipes()
         {
             CreateRecipe()
+                .AddIngredient<GizmoParts>(3)
                 .AddIngredient(ItemID.CrimtaneBar, 10)
                 .AddIngredient(ItemID.TissueSample, 5)
                 .AddTile(TileID.Anvils)

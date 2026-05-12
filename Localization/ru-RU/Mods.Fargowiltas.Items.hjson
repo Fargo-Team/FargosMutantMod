@@ -1,4 +1,4 @@
-﻿BrittleBone: {
+BrittleBone: {
 	DisplayName: Хрупкая кость
 	Tooltip: ""
 }
@@ -1641,4 +1641,9 @@ BlackHolePotion: {
 BridgeAtomizer: {
 	DisplayName: Уничтожитель мостов
 	Tooltip: Уничтожает все платформы, соединённые вместе горизонтальноDeletes all platforms connected horizontally
+}
+
+GizmoParts: {
+	// DisplayName: Gizmo Parts
+	// Tooltip: ""
 }

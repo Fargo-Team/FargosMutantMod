@@ -1702,3 +1702,8 @@ BridgeAtomizer: {
 	// DisplayName: Bridge Atomizer
 	// Tooltip: Deletes all platforms connected horizontally
 }
+
+GizmoParts: {
+	// DisplayName: Gizmo Parts
+	// Tooltip: ""
+}

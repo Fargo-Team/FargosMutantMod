@@ -174,7 +174,7 @@ namespace Fargowiltas.Content.Items.Tiles
                         }
                         if (Main.MouseWorld.Distance(fruit.center) <= size)
                         {
-                            Main.instance.MouseText(Lang.GetItemNameValue(fruit.type) + "\n[i:Fargowiltas/EnchantedAcorn] [c/3BFFEB:" + cost + "]", ContentSamples.ItemsByType[fruit.type].rare);
+                            Main.instance.MouseText(Lang.GetItemNameValue(fruit.type) + "\n[i:Fargowiltas/EnchantedAcorn] [c/3BFFEB:" + cost + "]", 0);
                         }
                         if (Main.MouseWorld.Distance(fruit.center) <= size && Main.LocalPlayer.controlUseItem && fruit.grabCooldown == 0 &&
                             (Main.LocalPlayer.FargoMutant().grabbedFruit == null || Main.LocalPlayer.FargoMutant().grabbedFruit == fruit))

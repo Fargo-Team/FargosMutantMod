@@ -1571,9 +1571,11 @@ EnchantedTree: {
 	DisplayName: Enchanted Tree
 	Tooltip:
 		'''
-		Can duplicate several complex items and some of their components
-		Right Click with an item in hand, then drag and pull the item you wish to duplicate
-		Items require varying amounts of Enchanted Acorns to duplicate
+		Can duplicate certain complex items and components
+		<right> with an item to place it
+		If applicable, <left> placed item to show its crafting tree
+		<left> and pull the item you want to duplicate
+		Duplication consumes Enchanted Acorns based on item complexity
 		'''
 }
 

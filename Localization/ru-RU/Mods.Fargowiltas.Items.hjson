@@ -1643,11 +1643,6 @@ BridgeAtomizer: {
 	Tooltip: Уничтожает все платформы, соединённые вместе горизонтальноDeletes all platforms connected horizontally
 }
 
-GizmoParts: {
-	// DisplayName: Gizmo Parts
-	// Tooltip: ""
-}
-
 PotionCooler: {
 	// DisplayName: Potion Cooler
 	/* Tooltip:
@@ -1662,4 +1657,9 @@ PotionCooler: {
 		Toggles are not shared between players
 		This item works from the inventory
 		''' */
+}
+
+GizmoParts: {
+	// DisplayName: Gizmo Parts
+	// Tooltip: ""
 }

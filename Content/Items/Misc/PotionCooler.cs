@@ -67,6 +67,7 @@ namespace Fargowiltas.Content.Items.Misc
                 .AddRecipeGroup(RecipeGroupID.IronBar, 10)
                 .AddIngredient(ItemID.IceBlock, 20)
                 .AddIngredient(ItemID.FallenStar, 3)
+                .AddIngredient<GizmoParts>(2)
                 .AddTile(TileID.Anvils)
                 .Register();
         }

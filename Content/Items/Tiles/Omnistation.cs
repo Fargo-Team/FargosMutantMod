@@ -1,3 +1,4 @@
+using Fargowiltas.Content.Items.Misc;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -34,11 +35,12 @@ namespace Fargowiltas.Content.Items.Tiles
         public override void AddRecipes()
         {
             CreateRecipe()
+                .AddIngredient<GizmoParts>(5)
+                .AddIngredient(bar, 10)
                 .AddIngredient(ModContent.ItemType<Semistation>())
                 .AddIngredient(ItemID.GardenGnome, 3)
                 .AddIngredient(ItemID.CatBast, 3)
                 .AddIngredient(ItemID.LadyBug, 3)
-                .AddIngredient(bar, 10)
                 .AddTile(TileID.MythrilAnvil)
                 .Register();
         }

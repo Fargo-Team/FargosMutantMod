@@ -61,12 +61,13 @@ namespace Fargowiltas.Content.Items.Misc
         public override void AddRecipes()
         {
             CreateRecipe()
+                .AddIngredient(ItemID.LunarBar, 5)
                 .AddIngredient(ItemID.TrifoldMap)
                 .AddIngredient(ItemID.Goggles)
                 .AddIngredient(ItemID.Sunglasses)
                 .AddIngredient(ItemID.SuspiciousLookingEye)
                 .AddIngredient(ItemID.MechanicalEye)
-                .AddTile(TileID.WorkBenches)
+                .AddTile(TileID.LunarCraftingStation)
                 .Register();
         }
     }

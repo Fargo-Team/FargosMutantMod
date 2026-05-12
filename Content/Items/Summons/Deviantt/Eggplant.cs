@@ -1,4 +1,5 @@
 using Fargowiltas.Content.Buffs;
+using Fargowiltas.Content.Items.Misc;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -15,6 +16,7 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
             void Recipe(int fruit)
             {
                 CreateRecipe()
+                    .AddIngredient<GizmoParts>(2)
                     .AddIngredient(fruit)
                     .AddIngredient(ItemID.JungleSpores, 4)
                     .AddIngredient(ItemID.Vine, 2)

@@ -1,4 +1,5 @@
 using Fargowiltas.Common.Systems.Recipes;
+using Fargowiltas.Content.Items.Misc;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -33,6 +34,8 @@ namespace Fargowiltas.Content.Items.Tiles
         public override void AddRecipes()
         {
             CreateRecipe()
+                .AddIngredient<GizmoParts>(5)
+                .AddIngredient(ItemID.Bone, 5)
                 .AddIngredient(ItemID.AlchemyTable)
                 .AddIngredient(ItemID.TinkerersWorkshop)
                 .AddIngredient(ItemID.ImbuingStation)
@@ -49,7 +52,6 @@ namespace Fargowiltas.Content.Items.Tiles
                 .AddIngredient(ItemID.TeaKettle)
                 .AddRecipeGroup(RecipeGroups.AnyTombstone)
                 .AddRecipeGroup(RecipeGroups.AnyDemonAltar)
-                .AddIngredient(ItemID.Bone, 5)
                 .Register();
         }
     }

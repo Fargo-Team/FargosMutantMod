@@ -1,4 +1,5 @@
 using Fargowiltas.Content.Buffs;
+using Fargowiltas.Content.Items.Misc;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -12,11 +13,12 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
         public override void AddRecipes()
         {
 			CreateRecipe()
-					.AddRecipeGroup("Fargowiltas:AnyGoldBar", 4)
-					.AddIngredient(ItemID.ManaPotion, 6)
-					.AddIngredient(ItemID.Ruby)
-					.AddTile(TileID.DemonAltar)
-					.Register();
+                .AddIngredient<GizmoParts>(2)
+                .AddRecipeGroup("Fargowiltas:AnyGoldBar", 4)
+				.AddIngredient(ItemID.ManaPotion, 6)
+				.AddIngredient(ItemID.Ruby)
+				.AddTile(TileID.DemonAltar)
+				.Register();
         }
     }
     public class HolyGrailBuff : BaseSpawnBoosterBuff

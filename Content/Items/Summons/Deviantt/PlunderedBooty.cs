@@ -1,3 +1,4 @@
+using Fargowiltas.Content.Items.Misc;
 using Terraria.ID;
 
 namespace Fargowiltas.Content.Items.Summons.Deviantt
@@ -5,7 +6,7 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
     public class PlunderedBooty : BaseSummon
     {
         public override int NPCType => NPCID.PirateShip;
-        
+
         public override void SetStaticDefaults()
         {
             base.SetStaticDefaults();

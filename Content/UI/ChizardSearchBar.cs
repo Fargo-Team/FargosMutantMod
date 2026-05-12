@@ -1,20 +1,54 @@
-﻿using Fargowiltas.Common.Configs;
+﻿using Fargowiltas.Assets.Textures;
+using Fargowiltas.Common.Configs;
 using Fargowiltas.Content.Items.Tiles;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Linq;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent.UI;
 using Terraria.GameContent.UI.Elements;
+using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI;
+using static Fargowiltas.Assets.Textures.FargoMutantAssets;
 
 namespace Fargowiltas.Content.UI
 {
-    
+    public class UIClearButton : UIElement
+    {
+        public UIClearButton()
+        {
+            Width.Set(22, 0);
+            Height.Set(22, 0);
+        }
+        protected override void DrawSelf(SpriteBatch spriteBatch)
+        {
+            CalculatedStyle style = GetDimensions();
+            // Logic
+            if (IsMouseHovering)
+            {
+                Vector2 textPosition = style.Position() + new Vector2(0, style.Height + 8);
+                Utils.DrawBorderString(spriteBatch, Language.GetTextValue("Mods.Fargowiltas.UI.Clear"), textPosition, Color.White);
+                //spriteBatch.Draw(FargoMutantAssets.UI.Toggler.CrossGlow.Value, style.Position(), null, Color.Yellow, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0);
+            }
+
+            // Drawing
+            Texture2D outlineTexture = FargoMutantAssets.UI.Toggler.Cross.Value;
+            Vector2 position = style.Position();
+            //prepare for shader
+            spriteBatch.End();
+            spriteBatch.Begin(SpriteSortMode.Immediate,  BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, RasterizerState.CullNone, null, Main.UIScaleMatrix);
+            ArmorShaderData shader3 = GameShaders.Armor.GetShaderFromItemId(ItemID.SilverDye);
+            shader3.Apply(null);
+            spriteBatch.Draw(outlineTexture, position, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0);
+            spriteBatch.End();
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, RasterizerState.CullNone, null, Main.GameViewMatrix.TransformationMatrix);
+        }
+    }
     public class ChizardSearchBar : FargoUI
     {
         public UIPanel panel; //bg panel
@@ -24,6 +58,7 @@ namespace Fargowiltas.Content.UI
         public UISearchBar search; //search bar
         public FargoItemSlot ItemInsert;
         public UIPanel ItemInsertVisual;//cant change item slot color UUUUGH
+        public UIClearButton clearButton;
 
         public int[] ChestWithItem = [-1, -1, -1, -1, -1]; //chest indexs with items found from search (one index for each select button)
         public int[] IndexOfItem = [-1, -1, -1, -1, -1]; //index of the item in each chest found from search
@@ -46,7 +81,7 @@ namespace Fargowiltas.Content.UI
             Vector2 pos = Main.LocalPlayer.FargoMutant().LastInteractedChizard.ToWorldCoordinates();
             FargoUtils.TryGetTileEntityAs(tilepos.X, tilepos.Y, out ChestWizardTileEntity TE);
             //if too far or destroyed, disable ui
-            if (pos.Distance(Main.LocalPlayer.Center) > 100 || Main.tile[tilepos].TileType != ModContent.TileType<ChestWizardSheet>()){
+            if (!Main.playerInventory || pos.Distance(Main.LocalPlayer.Center) > 100 || Main.tile[tilepos].TileType != ModContent.TileType<ChestWizardSheet>()){
                 FargoUI ui = FargoUIManager.Get<ChizardSearchBar>();
                 FargoUIManager.Close(ui);
                 SoundEngine.PlaySound(SoundID.MenuClose);
@@ -150,10 +185,17 @@ namespace Fargowiltas.Content.UI
             search.BackPanel.BackgroundColor = new Color(104, 52, 52);
             search.OnTextChange += SearchBar_OnTextChange;
 
+            clearButton = new();
+            clearButton.Left.Set(-45, 1);
+            clearButton.Top.Set(2, 0);
+            clearButton.OnLeftClick += ClearButton_OnLeftClick;
+            //search.Append(clearButton);
+            
+
             closeButton = new();
             closeButton.OnLeftClick += CloseButton_OnLeftClick;
             closeButton.Left.Set(-16, 1);
-            closeButton.Top.Set(0, 0);
+            closeButton.Top.Set(2, 0);
 
             selectText = new UIPanel[5];
             ItemShow = new UIText[5];
@@ -189,9 +231,15 @@ namespace Fargowiltas.Content.UI
             panel.Append(search);
             panel.Append(closeButton);
             panel.Append(ItemInsertVisual);
+            panel.Append(clearButton);
             base.OnInitialize();
         }
 
+        private void ClearButton_OnLeftClick(UIMouseEvent evt, UIElement listeningElement)
+        {
+            SearchBar_OnTextChange(search.Input, "");
+            search.Input = "";
+        }
 
         private void CloseButton_OnLeftClick(UIMouseEvent evt, UIElement listeningElement)
         {
@@ -271,7 +319,7 @@ namespace Fargowiltas.Content.UI
 
             int[] chestWithItem = [-1, -1, -1, -1, -1];
             int[] indexOfItem = [-1, -1, -1, -1, -1];
-            int[] scoreOfItem = [-1, -1, -1, -1, -1];
+            float[] scoreOfItem = [-1, -1, -1, -1, -1];
             
             for (int i = 0; i < Main.chest.Length; i++)
             {
@@ -283,7 +331,7 @@ namespace Fargowiltas.Content.UI
                     
                     for (int j = 0; j < chest.item.Length; j++)
                     {
-                        int score = 0;
+                        float score = 0;
                         Item item = chest.item[j];
                         if (item != null && item.type != ItemID.None)
                         {
@@ -292,7 +340,7 @@ namespace Fargowiltas.Content.UI
                             {
                                 if (name.ToLower().Contains(currentText.ToLower().Substring(0, c)))
                                 {
-                                    score = (int)(c/(float)name.Length * 100);
+                                    score = c + (c/(float)name.Length);
                                     break;
                                 }
                             }

@@ -1657,3 +1657,8 @@ PotionCooler: {
 		This item works from the inventory
 		'''
 }
+
+GizmoParts: {
+	DisplayName: Gizmo Parts
+	Tooltip: ""
+}

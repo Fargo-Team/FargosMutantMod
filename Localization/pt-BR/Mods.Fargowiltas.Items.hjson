@@ -1703,6 +1703,11 @@ BridgeAtomizer: {
 	// Tooltip: Deletes all platforms connected horizontally
 }
 
+GizmoParts: {
+	// DisplayName: Gizmo Parts
+	// Tooltip: ""
+}
+
 PotionCooler: {
 	// DisplayName: Potion Cooler
 	/* Tooltip:

@@ -60,6 +60,7 @@ namespace Fargowiltas.Content.Items.Misc
         public override void AddRecipes()
         {
 			CreateRecipe()
+                .AddIngredient<GizmoParts>(5)
                 .AddIngredient(ItemID.PurificationPowder, 100)
                 .AddIngredient(ItemID.HolyWater, 10)
 				.AddTile(TileID.Bottles)

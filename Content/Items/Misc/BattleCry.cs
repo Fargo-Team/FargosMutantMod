@@ -157,6 +157,7 @@ namespace Fargowiltas.Content.Items.Misc
         public override void AddRecipes()
         {
             CreateRecipe()
+                .AddIngredient<GizmoParts>(5)
                 .AddRecipeGroup(RecipeGroups.AnyEvilBar, 5)
                 .AddIngredient(ItemID.BattlePotion, 5)
                 .AddIngredient(ItemID.WaterCandle, 3)

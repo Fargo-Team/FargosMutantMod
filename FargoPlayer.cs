@@ -46,7 +46,8 @@ namespace Fargowiltas
         public Dictionary<int, bool> PotionTogglesToSync = [];
         public int ToggleRebuildCooldown = 0;
 
-        public bool PotionCooler = false;
+        public bool PotionCoolerBuffer;
+        public bool PotionCooler;
         public bool NeedRefreshCooler = false;
         public int ActiveFlask = -1;
 
@@ -308,7 +309,9 @@ namespace Fargowiltas
 
         public override void ResetEffects()
         {
-            PotionCooler = false;
+            if (!PotionCoolerBuffer)
+                PotionCooler = false;
+            PotionCoolerBuffer = false;
             extractSpeed = false;
             HasDrawnDebuffLayer = false;
             bigSuck = false;
@@ -381,8 +384,7 @@ namespace Fargowiltas
                     FargoGlobalItem.TryPiggyBankAcc(item, Player);
                 }
             }
-
-            if (Player.HasItem(ModContent.ItemType<PotionCooler>()))
+            if (PotionCooler)
                 PotionBagSystem.ApplyCoolerBuffs(Player);
         }
         public override void DrawEffects(PlayerDrawSet drawInfo, ref float r, ref float g, ref float b, ref float a, ref bool fullBright)

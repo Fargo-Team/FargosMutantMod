@@ -42,6 +42,19 @@ namespace Fargowiltas.Content.Items.Misc
 
             return base.UseItem(player);
         }
+        public override bool AltFunctionUse(Player player) => true;
+        public override bool CanRightClick() => true;
+
+        public override bool ConsumeItem(Player player) => false;
+
+        public override void RightClick(Player player)
+        {
+            if (Main.LocalPlayer == player)
+            {
+                FargoUIManager.Toggle<PotionBagUI>();
+                return;
+            }
+        }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
@@ -59,6 +72,7 @@ namespace Fargowiltas.Content.Items.Misc
         public override void UpdateInventory(Player player)
         {
             player.FargoMutant().PotionCooler = true;
+            player.FargoMutant().PotionCoolerBuffer = true;
         }
 
         public override void AddRecipes()

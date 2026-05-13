@@ -394,6 +394,12 @@ namespace Fargowiltas
             FargoUIManager.InitializeUI();
             statTracker.AddSoulsStats();
 
+            if (ModLoader.TryGetMod("FargowiltasSouls", out Mod souls))
+            {
+                souls.Call("AddPassiveItem", ModContent.ItemType<PotionCooler>());
+            }
+                
+
             if (ModLoader.TryGetMod("Wikithis", out Mod wikithis) && !Main.dedServ)
             {
                 wikithis.Call("AddModURL", this, "https://fargosmods.wiki.gg/wiki/{}");

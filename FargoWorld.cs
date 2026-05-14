@@ -23,6 +23,7 @@ namespace Fargowiltas
     {
         internal static int AbomClearCD;
         internal static int WoodChopped;
+        internal static byte PortableSundialCooldown;
 
         internal static bool OverloadGoblins;
         internal static bool OverloadPirates;
@@ -33,6 +34,7 @@ namespace Fargowiltas
 
         internal static bool Matsuri;
         internal static bool GeneratedSacrificeCounts;
+        internal static bool BlockPortaDialCooldown;
 
         internal static bool[] CurrentSpawnRateTile;
         internal static Dictionary<string, bool> DownedBools = [];
@@ -209,6 +211,7 @@ namespace Fargowiltas
             }
             tag.Add("sacrificeItems", sacrificeItems);
             tag.Add("GeneratedSacrificeCounts", GeneratedSacrificeCounts);
+            tag.Add("PortableSundialCooldown", PortableSundialCooldown);
         }
 
         public override void LoadWorldData(TagCompound tag)
@@ -243,6 +246,7 @@ namespace Fargowiltas
                 }
             }
             GeneratedSacrificeCounts = tag.Get<bool>("GeneratedSacrificeCounts");
+            PortableSundialCooldown = tag.Get<byte>("PortableSundialCooldown");
         }
 
         public override void NetReceive(BinaryReader reader)

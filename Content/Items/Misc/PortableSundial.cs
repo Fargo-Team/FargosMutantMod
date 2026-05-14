@@ -1,9 +1,9 @@
-using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Linq;
+using System.Reflection;
 using Terraria;
 using Terraria.Audio;
-using Terraria.GameContent.Events;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -11,6 +11,7 @@ namespace Fargowiltas.Content.Items.Misc
 {
     public class PortableSundial : ModItem
     {
+        private static readonly MethodInfo SkipToTime_MethodInfo = typeof(Main).GetMethod("SkipToTime", FargoUtils.UniversalBindingFlags);
         public override void SetDefaults()
         {
             Item.width = 20;
@@ -28,11 +29,12 @@ namespace Fargowiltas.Content.Items.Misc
 
         public override bool AltFunctionUse(Player player)
         {
-            return true;
+            return FargoWorld.PortableSundialCooldown == 0;
         }
 
         public override bool CanUseItem(Player player)
         {
+            bool value = !Main.IsFastForwardingTime();
             if (Main.npc.Any(n => n.active && n.boss))
             {
                 Item.useAnimation = 120;
@@ -43,46 +45,63 @@ namespace Fargowiltas.Content.Items.Misc
                 Item.useAnimation = 30;
                 Item.useTime = 30;
             }
-
-            return !Main.IsFastForwardingTime();
+            if (player.altFunctionUse == ItemAlternativeFunctionID.ShouldBeActivated && FargoWorld.PortableSundialCooldown > 0)
+            {
+                value = false;
+            }
+            return value;
         }
 
         public override bool? UseItem(Player player)
         {
             if (player.altFunctionUse == ItemAlternativeFunctionID.ActivatedAndUsed)
             {
-                if (Main.sundialCooldown == 0)
+                if (FargoWorld.PortableSundialCooldown == 0)
                 {
-                    Main.sundialCooldown = 8;
-                    SoundEngine.PlaySound(SoundID.Item4, player.position);
+                    SoundEngine.PlaySound(SoundID.Item4, player.Center);
+                    FargoWorld.PortableSundialCooldown = 4;
+
+                    if (Main.dayTime)
+                    {
+                        Main.fastForwardTimeToDawn = true;
+                    }
+                    else
+                    {
+                        Main.fastForwardTimeToDusk = true;
+                    }
 
                     if (Main.netMode == NetmodeID.MultiplayerClient)
                     {
-                        NetMessage.SendData(MessageID.MiscDataSync, number: Main.myPlayer, number2: 3f);
-                        return true;
+                        ModPacket setCooldown = Mod.GetPacket();
+                        setCooldown.Write((byte)Fargowiltas.PacketID.SyncPortableSundial);
+                        setCooldown.Write((byte)4);
+                        setCooldown.Send();
                     }
-
-                    if (Main.dayTime)
-                        Main.fastForwardTimeToDusk = true;
-                    else
-                        Main.fastForwardTimeToDawn = true;
+                    return true;
                 }
             }
             else
             {
+                if (Main.netMode == NetmodeID.MultiplayerClient)
+                {
+                    return true;
+                }
                 int noon = 27000;
                 int midnight = 16200;
                 if (Main.dayTime && Main.time < noon)
                 {
-                    Main.time = noon;
+                    SkipToTime_MethodInfo.Invoke(null, [noon, true]);
                 }
                 else if (Main.time < midnight)
                 {
-                    Main.time = midnight;
+                    SkipToTime_MethodInfo.Invoke(null, [midnight, false]);
                 }
                 else
                 {
-                    Main.dayTime = !Main.dayTime;
+                    FargoWorld.BlockPortaDialCooldown = true;
+                    SkipToTime_MethodInfo.Invoke(null, [0, !Main.dayTime]);
+                    FargoWorld.BlockPortaDialCooldown = false;
+                    /*Main.dayTime = !Main.dayTime;
                     Main.time = 0;
 
                     if (Main.dayTime)
@@ -108,11 +127,11 @@ namespace Fargowiltas.Content.Items.Misc
                     else
                     {
                         BirthdayParty.CheckNight();
-                    }
+                    }*/
                 }
+                return true;
             }
-            NetMessage.SendData(MessageID.WorldData);
-            return true;
+            return base.UseItem(player);
         }
 
         public override void PostDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)

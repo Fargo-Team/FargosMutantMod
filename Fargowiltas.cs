@@ -198,6 +198,8 @@ namespace Fargowiltas
 
             On_Main.DoUpdateInWorld += UpdateEnchantedTreeFruit;
             On_Main.DrawPlayers_AfterProjectiles += DrawEnchantedTrees;
+            On_Main.UpdateTime_StartDay += UpdatePortableSundialCooldown_Day;
+            On_Main.UpdateTime_StartNight += UpdatePortableSundialCooldown_Night;
 
             On_NPC.CountKillForBannersAndDropThem += PreventBannerDrop;
 
@@ -223,7 +225,7 @@ namespace Fargowiltas
             On_ChatManager.DrawColorCodedStringShadow_SpriteBatch_DynamicSpriteFont_TextSnippetArray_Vector2_Color_float_Vector2_Vector2_float_float += SymbolsFix;
         }
 
-        private void SymbolsFix(On_ChatManager.orig_DrawColorCodedStringShadow_SpriteBatch_DynamicSpriteFont_TextSnippetArray_Vector2_Color_float_Vector2_Vector2_float_float orig, SpriteBatch spriteBatch,  DynamicSpriteFont font, IEnumerable<TextSnippet> snippets, Vector2 position, Color shadowColor, float rotation, Vector2 origin, Vector2 scale, float maxWidth, float spread = 2f)
+        private void SymbolsFix(On_ChatManager.orig_DrawColorCodedStringShadow_SpriteBatch_DynamicSpriteFont_TextSnippetArray_Vector2_Color_float_Vector2_Vector2_float_float orig, SpriteBatch spriteBatch, DynamicSpriteFont font, IEnumerable<TextSnippet> snippets, Vector2 position, Color shadowColor, float rotation, Vector2 origin, Vector2 scale, float maxWidth, float spread = 2f)
         {
             SymbolTagHandler.SymbolSnippet.ShouldDraw = false;
             KeywordTagHandler.KeywordSnippet.ShouldDraw = false;
@@ -398,7 +400,7 @@ namespace Fargowiltas
             {
                 souls.Call("AddPassiveItem", ModContent.ItemType<PotionCooler>());
             }
-                
+
 
             if (ModLoader.TryGetMod("Wikithis", out Mod wikithis) && !Main.dedServ)
             {
@@ -696,6 +698,7 @@ namespace Fargowiltas
             RequestTakeItemFromChest,
             ChangeChizardHat,
             AddPotionToBag,
+            SyncPortableSundial,
         }
 
         public override void HandlePacket(BinaryReader reader, int whoAmI)
@@ -903,9 +906,10 @@ namespace Fargowiltas
                         int chesty = reader.ReadInt32();
                         int itemAmount = reader.ReadInt32();
                         int itemindex = reader.ReadInt32();
-                        
+
                         int c = Chest.FindChest(chestx, chesty);
-                        if (c >= 0) {
+                        if (c >= 0)
+                        {
                             if (Main.dedServ)
                             {
                                 int itemtype = reader.ReadInt32();
@@ -928,7 +932,8 @@ namespace Fargowiltas
                                 }
                                 packet.Send(whoAmI);
                                 NetMessage.SendData(MessageID.SyncChestItem, whoAmI, -1, null, c, itemindex);
-                            }else if (Main.netMode == NetmodeID.MultiplayerClient)
+                            }
+                            else if (Main.netMode == NetmodeID.MultiplayerClient)
                             {
                                 bool success = reader.ReadBoolean();
                                 if (success)
@@ -965,6 +970,26 @@ namespace Fargowiltas
                             {
                                 PotionBagSystem.AddPotion(id, count);
                                 NetMessage.SendData(MessageID.WorldData);
+                            }
+                        }
+                        break;
+                    case PacketID.SyncPortableSundial:
+                        {
+                            FargoWorld.PortableSundialCooldown = reader.ReadByte();
+                            if (Main.dayTime)
+                            {
+                                Main.fastForwardTimeToDawn = true;
+                            }
+                            else
+                            {
+                                Main.fastForwardTimeToDusk = true;
+                            }
+                            if (Main.netMode == NetmodeID.Server)
+                            {
+                                ModPacket sendCooldownToClient = GetPacket();
+                                sendCooldownToClient.Write((byte)PacketID.SyncPortableSundial);
+                                sendCooldownToClient.Write(FargoWorld.PortableSundialCooldown);
+                                sendCooldownToClient.Send(ignoreClient: whoAmI);
                             }
                         }
                         break;
@@ -1246,7 +1271,7 @@ namespace Fargowiltas
                 }
                 dashing = true;
                 player.dashTime = 0;
-                
+
                 if (dashStartAction != null)
                     dashStartAction?.Invoke(dir);
             }
@@ -1418,6 +1443,38 @@ namespace Fargowiltas
         {
             orig(self, sw);
             EnchantedTreeTileEntity.UpdateEnchantedTrees();
+        }
+
+        public static void UpdatePortableSundialCooldown_Day(On_Main.orig_UpdateTime_StartDay orig, ref bool stopEvents)
+        {
+            if (FargoWorld.PortableSundialCooldown > 0 && !FargoWorld.BlockPortaDialCooldown && Main.netMode != NetmodeID.MultiplayerClient)
+            {
+                FargoWorld.PortableSundialCooldown--;
+                if (Main.netMode == NetmodeID.Server)
+                {
+                    ModPacket syncClientCooldown = Instance.GetPacket();
+                    syncClientCooldown.Write((byte)PacketID.SyncPortableSundial);
+                    syncClientCooldown.Write(FargoWorld.PortableSundialCooldown);
+                    syncClientCooldown.Send();
+                }
+            }
+            orig(ref stopEvents);
+        }
+
+        public static void UpdatePortableSundialCooldown_Night(On_Main.orig_UpdateTime_StartNight orig, ref bool stopEvents)
+        {
+            if (FargoWorld.PortableSundialCooldown > 0 && !FargoWorld.BlockPortaDialCooldown && Main.netMode != NetmodeID.MultiplayerClient)
+            {
+                FargoWorld.PortableSundialCooldown--;
+                if (Main.netMode == NetmodeID.Server)
+                {
+                    ModPacket syncClientCooldown = Instance.GetPacket();
+                    syncClientCooldown.Write((byte)PacketID.SyncPortableSundial);
+                    syncClientCooldown.Write(FargoWorld.PortableSundialCooldown);
+                    syncClientCooldown.Send();
+                }
+            }
+            orig(ref stopEvents);
         }
 
         private void FixRecipeGroupsShimmerInteraction(On_Item.orig_GetShimmered orig, Item self)

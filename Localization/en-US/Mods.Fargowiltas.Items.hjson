@@ -217,6 +217,7 @@ PortableSundial: {
 		Left click to instantly change time
 		Time cycles between dawn, noon, dusk, and midnight
 		Right click to activate the Enchanted Sundial effect
+		Enchanted Sundial effect cooldown is 1 day
 		Slower use speed when a boss is alive
 		Cycling to dawn will reset travelling merchant's shops
 		'''

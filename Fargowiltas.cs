@@ -977,7 +977,7 @@ namespace Fargowiltas
                         {
                             byte prevCD = FargoWorld.PortableSundialCooldown;
                             FargoWorld.PortableSundialCooldown = reader.ReadByte();
-                            if (prevCD == 4)
+                            if (prevCD == 0 && FargoWorld.PortableSundialCooldown == 4)
                             {
                                 if (Main.dayTime)
                                 {

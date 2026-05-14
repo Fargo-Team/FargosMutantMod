@@ -975,14 +975,18 @@ namespace Fargowiltas
                         break;
                     case PacketID.SyncPortableSundial:
                         {
+                            byte prevCD = FargoWorld.PortableSundialCooldown;
                             FargoWorld.PortableSundialCooldown = reader.ReadByte();
-                            if (Main.dayTime)
+                            if (prevCD == 4)
                             {
-                                Main.fastForwardTimeToDawn = true;
-                            }
-                            else
-                            {
-                                Main.fastForwardTimeToDusk = true;
+                                if (Main.dayTime)
+                                {
+                                    Main.fastForwardTimeToDawn = true;
+                                }
+                                else
+                                {
+                                    Main.fastForwardTimeToDusk = true;
+                                }
                             }
                             if (Main.netMode == NetmodeID.Server)
                             {

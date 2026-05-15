@@ -1,4 +1,4 @@
-FargoServerConfig: {
+﻿FargoServerConfig: {
 	DisplayName: Серверная конфигурация
 
 	Headers: {
@@ -20,18 +20,22 @@ FargoServerConfig: {
 	}
 
 	PotionCooler: {
-		// Label: "[i:Fargowiltas/PotionCooler] Potion Cooler"
-		// Tooltip: Enables the Potion Cooler that stores potions to provide infinite buffs.
+		Label: "[i:Fargowiltas/PotionCooler] Холодильник для зелий"
+		Tooltip: Включает холодильник для зелий, который хранит зелья и даёт их бесконечные эффекты.
 	}
 
 	UnlimitedPotionBuffs: {
-		Label: "[i:292] Бесконечные эффекты зелий"
-		Tooltip: Зелья с длительностью 2 минуты и выше длятся вечно.
+		Label: "[i:Fargowiltas/PotionCooler] Доступность холодильника"
+		Tooltip: Когда холодильник для зелий даёт бесконечные эффекты.
 	}
 
 	UnlimitedPotionBuffsAmount: {
-		Label: "[i:IronskinPotion] Количество зелий для бесконечных эффектов"
-		Tooltip: Определяет, сколько зелий одного вида нужно держать, чтобы их эффект длился вечно.
+		Label: "[i:Fargowiltas/PotionCooler] Количество зелий для бесконечных эффектов"
+		Tooltip:
+			'''
+			Определяет, сколько зелий одного вида нужно сложить в холодильник,
+			чтобы их эффект длился вечно.
+			'''
 	}
 
 	EasySummons: {
@@ -421,7 +425,7 @@ UnlimitedBuffSelections: {
 	// Tooltip: ""
 
 	On: {
-		Label: Включено
+		Label: Всегда
 		// Tooltip: ""
 	}
 

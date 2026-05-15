@@ -1,4 +1,4 @@
-BrittleBone: {
+﻿BrittleBone: {
 	DisplayName: Хрупкая кость
 	Tooltip: ""
 }
@@ -217,6 +217,7 @@ PortableSundial: {
 		ЛКМ мгновенно меняет время
 		Время циклично меняется на рассвет, полдень, закат и полночь
 		ПКМ активирует эффект зачарованных солнечных часов
+		Данный эффект перезаряжается 1 внутриигровой день
 		Частота использования уменьшена, пока в мире присутствует любой босс
 		Смена времени суток на рассвет меняет предметы в магазине странствующего торговца
 		'''
@@ -1519,37 +1520,37 @@ CrabSizedGlasses: {
 
 NerdySlime: {
 	DisplayName: Слизень-задрот
-	Tooltip: «Бупль-глупль? Хрм!»
+	Tooltip: «Бурбль-буббль? Хрм!»
 }
 
 CoolSlime: {
 	DisplayName: Крутой слизень
-	Tooltip: «Йоу, буль-бэ!»
+	Tooltip: «Йо, хлюп-глурп!»
 }
 
 ElderSlime: {
 	DisplayName: Слизень-старейшина
-	Tooltip: «Пууу... кхем!»
+	Tooltip: «Пуу... кхем!»
 }
 
 ClumsySlime: {
 	DisplayName: Неуклюжий слизень
-	Tooltip: «*неловкая тишина*»
+	Tooltip: «*неловкое молчание*»
 }
 
 DivaSlime: {
 	DisplayName: Слизень-дива
-	Tooltip: «Мульки-бульки!»
+	Tooltip: «Блеск-всплеск!»
 }
 
 SurlySlime: {
-	DisplayName: Сердитый слизень
+	DisplayName: Угрюмый слизень
 	Tooltip: «Сссс! Глуль! Грр...»
 }
 
 MysticSlime: {
 	DisplayName: Таинственный слизень
-	Tooltip: «Буля-кабуля!»
+	Tooltip: «Бульра-касульра!»
 }
 
 SquireSlime: {
@@ -1572,9 +1573,11 @@ EnchantedTree: {
 	DisplayName: Зачарованное дерево
 	Tooltip:
 		'''
-		Может создавать копии сложно создаваемых предметов и некоторых их компонентов
-		Нажмите ПКМ по дереву с предметом в руке, а затем вытяните предмет, который хотите скопировать
-		Копирование требует зачарованные жёлуди, их количество зависит от предмета
+		Может создавать копии сложно создаваемых предметов и их компонентов
+		Нажмите ПКМ по дереву с предметом в руке, чтобы поставить его
+		Если возможно, нажатия ЛКМ по поставленному предмету показывают его древо создания
+		Зажмите ЛКМ и вытяните предмет, который хотите скопировать
+		Копирование требует зачарованные жёлуди, их количество зависит от сложности создания предмета
 		'''
 }
 
@@ -1640,26 +1643,26 @@ BlackHolePotion: {
 
 BridgeAtomizer: {
 	DisplayName: Уничтожитель мостов
-	Tooltip: Уничтожает все платформы, соединённые вместе горизонтальноDeletes all platforms connected horizontally
+	Tooltip: Уничтожает все платформы, соединённые вместе горизонтально
 }
 
 PotionCooler: {
-	// DisplayName: Potion Cooler
-	/* Tooltip:
+	DisplayName: Холодильник для зелий
+	Tooltip:
 		'''
-		Stores potions and grants you their buffs
-		'Cracking open a cold one'
-		''' */
-	// Ruminate: "[c/FF3399:Hold Left Shift for more details]"
-	/* Rumination:
+		Хранит зелья и даёт их эффекты
+		«Выпьем холодненького»
 		'''
-		Potions stored within are shared between all players
-		Toggles are not shared between players
-		This item works from the inventory
-		''' */
+	Ruminate: "[c/FF3399:Удерживайте Shift, чтобы узнать больше]"
+	Rumination:
+		'''
+		Хранимые зелья являются общими для всех игроков
+		Включённые эффекты, однако, для всех уникальные
+		Этот предмет работает из инвентаря
+		'''
 }
 
 GizmoParts: {
-	// DisplayName: Gizmo Parts
+	DisplayName: Части штуковин
 	// Tooltip: ""
 }

@@ -6,7 +6,6 @@ namespace Fargowiltas.Content.Items.Misc
 {
     public class GizmoParts : ModItem
     {
-        public override string Texture => "Fargowiltas/Content/Items/Placeholder";
         public override void SetDefaults()
         {
             Item.rare = ItemRarityID.Blue;

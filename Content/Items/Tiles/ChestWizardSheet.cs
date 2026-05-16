@@ -26,7 +26,9 @@ namespace Fargowiltas.Content.Items.Tiles
             Main.tileNoAttach[Type] = true;
             Main.tileFrameImportant[Type] = true;
 
+
             TileID.Sets.HasOutlines[Type] = true;
+            TileID.Sets.AvoidedByNPCs[Type] = true;
 
             TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
             TileObjectData.newTile.Width = 2;

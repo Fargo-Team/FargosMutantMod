@@ -398,7 +398,8 @@ namespace Fargowiltas.Content.NPCs
                 }
             }
 
-            var npcShop2 = new NPCShop(Type, ShopName2);
+            var npcShop2 = new NPCShop(Type, ShopName2)
+                 .Add(new Item(ItemType<Overloader>()) { shopCustomPrice = Item.buyPrice(copper: 400000) }, Condition.InExpertMode);
 
             foreach (MutantSummonInfo summon in Fargowiltas.summonTracker.SortedSummons)
             {
@@ -409,7 +410,8 @@ namespace Fargowiltas.Content.NPCs
                 }
             }
 
-            var npcShop3 = new NPCShop(Type, ShopName3);
+            var npcShop3 = new NPCShop(Type, ShopName3)
+                 .Add(new Item(ItemType<Overloader>()) { shopCustomPrice = Item.buyPrice(copper: 400000) }, Condition.InExpertMode);
 
             foreach (MutantSummonInfo summon in Fargowiltas.summonTracker.SortedSummons)
             {

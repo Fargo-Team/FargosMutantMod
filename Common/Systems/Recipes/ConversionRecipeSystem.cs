@@ -41,7 +41,7 @@ namespace Fargowiltas.Common.Systems.Recipes
             AddConvertRecipe(ItemID.ClingerStaff, ItemID.SoulDrain);
             AddConvertRecipe(ItemID.ShadowOrb, ItemID.CrimsonHeart);
             AddConvertRecipe(ItemID.Musket, ItemID.TheUndertaker);
-            AddConvertRecipe(ItemID.PanicNecklace, ItemID.BandofStarpower);
+            //AddConvertRecipe(ItemID.PanicNecklace, ItemID.BandofStarpower);
             AddConvertRecipe(ItemID.BallOHurt, ItemID.TheRottedFork);
             AddConvertRecipe(ItemID.CrimsonRod, ItemID.Vilethorn);
             AddConvertRecipe(ItemID.CrimstoneBlock, ItemID.EbonstoneBlock);

@@ -190,13 +190,13 @@ namespace Fargowiltas.Content.Projectiles
         }
         public override Color? GetAlpha(Projectile projectile, Color lightColor)
         {
-            bool pets = FargoClientConfig.Instance.NoTransparentPets && Main.projPet[projectile.type];
+            bool pets = FargoClientConfig.Instance.NoTransparentPets && Main.projPet[projectile.type] && !projectile.minion;
             if (lowRender && !projectile.hostile && FargoClientConfig.Instance.TransparentFriendlyProjectiles < 1 && !pets)
             {
                 Color? color = projectile.ModProjectile?.GetAlpha(lightColor);
                 if (color != null)
                 {
-                        return color.Value * FargoClientConfig.Instance.TransparentFriendlyProjectiles;
+                    return color.Value * FargoClientConfig.Instance.TransparentFriendlyProjectiles;
                 }
                 lightColor *= projectile.Opacity * FargoClientConfig.Instance.TransparentFriendlyProjectiles;
                 return lightColor;             

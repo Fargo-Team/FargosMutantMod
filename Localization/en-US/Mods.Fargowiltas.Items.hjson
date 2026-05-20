@@ -875,7 +875,7 @@ EnergizerTwins: {
 	DisplayName: Sibling Energizer
 	Tooltip:
 		'''
-		Formed after using 10 Omnifocal Eyes
+		Formed after using 10 Omnifocal Lenses
 		'You wish you had more'
 		'''
 }
@@ -970,7 +970,7 @@ OverloaderRewards:
 	'''
 
 OverloadEye: {
-	DisplayName: Demon Eye Tears
+	DisplayName: Eyemalgamation
 	Tooltip: Summons an energized Eye of Cthulhu
 }
 
@@ -1064,7 +1064,7 @@ OverloadSlimeCrown: {
 }
 
 OverloadTwins: {
-	DisplayName: Omnifocal Eye
+	DisplayName: Omnifocal Lens
 	Tooltip: Summons an energized set of Twins
 }
 

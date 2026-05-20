@@ -893,7 +893,7 @@ EnergizerWorm: {
 	DisplayName: Wormy Energizer
 	Tooltip:
 		'''
-		Formed after using 10 Superrotted Bait
+		Formed after using 10 Worm Chicken
 		'It's a little squishy'
 		'''
 }
@@ -1074,7 +1074,7 @@ OverloadWall: {
 }
 
 OverloadWorm: {
-	DisplayName: Superrotted Bait
+	DisplayName: Worm Chicken
 	Tooltip: Summons an energized Eater of Worlds
 }
 

@@ -36,7 +36,7 @@ namespace Fargowiltas.Common.Systems
 
         public override void LoadWorldData(TagCompound tag)
         {
-            _potions = new Dictionary<ItemDefinition, int>();
+            _potions = [];
             if (tag.TryGet<IList<TagCompound>>("StoredPotions", out var list))
             {
                 foreach (var potion in list)
@@ -48,7 +48,7 @@ namespace Fargowiltas.Common.Systems
         }
         #endregion
 
-        private static Dictionary<ItemDefinition, int> _potions = new Dictionary<ItemDefinition, int>();
+        private static Dictionary<ItemDefinition, int> _potions = [];
         public static Dictionary<ItemDefinition, int> Potions => _potions.Where(p => !p.Key.IsUnloaded).ToDictionary();
 
         public static int MaxPotions => FargoServerConfig.Instance.UnlimitedPotionBuffsAmount;
@@ -66,7 +66,7 @@ namespace Fargowiltas.Common.Systems
 
         public override void NetReceive(BinaryReader reader)
         {
-            Dictionary<ItemDefinition, int> newList = new Dictionary<ItemDefinition, int>();
+            Dictionary<ItemDefinition, int> newList = [];
             int len = reader.ReadInt32();
             for (int i = 0; i < len; i++)
             {
@@ -187,17 +187,17 @@ namespace Fargowiltas.Common.Systems
         /// <param name="player"></param>
         public static void TryApplyBuff(int type, Player player)
         {
-            Item item = new Item(type);
+            Item item = new(type);
             TryGetCount(type, out int count);
 
-            if (item.IsAir || !(FargoServerConfig.Instance.PotionCooler || (FargoServerConfig.Instance.UnlimitedPotionBuffs is UnlimitedBuffSelections.BossOnly && FargoGlobalNPC.AnyBossAlive())))
+            if (item.IsAir || !FargoServerConfig.Instance.PotionCooler || (FargoServerConfig.Instance.UnlimitedPotionBuffs is UnlimitedBuffSelections.BossOnly && !FargoGlobalNPC.AnyBossAlive()))
                 return;
 
             if (count >= MaxPotions && item.buffType != 0 && item.buffTime >= 60 * 60 * 2)
             {
                 player.FargoMutant().ActivePotions.Add(item.buffType);
 
-                if (player.GetPotionToggleValue(item.type))
+                if (player.FargoMutant().PotionToggler.Toggles.Any(t => t.Value.BuffID == item.buffType && t.Value.ToggleBool))
                 {
                     if (BuffID.Sets.IsAFlaskBuff[item.buffType])
                     {
@@ -207,14 +207,8 @@ namespace Fargowiltas.Common.Systems
                         else
                             return;
                     }
-
-                    player.AddBuff(item.buffType, 2);
-
-                    //compensate to account for luck potion being weaker based on remaining duration wtf
-                    if (item.type == ItemID.LuckPotion)
-                        player.GetModPlayer<FargoPlayer>().luckPotionBoost = Math.Max(player.GetModPlayer<FargoPlayer>().luckPotionBoost, 0.1f);
-                    else if (item.type == ItemID.LuckPotionGreater)
-                        player.GetModPlayer<FargoPlayer>().luckPotionBoost = Math.Max(player.GetModPlayer<FargoPlayer>().luckPotionBoost, 0.2f);
+                    int duration = item.buffType == BuffID.Lucky ? item.buffTime : 2;
+                    player.AddBuff(item.buffType, duration);
                 }
             }
         }

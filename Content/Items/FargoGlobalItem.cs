@@ -521,8 +521,8 @@ namespace Fargowiltas.Content.Items
                 player.RefreshInfoAccsFromItemType(item);
                 player.RefreshMechanicalAccsFromItemType(item.type);
             }
-            if (FargoServerConfig.Instance.ModdedPiggyBankAcc && item.ModItem is ModItem modItem && modItem != null)
-                modItem.UpdateInventory(player);
+            if (FargoServerConfig.Instance.ModdedPiggyBankAcc)
+                item.ModItem?.UpdateInventory(player);
         }
         public override void UpdateInventory(Item item, Player player)
         {
@@ -599,8 +599,6 @@ namespace Fargowiltas.Content.Items
         public override bool ConsumeItem(Item item, Player player)
         {
             if (FargoServerConfig.Instance.UnlimitedConsumableWeapons && Main.hardMode && item.damage > 0 && item.ammo == 0 && item.stack >= 3996)
-                return false;
-            if ((FargoServerConfig.Instance.UnlimitedPotionBuffs is UnlimitedBuffSelections.On || (FargoServerConfig.Instance.UnlimitedPotionBuffs is UnlimitedBuffSelections.BossOnly && FargoGlobalNPC.AnyBossAlive())) && (item.buffType > 0 || FargoItemSets.NonBuffPotion[item.type]) && (item.stack >= FargoServerConfig.Instance.UnlimitedPotionBuffsAmount || player.inventory.Any(i => i.type == item.type && !i.IsAir && i.stack >= FargoServerConfig.Instance.UnlimitedPotionBuffsAmount)) && item.buffTime >= 60 * 60 * 2)
                 return false;
             return base.ConsumeItem(item, player);
         }

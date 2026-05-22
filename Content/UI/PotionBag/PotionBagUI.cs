@@ -239,7 +239,7 @@ namespace Fargowiltas.Content.UI.PotionBag
             var items = new List<UIElement>();
             foreach (var potion in PotionBagSystem.Potions.Where(p => SearchMatches(new Item(p.Key.Type).Name.Split(' '))))
             {
-                var newItem = new PotionDisplayPanel(potion.Key.Type, potion.Value);
+                var newItem = new PotionDisplayPanel(potion.Key.Type, potion.Value, new Item(potion.Key.Type).buffType);
                 newItem.Left.Set(0f, (index % 4) / 4f);
                 newItem.Top.Set(90 * MathF.Floor(index / 4f),  0f);
                 items.Add(newItem);
@@ -266,14 +266,16 @@ namespace Fargowiltas.Content.UI.PotionBag
         {
             public int type;
             public int Count;
+            public int buffType;
 
-            public PotionDisplayPanel(int type, int count)
+            public PotionDisplayPanel(int type, int count, int buffType)
             {
                 SetPadding(6f);
                 Width.Set(80f, 0);
                 Height.Set(90f, 0);
                 this.type = type;
                 this.Count = count;
+                this.buffType = buffType;
 
                 RebuildItem();
             }
@@ -286,7 +288,7 @@ namespace Fargowiltas.Content.UI.PotionBag
                 string display = $"[i:{itemID}] {Lang.GetItemNameValue(itemID)} {PotionBagUI.GetCoolerText("Progress", [percent])}";
                 if (percent >= 100)
                 {
-                    bool toggled = Main.LocalPlayer.GetPotionToggleValue(itemID);
+                    bool toggled = Main.LocalPlayer.FargoMutant().PotionToggler.Toggles.Any(t => t.Value.BuffID == buffType && t.Value.ToggleBool);
                     if (toggled)
                     {
                         display += $"\n[c/9999FF:{Lang.GetBuffName(buffType)}] {PotionBagUI.GetCoolerText("Enabled")}";
@@ -332,7 +334,7 @@ namespace Fargowiltas.Content.UI.PotionBag
                 float top = 56f;
                 if (Count < PotionBagSystem.MaxPotions)
                 {
-                    PotionProgressBar bar = new PotionProgressBar(type, Count);
+                    PotionProgressBar bar = new(type, Count, buffType);
                     bar.Height.Set(20f, 0f);
                     bar.Width.Set(60f, 0f);
                     bar.Top.Set(top, 0f);
@@ -342,7 +344,7 @@ namespace Fargowiltas.Content.UI.PotionBag
                 }
                 else
                 {
-                    PotionCheckBox box = new PotionCheckBox(type, Count);
+                    PotionCheckBox box = new(type, Count, buffType);
                     box.Top.Set(top, 0f);
                     box.HAlign = 0.5f;
 
@@ -400,10 +402,12 @@ namespace Fargowiltas.Content.UI.PotionBag
             {
                 int id;
                 int count;
-                public PotionProgressBar(int id, int count)
+                int buffID;
+                public PotionProgressBar(int id, int count, int buffID)
                 {
                     this.id = id;
                     this.count = count;
+                    this.buffID = buffID;
 
                     var text = new UIText($"{count}/{PotionBagSystem.MaxPotions}");
                     text.Width = text.Height = new StyleDimension(0f, 1f);
@@ -435,20 +439,22 @@ namespace Fargowiltas.Content.UI.PotionBag
             {
                 int itemID;
                 int count;
+                int buffID;
 
-                public PotionCheckBox(int itemID, int count)
+                public PotionCheckBox(int itemID, int count, int buffID)
                 {
                     Width.Set(18, 0);
                     Height.Set(18, 0);
                     this.itemID = itemID;
                     this.count = count;
+                    this.buffID = buffID;
                 }
 
                 protected override void DrawSelf(SpriteBatch spriteBatch)
                 {
                     Vector2 position = GetDimensions().Position();
 
-                    bool toggled = Main.LocalPlayer.GetPotionToggleValue(itemID);
+                    bool toggled = Main.LocalPlayer.FargoMutant().PotionToggler.Toggles.Any(t => t.Value.BuffID == buffID && t.Value.ToggleBool);
 
 
 
@@ -474,10 +480,11 @@ namespace Fargowiltas.Content.UI.PotionBag
 
                     FargoPlayer modPlayer = Main.LocalPlayer.FargoMutant();
 
-                    modPlayer.PotionToggler.Toggles[itemID].ToggleBool = !modPlayer.PotionToggler.Toggles[itemID].ToggleBool;
+                    KeyValuePair<int, PotionToggle> pair = modPlayer.PotionToggler.Toggles.First(t => t.Value.BuffID == buffID);
+                    pair.Value.ToggleBool = !pair.Value.ToggleBool;
 
                     if (Main.netMode == NetmodeID.MultiplayerClient)
-                        modPlayer.SyncPotionToggle(itemID);
+                        modPlayer.SyncPotionToggle(pair.Value.ItemID);
 
                     base.LeftClick(evt);
                 }
@@ -600,12 +607,7 @@ namespace Fargowiltas.Content.UI.PotionBag
                 
             }
 
-            public override bool CanAcceptItem(Item item)
-            {
-                return FargoServerConfig.Instance.UnlimitedPotionBuffs is UnlimitedBuffSelections.On
-                && (item.buffType > 0 || FargoItemSets.NonBuffPotion[item.type])
-                && item.buffTime >= 60 * 60 * 2;
-            }
+            public override bool CanAcceptItem(Item item) => item.buffType > 0 && item.buffTime >= 60 * 60 * 2;
 
             public override void OnItemSwap(ref Item oldItem, ref Item newItem)
             {

@@ -29,12 +29,12 @@ NPCSacrificeAchievement: {
 }
 
 OmnistationAchievement: {
-	// FriendlyName: A Beacon Of Light
+	// FriendlyName: A Beacon of Light
 	// Description: Upgrade the Semistation into the Omnistation, the pinnacle of arena support.
 }
 
 SemistationAchievement: {
-	// FriendlyName: It's A Beautiful Day
+	// FriendlyName: It's a Beautiful Day
 	// Description: Obtain the Semistation.
 }
 
@@ -54,6 +54,6 @@ WiresAchievement: {
 }
 
 LuminiteOmniforgeAchievement: {
-	// FriendlyName: Forged In Starfire
+	// FriendlyName: Forged in Starfire
 	// Description: Streamline your forging talent by combining advanced stations into a practical furnace!
 }

@@ -58,7 +58,7 @@ namespace Fargowiltas.Content.NPCs
         internal bool PillarSpawn = true;
         internal bool SwarmActive;
         internal bool PandoraActive;
-        internal bool NoLoot = false;
+        internal bool NoLoot;
         //internal bool DestroyerSwarm = false;
 
         public static int eaterBoss = -1;
@@ -160,7 +160,7 @@ namespace Fargowiltas.Content.NPCs
         {
             woodDrop = false;
         }
-        public override bool CanHitNPC(NPC npc, NPC target)/* tModPorter Suggestion: Return true instead of null */
+        public override bool CanHitNPC(NPC npc, NPC target)
         {
             if (target.dontTakeDamage && target.type == NPCType<Squirrel>())
                 return false;
@@ -964,7 +964,7 @@ namespace Fargowiltas.Content.NPCs
                         if (p.ZoneHallow) return ItemID.Pearlwood;
                         if (p.ZoneCrimson) return ItemID.Shadewood;
                         if (p.ZoneCorrupt) return ItemID.Ebonwood;
-                        if (p.ZoneJungle) return ItemID.RichMahogany; 
+                        if (p.ZoneJungle) return ItemID.RichMahogany;
                         if (p.ZoneSnow) return ItemID.BorealWood;
                         if (p.ZoneBeach) return ItemID.PalmWood;
                     }
@@ -994,7 +994,6 @@ namespace Fargowiltas.Content.NPCs
                             NPC.TowerActiveSolar = false;
                         }
                     }
-
                     break;
 
                 case NPCID.GiantWormHead:
@@ -1020,9 +1019,7 @@ namespace Fargowiltas.Content.NPCs
                 case NPCID.BlueSlime:
                     if (npc.netID == NPCID.Pinky)
                     {
-
                         FargoUtils.TryDowned("Deviantt", Color.HotPink, "rareEnemy", "pinky");
-
                     }
                     break;
 

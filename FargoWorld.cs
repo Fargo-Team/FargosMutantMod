@@ -97,7 +97,7 @@ namespace Fargowiltas
 
         public override void PreWorldGen()
         {
-            SetWorldBool(FargoServerConfig.Instance.DrunkWorld, ref Main.drunkWorld) ;
+            SetWorldBool(FargoServerConfig.Instance.DrunkWorld, ref Main.drunkWorld);
             SetWorldBool(FargoServerConfig.Instance.BeeWorld, ref Main.notTheBeesWorld);
             SetWorldBool(FargoServerConfig.Instance.WorthyWorld, ref Main.getGoodWorld);
             SetWorldBool(FargoServerConfig.Instance.CelebrationWorld, ref Main.tenthAnniversaryWorld);

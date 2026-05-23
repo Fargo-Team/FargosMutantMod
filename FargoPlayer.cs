@@ -60,7 +60,6 @@ namespace Fargowiltas
 
         internal int originalSelectedItem;
         internal bool autoRevertSelectedItem;
-        public float luckPotionBoost;
         public float ElementalAssemblerNearby;
 
         public float StatSheetMaxAscentMultiplier;
@@ -642,9 +641,7 @@ namespace Fargowiltas
 
         public override void ModifyLuck(ref float luck)
         {
-            luck += luckPotionBoost;
-
-            luckPotionBoost = 0; //look nowhere else works ok
+            
         }
         public override void ModifyScreenPosition()
         {

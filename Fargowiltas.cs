@@ -262,7 +262,7 @@ namespace Fargowiltas
                 pot.SetDefaults(ItemID.None, false);
         }
 
-        private static void DisableTombstones(Terraria.On_Player.orig_DropTombstone orig, Player self, long coinsOwned, NetworkText deathText, int hitDirection)
+        private static void DisableTombstones(On_Player.orig_DropTombstone orig, Player self, long coinsOwned, NetworkText deathText, int hitDirection)
         {
             if (FargoServerConfig.Instance.DisableTombstones)
                 return;
@@ -270,7 +270,7 @@ namespace Fargowiltas
             orig(self, coinsOwned, deathText, hitDirection);
         }
 
-        private static bool OnHasUnityPotion(Terraria.On_Player.orig_HasUnityPotion orig, Player self)
+        private static bool OnHasUnityPotion(On_Player.orig_HasUnityPotion orig, Player self)
         {
             return GetWormholes(self).Select(x => x.stack).Sum() > 0;
         }

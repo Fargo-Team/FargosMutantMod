@@ -134,6 +134,8 @@ namespace Fargowiltas
         internal static Mod MagicStorageMod;
         internal static Mod WikiThisMod;
         internal static Mod WoTG;
+        internal static Mod AlchemistNPCMod;
+        internal static Mod AlchemistNPCLiteMod;
 
         public override void Load()
         {
@@ -145,6 +147,8 @@ namespace Fargowiltas
             ModLoader.TryGetMod("MagicStorage", out MagicStorageMod);
             ModLoader.TryGetMod("WikiThis", out WikiThisMod);
             ModLoader.TryGetMod("NoxusBoss", out WoTG);
+            ModLoader.TryGetMod("AlchemistNPC", out AlchemistNPCMod);
+            ModLoader.TryGetMod("AlchemistNPCLite", out AlchemistNPCLiteMod);
 
             FargoUIManager.LoadUI();
 

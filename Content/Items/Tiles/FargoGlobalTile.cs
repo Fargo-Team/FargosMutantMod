@@ -1,4 +1,5 @@
 using Fargowiltas.Common.Configs;
+using Fargowiltas.Common.Systems.Collections;
 using Microsoft.Xna.Framework;
 using System.Linq;
 using Terraria;
@@ -93,16 +94,17 @@ namespace Fargowiltas.Content.Items.Tiles
         };
         public override void NearbyEffects(int i, int j, int type, bool closer)
         {
+            Player player = Main.LocalPlayer;
             if (closer && TileID.Sets.Torch[type] && !Main.dedServ
-                && Main.LocalPlayer.UsingBiomeTorches
+                && player.UsingBiomeTorches
                 && (LastTorchUpdate < Main.GameUpdateCount - 60 || LastTorchUpdate == Main.GameUpdateCount))
             {
                 //check for == is so that all torches can update on the same tick
                 LastTorchUpdate = Main.GameUpdateCount;
 
                 if (FargoServerConfig.Instance.TorchGodEX
-                    && Main.LocalPlayer.ShoppingZone_BelowSurface //torch luck only applies underground
-                    && !Main.LocalPlayer.ZoneDungeon && !Main.LocalPlayer.ZoneLihzhardTemple //torch luck doesnt apply here
+                    && player.ShoppingZone_BelowSurface //torch luck only applies underground
+                    && !player.ZoneDungeon && !player.ZoneLihzhardTemple //torch luck doesnt apply here
                     )
                 {
                     int torch = Framing.GetTileSafely(i, j).TileFrameY / 22;
@@ -111,12 +113,12 @@ namespace Fargowiltas.Content.Items.Tiles
                     bool replaceTorch = TorchesToReplace.Contains(torch);
                     if (replaceTorch)
                     {
-                        if (torch == (int)TorchStyle.Hallow && Main.LocalPlayer.ZoneHallow
-                            || torch == (int)TorchStyle.Corrupt && Main.LocalPlayer.ZoneCorrupt
-                            || torch == (int)TorchStyle.Crimson && Main.LocalPlayer.ZoneCrimson
-                            || torch == (int)TorchStyle.Desert && (Main.LocalPlayer.ZoneDesert || Main.LocalPlayer.ZoneUndergroundDesert)
-                            || torch == (int)TorchStyle.Jungle && Main.LocalPlayer.ZoneJungle
-                            || torch == (int)TorchStyle.Coral && Main.LocalPlayer.ZoneBeach
+                        if (torch == (int)TorchStyle.Hallow && player.ZoneHallow
+                            || torch == (int)TorchStyle.Corrupt && player.ZoneCorrupt
+                            || torch == (int)TorchStyle.Crimson && player.ZoneCrimson
+                            || torch == (int)TorchStyle.Desert && (player.ZoneDesert || player.ZoneUndergroundDesert)
+                            || torch == (int)TorchStyle.Jungle && player.ZoneJungle
+                            || torch == (int)TorchStyle.Coral && player.ZoneBeach
                             )
                         {
                             replaceTorch = false;
@@ -126,10 +128,10 @@ namespace Fargowiltas.Content.Items.Tiles
                     if (replaceTorch)
                     {
                         int style = 0;
-                        int correctTorch = Main.LocalPlayer.BiomeTorchPlaceStyle(ref type, ref style);
+                        int correctTorch = player.BiomeTorchPlaceStyle(ref type, ref style);
                         if (correctTorch == (int)TorchStyle.Demon)
                             correctTorch = (int)TorchStyle.Bone; //because bone gives bonus in hell but demon doesnt????
-                        else if (Main.LocalPlayer.ZoneBeach)
+                        else if (player.ZoneBeach)
                             correctTorch = (int)TorchStyle.Coral;
                         else if (correctTorch == (int)TorchStyle.None)
                             correctTorch = (int)TorchStyle.Bone; //bone gives bonus in general but torch god recommends normal
@@ -137,7 +139,7 @@ namespace Fargowiltas.Content.Items.Tiles
                         if (torch != correctTorch && TorchesToReplace.Contains(torch))
                         {
                             WorldGen.KillTile(i, j, noItem: true);
-                            WorldGen.PlaceTile(i, j, TileID.Torches, false, false, Main.LocalPlayer.whoAmI, correctTorch);
+                            WorldGen.PlaceTile(i, j, TileID.Torches, false, false, player.whoAmI, correctTorch);
                             if (Main.netMode == NetmodeID.MultiplayerClient)
                                 NetMessage.SendData(MessageID.TileManipulation, -1, -1, null, 1, i, j, TileID.Torches);
                         }
@@ -147,43 +149,46 @@ namespace Fargowiltas.Content.Items.Tiles
 
             if (FargoServerConfig.Instance.PermanentStationsNearby)
             {
-                int buff = 0;
-                SoundStyle? sound = null;
-                switch (type)
+                int itemType = FargoTileSets.BuffStationTileToItem[type];
+                if (itemType != -1 && player.FargoMutant().ItemHasBeenOwned[itemType])
                 {
-                    case TileID.SharpeningStation:
-                        buff = BuffID.Sharpened;
-                        sound = SoundID.Item37;
-                        break;
-                    case TileID.AmmoBox:
-                        buff = BuffID.AmmoBox;
-                        sound = SoundID.Item149;
-                        break;
-                    case TileID.CrystalBall:
-                        buff = BuffID.Clairvoyance;
-                        sound = SoundID.Item4;
-                        break;
-                    case TileID.BewitchingTable:
-                        if (NPC.downedBoss3)
-                        {
-                            buff = BuffID.Bewitched;
-                            sound = SoundID.Item4;
-                        }
-                        break;
-                    case TileID.WarTable:
-                        buff = BuffID.WarTable;
-                        sound = SoundID.Item4;
-                        break;
-                }
-                if (buff != 0 && Main.LocalPlayer.active && !Main.LocalPlayer.dead && !Main.LocalPlayer.ghost)
-                {
-                    bool noAlchemistNPC = !(ModLoader.HasMod("AlchemistNPC") || ModLoader.HasMod("AlchemistNPCLite")); // because it fucks with buffs for some reason and makes the sound spam WHY WHY WHY WHY WHAT'S WRONG WITH YOU WHY WHY WHY
-                    if (!Main.LocalPlayer.HasBuff(buff) && sound.HasValue && noAlchemistNPC && Main.LocalPlayer.GetModPlayer<FargoPlayer>().StationSoundCooldown <= 0)
+                    int buff = FargoItemSets.BuffStation[itemType];
+                    SoundStyle? sound = null;
+                    switch (type)
                     {
-                        SoundEngine.PlaySound(sound.Value, new Vector2(i, j) * 16);
-                        Main.LocalPlayer.GetModPlayer<FargoPlayer>().StationSoundCooldown = 60 * 60;
+                        case TileID.SharpeningStation:
+                            sound = SoundID.Item37;
+                            break;
+                        case TileID.AmmoBox:
+                            sound = SoundID.Item149;
+                            break;
+                        case TileID.CrystalBall:
+                            sound = SoundID.Item4;
+                            break;
+                        case TileID.BewitchingTable:
+                            sound = SoundID.Item4;
+                            break;
+                        case TileID.WarTable:
+                            sound = SoundID.Item4;
+                            break;
+
+                        default:
+                            {
+                                // Could find a better default sound Idk
+                                sound = SoundID.Item37;
+                            }
+                            break;
                     }
-                    Main.LocalPlayer.AddBuff(buff, 2);
+                    if (buff != -1 && player.active && !player.dead && !player.ghost)
+                    {
+                        bool noAlchemistNPC = Fargowiltas.AlchemistNPCMod == null && Fargowiltas.AlchemistNPCLiteMod == null; // because it fucks with buffs for some reason and makes the sound spam WHY WHY WHY WHY WHAT'S WRONG WITH YOU WHY WHY WHY
+                        if (!player.HasBuff(buff) && sound.HasValue && noAlchemistNPC && player.FargoMutant().StationSoundCooldown <= 0)
+                        {
+                            SoundEngine.PlaySound(sound.Value, new Vector2(i, j) * 16);
+                            player.FargoMutant().StationSoundCooldown = 60 * 60;
+                        }
+                        player.AddBuff(buff, 2);
+                    }
                 }
             }
         }

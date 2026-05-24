@@ -102,12 +102,12 @@ namespace Fargowiltas.Common.Systems.Collections
             ItemType<BlackHolePotion>());
 
         //public static bool[] PotionCannotBeInfinite;
-        public static bool[] BuffStation = ItemFactory.CreateBoolSet(false,
-            ItemID.SharpeningStation,
-            ItemID.AmmoBox,
-            ItemID.CrystalBall,
-            ItemID.BewitchingTable,
-            ItemID.WarTable);
+        public static int[] BuffStation = ItemFactory.CreateIntSet(-1,
+            ItemID.SharpeningStation, BuffID.Sharpened,
+            ItemID.AmmoBox, BuffID.AmmoBox,
+            ItemID.CrystalBall, BuffID.Clairvoyance,
+            ItemID.BewitchingTable, BuffID.Bewitched,
+            ItemID.WarTable, BuffID.WarTable);
         public static List<ShopTooltip>[] RegisteredShopTooltips = ItemFactory.CreateCustomSet<List<ShopTooltip>>(null);
 
         public static int[] SacrificeCountDefault = Squirrel.SetDefaultSacrificeCount(ItemFactory);

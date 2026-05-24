@@ -263,7 +263,7 @@ namespace Fargowiltas.Content.Items
                     }*/
                 }
 
-                if (fargoServerConfig.PermanentStationsNearby && FargoItemSets.BuffStation[item.type])
+                if (fargoServerConfig.PermanentStationsNearby && FargoItemSets.BuffStation[item.type] != -1)
                 {
                     line = new TooltipLine(Mod, "TooltipUnlim", $"[s:Fargowiltas/PermanentStationsNearby] [c/AAAAAA:{ExpandedTooltipLoc("PermanentEffectNearby")}]");
                     tooltips.Add(line);
@@ -524,6 +524,7 @@ namespace Fargowiltas.Content.Items
         public override void UpdateInventory(Item item, Player player)
         {
             CheckForIsOldUnlimitedAmmo(item);
+            player.FargoMutant().ItemHasBeenOwned[item.type] = true;
         }
         public override void UpdateAccessory(Item item, Player player, bool hideVisual)
         {
@@ -652,7 +653,7 @@ namespace Fargowiltas.Content.Items
                 player.GetModPlayer<FargoPlayer>().FirstDyeIngredients[dye] = true;
             }
 
-            player.GetModPlayer<FargoPlayer>().ItemHasBeenOwned[item.type] = true;
+            player.FargoMutant().ItemHasBeenOwned[item.type] = true;
 
             return base.OnPickup(item, player);
         }

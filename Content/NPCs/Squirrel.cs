@@ -136,7 +136,7 @@ namespace Fargowiltas.Content.NPCs
 
         public override bool CanTownNPCSpawn(int numTownNPCs)/* tModPorter Suggestion: Copy the implementation of NPC.SpawnAllowed_Merchant in vanilla if you to count money, and be sure to set a flag when unlocked, so you don't count every tick. */
         {
-            if (FargoGlobalNPC.AnyBossAlive() || !FargoServerConfig.Instance.Squirrel)
+            if (Main.CurrentFrameFlags.AnyActiveBossNPC || FargoGlobalNPC.eaterBoss != -1 || !FargoServerConfig.Instance.Squirrel)
             {
                 return false;
             }
@@ -144,11 +144,11 @@ namespace Fargowiltas.Content.NPCs
             {
                 return true;
             }
-
-            if (!Fargowiltas.ModLoaded["FargowiltasSouls"] && NPC.downedSlimeKing)
+            Mod souls = Fargowiltas.SoulsMod;
+            if (souls == null && NPC.downedSlimeKing)
                 return true;
 
-            if (Fargowiltas.ModLoaded["FargowiltasSouls"] && ModContent.TryFind("FargowiltasSouls", "TopHatSquirrelCaught", out ModItem modItem) &&
+            if (souls?.TryFind("TopHatSquirrelCaught", out ModItem modItem) == true &&
                 Main.player.Any(p => p.active && p.HasItem(modItem.Type)))
             {
                 return true;

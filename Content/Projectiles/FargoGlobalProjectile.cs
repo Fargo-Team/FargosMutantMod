@@ -52,7 +52,7 @@ namespace Fargowiltas.Content.Projectiles
             if (config.EnemyDamage != 1 || config.BossDamage != 1)
             {
                 bool boss = source is EntitySource_Parent parent && parent.Entity is NPC npc && config.BossDamage > config.EnemyDamage && // only relevant if boss health is higher than enemy health
-                (npc.boss || npc.type == NPCID.EaterofWorldsHead || npc.type == NPCID.EaterofWorldsBody || npc.type == NPCID.EaterofWorldsTail || config.BossApplyToAllWhenAlive && FargoGlobalNPC.AnyBossAlive());
+                (npc.CountsAsBoss() || npc.type == NPCID.EaterofWorldsBody || npc.type == NPCID.EaterofWorldsTail || (config.BossApplyToAllWhenAlive && (Main.CurrentFrameFlags.AnyActiveBossNPC || FargoGlobalNPC.eaterBoss != -1)));
                 if (boss)
                     DamageMultiplier = config.BossDamage;
                 else
@@ -154,7 +154,7 @@ namespace Fargowiltas.Content.Projectiles
 
         public override void ModifyHitPlayer(Projectile projectile, Player target, ref Player.HurtModifiers modifiers)
         {
-            modifiers.FinalDamage *= DamageMultiplier;
+            modifiers.SourceDamage *= DamageMultiplier;
         }
 
         public static void SplitProj(Projectile projectile, int number)
@@ -267,7 +267,7 @@ namespace Fargowiltas.Content.Projectiles
 
         public static bool TileBelongsToMagicStorage(Tile tile)
         {
-            return Fargowiltas.ModLoaded["MagicStorage"] && TileLoader.GetTile(tile.TileType)?.Mod == ModLoader.GetMod("MagicStorage");
+            return Fargowiltas.MagicStorageMod is Mod mStore && mStore == TileLoader.GetTile(tile.TileType)?.Mod;
         }
     }
 }

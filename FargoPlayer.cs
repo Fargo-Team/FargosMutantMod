@@ -499,12 +499,12 @@ namespace Fargowiltas
             FargoServerConfig config = FargoServerConfig.Instance;
             if (config.EnemyDamage != 1 || config.BossDamage != 1)
             {
-                bool boss = config.BossDamage > config.EnemyDamage && // only relevant if boss health is higher than enemy health
-                    (npc.boss || npc.type == NPCID.EaterofWorldsHead || npc.type == NPCID.EaterofWorldsBody || npc.type == NPCID.EaterofWorldsTail || (config.BossApplyToAllWhenAlive && FargoGlobalNPC.AnyBossAlive()));
-                if (boss)
-                    modifiers.FinalDamage *= config.BossDamage;
+                bool useBoss = config.BossDamage > config.EnemyDamage && // only relevant if boss health is higher than enemy health
+                    (npc.CountsAsBoss() || npc.type == NPCID.EaterofWorldsBody || npc.type == NPCID.EaterofWorldsTail || (config.BossApplyToAllWhenAlive && (Main.CurrentFrameFlags.AnyActiveBossNPC || FargoGlobalNPC.eaterBoss != -1)));
+                if (useBoss)
+                    modifiers.SourceDamage *= config.BossDamage;
                 else
-                    modifiers.FinalDamage *= config.EnemyDamage;
+                    modifiers.SourceDamage *= config.EnemyDamage;
             }
             #endregion
         }
@@ -516,22 +516,20 @@ namespace Fargowiltas
 
         private void ForceBiomes()
         {
-            if (FargoGlobalNPC.SpecificBossIsAlive(ref FargoGlobalNPC.eaterBoss, NPCID.EaterofWorldsHead)
-                && Player.Distance(Main.npc[FargoGlobalNPC.eaterBoss].Center) < 3000)
+            if (FargoGlobalNPC.eaterBoss != -1
+                && Player.DistanceSQ(Main.npc[FargoGlobalNPC.eaterBoss].Center) < 3000 * 3000)
             {
                 Player.ZoneCorrupt = true;
             }
 
-            if (FargoGlobalNPC.SpecificBossIsAlive(ref FargoGlobalNPC.brainBoss, NPCID.BrainofCthulhu)
-                && Player.Distance(Main.npc[FargoGlobalNPC.brainBoss].Center) < 3000)
+            if (FargoGlobalNPC.brainBoss != -1
+                && Player.DistanceSQ(Main.npc[FargoGlobalNPC.brainBoss].Center) < 3000 * 3000)
             {
                 Player.ZoneCrimson = true;
             }
 
-            if ((FargoGlobalNPC.SpecificBossIsAlive(ref FargoGlobalNPC.plantBoss, NPCID.Plantera)
-                && Player.Distance(Main.npc[FargoGlobalNPC.plantBoss].Center) < 3000)
-                || (FargoGlobalNPC.SpecificBossIsAlive(ref FargoGlobalNPC.beeBoss, NPCID.QueenBee)
-                && Player.Distance(Main.npc[FargoGlobalNPC.beeBoss].Center) < 3000))
+            if ((FargoGlobalNPC.plantBoss != -1 && Player.DistanceSQ(Main.npc[FargoGlobalNPC.plantBoss].Center) < 3000 * 3000)
+                || (FargoGlobalNPC.beeBoss != -1 && Player.DistanceSQ(Main.npc[FargoGlobalNPC.beeBoss].Center) < 3000 * 3000))
             {
                 Player.ZoneJungle = true;
             }
@@ -568,10 +566,10 @@ namespace Fargowiltas
                         goto case 12;
 
                     case 8: //cavern
-                        goto default;
+                        break;
 
                     case 9: //blood fountain
-                        goto default;
+                        break;
 
                     case 10: //crimson
                         Player.ZoneCrimson = true;
@@ -579,7 +577,7 @@ namespace Fargowiltas
 
                     case 12: //desert fountain
                         Player.ZoneDesert = true;
-                        if (Player.Center.Y > 3200f)
+                        if (Player.Center.ToTileCoordinates().Y > Main.worldSurface)
                             Player.ZoneUndergroundDesert = true;
                         break;
 
@@ -599,33 +597,6 @@ namespace Fargowiltas
                     autoRevertSelectedItem = false;
                 }
             }
-
-            if (FargoWorld.OverloadedSlimeRain && Main.rand.NextBool(20))
-            {
-                SlimeRainSpawns();
-            }
-        }
-
-        public void SlimeRainSpawns()
-        {
-            int type = NPCID.GreenSlime;
-
-            int[] slimes = [NPCID.SlimeSpiked, NPCID.SandSlime, NPCID.IceSlime, NPCID.SpikedIceSlime, NPCID.MotherSlime, NPCID.SpikedJungleSlime, NPCID.DungeonSlime, NPCID.UmbrellaSlime, NPCID.ToxicSludge, NPCID.CorruptSlime, NPCID.Crimslime, NPCID.IlluminantSlime];
-
-            int rand = Main.rand.Next(50);
-
-            if (rand == 0)
-            {
-                type = NPCID.Pinky;
-            }
-            else if (rand < 20)
-            {
-                type = slimes[Main.rand.Next(slimes.Length)];
-            }
-
-            Vector2 pos = new Vector2((int)Player.position.X + Main.rand.Next(-800, 800), (int)Player.position.Y + Main.rand.Next(-800, -250));
-
-            //Projectile.NewProjectile( pos, Vector2.Zero, ModContent.ProjectileType<SpawnProj>(), 0, 0, Main.myPlayer, type);
         }
 
         public override bool PreModifyLuck(ref float luck)
@@ -645,13 +616,10 @@ namespace Fargowiltas
         }
         public override void ModifyScreenPosition()
         {
-
-            if (FargoClientConfig.Instance.MultiplayerDeathSpectate && Main.LocalPlayer.dead && Main.netMode != NetmodeID.SinglePlayer && Main.player.Any(p => p != null && !p.dead && !p.ghost))
+            if (FargoClientConfig.Instance.MultiplayerDeathSpectate && Player.dead && Main.netMode != NetmodeID.SinglePlayer && Main.player.Any(p => p != null && !p.dead && !p.ghost))
             {
                 Main.screenPosition = Player.Center - (new Vector2(Main.screenWidth, Main.screenHeight) / 2);
             }
-
-
         }
         public void AutoUseMirror()
         {
@@ -705,7 +673,6 @@ namespace Fargowiltas
                 {
                     if (Player.whoAmI == Main.myPlayer)
                         Player.ItemCheck();
-                    //Player.ItemCheck(Main.myPlayer);
                 }
             }
         }
@@ -728,16 +695,16 @@ namespace Fargowiltas
         {
             static Item createItem(int type)
             {
-                Item i = new Item(type);
+                Item i = new(type);
                 return i;
             }
 
             bool midnight = Player.name.Equals("midnight", StringComparison.OrdinalIgnoreCase);
-            bool midnight2 = Player.name.Equals("midnight.", StringComparison.OrdinalIgnoreCase);
-            bool midnight3 = Player.name.Equals("midnight295", StringComparison.OrdinalIgnoreCase);
-            bool midnight4 = Player.name.Equals("midnight295.", StringComparison.OrdinalIgnoreCase);
+            midnight |= Player.name.Equals("midnight.", StringComparison.OrdinalIgnoreCase);
+            midnight |= Player.name.Equals("midnight295", StringComparison.OrdinalIgnoreCase);
+            midnight |= Player.name.Equals("midnight295.", StringComparison.OrdinalIgnoreCase);
 
-            if (!mediumCoreDeath && (midnight || midnight2 || midnight3 || midnight4))
+            if (!mediumCoreDeath && midnight)
             {
                 yield return createItem(ModContent.ItemType<MutantPants>());
                 yield return createItem(ModContent.ItemType<MutantBody>());

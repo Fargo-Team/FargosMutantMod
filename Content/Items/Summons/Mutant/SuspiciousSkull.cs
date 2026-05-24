@@ -5,9 +5,9 @@ namespace Fargowiltas.Content.Items.Summons.Mutant
 {
     public class SuspiciousSkull : BaseSummon
     {
-        public override int NPCType => (FargoUtils.ActuallyNight && !(Main.remixWorld && !(Main.LocalPlayer.Center.Y > Main.worldSurface * 16))) ? NPCID.SkeletronHead : NPCID.DungeonGuardian;
+        public override int NPCType => (!Main.IsItDay() && !(Main.remixWorld && !(Main.LocalPlayer.Center.Y > Main.worldSurface * 16))) ? NPCID.SkeletronHead : NPCID.DungeonGuardian;
         
-        public override bool ResetTimeWhenUsed => FargoUtils.ActuallyNight && !NPC.downedBoss3;
+        public override bool ResetTimeWhenUsed => !Main.IsItDay() && !NPC.downedBoss3;
 
         public override void SetStaticDefaults()
         {

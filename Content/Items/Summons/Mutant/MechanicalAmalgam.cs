@@ -29,7 +29,7 @@ namespace Fargowiltas.Content.Items.Summons.Mutant
 
         public override bool CanUseItem(Player player)
         {
-            return FargoUtils.ActuallyNight;
+            return !Main.IsItDay();
         }
 
         public override bool? UseItem(Player player)

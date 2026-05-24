@@ -111,11 +111,12 @@ namespace Fargowiltas.Content.NPCs
 
         public override bool CanTownNPCSpawn(int numTownNPCs)/* tModPorter Suggestion: Copy the implementation of NPC.SpawnAllowed_Merchant in vanilla if you to count money, and be sure to set a flag when unlocked, so you don't count every tick. */
         {
-            if (Fargowiltas.ModLoaded["FargowiltasSouls"] && ((bool)ModLoader.GetMod("FargowiltasSouls").Call("MutantAlive") || (bool)ModLoader.GetMod("FargowiltasSouls").Call("AbomAlive")))
+            Mod souls = Fargowiltas.SoulsMod;
+            if (souls != null && ((bool)souls.Call("MutantAlive") || (bool)souls.Call("AbomAlive")))
             {
                 return false;
             }
-            return FargoServerConfig.Instance.Abom && NPC.downedGoblins && !FargoGlobalNPC.AnyBossAlive();
+            return FargoServerConfig.Instance.Abom && NPC.downedGoblins && !(Main.CurrentFrameFlags.AnyActiveBossNPC || FargoGlobalNPC.eaterBoss != -1);
         }
 
         public override bool CanGoToStatue(bool toKingStatue) => toKingStatue;
@@ -158,7 +159,8 @@ namespace Fargowiltas.Content.NPCs
 
         public override string GetChat()
         {
-            if (NPC.homeless && canSayDefeatQuote && Fargowiltas.ModLoaded["FargowiltasSouls"] && (bool)ModLoader.GetMod("FargowiltasSouls").Call("DownedAbom"))
+            Mod souls = Fargowiltas.SoulsMod;
+            if (NPC.homeless && canSayDefeatQuote && (bool?)souls?.Call("DownedAbom") == true)
             {
                 canSayDefeatQuote = false;
                 return AbomChat("Defeat");
@@ -178,10 +180,9 @@ namespace Fargowiltas.Content.NPCs
                 }
             }
 
-            if (Fargowiltas.ModLoaded["FargowiltasSouls"] && Main.rand.NextBool(3))
+            if (souls != null && Main.rand.NextBool(3) && (bool)souls.Call("StyxArmor"))
             {
-                if ((bool)ModLoader.GetMod("FargowiltasSouls").Call("StyxArmor"))
-                    return AbomChat("StyxArmor");
+                return AbomChat("StyxArmor");
             }
 
             List<string> dialogue = Language.FindAll(Lang.CreateDialogFilter("Mods.Fargowiltas.NPCs.Abominationn.Chat.Normal")).Select(item => item.Value).ToList();

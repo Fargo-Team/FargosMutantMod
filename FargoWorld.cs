@@ -36,6 +36,8 @@ namespace Fargowiltas
         internal static bool GeneratedSacrificeCounts;
         internal static bool BlockPortaDialCooldown;
 
+        internal static bool EternityMode;
+
         internal static bool[] CurrentSpawnRateTile;
         internal static Dictionary<string, bool> DownedBools = [];
 
@@ -143,12 +145,7 @@ namespace Fargowiltas
             OverloadMartians = false;
             OverloadedSlimeRain = false;
 
-            Matsuri = false;
-
-            foreach (string tag in tags)
-            {
-                DownedBools[tag] = false;
-            }
+            EternityMode = (bool?)Fargowiltas.SoulsMod?.Call("EternityMode") == true;
 
             CurrentSpawnRateTile = new bool[Main.netMode == NetmodeID.Server ? 255 : 1];
         }
@@ -165,11 +162,17 @@ namespace Fargowiltas
         }
         public override void ClearWorld()
         {
+            foreach (string tag in tags)
+            {
+                DownedBools[tag] = false;
+            }
+            Matsuri = false;
+            EternityMode = false;
+            FargoGlobalProjectile.CannotDestroyRectangle.Clear();
             EnchantedTreeSheet.EnchantedTrees = [];
         }
         public override void OnWorldUnload()
         {
-            FargoGlobalProjectile.CannotDestroyRectangle.Clear();
             ResetFlags();
         }
 
@@ -206,7 +209,7 @@ namespace Fargowiltas
                         sacrificeItems.Add(i + "_" + count);
                     }
 
-                    
+
                 }
             }
             tag.Add("sacrificeItems", sacrificeItems);
@@ -262,6 +265,13 @@ namespace Fargowiltas
             SwarmActive = reader.ReadBoolean();
             HardmodeSwarmActive = reader.ReadBoolean();
             Binding = (EnergizedGlobalNPC.Binding)reader.ReadInt32();
+            EternityMode = reader.ReadBoolean();
+            // These can't be bytes because a sign is required and
+            // signed bytes range between -127 and 127, which is not enough for the NPC array
+            FargoGlobalNPC.eaterBoss = reader.ReadInt16();
+            FargoGlobalNPC.brainBoss = reader.ReadInt16();
+            FargoGlobalNPC.beeBoss = reader.ReadInt16();
+            FargoGlobalNPC.plantBoss = reader.ReadInt16();
         }
 
         public override void NetSend(BinaryWriter writer)
@@ -277,6 +287,13 @@ namespace Fargowiltas
             writer.Write(SwarmActive);
             writer.Write(HardmodeSwarmActive);
             writer.Write((int)Binding);
+            writer.Write(EternityMode);
+            // These can't be bytes because signed bytes are required and
+            // they range between -127 and 127, which is not enough for the NPC array
+            writer.Write((short)FargoGlobalNPC.eaterBoss);
+            writer.Write((short)FargoGlobalNPC.brainBoss);
+            writer.Write((short)FargoGlobalNPC.beeBoss);
+            writer.Write((short)FargoGlobalNPC.plantBoss);
         }
 
         public override void PostUpdateWorld()
@@ -429,6 +446,28 @@ namespace Fargowiltas
             summonTracker.FinalizeSummonData();
             symbolTracker.FinalizeSymbols();
             statTracker.FinalizeStats();
+        }
+
+        public override void PreUpdateNPCs()
+        {
+            static void ResetGlobalIndex(ref int index, int type)
+            {
+                if (!Main.npc.IndexInRange(index))
+                {
+                    index = -1;
+                    return;
+                }
+                if (!Main.npc[index].active || Main.npc[index].type != type)
+                    index = -1;
+            }
+            ResetGlobalIndex(ref FargoGlobalNPC.eaterBoss, NPCID.EaterofWorldsHead);
+            ResetGlobalIndex(ref FargoGlobalNPC.brainBoss, NPCID.BrainofCthulhu);
+            ResetGlobalIndex(ref FargoGlobalNPC.beeBoss, NPCID.QueenBee);
+            ResetGlobalIndex(ref FargoGlobalNPC.plantBoss, NPCID.Plantera);
+        }
+        public override void PostUpdateEverything()
+        {
+            EternityMode = (bool?)Fargowiltas.SoulsMod?.Call("EternityMode") == true;
         }
     }
 }

@@ -8,6 +8,7 @@ using Fargowiltas.Content.Items.Summons.SwarmSummons.Energizers;
 using Fargowiltas.Content.Items.Tiles;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.Localization;
@@ -105,7 +106,7 @@ namespace Fargowiltas.Content.NPCs
 
         public bool PMoonDropOverride(On_Conditions.PumpkinMoonDropGatingChance.orig_CanDrop orig, Conditions.PumpkinMoonDropGatingChance self, DropAttemptInfo info)
         {
-            if (info.npc.type is NPCID.MourningWood or NPCID.Pumpking or NPCID.HeadlessHorseman && FargoUtils.ActuallyNight && !Main.pumpkinMoon)
+            if (info.npc.type is NPCID.MourningWood or NPCID.Pumpking or NPCID.HeadlessHorseman && !Main.IsItDay() && !Main.pumpkinMoon)
             {
                 int simulatedWaveCounter = 12; //drop chance acts like it would be wave 12 (minimum for weapon drops)
                 //for this reason, we also intentionally exclude trophies (needs wave 15+)
@@ -131,7 +132,7 @@ namespace Fargowiltas.Content.NPCs
 
         public bool FMoonDropOverride(On_Conditions.FrostMoonDropGatingChance.orig_CanDrop orig, Conditions.FrostMoonDropGatingChance self, DropAttemptInfo info)
         {
-            if (info.npc.type is NPCID.Everscream or NPCID.SantaNK1 or NPCID.IceQueen && FargoUtils.ActuallyNight && !Main.pumpkinMoon)
+            if (info.npc.type is NPCID.Everscream or NPCID.SantaNK1 or NPCID.IceQueen && !Main.IsItDay() && !Main.pumpkinMoon)
             {
                 int simulatedWaveCounter = 14; //drop chance acts like it would be wave 14 (minimum for weapon drops)
                 //for this reason, we also intentionally exclude trophies (needs wave 15+)
@@ -169,35 +170,57 @@ namespace Fargowiltas.Content.NPCs
                 return false;
             return base.CanHitNPC(npc, target);
         }
+        public override void SetDefaults(NPC entity)
+        {
+            #region Stat Sliders
+            FargoServerConfig config = FargoServerConfig.Instance;
+            bool isBoss = entity.CountsAsBoss() || entity.type is NPCID.EaterofWorldsBody or NPCID.EaterofWorldsTail;
+            if ((config.EnemyHealth != 1 || config.BossHealth != 1) && !entity.townNPC && !entity.CountsAsACritter && entity.life > 10)
+            {
+                bool useBoss = config.BossHealth > config.EnemyHealth && // only relevant if boss health is higher than enemy health
+                    (isBoss || (config.BossApplyToAllWhenAlive && (Main.CurrentFrameFlags.AnyActiveBossNPC || FargoGlobalNPC.eaterBoss != -1)));
+
+                if (useBoss)
+                    entity.lifeMax = (int)Math.Round(entity.lifeMax * config.BossHealth);
+                else
+                    entity.lifeMax = (int)Math.Round(entity.lifeMax * config.EnemyHealth);
+            }
+            if (isBoss && config.EasySummons)
+            {
+                entity.DiscourageDespawn(60 * 10);
+            }
+            #endregion Stat Sliders
+        }
+        public override void OnSpawn(NPC npc, IEntitySource source)
+        {
+            switch (npc.type)
+            {
+                case NPCID.EaterofWorldsHead:
+                    eaterBoss = npc.whoAmI;
+                    break;
+
+                case NPCID.BrainofCthulhu:
+                    brainBoss = npc.whoAmI;
+                    break;
+
+                case NPCID.Plantera:
+                    plantBoss = npc.whoAmI;
+                    break;
+
+                case NPCID.QueenBee:
+                    beeBoss = npc.whoAmI;
+                    break;
+
+                case NPCID.CultistBoss:
+                    if (source is EntitySource_BossSpawn e && e.Context == "PreventLunarPillars")
+                    {
+                        PillarSpawn = false;
+                    }
+                    break;
+            }
+        }
         public override bool PreAI(NPC npc)
         {
-            if (FirstFrame)
-            {
-                if (npc.boss && FargoServerConfig.Instance.EasySummons)
-                {
-                    npc.DiscourageDespawn(600); //10 seconds
-                }
-                FirstFrame = false;
-                #region Stat Sliders
-                FargoServerConfig config = FargoServerConfig.Instance;
-                if ((config.EnemyHealth != 1 || config.BossHealth != 1) && !npc.townNPC && !npc.CountsAsACritter && npc.life > 10)
-                {
-                    float lifeFraction = npc.GetLifePercent();
-                    bool boss = config.BossHealth > config.EnemyHealth && // only relevant if boss health is higher than enemy health
-                        (npc.boss || npc.type == NPCID.EaterofWorldsHead || npc.type == NPCID.EaterofWorldsBody || npc.type == NPCID.EaterofWorldsTail || config.BossApplyToAllWhenAlive && AnyBossAlive());
-                    if (boss)
-                        npc.lifeMax = (int)Math.Round(npc.lifeMax * config.BossHealth);
-                    else
-                        npc.lifeMax = (int)Math.Round(npc.lifeMax * config.EnemyHealth);
-                    npc.life = (int)Math.Round(npc.lifeMax * lifeFraction);
-                }
-                #endregion
-            }
-            if (npc.boss)
-            {
-                boss = npc.whoAmI;
-            }
-
             if (npc.townNPC && npc.homeTileX == -1 && npc.homeTileY == -1)
             {
                 bool hasRoom = WorldGen.TownManager.HasRoom(npc.type, out Point homePoint);
@@ -239,7 +262,7 @@ namespace Fargowiltas.Content.NPCs
                     }
                     break;
 
-                case NPCID.MoonLordCore:
+                /*case NPCID.MoonLordCore:
                     if (npc.ai[0] == 2)
                     {
                         int skipPoint = 600 - 60;
@@ -249,7 +272,7 @@ namespace Fargowiltas.Content.NPCs
                             npc.netUpdate = true;
                         }
                     }
-                    break;
+                    break;*/
 
                 default:
                     break;
@@ -519,6 +542,11 @@ namespace Fargowiltas.Content.NPCs
         }
         public override void EditSpawnRate(Player player, ref int spawnRate, ref int maxSpawns)
         {
+            if ((Main.CurrentFrameFlags.AnyActiveBossNPC || FargoGlobalNPC.eaterBoss != -1) && FargoServerConfig.Instance.BossZen && Main.npc.Any(n => n.CountsAsBoss() && player.DistanceSQ(n.Center) < 6000 * 6000))
+            {
+                maxSpawns = 0;
+                return;
+            }
             FargoPlayer fargoPlayer = player.FargoMutant();
 
             if (fargoPlayer.BattleCry)
@@ -558,11 +586,6 @@ namespace Fargowiltas.Content.NPCs
             {
                 spawnRate = (int)(spawnRate * 0.2);
                 maxSpawns = (int)(maxSpawns * 30f);
-            }
-
-            if (AnyBossAlive() && FargoServerConfig.Instance.BossZen && player.Distance(Main.npc[boss].Center) < 6000)
-            {
-                maxSpawns = 0;
             }
         }
 
@@ -670,10 +693,14 @@ namespace Fargowiltas.Content.NPCs
                 }
             }
         }
+        public override bool CheckDead(NPC npc)
+        {
+            return base.CheckDead(npc);
+        }
 
         public override bool PreKill(NPC npc)
         {
-            if (NoLoot)
+            if (PandoraActive)
             {
                 return false;
             }
@@ -779,174 +806,10 @@ namespace Fargowiltas.Content.NPCs
                 //return false;
             }
 
-            if (!PandoraActive)
-            {
-                return base.PreKill(npc);
-            }
-
-            return false;
+            return base.PreKill(npc);
         }
 
         public override void OnKill(NPC npc)
-        {
-            switch (npc.type)
-            {
-                case NPCID.Painter:
-                    if (NPC.AnyNPCs(NPCID.MoonLordCore))
-                        Item.NewItem(npc.GetSource_Loot(), npc.Hitbox, ItemType<EchPainting>());
-                    break;
-
-                //there is nothing blocking ooa minibosses from dropping items outside the event. why were these here
-                /*case NPCID.DD2OgreT2:
-                case NPCID.DD2OgreT3: 
-                    if (!DD2Event.Ongoing)
-                    {
-                        if (Main.rand.NextBool(14))
-                            Item.NewItem(npc.GetSource_Loot(), npc.Hitbox, ItemID.BossMaskOgre);
-
-                        Item.NewItem(npc.GetSource_Loot(), npc.Hitbox, Main.rand.Next(new int[] { ItemID.ApprenticeScarf, ItemID.SquireShield, ItemID.HuntressBuckler, ItemID.MonkBelt, ItemID.DD2SquireDemonSword, ItemID.MonkStaffT1, ItemID.MonkStaffT2, ItemID.BookStaff, ItemID.DD2PhoenixBow, ItemID.DD2PetGhost }));
-
-                        Item.NewItem(npc.GetSource_Loot(), npc.Hitbox, ItemID.GoldCoin, Main.rand.Next(4, 7));
-                    }
-                    break;
-
-                case NPCID.DD2DarkMageT1:
-                case NPCID.DD2DarkMageT3:
-                    if (!DD2Event.Ongoing)
-                    {
-                        if (Main.rand.NextBool(14))
-                            Item.NewItem(npc.GetSource_Loot(), npc.Hitbox, ItemID.BossMaskDarkMage);
-
-                        if (Main.rand.NextBool(10))
-                            Item.NewItem(npc.GetSource_Loot(), npc.Hitbox, Main.rand.NextBool() ? ItemID.WarTable : ItemID.WarTableBanner);
-
-                        if (Main.rand.NextBool(6))
-                            Item.NewItem(npc.GetSource_Loot(), npc.Hitbox, Main.rand.Next(new int[] { ItemID.DD2PetGato, ItemID.DD2PetDragon }));
-                    }
-                    break;*/
-
-                default:
-                    break;
-            }
-        }
-
-        public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
-        {
-            /*switch (npc.type)
-            {
-                case NPCID.ZombieEskimo:
-                case NPCID.ArmedZombieEskimo:
-                case NPCID.Penguin:
-                case NPCID.IceSlime:
-                case NPCID.SpikedIceSlime:
-                    npcLoot.Add(ItemDropRule.OneFromOptions(20, ItemID.EskimoHood, ItemID.EskimoCoat, ItemID.EskimoPants));
-                    break;
-
-                case NPCID.MossHornet:
-                case NPCID.JungleCreeper:
-                case NPCID.JungleCreeperWall:
-                case NPCID.AngryTrapper:
-                case NPCID.GiantTortoise:
-                    npcLoot.Add(ItemDropRule.ByCondition(new Conditions.IsHardmode(), ItemType<JungleChest>(), 50));
-                    break;
-                case NPCID.Moth:
-                    npcLoot.Add(ItemDropRule.ByCondition(new Conditions.IsHardmode(), ItemType<JungleChest>(), 10));
-                    break;
-
-                case NPCID.GreekSkeleton:
-                    npcLoot.RemoveWhere(rule => rule is CommonDrop drop && (drop.itemId == ItemID.GladiatorHelmet || drop.itemId == ItemID.GladiatorBreastplate || drop.itemId == ItemID.GladiatorLeggings));
-                    npcLoot.Add(ItemDropRule.OneFromOptions(10, ItemID.GladiatorHelmet, ItemID.GladiatorBreastplate, ItemID.GladiatorLeggings));
-                    break;
-
-                case NPCID.Merchant:
-                    npcLoot.Add(ItemDropRule.Common(ItemID.MiningShirt, 8));
-                    npcLoot.Add(ItemDropRule.Common(ItemID.MiningPants, 8));
-                    break;
-
-                case NPCID.Nurse:
-                    npcLoot.Add(ItemDropRule.Common(ItemID.LifeCrystal, 5));
-                    break;
-
-                case NPCID.Demolitionist:
-                    npcLoot.Add(ItemDropRule.Common(ItemID.Dynamite, 2, 5, 5));
-                    break;
-
-                case NPCID.Dryad:
-                    npcLoot.Add(ItemDropRule.Common(ItemID.HerbBag, 3));
-                    break;
-
-                case NPCID.DD2Bartender:
-                    npcLoot.Add(ItemDropRule.Common(ItemID.Ale, 2, 4, 4));
-                    break;
-
-                case NPCID.Cyborg:
-                    npcLoot.Add(ItemDropRule.Common(ItemID.NanoBullet, 4, 30, 30));
-                    break;
-
-                case NPCID.Clothier:
-                    npcLoot.Add(ItemDropRule.Common(ItemID.Skull, 20));
-                    break;
-
-                case NPCID.Mechanic:
-                    npcLoot.Add(ItemDropRule.Common(ItemID.Wire, 5, 40, 40));
-                    break;
-
-                case NPCID.Wizard:
-                    npcLoot.Add(ItemDropRule.Common(ItemID.FallenStar, 5, 5, 5));
-                    break;
-
-                case NPCID.TaxCollector:
-                    npcLoot.Add(ItemDropRule.Common(ItemID.GoldCoin, 8, 10, 10));
-                    break;
-
-                case NPCID.Truffle:
-                    npcLoot.Add(ItemDropRule.Common(ItemID.MushroomStatue, 8));
-                    break;
-
-                case NPCID.Angler:
-                    npcLoot.Add(ItemDropRule.OneFromOptions(2, ItemID.OldShoe, ItemID.TinCan, ItemID.FishingSeaweed));
-                    break;
-
-
-                case NPCID.DD2OgreT2:
-                case NPCID.DD2OgreT3:
-                    npcLoot.Add(ItemDropRule.Common(ItemID.DefenderMedal, 1, 20, 20));
-                    break;
-
-                case NPCID.DD2DarkMageT1:
-                case NPCID.DD2DarkMageT3:
-                    npcLoot.Add(ItemDropRule.Common(ItemID.DefenderMedal, 1, 5, 5));
-                    break;
-
-                case NPCID.Raven:
-                    npcLoot.Add(ItemDropRule.Common(ItemID.GoodieBag));
-                    break;
-
-                case NPCID.SlimeRibbonRed:
-                case NPCID.SlimeRibbonGreen:
-                case NPCID.SlimeRibbonWhite:
-                case NPCID.SlimeRibbonYellow:
-                    npcLoot.Add(ItemDropRule.Common(ItemID.Present));
-                    break;
-
-                case NPCID.BloodZombie:
-                    npcLoot.Add(ItemDropRule.OneFromOptions(200, ItemID.BladedGlove, ItemID.BloodyMachete));
-                    break;
-
-                case NPCID.Clown:
-                    npcLoot.Add(ItemDropRule.Common(ItemID.Bananarang));
-                    break;
-
-                case NPCID.MoonLordCore:
-                    npcLoot.Add(ItemDropRule.Common(ItemID.MoonLordLegs, 100));
-                    break;
-            }*/
-
-            base.ModifyNPCLoot(npc, npcLoot);
-        }
-
-
-        public override bool CheckDead(NPC npc)
         {
             // Lumber Jaxe
             if (woodDrop && !npc.SpawnedFromStatue && !npc.friendly)
@@ -974,25 +837,32 @@ namespace Fargowiltas.Content.NPCs
                 Item.NewItem(npc.GetSource_Loot(), npc.Hitbox, WoodType(), Main.rand.Next(10, 30));
             }
 
+            if (Fargowiltas.ModRareEnemies.TryGetValue(npc.type, out string value))
+            {
+                FargoUtils.TryDowned("Deviantt", Color.HotPink, "rareEnemy", value);
+            }
+            bool trojan = Fargowiltas.SoulsMod?.TryFind("TrojanSquirrel", out ModNPC trojanSqurrel) == true && npc.type == trojanSqurrel.Type;
+            if (npc.CountsAsBoss() && !trojan)
+            {
+                FargoWorld.DownedBools["boss"] = true;
+            }
             switch (npc.type)
             {
+                case NPCID.DD2Betsy:
+                    {
+                        FargoUtils.PrintText(Language.GetTextValue("Announcement.HasBeenDefeated_Single", Lang.GetNPCNameValue(NPCID.DD2Betsy)), new Color(175, 75, 0));
+                        FargoWorld.DownedBools["betsy"] = true;
+                    }
+                    break;
+                case NPCID.Painter:
+                    if (NPC.AnyNPCs(NPCID.MoonLordCore))
+                        Item.NewItem(npc.GetSource_Loot(), npc.Hitbox, ItemType<EchPainting>());
+                    break;
                 // Avoid lunar event with cultist summon
                 case NPCID.CultistBoss:
-                    if (!PillarSpawn)
-                    {
-                        for (int i = 0; i < Main.maxNPCs; i++)
-                        {
-                            NPC npc2 = Main.npc[i];
-                            NPC.LunarApocalypseIsUp = false;
-
-                            if (npc2.type == NPCID.LunarTowerNebula || npc2.type == NPCID.LunarTowerSolar || npc2.type == NPCID.LunarTowerStardust || npc2.type == NPCID.LunarTowerVortex)
-                            {
-                                NPC.TowerActiveSolar = true;
-                                npc2.active = false;
-                            }
-
-                            NPC.TowerActiveSolar = false;
-                        }
+                    if (!PillarSpawn && NPC.LunarApocalypseIsUp)
+                    {// Don't run the block that disables lunar event if it was up prior
+                        PillarSpawn = true;
                     }
                     break;
 
@@ -1189,25 +1059,11 @@ namespace Fargowiltas.Content.NPCs
                 default:
                     break;
             }
+        }
 
-            if (Fargowiltas.ModRareEnemies.ContainsKey(npc.type))
-            {
-                FargoUtils.TryDowned("Deviantt", Color.HotPink, "rareEnemy", Fargowiltas.ModRareEnemies[npc.type]);
-
-            }
-
-            if (npc.type == NPCID.DD2Betsy && !PandoraActive)
-            {
-                FargoUtils.PrintText(Language.GetTextValue("Announcement.HasBeenDefeated_Single", Lang.GetNPCNameValue(NPCID.DD2Betsy)), new Color(175, 75, 0));
-                FargoWorld.DownedBools["betsy"] = true;
-            }
-            bool trojan = Fargowiltas.ModLoaded["FargowiltasSouls"] && TryFind("FargowiltasSouls", "TrojanSquirrel", out ModNPC trojanSqurrel) && npc.type == trojanSqurrel.Type;
-            if (npc.boss && !trojan)
-            {
-                FargoWorld.DownedBools["boss"] = true;
-            }
-
-            return base.CheckDead(npc);
+        public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
+        {
+            base.ModifyNPCLoot(npc, npcLoot);
         }
 
         public override void ModifyHitByProjectile(NPC npc, Projectile projectile, ref NPC.HitModifiers modifiers)
@@ -1311,7 +1167,7 @@ namespace Fargowiltas.Content.NPCs
                 if (spawn != Main.maxNPCs)
                 {
                     Main.npc[spawn].GetGlobalNPC<FargoGlobalNPC>().PandoraActive = true;
-                    NetMessage.SendData(MessageID.SyncNPC, number: random);
+                    NetMessage.SendData(MessageID.SyncNPC, number: spawn);
                 }
             }
         }
@@ -1379,39 +1235,31 @@ namespace Fargowiltas.Content.NPCs
             LastWoFIndex = wof;
         }
 
-        public static bool SpecificBossIsAlive(ref int bossID, int bossType)
+        // Only runs on host
+        public override bool ModifyDeathMessage(NPC npc, ref NetworkText customText, ref Color color)
         {
-            if (bossID != -1)
+            if (npc.type == NPCID.CultistBoss && !PillarSpawn)
             {
-                if (Main.npc[bossID].active && Main.npc[bossID].type == bossType)
+                NPC.LunarApocalypseIsUp = false;
+                NPC.TowerActiveNebula = false;
+                NPC.TowerActiveSolar = false;
+                NPC.TowerActiveStardust = false;
+                NPC.TowerActiveVortex = false;
+                NPC.ShieldStrengthTowerNebula = 0;
+                NPC.ShieldStrengthTowerSolar = 0;
+                NPC.ShieldStrengthTowerStardust = 0;
+                NPC.ShieldStrengthTowerVortex = 0;
+                foreach (NPC n in Main.ActiveNPCs)
                 {
-                    return true;
+                    if (n.type is NPCID.LunarTowerNebula or NPCID.LunarTowerSolar or NPCID.LunarTowerStardust or NPCID.LunarTowerVortex)
+                    {
+                        n.active = false;
+                        n.netUpdate = true;
+                    }
                 }
-                else
-                {
-                    bossID = -1;
-                    return false;
-                }
+                NetMessage.SendData(MessageID.UpdateTowerShieldStrengths);
             }
-            else
-            {
-                return false;
-            }
-        }
-
-        public static int boss = -1;
-
-        public static bool AnyBossAlive()
-        {
-            if (boss == -1)
-                return false;
-
-            NPC npc = Main.npc[boss];
-
-            if (npc.active && npc.type != NPCID.MartianSaucerCore && (npc.boss || npc.type == NPCID.EaterofWorldsHead))
-                return true;
-            boss = -1;
-            return false;
+            return base.ModifyDeathMessage(npc, ref customText, ref color);
         }
     }
 }

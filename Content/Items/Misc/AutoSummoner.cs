@@ -1,3 +1,5 @@
+using Fargowiltas.Content.NPCs;
+using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent.Events;
@@ -54,7 +56,7 @@ namespace Fargowiltas.Content.Items.Misc
 
             fargoPlayer.AutoSummonCD = 0;
 
-            if (FargoUtils.AnyBossAlive())
+            if (Main.CurrentFrameFlags.AnyActiveBossNPC || FargoGlobalNPC.eaterBoss != -1)
             {
                 //during boss, can only summon so many times and then no more
                 if (fargoPlayer.AutoSummonCap <= 0)
@@ -123,7 +125,8 @@ namespace Fargowiltas.Content.Items.Misc
             }
 
             float minionsLeft = player.maxMinions - player.slotsMinions;
-            fargoPlayer.AutoSummonCap = FargoUtils.AnyBossAlive() ? System.Math.Min(fargoPlayer.AutoSummonCap, minionsLeft) : minionsLeft;
+            fargoPlayer.AutoSummonCap = Main.CurrentFrameFlags.AnyActiveBossNPC || FargoGlobalNPC.eaterBoss != -1
+                ? Math.Min(fargoPlayer.AutoSummonCap, minionsLeft) : minionsLeft;
         }
     }
 }

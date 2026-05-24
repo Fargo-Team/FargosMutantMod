@@ -53,7 +53,7 @@ namespace Fargowiltas.Content.Items.Summons.Abom
 
         public override bool CanUseItem(Player player)
         {
-            return FargoUtils.ActuallyNight && Main.bloodMoon;
+            return !Main.IsItDay() && Main.bloodMoon;
         }
 
         public override void AddRecipes()

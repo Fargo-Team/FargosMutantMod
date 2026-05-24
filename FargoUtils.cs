@@ -17,10 +17,8 @@ namespace Fargowiltas
     {
         public static readonly BindingFlags UniversalBindingFlags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public;
 
-        public static bool EternityMode => Fargowiltas.ModLoaded["FargowiltasSouls"] && (bool)ModLoader.GetMod("FargowiltasSouls").Call("EternityMode");
         public static bool HasAnyItem(this Player player, params int[] itemIDs) => itemIDs.Any(itemID => player.HasItem(itemID));
 
-        public static bool ActuallyNight => !Main.dayTime || Main.remixWorld;
         public static FargoPlayer FargoMutant(this Player player) => player.GetModPlayer<FargoPlayer>();
 
         public static void AddWithCondition<T>(this List<T> list, T type, bool condition)
@@ -121,11 +119,6 @@ namespace Fargowiltas
             }
         }
 
-        public static bool AnyBossAlive()
-        {
-            return Main.npc.Any(npc => npc.active && (npc.boss || npc.type == NPCID.EaterofWorldsHead || npc.type == NPCID.DD2Betsy));
-        }
-
         public static int CountItemHeld(this Player player, int type)
         {
             if (player.selectedItem == 58) // Cursor
@@ -219,5 +212,22 @@ namespace Fargowiltas
             return false;
         }
         #endregion
+
+        /// <summary>
+        /// Checks whether an NPC is <see cref="NPC.boss"/>, or its <see cref="NPC.type"/> matches <see cref="NPCID.EaterofWorldsHead"/> or <see cref="NPCID.DD2Betsy"/> or is found in <see cref="NPCID.Sets.DangerThatPreventsOtherDangers"/>.
+        /// </summary>
+        /// <param name="npc"></param>
+        /// <param name="excludeSome"> Unused.</param>
+        /// <returns></returns>
+        public static bool CountsAsBoss(this NPC npc, bool excludeSome = true)
+        {
+            bool isBoss = npc.boss || npc.type == NPCID.EaterofWorldsHead || npc.type == NPCID.DD2Betsy || NPCID.Sets.DangerThatPreventsOtherDangers[npc.type];
+            // All of our purposes don't want this so don't use it
+            /*if (!excludeSome)
+            {
+                isBoss |= NPCID.Sets.ShouldBeCountedAsBoss[npc.type];
+            }*/
+            return isBoss;
+        }
     }
 }

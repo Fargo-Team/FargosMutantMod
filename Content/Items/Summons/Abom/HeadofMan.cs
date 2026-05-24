@@ -13,6 +13,6 @@ namespace Fargowiltas.Content.Items.Summons.Abom
 			ItemID.Sets.SortingPriorityBossSpawns[Type] = ItemID.Sets.SortingPriorityBossSpawns[ItemID.PumpkinMoonMedallion]; // 14
 		}
 
-        public override bool CanUseItem(Player player) => FargoUtils.ActuallyNight;
+        public override bool CanUseItem(Player player) => !Main.IsItDay();
     }
 }

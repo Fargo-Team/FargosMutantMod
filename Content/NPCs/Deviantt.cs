@@ -113,12 +113,13 @@ namespace Fargowiltas.Content.NPCs
         }
         public override bool CanTownNPCSpawn(int numTownNPCs)/* tModPorter Suggestion: Copy the implementation of NPC.SpawnAllowed_Merchant in vanilla if you to count money, and be sure to set a flag when unlocked, so you don't count every tick. */
         {
-            if (Fargowiltas.ModLoaded["FargowiltasSouls"] && (bool)ModLoader.GetMod("FargowiltasSouls").Call("DevianttAlive"))
+            Mod souls = Fargowiltas.SoulsMod;
+            if ((bool?)souls?.Call("DevianttAlive") == true)
                 return false;
 
-            return FargoServerConfig.Instance.Devi && !FargoGlobalNPC.AnyBossAlive() 
-                && (FargoWorld.DownedBools.TryGetValue("rareEnemy", out bool value) && value
-                || Fargowiltas.ModLoaded["FargowiltasSouls"] && (bool)ModLoader.GetMod("FargowiltasSouls").Call("EternityMode"));
+            return FargoServerConfig.Instance.Devi && !(Main.CurrentFrameFlags.AnyActiveBossNPC || FargoGlobalNPC.eaterBoss != -1)
+                && (((FargoWorld.DownedBools.TryGetValue("rareEnemy", out bool value) && value)
+                || FargoWorld.EternityMode));
         }
 
         public override bool CanGoToStatue(bool toKingStatue) => !toKingStatue;
@@ -151,7 +152,7 @@ namespace Fargowiltas.Content.NPCs
                 return;
 
             //no trolling when possible danger
-            if (FargoGlobalNPC.AnyBossAlive()
+            if (Main.CurrentFrameFlags.AnyActiveBossNPC || FargoGlobalNPC.eaterBoss != -1
                 || Main.npc.Any(n => n.active && n.damage > 0 && !n.friendly && NPC.Distance(n.Center) < 1200)
                 || NPC.life < NPC.lifeMax)
                 return;
@@ -236,10 +237,11 @@ namespace Fargowiltas.Content.NPCs
 
         public override string GetChat() //=> string.Empty;
         {
-            if (Fargowiltas.ModLoaded["FargowiltasSouls"] && (bool)ModLoader.GetMod("FargowiltasSouls").Call("EternityMode")
-                && !(bool)ModLoader.GetMod("FargowiltasSouls").Call("GiftsReceived"))
+            Mod souls = Fargowiltas.SoulsMod;
+            if (FargoWorld.EternityMode
+                && (bool?)souls?.Call("GiftsReceived") == false)
             {
-                ModLoader.GetMod("FargowiltasSouls").Call("GiveDevianttGifts");
+                souls?.Call("GiveDevianttGifts");
                 return Main.npcChatText = DeviChat("GiveGifts");
             }
 
@@ -253,16 +255,16 @@ namespace Fargowiltas.Content.NPCs
                 return text;
             }
 
-            if (Fargowiltas.ModLoaded["FargowiltasSouls"] && Main.rand.NextBool())
+            if (souls != null && Main.rand.NextBool())
             {
-                if ((bool)ModLoader.GetMod("FargowiltasSouls").Call("EridanusArmor"))
+                if ((bool)souls.Call("EridanusArmor"))
                     return DeviChat("EridanusArmor");
 
-                if ((bool)ModLoader.GetMod("FargowiltasSouls").Call("NekomiArmor"))
+                if ((bool)souls.Call("NekomiArmor"))
                     return DeviChat("NekomiArmor");
             }
 
-            if (NPC.homeless && canSayDefeatQuote && Fargowiltas.ModLoaded["FargowiltasSouls"] && (bool)ModLoader.GetMod("FargowiltasSouls").Call("DownedDevi"))
+            if (NPC.homeless && canSayDefeatQuote && (bool?)souls?.Call("DownedDevi") == true)
             {
                 canSayDefeatQuote = false;
                 return DeviChat("Defeat");
@@ -301,7 +303,7 @@ namespace Fargowiltas.Content.NPCs
                 dialogue.Add(DeviChat("Lumber", Main.npc[lumberjack].GivenName));
             }
 
-            if (Fargowiltas.ModLoaded["FargowiltasSouls"] && (bool)ModLoader.GetMod("FargowiltasSouls").Call("EternityMode"))
+            if (FargoWorld.EternityMode)
             {
                 dialogue.Add(DeviChat("EternityMode"));
             }
@@ -312,7 +314,7 @@ namespace Fargowiltas.Content.NPCs
         public override void SetChatButtons(ref string button, ref string button2)
         {
             button = Language.GetTextValue("LegacyInterface.28");
-            if (Fargowiltas.ModLoaded["FargowiltasSouls"] && (bool)ModLoader.GetMod("FargowiltasSouls").Call("EternityMode"))
+            if (FargoWorld.EternityMode)
             {
                 button2 = Language.GetTextValue("Mods.Fargowiltas.NPCs.Deviantt.HelpButton"); //(bool)ModLoader.GetMod("FargowiltasSouls").Call("GiftsReceived") ? "Help" : "Receive Gift";
             }
@@ -326,7 +328,7 @@ namespace Fargowiltas.Content.NPCs
             {
                 shopName = ShopName;
             }
-            else if (Fargowiltas.ModLoaded["FargowiltasSouls"] && (bool)ModLoader.GetMod("FargowiltasSouls").Call("EternityMode"))
+            else if (FargoWorld.EternityMode)
             {
                 Main.npcChatText = Fargowiltas.dialogueTracker.GetDialogue(NPC.GivenName);
             }
@@ -341,7 +343,7 @@ namespace Fargowiltas.Content.NPCs
         {
             var npcShop = new NPCShop(Type, ShopName);
 
-            if (Fargowiltas.ModLoaded["FargowiltasSoulsDLC"] && TryFind("FargowiltasSoulsDLC", "PandorasBox", out ModItem pandorasBox))
+            if (Fargowiltas.SoulsExtrasMod?.TryFind("PandorasBox", out ModItem pandorasBox) == true)
             {
                 npcShop.Add(new Item(pandorasBox.Type));
             }
@@ -463,7 +465,7 @@ namespace Fargowiltas.Content.NPCs
 
         public override void OnKill()
         {
-            if (Fargowiltas.ModLoaded["FargowiltasSouls"] && TryFind("FargowiltasSouls", "CosmosChampion", out ModNPC cosmosChamp) && NPC.AnyNPCs(cosmosChamp.Type))
+            if (Fargowiltas.SoulsMod?.TryFind("CosmosChampion", out ModNPC cosmosChamp) == true && NPC.AnyNPCs(cosmosChamp.Type))
                 Item.NewItem(NPC.GetSource_Loot(), NPC.Hitbox, ItemType<WalkingRick>());
         }
 
@@ -476,7 +478,7 @@ namespace Fargowiltas.Content.NPCs
             Rectangle rectangle = NPC.frame;
             Vector2 origin2 = rectangle.Size() / 2f;
             SpriteEffects effects = NPC.IsShimmerVariant ? NPC.spriteDirection < 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally : SpriteEffects.None;
-            if (Fargowiltas.ModLoaded["FargowiltasSouls"] && !(bool)ModLoader.GetMod("FargowiltasSouls").Call("GiftsReceived"))
+            if ((bool?)Fargowiltas.SoulsMod?.Call("GiftsReceived") == false)
             {
                 
 

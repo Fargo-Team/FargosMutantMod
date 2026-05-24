@@ -89,15 +89,12 @@ namespace Fargowiltas
         }
 
         // Mod loaded bools
-        internal static Dictionary<string, bool> ModLoaded;
         internal static Dictionary<int, string> ModRareEnemies = [];
         internal static List<Action> ModEventActions = [];
         internal static List<Func<bool>> ModEventActiveFuncs = [];
 
         public List<Stat> ModStats;
         public List<PermaUpgrade> PermaUpgrades;
-
-        private string[] mods;
 
         public static Dictionary<int, int> AnglerPityAmounts = new(){
             {ItemID.HighTestFishingLine, 5},
@@ -132,11 +129,23 @@ namespace Fargowiltas
             //            HookIntoLoad();
         }
 
-        public static Mod WoTG;
+        internal static Mod SoulsMod;
+        internal static Mod SoulsExtrasMod;
+        internal static Mod ThoriumMod;
+        internal static Mod CalamityMod;
+        internal static Mod MagicStorageMod;
+        internal static Mod WikiThisMod;
+        internal static Mod WoTG;
 
         public override void Load()
         {
             Instance = this;
+            ModLoader.TryGetMod("FargowiltasSouls", out SoulsMod);
+            ModLoader.TryGetMod("FargowiltasSoulsDLC", out SoulsExtrasMod);
+            ModLoader.TryGetMod("ThoriumMod", out ThoriumMod);
+            ModLoader.TryGetMod("CalamityMod", out CalamityMod);
+            ModLoader.TryGetMod("MagicStorage", out MagicStorageMod);
+            ModLoader.TryGetMod("WikiThis", out WikiThisMod);
             ModLoader.TryGetMod("NoxusBoss", out WoTG);
 
             FargoUIManager.LoadUI();
@@ -169,22 +178,6 @@ namespace Fargowiltas
 
             SetBonusKey = KeybindLoader.RegisterKeybind(this, "SetBonus", "V");
 
-
-            mods =
-            [
-                "FargowiltasSouls", // Fargo's Souls
-                "FargowiltasSoulsDLC",
-                "ThoriumMod",
-                "CalamityMod",
-                "MagicStorage",
-                "WikiThis"
-            ];
-
-            ModLoaded = [];
-            foreach (string mod in mods)
-            {
-                ModLoaded.Add(mod, false);
-            }
             CaughtNPCItem.RegisterItems();
 
             // DD2 Banner Effect hack
@@ -235,31 +228,30 @@ namespace Fargowiltas
             KeywordTagHandler.KeywordSnippet.ShouldDraw = true;
             SymbolTagHandler.SymbolSnippet.ShouldDraw = true;
         }
-        private static IEnumerable<Item> GetWormholes(Player self) =>
-            self.inventory
+        private static Item[] GetWormholes(Player self)
+        {
+            var wormholes = self.inventory
                 .Concat(self.bank.item)
                 .Concat(self.bank2.item)
-                .Where(x => x.type == ItemID.WormholePotion);
-
-        private static void OnTakeUnityPotion(Terraria.On_Player.orig_TakeUnityPotion orig, Player self)
-        {
-            var wormholes = GetWormholes(self).ToList();
-
-            if (
-                (FargoServerConfig.Instance.UnlimitedPotionBuffs is UnlimitedBuffSelections.On || (FargoServerConfig.Instance.UnlimitedPotionBuffs is UnlimitedBuffSelections.BossOnly && FargoGlobalNPC.AnyBossAlive()))
-                && wormholes.Select(x => x.stack).Sum() >= 30
-            )
+                .Concat(self.bank3.item);
+            if (self.useVoidBag())
             {
-                return;
+                wormholes = wormholes.Concat(self.bank4.item);
             }
 
-            // Can't be empty as we're gated by HasUnityPotion
-            Item pot = wormholes.First();
+            return wormholes.Where(x => x.type == ItemID.WormholePotion && x.stack > 0).ToArray();
+        }
 
-            pot.stack -= 1;
-
-            if (pot.stack <= 0)
-                pot.SetDefaults(ItemID.None, false);
+        private static void OnTakeUnityPotion(On_Player.orig_TakeUnityPotion orig, Player self)
+        {
+            var wormholes = GetWormholes(self);
+            if (wormholes.Length == 0)
+                return;
+            Item item = wormholes.First();
+            if (ItemLoader.ConsumeItem(item, self))
+                item.stack--;
+            if (item.stack <= 0)
+                item.TurnToAir();
         }
 
         private static void DisableTombstones(On_Player.orig_DropTombstone orig, Player self, long coinsOwned, NetworkText deathText, int hitDirection)
@@ -272,7 +264,7 @@ namespace Fargowiltas
 
         private static bool OnHasUnityPotion(On_Player.orig_HasUnityPotion orig, Player self)
         {
-            return GetWormholes(self).Select(x => x.stack).Sum() > 0;
+            return GetWormholes(self).Length > 0;
         }
 
         private static void FindRecipes_ElementalAssemblerGraveyardHack(
@@ -371,8 +363,6 @@ namespace Fargowiltas
             PotionTogglerKey = null;
             DashKey = null;
             SetBonusKey = null;
-            mods = null;
-            ModLoaded = null;
 
             BetsyEggUsed = false;
 
@@ -381,18 +371,6 @@ namespace Fargowiltas
 
         public override void PostSetupContent()
         {
-            try
-            {
-                foreach (string mod in mods)
-                {
-                    ModLoaded[mod] = ModLoader.TryGetMod(mod, out Mod otherMod);
-                }
-            }
-            catch (Exception e)
-            {
-                Logger.Error("Fargowiltas PostSetupContent Error: " + e.StackTrace + e.Message);
-            }
-
             FargoUIManager.InitializeUI();
             statTracker.AddSoulsStats();
 
@@ -683,7 +661,6 @@ namespace Fargowiltas
             AbomClearEvent,
             AnglerReset,
             SyncNPCMaxLife,
-            KillSuperDummy,
             ClientUpdateWorld,
             BroadcastBattleCry,
             SyncBattleCry,
@@ -748,29 +725,6 @@ namespace Fargowiltas
                             int lifeMax = reader.ReadInt32();
                             if (Main.netMode == NetmodeID.MultiplayerClient && n >= 0 && n < Main.maxNPCs)
                                 Main.npc[n].lifeMax = lifeMax;
-                        }
-                        break;
-
-                    // Kill super dummies
-                    case PacketID.KillSuperDummy:
-                        {
-                            if (Main.netMode == NetmodeID.Server)
-                            {
-                                for (int i = 0; i < Main.maxNPCs; i++)
-                                {
-                                    if (Main.npc[i] != null && Main.npc[i].active && Main.npc[i].type == ModContent.NPCType<SuperDummyNPC>())
-                                    {
-                                        NPC npc = Main.npc[i];
-                                        npc.life = 0;
-                                        npc.HitEffect();
-                                        Main.npc[i].SimpleStrikeNPC(int.MaxValue, 0, false, 0, null, false, 0, true);
-                                        //Main.npc[i].StrikeNPCNoInteraction(int.MaxValue, 0, 0, false, false, false);
-
-                                        if (Main.netMode == NetmodeID.Server)
-                                            NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, i);
-                                    }
-                                }
-                            }
                         }
                         break;
 
@@ -1085,25 +1039,25 @@ namespace Fargowiltas
                     FargoUtils.PrintLocalization("MessageInfo.CancelSandstorm", new Color(175, 75, 255));
                 }
 
-                if (NPC.downedTowers && (NPC.LunarApocalypseIsUp || NPC.ShieldStrengthTowerNebula >= 0 || NPC.ShieldStrengthTowerSolar >= 0 || NPC.ShieldStrengthTowerStardust >= 0 || NPC.ShieldStrengthTowerVortex >= 0))
+                if (NPC.downedTowers && (NPC.LunarApocalypseIsUp || NPC.TowerActiveNebula || NPC.ShieldStrengthTowerNebula >= 0 || NPC.TowerActiveSolar || NPC.ShieldStrengthTowerSolar >= 0 || NPC.TowerActiveStardust || NPC.ShieldStrengthTowerStardust >= 0 || NPC.TowerActiveVortex || NPC.ShieldStrengthTowerVortex >= 0))
                 {
                     NPC.LunarApocalypseIsUp = false;
+                    NPC.TowerActiveNebula = false;
+                    NPC.TowerActiveSolar = false;
+                    NPC.TowerActiveStardust = false;
+                    NPC.TowerActiveVortex = false;
                     NPC.ShieldStrengthTowerNebula = 0;
                     NPC.ShieldStrengthTowerSolar = 0;
                     NPC.ShieldStrengthTowerStardust = 0;
                     NPC.ShieldStrengthTowerVortex = 0;
 
                     // Purge all towers
-                    for (int i = 0; i < Main.maxNPCs; i++)
+                    foreach (NPC n in Main.ActiveNPCs)
                     {
-                        if (Main.npc[i].active
-                            && (Main.npc[i].type == NPCID.LunarTowerNebula || Main.npc[i].type == NPCID.LunarTowerSolar
-                            || Main.npc[i].type == NPCID.LunarTowerStardust || Main.npc[i].type == NPCID.LunarTowerVortex))
+                        if (n.type is NPCID.LunarTowerNebula or NPCID.LunarTowerSolar or NPCID.LunarTowerStardust or NPCID.LunarTowerVortex)
                         {
-                            Main.npc[i].dontTakeDamage = false;
-                            Main.npc[i].GetGlobalNPC<FargoGlobalNPC>().NoLoot = true;
-                            Main.npc[i].StrikeInstantKill();
-                            //Main.npc[i].StrikeNPCNoInteraction(int.MaxValue, 0f, 0);
+                            n.active = false;
+                            n.netUpdate = true;
                         }
                     }
                     FargoUtils.PrintLocalization("MessageInfo.CancelLunarEvent", new Color(175, 75, 255));

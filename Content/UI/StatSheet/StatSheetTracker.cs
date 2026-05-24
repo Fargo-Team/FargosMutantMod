@@ -104,7 +104,7 @@ namespace Fargowiltas.Content.UI.StatSheet
 
         internal void AddSoulsStats()
         {
-            var souls = Fargowiltas.ModLoaded["FargowiltasSouls"] ? ModLoader.GetMod("FargowiltasSouls") : null;
+            Mod souls = Fargowiltas.SoulsMod;
             if (souls != null)
             {
                 StatRegistry.TryAddStatToCategory("Summon", "SummonCritical", () => (int)souls.Call("GetSummonCrit"), () => StatSheetLocal("SummonCritical"), 1 + float.Epsilon, modName: "FargowiltasSouls");
@@ -123,7 +123,7 @@ namespace Fargowiltas.Content.UI.StatSheet
         private static string WingTime()
         {
             Player player = Main.LocalPlayer;
-            if (player.wingTimeMax / 60 > 60 || player.empressBrooch && !Fargowiltas.ModLoaded["CalamityMod"])
+            if (player.wingTimeMax > 60 * 60 || (player.empressBrooch && Fargowiltas.CalamityMod == null))
                 return StatSheetLocal("WingTimeMoreThan60Sec");
             return StatSheetLocal("WingTimeActual", Math.Round(player.wingTimeMax / 60.0, 2));
         }
@@ -131,7 +131,7 @@ namespace Fargowiltas.Content.UI.StatSheet
         private static int DamageReduction()
         {
             float endurance = Main.LocalPlayer.endurance;
-            if (FargoUtils.EternityMode)
+            if (FargoWorld.EternityMode)
             {
                 float r = 0.15f;
                 if (endurance >= r)

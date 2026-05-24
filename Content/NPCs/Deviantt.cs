@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Fargowiltas.Common.Configs;
+﻿using Fargowiltas.Common.Configs;
 using Fargowiltas.Content.Biomes;
 using Fargowiltas.Content.Items.Summons.Deviantt;
 using Fargowiltas.Content.Items.Tiles;
@@ -9,6 +7,8 @@ using Fargowiltas.Content.UI.Emotes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
+using System.Collections.Generic;
+using System.Linq;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
@@ -109,7 +109,7 @@ namespace Fargowiltas.Content.NPCs
             //    Main.NPCCatchable[NPC.type] = true;
             //    NPC.catchItem = (short)mod.ItemType("Deviantt");
             //}
-                
+
         }
         public override bool CanTownNPCSpawn(int numTownNPCs)/* tModPorter Suggestion: Copy the implementation of NPC.SpawnAllowed_Merchant in vanilla if you to count money, and be sure to set a flag when unlocked, so you don't count every tick. */
         {
@@ -145,7 +145,7 @@ namespace Fargowiltas.Content.NPCs
 
                 DoALittleTrolling();
             }
-        }       
+        }
         void DoALittleTrolling()
         {
             if (Main.netMode == NetmodeID.MultiplayerClient)
@@ -390,7 +390,7 @@ namespace Fargowiltas.Content.NPCs
 
         public override void ModifyActiveShop(string shopName, Item[] items)
         {
-            
+
         }
 
         public override void TownNPCAttackStrength(ref int damage, ref float knockback)
@@ -469,7 +469,7 @@ namespace Fargowiltas.Content.NPCs
                 Item.NewItem(NPC.GetSource_Loot(), NPC.Hitbox, ItemType<WalkingRick>());
         }
 
-        
+
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
@@ -480,7 +480,7 @@ namespace Fargowiltas.Content.NPCs
             SpriteEffects effects = NPC.IsShimmerVariant ? NPC.spriteDirection < 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally : SpriteEffects.None;
             if ((bool?)Fargowiltas.SoulsMod?.Call("GiftsReceived") == false)
             {
-                
+
 
                 Color color26 = Main.DiscoColor;
                 color26.A = 0;
@@ -509,11 +509,11 @@ namespace Fargowiltas.Content.NPCs
             }
             else
                 return true;
-            
 
-            
 
-            
+
+
+
         }
 
         private static string DeviChat(string key, params object[] args) => Language.GetTextValue($"Mods.Fargowiltas.NPCs.Deviantt.Chat.{key}", args);

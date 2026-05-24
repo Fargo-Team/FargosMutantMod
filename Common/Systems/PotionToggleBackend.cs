@@ -11,7 +11,7 @@ using Terraria.ModLoader;
 
 namespace Fargowiltas.Common.Systems
 {
-    
+
     public class PotionToggleBackend : ToggleBackend
     {
         public readonly static string ConfigPath = Path.Combine(Main.SavePath, "ModConfigs", "Fargowiltas_PotionToggles.json");
@@ -138,12 +138,12 @@ namespace Fargowiltas.Common.Systems
 
         public override void SomeEffects()
         {
-            
+
         }
 
         public override void MinimalEffects()
         {
-            
+
         }
 
         public override void SaveCustomPreset(int slot)

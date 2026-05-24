@@ -1,15 +1,9 @@
 ﻿using Fargowiltas.Common.Configs;
-using Fargowiltas.Content.Items;
 using Fargowiltas.Content.NPCs;
-using Fargowiltas.Utilities.Extensions;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
-using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Config;

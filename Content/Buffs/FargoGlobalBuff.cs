@@ -72,7 +72,7 @@ namespace Fargowiltas.Content.Buffs
 
         public override void Update(int type, Player player, ref int buffIndex)
         {
-            
+
         }
     }
 }

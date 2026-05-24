@@ -8,7 +8,7 @@ namespace Fargowiltas
 {
     internal abstract class ILEditUtils_Mutant : ModSystem
     {
-        
+
     }
     internal sealed class DoDraw_UpdateCameraPosition_ILEdit : ILEditUtils_Mutant
     {

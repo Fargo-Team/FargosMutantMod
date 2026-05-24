@@ -12,8 +12,8 @@ namespace Fargowiltas.Content.Items.Summons.SwarmSummons
 
         public override void SetStaticDefaults()
         {
-			ItemID.Sets.SortingPriorityBossSpawns[Type] = 2; // Puts it right after Slime Crown
-		}
+            ItemID.Sets.SortingPriorityBossSpawns[Type] = 2; // Puts it right after Slime Crown
+        }
 
         public override void SetDefaults()
         {
@@ -40,11 +40,11 @@ namespace Fargowiltas.Content.Items.Summons.SwarmSummons
             {
                 if (Main.netMode != NetmodeID.MultiplayerClient)
                 {
-                    
+
                     Main.StartSlimeRain();
                     Main.slimeWarningDelay = 1;
                     Main.slimeWarningTime = 1;
-                    Main.slimeRainKillCount = -10000; 
+                    Main.slimeRainKillCount = -10000;
                 }
                 else
                 {

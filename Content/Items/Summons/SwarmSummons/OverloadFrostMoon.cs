@@ -12,11 +12,11 @@ namespace Fargowiltas.Content.Items.Summons.SwarmSummons
     {
         public override void SetStaticDefaults()
         {
-			// DisplayName.SetDefault("Naughty Present Sack");
-			// Tooltip.SetDefault("Summons an Overloaded Frost Moon\nUse again to stop the event");
+            // DisplayName.SetDefault("Naughty Present Sack");
+            // Tooltip.SetDefault("Summons an Overloaded Frost Moon\nUse again to stop the event");
 
-			ItemID.Sets.SortingPriorityBossSpawns[Type] = ItemID.Sets.SortingPriorityBossSpawns[ItemID.NaughtyPresent]; // 15
-		}
+            ItemID.Sets.SortingPriorityBossSpawns[Type] = ItemID.Sets.SortingPriorityBossSpawns[ItemID.NaughtyPresent]; // 15
+        }
 
         public override void SetDefaults()
         {

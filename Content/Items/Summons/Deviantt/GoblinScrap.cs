@@ -9,11 +9,11 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
     public class GoblinScrap : BaseSpawnBooster
     {
         public override int BuffType => ModContent.BuffType<GoblinScrapBuff>();
-        
+
         public override void SetStaticDefaults()
         {
             base.SetStaticDefaults();
-		}
+        }
 
         public override void AddRecipes()
         {

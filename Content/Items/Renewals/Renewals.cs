@@ -149,7 +149,7 @@ namespace Fargowiltas.Content.Items.Renewals
 
     public class SnowRenewal : BaseRenewalItem
     {
-        public SnowRenewal() : base("Snow Renewal", "Snows a large radius", ItemID.SnowSolution) 
+        public SnowRenewal() : base("Snow Renewal", "Snows a large radius", ItemID.SnowSolution)
         {
         }
 

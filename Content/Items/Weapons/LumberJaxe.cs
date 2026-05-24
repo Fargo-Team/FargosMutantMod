@@ -30,7 +30,7 @@ namespace Fargowiltas.Content.Items.Weapons
         }
 
         public override void UseStyle(Player player, Rectangle heldItemFrame)
-        {   
+        {
             if (Main.myPlayer == player.whoAmI)
             {
                 if (player.head == EquipLoader.GetEquipSlot(Mod, "LumberjackMask", EquipType.Head) && player.body == EquipLoader.GetEquipSlot(Mod, "LumberjackBody", EquipType.Body) && player.legs == EquipLoader.GetEquipSlot(Mod, "LumberjackPants", EquipType.Legs))

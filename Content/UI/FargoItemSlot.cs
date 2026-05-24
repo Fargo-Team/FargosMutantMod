@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
-using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -20,7 +19,7 @@ namespace Fargowiltas.Content.UI
         private static Asset<Texture2D> backPanel => TextureAssets.InventoryBack;
         private Item _item;
 
-        public Item Item {  get { return _item; } }
+        public Item Item { get { return _item; } }
 
         public FargoItemSlot(float scale = 1f)
         {
@@ -217,7 +216,8 @@ namespace Fargowiltas.Content.UI
         /// Transforms the stored item into the given item.
         /// </summary>
         /// <param name="newItem"></param>
-        public void TransformItem(Item newItem) {
+        public void TransformItem(Item newItem)
+        {
             if (CanBeTransformed(newItem))
                 _item = newItem;
         }
@@ -229,7 +229,7 @@ namespace Fargowiltas.Content.UI
         /// <param name="stack"></param>
         /// <param name="prefix"></param>
         public void TransformItem(int type, int stack = 1, int prefix = 0)
-        { 
+        {
             Item newItem = new(type, stack, prefix);
             TransformItem(newItem);
         }

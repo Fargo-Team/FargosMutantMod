@@ -13,7 +13,6 @@ using Fargowiltas.Content.UI.StatSheet;
 using Fargowiltas.Utilities.Extensions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using rail;
 using ReLogic.Graphics;
 using System;
 using System.Collections.Generic;
@@ -28,7 +27,6 @@ using Terraria.GameContent.Events;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
-using Terraria.UI;
 using Terraria.UI.Chat;
 using static Fargowiltas.Content.Items.Tiles.EnchantedTreeTileEntity;
 

@@ -1,4 +1,3 @@
-using Fargowiltas.Common.Systems.Recipes;
 using Fargowiltas.Content.Buffs;
 using Fargowiltas.Content.Items.Misc;
 using Terraria;

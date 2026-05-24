@@ -123,7 +123,7 @@ namespace Fargowiltas.Content.Projectiles.Explosives
                     break;
                 }
             }
-            
+
             for (int rightTry = 0; rightTry <= rightMax; rightTry++) //try clearing right side
             {
                 if (!WipeColumn(rightTry)) //if went OOB or exited temple before reaching normal right limit, give up

@@ -52,7 +52,7 @@ namespace Fargowiltas.Content.UI
         }
         private void IconHighlight_MouseOver(UIMouseEvent evt, UIElement listeningElement)
         {
-            
+
         }
         private void IconHighlight_OnClick(UIMouseEvent evt, UIElement listeningElement)
         {

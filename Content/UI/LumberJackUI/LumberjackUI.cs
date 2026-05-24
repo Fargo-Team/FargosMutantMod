@@ -292,9 +292,9 @@ namespace Fargowiltas.Content.UI.LumberjackUI
 
             string wText = biome.Wood.type > 0 ? $"{Language.GetTextValue("Mods.Fargowiltas.UI.LumberJack.WoodTitle")} [i:{biome.Wood.type}] x{biome.Wood.amount}" : "None";
             UIText woodText = new UIText(wText)
-            { 
-                HAlign = 0.5f, 
-                VAlign = 0.5f 
+            {
+                HAlign = 0.5f,
+                VAlign = 0.5f
             };
             WoodPanel.Append(woodText);
 
@@ -358,7 +358,7 @@ namespace Fargowiltas.Content.UI.LumberjackUI
             base.DrawSelf(spriteBatch);
 
             if (biome == null) return;
-            
+
             Color drawColor = Color.Lerp(biome.IsAvailable ? biome.BackgroundColor : Color.Transparent, oldColor, timer / maxTime) * 0.5f;
             Vector2 position = GetOuterDimensions().Center() + new Vector2(2 - GetOuterDimensions().Width / 2, GetOuterDimensions().Height / 2 - 2);
             spriteBatch.Draw(line.Value, position, line.Frame(), drawColor, -MathHelper.PiOver2, Vector2.Zero, new Vector2(1f, (Width.Pixels / 2) - 2), SpriteEffects.None, 0f);
@@ -402,7 +402,7 @@ namespace Fargowiltas.Content.UI.LumberjackUI
         {
             //base.DrawSelf(spriteBatch);
 
-            Vector2 moneyPos = GetInnerDimensions().Position() + new Vector2(GetInnerDimensions().Width / 4, - GetInnerDimensions().Height - 12);
+            Vector2 moneyPos = GetInnerDimensions().Position() + new Vector2(GetInnerDimensions().Width / 4, -GetInnerDimensions().Height - 12);
             ItemSlot.DrawMoney(spriteBatch, Language.GetTextValue("Mods.Fargowiltas.UI.LumberJack.Cost"), moneyPos.X, moneyPos.Y, Utils.CoinsSplit(biome.GetBuyPrice()), true);
         }
     }
@@ -518,7 +518,7 @@ namespace Fargowiltas.Content.UI.LumberjackUI
                 stack = item.stack
             };
             ItemSlot.DrawItemIcon(drawItem, ItemSlot.Context.InventoryItem, spriteBatch, GetInnerDimensions().Position() + new Vector2(GetInnerDimensions().Height / 2), 1f, GetInnerDimensions().Width, Color.White);
-        
+
             if (ContainsPoint(Main.MouseScreen))
             {
                 UICommon.TooltipMouseText(GetHoverText());

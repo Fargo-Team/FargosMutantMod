@@ -17,7 +17,7 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
             Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(6, 6));
             ItemID.Sets.AnimatesAsSoul[Item.type] = true;
 
-		}
+        }
 
         public override void AddRecipes()
         {

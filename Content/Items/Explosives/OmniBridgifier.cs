@@ -62,7 +62,7 @@ namespace Fargowiltas.Content.Items.Explosives
                 .AddTile(ModContent.TileType<OmnistationSheet>())
                 .Register();
 
-            
+
         }
     }
 

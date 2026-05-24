@@ -10,9 +10,9 @@ namespace Fargowiltas.Content.Items.Summons.Abom
     {
         public override void SetStaticDefaults()
         {
-			ItemID.Sets.SortingPriorityBossSpawns[Type] = 0; // Places it before any other boss summons
+            ItemID.Sets.SortingPriorityBossSpawns[Type] = 0; // Places it before any other boss summons
 
-			Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(6, 4));
+            Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(6, 4));
             ItemID.Sets.AnimatesAsSoul[Item.type] = true;
 
             Item.ResearchUnlockCount = 1;
@@ -39,7 +39,7 @@ namespace Fargowiltas.Content.Items.Summons.Abom
         {
             FargoWorld.Matsuri = true;
             FargoUtils.PrintLocalization("MessageInfo.StartLanternNight", new Color(175, 75, 255));
-            
+
             if (Main.netMode == NetmodeID.Server)
                 NetMessage.SendData(MessageID.WorldData);
 

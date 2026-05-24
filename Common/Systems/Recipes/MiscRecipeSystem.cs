@@ -55,7 +55,7 @@ namespace Fargowiltas.Common.Systems.Recipes
             {
                 recipe.DisableDecraft();
             }
-            
+
         }
         public override void PostSetupRecipes()
         {

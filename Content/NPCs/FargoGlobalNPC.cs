@@ -1,12 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Fargowiltas.Common.Configs;
 using Fargowiltas.Content.Items.Explosives;
 using Fargowiltas.Content.Items.Misc;
 using Fargowiltas.Content.Items.Summons.SwarmSummons.Energizers;
 using Fargowiltas.Content.Items.Tiles;
 using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.ItemDropRules;
@@ -20,7 +20,7 @@ namespace Fargowiltas.Content.NPCs
 {
     public class FargoGlobalNPC : GlobalNPC
     {
-        internal static int[] Bosses = [ 
+        internal static int[] Bosses = [
             NPCID.KingSlime,
             NPCID.EyeofCthulhu,
             //NPCID.EaterofWorldsHead,
@@ -50,7 +50,7 @@ namespace Fargowiltas.Content.NPCs
             NPCID.MourningWood,
             NPCID.SantaNK1,
             NPCID.HeadlessHorseman,
-            NPCID.PirateShip 
+            NPCID.PirateShip
         ];
 
         public static int LastWoFIndex = -1;
@@ -165,7 +165,7 @@ namespace Fargowiltas.Content.NPCs
         {
             if (target.dontTakeDamage && target.type == NPCType<Squirrel>())
                 return false;
-            
+
             if (target.friendly && FargoServerConfig.Instance.SaferBoundNPCs && (target.type == NPCID.BoundGoblin || target.type == NPCID.BoundMechanic || target.type == NPCID.BoundWizard || target.type == NPCID.BartenderUnconscious || target.type == NPCID.GolferRescue))
                 return false;
             return base.CanHitNPC(npc, target);
@@ -303,7 +303,7 @@ namespace Fargowiltas.Content.NPCs
             Condition angler30 = new Condition("Mods.Fargowiltas.Conditions.Angler30", () => Main.LocalPlayer.anglerQuestsFinished >= 30);
             Condition InRockOrDirtLayerHeight = new Condition("Mods.Fargowiltas.Conditions.InRockOrDirtLayerHeight", () => (Condition.InDirtLayerHeight.IsMet() || Condition.InRockLayerHeight.IsMet()) && !(Condition.InUndergroundDesert.IsMet() || Condition.InDungeon.IsMet()));
             #endregion
-            
+
 
             if (FargoServerConfig.Instance.NPCSales)
             {
@@ -354,7 +354,7 @@ namespace Fargowiltas.Content.NPCs
                         break;
 
                     case NPCID.Merchant:
-                        
+
                         //AddItem(ItemID.FuzzyCarrot, condition: angler5);
                         //AddItem(ItemID.AnglerEarring, condition: angler10);
                         //AddItem(ItemID.HighTestFishingLine, condition: angler10);
@@ -383,7 +383,7 @@ namespace Fargowiltas.Content.NPCs
                             }
                         }
 
-                        if (!decorTab) 
+                        if (!decorTab)
                             break; //dont sell in normal tab to prevent overflow
 
                         AddItem(ItemID.BloodMoonRising, Item.buyPrice(gold: 1), condition: Condition.InDungeon);
@@ -485,7 +485,7 @@ namespace Fargowiltas.Content.NPCs
 
                     case NPCID.WitchDoctor:
                         bool alreadySellsTable = false;
-                        foreach(NPCShop.Entry entry in shop.Entries)
+                        foreach (NPCShop.Entry entry in shop.Entries)
                         {
                             if (!entry.Item.IsAir && entry.Item.type == ItemID.BewitchingTable)
                             {
@@ -538,7 +538,7 @@ namespace Fargowiltas.Content.NPCs
                         AddItem(ItemType<GoldenDippingVat>(), Item.buyPrice(gold: 35), condition: Condition.Hardmode);
                         break;
                 }
-            }        
+            }
         }
         public override void EditSpawnRate(Player player, ref int spawnRate, ref int maxSpawns)
         {
@@ -715,7 +715,7 @@ namespace Fargowiltas.Content.NPCs
                 switch (npc.type)
                 {
                     case NPCID.KingSlime:
-                        Swarm(npc, NPCID.KingSlime, NPCID.BlueSlime, ItemID.KingSlimeBossBag, ItemID.KingSlimeTrophy,  ItemType<EnergizerSlime>());
+                        Swarm(npc, NPCID.KingSlime, NPCID.BlueSlime, ItemID.KingSlimeBossBag, ItemID.KingSlimeTrophy, ItemType<EnergizerSlime>());
                         break;
 
                     case NPCID.EyeofCthulhu:
@@ -1096,7 +1096,7 @@ namespace Fargowiltas.Content.NPCs
 
         public override void DrawEffects(NPC npc, ref Color drawColor)
         {
-            if (!npc.canDisplayBuffs) 
+            if (!npc.canDisplayBuffs)
                 return;
 
             if (woodDrop && Main.rand.NextBool(10))
@@ -1189,7 +1189,7 @@ namespace Fargowiltas.Content.NPCs
             // Drop swarm reward for every 10 items used
             if (Fargowiltas.SwarmItemsUsed >= 10 && reward > 0)
                 Item.NewItem(npc.GetSource_Loot(), npc.Hitbox, reward, Stack: Fargowiltas.SwarmItemsUsed / 10);
-                    
+
 
             //drop trophy for every 3 items
             if (Fargowiltas.SwarmItemsUsed >= 3 && trophy > 0)

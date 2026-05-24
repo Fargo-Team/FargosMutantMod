@@ -1,25 +1,25 @@
-using System.Collections.Generic;
-using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.GameContent.Events;
-using Terraria.ID;
-using Terraria.ModLoader;
-using Terraria.Localization;
-using static Terraria.ModLoader.ModContent;
-using Terraria.GameContent.Bestiary;
-using Terraria.GameContent.Personalities;
-using Terraria.GameContent;
-using Microsoft.Xna.Framework.Graphics;
-using System.Linq;
-using ReLogic.Content;
 using Fargowiltas.Common.Configs;
 using Fargowiltas.Content.Biomes;
 using Fargowiltas.Content.Items.Misc;
-using Fargowiltas.Content.Items.Tiles;
 using Fargowiltas.Content.Items.Summons.Mutant;
 using Fargowiltas.Content.Items.Summons.SwarmSummons;
+using Fargowiltas.Content.Items.Tiles;
 using Fargowiltas.Content.Projectiles;
 using Fargowiltas.Content.UI.Emotes;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
+using System.Collections.Generic;
+using System.Linq;
+using Terraria;
+using Terraria.GameContent;
+using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.Events;
+using Terraria.GameContent.Personalities;
+using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
 
 namespace Fargowiltas.Content.NPCs
 {
@@ -106,7 +106,7 @@ namespace Fargowiltas.Content.NPCs
             if (FargoServerConfig.Instance.CatchNPCs)
             {
                 Main.npcCatchable[NPC.type] = true;
-            //    NPC.catchItem = (short)Mod.ItemType("Mutant");
+                //    NPC.catchItem = (short)Mod.ItemType("Mutant");
             }
 
 
@@ -228,7 +228,7 @@ namespace Fargowiltas.Content.NPCs
                 {
                     dialogue.Add(MutantChat("Party", Main.npc[partyGirl].GivenName));
                 }
-                
+
                 dialogue.Add(MutantChat("PartyWithoutPartyGirl"));
             }
 
@@ -302,7 +302,7 @@ namespace Fargowiltas.Content.NPCs
             {
                 dialogue.Add(MutantChat("DyeTrader", Main.npc[dyeTrader].GivenName));
             }
-            
+
             return Main.rand.Next(dialogue);
         }
 
@@ -334,7 +334,7 @@ namespace Fargowiltas.Content.NPCs
                     break;
             }
 
-            
+
 
             if (AnyPostMLSummon)
             {
@@ -385,7 +385,7 @@ namespace Fargowiltas.Content.NPCs
                 .Add(new Item(ItemType<Overloader>()) { shopCustomPrice = Item.buyPrice(copper: 400000) }, Condition.InExpertMode)
                 .Add(new Item(ItemType<ModeToggle>()));
 
-            if (Fargowiltas.SoulsMod?.TryFind( "Masochist", out ModItem masochist) == true)
+            if (Fargowiltas.SoulsMod?.TryFind("Masochist", out ModItem masochist) == true)
             {
                 npcShop1.Add(new Item(masochist.Type) { shopCustomPrice = Item.buyPrice(copper: 10000) }); //mutants gift
             }

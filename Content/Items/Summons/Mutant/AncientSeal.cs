@@ -16,9 +16,9 @@ namespace Fargowiltas.Content.Items.Summons.Mutant
         {
             Item.ResearchUnlockCount = 3;
 
-			ItemID.Sets.SortingPriorityBossSpawns[Type] = 19; // Places it right after Celestial Sigil
+            ItemID.Sets.SortingPriorityBossSpawns[Type] = 19; // Places it right after Celestial Sigil
 
-			Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(6, 8));
+            Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(6, 8));
             ItemID.Sets.AnimatesAsSoul[Item.type] = true;
 
             ItemID.Sets.ItemNoGravity[Type] = true;

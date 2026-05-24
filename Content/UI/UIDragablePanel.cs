@@ -1,9 +1,9 @@
-﻿using Terraria.GameContent.UI.Elements;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.Linq;
-using Terraria.UI;
 using Terraria;
+using Terraria.GameContent.UI.Elements;
+using Terraria.UI;
 
 namespace Fargowiltas.Content.UI
 {

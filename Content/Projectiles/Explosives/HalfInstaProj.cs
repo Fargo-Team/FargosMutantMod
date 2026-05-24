@@ -76,7 +76,7 @@ namespace Fargowiltas.Content.Projectiles.Explosives
                         WorldGen.PlaceTile(xPosition, y, TileID.Rope);
                     }
 
-                    
+
                 }
             }
 

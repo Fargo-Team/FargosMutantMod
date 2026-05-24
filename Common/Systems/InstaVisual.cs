@@ -67,7 +67,8 @@ namespace Fargowiltas.Common.Systems
             {
                 layers.Insert(index, new LegacyGameInterfaceLayer(
                     "Fargowiltas: Insta Item Visual",
-                    delegate {
+                    delegate
+                    {
                         DrawVisual(Main.spriteBatch);
                         return true;
                     },

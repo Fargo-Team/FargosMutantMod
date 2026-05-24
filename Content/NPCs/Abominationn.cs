@@ -1,24 +1,24 @@
-using System.Collections.Generic;
+using Fargowiltas.Common.Configs;
+using Fargowiltas.Content.Biomes;
+using Fargowiltas.Content.Items.Summons.Abom;
+using Fargowiltas.Content.Items.Summons.Deviantt;
+using Fargowiltas.Content.Items.Tiles;
+using Fargowiltas.Content.Items.Vanity;
+using Fargowiltas.Content.UI.Emotes;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
+using System.Linq;
 using Terraria;
+using Terraria.GameContent;
+using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.ItemDropRules;
+using Terraria.GameContent.Personalities;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
-using Terraria.GameContent.Bestiary;
-using Terraria.GameContent.Personalities;
-using Fargowiltas.Common.Configs;
-using Fargowiltas.Content.Biomes;
-using System.Linq;
-using Microsoft.Xna.Framework.Graphics;
-using Terraria.GameContent;
-using Terraria.GameContent.ItemDropRules;
-using Fargowiltas.Content.Items.Tiles;
-using Fargowiltas.Content.Items.Vanity;
-using Fargowiltas.Content.Items.Summons.Abom;
-using Fargowiltas.Content.Items.Summons.Deviantt;
-using Fargowiltas.Content.UI.Emotes;
 using static Fargowiltas.Fargowiltas;
+using static Terraria.ModLoader.ModContent;
 
 namespace Fargowiltas.Content.NPCs
 {
@@ -367,7 +367,7 @@ namespace Fargowiltas.Content.NPCs
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
-        {   
+        {
             Texture2D texture = (Texture2D)TownNPCProfile().GetTextureNPCShouldUse(NPC);
             Rectangle rectangle = NPC.frame;
             Vector2 origin2 = rectangle.Size() / 2f;

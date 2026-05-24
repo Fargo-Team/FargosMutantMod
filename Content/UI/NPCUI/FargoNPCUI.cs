@@ -50,7 +50,7 @@ namespace Fargowiltas.Content.UI.NPCUI
             //
             if (Main.gameMenu)
                 FargoUIManager.Close<FargoNPCUI>();
-            
+
 
             /*if (Main.playerInventory)
             {
@@ -58,13 +58,13 @@ namespace Fargowiltas.Content.UI.NPCUI
                 FargoUIManager.Close<FargoNPCUI>();
             }*/
 
-            
-                
+
+
 
         }
 
         public override void OnOpen()
-        {            
+        {
             RemoveAllChildren();
             OnInitialize();
         }
@@ -72,7 +72,7 @@ namespace Fargowiltas.Content.UI.NPCUI
         public override void OnInitialize()
         {
             //NPCShop shop = new(Modcon)
-            
+
             area = new UIPanel();
             area.Left.Set(-area.Width.Pixels - 1225, 1);
             area.Top.Set(75, 0);
@@ -118,7 +118,7 @@ namespace Fargowiltas.Content.UI.NPCUI
             FargoUIManager.Close<FargoNPCUI>();
         }
 
-        
+
 
         public override void Update(GameTime gameTime)
         {

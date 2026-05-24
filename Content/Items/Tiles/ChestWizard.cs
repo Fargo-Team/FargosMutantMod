@@ -42,7 +42,7 @@ namespace Fargowiltas.Content.Items.Tiles
             {
                 tooltips.Add(new TooltipLine(Fargowiltas.Instance, "ChizardInstructionsRuminated", Language.GetTextValue("Mods.Fargowiltas.Items.ChestWizard.Ruminate")));
             }
-                base.ModifyTooltips(tooltips);
+            base.ModifyTooltips(tooltips);
         }
         public override void AddRecipes()
         {

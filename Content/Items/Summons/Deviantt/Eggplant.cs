@@ -9,7 +9,7 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
     public class Eggplant : BaseSpawnBooster
     {
         public override int BuffType => ModContent.BuffType<EggplantBuff>();
-       
+
 
         public override void AddRecipes()
         {

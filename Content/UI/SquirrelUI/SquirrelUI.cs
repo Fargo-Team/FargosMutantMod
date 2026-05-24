@@ -22,7 +22,7 @@ namespace Fargowiltas.Content.UI.SquirrelUI
         SquirrelInnerPanel InnerPanel;
         UICloseButton CloseButton;
 
-        
+
 
         public override void OnOpen()
         {

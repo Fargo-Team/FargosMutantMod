@@ -44,7 +44,7 @@ namespace Fargowiltas.Content.UI
 
             bool toggled = Main.LocalPlayer.GetPotionToggleValue(ItemID);
 
-            spriteBatch.Draw(FargoMutantAssets.UI.Toggler.CheckBox.Value, position + new Vector2(0, 0), Color.White);           
+            spriteBatch.Draw(FargoMutantAssets.UI.Toggler.CheckBox.Value, position + new Vector2(0, 0), Color.White);
 
             if (toggled)
             {
@@ -52,9 +52,9 @@ namespace Fargowiltas.Content.UI
                 if (IsMouseHovering)
                 {
                     spriteBatch.Draw(FargoMutantAssets.UI.Toggler.CheckMarkGlow.Value, position + new Vector2(0, -4), Color.White);
-                }           
+                }
             }
-                
+
 
             string GetText()
             {

@@ -339,7 +339,7 @@ namespace Fargowiltas
         }
         public override bool ShiftClickSlot(Item[] inventory, int context, int slot)
         {
-            
+
             if (Player.chest == -1 && FargoUIManager.IsOpen<ChizardSearchBar>())
             {
                 ChizardSearchBar bar = FargoUIManager.Get<ChizardSearchBar>();
@@ -612,7 +612,7 @@ namespace Fargowiltas
 
         public override void ModifyLuck(ref float luck)
         {
-            
+
         }
         public override void ModifyScreenPosition()
         {

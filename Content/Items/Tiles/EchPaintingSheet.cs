@@ -20,7 +20,7 @@ namespace Fargowiltas.Content.Items.Tiles
             TileObjectData.newTile.StyleWrapLimit = 36;
             TileObjectData.addTile(Type);
 
-            DustType = DustID.WoodFurniture;         
+            DustType = DustID.WoodFurniture;
         }
     }
 }

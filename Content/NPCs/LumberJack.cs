@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
 using Fargowiltas.Common.Configs;
 using Fargowiltas.Content.Achievements;
 using Fargowiltas.Content.Items.Tiles;
@@ -12,6 +10,8 @@ using Fargowiltas.Content.UI.LumberjackUI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
+using System.Collections.Generic;
+using System.Linq;
 using Terraria;
 using Terraria.Enums;
 using Terraria.GameContent;
@@ -178,7 +178,7 @@ namespace Fargowiltas.Content.NPCs
         public override string GetChat()
         {
             List<string> dialogue = Language.FindAll(Lang.CreateDialogFilter("Mods.Fargowiltas.NPCs.LumberJack.Chat.Normal")).Select(item => item.Value).ToList();
-            
+
             int nurse = NPC.FindFirstNPC(NPCID.Nurse);
             if (nurse >= 0)
             {

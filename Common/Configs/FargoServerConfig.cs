@@ -1,5 +1,4 @@
-﻿using Fargowiltas.Common.Systems;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using Terraria.Localization;
 using Terraria.ModLoader.Config;
 

@@ -1,22 +1,11 @@
 ﻿using Fargowiltas.Assets.Textures;
-using Fargowiltas.Common.Configs;
 using Fargowiltas.Common.Systems;
-using Fargowiltas.Common.Systems.Collections;
-using Fargowiltas.Content.Items;
-using Fargowiltas.Content.UI.StatSheet;
-using Fargowiltas.Utilities.Extensions;
-using Humanizer;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics.Metrics;
 using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent;
@@ -24,10 +13,8 @@ using Terraria.GameContent.UI.Elements;
 using Terraria.GameInput;
 using Terraria.ID;
 using Terraria.Localization;
-using Terraria.ModLoader;
 using Terraria.ModLoader.UI;
 using Terraria.UI;
-using static Fargowiltas.Assets.Textures.FargoMutantAssets.UI;
 using static Fargowiltas.Common.Systems.PotionBagSystem;
 
 namespace Fargowiltas.Content.UI.PotionBag
@@ -108,7 +95,7 @@ namespace Fargowiltas.Content.UI.PotionBag
 
         public override void OnOpen()
         {
-             RebuildPanel();
+            RebuildPanel();
             //NeedsPotionListBuilding = true;
             Main.playerInventory = true;
         }
@@ -228,7 +215,7 @@ namespace Fargowiltas.Content.UI.PotionBag
             PotionPanel.RemoveAllChildren();
 
             PotionList = new UIPanel();
-            
+
             PotionList.Width.Set(0f, 1f);
             PotionList.Height.Set(0f, 1f);
             PotionList.OverflowHidden = true;
@@ -241,7 +228,7 @@ namespace Fargowiltas.Content.UI.PotionBag
             {
                 var newItem = new PotionDisplayPanel(potion.Key.Type, potion.Value, new Item(potion.Key.Type).buffType);
                 newItem.Left.Set(0f, (index % 4) / 4f);
-                newItem.Top.Set(90 * MathF.Floor(index / 4f),  0f);
+                newItem.Top.Set(90 * MathF.Floor(index / 4f), 0f);
                 items.Add(newItem);
                 index++;
             }
@@ -604,7 +591,7 @@ namespace Fargowiltas.Content.UI.PotionBag
 
             public PotionAddSlot()
             {
-                
+
             }
 
             public override bool CanAcceptItem(Item item) => item.buffType > 0 && item.buffTime >= 60 * 60 * 2;

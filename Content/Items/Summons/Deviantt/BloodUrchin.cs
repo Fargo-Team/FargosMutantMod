@@ -10,12 +10,12 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
     {
         public override bool IsLoadingEnabled(Mod mod) => false;
         public override int NPCType => NPCID.BloodEelHead;
-        
+
         public override void SetStaticDefaults()
         {
             base.SetStaticDefaults();
-			ItemID.Sets.SortingPriorityBossSpawns[Type] = ItemID.Sets.SortingPriorityBossSpawns[ItemID.BloodMoonStarter]; // 18
-		}
+            ItemID.Sets.SortingPriorityBossSpawns[Type] = ItemID.Sets.SortingPriorityBossSpawns[ItemID.BloodMoonStarter]; // 18
+        }
 
         public override bool CanUseItem(Player player)
         {

@@ -12,11 +12,11 @@ namespace Fargowiltas.Content.Items.Summons.SwarmSummons
     {
         public override void SetStaticDefaults()
         {
-			// DisplayName.SetDefault("Goblin War Banner");
-			// Tooltip.SetDefault("Summons an Overloaded Goblin Invasion\nUse again to stop the event");
+            // DisplayName.SetDefault("Goblin War Banner");
+            // Tooltip.SetDefault("Summons an Overloaded Goblin Invasion\nUse again to stop the event");
 
-			ItemID.Sets.SortingPriorityBossSpawns[Type] = ItemID.Sets.SortingPriorityBossSpawns[ItemID.GoblinBattleStandard]; // 4
-		}
+            ItemID.Sets.SortingPriorityBossSpawns[Type] = ItemID.Sets.SortingPriorityBossSpawns[ItemID.GoblinBattleStandard]; // 4
+        }
 
         public override void SetDefaults()
         {

@@ -124,14 +124,14 @@ namespace Fargowiltas.Content.UI.StatSheet
             {
                 if (category.Name == "PermaUpgrade")
                 {
-                    SoundEngine.PlaySound(SoundID.Item176 with { Pitch = - 0.5f });
+                    SoundEngine.PlaySound(SoundID.Item176 with { Pitch = -0.5f });
                     selectedCategories.Clear();
                 }
                 else
                     selectedCategories.Remove(GetCategory("PermaUpgrade"));
                 selectedCategories.Add(category);
             }
-            
+
             RebuildStatList();
         }
 
@@ -150,7 +150,7 @@ namespace Fargowiltas.Content.UI.StatSheet
             Player player = Main.LocalPlayer;
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
 
-            
+
             ColumnCounter = LineCounter = 0;
 
             Categories.RemoveAllChildren();
@@ -196,7 +196,7 @@ namespace Fargowiltas.Content.UI.StatSheet
 
             foreach (StatCategory category in categories)
             {
-                
+
                 if (!category.Condition.Invoke() || category.Name == "PermaUpgrade")
                     continue;
 
@@ -310,7 +310,7 @@ namespace Fargowiltas.Content.UI.StatSheet
             BackPanel.Height.Set(BackHeight, 0f);
             InnerPanel.Height.Set(BackHeight - 12 - 28, 0);
 
-            LineCounter+= 2;
+            LineCounter += 2;
             ColumnCounter = 0;
         }
 

@@ -10,8 +10,8 @@ namespace Fargowiltas.Content.Items.Summons.Abom
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 3;
-			ItemID.Sets.SortingPriorityBossSpawns[Type] = 17; // Places it right after Lihzahrd Power Cell and Solar Tablet
-		}
+            ItemID.Sets.SortingPriorityBossSpawns[Type] = 17; // Places it right after Lihzahrd Power Cell and Solar Tablet
+        }
 
         public override void SetDefaults()
         {

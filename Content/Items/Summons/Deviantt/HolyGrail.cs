@@ -9,16 +9,16 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
     public class HolyGrail : BaseSpawnBooster
     {
         public override int BuffType => ModContent.BuffType<HolyGrailBuff>();
-       
+
         public override void AddRecipes()
         {
-			CreateRecipe()
+            CreateRecipe()
                 .AddIngredient<GizmoParts>(2)
                 .AddRecipeGroup("Fargowiltas:AnyGoldBar", 4)
-				.AddIngredient(ItemID.ManaPotion, 6)
-				.AddIngredient(ItemID.Ruby)
-				.AddTile(TileID.DemonAltar)
-				.Register();
+                .AddIngredient(ItemID.ManaPotion, 6)
+                .AddIngredient(ItemID.Ruby)
+                .AddTile(TileID.DemonAltar)
+                .Register();
         }
     }
     public class HolyGrailBuff : BaseSpawnBoosterBuff

@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 namespace Fargowiltas.Content.Projectiles.Explosives
 {
     public class InstaHouseVisual : ModProjectile
-    {   
+    {
         public override void SetDefaults()
         {
             Projectile.width = 160;

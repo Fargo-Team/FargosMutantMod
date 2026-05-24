@@ -14,17 +14,17 @@ namespace Fargowiltas.Content.Dusts
             //its not really gonna make much sense, like snow coming from the jungle side, but convoluting this even more is probably a bad idea
             int dusttype;
 
-            if (!Main.rand.NextBool(3)) 
-                dusttype = Main.rand.NextFromList(DustID.Dirt, DustID.Stone, Main.rand.NextBool() ? DustID.Grass : DustID.GrassBlades, DustID.WoodFurniture, 
+            if (!Main.rand.NextBool(3))
+                dusttype = Main.rand.NextFromList(DustID.Dirt, DustID.Stone, Main.rand.NextBool() ? DustID.Grass : DustID.GrassBlades, DustID.WoodFurniture,
                     DustID.Sand, DustID.Mud, DustID.Snow, Dust.dustWater());
 
-            else if (!Main.rand.NextBool(3)) 
-                dusttype = Main.rand.NextFromList(DustID.Torch, DustID.GreenMoss, DustID.SlimeBunny, DustID.Copper, DustID.Iron, DustID.Silver, 
+            else if (!Main.rand.NextBool(3))
+                dusttype = Main.rand.NextFromList(DustID.Torch, DustID.GreenMoss, DustID.SlimeBunny, DustID.Copper, DustID.Iron, DustID.Silver,
                     DustID.Gold, DustID.Ice, DustID.Cloud, WorldGen.crimson ? DustID.Crimson : DustID.Corruption, DustID.Pot, DustID.DungeonBlue);
 
-            else dusttype = Main.rand.NextFromList(DustID.FoodPiece, DustID.CopperCoin, DustID.GoldCoin, DustID.Blood, DustID.GlowingMushroom, 
+            else dusttype = Main.rand.NextFromList(DustID.FoodPiece, DustID.CopperCoin, DustID.GoldCoin, DustID.Blood, DustID.GlowingMushroom,
                 DustID.Granite, DustID.Marble, DustID.Lihzahrd);
-            
+
             int desiredVanillaDustTexture = dusttype;
             int frameX = desiredVanillaDustTexture * 10 % 1000;
             int frameY = desiredVanillaDustTexture * 10 / 1000 * 30 + Main.rand.Next(3) * 10;

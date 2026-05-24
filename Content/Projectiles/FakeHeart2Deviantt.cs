@@ -1,5 +1,5 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -11,7 +11,7 @@ namespace Fargowiltas.Content.Projectiles
         public override string Texture => "Fargowiltas/Content/Projectiles/FakeHeartDeviantt";
 
         public override void SetStaticDefaults()
-        { 
+        {
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 7;
             ProjectileID.Sets.TrailingMode[Projectile.type] = 2;
         }

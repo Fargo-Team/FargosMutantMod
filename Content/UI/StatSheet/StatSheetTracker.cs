@@ -28,7 +28,7 @@ namespace Fargowiltas.Content.UI.StatSheet
         private static string IconPath(string key) => $"Fargowiltas/Assets/Textures/UI/{key}";
 
         private StatCategory FargoCreate(string key, Func<bool> condition = null) => StatCategory.Create(key, $"Mods.Fargowiltas.UI.StatSheet.{key}", IconPath($"{key}_Icon"), condition);
-        
+
 
         internal void AddFargoStats()
         {

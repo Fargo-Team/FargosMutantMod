@@ -54,7 +54,7 @@ namespace Fargowiltas.Content.Projectiles.Explosives
             int width = 150;
             int height = 50;
 
-            for (int x = -width/2; x <= width/2; x++)
+            for (int x = -width / 2; x <= width / 2; x++)
             {
                 for (int y = 0; y <= height; y++)
                 {
@@ -72,7 +72,7 @@ namespace Fargowiltas.Content.Projectiles.Explosives
                         continue;
 
                     FargoGlobalTile.ClearTileAndLiquid(xPosition, yPosition);
-                    if (y == height || Math.Abs(x) == width/2)
+                    if (y == height || Math.Abs(x) == width / 2)
                     {
                         WorldGen.PlaceTile(xPosition, yPosition, TileID.StoneSlab);
                     }
@@ -80,7 +80,7 @@ namespace Fargowiltas.Content.Projectiles.Explosives
                     {
                         WorldGen.PlaceLiquid(xPosition, yPosition, (byte)LiquidID.Water, byte.MaxValue);
                     }
-                    
+
                 }
             }
 

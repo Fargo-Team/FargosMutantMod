@@ -2,21 +2,21 @@
 using Terraria.ModLoader;
 
 namespace Fargowiltas.Content.Achievements
-{   
+{
     public class TreeTreasureAchievements
     {
         public class T1TreeTreasureAchievement : ModAchievement
         {
             public override string TextureName => "Fargowiltas/Content/Achievements/MutantAchievements";
-        
+
             public override int Index => 0;
-        
+
             public CustomFlagCondition Condition { get; private set; }
-        
+
             public override void SetStaticDefaults()
             {
                 Achievement.SetCategory(Terraria.Achievements.AchievementCategory.Collector);
-        
+
                 Condition = AddCondition("LumberjackTreeTreasures");
             }
             public override Position GetDefaultPosition() => new After("OBTAIN_HAMMER");
@@ -39,5 +39,5 @@ namespace Fargowiltas.Content.Achievements
             public override Position GetDefaultPosition() => new After("MASTERMIND");
         }
     }
-    
+
 }

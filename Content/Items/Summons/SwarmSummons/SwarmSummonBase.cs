@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using Fargowiltas.Content.NPCs;
+﻿using Fargowiltas.Content.NPCs;
 using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;
 using Terraria.Chat;
@@ -20,7 +20,7 @@ namespace Fargowiltas.Content.Items.Summons.SwarmSummons
         private readonly int maxSpawn; //energizer swarms are this size
         private readonly string spawnMessageKey;
         private readonly int material;
-        
+
         protected SwarmSummonBase(int npcType, string spawnMessageKey, int maxSpawn, int material)
         {
             this.npcType = npcType;

@@ -95,7 +95,7 @@ namespace Fargowiltas.Content.Projectiles.Explosives
 
             GetTiles(player, out int wallType, out int tileType, out int platformStyle, out bool moddedPlatform);
 
-            
+
 
             if (x == 10 * side || x == 1 * side)
             {
@@ -106,7 +106,7 @@ namespace Fargowiltas.Content.Projectiles.Explosives
                 //dont act on correct block above/below door, destroying them will break it
                 if ((y == -4 || y == 0) && tile.TileType == tileType)
                     return;
-                
+
                 if ((y == -1 || y == -2 || y == -3) && (tile.TileType == TileID.ClosedDoor || tile.TileType == TileID.OpenDoor))
                     return;
             }

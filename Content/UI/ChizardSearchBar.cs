@@ -14,7 +14,6 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI;
-using static Fargowiltas.Assets.Textures.FargoMutantAssets;
 
 namespace Fargowiltas.Content.UI
 {
@@ -41,7 +40,7 @@ namespace Fargowiltas.Content.UI
             Vector2 position = style.Position();
             //prepare for shader
             spriteBatch.End();
-            spriteBatch.Begin(SpriteSortMode.Immediate,  BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, RasterizerState.CullNone, null, Main.UIScaleMatrix);
+            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, RasterizerState.CullNone, null, Main.UIScaleMatrix);
             ArmorShaderData shader3 = GameShaders.Armor.GetShaderFromItemId(ItemID.SilverDye);
             shader3.Apply(null);
             spriteBatch.Draw(outlineTexture, position, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0);
@@ -81,13 +80,14 @@ namespace Fargowiltas.Content.UI
             Vector2 pos = Main.LocalPlayer.FargoMutant().LastInteractedChizard.ToWorldCoordinates();
             FargoUtils.TryGetTileEntityAs(tilepos.X, tilepos.Y, out ChestWizardTileEntity TE);
             //if too far or destroyed, disable ui
-            if (!Main.playerInventory || pos.Distance(Main.LocalPlayer.Center) > 100 || Main.tile[tilepos].TileType != ModContent.TileType<ChestWizardSheet>()){
+            if (!Main.playerInventory || pos.Distance(Main.LocalPlayer.Center) > 100 || Main.tile[tilepos].TileType != ModContent.TileType<ChestWizardSheet>())
+            {
                 FargoUI ui = FargoUIManager.Get<ChizardSearchBar>();
                 FargoUIManager.Close(ui);
                 SoundEngine.PlaySound(SoundID.MenuClose);
                 Main.LocalPlayer.FargoMutant().LastInteractedChizard = Vector2.Zero;
             }
-            
+
             if (ItemInsertVisual.IsMouseHovering)
             {
                 Main.LocalPlayer.cursorItemIconEnabled = true;
@@ -140,13 +140,13 @@ namespace Fargowiltas.Content.UI
                     HandleGiveItem(emptySlot.X, emptySlot.Y, ItemInsert.Item.stack);
                 }
             }
-            
+
             base.Update(gameTime);
         }
         public void HandleGiveItem(int chestIndex, int itemslot, int amount)
         {
             Chest chest = Main.chest[chestIndex];
-            Chest.VisualizeChestTransfer(Main.LocalPlayer.Center, new Vector2(chest.x, chest.y).ToWorldCoordinates() + new Vector2(8,8), ItemInsert.Item, amount);
+            Chest.VisualizeChestTransfer(Main.LocalPlayer.Center, new Vector2(chest.x, chest.y).ToWorldCoordinates() + new Vector2(8, 8), ItemInsert.Item, amount);
             if (chest.item[itemslot].type == ItemID.None)
             {
                 chest.item[itemslot] = ItemInsert.Item.Clone();
@@ -158,7 +158,7 @@ namespace Fargowiltas.Content.UI
                 ItemInsert.Item.stack -= amount;
                 if (ItemInsert.Item.stack <= 0) ItemInsert.Item.TurnToAir();
             }
-            
+
             if (Main.netMode == NetmodeID.MultiplayerClient)
             {
                 NetMessage.SendData(MessageID.SyncChestItem, -1, -1, null, chestIndex, itemslot);
@@ -171,17 +171,17 @@ namespace Fargowiltas.Content.UI
             //52 is item slot width, 8 is padding (so 16 is boths sides padding)
             panel = new UIPanel();
             panel.Height.Set(220, 0);
-            panel.Width.Set(325+52+16, 0);
+            panel.Width.Set(325 + 52 + 16, 0);
             panel.Left.Set(6, 0);
             panel.Top.Set(32, 0);
             panel.BackgroundColor = new Color(148, 62, 82) * 0.8f;
             panel.Left.Set(-140, 0.5f);
             panel.Top.Set(50, 0.5f);
-            
+
             search = new UISearchBar(400 - 8, 26);
             search.Width.Set(300 - 8, 0);
             search.Top.Set(0, 0);
-            search.Left.Set(52+8, 0);
+            search.Left.Set(52 + 8, 0);
             search.BackPanel.BackgroundColor = new Color(104, 52, 52);
             search.OnTextChange += SearchBar_OnTextChange;
 
@@ -190,7 +190,7 @@ namespace Fargowiltas.Content.UI
             clearButton.Top.Set(2, 0);
             clearButton.OnLeftClick += ClearButton_OnLeftClick;
             //search.Append(clearButton);
-            
+
 
             closeButton = new();
             closeButton.OnLeftClick += CloseButton_OnLeftClick;
@@ -204,7 +204,7 @@ namespace Fargowiltas.Content.UI
                 selectText[i] = new UIPanel();
                 UIPanel spanel = selectText[i];
                 spanel.Height.Set(26, 0);
-                spanel.Top.Set((26 + 8)*(i+1), 0);
+                spanel.Top.Set((26 + 8) * (i + 1), 0);
                 spanel.Width.Set(search.Width.Pixels, 0);
                 spanel.Left.Set(search.Left.Pixels, 0);
                 spanel.BackgroundColor = new Color(104, 52, 52);
@@ -213,7 +213,7 @@ namespace Fargowiltas.Content.UI
                 panel.Append(selectText[i]);
 
                 ItemShow[i] = new UIText("");
-                
+
                 ItemShow[i].HAlign = 0f;
                 ItemShow[i].VAlign = 0.6f;
                 spanel.Append(ItemShow[i]);
@@ -226,7 +226,7 @@ namespace Fargowiltas.Content.UI
             ItemInsertVisual.BackgroundColor = new Color(104, 52, 52);
             ItemInsertVisual.Append(ItemInsert);
             ItemInsert.Opacity = 0;
-            
+
             Append(panel);
             panel.Append(search);
             panel.Append(closeButton);
@@ -262,7 +262,7 @@ namespace Fargowiltas.Content.UI
             FargoUtils.TryGetTileEntityAs(tilepos.X, tilepos.Y, out ChestWizardTileEntity entity);
             Chest.VisualizeChestTransfer(new Vector2(chest.x, chest.y).ToWorldCoordinates(), Main.LocalPlayer.Center, item, amount);
             Main.LocalPlayer.QuickSpawnItem(Main.LocalPlayer.GetSource_TileInteraction(tilepos.X, tilepos.Y), item, amount);
-            
+
             item.stack -= amount;
             if (item.stack == 0) item.TurnToAir();
             chest.frame = 2;
@@ -320,15 +320,15 @@ namespace Fargowiltas.Content.UI
             int[] chestWithItem = [-1, -1, -1, -1, -1];
             int[] indexOfItem = [-1, -1, -1, -1, -1];
             float[] scoreOfItem = [-1, -1, -1, -1, -1];
-            
+
             for (int i = 0; i < Main.chest.Length; i++)
             {
                 Chest chest = Main.chest[i];
-                if (chest == null || TileLoader.IsLockedChest(chest.x, chest.y, Main.tile[chest.x,chest.y].TileType) || Chest.IsLocked(chest.x,chest.y)) continue;
-                
+                if (chest == null || TileLoader.IsLockedChest(chest.x, chest.y, Main.tile[chest.x, chest.y].TileType) || Chest.IsLocked(chest.x, chest.y)) continue;
+
                 if (new Point(chest.x, chest.y).ToWorldCoordinates().Distance(pos) < 1000)
                 {
-                    
+
                     for (int j = 0; j < chest.item.Length; j++)
                     {
                         float score = 0;
@@ -340,14 +340,14 @@ namespace Fargowiltas.Content.UI
                             {
                                 if (name.ToLower().Contains(currentText.ToLower().Substring(0, c)))
                                 {
-                                    score = c + (c/(float)name.Length);
+                                    score = c + (c / (float)name.Length);
                                     break;
                                 }
                             }
                         }
                         for (int s = 0; s < scoreOfItem.Length; s++)
                         {
-                            
+
                             if (score > scoreOfItem[s] && (scoreOfItem[s] == -1 || !scoreOfItem.Contains(-1)) && score != 0)
                             {
                                 indexOfItem[s] = j;
@@ -383,7 +383,7 @@ namespace Fargowiltas.Content.UI
                     }
                     string name = item.AffixName();
                     if (name.Length > 28) name = name.Substring(0, 28);
-                    text += ":" + item.type + "] " + "[c/" + ItemRarity.GetColor(item.rare).Hex3() + ":"+ name+"]";
+                    text += ":" + item.type + "] " + "[c/" + ItemRarity.GetColor(item.rare).Hex3() + ":" + name + "]";
                     ItemShow[i].SetText(text);
                 }
                 else

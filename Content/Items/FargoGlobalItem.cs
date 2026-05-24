@@ -1,12 +1,9 @@
 ﻿using Fargowiltas.Common.Configs;
-using Fargowiltas.Common.Systems;
 using Fargowiltas.Common.Systems.Collections;
-using Fargowiltas.Content.Items.CaughtNPCs;
 using Fargowiltas.Content.Items.Summons.Abom;
 using Fargowiltas.Content.Items.Tiles;
 using Fargowiltas.Content.NPCs;
 using Fargowiltas.Content.UI.Emotes;
-using Fargowiltas.Utilities.Extensions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -332,14 +329,14 @@ namespace Fargowiltas.Content.Items
                     shimmerText = $"[s:Fargowiltas/Shimmer] [c/FFC0CB:{ExpandedTooltipLoc("Shimmerable")}] [i:{shimmerItem}] [c/FFC0CB:{ContentSamples.ItemsByType[shimmerItem].Name}]";
                 else if (shimmerItem <= 0 && shimmerFromItem > 0)
                     shimmerText = $"[s:Fargowiltas/Shimmer] [c/FFC0CB:{ExpandedTooltipLoc("ShimmerableFrom")}] [i:{shimmerFromItem}] [c/FFC0CB:{ContentSamples.ItemsByType[shimmerFromItem].Name}]";
-                else if (shimmerItem > 0 && shimmerFromItem > 0 )
+                else if (shimmerItem > 0 && shimmerFromItem > 0)
                 {
                     if (shimmerItem == shimmerFromItem)
                         shimmerText = $"[s:Fargowiltas/Shimmer] [c/FFC0CB:{ExpandedTooltipLoc("ShimmerableBoth")}] [i:{shimmerItem}] [c/FFC0CB:{ContentSamples.ItemsByType[shimmerItem].Name}]";
                     else
                         shimmerText = $"[s:Fargowiltas/Shimmer] [c/FFC0CB:{ExpandedTooltipLoc("Shimmerable")}] [i:{shimmerItem}] [c/FFC0CB:{ContentSamples.ItemsByType[shimmerItem].Name}], [c/FFC0CB:{ExpandedTooltipLoc("ShimmerableFrom")}] [i:{shimmerFromItem}] [c/FFC0CB:{ContentSamples.ItemsByType[shimmerFromItem].Name}]";
                 }
-                    
+
                 if (shimmerText.Length > 0)
                 {
                     line = new TooltipLine(Mod, "TooltipShimmerable", shimmerText);
@@ -591,7 +588,7 @@ namespace Fargowiltas.Content.Items
         public override bool? CanConsumeBait(Player player, Item bait)
         {
             //if (FargoServerConfig.Instance.UnlimitedAmmo && bait.stack >= 30)
-                //return false;
+            //return false;
 
             return base.CanConsumeBait(player, bait);
         }

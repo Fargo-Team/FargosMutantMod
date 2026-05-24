@@ -63,7 +63,7 @@ namespace Fargowiltas.Content.Projectiles
                         DamageMultiplier = config.EnemyDamage;
                 }
             }
-                
+
             if (projectile.bobber && projectile.owner == Main.myPlayer && FargoServerConfig.Instance.ExtraLures && source is EntitySource_ItemUse)
             {
                 int split;
@@ -94,7 +94,7 @@ namespace Fargowiltas.Content.Projectiles
 
 
                 //if (Main.player[projectile.owner].HasBuff(BuffID.Fishing))
-                    //split++;
+                //split++;
 
                 if (split > 1)
                     SplitProj(projectile, split);
@@ -199,7 +199,7 @@ namespace Fargowiltas.Content.Projectiles
                     return color.Value * FargoClientConfig.Instance.TransparentFriendlyProjectiles;
                 }
                 lightColor *= projectile.Opacity * FargoClientConfig.Instance.TransparentFriendlyProjectiles;
-                return lightColor;             
+                return lightColor;
             }
 
             return base.GetAlpha(projectile, lightColor);
@@ -256,7 +256,7 @@ namespace Fargowiltas.Content.Projectiles
             {
                 return false;
             }
-            
+
             return OkayToDestroyTile(tile);
         }
 

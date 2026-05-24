@@ -63,7 +63,7 @@ namespace Fargowiltas.Content.Items.Tiles
 
             LocalizedText name = CreateMapEntryName();
             AddMapEntry(new(200, 200, 200), name);
-           
+
             #region Counts as
             AdjTiles =
                 [

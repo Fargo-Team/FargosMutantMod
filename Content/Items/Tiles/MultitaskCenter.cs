@@ -67,27 +67,27 @@ namespace Fargowiltas.Content.Items.Tiles
             TileID.Sets.DisableSmartCursor[Type] = true;
 
             TileObjectData.newTile.CopyFrom(TileObjectData.Style3x3);
-            TileObjectData.newTile.Width = 4;           
+            TileObjectData.newTile.Width = 4;
             TileObjectData.newTile.CoordinateHeights = [16, 16, 16];
             TileObjectData.addTile(Type);
 
             LocalizedText name = CreateMapEntryName();
-            AddMapEntry(new Color(200, 200, 200), name);         
+            AddMapEntry(new Color(200, 200, 200), name);
 
             //counts as
-            AdjTiles = 
+            AdjTiles =
                 [
-                TileID.WorkBenches, 
-                TileID.HeavyWorkBench, 
-                TileID.Furnaces, 
-                TileID.Anvils, 
-                TileID.Bottles, 
-                TileID.Sawmill, 
-                TileID.Loom, 
-                TileID.Tables, 
-                TileID.Chairs, 
-                TileID.CookingPots, 
-                TileID.Sinks, 
+                TileID.WorkBenches,
+                TileID.HeavyWorkBench,
+                TileID.Furnaces,
+                TileID.Anvils,
+                TileID.Bottles,
+                TileID.Sawmill,
+                TileID.Loom,
+                TileID.Tables,
+                TileID.Chairs,
+                TileID.CookingPots,
+                TileID.Sinks,
                 TileID.Kegs
                 ];
             TileID.Sets.CountsAsWaterSource[Type] = true;
@@ -97,7 +97,7 @@ namespace Fargowiltas.Content.Items.Tiles
         }
 
         public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) => true;
-        
+
 
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
         {

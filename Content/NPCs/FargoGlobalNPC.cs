@@ -59,7 +59,6 @@ namespace Fargowiltas.Content.NPCs
         internal bool PillarSpawn = true;
         internal bool SwarmActive;
         internal bool PandoraActive;
-        internal bool NoLoot;
         //internal bool DestroyerSwarm = false;
 
         public static int eaterBoss = -1;
@@ -542,7 +541,7 @@ namespace Fargowiltas.Content.NPCs
         }
         public override void EditSpawnRate(Player player, ref int spawnRate, ref int maxSpawns)
         {
-            if ((Main.CurrentFrameFlags.AnyActiveBossNPC || FargoGlobalNPC.eaterBoss != -1) && FargoServerConfig.Instance.BossZen && Main.npc.Any(n => n.CountsAsBoss() && player.DistanceSQ(n.Center) < 6000 * 6000))
+            if (FargoServerConfig.Instance.BossZen && Main.npc.Any(n => n.CountsAsBoss() && player.DistanceSQ(n.Center) < 6000 * 6000))
             {
                 maxSpawns = 0;
                 return;
@@ -860,7 +859,7 @@ namespace Fargowiltas.Content.NPCs
                     break;
                 // Avoid lunar event with cultist summon
                 case NPCID.CultistBoss:
-                    if (!PillarSpawn && NPC.LunarApocalypseIsUp)
+                    if (!PillarSpawn && (NPC.LunarApocalypseIsUp || !NPC.downedAncientCultist))
                     {// Don't run the block that disables lunar event if it was up prior
                         PillarSpawn = true;
                     }
@@ -1236,30 +1235,9 @@ namespace Fargowiltas.Content.NPCs
         }
 
         // Only runs on host
-        public override bool ModifyDeathMessage(NPC npc, ref NetworkText customText, ref Color color)
+        /*public override bool ModifyDeathMessage(NPC npc, ref NetworkText customText, ref Color color)
         {
-            if (npc.type == NPCID.CultistBoss && !PillarSpawn)
-            {
-                NPC.LunarApocalypseIsUp = false;
-                NPC.TowerActiveNebula = false;
-                NPC.TowerActiveSolar = false;
-                NPC.TowerActiveStardust = false;
-                NPC.TowerActiveVortex = false;
-                NPC.ShieldStrengthTowerNebula = 0;
-                NPC.ShieldStrengthTowerSolar = 0;
-                NPC.ShieldStrengthTowerStardust = 0;
-                NPC.ShieldStrengthTowerVortex = 0;
-                foreach (NPC n in Main.ActiveNPCs)
-                {
-                    if (n.type is NPCID.LunarTowerNebula or NPCID.LunarTowerSolar or NPCID.LunarTowerStardust or NPCID.LunarTowerVortex)
-                    {
-                        n.active = false;
-                        n.netUpdate = true;
-                    }
-                }
-                NetMessage.SendData(MessageID.UpdateTowerShieldStrengths);
-            }
             return base.ModifyDeathMessage(npc, ref customText, ref color);
-        }
+        }*/
     }
 }

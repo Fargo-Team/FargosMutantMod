@@ -1,7 +1,6 @@
 ﻿using Fargowiltas.Common.Configs;
 using Fargowiltas.Common.Systems;
 using Fargowiltas.Common.Systems.Collections;
-using Fargowiltas.Content.Items;
 using Fargowiltas.Content.Items.CaughtNPCs;
 using Fargowiltas.Content.Items.Misc;
 using Fargowiltas.Content.Items.Summons.Abom;
@@ -12,8 +11,6 @@ using Fargowiltas.Content.UI;
 using Fargowiltas.Content.UI.StatSheet;
 using Fargowiltas.Utilities.Extensions;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Graphics;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -27,7 +24,6 @@ using Terraria.GameContent.Events;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
-using Terraria.UI.Chat;
 using static Fargowiltas.Content.Items.Tiles.EnchantedTreeTileEntity;
 
 [assembly: InternalsVisibleTo("FargowiltasSouls")]
@@ -93,24 +89,6 @@ namespace Fargowiltas
 
         public List<Stat> ModStats;
         public List<PermaUpgrade> PermaUpgrades;
-
-        public static Dictionary<int, int> AnglerPityAmounts = new(){
-            {ItemID.HighTestFishingLine, 5},
-            {ItemID.TackleBox, 9},
-            {ItemID.AnglerEarring, 13},
-            {ItemID.GoldenBugNet, 26},
-            {ItemID.SuperAbsorbantSponge, 23},
-            {ItemID.FishingBobber, 7},
-            {ItemID.FishermansGuide, 16},
-            {ItemID.Sextant, 17},
-            {ItemID.WeatherRadio, 18},
-            {ItemID.HoneyAbsorbantSponge, 21},
-            {ItemID.BottomlessHoneyBucket, 21},
-            {ItemID.FinWings, 45},
-            {ItemID.HotlineFishingHook, 43},
-        };
-
-        public static bool BetsyEggUsed;
 
         internal static Fargowiltas Instance;
 
@@ -181,179 +159,12 @@ namespace Fargowiltas
             SetBonusKey = KeybindLoader.RegisterKeybind(this, "SetBonus", "V");
 
             CaughtNPCItem.RegisterItems();
-
-            // DD2 Banner Effect hack
-            ItemID.Sets.BannerStrength = ItemID.Sets.Factory.CreateCustomSet(new ItemID.BannerEffect(1f));
-
-            BetsyEggUsed = false;
-
-            On_DD2Event.DropMedals += BetsyMedals;
-
-            On_Item.GetShimmered += FixRecipeGroupsShimmerInteraction;
-
-            On_Main.DoUpdateInWorld += UpdateEnchantedTreeFruit;
-            On_Main.DrawPlayers_AfterProjectiles += DrawEnchantedTrees;
-            On_Main.UpdateTime_StartDay += UpdatePortableSundialCooldown_Day;
-            On_Main.UpdateTime_StartNight += UpdatePortableSundialCooldown_Night;
-
-            On_NPC.CountKillForBannersAndDropThem += PreventBannerDrop;
-
-            On_Player.AddBuff += AddBuff;
-            On_Player.DoCommonDashHandle += OnVanillaDash;
-            On_Player.DropTombstone += DisableTombstones;
-            On_Player.GetAnglerReward_Bait += AnglerPitty;
-            On_Player.HasUnityPotion += OnHasUnityPotion;
-            On_Player.ItemCheck_CheckCanUse += AllowUseSummons;
-            On_Player.ItemCheck_UseBossSpawners += AllowUseSummons2EvilEdition;
-            On_Player.ItemCheck_UseEventItems += AllowUseEventSummons;
-            On_Player.KeyDoubleTap += OnVanillaDoubleTapSetBonus;
-            On_Player.KeyHoldDown += OnVanillaHoldSetBonus;
-            On_Player.SummonItemCheck += AllowMultipleBosses;
-            On_Player.TakeUnityPotion += OnTakeUnityPotion;
-
-            On_Recipe.FindRecipes += FindRecipes_ElementalAssemblerGraveyardHack;
-
-            On_SceneMetrics.ExportTileCountsToMain += ExportTileCountsToMain_PurityTotemHack;
-
-            On_WorldGen.CountTileTypesInArea += CountTileTypesInArea_PurityTotemHack;
-
-            On_ChatManager.DrawColorCodedStringShadow_SpriteBatch_DynamicSpriteFont_TextSnippetArray_Vector2_Color_float_Vector2_Vector2_float_float += SymbolsFix;
-        }
-
-        private void SymbolsFix(On_ChatManager.orig_DrawColorCodedStringShadow_SpriteBatch_DynamicSpriteFont_TextSnippetArray_Vector2_Color_float_Vector2_Vector2_float_float orig, SpriteBatch spriteBatch, DynamicSpriteFont font, IEnumerable<TextSnippet> snippets, Vector2 position, Color shadowColor, float rotation, Vector2 origin, Vector2 scale, float maxWidth, float spread = 2f)
-        {
-            SymbolTagHandler.SymbolSnippet.ShouldDraw = false;
-            KeywordTagHandler.KeywordSnippet.ShouldDraw = false;
-            NPCIconTagHandler.NPCIconSnippet.ShouldDraw = false;
-            orig(spriteBatch, font, snippets.ToArray(), position, shadowColor, rotation, origin, scale, maxWidth, spread);
-            NPCIconTagHandler.NPCIconSnippet.ShouldDraw = true;
-            KeywordTagHandler.KeywordSnippet.ShouldDraw = true;
-            SymbolTagHandler.SymbolSnippet.ShouldDraw = true;
-        }
-        private static Item[] GetWormholes(Player self)
-        {
-            var wormholes = self.inventory
-                .Concat(self.bank.item)
-                .Concat(self.bank2.item)
-                .Concat(self.bank3.item);
-            if (self.useVoidBag())
-            {
-                wormholes = wormholes.Concat(self.bank4.item);
-            }
-
-            return wormholes.Where(x => x.type == ItemID.WormholePotion && x.stack > 0).ToArray();
-        }
-
-        private static void OnTakeUnityPotion(On_Player.orig_TakeUnityPotion orig, Player self)
-        {
-            var wormholes = GetWormholes(self);
-            if (wormholes.Length == 0)
-                return;
-            Item item = wormholes.First();
-            if (ItemLoader.ConsumeItem(item, self))
-                item.stack--;
-            if (item.stack <= 0)
-                item.TurnToAir();
-        }
-
-        private static void DisableTombstones(On_Player.orig_DropTombstone orig, Player self, long coinsOwned, NetworkText deathText, int hitDirection)
-        {
-            if (FargoServerConfig.Instance.DisableTombstones)
-                return;
-
-            orig(self, coinsOwned, deathText, hitDirection);
-        }
-
-        private static bool OnHasUnityPotion(On_Player.orig_HasUnityPotion orig, Player self)
-        {
-            return GetWormholes(self).Length > 0;
-        }
-
-        private static void FindRecipes_ElementalAssemblerGraveyardHack(
-            Terraria.On_Recipe.orig_FindRecipes orig,
-            bool canDelayCheck)
-        {
-            bool oldZoneGraveyard = Main.LocalPlayer.ZoneGraveyard;
-
-            if (!Main.gameMenu && Main.LocalPlayer.active && Main.LocalPlayer.GetModPlayer<FargoPlayer>().ElementalAssemblerNearby > 0)
-                Main.LocalPlayer.ZoneGraveyard = true;
-
-            orig(canDelayCheck);
-
-            Main.LocalPlayer.ZoneGraveyard = oldZoneGraveyard;
-        }
-
-        //for town npc housing check, independent from player biome
-        private static void CountTileTypesInArea_PurityTotemHack(
-            Terraria.On_WorldGen.orig_CountTileTypesInArea orig,
-            int[] tileTypeCounts, int startX, int endX, int startY, int endY)
-        {
-            orig(tileTypeCounts, startX, endX, startY, endY);
-
-            if (tileTypeCounts[ModContent.TileType<PurityTotemSheet>()] > 0)
-            {
-                const int sunflowerWeight = 5;
-                tileTypeCounts[TileID.Sunflower] += PurityTotemSheet.TILES_NEGATED / sunflowerWeight;
-            }
-        }
-
-        //for current biome
-        private void ExportTileCountsToMain_PurityTotemHack(
-            Terraria.On_SceneMetrics.orig_ExportTileCountsToMain orig,
-            SceneMetrics self)
-        {
-            orig(self);
-
-            //for visible biome effect
-            if (self.GetTileCount((ushort)ModContent.TileType<PurityTotemSheet>()) > 0)
-            {
-                const int tilesNegated = PurityTotemSheet.TILES_NEGATED;
-
-                //reduce biome counts, floor at zero
-                self.BloodTileCount = Math.Max(self.BloodTileCount - tilesNegated, 0);
-                self.EvilTileCount = Math.Max(self.EvilTileCount - tilesNegated, 0);
-                self.GraveyardTileCount = Math.Max(self.GraveyardTileCount - tilesNegated, 0);
-
-                //reenable if disabled by graveyard
-                if (self.GetTileCount(TileID.Sunflower) > 0)
-                    self.HasSunflower = true;
-            }
         }
 
 
 
         public override void Unload()
         {
-            On_DD2Event.DropMedals -= BetsyMedals;
-
-            On_Item.GetShimmered -= FixRecipeGroupsShimmerInteraction;
-
-            On_Main.DoUpdateInWorld -= UpdateEnchantedTreeFruit;
-            On_Main.DrawPlayers_AfterProjectiles -= DrawEnchantedTrees;
-
-            On_NPC.CountKillForBannersAndDropThem -= PreventBannerDrop;
-
-            On_Player.AddBuff -= AddBuff;
-            On_Player.DoCommonDashHandle -= OnVanillaDash;
-            On_Player.DropTombstone -= DisableTombstones;
-            On_Player.HasUnityPotion -= OnHasUnityPotion;
-            On_Player.ItemCheck_CheckCanUse -= AllowUseSummons;
-            On_Player.ItemCheck_UseBossSpawners -= AllowUseSummons2EvilEdition;
-            On_Player.ItemCheck_UseEventItems -= AllowUseEventSummons;
-            On_Player.KeyDoubleTap -= OnVanillaDoubleTapSetBonus;
-            On_Player.KeyHoldDown -= OnVanillaHoldSetBonus;
-            On_Player.SummonItemCheck -= AllowMultipleBosses;
-            On_Player.TakeUnityPotion -= OnTakeUnityPotion;
-
-            On_Recipe.FindRecipes -= FindRecipes_ElementalAssemblerGraveyardHack;
-
-            On_SceneMetrics.ExportTileCountsToMain -= ExportTileCountsToMain_PurityTotemHack;
-
-            On_WorldGen.CountTileTypesInArea -= CountTileTypesInArea_PurityTotemHack;
-
-
-            On_ChatManager.DrawColorCodedStringShadow_SpriteBatch_DynamicSpriteFont_TextSnippetArray_Vector2_Color_float_Vector2_Vector2_float_float -= SymbolsFix;
-
             summonTracker = null;
             dialogueTracker = null;
             symbolTracker = null;
@@ -365,8 +176,6 @@ namespace Fargowiltas
             PotionTogglerKey = null;
             DashKey = null;
             SetBonusKey = null;
-
-            BetsyEggUsed = false;
 
             Instance = null;
         }
@@ -678,6 +487,9 @@ namespace Fargowiltas
             ChangeChizardHat,
             AddPotionToBag,
             SyncPortableSundial,
+            SyncOwnedItems,
+            SyncInactiveNPC,
+            SyncWorldTime,
         }
 
         public override void HandlePacket(BinaryReader reader, int whoAmI)
@@ -697,7 +509,7 @@ namespace Fargowiltas
                         break;
 
                     // Abominationn clear events
-                    case PacketID.AbomClearEvent: // 2:
+                    case PacketID.AbomClearEvent:
                         {
                             if (Main.netMode == NetmodeID.Server)
                             {
@@ -712,11 +524,9 @@ namespace Fargowiltas
 
                     // Angler reset
                     case PacketID.AnglerReset:
+                        if (Main.netMode == NetmodeID.Server)
                         {
-                            if (Main.netMode == NetmodeID.Server)
-                            {
-                                Main.AnglerQuestSwap();
-                            }
+                            Main.AnglerQuestSwap();
                         }
                         break;
 
@@ -731,12 +541,10 @@ namespace Fargowiltas
                         break;
 
                     //client requested server to update world
-                    case PacketID.ClientUpdateWorld: // 6:
+                    case PacketID.ClientUpdateWorld:
+                        if (Main.netMode == NetmodeID.Server)
                         {
-                            if (Main.netMode == NetmodeID.Server)
-                            {
-                                NetMessage.SendData(MessageID.WorldData);
-                            }
+                            NetMessage.SendData(MessageID.WorldData);
                         }
                         break;
 
@@ -754,8 +562,8 @@ namespace Fargowiltas
                     case PacketID.SyncBattleCry:
                         {
                             int p = reader.ReadInt32();
-                            Main.player[p].GetModPlayer<FargoPlayer>().BattleCry = reader.ReadBoolean();
-                            Main.player[p].GetModPlayer<FargoPlayer>().CalmingCry = reader.ReadBoolean();
+                            Main.player[p].FargoMutant().BattleCry = reader.ReadBoolean();
+                            Main.player[p].FargoMutant().CalmingCry = reader.ReadBoolean();
                         }
                         break;
 
@@ -834,7 +642,7 @@ namespace Fargowiltas
                         {
                             if (Main.dedServ)
                             {
-                                BetsyEggUsed = true;
+                                FargowiltasDetours.BetsyEggUsed = true;
                                 Item egg = new Item(ModContent.ItemType<BetsyEgg>());
                                 Player player = Main.player[reader.ReadInt32()];
                                 Point standPos = new Point(reader.ReadInt32(), reader.ReadInt32());
@@ -844,7 +652,7 @@ namespace Fargowiltas
                                 NPC.waveKills = 220;
                                 DD2Event.CheckProgress(NPCID.DD2GoblinT3);
                                 player.QuickSpawnItem(egg.GetSource_FromThis(), ItemID.DD2EnergyCrystal, (int)(140f * NPC.GetBalance())); // give all missing crystals
-                                BetsyEggUsed = false;
+                                FargowiltasDetours.BetsyEggUsed = false;
                                 NetMessage.SendData(MessageID.WorldData);
                             }
                         }
@@ -953,6 +761,89 @@ namespace Fargowiltas
                             }
                         }
                         break;
+                    case PacketID.SyncOwnedItems:
+                        if (Main.netMode == NetmodeID.Server)
+                        {
+                            int listCount = reader.ReadInt32();
+                            List<int> list = new(listCount);
+                            bool capture = false;
+                            List<int> listBack = [];
+                            for (int i = 0; i < listCount; i++)
+                            {
+                                int item = reader.ReadInt32();
+                                list.Insert(i, item);
+                                foreach (Player p in Main.ActivePlayers)
+                                {
+                                    if (!capture && p.whoAmI != whoAmI)
+                                    {
+                                        capture = true;
+                                        listBack = p.FargoMutant().ItemHasBeenOwned.GetTrueIndexes();
+                                    }
+                                    Main.player[whoAmI].FargoMutant().ItemHasBeenOwned[item] = true;
+                                }
+                            }
+
+                            if (list.Count != 0)
+                            {
+                                ModPacket syncOthers = GetPacket();
+                                syncOthers.Write((byte)PacketID.SyncOwnedItems);
+                                syncOthers.Write((byte)whoAmI);
+                                syncOthers.Write(listCount);
+                                for (int i = 0; i < listCount; i++)
+                                {
+                                    syncOthers.Write(list[i]);
+                                }
+                                syncOthers.Send(-1, whoAmI);
+                            }
+
+
+                            if (capture && listBack.Count != 0)
+                            {
+                                ModPacket syncBack = GetPacket();
+                                syncBack.Write((byte)PacketID.SyncOwnedItems);
+                                syncBack.Write((byte)Main.myPlayer);
+                                syncBack.Write(listBack.Count);
+                                for (int i = 0; i < listBack.Count; i++)
+                                {
+                                    syncBack.Write(listBack[i]);
+                                }
+                                syncBack.Send(whoAmI);
+                            }
+                        }
+                        else
+                        {
+                            int index = reader.ReadByte();
+                            int listCount = reader.ReadInt32();
+                            for (int i = 0; i < listCount; i++)
+                            {
+                                int item = reader.ReadInt32();
+                                Main.LocalPlayer.FargoMutant().ItemHasBeenOwned[item] = true;
+                                if (index != Main.maxPlayers)
+                                {
+                                    Main.player[index].FargoMutant().ItemHasBeenOwned[item] = true;
+                                }
+                            }
+                        }
+                        break;
+                    case PacketID.SyncInactiveNPC:
+                        {
+                            byte index = reader.ReadByte();
+                            Main.npc[index].active = false;
+                            NetMessage.SendData(MessageID.SyncNPC, -1, whoAmI, null, index);
+                        }
+                        break;
+                    case PacketID.SyncWorldTime:
+                        {
+                            Main.time = reader.ReadInt64();
+                            if (Main.netMode == NetmodeID.Server)
+                            {
+                                ModPacket syncOthersTime = GetPacket();
+                                syncOthersTime.Write((byte)PacketID.SyncWorldTime);
+                                syncOthersTime.Write(Main.time);
+                                syncOthersTime.Send(-1, whoAmI);
+                            }
+                        }
+                        break;
                     default:
                         break;
                 }
@@ -972,7 +863,7 @@ namespace Fargowiltas
             || BirthdayParty.PartyIsUp
             || DD2Event.Ongoing
             || Sandstorm.Happening
-            || (NPC.downedTowers && (NPC.LunarApocalypseIsUp || NPC.ShieldStrengthTowerNebula >= 0 || NPC.ShieldStrengthTowerSolar >= 0 || NPC.ShieldStrengthTowerStardust >= 0 || NPC.ShieldStrengthTowerVortex >= 0))
+            || NPC.LunarApocalypseIsUp
             || ModEventActiveFuncs.Any(f => f.Invoke());
 
         internal static bool TryClearEvents()
@@ -1041,25 +932,29 @@ namespace Fargowiltas
                     FargoUtils.PrintLocalization("MessageInfo.CancelSandstorm", new Color(175, 75, 255));
                 }
 
-                if (NPC.downedTowers && (NPC.LunarApocalypseIsUp || NPC.TowerActiveNebula || NPC.ShieldStrengthTowerNebula >= 0 || NPC.TowerActiveSolar || NPC.ShieldStrengthTowerSolar >= 0 || NPC.TowerActiveStardust || NPC.ShieldStrengthTowerStardust >= 0 || NPC.TowerActiveVortex || NPC.ShieldStrengthTowerVortex >= 0))
+                // Keep in mind, only tower strengths are netsynced. It is best this way to avoid unnecessary netpackets
+                if (NPC.downedTowers && NPC.LunarApocalypseIsUp)
                 {
-                    NPC.LunarApocalypseIsUp = false;
-                    NPC.TowerActiveNebula = false;
-                    NPC.TowerActiveSolar = false;
-                    NPC.TowerActiveStardust = false;
-                    NPC.TowerActiveVortex = false;
-                    NPC.ShieldStrengthTowerNebula = 0;
-                    NPC.ShieldStrengthTowerSolar = 0;
-                    NPC.ShieldStrengthTowerStardust = 0;
-                    NPC.ShieldStrengthTowerVortex = 0;
+                    NPC.LunarApocalypseIsUp =
+                        NPC.TowerActiveSolar =
+                        NPC.TowerActiveVortex =
+                        NPC.TowerActiveNebula =
+                        NPC.TowerActiveStardust = false;
+
+                    NPC.ShieldStrengthTowerSolar =
+                        NPC.ShieldStrengthTowerVortex =
+                        NPC.ShieldStrengthTowerNebula =
+                        NPC.ShieldStrengthTowerStardust = 0;
+                    NetMessage.SendData(MessageID.UpdateTowerShieldStrengths);
 
                     // Purge all towers
                     foreach (NPC n in Main.ActiveNPCs)
                     {
                         if (n.type is NPCID.LunarTowerNebula or NPCID.LunarTowerSolar or NPCID.LunarTowerStardust or NPCID.LunarTowerVortex)
                         {
-                            n.active = false;
-                            n.netUpdate = true;
+                            // This makes them automatically deactivate and netsync in AI
+                            n.ai[0] = 3f;
+                            n.ai[1] = 59f;
                         }
                     }
                     FargoUtils.PrintLocalization("MessageInfo.CancelLunarEvent", new Color(175, 75, 255));
@@ -1164,347 +1059,6 @@ namespace Fargowiltas
             }
 
             return 200;
-        }
-        private static void OnVanillaDash(Terraria.On_Player.orig_DoCommonDashHandle orig, Terraria.Player player, out int dir, out bool dashing, Player.DashStartAction dashStartAction)
-        {
-            if (FargoClientConfig.Instance.DoubleTapDashDisabled)
-            {
-                player.dashTime = 0;
-                /*
-                if (ModLoader.TryGetMod("CalamityMod", out Mod calamity))
-                {
-                    Main.NewText(calamity);
-                    if (calamity.TryFind("CalamityPlayer", out ModPlayer modPlayer))
-                    {
-                        FieldInfo dashTimeMod = modPlayer.GetType().GetField("dashTimeMod");
-                        Main.NewText(dashTimeMod.Name);
-                        if (dashTimeMod != null)
-                            dashTimeMod.SetValue(modPlayer, 0);
-                    }
-                }
-                */
-            }
-
-
-            orig.Invoke(player, out dir, out dashing, dashStartAction);
-
-            if (player.whoAmI == Main.myPlayer && DashKey.JustPressed && !player.CCed)
-            {
-                InputManager modPlayer = player.GetModPlayer<InputManager>();
-                if (player.controlRight && player.controlLeft)
-                {
-                    dir = modPlayer.latestXDirPressed;
-                }
-                else if (player.controlRight)
-                {
-                    dir = 1;
-                }
-                else if (player.controlLeft)
-                {
-                    dir = -1;
-                }
-                if (dir == 0) // this + commented out below because changed to not have an effect when not holding any movement keys; primarily so it's affected by stun effects
-                    return;
-                //else if (modPlayer.latestXDirReleased != 0)
-                //{
-                //    dir = modPlayer.latestXDirReleased;
-                //}
-                //else
-                //{
-                //    dir = player.direction;
-                //}
-                player.timeSinceLastDashStarted = 0;
-                player.direction = dir;
-                dashing = true;
-                if (player.dashTime > 0)
-                {
-                    player.dashTime--;
-                }
-                if (player.dashTime < 0)
-                {
-                    player.dashTime++;
-                }
-                if ((player.dashTime <= 0 && player.direction == -1) || (player.dashTime >= 0 && player.direction == 1))
-                {
-                    player.dashTime = 15;
-                    return;
-                }
-                dashing = true;
-                player.dashTime = 0;
-
-                if (dashStartAction != null)
-                    dashStartAction?.Invoke(dir);
-            }
-
-        }
-        private static void OnVanillaDoubleTapSetBonus(On_Player.orig_KeyDoubleTap orig, Player player, int keyDir)
-        {
-            if (!FargoClientConfig.Instance.DoubleTapSetBonusDisabled || SetBonusKey.JustPressed)
-            {
-                orig.Invoke(player, keyDir);
-            }
-        }
-        private static void OnVanillaHoldSetBonus(On_Player.orig_KeyHoldDown orig, Player player, int keyDir, int holdTime)
-        {
-            if (!FargoClientConfig.Instance.DoubleTapSetBonusDisabled || SetBonusKey.Current)
-            {
-                orig.Invoke(player, keyDir, holdTime);
-            }
-        }
-
-        private bool AllowUseSummons(On_Player.orig_ItemCheck_CheckCanUse orig, Player self, Item item)
-        {
-            if (FargoGlobalItem.AlwaysUsableVanillaSummons.Contains(item.type) && ModContent.GetInstance<FargoServerConfig>().EasySummons)
-            {
-                if (!((item.type == ItemID.BloodMoonStarter && Main.bloodMoon) ||
-                    (item.type == ItemID.NaughtyPresent && Main.snowMoon) ||
-                    (item.type == ItemID.PumpkinMoonMedallion && Main.pumpkinMoon) ||
-                    (item.type == ItemID.GoblinBattleStandard && Main.invasionType == InvasionID.GoblinArmy) ||
-                    (item.type == ItemID.SolarTablet && Main.eclipse) ||
-                    (item.type == ItemID.PirateMap && Main.invasionType == InvasionID.PirateInvasion) ||
-                    (item.type == ItemID.SnowGlobe && Main.invasionType == InvasionID.SnowLegion)))
-                {
-                    return true;
-                }
-            }
-            return orig(self, item);
-        }
-        private bool AllowMultipleBosses(On_Player.orig_SummonItemCheck orig, Player self, Item item)
-        {
-            if (ModContent.GetInstance<FargoServerConfig>().EasySummons && self.itemAnimation == self.itemAnimationMax)
-            {
-                return true;
-            }
-            return orig(self, item);
-        }
-
-        private void AddBuff(Terraria.On_Player.orig_AddBuff orig, Player self, int type, int timeToAdd, bool quiet, bool foodHack)
-        {
-            //self.FargoMutant().ActivePotions.Add(type);
-            orig(self, type, timeToAdd, quiet, foodHack);
-        }
-
-        private void AllowUseEventSummons(On_Player.orig_ItemCheck_UseEventItems orig, Player self, Item item)
-        {
-            if (!ModContent.GetInstance<FargoServerConfig>().EasySummons)
-            {
-                orig(self, item);
-                return;
-            }
-            bool day = Main.dayTime;
-            bool hardmode = Main.hardMode;
-            bool dd2event = DD2Event.Ongoing;
-            bool pumpkin = Main.pumpkinMoon;
-            bool frost = Main.snowMoon;
-            int lifecrystals = self.ConsumedLifeCrystals;
-            if (self.ItemTimeIsZero && self.itemAnimation > 0)
-            {
-                if (FargoGlobalItem.NightSettingSummons.Contains(item.type))
-                {
-                    Main.dayTime = false;
-                }
-                if (item.type == ItemID.SolarTablet)
-                {
-                    Main.dayTime = true;
-                    Main.hardMode = true;
-                }
-                if (item.type == ItemID.PumpkinMoonMedallion)
-                {
-                    DD2Event.Ongoing = false;
-                    Main.snowMoon = false;
-                }
-                if (item.type == ItemID.NaughtyPresent)
-                {
-                    DD2Event.Ongoing = false;
-                    Main.pumpkinMoon = false;
-                }
-                if (item.type == ItemID.GoblinBattleStandard || item.type == ItemID.PirateMap || item.type == ItemID.SnowGlobe)
-                {
-                    if (self.ConsumedLifeCrystals < 5) self.ConsumedLifeCrystals = 5;
-                }
-                if (item.type == ItemID.PirateMap || item.type == ItemID.SnowGlobe)
-                {
-                    Main.hardMode = true;
-                }
-                //with this one its just easier to redo the whole thing
-                if (item.type == ItemID.CelestialSigil)
-                {
-                    SoundEngine.PlaySound(SoundID.Roar, self.position);
-                    self.ApplyItemTime(item);
-                    if (Main.netMode == NetmodeID.SinglePlayer)
-                        WorldGen.StartImpendingDoom(60);
-                    else
-                        NetMessage.SendData(MessageID.SpawnBossUseLicenseStartEvent, -1, -1, null, self.whoAmI, -8f);
-                    return;
-                }
-
-            }
-            orig(self, item);
-
-            //Main.dayTime = day;
-            //DD2Event.Ongoing = dd2event;
-            //Main.pumpkinMoon = pumpkin;
-            //Main.snowMoon = frost;
-            Main.hardMode = hardmode;
-            self.ConsumedLifeCrystals = lifecrystals;
-        }
-
-        private void AllowUseSummons2EvilEdition(On_Player.orig_ItemCheck_UseBossSpawners orig, Player self, int onWhichPlayer, Item item)
-        {
-            if (!ModContent.GetInstance<FargoServerConfig>().EasySummons)
-            {
-                orig(self, onWhichPlayer, item);
-                return;
-            }
-            bool day = Main.dayTime;
-            if (self.ItemTimeIsZero && self.itemAnimation > 0)
-            {
-                if (FargoGlobalItem.NightSettingSummons.Contains(item.type))
-                {
-                    Main.dayTime = false;
-                }
-                if (item.type == ItemID.SolarTablet)
-                {
-                    Main.dayTime = true;
-                }
-                if (item.type == ItemID.WormFood)
-                {
-                    self.ZoneCorrupt = true;
-                }
-                if (item.type == ItemID.BloodySpine)
-                {
-                    self.ZoneCrimson = true;
-                }
-                if (item.type == ItemID.Abeemination)
-                {
-                    self.ZoneJungle = true;
-                    self.ZoneRockLayerHeight = true;
-                }
-                if (item.type == ItemID.DeerThing)
-                {
-                    self.ZoneSnow = true;
-                }
-                if (item.type == ItemID.QueenSlimeCrystal)
-                {
-                    self.ZoneHallow = true;
-                }
-            }
-            orig(self, onWhichPlayer, item);
-            //Main.dayTime = day;
-
-        }
-        private void DrawEnchantedTrees(On_Main.orig_DrawPlayers_AfterProjectiles orig, Main self)
-        {
-            EnchantedTreeTileEntity.DrawEnchantedTrees();
-            orig(self);
-        }
-
-        private void UpdateEnchantedTreeFruit(On_Main.orig_DoUpdateInWorld orig, Main self, System.Diagnostics.Stopwatch sw)
-        {
-            orig(self, sw);
-            EnchantedTreeTileEntity.UpdateEnchantedTrees();
-        }
-
-        public static void UpdatePortableSundialCooldown_Day(On_Main.orig_UpdateTime_StartDay orig, ref bool stopEvents)
-        {
-            if (FargoWorld.PortableSundialCooldown > 0 && !FargoWorld.BlockPortaDialCooldown && Main.netMode != NetmodeID.MultiplayerClient)
-            {
-                FargoWorld.PortableSundialCooldown--;
-                if (Main.netMode == NetmodeID.Server)
-                {
-                    ModPacket syncClientCooldown = Instance.GetPacket();
-                    syncClientCooldown.Write((byte)PacketID.SyncPortableSundial);
-                    syncClientCooldown.Write(FargoWorld.PortableSundialCooldown);
-                    syncClientCooldown.Send();
-                }
-            }
-            orig(ref stopEvents);
-        }
-
-        public static void UpdatePortableSundialCooldown_Night(On_Main.orig_UpdateTime_StartNight orig, ref bool stopEvents)
-        {
-            if (FargoWorld.PortableSundialCooldown > 0 && !FargoWorld.BlockPortaDialCooldown && Main.netMode != NetmodeID.MultiplayerClient)
-            {
-                FargoWorld.PortableSundialCooldown--;
-                if (Main.netMode == NetmodeID.Server)
-                {
-                    ModPacket syncClientCooldown = Instance.GetPacket();
-                    syncClientCooldown.Write((byte)PacketID.SyncPortableSundial);
-                    syncClientCooldown.Write(FargoWorld.PortableSundialCooldown);
-                    syncClientCooldown.Send();
-                }
-            }
-            orig(ref stopEvents);
-        }
-
-        private void FixRecipeGroupsShimmerInteraction(On_Item.orig_GetShimmered orig, Item self)
-        {
-            if (!FargoClientConfig.Instance.AnimatedRecipeGroups)
-            {
-                orig(self);
-                return;
-            }
-            foreach (Recipe recipe in Main.recipe.Where(recipe => recipe.HasResult(self.type) && recipe.acceptedGroups.Count != 0))
-            {
-                foreach (int groupID in recipe.acceptedGroups)
-                {
-                    foreach (Item material in recipe.requiredItem.Where(material => RecipeGroup.recipeGroups[groupID].ContainsItem(material.type) && material.type != RecipeGroup.recipeGroups[groupID].IconicItemId))
-                    {
-                        string name = material.Name;
-                        int stack = material.stack;
-                        material.ChangeItemType(RecipeGroup.recipeGroups[groupID].IconicItemId);
-                        material.SetNameOverride(name);
-                        material.stack = stack;
-                    }
-                }
-            }
-            orig(self);
-        }
-        private void AnglerPitty(On_Player.orig_GetAnglerReward_Bait orig, Player self, List<Item> rewardItems, IEntitySource source, int questsDone, float rarityReduction, ref GetItemSettings anglerRewardSettings)
-        {
-            orig(self, rewardItems, source, questsDone, rarityReduction, ref anglerRewardSettings);
-            foreach (Item item in rewardItems)
-            {
-                if (AnglerPityAmounts.ContainsKey(item.type))
-                {
-                    self.FargoMutant().ItemHasBeenOwned[item.type] = true;
-                }
-            }
-            if (FargoServerConfig.Instance.AnglerQuestPity && AnglerPityAmounts.ContainsValue(questsDone))
-            {
-                foreach (KeyValuePair<int, int> pair in AnglerPityAmounts)
-                {
-                    if (questsDone >= pair.Value && !self.FargoMutant().ItemHasBeenOwned[pair.Key])
-                    {
-                        if (((pair.Key == ItemID.HotlineFishingHook || pair.Key == ItemID.FinWings) && Main.hardMode) || ((pair.Key == ItemID.HoneyAbsorbantSponge || pair.Key == ItemID.BottomlessHoneyBucket) && NPC.downedQueenBee))
-                        {
-                            rewardItems.Add(new Item(pair.Key));
-                            self.FargoMutant().ItemHasBeenOwned[pair.Key] = true;
-                        }
-                        else if (!(pair.Key == ItemID.HotlineFishingHook || pair.Key == ItemID.FinWings || pair.Key == ItemID.HoneyAbsorbantSponge || pair.Key == ItemID.BottomlessHoneyBucket))
-                        {
-                            rewardItems.Add(new Item(pair.Key));
-                            self.FargoMutant().ItemHasBeenOwned[pair.Key] = true;
-                        }
-                    }
-                }
-            }
-        }
-
-        private void PreventBannerDrop(On_NPC.orig_CountKillForBannersAndDropThem orig, NPC npc)
-        {
-            if (FargoServerConfig.Instance.BannerRecipes && npc.SpawnedFromStatue)
-                return;
-
-            orig(npc);
-        }
-
-        private void BetsyMedals(On_DD2Event.orig_DropMedals orig, int medals)
-        {
-            if (BetsyEggUsed)
-                return;
-
-            orig(medals);
         }
 
         //        private static void HookIntoLoad()

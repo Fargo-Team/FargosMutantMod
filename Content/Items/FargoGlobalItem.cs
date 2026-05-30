@@ -265,7 +265,19 @@ namespace Fargowiltas.Content.Items
 
                 if (fargoServerConfig.PermanentStationsNearby && FargoItemSets.BuffStation[item.type] != -1)
                 {
-                    line = new TooltipLine(Mod, "TooltipUnlim", $"[s:Fargowiltas/PermanentStationsNearby] [c/AAAAAA:{ExpandedTooltipLoc("PermanentEffectNearby")}]");
+                    string text = "";
+                    string buff = Lang.GetBuffName(FargoItemSets.BuffStation[item.type]);
+                    if (Main.LocalPlayer.FargoMutant().ItemHasBeenOwned[item.type])
+                    {
+                        string loc = Language.GetTextValue($"Mods.Fargowiltas.ExpandedTooltips.PermanentEffectNearby", buff);
+                        text = $"[s:Fargowiltas/PermanentStationsNearby] [c/AAAAAA:{loc}]";
+                    }
+                    else
+                    {
+                        string loc = Language.GetTextValue($"Mods.Fargowiltas.ExpandedTooltips.PermanentEffectNearbyPickup", buff);
+                        text = $"[s:Fargowiltas/PermanentStationsNearby] [c/AAAAAA:{loc}]";
+                    }
+                    line = new TooltipLine(Mod, "TooltipUnlim", text);
                     tooltips.Add(line);
                 }
 
@@ -524,7 +536,14 @@ namespace Fargowiltas.Content.Items
         public override void UpdateInventory(Item item, Player player)
         {
             CheckForIsOldUnlimitedAmmo(item);
-            player.FargoMutant().ItemHasBeenOwned[item.type] = true;
+            if (Main.netMode != NetmodeID.Server)
+            {
+                player.FargoMutant().ItemHasBeenOwned[item.type] = true;
+                if (player.whoAmI != Main.myPlayer)
+                {
+                    Main.LocalPlayer.FargoMutant().ItemHasBeenOwned[item.type] = true;
+                }
+            }
         }
         public override void UpdateAccessory(Item item, Player player, bool hideVisual)
         {
@@ -652,8 +671,6 @@ namespace Fargowiltas.Content.Items
             {
                 player.GetModPlayer<FargoPlayer>().FirstDyeIngredients[dye] = true;
             }
-
-            player.FargoMutant().ItemHasBeenOwned[item.type] = true;
 
             return base.OnPickup(item, player);
         }

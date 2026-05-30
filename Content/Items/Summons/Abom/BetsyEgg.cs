@@ -3,6 +3,7 @@ using Terraria;
 using Terraria.GameContent.Events;
 using Terraria.ID;
 using static Fargowiltas.Fargowiltas;
+using static Fargowiltas.FargowiltasDetours;
 
 namespace Fargowiltas.Content.Items.Summons.Abom
 {

@@ -45,7 +45,13 @@ namespace Fargowiltas.Content.Items.Summons
             if (ResetTimeWhenUsed)
             {
                 Main.time = 0;
-                NetMessage.SendData(MessageID.WorldData);
+                if (Main.netMode == NetmodeID.MultiplayerClient)
+                {
+                    ModPacket syncTime = Mod.GetPacket();
+                    syncTime.Write((byte)Fargowiltas.PacketID.SyncWorldTime);
+                    syncTime.Write(Main.time);
+                    syncTime.Send();
+                }
             }
 
             Vector2 pos = new((int)player.position.X + Main.rand.Next(-800, 800), (int)player.position.Y + Main.rand.Next(-800, -250));

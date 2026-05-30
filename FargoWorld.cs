@@ -323,15 +323,14 @@ namespace Fargowiltas
 
             // swarm reset in case something goes wrong
             if (Main.netMode != NetmodeID.MultiplayerClient && SwarmActive
-                && NoBosses() && !NPC.AnyNPCs(NPCID.EaterofWorldsHead) && !NPC.AnyNPCs(NPCID.DungeonGuardian) && !NPC.AnyNPCs(NPCID.DD2DarkMageT1))
+                && !Main.CurrentFrameFlags.AnyActiveBossNPC && FargoGlobalNPC.eaterBoss == -1 && !NPC.AnyNPCs(NPCID.DungeonGuardian) && !NPC.AnyNPCs(NPCID.DD2DarkMageT1))
             {
                 SwarmActive = false;
                 HardmodeSwarmActive = false;
                 Binding = EnergizedGlobalNPC.Binding.None;
                 FargoGlobalNPC.LastWoFIndex = -1;
                 FargoGlobalNPC.WoFDirection = 0;
-                if (Main.netMode == NetmodeID.Server)
-                    NetMessage.SendData(MessageID.WorldData);
+                NetMessage.SendData(MessageID.WorldData);
             }
 
             if (AbomClearCD > 0)

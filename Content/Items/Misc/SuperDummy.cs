@@ -34,7 +34,13 @@ namespace Fargowiltas.Content.Items.Misc
                     if (n.type == ModContent.NPCType<SuperDummyNPC>())
                     {
                         n.active = false;
-                        NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, n.whoAmI);
+                        if (Main.netMode == NetmodeID.MultiplayerClient)
+                        {
+                            ModPacket deactivate = Mod.GetPacket();
+                            deactivate.Write((byte)Fargowiltas.PacketID.SyncInactiveNPC);
+                            deactivate.Write((byte)n.whoAmI);
+                            deactivate.Send();
+                        }
                     }
                 }
             }

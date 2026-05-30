@@ -92,6 +92,7 @@ namespace Fargowiltas.Content.Items.Tiles
             Desert = 16,
             Coral = 17
         };
+        // Only runs on client
         public override void NearbyEffects(int i, int j, int type, bool closer)
         {
             Player player = Main.LocalPlayer;
@@ -182,7 +183,7 @@ namespace Fargowiltas.Content.Items.Tiles
                     if (buff != -1 && player.active && !player.dead && !player.ghost)
                     {
                         bool noAlchemistNPC = Fargowiltas.AlchemistNPCMod == null && Fargowiltas.AlchemistNPCLiteMod == null; // because it fucks with buffs for some reason and makes the sound spam WHY WHY WHY WHY WHAT'S WRONG WITH YOU WHY WHY WHY
-                        if (!player.HasBuff(buff) && sound.HasValue && noAlchemistNPC && player.FargoMutant().StationSoundCooldown <= 0)
+                        if (noAlchemistNPC && !player.HasBuff(buff) && sound.HasValue && player.FargoMutant().StationSoundCooldown <= 0)
                         {
                             SoundEngine.PlaySound(sound.Value, new Vector2(i, j) * 16);
                             player.FargoMutant().StationSoundCooldown = 60 * 60;

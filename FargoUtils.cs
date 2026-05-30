@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Fargowiltas.Common.Systems.Collections;
+using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -214,20 +215,12 @@ namespace Fargowiltas
         #endregion
 
         /// <summary>
-        /// Checks whether an NPC is <see cref="NPC.boss"/>, or its <see cref="NPC.type"/> matches <see cref="NPCID.EaterofWorldsHead"/> or <see cref="NPCID.DD2Betsy"/> or is found in <see cref="NPCID.Sets.DangerThatPreventsOtherDangers"/>.
+        /// Checks whether an NPC is eligible for generic boss purposes.
+        /// <br/> Excludes <see cref="NPCID.MartianSaucerCore"/> and <see cref="NPCID.TorchGod"/>.
+        /// <br/> Examples of usage include Boss Zen, damage and health boost config, pylon use permission during events.
         /// </summary>
         /// <param name="npc"></param>
-        /// <param name="excludeSome"> Unused.</param>
         /// <returns></returns>
-        public static bool CountsAsBoss(this NPC npc, bool excludeSome = true)
-        {
-            bool isBoss = npc.boss || npc.type == NPCID.EaterofWorldsHead || npc.type == NPCID.DD2Betsy || NPCID.Sets.DangerThatPreventsOtherDangers[npc.type];
-            // All of our purposes don't want this so don't use it
-            /*if (!excludeSome)
-            {
-                isBoss |= NPCID.Sets.ShouldBeCountedAsBoss[npc.type];
-            }*/
-            return isBoss;
-        }
+        public static bool CountsAsBoss(this NPC npc) => (npc.boss && npc.type != NPCID.MartianSaucerCore && npc.type != NPCID.TorchGod) || FargoNPCSets.ShouldGrantBossZen[npc.type];
     }
 }

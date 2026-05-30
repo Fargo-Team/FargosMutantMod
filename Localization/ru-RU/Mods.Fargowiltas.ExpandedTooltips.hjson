@@ -1,4 +1,4 @@
-﻿FountainOcean: Заставляет окружение смениться на океан при активации
+FountainOcean: Заставляет окружение смениться на океан при активации
 FountainDesert: Заставляет окружение смениться на пустыню при активации
 FountainJungle: Заставляет окружение смениться на джунгли при активации
 FountainSnow: Заставляет окружение смениться на тундру при активации
@@ -33,3 +33,4 @@ ShimmerableFrom: Можно получить с помощью мерцания 
 ShimmerableBoth: Можно в помощью мерцания получить из и превратить в
 TreeTreasure: Можно получить из лесных даров ДревоБилла
 FasterBedSpeed: Ускоряет время в {0} раз, когда вы спите
+// PermanentEffectNearbyPickup: Once obtained, permanently provides {0} buff to nearby players when placed

@@ -80,8 +80,6 @@ namespace Fargowiltas
 
         public bool[] ItemHasBeenOwned; // If you've owned this item type ever
         public HashSet<ItemDefinition> ItemHasBeenOwnedCache = []; // Only used for saving and loading
-        public bool[] ItemHasBeenOwnedAtThirtyStack; // If you've owned this 30 of this item type ever
-        public HashSet<ItemDefinition> ItemHasBeenOwnedAtThirtyStackCache = []; // Only used for saving and loading
 
         public int DeathCamTimer = 0;
         public int SpectatePlayer = 0;
@@ -108,10 +106,26 @@ namespace Fargowiltas
             "PinkPricklyPear",
             "BlackInk"
         ];
+
+        public static Dictionary<int, int> AnglerPityAmounts = new(){
+            {ItemID.HighTestFishingLine, 5},
+            {ItemID.TackleBox, 9},
+            {ItemID.FishingBobber, 7},
+            {ItemID.AnglerEarring, 13},
+            {ItemID.FishermansGuide, 16},
+            {ItemID.Sextant, 17},
+            {ItemID.WeatherRadio, 18},
+            {ItemID.HoneyAbsorbantSponge, 21},
+            {ItemID.BottomlessHoneyBucket, 21},
+            {ItemID.SuperAbsorbantSponge, 23},
+            {ItemID.GoldenBugNet, 26},
+            {ItemID.HotlineFishingHook, 43},
+            {ItemID.FinWings, 45},
+        };
+        public static HashSet<ItemDefinition> AnglerPittyCache = [];
         public override void Initialize()
         {
             ItemHasBeenOwned = ItemID.Sets.Factory.CreateBoolSet(false);
-            ItemHasBeenOwnedAtThirtyStack = ItemID.Sets.Factory.CreateBoolSet(false);
         }
         public override void Load()
         {
@@ -157,15 +171,6 @@ namespace Fargowiltas
             }
             tag.Add("OwnedItemsListDef", ItemHasBeenOwnedCache.ToList());
 
-            for (int i = 0; i < ItemHasBeenOwnedAtThirtyStack.Length; i++)
-            {
-                if (ItemHasBeenOwnedAtThirtyStack[i])
-                {
-                    ItemHasBeenOwnedAtThirtyStackCache.Add(new ItemDefinition(i));
-                }
-            }
-            tag.Add("OwnedItemsAtThirtyListDef", ItemHasBeenOwnedAtThirtyStackCache.ToList());
-
             var togglesOff = new List<ItemDefinition>();
             if (PotionToggler != null && PotionToggler.Toggles != null)
             {
@@ -180,12 +185,13 @@ namespace Fargowiltas
                 }
             }
             tag.Add($"{Mod.Name}.{Player.name}.PotionTogglesOffDef", togglesOff);
-        }
 
-        //        public override void Initialize()
-        //        {
-        //            //Toggler.Load(this);
-        //        }
+            foreach (KeyValuePair<int, int> pair in AnglerPityAmounts)
+            {
+                AnglerPittyCache.Add(new(pair.Key));
+            }
+            tag.Add("AnglerPitty", AnglerPittyCache.ToList());
+        }
         public override void LoadData(TagCompound tag)
         {
             string name = "FargoDyes" + Player.name;
@@ -201,28 +207,25 @@ namespace Fargowiltas
             CalmingCry = tag.ContainsKey($"FargoCalmingCry{Player.name}");
             HasClickedWrench = tag.ContainsKey("HasClickedWrench");
 
-            ItemHasBeenOwned = ItemID.Sets.Factory.CreateBoolSet(false);
             if (tag.TryGet<IList<ItemDefinition>>("OwnedItemsListDef", out var ownedList))
             {
-                ItemHasBeenOwnedCache = [.. ownedList];
+                ItemHasBeenOwnedCache = ownedList.ToHashSet();
                 foreach (var entry in ItemHasBeenOwnedCache.Where(i => i.Type != -1))
                 {
                     ItemHasBeenOwned[entry.Type] = true;
-                }
-            }
-            ItemHasBeenOwnedAtThirtyStack = ItemID.Sets.Factory.CreateBoolSet(false);
-            if (tag.TryGet<IList<ItemDefinition>>("OwnedItemsAtThirtyListDef", out var ownedAtThirtyStackList))
-            {
-                ItemHasBeenOwnedAtThirtyStackCache = [.. ownedAtThirtyStackList];
-                foreach (var entry in ItemHasBeenOwnedAtThirtyStackCache.Where(i => i.Type != -1))
-                {
-                    ItemHasBeenOwnedAtThirtyStack[entry.Type] = true;
                 }
             }
 
             if (tag.TryGet<IList<ItemDefinition>>($"{Mod.Name}.{Player.name}.PotionTogglesOffDef", out var disabledToggleIDs))
             {
                 DisabledPotionToggles = [.. PotionToggleLoader.LoadedToggles.Keys.Where(disabledToggleIDs.Select(t => t.Type).ToHashSet().Contains)];
+            }
+
+            if (tag.TryGet<IList<ItemDefinition>>("AnglerPitty", out var pittyList))
+            {
+                AnglerPittyCache = pittyList.ToHashSet();
+                var validTypes = AnglerPittyCache.Where(i => i.Type != -1).Select(s => s.Type);
+                AnglerPityAmounts = AnglerPityAmounts.Where(pair => validTypes.Contains(pair.Key)).ToDictionary();
             }
         }
         public void SyncPotionToggle(int itemID)
@@ -251,6 +254,19 @@ namespace Fargowiltas
             }
 
             PotionTogglesToSync.Clear();
+
+            if (newPlayer)
+            {
+                var list = Player.FargoMutant().ItemHasBeenOwned.GetTrueIndexes();
+                ModPacket syncOwnedItems = Mod.GetPacket();
+                syncOwnedItems.Write((byte)Fargowiltas.PacketID.SyncOwnedItems);
+                syncOwnedItems.Write(list.Count);
+                for (int i = 0; i < list.Count; i++)
+                {
+                    syncOwnedItems.Write(list[i]);
+                }
+                syncOwnedItems.Send();
+            }
         }
 
         // Called in ExampleMod.Networking.cs
@@ -714,6 +730,36 @@ namespace Fargowiltas
             if (!mediumCoreDeath && Player.name.Contains("javyz", StringComparison.OrdinalIgnoreCase))
             {
                 yield return createItem(ItemType<CrabSizedGlasses>());
+            }
+        }
+
+        public override void AnglerQuestReward(float rareMultiplier, List<Item> rewardItems)
+        {
+            int questsDone = Player.anglerQuestsFinished;
+            foreach (Item item in rewardItems)
+            {
+                AnglerPityAmounts.Remove(item.type);
+            }
+            if (FargoServerConfig.Instance.AnglerQuestPity && AnglerPityAmounts.Values.Min() >= questsDone)
+            {
+                List<int> remove = [];
+                foreach (KeyValuePair<int, int> pair in AnglerPityAmounts)
+                {
+                    if (questsDone >= pair.Value)
+                    {
+                        if (((pair.Key == ItemID.HotlineFishingHook || pair.Key == ItemID.FinWings) && Main.hardMode) || ((pair.Key == ItemID.HoneyAbsorbantSponge || pair.Key == ItemID.BottomlessHoneyBucket) && NPC.downedQueenBee))
+                        {
+                            rewardItems.Add(new Item(pair.Key));
+                            remove.Add(pair.Key);
+                        }
+                        else if (!(pair.Key == ItemID.HotlineFishingHook || pair.Key == ItemID.FinWings || pair.Key == ItemID.HoneyAbsorbantSponge || pair.Key == ItemID.BottomlessHoneyBucket))
+                        {
+                            rewardItems.Add(new Item(pair.Key));
+                            remove.Add(pair.Key);
+                        }
+                    }
+                }
+                AnglerPityAmounts = AnglerPityAmounts.Where(pair => !remove.Contains(pair.Key)).ToDictionary();
             }
         }
 

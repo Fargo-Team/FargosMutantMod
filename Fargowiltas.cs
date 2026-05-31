@@ -490,6 +490,7 @@ namespace Fargowiltas
             SyncOwnedItems,
             SyncInactiveNPC,
             SyncWorldTime,
+            SyncOwnedItem,
         }
 
         public override void HandlePacket(BinaryReader reader, int whoAmI)
@@ -812,7 +813,7 @@ namespace Fargowiltas
                         }
                         else
                         {
-                            int index = reader.ReadByte();
+                            byte index = reader.ReadByte();
                             int listCount = reader.ReadInt32();
                             for (int i = 0; i < listCount; i++)
                             {
@@ -841,6 +842,30 @@ namespace Fargowiltas
                                 syncOthersTime.Write((byte)PacketID.SyncWorldTime);
                                 syncOthersTime.Write(Main.time);
                                 syncOthersTime.Send(-1, whoAmI);
+                            }
+                        }
+                        break;
+                    case PacketID.SyncOwnedItem:
+                        {
+                            int type = reader.ReadInt32();
+                            if (Main.netMode == NetmodeID.Server)
+                            {
+                                foreach (Player p in Main.ActivePlayers)
+                                {
+                                    p.FargoMutant().ItemHasBeenOwned[type] = true;
+                                }
+
+                                ModPacket sendOthers = GetPacket();
+                                sendOthers.Write((byte)PacketID.SyncOwnedItem);
+                                sendOthers.Write(type);
+                                sendOthers.Send(-1, whoAmI);
+                            }
+                            else
+                            {
+                                foreach (Player p in Main.ActivePlayers)
+                                {
+                                    p.FargoMutant().ItemHasBeenOwned[type] = true;
+                                }
                             }
                         }
                         break;

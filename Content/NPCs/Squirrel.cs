@@ -84,6 +84,7 @@ namespace Fargowiltas.Content.NPCs
             NPC.HitSound = SoundID.NPCHit1;
             NPC.DeathSound = SoundID.NPCDeath1;
             NPC.knockBackResist = .25f;
+            NPC.housingCategory = 1;
 
             AnimationType = NPCID.Squirrel;
             NPC.aiStyle = NPCAIStyleID.Passive;

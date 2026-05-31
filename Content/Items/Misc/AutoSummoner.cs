@@ -56,7 +56,7 @@ namespace Fargowiltas.Content.Items.Misc
 
             fargoPlayer.AutoSummonCD = 0;
 
-            if (Main.CurrentFrameFlags.AnyActiveBossNPC || FargoUtils.NPCIndexIsValid(ref FargoGlobalNPC.eaterBoss, NPCID.EaterofWorldsHead))
+            if (FargoUtils.AnyBossAlive())
             {
                 //during boss, can only summon so many times and then no more
                 if (fargoPlayer.AutoSummonCap <= 0)
@@ -125,7 +125,7 @@ namespace Fargowiltas.Content.Items.Misc
             }
 
             float minionsLeft = player.maxMinions - player.slotsMinions;
-            fargoPlayer.AutoSummonCap = Main.CurrentFrameFlags.AnyActiveBossNPC || FargoUtils.NPCIndexIsValid(ref FargoGlobalNPC.eaterBoss, NPCID.EaterofWorldsHead)
+            fargoPlayer.AutoSummonCap = FargoUtils.AnyBossAlive()
                 ? Math.Min(fargoPlayer.AutoSummonCap, minionsLeft) : minionsLeft;
         }
     }

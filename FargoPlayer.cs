@@ -516,7 +516,7 @@ namespace Fargowiltas
             if (config.EnemyDamage != 1 || config.BossDamage != 1)
             {
                 bool useBoss = config.BossDamage > config.EnemyDamage && // only relevant if boss health is higher than enemy health
-                    (npc.CountsAsBoss() || npc.type == NPCID.EaterofWorldsBody || npc.type == NPCID.EaterofWorldsTail || (config.BossApplyToAllWhenAlive && (Main.CurrentFrameFlags.AnyActiveBossNPC || FargoUtils.NPCIndexIsValid(ref FargoGlobalNPC.eaterBoss, NPCID.EaterofWorldsHead))));
+                    (npc.CountsAsBoss() || npc.type == NPCID.EaterofWorldsBody || npc.type == NPCID.EaterofWorldsTail || (config.BossApplyToAllWhenAlive && FargoUtils.AnyBossAlive()));
                 if (useBoss)
                     modifiers.SourceDamage *= config.BossDamage;
                 else

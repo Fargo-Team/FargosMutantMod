@@ -1,4 +1,5 @@
 ﻿using Fargowiltas.Common.Systems.Collections;
+using Fargowiltas.Content.NPCs;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.Linq;
@@ -235,6 +236,13 @@ namespace Fargowiltas
                 return false;
             }
             return true;
+        }
+        public static bool AnyBossAlive()
+        {
+            if (Main.npc.IndexInRange(FargoGlobalNPC.Boss) && Main.npc[FargoGlobalNPC.Boss].active && Main.npc[FargoGlobalNPC.Boss].CountsAsBoss())
+                return true;
+            FargoGlobalNPC.Boss = -1;
+            return false;
         }
     }
 }

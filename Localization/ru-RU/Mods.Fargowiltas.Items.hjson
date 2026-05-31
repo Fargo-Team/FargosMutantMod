@@ -1,4 +1,4 @@
-﻿BrittleBone: {
+BrittleBone: {
 	DisplayName: Хрупкая кость
 	Tooltip: ""
 }
@@ -1665,4 +1665,15 @@ PotionCooler: {
 GizmoParts: {
 	DisplayName: Части штуковин
 	// Tooltip: ""
+}
+
+PotionCoolerInactive: {
+	// DisplayName: Potion Cooler (Inactive)
+	/* Tooltip:
+		'''
+		Works from the inventory
+		Effects are currently inactive, <right> to reactivate
+		Stores potions and grants you their buffs
+		'Cracking open a cold one'
+		''' */
 }

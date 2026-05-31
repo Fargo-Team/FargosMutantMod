@@ -154,6 +154,13 @@ namespace Fargowiltas.Common.Systems
         }
 
         /// <summary>
+        /// Whether there are any completed potions within the Potion Cooler
+        /// </summary>
+        /// <returns></returns>
+        public static bool AnyCompletedPotions => Potions.Any(p => p.Value >= MaxPotions);
+        
+
+        /// <summary>
         /// Whether a potion of the given type of the given count can be stored.
         /// </summary>
         /// <param name="type">The type of potion to consume</param>

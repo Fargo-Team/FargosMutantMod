@@ -31,8 +31,10 @@ namespace Fargowiltas.Content.UI
             Height.Set(scale * baseWidth, 0);
         }
 
-        protected override void DrawSelf(SpriteBatch spriteBatch)
+        protected override sealed void DrawSelf(SpriteBatch spriteBatch)
         {
+            HandleItem();
+
             if (PreDrawSelf(spriteBatch))
             {
                 base.DrawSelf(spriteBatch);
@@ -42,61 +44,44 @@ namespace Fargowiltas.Content.UI
             PostDrawSelf(spriteBatch);
         }
 
+        public void HandleItem()
+        {
+            if (!ContainsPoint(Main.MouseScreen))
+                return;
+
+            bool canAccept = Main.mouseItem.IsAir || CanAcceptItem(Main.mouseItem.Clone());
+            if (!Unchangable && canAccept)
+            {
+                Item oldItem = _item.Clone();
+                bool leftClick = Main.mouseLeftRelease && Main.mouseLeft;
+                if (leftClick)
+                {
+                    ItemSlot.LeftClick(ref _item);
+                }
+                ItemSlot.RightClick(ref _item);
+                if (_item.IsNotSameTypePrefixAndStack(oldItem))
+                {
+                    OnItemSwap(ref oldItem, ref _item);
+                }
+            }
+            ItemSlot.MouseHover(ref _item);
+        }
+
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
 
             if (ContainsPoint(Main.MouseScreen))
                 Main.LocalPlayer.mouseInterface = true;
-        }
 
-        public override void LeftClick(UIMouseEvent evt)
-        {
-            base.LeftClick(evt);
-
-            if (Unchangable)
-                return;
-
-            if (Main.mouseItem.IsAir)
-            {
-                if (_item.IsAir)
-                    return;
-
-                SwapItem();
-            }
-            else
-            {
-                if (!CanAcceptItem(Main.mouseItem.Clone()))
-                    return;
-
-                SwapItem();
-            }
-        }
-
-        private bool HandleStacking()
-        {
-            if (Main.mouseItem.IsAir || _item.IsAir || Main.mouseItem.type != _item.type)
-                return false;
-
-            if (_item.stack == _item.maxStack || Main.mouseItem.stack == Main.mouseItem.maxStack)
-                return false;
-
-            return ItemLoader.TryStackItems(_item, Main.mouseItem, out _);
-        }
-
-        private void SwapItem()
-        {
-            if (!HandleStacking())
-                Utils.Swap(ref Main.mouseItem, ref _item);
-
-            _item.favorited = false;
-            if (PlaySwapSound)
-                SoundEngine.PlaySound(SoundID.Grab);
-            OnItemSwap(ref Main.mouseItem, ref _item);
+            // prevent 'phantom' items
+            if (_item.type == ItemID.None || _item.stack < 1)
+                _item = new Item();
         }
 
         private void DrawItemSlot(SpriteBatch spriteBatch)
         {
+
             Vector2 position = GetOuterDimensions().Position();
             Vector2 center = GetOuterDimensions().Center();
             if (DrawItemFrame)
@@ -110,12 +95,6 @@ namespace Fargowiltas.Content.UI
                 if (_item.stack > 1)
                 {
                     ChatManager.DrawColorCodedStringWithShadow(spriteBatch, FontAssets.ItemStack.Value, _item.stack.ToString(), position + new Vector2(28f - (18f * scale), 28f - (2f * scale)), Color.White * Opacity, 0f, Vector2.Zero, new Vector2(scale), -1f, scale);
-                }
-
-                if (ItemHover && ContainsPoint(Main.MouseScreen))
-                {
-                    Main.HoverItem = _item.Clone();
-                    Main.hoverItemName = _item.Name;
                 }
             }
         }
@@ -202,6 +181,7 @@ namespace Fargowiltas.Content.UI
             if (HasItem)
                 return;
             _item = newItem;
+            _item.newAndShiny = true;
         }
 
         /// <summary>
@@ -218,8 +198,7 @@ namespace Fargowiltas.Content.UI
         /// <param name="newItem"></param>
         public void TransformItem(Item newItem)
         {
-            if (CanBeTransformed(newItem))
-                _item = newItem;
+            _item = newItem;
         }
 
         /// <summary>
@@ -265,13 +244,6 @@ namespace Fargowiltas.Content.UI
         /// <param name="item"></param>
         /// <returns></returns>
         public virtual bool CanAcceptItem(Item item) => true;
-
-        /// <summary>
-        /// Allows you to determine whether the stored item can be transformed into a new item.
-        /// <para/> Returns <see langword="true"/> by default.
-        /// </summary>
-        /// <returns></returns>
-        public virtual bool CanBeTransformed(Item newItem) => true;
         #endregion
     }
 }

@@ -532,20 +532,20 @@ namespace Fargowiltas
 
         private void ForceBiomes()
         {
-            if (FargoUtils.NPCIndexIsValid(ref FargoGlobalNPC.eaterBoss, NPCID.EaterofWorldsHead)
+            if (Main.IsNPCActiveAndOneOfTypes(FargoGlobalNPC.eaterBoss, NPCID.EaterofWorldsHead)
                 && Player.DistanceSQ(Main.npc[FargoGlobalNPC.eaterBoss].Center) < 3000 * 3000)
             {
                 Player.ZoneCorrupt = true;
             }
 
-            if (FargoUtils.NPCIndexIsValid(ref FargoGlobalNPC.brainBoss, NPCID.BrainofCthulhu)
-                && Player.DistanceSQ(Main.npc[FargoGlobalNPC.brainBoss].Center) < 3000 * 3000)
+            if (Main.IsNPCActiveAndOneOfTypes(NPC.crimsonBoss, NPCID.BrainofCthulhu)
+                && Player.DistanceSQ(Main.npc[NPC.crimsonBoss].Center) < 3000 * 3000)
             {
                 Player.ZoneCrimson = true;
             }
 
-            if ((FargoUtils.NPCIndexIsValid(ref FargoGlobalNPC.plantBoss, NPCID.Plantera) && Player.DistanceSQ(Main.npc[FargoGlobalNPC.plantBoss].Center) < 3000 * 3000)
-                || (FargoUtils.NPCIndexIsValid(ref FargoGlobalNPC.beeBoss, NPCID.QueenBee) && Player.DistanceSQ(Main.npc[FargoGlobalNPC.beeBoss].Center) < 3000 * 3000))
+            if ((Main.IsNPCActiveAndOneOfTypes(NPC.plantBoss, NPCID.Plantera) && Player.DistanceSQ(Main.npc[NPC.plantBoss].Center) < 3000 * 3000)
+                || (Main.IsNPCActiveAndOneOfTypes(FargoGlobalNPC.beeBoss, NPCID.QueenBee) && Player.DistanceSQ(Main.npc[FargoGlobalNPC.beeBoss].Center) < 3000 * 3000))
             {
                 Player.ZoneJungle = true;
             }

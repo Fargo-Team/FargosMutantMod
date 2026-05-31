@@ -62,8 +62,6 @@ namespace Fargowiltas.Content.NPCs
         //internal bool DestroyerSwarm = false;
 
         public static int eaterBoss = -1;
-        public static int brainBoss = -1;
-        public static int plantBoss = -1;
         public static int beeBoss = -1;
         public static int dungeonGuardian = -1;
         public static int darkMage = -1;
@@ -205,14 +203,6 @@ namespace Fargowiltas.Content.NPCs
                     eaterBoss = npc.whoAmI;
                     break;
 
-                case NPCID.BrainofCthulhu:
-                    brainBoss = npc.whoAmI;
-                    break;
-
-                case NPCID.Plantera:
-                    plantBoss = npc.whoAmI;
-                    break;
-
                 case NPCID.QueenBee:
                     beeBoss = npc.whoAmI;
                     break;
@@ -254,14 +244,6 @@ namespace Fargowiltas.Content.NPCs
             {
                 case NPCID.EaterofWorldsHead:
                     eaterBoss = npc.whoAmI;
-                    break;
-
-                case NPCID.BrainofCthulhu:
-                    brainBoss = npc.whoAmI;
-                    break;
-
-                case NPCID.Plantera:
-                    plantBoss = npc.whoAmI;
                     break;
 
                 case NPCID.QueenBee:

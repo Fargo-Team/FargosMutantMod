@@ -323,7 +323,7 @@ namespace Fargowiltas
 
             // swarm reset in case something goes wrong
             if (Main.netMode != NetmodeID.MultiplayerClient && SwarmActive
-                && !Main.CurrentFrameFlags.AnyActiveBossNPC && FargoGlobalNPC.eaterBoss == -1 && !NPC.AnyNPCs(NPCID.DungeonGuardian) && !NPC.AnyNPCs(NPCID.DD2DarkMageT1))
+                && !Main.CurrentFrameFlags.AnyActiveBossNPC && !FargoUtils.NPCIndexIsValid(ref FargoGlobalNPC.eaterBoss, NPCID.EaterofWorldsHead) && !FargoUtils.NPCIndexIsValid(ref FargoGlobalNPC.dungeonGuardian, NPCID.DungeonGuardian) && !FargoUtils.NPCIndexIsValid(ref FargoGlobalNPC.darkMage, NPCID.DD2DarkMageT1))
             {
                 SwarmActive = false;
                 HardmodeSwarmActive = false;
@@ -463,6 +463,8 @@ namespace Fargowiltas
             ResetGlobalIndex(ref FargoGlobalNPC.brainBoss, NPCID.BrainofCthulhu);
             ResetGlobalIndex(ref FargoGlobalNPC.beeBoss, NPCID.QueenBee);
             ResetGlobalIndex(ref FargoGlobalNPC.plantBoss, NPCID.Plantera);
+            ResetGlobalIndex(ref FargoGlobalNPC.dungeonGuardian, NPCID.DungeonGuardian);
+            ResetGlobalIndex(ref FargoGlobalNPC.darkMage, NPCID.DD2DarkMageT1);
         }
         public override void PostUpdateEverything()
         {

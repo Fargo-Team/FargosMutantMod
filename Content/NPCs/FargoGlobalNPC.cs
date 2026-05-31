@@ -65,6 +65,8 @@ namespace Fargowiltas.Content.NPCs
         public static int brainBoss = -1;
         public static int plantBoss = -1;
         public static int beeBoss = -1;
+        public static int dungeonGuardian = -1;
+        public static int darkMage = -1;
 
         public bool FirstFrame = true;
         public bool woodDrop;
@@ -177,7 +179,7 @@ namespace Fargowiltas.Content.NPCs
             if ((config.EnemyHealth != 1 || config.BossHealth != 1) && !entity.townNPC && !entity.CountsAsACritter && entity.life > 10)
             {
                 bool useBoss = config.BossHealth > config.EnemyHealth && // only relevant if boss health is higher than enemy health
-                    (isBoss || (config.BossApplyToAllWhenAlive && (Main.CurrentFrameFlags.AnyActiveBossNPC || FargoGlobalNPC.eaterBoss != -1)));
+                    (isBoss || (config.BossApplyToAllWhenAlive && (Main.CurrentFrameFlags.AnyActiveBossNPC || FargoUtils.NPCIndexIsValid(ref FargoGlobalNPC.eaterBoss, NPCID.EaterofWorldsHead))));
 
                 if (useBoss)
                     entity.lifeMax = (int)Math.Round(entity.lifeMax * config.BossHealth);
@@ -208,6 +210,14 @@ namespace Fargowiltas.Content.NPCs
 
                 case NPCID.QueenBee:
                     beeBoss = npc.whoAmI;
+                    break;
+
+                case NPCID.DungeonGuardian:
+                    dungeonGuardian = npc.whoAmI;
+                    break;
+
+                case NPCID.DD2DarkMageT1:
+                    darkMage = npc.whoAmI;
                     break;
 
                 case NPCID.CultistBoss:
@@ -247,6 +257,14 @@ namespace Fargowiltas.Content.NPCs
 
                 case NPCID.QueenBee:
                     beeBoss = npc.whoAmI;
+                    break;
+
+                case NPCID.DungeonGuardian:
+                    dungeonGuardian = npc.whoAmI;
+                    break;
+
+                case NPCID.DD2DarkMageT1:
+                    darkMage = npc.whoAmI;
                     break;
 
                 case NPCID.CultistBoss:

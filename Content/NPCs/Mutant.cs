@@ -149,7 +149,7 @@ namespace Fargowiltas.Content.NPCs
                 return false;
             }
 
-            return FargoServerConfig.Instance.Mutant && FargoWorld.DownedBools["boss"] && Main.CurrentFrameFlags.AnyActiveBossNPC || FargoGlobalNPC.eaterBoss != -1;
+            return FargoServerConfig.Instance.Mutant && FargoWorld.DownedBools["boss"] && Main.CurrentFrameFlags.AnyActiveBossNPC || FargoUtils.NPCIndexIsValid(ref FargoGlobalNPC.eaterBoss, NPCID.EaterofWorldsHead);
         }
 
         public override List<string> SetNPCNameList()

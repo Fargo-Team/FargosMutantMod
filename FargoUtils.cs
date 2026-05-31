@@ -222,5 +222,19 @@ namespace Fargowiltas
         /// <param name="npc"></param>
         /// <returns></returns>
         public static bool CountsAsBoss(this NPC npc) => (npc.boss && npc.type != NPCID.MartianSaucerCore && npc.type != NPCID.TorchGod) || FargoNPCSets.ShouldGrantBossZen[npc.type];
+        public static bool NPCIndexIsValid(ref int index, int type)
+        {
+            if (!Main.npc.IndexInRange(index))
+            {
+                index = -1;
+                return false;
+            }
+            if (!Main.npc[index].active || Main.npc[index].type != type)
+            {
+                index = -1;
+                return false;
+            }
+            return true;
+        }
     }
 }

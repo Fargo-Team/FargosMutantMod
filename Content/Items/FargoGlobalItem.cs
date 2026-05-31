@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.GameContent.UI;
@@ -852,6 +853,28 @@ namespace Fargowiltas.Content.Items
                 item.TurnToAir();
                 item.type = ammoItemType;
                 item.stack = 3996;
+            }
+        }
+
+        public override void OnCreated(Item item, ItemCreationContext context)
+        {
+            if (context is not InitializationItemCreationContext)
+            {
+                FargoPlayer modPlayer = Main.LocalPlayer.FargoMutant();
+                if (!modPlayer.ItemHasBeenOwned[item.type])
+                {
+                    foreach (Player p in Main.ActivePlayers)
+                    {
+                        p.FargoMutant().ItemHasBeenOwned[item.type] = true;
+                    }
+                    if (Main.netMode == NetmodeID.MultiplayerClient)
+                    {
+                        ModPacket syncOneOwned = Mod.GetPacket();
+                        syncOneOwned.Write((byte)Fargowiltas.PacketID.SyncOwnedItem);
+                        syncOneOwned.Write(item.type);
+                        syncOneOwned.Send();
+                    }
+                }
             }
         }
     }

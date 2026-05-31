@@ -117,9 +117,9 @@ namespace Fargowiltas.Content.NPCs
             if ((bool?)souls?.Call("DevianttAlive") == true)
                 return false;
 
-            return FargoServerConfig.Instance.Devi && !(Main.CurrentFrameFlags.AnyActiveBossNPC || FargoGlobalNPC.eaterBoss != -1)
-                && (((FargoWorld.DownedBools.TryGetValue("rareEnemy", out bool value) && value)
-                || FargoWorld.EternityMode));
+            return FargoServerConfig.Instance.Devi && !FargoUtils.AnyBossAlive()
+                && ((FargoWorld.DownedBools.TryGetValue("rareEnemy", out bool value) && value)
+                || FargoWorld.EternityMode);
         }
 
         public override bool CanGoToStatue(bool toKingStatue) => !toKingStatue;
@@ -152,7 +152,7 @@ namespace Fargowiltas.Content.NPCs
                 return;
 
             //no trolling when possible danger
-            if (Main.CurrentFrameFlags.AnyActiveBossNPC || FargoGlobalNPC.eaterBoss != -1
+            if (FargoUtils.AnyBossAlive()
                 || Main.npc.Any(n => n.active && n.damage > 0 && !n.friendly && NPC.Distance(n.Center) < 1200)
                 || NPC.life < NPC.lifeMax)
                 return;

@@ -516,7 +516,7 @@ namespace Fargowiltas
             if (config.EnemyDamage != 1 || config.BossDamage != 1)
             {
                 bool useBoss = config.BossDamage > config.EnemyDamage && // only relevant if boss health is higher than enemy health
-                    (npc.CountsAsBoss() || npc.type == NPCID.EaterofWorldsBody || npc.type == NPCID.EaterofWorldsTail || (config.BossApplyToAllWhenAlive && (Main.CurrentFrameFlags.AnyActiveBossNPC || FargoGlobalNPC.eaterBoss != -1)));
+                    (npc.CountsAsBoss() || npc.type == NPCID.EaterofWorldsBody || npc.type == NPCID.EaterofWorldsTail || (config.BossApplyToAllWhenAlive && FargoUtils.AnyBossAlive()));
                 if (useBoss)
                     modifiers.SourceDamage *= config.BossDamage;
                 else
@@ -532,20 +532,20 @@ namespace Fargowiltas
 
         private void ForceBiomes()
         {
-            if (FargoGlobalNPC.eaterBoss != -1
+            if (Main.IsNPCActiveAndOneOfTypes(FargoGlobalNPC.eaterBoss, NPCID.EaterofWorldsHead)
                 && Player.DistanceSQ(Main.npc[FargoGlobalNPC.eaterBoss].Center) < 3000 * 3000)
             {
                 Player.ZoneCorrupt = true;
             }
 
-            if (FargoGlobalNPC.brainBoss != -1
-                && Player.DistanceSQ(Main.npc[FargoGlobalNPC.brainBoss].Center) < 3000 * 3000)
+            if (Main.IsNPCActiveAndOneOfTypes(NPC.crimsonBoss, NPCID.BrainofCthulhu)
+                && Player.DistanceSQ(Main.npc[NPC.crimsonBoss].Center) < 3000 * 3000)
             {
                 Player.ZoneCrimson = true;
             }
 
-            if ((FargoGlobalNPC.plantBoss != -1 && Player.DistanceSQ(Main.npc[FargoGlobalNPC.plantBoss].Center) < 3000 * 3000)
-                || (FargoGlobalNPC.beeBoss != -1 && Player.DistanceSQ(Main.npc[FargoGlobalNPC.beeBoss].Center) < 3000 * 3000))
+            if ((Main.IsNPCActiveAndOneOfTypes(NPC.plantBoss, NPCID.Plantera) && Player.DistanceSQ(Main.npc[NPC.plantBoss].Center) < 3000 * 3000)
+                || (Main.IsNPCActiveAndOneOfTypes(FargoGlobalNPC.beeBoss, NPCID.QueenBee) && Player.DistanceSQ(Main.npc[FargoGlobalNPC.beeBoss].Center) < 3000 * 3000))
             {
                 Player.ZoneJungle = true;
             }

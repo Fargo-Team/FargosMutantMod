@@ -191,7 +191,9 @@ namespace Fargowiltas.Common.Systems
             Item item = new(type);
             TryGetCount(type, out int count);
 
-            if (item.IsAir || !FargoServerConfig.Instance.PotionCooler || (FargoServerConfig.Instance.UnlimitedPotionBuffs is UnlimitedBuffSelections.BossOnly && !(Main.CurrentFrameFlags.AnyActiveBossNPC || FargoGlobalNPC.eaterBoss != -1)))
+            if (item.IsAir || !FargoServerConfig.Instance.PotionCooler ||
+                (FargoServerConfig.Instance.UnlimitedPotionBuffs is UnlimitedBuffSelections.BossOnly &&
+                !FargoUtils.AnyBossAlive()))
                 return;
 
             if (count >= MaxPotions && item.buffType != 0 && item.buffTime >= 60 * 60 * 2)

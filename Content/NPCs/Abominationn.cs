@@ -116,7 +116,7 @@ namespace Fargowiltas.Content.NPCs
             {
                 return false;
             }
-            return FargoServerConfig.Instance.Abom && NPC.downedGoblins && !(Main.CurrentFrameFlags.AnyActiveBossNPC || FargoGlobalNPC.eaterBoss != -1);
+            return FargoServerConfig.Instance.Abom && NPC.downedGoblins && !FargoUtils.AnyBossAlive();
         }
 
         public override bool CanGoToStatue(bool toKingStatue) => toKingStatue;

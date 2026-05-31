@@ -10,7 +10,7 @@ namespace Fargowiltas.Content.Items.Tiles
     {
         public override bool? ValidTeleportCheck_PreAnyDanger(TeleportPylonInfo pylonInfo)
         {
-            if (FargoServerConfig.Instance.PylonsIgnoreEvents && !Main.npc.Any(n => n.CountsAsBoss()))
+            if (FargoServerConfig.Instance.PylonsIgnoreEvents && !FargoUtils.AnyBossAlive())
                 return true;
 
             return base.ValidTeleportCheck_PreAnyDanger(pylonInfo);

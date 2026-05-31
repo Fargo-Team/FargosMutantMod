@@ -84,6 +84,7 @@ namespace Fargowiltas.Content.NPCs
             NPC.HitSound = SoundID.NPCHit1;
             NPC.DeathSound = SoundID.NPCDeath1;
             NPC.knockBackResist = .25f;
+            NPC.housingCategory = 1;
 
             AnimationType = NPCID.Squirrel;
             NPC.aiStyle = NPCAIStyleID.Passive;
@@ -134,7 +135,7 @@ namespace Fargowiltas.Content.NPCs
 
         public override bool CanTownNPCSpawn(int numTownNPCs)/* tModPorter Suggestion: Copy the implementation of NPC.SpawnAllowed_Merchant in vanilla if you to count money, and be sure to set a flag when unlocked, so you don't count every tick. */
         {
-            if (Main.CurrentFrameFlags.AnyActiveBossNPC || FargoGlobalNPC.eaterBoss != -1 || !FargoServerConfig.Instance.Squirrel)
+            if (FargoUtils.AnyBossAlive() || !FargoServerConfig.Instance.Squirrel)
             {
                 return false;
             }

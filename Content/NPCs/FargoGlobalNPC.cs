@@ -62,9 +62,10 @@ namespace Fargowiltas.Content.NPCs
         //internal bool DestroyerSwarm = false;
 
         public static int eaterBoss = -1;
-        public static int brainBoss = -1;
-        public static int plantBoss = -1;
         public static int beeBoss = -1;
+        public static int dungeonGuardian = -1;
+        public static int darkMage = -1;
+        public static int Boss = -1;
 
         public bool FirstFrame = true;
         public bool woodDrop;
@@ -177,7 +178,7 @@ namespace Fargowiltas.Content.NPCs
             if ((config.EnemyHealth != 1 || config.BossHealth != 1) && !entity.townNPC && !entity.CountsAsACritter && entity.life > 10)
             {
                 bool useBoss = config.BossHealth > config.EnemyHealth && // only relevant if boss health is higher than enemy health
-                    (isBoss || (config.BossApplyToAllWhenAlive && (Main.CurrentFrameFlags.AnyActiveBossNPC || FargoGlobalNPC.eaterBoss != -1)));
+                    (isBoss || (config.BossApplyToAllWhenAlive && FargoUtils.AnyBossAlive()));
 
                 if (useBoss)
                     entity.lifeMax = (int)Math.Round(entity.lifeMax * config.BossHealth);
@@ -192,22 +193,26 @@ namespace Fargowiltas.Content.NPCs
         }
         public override void OnSpawn(NPC npc, IEntitySource source)
         {
+            if (npc.CountsAsBoss())
+            {
+                Boss = npc.whoAmI;
+            }
             switch (npc.type)
             {
                 case NPCID.EaterofWorldsHead:
                     eaterBoss = npc.whoAmI;
                     break;
 
-                case NPCID.BrainofCthulhu:
-                    brainBoss = npc.whoAmI;
-                    break;
-
-                case NPCID.Plantera:
-                    plantBoss = npc.whoAmI;
-                    break;
-
                 case NPCID.QueenBee:
                     beeBoss = npc.whoAmI;
+                    break;
+
+                case NPCID.DungeonGuardian:
+                    dungeonGuardian = npc.whoAmI;
+                    break;
+
+                case NPCID.DD2DarkMageT1:
+                    darkMage = npc.whoAmI;
                     break;
 
                 case NPCID.CultistBoss:
@@ -220,6 +225,10 @@ namespace Fargowiltas.Content.NPCs
         }
         public override bool PreAI(NPC npc)
         {
+            if (npc.CountsAsBoss())
+            {
+                Boss = npc.whoAmI;
+            }
             if (npc.townNPC && npc.homeTileX == -1 && npc.homeTileY == -1)
             {
                 bool hasRoom = WorldGen.TownManager.HasRoom(npc.type, out Point homePoint);
@@ -237,16 +246,16 @@ namespace Fargowiltas.Content.NPCs
                     eaterBoss = npc.whoAmI;
                     break;
 
-                case NPCID.BrainofCthulhu:
-                    brainBoss = npc.whoAmI;
-                    break;
-
-                case NPCID.Plantera:
-                    plantBoss = npc.whoAmI;
-                    break;
-
                 case NPCID.QueenBee:
                     beeBoss = npc.whoAmI;
+                    break;
+
+                case NPCID.DungeonGuardian:
+                    dungeonGuardian = npc.whoAmI;
+                    break;
+
+                case NPCID.DD2DarkMageT1:
+                    darkMage = npc.whoAmI;
                     break;
 
                 case NPCID.CultistBoss:

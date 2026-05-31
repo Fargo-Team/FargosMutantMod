@@ -269,9 +269,7 @@ namespace Fargowiltas
             // These can't be bytes because a sign is required and
             // signed bytes range between -127 and 127, which is not enough for the NPC array
             FargoGlobalNPC.eaterBoss = reader.ReadInt16();
-            FargoGlobalNPC.brainBoss = reader.ReadInt16();
             FargoGlobalNPC.beeBoss = reader.ReadInt16();
-            FargoGlobalNPC.plantBoss = reader.ReadInt16();
         }
 
         public override void NetSend(BinaryWriter writer)
@@ -291,9 +289,7 @@ namespace Fargowiltas
             // These can't be bytes because signed bytes are required and
             // they range between -127 and 127, which is not enough for the NPC array
             writer.Write((short)FargoGlobalNPC.eaterBoss);
-            writer.Write((short)FargoGlobalNPC.brainBoss);
             writer.Write((short)FargoGlobalNPC.beeBoss);
-            writer.Write((short)FargoGlobalNPC.plantBoss);
         }
 
         public override void PostUpdateWorld()
@@ -323,7 +319,7 @@ namespace Fargowiltas
 
             // swarm reset in case something goes wrong
             if (Main.netMode != NetmodeID.MultiplayerClient && SwarmActive
-                && !Main.CurrentFrameFlags.AnyActiveBossNPC && FargoGlobalNPC.eaterBoss == -1 && !NPC.AnyNPCs(NPCID.DungeonGuardian) && !NPC.AnyNPCs(NPCID.DD2DarkMageT1))
+                && !FargoUtils.AnyBossAlive() && !Main.IsNPCActiveAndOneOfTypes(FargoGlobalNPC.dungeonGuardian, NPCID.DungeonGuardian) && !Main.IsNPCActiveAndOneOfTypes(FargoGlobalNPC.darkMage, NPCID.DD2DarkMageT1))
             {
                 SwarmActive = false;
                 HardmodeSwarmActive = false;
@@ -449,20 +445,26 @@ namespace Fargowiltas
 
         public override void PreUpdateNPCs()
         {
-            static void ResetGlobalIndex(ref int index, int type)
+            if (!Main.IsNPCActiveAndOneOfTypes(FargoGlobalNPC.eaterBoss, NPCID.EaterofWorldsHead))
             {
-                if (!Main.npc.IndexInRange(index))
-                {
-                    index = -1;
-                    return;
-                }
-                if (!Main.npc[index].active || Main.npc[index].type != type)
-                    index = -1;
+                FargoGlobalNPC.eaterBoss = -1;
             }
-            ResetGlobalIndex(ref FargoGlobalNPC.eaterBoss, NPCID.EaterofWorldsHead);
-            ResetGlobalIndex(ref FargoGlobalNPC.brainBoss, NPCID.BrainofCthulhu);
-            ResetGlobalIndex(ref FargoGlobalNPC.beeBoss, NPCID.QueenBee);
-            ResetGlobalIndex(ref FargoGlobalNPC.plantBoss, NPCID.Plantera);
+            if (!Main.IsNPCActiveAndOneOfTypes(FargoGlobalNPC.beeBoss, NPCID.QueenBee))
+            {
+                FargoGlobalNPC.beeBoss = -1;
+            }
+            if (!Main.IsNPCActiveAndOneOfTypes(FargoGlobalNPC.dungeonGuardian, NPCID.DungeonGuardian))
+            {
+                FargoGlobalNPC.dungeonGuardian = -1;
+            }
+            if (!Main.IsNPCActiveAndOneOfTypes(FargoGlobalNPC.darkMage, NPCID.DD2DarkMageT1))
+            {
+                FargoGlobalNPC.darkMage = -1;
+            }
+            if (!FargoUtils.AnyBossAlive())
+            {
+                FargoGlobalNPC.Boss = -1;
+            }
         }
         public override void PostUpdateEverything()
         {

@@ -1,4 +1,5 @@
 ﻿using Fargowiltas.Common.Systems.Collections;
+using Fargowiltas.Content.NPCs;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.Linq;
@@ -222,5 +223,12 @@ namespace Fargowiltas
         /// <param name="npc"></param>
         /// <returns></returns>
         public static bool CountsAsBoss(this NPC npc) => (npc.boss && npc.type != NPCID.MartianSaucerCore && npc.type != NPCID.TorchGod) || FargoNPCSets.ShouldGrantBossZen[npc.type];
+        public static bool AnyBossAlive()
+        {
+            if (Main.npc.IndexInRange(FargoGlobalNPC.Boss) && Main.npc[FargoGlobalNPC.Boss].active && Main.npc[FargoGlobalNPC.Boss].CountsAsBoss())
+                return true;
+            FargoGlobalNPC.Boss = -1;
+            return false;
+        }
     }
 }

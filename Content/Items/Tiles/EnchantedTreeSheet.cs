@@ -128,8 +128,8 @@ namespace Fargowiltas.Content.Items.Tiles
             if (player != null && player.active && !player.dead && Main.netMode != NetmodeID.Server)
             {
                 FargoUtils.TryGetTileEntityAs<EnchantedTreeTileEntity>(i, j, out EnchantedTreeTileEntity entity);
-                //set tile entity's item to held item of the player and reduce stack of player's held item
-                if (entity != null && player.HeldItem != null && player.HeldItem.type >= ItemID.None && entity.ItemType == -1 && player.HeldItem.stack > 0 && entity.Fruits.Count == 0)
+                //set tile entity's item to held item of the player and reduce stack of player's held item!
+                if (entity != null && player.HeldItem != null && player.HeldItem.type >= ItemID.None && entity.ItemType == -1 && player.HeldItem.stack > 0 && entity.Fruits.Count == 0 && !player.HeldItem.favorited)
                 {
                     entity.ItemType = player.HeldItem.type;
                     entity.Prefix = player.HeldItem.prefix;

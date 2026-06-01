@@ -1,7 +1,4 @@
-using Fargowiltas.Content.Buffs;
-using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Fargowiltas.Content.Items.Summons.Deviantt
 {

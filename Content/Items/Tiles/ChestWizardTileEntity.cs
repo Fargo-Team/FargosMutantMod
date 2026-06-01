@@ -7,14 +7,14 @@ using Terraria.ModLoader.IO;
 
 namespace Fargowiltas.Content.Items.Tiles
 {
-    
+
     public class ChestWizardTileEntity : ModTileEntity
     {
         public float drawTimer;
         public int hatID;
         public override void Update()
         {
-                       
+
             base.Update();
         }
         public override void NetSend(BinaryWriter writer)
@@ -53,7 +53,7 @@ namespace Fargowiltas.Content.Items.Tiles
         }
         public override void OnNetPlace()
         {
-            
+
             if (Main.netMode == NetmodeID.Server)
             {
                 hatID = Main.rand.Next([ItemID.WizardHat, ItemID.WizardsHat, ItemID.RuneHat, ItemID.MagicHat]);

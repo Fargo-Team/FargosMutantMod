@@ -33,7 +33,7 @@ namespace Fargowiltas.Content.Items.Renewals
             Item.maxStack = 9999;
             Item.consumable = true;
             Item.useStyle = ItemUseStyleID.Swing;
-            Item.rare = supreme? ItemRarityID.Lime : ItemRarityID.Orange;
+            Item.rare = supreme ? ItemRarityID.Lime : ItemRarityID.Orange;
             Item.UseSound = SoundID.Item1;
             Item.useAnimation = 20;
             Item.useTime = 20;

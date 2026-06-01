@@ -1,24 +1,24 @@
-using System.Collections.Generic;
+using Fargowiltas.Common.Configs;
+using Fargowiltas.Content.Biomes;
+using Fargowiltas.Content.Items.Summons.Abom;
+using Fargowiltas.Content.Items.Summons.Deviantt;
+using Fargowiltas.Content.Items.Tiles;
+using Fargowiltas.Content.Items.Vanity;
+using Fargowiltas.Content.UI.Emotes;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
+using System.Linq;
 using Terraria;
+using Terraria.GameContent;
+using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.ItemDropRules;
+using Terraria.GameContent.Personalities;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
-using Terraria.GameContent.Bestiary;
-using Terraria.GameContent.Personalities;
-using Fargowiltas.Common.Configs;
-using Fargowiltas.Content.Biomes;
-using System.Linq;
-using Microsoft.Xna.Framework.Graphics;
-using Terraria.GameContent;
-using Terraria.GameContent.ItemDropRules;
-using Fargowiltas.Content.Items.Tiles;
-using Fargowiltas.Content.Items.Vanity;
-using Fargowiltas.Content.Items.Summons.Abom;
-using Fargowiltas.Content.Items.Summons.Deviantt;
-using Fargowiltas.Content.UI.Emotes;
 using static Fargowiltas.Fargowiltas;
+using static Terraria.ModLoader.ModContent;
 
 namespace Fargowiltas.Content.NPCs
 {
@@ -111,11 +111,12 @@ namespace Fargowiltas.Content.NPCs
 
         public override bool CanTownNPCSpawn(int numTownNPCs)/* tModPorter Suggestion: Copy the implementation of NPC.SpawnAllowed_Merchant in vanilla if you to count money, and be sure to set a flag when unlocked, so you don't count every tick. */
         {
-            if (Fargowiltas.ModLoaded["FargowiltasSouls"] && ((bool)ModLoader.GetMod("FargowiltasSouls").Call("MutantAlive") || (bool)ModLoader.GetMod("FargowiltasSouls").Call("AbomAlive")))
+            Mod souls = Fargowiltas.SoulsMod;
+            if (souls != null && ((bool)souls.Call("MutantAlive") || (bool)souls.Call("AbomAlive")))
             {
                 return false;
             }
-            return FargoServerConfig.Instance.Abom && NPC.downedGoblins && !FargoGlobalNPC.AnyBossAlive();
+            return FargoServerConfig.Instance.Abom && NPC.downedGoblins && !FargoUtils.AnyBossAlive();
         }
 
         public override bool CanGoToStatue(bool toKingStatue) => toKingStatue;
@@ -158,7 +159,8 @@ namespace Fargowiltas.Content.NPCs
 
         public override string GetChat()
         {
-            if (NPC.homeless && canSayDefeatQuote && Fargowiltas.ModLoaded["FargowiltasSouls"] && (bool)ModLoader.GetMod("FargowiltasSouls").Call("DownedAbom"))
+            Mod souls = Fargowiltas.SoulsMod;
+            if (NPC.homeless && canSayDefeatQuote && (bool?)souls?.Call("DownedAbom") == true)
             {
                 canSayDefeatQuote = false;
                 return AbomChat("Defeat");
@@ -178,10 +180,9 @@ namespace Fargowiltas.Content.NPCs
                 }
             }
 
-            if (Fargowiltas.ModLoaded["FargowiltasSouls"] && Main.rand.NextBool(3))
+            if (souls != null && Main.rand.NextBool(3) && (bool)souls.Call("StyxArmor"))
             {
-                if ((bool)ModLoader.GetMod("FargowiltasSouls").Call("StyxArmor"))
-                    return AbomChat("StyxArmor");
+                return AbomChat("StyxArmor");
             }
 
             List<string> dialogue = Language.FindAll(Lang.CreateDialogFilter("Mods.Fargowiltas.NPCs.Abominationn.Chat.Normal")).Select(item => item.Value).ToList();
@@ -366,7 +367,7 @@ namespace Fargowiltas.Content.NPCs
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
-        {   
+        {
             Texture2D texture = (Texture2D)TownNPCProfile().GetTextureNPCShouldUse(NPC);
             Rectangle rectangle = NPC.frame;
             Vector2 origin2 = rectangle.Size() / 2f;

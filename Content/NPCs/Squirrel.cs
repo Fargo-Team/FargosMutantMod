@@ -8,7 +8,6 @@ using Fargowiltas.Content.UI.Emotes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
@@ -24,14 +23,13 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.Utilities;
 using static Fargowiltas.Fargowiltas;
+using static Terraria.ModLoader.ModContent;
 
 namespace Fargowiltas.Content.NPCs
 {
     [AutoloadHead]
     public class Squirrel : ModNPC
     {
-        private static int shopNum;
-        private static bool showCycleShop;
         private static Profiles.StackedNPCProfile NPCProfile;
         private static int ShimmerHeadIndex;
 
@@ -86,6 +84,7 @@ namespace Fargowiltas.Content.NPCs
             NPC.HitSound = SoundID.NPCHit1;
             NPC.DeathSound = SoundID.NPCDeath1;
             NPC.knockBackResist = .25f;
+            NPC.housingCategory = 1;
 
             AnimationType = NPCID.Squirrel;
             NPC.aiStyle = NPCAIStyleID.Passive;
@@ -136,7 +135,7 @@ namespace Fargowiltas.Content.NPCs
 
         public override bool CanTownNPCSpawn(int numTownNPCs)/* tModPorter Suggestion: Copy the implementation of NPC.SpawnAllowed_Merchant in vanilla if you to count money, and be sure to set a flag when unlocked, so you don't count every tick. */
         {
-            if (FargoGlobalNPC.AnyBossAlive() || !FargoServerConfig.Instance.Squirrel)
+            if (FargoUtils.AnyBossAlive() || !FargoServerConfig.Instance.Squirrel)
             {
                 return false;
             }
@@ -144,11 +143,11 @@ namespace Fargowiltas.Content.NPCs
             {
                 return true;
             }
-
-            if (!Fargowiltas.ModLoaded["FargowiltasSouls"] && NPC.downedSlimeKing)
+            Mod souls = Fargowiltas.SoulsMod;
+            if (souls == null && NPC.downedSlimeKing)
                 return true;
 
-            if (Fargowiltas.ModLoaded["FargowiltasSouls"] && ModContent.TryFind("FargowiltasSouls", "TopHatSquirrelCaught", out ModItem modItem) &&
+            if (souls?.TryFind("TopHatSquirrelCaught", out ModItem modItem) == true &&
                 Main.player.Any(p => p.active && p.HasItem(modItem.Type)))
             {
                 return true;
@@ -159,13 +158,6 @@ namespace Fargowiltas.Content.NPCs
 
         public override string GetChat()
         {
-            showCycleShop = GetSellableItems().Count / MaxItems > 0; // && !ModLoader.TryGetMod("ShopExpander", out _);
-
-            if (Main.bloodMoon)
-            {
-                return SquirrelChat("BloodMoon");
-            }
-
             return Main.rand.Next(3) switch
             {
                 0 => SquirrelChat("Normal1"),
@@ -176,13 +168,9 @@ namespace Fargowiltas.Content.NPCs
 
         public override void SetChatButtons(ref string button, ref string button2)
         {
-            if (!Main.bloodMoon)
-            {
-                button = Language.GetTextValue("LegacyInterface.28");
-                button2 = Language.GetTextValue("Mods.Fargowiltas.NPCs.Squirrel.Feed");
-            }
-            else
-                button = Language.GetTextValue("Mods.Fargowiltas.NPCs.Squirrel.BlackMarket");
+            button = Language.GetTextValue("LegacyInterface.28");
+            button2 = Language.GetTextValue("Mods.Fargowiltas.NPCs.Squirrel.Feed");
+
         }
 
         public override void OnChatButtonClicked(bool firstButton, ref string shopName)
@@ -200,350 +188,24 @@ namespace Fargowiltas.Content.NPCs
                 else
                     Main.npcChatText = SquirrelChat("FeedFail");
             }
-
-            //check this when just opening shop too in case shop shrinks
-            //if (shopNum > GetSellableItems().Count / MaxItems)
-            //{
-            //    shopNum = 0;
-            //}
-        }
-        //public static List<(string, string)> SquirrelSellsModded = 
-        //    [
-        //    ("FargowiltasSouls", "BionomicCluster"),
-        //    ("FargowiltasSouls","HeartoftheMasochist"),
-        //    ("FargowiltasSouls","ChaliceoftheMoon"),
-        //    ("FargowiltasSouls","DubiousCircuitry"),
-        //    ("FargowiltasSouls","LumpOfFlesh"),
-        //    ("FargowiltasSouls","PureHeart"),
-        //    ("FargowiltasSouls","SupremeDeathbringerFairy"),
-        //    ];
-        //public static List<(string, string)> SquirrelSellsMaterialsModded =
-        //    [
-        //    ("FargowiltasSouls", "MasochistSoul"),
-        //    ("FargowiltasSouls", "AeolusBoots"),
-        //    ("FargowiltasSouls", "ZephyrBoots")
-        //    ];
-        public static SquirrelShopGroup SquirrelSells(Item item, out SquirrelSellType sellType)
-        {
-
-            //if (item.type == ItemID.Zenith)
-            //{
-            //    sellType = SquirrelSellType.CraftableMaterialsSold;
-            //    return SquirrelShopGroup.Other;
-            //}
-
-            //if (item.makeNPC != 0 || FargoItemSets.SquirrelSellsDirectly[item.type])
-            //{
-            //    sellType = SquirrelSellType.SoldBySquirrel;
-            //    return SquirrelShopGroup.Other;
-            //}
-
-            if (!Main.bloodMoon)
-            {
-                bool Potion = item.buffType != 0 && item.type != ItemID.GrilledSquirrel || FargoItemSets.NonBuffPotion[item.type];
-                if (Potion && item.maxStack >= 30)
-                {
-                    sellType = SquirrelSellType.SoldAtThirtyStack;
-                    return SquirrelShopGroup.Potion;
-                }
-                //bool soulsEnabled = ModLoader.TryGetMod("FargowiltasSouls", out Mod soulsMod);
-            }
-
-            //if (IsFargoSoulsItem(item))
-            //{
-            //    if (item.ModItem.Name.EndsWith("Enchant"))
-            //    {
-            //        sellType = SquirrelSellType.SoldBySquirrel;
-            //        return SquirrelShopGroup.Enchant;
-            //    }
-            //    else if (item.ModItem.Name.EndsWith("Essence"))
-            //    {
-            //        sellType = SquirrelSellType.SoldBySquirrel;
-            //        return SquirrelShopGroup.Essence;
-            //    }
-            //    else if (soulsEnabled && SquirrelSellsModded.Any(s => ModContent.TryFind(s.Item1, s.Item2, out ModItem modItem) && modItem.Type == item.type))
-            //    {
-            //        sellType = SquirrelSellType.SoldBySquirrel;
-            //        return SquirrelShopGroup.Other;
-            //    }
-            //    else if (item.ModItem.Name.EndsWith("Force"))
-            //    {
-            //        sellType = SquirrelSellType.SomeMaterialsSold;
-            //        return SquirrelShopGroup.Enchant;
-            //    }
-            //    else if (soulsEnabled && SquirrelSellsMaterialsModded.Any(s => ModContent.TryFind(s.Item1, s.Item2, out ModItem modItem) && modItem.Type == item.type))
-            //    {
-            //        sellType = SquirrelSellType.CraftableMaterialsSold;
-            //        return SquirrelShopGroup.Other;
-            //    }
-            //    else if (item.ModItem.Name.EndsWith("Soul"))
-            //    {
-            //        //go through recipes and look for a sellable material
-            //        foreach (Recipe recipe in Main.recipe.Where(recipe => recipe.HasResult(item.type)))
-            //        {
-            //            foreach (Item material in recipe.requiredItem)
-            //            {
-            //                if (material.type != ItemID.None && material.ModItem != null)
-            //                {
-            //                    if (material.ModItem.Name.EndsWith("Essence"))
-            //                    {
-            //                        sellType = SquirrelSellType.SomeMaterialsSold;
-            //                        return SquirrelShopGroup.Essence;
-            //                    }
-            //                    else if (material.ModItem.Name.EndsWith("Force"))
-            //                    {
-            //                        sellType = SquirrelSellType.SomeMaterialsSold;
-            //                        return SquirrelShopGroup.Force;
-            //                    }
-            //                    else if (material.ModItem.Name.EndsWith("Soul"))
-            //                    {
-            //                        sellType = SquirrelSellType.SomeMaterialsSold;
-            //                        return SquirrelShopGroup.Soul;
-            //                    }
-            //                }
-            //            }
-            //        }
-
-            //        //if nothing found, sell the soul itself
-            //        sellType = SquirrelSellType.SoldBySquirrel;
-            //        return SquirrelShopGroup.Soul;
-            //    }
-            //}
-
-            sellType = SquirrelSellType.End;
-            return SquirrelShopGroup.End;
-        }
-        public void TryAddItem(Item item, Dictionary<SquirrelShopGroup, SortedSet<int>> itemCollections)
-        {
-            var shopGroup = SquirrelSells(item, out SquirrelSellType sellType);
-            switch (sellType)
-            {
-                case SquirrelSellType.SoldBySquirrel:
-                    {
-                        itemCollections[shopGroup].Add(item.type);
-                    }
-                    break;
-
-                case SquirrelSellType.SomeMaterialsSold:
-                    foreach (var recipe in Main.recipe.Where(recipe => recipe.HasResult(item.type)))
-                    {
-                        foreach (var material in recipe.requiredItem)
-                        {
-                            if (material.ModItem is not null && material.ModItem.Name.EndsWith(shopGroup.ToString()))
-                            {
-                                itemCollections[shopGroup].Add(material.type);
-                            }
-                        }
-                    }
-                    break;
-
-                case SquirrelSellType.CraftableMaterialsSold:
-                    //var materialTypes = new HashSet<int>(Main.recipe.SelectMany(recipe => recipe.requiredItem.Select(item => item.type)).Where(type => type != ItemID.None));
-                    foreach (var recipe in Main.recipe.Where(recipe => recipe.HasResult(item.type)))
-                    {
-                        foreach (var material in recipe.requiredItem)
-                        {
-                            if (material.type != ItemID.None && Main.recipe.Any(r => r.HasResult(material.type)))
-                            {
-                                itemCollections[shopGroup].Add(material.type);
-                            }
-                        }
-                    }
-                    break;
-
-                case SquirrelSellType.SoldAtThirtyStack:
-                    foreach (Player player in Main.player.Where(p => p.active))
-                    {
-                        if (player.FargoMutant().ItemHasBeenOwnedAtThirtyStack[item.type])
-                            itemCollections[shopGroup].Add(item.type);
-                    }
-                    break;
-
-                default:
-                    break;
-            }
-        }
-
-        private List<int> GetSellableItems()
-        {
-            Dictionary<SquirrelShopGroup, SortedSet<int>> itemCollections = new();
-            for (int i = 0; i < (int)SquirrelShopGroup.End; i++)
-            {
-                itemCollections[(SquirrelShopGroup)i] = [];
-            }
-
-            foreach (var player in Main.player.Where(p => p.active))
-            {
-                FargoPlayer modPlayer = player.FargoMutant();
-
-                foreach (var item in player.inventory)
-                {
-                    if (SquirrelSells(item, out SquirrelSellType _) == SquirrelShopGroup.End)
-                        continue;
-                    modPlayer.ItemHasBeenOwned[item.type] = true;
-                    if (item.stack >= 30)
-                        modPlayer.ItemHasBeenOwnedAtThirtyStack[item.type] = true;
-                }
-
-                foreach (var item in player.bank.item)
-                {
-                    if (SquirrelSells(item, out SquirrelSellType _) == SquirrelShopGroup.End)
-                        continue;
-                    modPlayer.ItemHasBeenOwned[item.type] = true;
-                    if (item.stack >= 30)
-                        modPlayer.ItemHasBeenOwnedAtThirtyStack[item.type] = true;
-                }
-
-                foreach (var item in player.armor)
-                {
-                    if (SquirrelSells(item, out SquirrelSellType _) == SquirrelShopGroup.End)
-                        continue;
-                    modPlayer.ItemHasBeenOwned[item.type] = true;
-                    if (item.stack >= 30)
-                        modPlayer.ItemHasBeenOwnedAtThirtyStack[item.type] = true;
-                }
-
-                foreach (var item in ContentSamples.ItemsByType)
-                {
-                    if (modPlayer.ItemHasBeenOwned[item.Key])
-                    {
-                        TryAddItem(item.Value, itemCollections);
-                    }
-                }
-
-                //if (player.unlockedBiomeTorches)
-                //{
-                //    itemCollections[SquirrelShopGroup.Other].Add(ItemID.TorchGodsFavor);
-                //}
-            }
-
-
-
-
-
-            //add town npcs to shop
-            if (Main.bloodMoon)
-            {
-                foreach (var npc in Main.npc.Where(n => n.active && n.townNPC && Items.CaughtNPCs.CaughtNPCItem.CaughtTownies.ContainsKey(n.type)))
-                {
-                    itemCollections[SquirrelShopGroup.Other].Add(Items.CaughtNPCs.CaughtNPCItem.CaughtTownies[npc.type]);
-                }
-            }
-
-            if (!Main.bloodMoon)
-            {
-                //add acorns to shop
-                //itemCollections[SquirrelShopGroup.Acorn].Add(ItemID.Acorn);
-                //itemCollections[SquirrelShopGroup.Acorn].Add(ItemID.GemTreeAmberSeed);
-                //itemCollections[SquirrelShopGroup.Acorn].Add(ItemID.GemTreeAmethystSeed);
-                //itemCollections[SquirrelShopGroup.Acorn].Add(ItemID.GemTreeDiamondSeed);
-                //itemCollections[SquirrelShopGroup.Acorn].Add(ItemID.GemTreeEmeraldSeed);
-                //itemCollections[SquirrelShopGroup.Acorn].Add(ItemID.GemTreeRubySeed);
-                //itemCollections[SquirrelShopGroup.Acorn].Add(ItemID.GemTreeSapphireSeed);
-                //itemCollections[SquirrelShopGroup.Acorn].Add(ItemID.GemTreeTopazSeed);
-                itemCollections[SquirrelShopGroup.Acorn].Add(ModContent.ItemType<EnchantedAcorn>());
-                //itemCollections[SquirrelShopGroup.Acorn].Add(ModContent.ItemType<EnchantedTree>());
-            }
-
-            return itemCollections.OrderBy(kv => kv.Key).SelectMany(kv => kv.Value).ToList();
-        }
-        public static bool IsFargoSoulsItem(Item item)
-        {
-            if (item.ModItem is not null)
-            {
-                string modName = item.ModItem.Mod.Name;
-                return modName.Equals("FargowiltasSouls") || modName.Equals("FargowiltasSoulsDLC");
-            }
-
-            return false;
         }
         public override void AddShops()
         {
             var npcShop = new NPCShop(Type, ShopName);
 
+            if (ModContent.TryFind("FargowiltasSouls", "TopHatSquirrelCaught", out ModItem tophatSqurl))
+            {
+                npcShop.Add(new Item(tophatSqurl.Type) { shopCustomPrice = Item.buyPrice(copper: 100000) });
+            }
+
+            npcShop
+                .Add(new Item(ItemType<GizmoParts>()))
+                .Add(new Item(ItemType<EnchantedAcorn>()))
+                .Add(new Item(ItemType<EnchantedTree>()))
+                .Add(new Item(ItemType<PotionCooler>()))
+            ;
+
             npcShop.Register();
-        }
-        public static int MaxItems => ModLoader.HasMod("ShopExpander") ? Chest.maxItems - 2 : Chest.maxItems;
-        public override void ModifyActiveShop(string shopName, Item[] items)
-        {
-            int nextSlot = 0; //ignore pylon and anything else inserted into shop ( how does this work in new system?
-            int index = 0;
-            int startOffset = shopNum * MaxItems;
-
-            List<int> sellableItems = GetSellableItems();
-            if (shopNum == 0 && ModContent.TryFind("FargowiltasSouls", "TopHatSquirrelCaught", out ModItem modItem) && !Main.bloodMoon) //only on page 1
-            {
-                items[nextSlot] = new Item(modItem.Type) { shopCustomPrice = Item.buyPrice(copper: 100000) };
-                nextSlot++;
-            }
-            foreach (int type in sellableItems)
-            {
-                if (++index < startOffset) //skip up to the minimum
-                {
-                    continue;
-                }
-
-                if (nextSlot >= MaxItems) //only fill shop up to capacity
-                {
-                    break;
-                }
-
-                var item = new Item(type);
-                int price;
-                bool medals = false;
-
-                if (item.makeNPC != 0)
-                {
-                    price = Item.buyPrice(gold: 10);
-                    int[] pricier =
-                    [
-                        ItemID.TruffleWorm,
-                        ItemID.EmpressButterfly,
-                        ItemID.GoldBird,
-                        ItemID.GoldBunny,
-                        ItemID.GoldButterfly,
-                        ItemID.GoldDragonfly,
-                        ItemID.GoldFrog,
-                        ItemID.GoldGoldfish,
-                        ItemID.GoldGrasshopper,
-                        ItemID.GoldLadyBug,
-                        ItemID.GoldMouse,
-                        ItemID.GoldSeahorse,
-                        ItemID.SquirrelGold,
-                        ItemID.GoldWaterStrider,
-                        ItemID.GoldWorm
-                    ];
-
-                    if (pricier.Contains(item.type))
-                    {
-                        price *= 5;
-                    }
-                    else if (item.ModItem is Items.CaughtNPCs.CaughtNPCItem)
-                    {
-                        price *= 2;
-                    }
-                }
-                else if (type == ItemID.RodofDiscord)
-                {
-                    price = 250;
-                    medals = true;
-                }
-                else
-                {
-                    price = item.value * 2;
-                }
-
-                if (medals)
-                {
-                    items[nextSlot] = new Item(type) { shopCustomPrice = Item.buyPrice(copper: price), shopSpecialCurrency = CustomCurrencyID.DefenderMedals };
-                }
-                else
-                {
-                    items[nextSlot] = new Item(type) { shopCustomPrice = Item.buyPrice(copper: price) };
-                }
-
-                nextSlot++;
-            }
         }
 
         public override bool CanGoToStatue(bool toKingStatue)
@@ -574,7 +236,7 @@ namespace Fargowiltas.Content.NPCs
                 Vector2 afterimageOffset = (MathHelper.TwoPi * j / 12f).ToRotationVector2() * 4f + Vector2.UnitY * 3;
                 Color glowColor = Color.Red with { A = 0 };
                 Texture2D texture = ModContent.Request<Texture2D>(Texture).Value;
-                Main.EntitySpriteDraw(texture, NPC.Center + afterimageOffset - screenPos + Vector2.UnitY * (NPC.gfxOffY - 1), NPC.frame, glowColor, NPC.rotation, new Vector2(texture.Width / 2, texture.Height / 2 / Main.npcFrameCount[NPC.type]), NPC.scale, effects, 0f);
+                Main.EntitySpriteDraw(texture, NPC.Center + afterimageOffset - screenPos + Vector2.UnitY * (NPC.gfxOffY - 1), frame, glowColor, NPC.rotation, new Vector2(texture.Width / 2, texture.Height / 2 / Main.npcFrameCount[NPC.type]), NPC.scale, effects, 0f);
             }
             return true;
         }

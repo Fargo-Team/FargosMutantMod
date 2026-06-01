@@ -183,7 +183,7 @@ namespace Fargowiltas.Content.UI
             CalculatedStyle dimensions = GetDimensions();
 
             bool isSelected = FargoUIManager.IsOpen(UI);
-            bool isHovered = IsMouseHovering;           
+            bool isHovered = IsMouseHovering;
             Asset<Texture2D> Texture = FargoMutantAssets.UI.CombinedUITab;
             Rectangle rect = new(0, Texture.Height() / 4 * Frame, Texture.Width(), Texture.Height() / 4);
             rect.Height -= 2;
@@ -194,10 +194,10 @@ namespace Fargowiltas.Content.UI
                 Frame = 2;
                 if (isHovered)
                     Frame = 3;
-                
+
             }
             if (isHovered)
-            {   
+            {
                 Main.LocalPlayer.mouseInterface = true;
                 if (!isSelected)
                     Frame = 1;

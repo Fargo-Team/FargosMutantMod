@@ -12,9 +12,9 @@ Lures3: Fires 3 lures at once
 Lures5: Fires 5 lures at once
 AutoTorch: Automatically swaps placed torches to boost luck
 TrueTorchLuck: Obeys true torch luck when replacing torches, which may differ from default choices
-UnlimitedBuff30: Unlimited buff at {0} stack in inventory or portable storage
+UnlimitedBuff30: Unlimited buff at {0} stack in Potion Cooler
 UnlimitedUse30: Unlimited use at 30 stack
-PermanentEffectNearby: Permanently provides effect to nearby players when placed
+PermanentEffectNearby: Permanently provides {0} buff to nearby players when placed
 WorksFromBanks: Inventory effects also work from Piggy Bank and Safe
 SoldBySquirrel: Sold By Squirrel: When obtained
 SomeMaterialsSold: Some Materials Sold By Squirrel: When obtained
@@ -33,3 +33,4 @@ ShimmerableFrom: Shimmerable from
 ShimmerableBoth: Shimmerable from and into
 TreeTreasure: Obtainable from LumberJack Tree Treasures
 FasterBedSpeed: Further fast forwards time by {0}x when fully asleep
+PermanentEffectNearbyPickup: Once obtained, permanently provides {0} buff to nearby players when placed

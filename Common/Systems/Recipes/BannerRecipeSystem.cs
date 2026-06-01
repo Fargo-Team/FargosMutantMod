@@ -274,7 +274,7 @@ namespace Fargowiltas.Common.Systems.Recipes
 
             // Ice Cream
             group = new RecipeGroup(() => RecipeHelper.GenerateAnyBannerRecipeGroupText("ItemName.IceCream"),
-                ItemID.IceSlimeBanner, ItemID.IceBatBanner,ItemID.SpikedIceSlimeBanner
+                ItemID.IceSlimeBanner, ItemID.IceBatBanner, ItemID.SpikedIceSlimeBanner
             );
             AnyIceCreamBanner = RecipeGroup.RegisterGroup("Fargowiltas:AnyIceCreamBanner", group);
 
@@ -303,7 +303,7 @@ namespace Fargowiltas.Common.Systems.Recipes
             group = new RecipeGroup(() => RecipeHelper.GenerateAnyBannerRecipeGroupText("ItemName.MeatGrinder"),
                 ItemID.EaterofSoulsBanner, ItemID.CorruptorBanner, ItemID.CorruptSlimeBanner, ItemID.SlimerBanner,
                 ItemID.DevourerBanner, ItemID.WorldFeederBanner, ItemID.DarkMummyBanner, ItemID.CursedHammerBanner,
-                ItemID.ClingerBanner, ItemID.BigMimicCorruptionBanner, ItemID.BloodCrawlerBanner,ItemID.FaceMonsterBanner,
+                ItemID.ClingerBanner, ItemID.BigMimicCorruptionBanner, ItemID.BloodCrawlerBanner, ItemID.FaceMonsterBanner,
                 ItemID.CrimeraBanner, ItemID.HerplingBanner, ItemID.CrimslimeBanner, ItemID.BloodJellyBanner,
                 ItemID.BloodFeederBanner, ItemID.BloodMummyBanner, ItemID.CrimsonAxeBanner, ItemID.IchorStickerBanner,
                 ItemID.FloatyGrossBanner, ItemID.BigMimicCrimsonBanner
@@ -533,7 +533,7 @@ namespace Fargowiltas.Common.Systems.Recipes
             AddBannerToItemRecipe(ItemID.HarpyBanner, ItemID.ChickenNugget);
             AddBannerGroupToItemRecipe(AnyBananaSplitBanner, ItemID.BananaSplit);
             AddBannerGroupToItemRecipe(AnyCreamSodaBanner, ItemID.CreamSoda);
-            AddBannerGroupToItemRecipe(AnyIceCreamBanner,  ItemID.IceCream);
+            AddBannerGroupToItemRecipe(AnyIceCreamBanner, ItemID.IceCream);
             AddBannerGroupToItemRecipe(AnyCoffeeCupBanner, ItemID.CoffeeCup);
             AddBannerGroupToItemRecipe(AnyNachosBanner, ItemID.Nachos);
             AddBannerGroupToItemRecipe(AnyShrimpPoBoyBanner, ItemID.ShrimpPoBoy);

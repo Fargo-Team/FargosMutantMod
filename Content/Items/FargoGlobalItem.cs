@@ -1,12 +1,9 @@
 ﻿using Fargowiltas.Common.Configs;
-using Fargowiltas.Common.Systems;
 using Fargowiltas.Common.Systems.Collections;
-using Fargowiltas.Content.Items.CaughtNPCs;
 using Fargowiltas.Content.Items.Summons.Abom;
 using Fargowiltas.Content.Items.Tiles;
 using Fargowiltas.Content.NPCs;
 using Fargowiltas.Content.UI.Emotes;
-using Fargowiltas.Utilities.Extensions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -14,6 +11,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.GameContent.UI;
@@ -252,8 +250,7 @@ namespace Fargowiltas.Content.Items
                     tooltips.Add(line);
                 }
 
-                if (FargoServerConfig.Instance.UnlimitedPotionBuffs is UnlimitedBuffSelections.On || (FargoServerConfig.Instance.UnlimitedPotionBuffs is UnlimitedBuffSelections.BossOnly && FargoGlobalNPC.AnyBossAlive()) 
-                    && item.maxStack > 1)
+                if (FargoServerConfig.Instance.PotionCooler && item.maxStack > 1)
                 {
                     if (item.buffType != 0 && item.buffTime >= 60 * 60 * 2)
                     {
@@ -267,9 +264,21 @@ namespace Fargowiltas.Content.Items
                     }*/
                 }
 
-                if (fargoServerConfig.PermanentStationsNearby && FargoItemSets.BuffStation[item.type])
+                if (fargoServerConfig.PermanentStationsNearby && FargoItemSets.BuffStation[item.type] != -1)
                 {
-                    line = new TooltipLine(Mod, "TooltipUnlim", $"[s:Fargowiltas/PermanentStationsNearby] [c/AAAAAA:{ExpandedTooltipLoc("PermanentEffectNearby")}]");
+                    string text = "";
+                    string buff = Lang.GetBuffName(FargoItemSets.BuffStation[item.type]);
+                    if (Main.LocalPlayer.FargoMutant().ItemHasBeenOwned[item.type])
+                    {
+                        string loc = Language.GetTextValue($"Mods.Fargowiltas.ExpandedTooltips.PermanentEffectNearby", buff);
+                        text = $"[s:Fargowiltas/PermanentStationsNearby] [c/AAAAAA:{loc}]";
+                    }
+                    else
+                    {
+                        string loc = Language.GetTextValue($"Mods.Fargowiltas.ExpandedTooltips.PermanentEffectNearbyPickup", buff);
+                        text = $"[s:Fargowiltas/PermanentStationsNearby] [c/AAAAAA:{loc}]";
+                    }
+                    line = new TooltipLine(Mod, "TooltipUnlim", text);
                     tooltips.Add(line);
                 }
 
@@ -279,12 +288,6 @@ namespace Fargowiltas.Content.Items
                     tooltips.Add(line);
                 }
 
-                if (Squirrel.SquirrelSells(item, out SquirrelSellType sellType) != SquirrelShopGroup.End)
-                {
-                    line = new TooltipLine(Mod, "TooltipSquirrel",
-                        $"[h:{TownNPCProfiles.GetHeadIndexSafe(ContentSamples.NpcsByNetId[ModContent.NPCType<Squirrel>()])}] [c/AAAAAA:{ExpandedTooltipLoc(sellType.ToString())}]");
-                    tooltips.Add(line);
-                }
                 if (EnchantedTreeTileEntity.IsItemDupable(item.type))
                 {
                     line = new TooltipLine(Mod, "TooltipEnchantedTree",
@@ -339,14 +342,14 @@ namespace Fargowiltas.Content.Items
                     shimmerText = $"[s:Fargowiltas/Shimmer] [c/FFC0CB:{ExpandedTooltipLoc("Shimmerable")}] [i:{shimmerItem}] [c/FFC0CB:{ContentSamples.ItemsByType[shimmerItem].Name}]";
                 else if (shimmerItem <= 0 && shimmerFromItem > 0)
                     shimmerText = $"[s:Fargowiltas/Shimmer] [c/FFC0CB:{ExpandedTooltipLoc("ShimmerableFrom")}] [i:{shimmerFromItem}] [c/FFC0CB:{ContentSamples.ItemsByType[shimmerFromItem].Name}]";
-                else if (shimmerItem > 0 && shimmerFromItem > 0 )
+                else if (shimmerItem > 0 && shimmerFromItem > 0)
                 {
                     if (shimmerItem == shimmerFromItem)
                         shimmerText = $"[s:Fargowiltas/Shimmer] [c/FFC0CB:{ExpandedTooltipLoc("ShimmerableBoth")}] [i:{shimmerItem}] [c/FFC0CB:{ContentSamples.ItemsByType[shimmerItem].Name}]";
                     else
                         shimmerText = $"[s:Fargowiltas/Shimmer] [c/FFC0CB:{ExpandedTooltipLoc("Shimmerable")}] [i:{shimmerItem}] [c/FFC0CB:{ContentSamples.ItemsByType[shimmerItem].Name}], [c/FFC0CB:{ExpandedTooltipLoc("ShimmerableFrom")}] [i:{shimmerFromItem}] [c/FFC0CB:{ContentSamples.ItemsByType[shimmerFromItem].Name}]";
                 }
-                    
+
                 if (shimmerText.Length > 0)
                 {
                     line = new TooltipLine(Mod, "TooltipShimmerable", shimmerText);
@@ -519,28 +522,6 @@ namespace Fargowiltas.Content.Items
             }
             return base.UseItem(item, player);
         }
-        public static void TryUnlimBuff(Item item, Player player)
-        {
-            if (item.IsAir || !(FargoServerConfig.Instance.UnlimitedPotionBuffs is UnlimitedBuffSelections.On || (FargoServerConfig.Instance.UnlimitedPotionBuffs is UnlimitedBuffSelections.BossOnly && FargoGlobalNPC.AnyBossAlive())))
-                return;
-
-            if (item.stack >= FargoServerConfig.Instance.UnlimitedPotionBuffsAmount && item.buffType != 0 && item.buffTime >= 60 * 60 * 2)
-            {
-                player.FargoMutant().ActivePotions.Add(item.buffType);
-
-                if (player.GetPotionToggleValue(item.type))
-                {
-                    player.AddBuff(item.buffType, 2);
-
-                    //compensate to account for luck potion being weaker based on remaining duration wtf
-                    if (item.type == ItemID.LuckPotion)
-                        player.GetModPlayer<FargoPlayer>().luckPotionBoost = Math.Max(player.GetModPlayer<FargoPlayer>().luckPotionBoost, 0.1f);
-                    else if (item.type == ItemID.LuckPotionGreater)
-                        player.GetModPlayer<FargoPlayer>().luckPotionBoost = Math.Max(player.GetModPlayer<FargoPlayer>().luckPotionBoost, 0.2f);
-                }
-            }
-
-        }
         public static void TryPiggyBankAcc(Item item, Player player)
         {
             if (item.IsAir || item.maxStack > 1)
@@ -550,13 +531,20 @@ namespace Fargowiltas.Content.Items
                 player.RefreshInfoAccsFromItemType(item);
                 player.RefreshMechanicalAccsFromItemType(item.type);
             }
-            if (FargoServerConfig.Instance.ModdedPiggyBankAcc && item.ModItem is ModItem modItem && modItem != null)
-                modItem.UpdateInventory(player);
+            if (FargoServerConfig.Instance.ModdedPiggyBankAcc)
+                item.ModItem?.UpdateInventory(player);
         }
         public override void UpdateInventory(Item item, Player player)
         {
-            TryUnlimBuff(item, player);
             CheckForIsOldUnlimitedAmmo(item);
+            if (Main.netMode != NetmodeID.Server)
+            {
+                player.FargoMutant().ItemHasBeenOwned[item.type] = true;
+                if (player.whoAmI != Main.myPlayer)
+                {
+                    Main.LocalPlayer.FargoMutant().ItemHasBeenOwned[item.type] = true;
+                }
+            }
         }
         public override void UpdateAccessory(Item item, Player player, bool hideVisual)
         {
@@ -609,13 +597,7 @@ namespace Fargowiltas.Content.Items
         {
             return FargoServerConfig.Instance.UnlimitedAmmo && Main.hardMode && ammo.ammo != 0 && (ammo.stack >= 3996);
         }
-        public bool UnlimitedBuff(Item buff)
-        {
-            return FargoServerConfig.Instance.UnlimitedPotionBuffs is UnlimitedBuffSelections.On 
-                && (buff.buffType > 0 || FargoItemSets.NonBuffPotion[buff.type])
-                && buff.stack >= FargoServerConfig.Instance.UnlimitedPotionBuffsAmount
-                && buff.buffTime >= 60 * 60 * 2;
-        }
+
         public override bool CanBeConsumedAsAmmo(Item ammo, Item weapon, Player player)
         {
             if (UnlimitedAmmo(ammo))
@@ -627,7 +609,7 @@ namespace Fargowiltas.Content.Items
         public override bool? CanConsumeBait(Player player, Item bait)
         {
             //if (FargoServerConfig.Instance.UnlimitedAmmo && bait.stack >= 30)
-                //return false;
+            //return false;
 
             return base.CanConsumeBait(player, bait);
         }
@@ -635,8 +617,6 @@ namespace Fargowiltas.Content.Items
         public override bool ConsumeItem(Item item, Player player)
         {
             if (FargoServerConfig.Instance.UnlimitedConsumableWeapons && Main.hardMode && item.damage > 0 && item.ammo == 0 && item.stack >= 3996)
-                return false;
-            if ((FargoServerConfig.Instance.UnlimitedPotionBuffs is UnlimitedBuffSelections.On || (FargoServerConfig.Instance.UnlimitedPotionBuffs is UnlimitedBuffSelections.BossOnly && FargoGlobalNPC.AnyBossAlive())) && (item.buffType > 0 || FargoItemSets.NonBuffPotion[item.type]) && (item.stack >= FargoServerConfig.Instance.UnlimitedPotionBuffsAmount || player.inventory.Any(i => i.type == item.type && !i.IsAir && i.stack >= FargoServerConfig.Instance.UnlimitedPotionBuffsAmount)) && item.buffTime >= 60 * 60 * 2)
                 return false;
             return base.ConsumeItem(item, player);
         }
@@ -692,8 +672,6 @@ namespace Fargowiltas.Content.Items
             {
                 player.GetModPlayer<FargoPlayer>().FirstDyeIngredients[dye] = true;
             }
-
-            player.GetModPlayer<FargoPlayer>().ItemHasBeenOwned[item.type] = true;
 
             return base.OnPickup(item, player);
         }
@@ -795,7 +773,7 @@ namespace Fargowiltas.Content.Items
                     item.stack = stack;
                 }
             }
-            if ((UnlimitedAmmo(item) || UnlimitedBuff(item)) && !item.IsACoin)
+            if (UnlimitedAmmo(item) && !item.IsACoin)
             {
                 //ChatManager.DrawColorCodedStringWithShadow(spriteBatch, FontAssets.ItemStack.Value, "∞", position + new Vector2(8f, -24f) * scale, drawColor, 0f, Vector2.Zero, new Vector2(scale), -1f, scale);
 
@@ -875,6 +853,28 @@ namespace Fargowiltas.Content.Items
                 item.TurnToAir();
                 item.type = ammoItemType;
                 item.stack = 3996;
+            }
+        }
+
+        public override void OnCreated(Item item, ItemCreationContext context)
+        {
+            if (context is not InitializationItemCreationContext)
+            {
+                FargoPlayer modPlayer = Main.LocalPlayer.FargoMutant();
+                if (!modPlayer.ItemHasBeenOwned[item.type])
+                {
+                    foreach (Player p in Main.ActivePlayers)
+                    {
+                        p.FargoMutant().ItemHasBeenOwned[item.type] = true;
+                    }
+                    if (Main.netMode == NetmodeID.MultiplayerClient)
+                    {
+                        ModPacket syncOneOwned = Mod.GetPacket();
+                        syncOneOwned.Write((byte)Fargowiltas.PacketID.SyncOwnedItem);
+                        syncOneOwned.Write(item.type);
+                        syncOneOwned.Send();
+                    }
+                }
             }
         }
     }

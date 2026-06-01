@@ -16,9 +16,9 @@ namespace Fargowiltas.Content.Items.Summons.Mutant
         {
             Item.ResearchUnlockCount = 3;
 
-			ItemID.Sets.SortingPriorityBossSpawns[Type] = 19; // Places it right after Celestial Sigil
+            ItemID.Sets.SortingPriorityBossSpawns[Type] = 19; // Places it right after Celestial Sigil
 
-			Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(6, 8));
+            Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(6, 8));
             ItemID.Sets.AnimatesAsSoul[Item.type] = true;
 
             ItemID.Sets.ItemNoGravity[Type] = true;
@@ -40,7 +40,7 @@ namespace Fargowiltas.Content.Items.Summons.Mutant
 
         public override bool CanUseItem(Player player)
         {
-            return FargoUtils.ActuallyNight;
+            return !Main.IsItDay();
         }
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)

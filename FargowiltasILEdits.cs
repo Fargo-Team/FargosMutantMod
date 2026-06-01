@@ -1,4 +1,6 @@
 ﻿using Fargowiltas.Common.Configs;
+using Fargowiltas.Content.NPCs;
+using Mono.Cecil.Cil;
 using MonoMod.Cil;
 using System;
 using Terraria;
@@ -8,9 +10,9 @@ namespace Fargowiltas
 {
     internal abstract class ILEditUtils_Mutant : ModSystem
     {
-        
+
     }
-    internal sealed class DoDraw_UpdateCameraPosition_ILEdit : ILEditUtils_Mutant
+    internal sealed class Main_DoDraw_UpdateCameraPosition_ILEdit : ILEditUtils_Mutant
     {
         public override void OnModLoad() => IL_Main.DoDraw_UpdateCameraPosition += DoDraw_UpdateCameraPosition_IL;
 
@@ -75,6 +77,32 @@ namespace Fargowiltas
             }
             cursor.EmitDelegate(() => FargoClientConfig.Instance.DisableAllScopeView is ScopedBinocularViews.AllEnabled or ScopedBinocularViews.SniperRifleScopeDisabled);
             cursor.EmitAnd();
+        }
+    }
+    /// <summary>
+    /// Prevents Lunar Cultist from summoning Lunar Pillars when undesired.
+    /// <br/> This is less sustainable but more optimized in favor of not having to work with garbage net packets and additional workload.
+    /// </summary>
+    internal sealed class NPC_DoDeathEvents_ILEdit : ModSystem
+    {
+        public override void OnModLoad() => IL_NPC.DoDeathEvents += DoDeathEvents_IL;
+        public static void DoDeathEvents_IL(ILContext context)
+        {
+            ILCursor cursor = new(context);
+            if (!cursor.TryGotoNext(MoveType.Before, i => i.MatchCall<WorldGen>("TriggerLunarApocalypse")))
+            {
+                Fargowiltas.Instance.Logger.Warn("Prevent Lunar Cultist lunar pillars event on death edit failure on MatchCall<WorldGen>(\"TriggerLunarApocalypse\")");
+                MonoModHooks.DumpIL(ModContent.GetInstance<Fargowiltas>(), context);
+                return;
+            }
+            ILLabel label = cursor.DefineLabel();
+
+            cursor.Emit(OpCodes.Ldarg_0);
+            cursor.EmitDelegate((NPC npc) => !npc.TryGetGlobalNPC(out FargoGlobalNPC global) || global.PillarSpawn);
+            cursor.Emit(OpCodes.Brfalse, label);
+
+            cursor.GotoNext(MoveType.After, i => i.MatchCall<WorldGen>("TriggerLunarApocalypse"));
+            cursor.MarkLabel(label);
         }
     }
 }

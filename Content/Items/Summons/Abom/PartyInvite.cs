@@ -11,8 +11,8 @@ namespace Fargowiltas.Content.Items.Summons.Abom
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 3;
-			ItemID.Sets.SortingPriorityBossSpawns[Type] = 0; // Places it before any other boss summons
-		}
+            ItemID.Sets.SortingPriorityBossSpawns[Type] = 0; // Places it before any other boss summons
+        }
 
         public override void SetDefaults()
         {

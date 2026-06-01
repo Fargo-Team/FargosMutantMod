@@ -52,7 +52,7 @@ namespace Fargowiltas.Content.Projectiles
             if (config.EnemyDamage != 1 || config.BossDamage != 1)
             {
                 bool boss = source is EntitySource_Parent parent && parent.Entity is NPC npc && config.BossDamage > config.EnemyDamage && // only relevant if boss health is higher than enemy health
-                (npc.boss || npc.type == NPCID.EaterofWorldsHead || npc.type == NPCID.EaterofWorldsBody || npc.type == NPCID.EaterofWorldsTail || config.BossApplyToAllWhenAlive && FargoGlobalNPC.AnyBossAlive());
+                (npc.CountsAsBoss() || npc.type == NPCID.EaterofWorldsBody || npc.type == NPCID.EaterofWorldsTail || (config.BossApplyToAllWhenAlive && FargoUtils.AnyBossAlive()));
                 if (boss)
                     DamageMultiplier = config.BossDamage;
                 else
@@ -63,7 +63,7 @@ namespace Fargowiltas.Content.Projectiles
                         DamageMultiplier = config.EnemyDamage;
                 }
             }
-                
+
             if (projectile.bobber && projectile.owner == Main.myPlayer && FargoServerConfig.Instance.ExtraLures && source is EntitySource_ItemUse)
             {
                 int split;
@@ -94,7 +94,7 @@ namespace Fargowiltas.Content.Projectiles
 
 
                 //if (Main.player[projectile.owner].HasBuff(BuffID.Fishing))
-                    //split++;
+                //split++;
 
                 if (split > 1)
                     SplitProj(projectile, split);
@@ -154,7 +154,7 @@ namespace Fargowiltas.Content.Projectiles
 
         public override void ModifyHitPlayer(Projectile projectile, Player target, ref Player.HurtModifiers modifiers)
         {
-            modifiers.FinalDamage *= DamageMultiplier;
+            modifiers.SourceDamage *= DamageMultiplier;
         }
 
         public static void SplitProj(Projectile projectile, int number)
@@ -190,26 +190,16 @@ namespace Fargowiltas.Content.Projectiles
         }
         public override Color? GetAlpha(Projectile projectile, Color lightColor)
         {
-            if (lowRender && !projectile.hostile && FargoClientConfig.Instance.TransparentFriendlyProjectiles < 1)
+            bool pets = FargoClientConfig.Instance.NoTransparentPets && Main.projPet[projectile.type] && !projectile.minion;
+            if (lowRender && !projectile.hostile && FargoClientConfig.Instance.TransparentFriendlyProjectiles < 1 && !pets)
             {
-                
-                
                 Color? color = projectile.ModProjectile?.GetAlpha(lightColor);
                 if (color != null)
                 {
-                    if (FargoClientConfig.Instance.NoTransparentPets && Main.projPet[projectile.type])
-                        return color.Value;
-                    else
-                        return color.Value * FargoClientConfig.Instance.TransparentFriendlyProjectiles;
+                    return color.Value * FargoClientConfig.Instance.TransparentFriendlyProjectiles;
                 }
-                if (FargoClientConfig.Instance.NoTransparentPets && Main.projPet[projectile.type])
-                    return lightColor;
-                else
-                {
-                    lightColor *= projectile.Opacity * FargoClientConfig.Instance.TransparentFriendlyProjectiles;
-                    return lightColor;
-                }
-
+                lightColor *= projectile.Opacity * FargoClientConfig.Instance.TransparentFriendlyProjectiles;
+                return lightColor;
             }
 
             return base.GetAlpha(projectile, lightColor);
@@ -266,7 +256,7 @@ namespace Fargowiltas.Content.Projectiles
             {
                 return false;
             }
-            
+
             return OkayToDestroyTile(tile);
         }
 
@@ -277,7 +267,7 @@ namespace Fargowiltas.Content.Projectiles
 
         public static bool TileBelongsToMagicStorage(Tile tile)
         {
-            return Fargowiltas.ModLoaded["MagicStorage"] && TileLoader.GetTile(tile.TileType)?.Mod == ModLoader.GetMod("MagicStorage");
+            return Fargowiltas.MagicStorageMod is Mod mStore && mStore == TileLoader.GetTile(tile.TileType)?.Mod;
         }
     }
 }

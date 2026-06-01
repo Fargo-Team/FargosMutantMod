@@ -53,10 +53,10 @@ namespace Fargowiltas.Content.Items.Tiles
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
             //drop item currently inside it
-            
+
             if (FargoUtils.TryGetTileEntityAs<EnchantedTreeTileEntity>(i, j, out EnchantedTreeTileEntity entity) == true && entity.ItemType >= 0 && !Main.dedServ)
             {
-                int item = Item.NewItem(Item.GetSource_NaturalSpawn(), new Rectangle(i*16 + 50, j*16 + 50, 1, 1), entity.ItemType, 1, prefixGiven:entity.Prefix);
+                int item = Item.NewItem(Item.GetSource_NaturalSpawn(), new Rectangle(i * 16 + 50, j * 16 + 50, 1, 1), entity.ItemType, 1, prefixGiven: entity.Prefix);
                 if (Main.netMode == NetmodeID.MultiplayerClient)
                     NetMessage.SendData(MessageID.SyncItem, Main.myPlayer, number: item, number2: -1);
             }
@@ -76,7 +76,7 @@ namespace Fargowiltas.Content.Items.Tiles
                 Main.instance.TilesRenderer.AddSpecialLegacyPoint(i, j);
             }
         }
-        
+
         public override void SpecialDraw(int i, int j, SpriteBatch spriteBatch)
         {
             if (Main.gameMenu) return;
@@ -100,12 +100,12 @@ namespace Fargowiltas.Content.Items.Tiles
                 return;
             }
             if (entity.ItemType >= 1 && entity.Fruits.Count == 0 && entity.ItemType < ItemLoader.ItemCount)
-                DrawItem(entity.ItemType, new Vector2(i, j).ToWorldCoordinates()  + new Vector2(16, -12 + MathHelper.Lerp(-10, 10, lerper)));
+                DrawItem(entity.ItemType, new Vector2(i, j).ToWorldCoordinates() + new Vector2(16, -12 + MathHelper.Lerp(-10, 10, lerper)));
 
-            
+
             void DrawItem(int type, Vector2 position, float opacity = 1)
             {
-                
+
                 //needed for animated item sprites
                 //Main.instance.LoadItem(type);
                 Rectangle frame;
@@ -115,7 +115,7 @@ namespace Fargowiltas.Content.Items.Tiles
                 //disco backglow
                 for (int n = 0; n < 5; n++)
                 {
-                    Main.EntitySpriteDraw(item.Value, position - Main.screenPosition + new Vector2( (float)Math.Sin(entity.drawTimer + n * 2f) * 3, (float)Math.Cos(entity.drawTimer + n * 3f) * 3), frame, Main.DiscoColor * 0.5f * opacity, 0, new Vector2(frame.Width, frame.Height) / 2, 1, SpriteEffects.None, 0);
+                    Main.EntitySpriteDraw(item.Value, position - Main.screenPosition + new Vector2((float)Math.Sin(entity.drawTimer + n * 2f) * 3, (float)Math.Cos(entity.drawTimer + n * 3f) * 3), frame, Main.DiscoColor * 0.5f * opacity, 0, new Vector2(frame.Width, frame.Height) / 2, 1, SpriteEffects.None, 0);
                 }
                 //real item
                 Main.EntitySpriteDraw(item.Value, position - Main.screenPosition, frame, Color.White * opacity, 0, new Vector2(frame.Width, frame.Height) / 2, 1, SpriteEffects.None, 0);
@@ -128,14 +128,14 @@ namespace Fargowiltas.Content.Items.Tiles
             if (player != null && player.active && !player.dead && Main.netMode != NetmodeID.Server)
             {
                 FargoUtils.TryGetTileEntityAs<EnchantedTreeTileEntity>(i, j, out EnchantedTreeTileEntity entity);
-                //set tile entity's item to held item of the player and reduce stack of player's held item
-                if (entity != null && player.HeldItem != null && player.HeldItem.type >= ItemID.None && entity.ItemType == -1 && player.HeldItem.stack > 0 && entity.Fruits.Count == 0)
+                //set tile entity's item to held item of the player and reduce stack of player's held item!
+                if (entity != null && player.HeldItem != null && player.HeldItem.type >= ItemID.None && entity.ItemType == -1 && player.HeldItem.stack > 0 && entity.Fruits.Count == 0 && !player.HeldItem.favorited)
                 {
                     entity.ItemType = player.HeldItem.type;
                     entity.Prefix = player.HeldItem.prefix;
                     if (EnchantedTreeTileEntity.IsItemDupable(entity.ItemType))
                     {
-                        
+
                         entity.Fruits.Add(new(entity.ItemType, entity.Position.ToWorldCoordinates() + new Vector2(16, -12), entity.Position.ToWorldCoordinates() + new Vector2(16, -80), Vector2.Zero));
                         if (Main.netMode == NetmodeID.MultiplayerClient)
                         {
@@ -159,7 +159,7 @@ namespace Fargowiltas.Content.Items.Tiles
                         if (fruit.despawnTimer == 0)
                         {
                             fruit.despawnTimer = 1;
-                            
+
                         }
                     }
                     if (Main.netMode == NetmodeID.MultiplayerClient)
@@ -168,7 +168,7 @@ namespace Fargowiltas.Content.Items.Tiles
                         FargoNet.SendEnchantedTreeFruitPacket(EnchantedTrees.IndexOf(FargoUtils.GetTopLeftTileInMultitile(i, j)));
                     }
                     return true;
-                   
+
                 }
             }
             return base.RightClick(i, j);

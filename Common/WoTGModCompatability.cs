@@ -73,7 +73,7 @@ namespace Fargowiltas.Common
                     }
                     if ((solynInWorld || defeatedAvatar) && Main.rand.NextBool(7))
                     {
-                        chat = Language.GetTextValue($"Mods.Fargowiltas.NPCs.Mutant.WoTGDialogue.Solyn",  defeatedAvatar? Language.GetTextValue("Mods.Fargowiltas.NPCs.Mutant.WoTGDialogue.SolynExtension2") : Language.GetTextValue("Mods.Fargowiltas.NPCs.Mutant.WoTGDialogue.SolynExtension1"));
+                        chat = Language.GetTextValue($"Mods.Fargowiltas.NPCs.Mutant.WoTGDialogue.Solyn", defeatedAvatar ? Language.GetTextValue("Mods.Fargowiltas.NPCs.Mutant.WoTGDialogue.SolynExtension2") : Language.GetTextValue("Mods.Fargowiltas.NPCs.Mutant.WoTGDialogue.SolynExtension1"));
                     }
                 }
 

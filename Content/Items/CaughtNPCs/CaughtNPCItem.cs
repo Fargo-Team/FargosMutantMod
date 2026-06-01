@@ -49,7 +49,7 @@ namespace Fargowiltas.Content.Items.CaughtNPCs
             CaughtTownies.Clear();
         }
 
-        public override string Texture => AssociatedNpcId < NPCID.Count ? $"Terraria/Images/NPC_{AssociatedNpcId}" : NPCLoader.GetNPC(AssociatedNpcId).Texture;
+        public override string Texture => AssociatedNpcId < NPCID.Count ? (AssociatedNpcId == NPCID.Princess ? $"Terraria/Images/TownNPCs/Princess_Default" : $"Terraria/Images/NPC_{AssociatedNpcId}") : NPCLoader.GetNPC(AssociatedNpcId).Texture;
 
         public override void SetStaticDefaults()
         {

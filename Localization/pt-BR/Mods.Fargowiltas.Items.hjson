@@ -1632,9 +1632,11 @@ EnchantedTree: {
 	// DisplayName: Enchanted Tree
 	/* Tooltip:
 		'''
-		Can duplicate several complex items and some of their components
-		Right Click with an item in hand, then drag and pull the item you wish to duplicate
-		Items require varying amounts of Enchanted Acorns to duplicate
+		Can duplicate certain complex items and components
+		<right> with an item to place it
+		If applicable, <left> placed item to show its crafting tree
+		<left> and pull the item you want to duplicate
+		Duplication consumes Enchanted Acorns based on item complexity
 		''' */
 }
 
@@ -1701,4 +1703,37 @@ BlackHolePotion: {
 BridgeAtomizer: {
 	// DisplayName: Bridge Atomizer
 	// Tooltip: Deletes all platforms connected horizontally
+}
+
+PotionCooler: {
+	// DisplayName: Potion Cooler
+	/* Tooltip:
+		'''
+		Works from the inventory
+		<right> to disable
+		Stores potions and grants you their buffs
+		'Cracking open a cold one'
+		''' */
+	// Ruminate: "[c/FF3399:Hold Left Shift for more details]"
+	/* Rumination:
+		'''
+		Potions stored within are shared between all players
+		Toggles are not shared between players
+		''' */
+}
+
+GizmoParts: {
+	// DisplayName: Gizmo Parts
+	// Tooltip: ""
+}
+
+PotionCoolerInactive: {
+	// DisplayName: Potion Cooler (Inactive)
+	/* Tooltip:
+		'''
+		Works from the inventory
+		Effects are currently inactive, <right> to reactivate
+		Stores potions and grants you their buffs
+		'Cracking open a cold one'
+		''' */
 }

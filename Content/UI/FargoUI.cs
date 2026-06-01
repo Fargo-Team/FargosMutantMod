@@ -16,8 +16,8 @@ namespace Fargowiltas.Content.UI
             Mod = mod;
             FargoUIManager.Register(this);
         }
-        void ILoadable.Unload() 
-        { 
+        void ILoadable.Unload()
+        {
 
         }
         ///<summary>

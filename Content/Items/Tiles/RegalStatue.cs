@@ -1,3 +1,4 @@
+using Fargowiltas.Content.Items.Misc;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -23,6 +24,7 @@ namespace Fargowiltas.Content.Items.Tiles
         public override void AddRecipes()
         {
             CreateRecipe()
+                .AddIngredient<GizmoParts>(3)
                 .AddIngredient(ItemID.KingStatue)
                 .AddIngredient(ItemID.QueenStatue)
                 .AddTile(TileID.HeavyWorkBench)

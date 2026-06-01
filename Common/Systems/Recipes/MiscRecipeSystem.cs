@@ -55,7 +55,7 @@ namespace Fargowiltas.Common.Systems.Recipes
             {
                 recipe.DisableDecraft();
             }
-            
+
         }
         public override void PostSetupRecipes()
         {
@@ -339,6 +339,8 @@ namespace Fargowiltas.Common.Systems.Recipes
             recipe.Register();
 
             recipe = Recipe.Create(ItemID.TeleportationPylonVictory);
+            recipe.AddIngredient(ItemID.LunarBar, 5);
+            recipe.AddIngredient(ItemID.PlatinumCoin);
             recipe.AddIngredient(ItemID.TeleportationPylonDesert);
             recipe.AddIngredient(ItemID.TeleportationPylonHallow);
             recipe.AddIngredient(ItemID.TeleportationPylonJungle);
@@ -347,8 +349,7 @@ namespace Fargowiltas.Common.Systems.Recipes
             recipe.AddIngredient(ItemID.TeleportationPylonPurity);
             recipe.AddIngredient(ItemID.TeleportationPylonSnow);
             recipe.AddIngredient(ItemID.TeleportationPylonUnderground);
-            recipe.AddIngredient(ItemID.PlatinumCoin);
-            recipe.AddTile(TileID.DemonAltar);
+            recipe.AddTile(TileID.LunarCraftingStation);
             recipe.DisableDecraft();
             recipe.Register();
 

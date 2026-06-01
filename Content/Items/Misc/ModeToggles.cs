@@ -76,13 +76,13 @@ namespace Fargowiltas.Content.Items.Misc
                         ChangeAllPlayerDifficulty(PlayerDifficultyID.SoftCore);
                         text = DiffText("Master");
                         break;
-                        /*
-                    case GameModeID.Master:
-                        Main.GameMode = GameModeID.Creative;
-                        ChangeAllPlayerDifficulty(PlayerDifficultyID.Creative);
-                        text = DiffText("Journey");
-                        break;
-                        */
+                    /*
+                case GameModeID.Master:
+                    Main.GameMode = GameModeID.Creative;
+                    ChangeAllPlayerDifficulty(PlayerDifficultyID.Creative);
+                    text = DiffText("Journey");
+                    break;
+                    */
 
                     default:
                         Main.GameMode = GameModeID.Normal;
@@ -91,8 +91,8 @@ namespace Fargowiltas.Content.Items.Misc
                         break;
                 }
             }
-            
-            
+
+
             if (Main.netMode == NetmodeID.SinglePlayer)
             {
                 Main.NewText(text, new Color(175, 75, 255));
@@ -119,7 +119,7 @@ namespace Fargowiltas.Content.Items.Misc
                     NetMessage.SendData(MessageID.SyncPlayer, number: player.whoAmI);
                 }
             }
-            
+
         }
 
         public override void AddRecipes()
@@ -148,7 +148,7 @@ namespace Fargowiltas.Content.Items.Misc
         {
             Texture2D texture = (Texture2D)ModContent.Request<Texture2D>($"Fargowiltas/Content/Items/Misc/ModeToggle_{Main.GameMode}");
             spriteBatch.Draw(texture, position, frame, drawColor, 0, origin, scale, SpriteEffects.None, 0f);
-            return false; 
+            return false;
         }
 
         public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI)
@@ -159,6 +159,6 @@ namespace Fargowiltas.Content.Items.Misc
             spriteBatch.Draw(texture, position, frame, lightColor, rotation, new Vector2(16, 16), scale, SpriteEffects.None, 0f);
             return false;
         }
-        
+
     }
 }

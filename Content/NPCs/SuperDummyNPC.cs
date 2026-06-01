@@ -10,7 +10,6 @@ namespace Fargowiltas.Content.NPCs
     {
         public override void SetStaticDefaults()
         {
-
             NPCID.Sets.NPCBestiaryDrawModifiers bestiaryData = new()
             {
                 Hide = true
@@ -47,11 +46,9 @@ namespace Fargowiltas.Content.NPCs
             NPC.life = NPC.lifeMax = maxHP;
             NPC.spriteDirection = NPC.direction;
             DrawOffsetY = -2;
-            if (FargoGlobalNPC.AnyBossAlive())
+            if (FargoUtils.AnyBossAlive())
             {
-                NPC.life = 0;
-                NPC.HitEffect();
-                NPC.SimpleStrikeNPC(int.MaxValue, 0, false, 0, null, false, 0, true);
+                NPC.active = false;
             }
         }
 

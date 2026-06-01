@@ -51,7 +51,7 @@ namespace Fargowiltas.Content.BuilderToggles
                 default: rightclicktext = "How did you get here?"; break;
             }
             return text + "\n" + rightclicktext;
-        } 
+        }
 
         public override void SetStaticDefaults()
         {
@@ -66,7 +66,7 @@ namespace Fargowiltas.Content.BuilderToggles
 
         public override bool Draw(SpriteBatch spriteBatch, ref BuilderToggleDrawParams drawParams)
         {
-            int frame = 0;          
+            int frame = 0;
             drawParams.Position.X += 1;
             switch (CurrentState)
             {

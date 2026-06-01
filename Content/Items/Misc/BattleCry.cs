@@ -20,7 +20,7 @@ namespace Fargowiltas.Content.Items.Misc
             // Ticks per second is set to 1 to prevent weird divide by zero error. ¯\_(ツ)_/¯
             DrawAnimationVertical drawAnim = new DrawAnimationVertical(1, 11);
             drawAnim.NotActuallyAnimating = true;
-            
+
             Main.RegisterItemAnimation(Type, drawAnim);
         }
         public override void SetDefaults()
@@ -39,7 +39,7 @@ namespace Fargowiltas.Content.Items.Misc
         public static void GenerateText(bool isBattle, Player player, bool cry)
         {
             string cryToggled = Language.GetTextValue($"Mods.Fargowiltas.Items.BattleCry.{(isBattle ? "Battle" : "Calming")}");
-            string toggle = Language.GetTextValue($"Mods.Fargowiltas.Items.BattleCry.{(cry? "Activated" : "Deactivated")}");
+            string toggle = Language.GetTextValue($"Mods.Fargowiltas.Items.BattleCry.{(cry ? "Activated" : "Deactivated")}");
             string punctuation = Language.GetTextValue($"Mods.Fargowiltas.MessageInfo.Common.{(isBattle ? "Exclamation" : "Period")}");
 
             string text = Language.GetTextValue("Mods.Fargowiltas.Items.BattleCry.CryText", cryToggled, toggle, player.name, punctuation);
@@ -157,6 +157,7 @@ namespace Fargowiltas.Content.Items.Misc
         public override void AddRecipes()
         {
             CreateRecipe()
+                .AddIngredient<GizmoParts>(5)
                 .AddRecipeGroup(RecipeGroups.AnyEvilBar, 5)
                 .AddIngredient(ItemID.BattlePotion, 5)
                 .AddIngredient(ItemID.WaterCandle, 3)

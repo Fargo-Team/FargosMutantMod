@@ -211,7 +211,7 @@ namespace Fargowiltas.Content.UI.LumberjackUI
                 LumberJackItem fruit = new(types, stack, rollAmount, chance);
                 Fruits.Add(fruit);
 
-                foreach(int type in types)
+                foreach (int type in types)
                     FargoItemSets.TreeTreasureObtainable[type] = true;
             }
             return this;

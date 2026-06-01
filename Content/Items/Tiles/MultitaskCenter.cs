@@ -1,4 +1,5 @@
 ﻿using Fargowiltas.Common.Systems.Recipes;
+using Fargowiltas.Content.Items.Misc;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -33,6 +34,8 @@ namespace Fargowiltas.Content.Items.Tiles
         public override void AddRecipes()
         {
             CreateRecipe()
+                .AddIngredient<GizmoParts>(5)
+                .AddRecipeGroup(RecipeGroupID.IronBar, 5)
                 .AddIngredient(ItemID.WorkBench)
                 .AddIngredient(ItemID.HeavyWorkBench)
                 .AddIngredient(ItemID.Furnace)
@@ -45,7 +48,6 @@ namespace Fargowiltas.Content.Items.Tiles
                 .AddRecipeGroup(RecipeGroups.AnyCookingPot)
                 .AddRecipeGroup(RecipeGroups.AnyWoodenSink)
                 .AddIngredient(ItemID.Keg)
-                .AddRecipeGroup(RecipeGroupID.IronBar, 5)
                 .Register();
         }
     }
@@ -65,27 +67,27 @@ namespace Fargowiltas.Content.Items.Tiles
             TileID.Sets.DisableSmartCursor[Type] = true;
 
             TileObjectData.newTile.CopyFrom(TileObjectData.Style3x3);
-            TileObjectData.newTile.Width = 4;           
+            TileObjectData.newTile.Width = 4;
             TileObjectData.newTile.CoordinateHeights = [16, 16, 16];
             TileObjectData.addTile(Type);
 
             LocalizedText name = CreateMapEntryName();
-            AddMapEntry(new Color(200, 200, 200), name);         
+            AddMapEntry(new Color(200, 200, 200), name);
 
             //counts as
-            AdjTiles = 
+            AdjTiles =
                 [
-                TileID.WorkBenches, 
-                TileID.HeavyWorkBench, 
-                TileID.Furnaces, 
-                TileID.Anvils, 
-                TileID.Bottles, 
-                TileID.Sawmill, 
-                TileID.Loom, 
-                TileID.Tables, 
-                TileID.Chairs, 
-                TileID.CookingPots, 
-                TileID.Sinks, 
+                TileID.WorkBenches,
+                TileID.HeavyWorkBench,
+                TileID.Furnaces,
+                TileID.Anvils,
+                TileID.Bottles,
+                TileID.Sawmill,
+                TileID.Loom,
+                TileID.Tables,
+                TileID.Chairs,
+                TileID.CookingPots,
+                TileID.Sinks,
                 TileID.Kegs
                 ];
             TileID.Sets.CountsAsWaterSource[Type] = true;
@@ -95,7 +97,7 @@ namespace Fargowiltas.Content.Items.Tiles
         }
 
         public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) => true;
-        
+
 
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
         {

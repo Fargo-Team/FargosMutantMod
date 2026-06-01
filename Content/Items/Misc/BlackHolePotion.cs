@@ -7,8 +7,8 @@ using Terraria.ModLoader;
 namespace Fargowiltas.Content.Items.Misc
 {
     [LegacyName("BigSuckPotion")]
-	public class BlackHolePotion : ModItem
-	{
+    public class BlackHolePotion : ModItem
+    {
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 20;
@@ -20,13 +20,13 @@ namespace Fargowiltas.Content.Items.Misc
         }
 
         public override void SetDefaults()
-		{
+        {
             Item.DefaultToFood(14, 24, ModContent.BuffType<BigSuckBuff>(), 60 * 10, true);
-		}
+        }
 
         public override bool? UseItem(Player player)
         {
-			//player.AddBuff(ModContent.BuffType<BigSuckBuff>(), 180);
+            //player.AddBuff(ModContent.BuffType<BigSuckBuff>(), 180);
             return base.UseItem(player);
         }
 
@@ -38,7 +38,7 @@ namespace Fargowiltas.Content.Items.Misc
                 .AddIngredient(ItemID.FallenStar, 5)
                 .AddIngredient(ItemID.Moonglow)
                 .AddIngredient(ItemID.Fireblossom)
-                .AddTile(TileID.Bottles) 
+                .AddTile(TileID.Bottles)
                 .DisableDecraft()
                 .Register();
         }

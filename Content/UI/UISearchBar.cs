@@ -1,10 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
-using Terraria.UI;
-using Terraria.GameInput;
 using Terraria.GameContent.UI.Elements;
+using Terraria.GameInput;
 using Terraria.Localization;
+using Terraria.UI;
 
 namespace Fargowiltas.Content.UI
 {

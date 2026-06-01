@@ -13,7 +13,7 @@ namespace Fargowiltas.Common.Systems
 {
     public class SymbolSystem : ModSystem
     {
-        private readonly string[] tagNames = {"s", "symbol"};
+        private readonly string[] tagNames = { "s", "symbol" };
 
         public override void Load()
         {
@@ -47,13 +47,13 @@ namespace Fargowiltas.Common.Systems
             public static bool ShouldDraw = true;
 
             public override bool UniqueDraw(bool justCheckingString, out Vector2 size, SpriteBatch spriteBatch, Vector2 position = default(Vector2), Color color = default(Color), float scale = 1f)
-            {   
+            {
                 if (!justCheckingString && color != Color.Black)
                 {
                     Rectangle frame = Texture.Frame();
                     Vector2 origin2 = frame.Size() / 2f;
                     if (ShouldDraw)
-                        spriteBatch.Draw(Texture.Value, position + origin2, frame, Color.White, 0f, origin2, scale, SpriteEffects.None, 0f);                
+                        spriteBatch.Draw(Texture.Value, position + origin2, frame, Color.White, 0f, origin2, scale, SpriteEffects.None, 0f);
                 }
                 size = frameSize;
                 return true;

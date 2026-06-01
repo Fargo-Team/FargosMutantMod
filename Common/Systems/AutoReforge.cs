@@ -31,8 +31,9 @@ namespace Fargowiltas.Common.Systems
         }
     }
 
-    public class ReforgeItemSlot : FargoItemSlot {
-        private AutoReforgeUI parent; 
+    public class ReforgeItemSlot : FargoItemSlot
+    {
+        private AutoReforgeUI parent;
         public Action<Item> OnSwap;
 
         public ReforgeItemSlot(AutoReforgeUI parent)
@@ -45,7 +46,7 @@ namespace Fargowiltas.Common.Systems
             OnSwap.Invoke(newItem);
         }
 
-        public override bool CanHoldItem(Item item) => item.CanHavePrefixes();
+        public override bool CanAcceptItem(Item item) => item.CanHavePrefixes();
 
         public void Reforge(Item item)
         {
@@ -216,7 +217,7 @@ namespace Fargowiltas.Common.Systems
                 spriteBatch.Draw(texture, GetDimensions().Position() - new Vector2(0, 20), null, Color.Yellow * 0.5f, 0f, Vector2.Zero, 0.5f, SpriteEffects.None, 0f);
                 spriteBatch.Draw(texture, GetDimensions().Position() - new Vector2(0, 20) + (GetDimensions().Width - 20) * Vector2.UnitX, null, Color.Yellow * 0.5f, 0f, Vector2.Zero, 0.5f, SpriteEffects.None, 0f);
             }
-                
+
         }
 
         public override void LeftClick(UIMouseEvent evt)
@@ -292,7 +293,7 @@ namespace Fargowiltas.Common.Systems
                 Main.LocalPlayer.mouseInterface = true;
         }
 
-        
+
 
         protected override void DrawSelf(SpriteBatch spriteBatch)
         {
@@ -395,7 +396,7 @@ namespace Fargowiltas.Common.Systems
             // price
             RebuildPrice(item);
         }
-    
+
         public void RebuildPrice(Item item)
         {
             if (PriceTag != null)

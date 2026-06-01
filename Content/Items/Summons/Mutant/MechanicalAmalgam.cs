@@ -11,8 +11,8 @@ namespace Fargowiltas.Content.Items.Summons.Mutant
         {
             Item.ResearchUnlockCount = 3;
 
-			ItemID.Sets.SortingPriorityBossSpawns[Type] = 10; // Places it right after the three mech summons
-		}
+            ItemID.Sets.SortingPriorityBossSpawns[Type] = 10; // Places it right after the three mech summons
+        }
 
         public override void SetDefaults()
         {
@@ -29,7 +29,7 @@ namespace Fargowiltas.Content.Items.Summons.Mutant
 
         public override bool CanUseItem(Player player)
         {
-            return FargoUtils.ActuallyNight;
+            return !Main.IsItDay();
         }
 
         public override bool? UseItem(Player player)

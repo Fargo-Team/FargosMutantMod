@@ -1,7 +1,7 @@
-using Terraria.GameInput;
-using Terraria;
-using Terraria.ModLoader;
 using Fargowiltas.Common.Configs;
+using Terraria;
+using Terraria.GameInput;
+using Terraria.ModLoader;
 
 namespace Fargowiltas
 {

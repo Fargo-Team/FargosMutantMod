@@ -23,6 +23,7 @@ namespace Fargowiltas
     {
         internal static int AbomClearCD;
         internal static int WoodChopped;
+        internal static byte PortableSundialCooldown;
 
         internal static bool OverloadGoblins;
         internal static bool OverloadPirates;
@@ -33,6 +34,9 @@ namespace Fargowiltas
 
         internal static bool Matsuri;
         internal static bool GeneratedSacrificeCounts;
+        internal static bool BlockPortaDialCooldown;
+
+        internal static bool EternityMode;
 
         internal static bool[] CurrentSpawnRateTile;
         internal static Dictionary<string, bool> DownedBools = [];
@@ -95,7 +99,7 @@ namespace Fargowiltas
 
         public override void PreWorldGen()
         {
-            SetWorldBool(FargoServerConfig.Instance.DrunkWorld, ref Main.drunkWorld) ;
+            SetWorldBool(FargoServerConfig.Instance.DrunkWorld, ref Main.drunkWorld);
             SetWorldBool(FargoServerConfig.Instance.BeeWorld, ref Main.notTheBeesWorld);
             SetWorldBool(FargoServerConfig.Instance.WorthyWorld, ref Main.getGoodWorld);
             SetWorldBool(FargoServerConfig.Instance.CelebrationWorld, ref Main.tenthAnniversaryWorld);
@@ -141,12 +145,7 @@ namespace Fargowiltas
             OverloadMartians = false;
             OverloadedSlimeRain = false;
 
-            Matsuri = false;
-
-            foreach (string tag in tags)
-            {
-                DownedBools[tag] = false;
-            }
+            EternityMode = (bool?)Fargowiltas.SoulsMod?.Call("EternityMode") == true;
 
             CurrentSpawnRateTile = new bool[Main.netMode == NetmodeID.Server ? 255 : 1];
         }
@@ -163,11 +162,17 @@ namespace Fargowiltas
         }
         public override void ClearWorld()
         {
+            foreach (string tag in tags)
+            {
+                DownedBools[tag] = false;
+            }
+            Matsuri = false;
+            EternityMode = false;
+            FargoGlobalProjectile.CannotDestroyRectangle.Clear();
             EnchantedTreeSheet.EnchantedTrees = [];
         }
         public override void OnWorldUnload()
         {
-            FargoGlobalProjectile.CannotDestroyRectangle.Clear();
             ResetFlags();
         }
 
@@ -204,11 +209,12 @@ namespace Fargowiltas
                         sacrificeItems.Add(i + "_" + count);
                     }
 
-                    
+
                 }
             }
             tag.Add("sacrificeItems", sacrificeItems);
             tag.Add("GeneratedSacrificeCounts", GeneratedSacrificeCounts);
+            tag.Add("PortableSundialCooldown", PortableSundialCooldown);
         }
 
         public override void LoadWorldData(TagCompound tag)
@@ -243,6 +249,7 @@ namespace Fargowiltas
                 }
             }
             GeneratedSacrificeCounts = tag.Get<bool>("GeneratedSacrificeCounts");
+            PortableSundialCooldown = tag.Get<byte>("PortableSundialCooldown");
         }
 
         public override void NetReceive(BinaryReader reader)
@@ -258,6 +265,11 @@ namespace Fargowiltas
             SwarmActive = reader.ReadBoolean();
             HardmodeSwarmActive = reader.ReadBoolean();
             Binding = (EnergizedGlobalNPC.Binding)reader.ReadInt32();
+            EternityMode = reader.ReadBoolean();
+            // These can't be bytes because a sign is required and
+            // signed bytes range between -127 and 127, which is not enough for the NPC array
+            FargoGlobalNPC.eaterBoss = reader.ReadInt16();
+            FargoGlobalNPC.beeBoss = reader.ReadInt16();
         }
 
         public override void NetSend(BinaryWriter writer)
@@ -273,6 +285,11 @@ namespace Fargowiltas
             writer.Write(SwarmActive);
             writer.Write(HardmodeSwarmActive);
             writer.Write((int)Binding);
+            writer.Write(EternityMode);
+            // These can't be bytes because signed bytes are required and
+            // they range between -127 and 127, which is not enough for the NPC array
+            writer.Write((short)FargoGlobalNPC.eaterBoss);
+            writer.Write((short)FargoGlobalNPC.beeBoss);
         }
 
         public override void PostUpdateWorld()
@@ -302,15 +319,14 @@ namespace Fargowiltas
 
             // swarm reset in case something goes wrong
             if (Main.netMode != NetmodeID.MultiplayerClient && SwarmActive
-                && NoBosses() && !NPC.AnyNPCs(NPCID.EaterofWorldsHead) && !NPC.AnyNPCs(NPCID.DungeonGuardian) && !NPC.AnyNPCs(NPCID.DD2DarkMageT1))
+                && !FargoUtils.AnyBossAlive() && !Main.IsNPCActiveAndOneOfTypes(FargoGlobalNPC.dungeonGuardian, NPCID.DungeonGuardian) && !Main.IsNPCActiveAndOneOfTypes(FargoGlobalNPC.darkMage, NPCID.DD2DarkMageT1))
             {
                 SwarmActive = false;
                 HardmodeSwarmActive = false;
                 Binding = EnergizedGlobalNPC.Binding.None;
                 FargoGlobalNPC.LastWoFIndex = -1;
                 FargoGlobalNPC.WoFDirection = 0;
-                if (Main.netMode == NetmodeID.Server)
-                    NetMessage.SendData(MessageID.WorldData);
+                NetMessage.SendData(MessageID.WorldData);
             }
 
             if (AbomClearCD > 0)
@@ -425,6 +441,34 @@ namespace Fargowiltas
             summonTracker.FinalizeSummonData();
             symbolTracker.FinalizeSymbols();
             statTracker.FinalizeStats();
+        }
+
+        public override void PreUpdateNPCs()
+        {
+            if (!Main.IsNPCActiveAndOneOfTypes(FargoGlobalNPC.eaterBoss, NPCID.EaterofWorldsHead))
+            {
+                FargoGlobalNPC.eaterBoss = -1;
+            }
+            if (!Main.IsNPCActiveAndOneOfTypes(FargoGlobalNPC.beeBoss, NPCID.QueenBee))
+            {
+                FargoGlobalNPC.beeBoss = -1;
+            }
+            if (!Main.IsNPCActiveAndOneOfTypes(FargoGlobalNPC.dungeonGuardian, NPCID.DungeonGuardian))
+            {
+                FargoGlobalNPC.dungeonGuardian = -1;
+            }
+            if (!Main.IsNPCActiveAndOneOfTypes(FargoGlobalNPC.darkMage, NPCID.DD2DarkMageT1))
+            {
+                FargoGlobalNPC.darkMage = -1;
+            }
+            if (!FargoUtils.AnyBossAlive())
+            {
+                FargoGlobalNPC.Boss = -1;
+            }
+        }
+        public override void PostUpdateEverything()
+        {
+            EternityMode = (bool?)Fargowiltas.SoulsMod?.Call("EternityMode") == true;
         }
     }
 }

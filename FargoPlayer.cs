@@ -46,6 +46,11 @@ namespace Fargowiltas
         public Dictionary<int, bool> PotionTogglesToSync = [];
         public int ToggleRebuildCooldown = 0;
 
+        public bool PotionCoolerBuffer;
+        public bool PotionCooler;
+        public bool NeedRefreshCooler = false;
+        public int ActiveFlask = -1;
+
         public bool HasClickedWrench;
 
         public bool extractSpeed;
@@ -55,7 +60,6 @@ namespace Fargowiltas
 
         internal int originalSelectedItem;
         internal bool autoRevertSelectedItem;
-        public float luckPotionBoost;
         public float ElementalAssemblerNearby;
 
         public float StatSheetMaxAscentMultiplier;
@@ -76,8 +80,6 @@ namespace Fargowiltas
 
         public bool[] ItemHasBeenOwned; // If you've owned this item type ever
         public HashSet<ItemDefinition> ItemHasBeenOwnedCache = []; // Only used for saving and loading
-        public bool[] ItemHasBeenOwnedAtThirtyStack; // If you've owned this 30 of this item type ever
-        public HashSet<ItemDefinition> ItemHasBeenOwnedAtThirtyStackCache = []; // Only used for saving and loading
 
         public int DeathCamTimer = 0;
         public int SpectatePlayer = 0;
@@ -104,10 +106,26 @@ namespace Fargowiltas
             "PinkPricklyPear",
             "BlackInk"
         ];
+
+        public static Dictionary<int, int> AnglerPityAmounts = new(){
+            {ItemID.HighTestFishingLine, 5},
+            {ItemID.TackleBox, 9},
+            {ItemID.FishingBobber, 7},
+            {ItemID.AnglerEarring, 13},
+            {ItemID.FishermansGuide, 16},
+            {ItemID.Sextant, 17},
+            {ItemID.WeatherRadio, 18},
+            {ItemID.HoneyAbsorbantSponge, 21},
+            {ItemID.BottomlessHoneyBucket, 21},
+            {ItemID.SuperAbsorbantSponge, 23},
+            {ItemID.GoldenBugNet, 26},
+            {ItemID.HotlineFishingHook, 43},
+            {ItemID.FinWings, 45},
+        };
+        public static HashSet<ItemDefinition> AnglerPittyCache = [];
         public override void Initialize()
         {
             ItemHasBeenOwned = ItemID.Sets.Factory.CreateBoolSet(false);
-            ItemHasBeenOwnedAtThirtyStack = ItemID.Sets.Factory.CreateBoolSet(false);
         }
         public override void Load()
         {
@@ -153,15 +171,6 @@ namespace Fargowiltas
             }
             tag.Add("OwnedItemsListDef", ItemHasBeenOwnedCache.ToList());
 
-            for (int i = 0; i < ItemHasBeenOwnedAtThirtyStack.Length; i++)
-            {
-                if (ItemHasBeenOwnedAtThirtyStack[i])
-                {
-                    ItemHasBeenOwnedAtThirtyStackCache.Add(new ItemDefinition(i));
-                }
-            }
-            tag.Add("OwnedItemsAtThirtyListDef", ItemHasBeenOwnedAtThirtyStackCache.ToList());
-
             var togglesOff = new List<ItemDefinition>();
             if (PotionToggler != null && PotionToggler.Toggles != null)
             {
@@ -176,12 +185,13 @@ namespace Fargowiltas
                 }
             }
             tag.Add($"{Mod.Name}.{Player.name}.PotionTogglesOffDef", togglesOff);
-        }
 
-        //        public override void Initialize()
-        //        {
-        //            //Toggler.Load(this);
-        //        }
+            foreach (KeyValuePair<int, int> pair in AnglerPityAmounts)
+            {
+                AnglerPittyCache.Add(new(pair.Key));
+            }
+            tag.Add("AnglerPitty", AnglerPittyCache.ToList());
+        }
         public override void LoadData(TagCompound tag)
         {
             string name = "FargoDyes" + Player.name;
@@ -197,28 +207,25 @@ namespace Fargowiltas
             CalmingCry = tag.ContainsKey($"FargoCalmingCry{Player.name}");
             HasClickedWrench = tag.ContainsKey("HasClickedWrench");
 
-            ItemHasBeenOwned = ItemID.Sets.Factory.CreateBoolSet(false);
             if (tag.TryGet<IList<ItemDefinition>>("OwnedItemsListDef", out var ownedList))
             {
-                ItemHasBeenOwnedCache = [.. ownedList];
+                ItemHasBeenOwnedCache = ownedList.ToHashSet();
                 foreach (var entry in ItemHasBeenOwnedCache.Where(i => i.Type != -1))
                 {
                     ItemHasBeenOwned[entry.Type] = true;
-                }
-            }
-            ItemHasBeenOwnedAtThirtyStack = ItemID.Sets.Factory.CreateBoolSet(false);
-            if (tag.TryGet<IList<ItemDefinition>>("OwnedItemsAtThirtyListDef", out var ownedAtThirtyStackList))
-            {
-                ItemHasBeenOwnedAtThirtyStackCache = [.. ownedAtThirtyStackList];
-                foreach (var entry in ItemHasBeenOwnedAtThirtyStackCache.Where(i => i.Type != -1))
-                {
-                    ItemHasBeenOwnedAtThirtyStack[entry.Type] = true;
                 }
             }
 
             if (tag.TryGet<IList<ItemDefinition>>($"{Mod.Name}.{Player.name}.PotionTogglesOffDef", out var disabledToggleIDs))
             {
                 DisabledPotionToggles = [.. PotionToggleLoader.LoadedToggles.Keys.Where(disabledToggleIDs.Select(t => t.Type).ToHashSet().Contains)];
+            }
+
+            if (tag.TryGet<IList<ItemDefinition>>("AnglerPitty", out var pittyList))
+            {
+                AnglerPittyCache = pittyList.ToHashSet();
+                var validTypes = AnglerPittyCache.Where(i => i.Type != -1).Select(s => s.Type);
+                AnglerPityAmounts = AnglerPityAmounts.Where(pair => validTypes.Contains(pair.Key)).ToDictionary();
             }
         }
         public void SyncPotionToggle(int itemID)
@@ -247,6 +254,19 @@ namespace Fargowiltas
             }
 
             PotionTogglesToSync.Clear();
+
+            if (newPlayer)
+            {
+                var list = Player.FargoMutant().ItemHasBeenOwned.GetTrueIndexes();
+                ModPacket syncOwnedItems = Mod.GetPacket();
+                syncOwnedItems.Write((byte)Fargowiltas.PacketID.SyncOwnedItems);
+                syncOwnedItems.Write(list.Count);
+                for (int i = 0; i < list.Count; i++)
+                {
+                    syncOwnedItems.Write(list[i]);
+                }
+                syncOwnedItems.Send();
+            }
         }
 
         // Called in ExampleMod.Networking.cs
@@ -299,10 +319,14 @@ namespace Fargowiltas
             PotionToggler.TryLoad();
             PotionToggler.LoadPlayerToggles(Player);
             DisabledPotionToggles.Clear();
+            NeedRefreshCooler = true;
         }
 
         public override void ResetEffects()
         {
+            if (!PotionCoolerBuffer)
+                PotionCooler = false;
+            PotionCoolerBuffer = false;
             extractSpeed = false;
             HasDrawnDebuffLayer = false;
             bigSuck = false;
@@ -331,7 +355,7 @@ namespace Fargowiltas
         }
         public override bool ShiftClickSlot(Item[] inventory, int context, int slot)
         {
-            
+
             if (Player.chest == -1 && FargoUIManager.IsOpen<ChizardSearchBar>())
             {
                 ChizardSearchBar bar = FargoUIManager.Get<ChizardSearchBar>();
@@ -363,19 +387,6 @@ namespace Fargowiltas
         }
         public override void PostUpdateBuffs()
         {
-            if (FargoServerConfig.Instance.UnlimitedPotionBuffs is UnlimitedBuffSelections.On || (FargoServerConfig.Instance.UnlimitedPotionBuffs is UnlimitedBuffSelections.BossOnly && FargoGlobalNPC.AnyBossAlive()))
-            {
-                foreach (Item item in Player.bank.item)
-                {
-                    FargoGlobalItem.TryUnlimBuff(item, Player);
-                }
-
-                foreach (Item item in Player.bank2.item)
-                {
-                    FargoGlobalItem.TryUnlimBuff(item, Player);
-                }
-            }
-
             if (FargoServerConfig.Instance.PiggyBankAcc || FargoServerConfig.Instance.ModdedPiggyBankAcc)
             {
                 foreach (Item item in Player.bank.item)
@@ -388,23 +399,8 @@ namespace Fargowiltas
                     FargoGlobalItem.TryPiggyBankAcc(item, Player);
                 }
             }
-
-            foreach (var potToggle in PotionToggleLoader.LoadedToggles.Values)
-            {
-                if (Player.HasBuff(potToggle.BuffID))
-                {
-                    ActivePotions.Add(potToggle.BuffID);
-                }
-                else if (Player.buffImmune[potToggle.BuffID])
-                {
-                    ActivePotions.Remove(potToggle.BuffID);
-                }
-
-                /*if (!Player.GetPotionToggleValue(potToggle.ItemID))
-                {
-                    Player.buffImmune[potToggle.BuffID] = true;
-                }*/
-            }
+            if (PotionCooler)
+                PotionBagSystem.ApplyCoolerBuffs(Player);
         }
         public override void DrawEffects(PlayerDrawSet drawInfo, ref float r, ref float g, ref float b, ref float a, ref bool fullBright)
         {
@@ -519,12 +515,12 @@ namespace Fargowiltas
             FargoServerConfig config = FargoServerConfig.Instance;
             if (config.EnemyDamage != 1 || config.BossDamage != 1)
             {
-                bool boss = config.BossDamage > config.EnemyDamage && // only relevant if boss health is higher than enemy health
-                    (npc.boss || npc.type == NPCID.EaterofWorldsHead || npc.type == NPCID.EaterofWorldsBody || npc.type == NPCID.EaterofWorldsTail || (config.BossApplyToAllWhenAlive && FargoGlobalNPC.AnyBossAlive()));
-                if (boss)
-                    modifiers.FinalDamage *= config.BossDamage;
+                bool useBoss = config.BossDamage > config.EnemyDamage && // only relevant if boss health is higher than enemy health
+                    (npc.CountsAsBoss() || npc.type == NPCID.EaterofWorldsBody || npc.type == NPCID.EaterofWorldsTail || (config.BossApplyToAllWhenAlive && FargoUtils.AnyBossAlive()));
+                if (useBoss)
+                    modifiers.SourceDamage *= config.BossDamage;
                 else
-                    modifiers.FinalDamage *= config.EnemyDamage;
+                    modifiers.SourceDamage *= config.EnemyDamage;
             }
             #endregion
         }
@@ -536,22 +532,20 @@ namespace Fargowiltas
 
         private void ForceBiomes()
         {
-            if (FargoGlobalNPC.SpecificBossIsAlive(ref FargoGlobalNPC.eaterBoss, NPCID.EaterofWorldsHead)
-                && Player.Distance(Main.npc[FargoGlobalNPC.eaterBoss].Center) < 3000)
+            if (Main.IsNPCActiveAndOneOfTypes(FargoGlobalNPC.eaterBoss, NPCID.EaterofWorldsHead)
+                && Player.DistanceSQ(Main.npc[FargoGlobalNPC.eaterBoss].Center) < 3000 * 3000)
             {
                 Player.ZoneCorrupt = true;
             }
 
-            if (FargoGlobalNPC.SpecificBossIsAlive(ref FargoGlobalNPC.brainBoss, NPCID.BrainofCthulhu)
-                && Player.Distance(Main.npc[FargoGlobalNPC.brainBoss].Center) < 3000)
+            if (Main.IsNPCActiveAndOneOfTypes(NPC.crimsonBoss, NPCID.BrainofCthulhu)
+                && Player.DistanceSQ(Main.npc[NPC.crimsonBoss].Center) < 3000 * 3000)
             {
                 Player.ZoneCrimson = true;
             }
 
-            if ((FargoGlobalNPC.SpecificBossIsAlive(ref FargoGlobalNPC.plantBoss, NPCID.Plantera)
-                && Player.Distance(Main.npc[FargoGlobalNPC.plantBoss].Center) < 3000)
-                || (FargoGlobalNPC.SpecificBossIsAlive(ref FargoGlobalNPC.beeBoss, NPCID.QueenBee)
-                && Player.Distance(Main.npc[FargoGlobalNPC.beeBoss].Center) < 3000))
+            if ((Main.IsNPCActiveAndOneOfTypes(NPC.plantBoss, NPCID.Plantera) && Player.DistanceSQ(Main.npc[NPC.plantBoss].Center) < 3000 * 3000)
+                || (Main.IsNPCActiveAndOneOfTypes(FargoGlobalNPC.beeBoss, NPCID.QueenBee) && Player.DistanceSQ(Main.npc[FargoGlobalNPC.beeBoss].Center) < 3000 * 3000))
             {
                 Player.ZoneJungle = true;
             }
@@ -588,10 +582,10 @@ namespace Fargowiltas
                         goto case 12;
 
                     case 8: //cavern
-                        goto default;
+                        break;
 
                     case 9: //blood fountain
-                        goto default;
+                        break;
 
                     case 10: //crimson
                         Player.ZoneCrimson = true;
@@ -599,7 +593,7 @@ namespace Fargowiltas
 
                     case 12: //desert fountain
                         Player.ZoneDesert = true;
-                        if (Player.Center.Y > 3200f)
+                        if (Player.Center.ToTileCoordinates().Y > Main.worldSurface)
                             Player.ZoneUndergroundDesert = true;
                         break;
 
@@ -619,33 +613,6 @@ namespace Fargowiltas
                     autoRevertSelectedItem = false;
                 }
             }
-
-            if (FargoWorld.OverloadedSlimeRain && Main.rand.NextBool(20))
-            {
-                SlimeRainSpawns();
-            }
-        }
-
-        public void SlimeRainSpawns()
-        {
-            int type = NPCID.GreenSlime;
-
-            int[] slimes = [NPCID.SlimeSpiked, NPCID.SandSlime, NPCID.IceSlime, NPCID.SpikedIceSlime, NPCID.MotherSlime, NPCID.SpikedJungleSlime, NPCID.DungeonSlime, NPCID.UmbrellaSlime, NPCID.ToxicSludge, NPCID.CorruptSlime, NPCID.Crimslime, NPCID.IlluminantSlime];
-
-            int rand = Main.rand.Next(50);
-
-            if (rand == 0)
-            {
-                type = NPCID.Pinky;
-            }
-            else if (rand < 20)
-            {
-                type = slimes[Main.rand.Next(slimes.Length)];
-            }
-
-            Vector2 pos = new Vector2((int)Player.position.X + Main.rand.Next(-800, 800), (int)Player.position.Y + Main.rand.Next(-800, -250));
-
-            //Projectile.NewProjectile( pos, Vector2.Zero, ModContent.ProjectileType<SpawnProj>(), 0, 0, Main.myPlayer, type);
         }
 
         public override bool PreModifyLuck(ref float luck)
@@ -661,19 +628,14 @@ namespace Fargowiltas
 
         public override void ModifyLuck(ref float luck)
         {
-            luck += luckPotionBoost;
 
-            luckPotionBoost = 0; //look nowhere else works ok
         }
         public override void ModifyScreenPosition()
         {
-
-            if (FargoClientConfig.Instance.MultiplayerDeathSpectate && Main.LocalPlayer.dead && Main.netMode != NetmodeID.SinglePlayer && Main.player.Any(p => p != null && !p.dead && !p.ghost))
+            if (FargoClientConfig.Instance.MultiplayerDeathSpectate && Player.dead && Main.netMode != NetmodeID.SinglePlayer && Main.player.Any(p => p != null && !p.dead && !p.ghost))
             {
                 Main.screenPosition = Player.Center - (new Vector2(Main.screenWidth, Main.screenHeight) / 2);
             }
-
-
         }
         public void AutoUseMirror()
         {
@@ -727,7 +689,6 @@ namespace Fargowiltas
                 {
                     if (Player.whoAmI == Main.myPlayer)
                         Player.ItemCheck();
-                    //Player.ItemCheck(Main.myPlayer);
                 }
             }
         }
@@ -750,16 +711,16 @@ namespace Fargowiltas
         {
             static Item createItem(int type)
             {
-                Item i = new Item(type);
+                Item i = new(type);
                 return i;
             }
 
             bool midnight = Player.name.Equals("midnight", StringComparison.OrdinalIgnoreCase);
-            bool midnight2 = Player.name.Equals("midnight.", StringComparison.OrdinalIgnoreCase);
-            bool midnight3 = Player.name.Equals("midnight295", StringComparison.OrdinalIgnoreCase);
-            bool midnight4 = Player.name.Equals("midnight295.", StringComparison.OrdinalIgnoreCase);
+            midnight |= Player.name.Equals("midnight.", StringComparison.OrdinalIgnoreCase);
+            midnight |= Player.name.Equals("midnight295", StringComparison.OrdinalIgnoreCase);
+            midnight |= Player.name.Equals("midnight295.", StringComparison.OrdinalIgnoreCase);
 
-            if (!mediumCoreDeath && (midnight || midnight2 || midnight3 || midnight4))
+            if (!mediumCoreDeath && midnight)
             {
                 yield return createItem(ModContent.ItemType<MutantPants>());
                 yield return createItem(ModContent.ItemType<MutantBody>());
@@ -769,6 +730,36 @@ namespace Fargowiltas
             if (!mediumCoreDeath && Player.name.Contains("javyz", StringComparison.OrdinalIgnoreCase))
             {
                 yield return createItem(ItemType<CrabSizedGlasses>());
+            }
+        }
+
+        public override void AnglerQuestReward(float rareMultiplier, List<Item> rewardItems)
+        {
+            int questsDone = Player.anglerQuestsFinished;
+            foreach (Item item in rewardItems)
+            {
+                AnglerPityAmounts.Remove(item.type);
+            }
+            if (FargoServerConfig.Instance.AnglerQuestPity && AnglerPityAmounts.Values.Min() >= questsDone)
+            {
+                List<int> remove = [];
+                foreach (KeyValuePair<int, int> pair in AnglerPityAmounts)
+                {
+                    if (questsDone >= pair.Value)
+                    {
+                        if (((pair.Key == ItemID.HotlineFishingHook || pair.Key == ItemID.FinWings) && Main.hardMode) || ((pair.Key == ItemID.HoneyAbsorbantSponge || pair.Key == ItemID.BottomlessHoneyBucket) && NPC.downedQueenBee))
+                        {
+                            rewardItems.Add(new Item(pair.Key));
+                            remove.Add(pair.Key);
+                        }
+                        else if (!(pair.Key == ItemID.HotlineFishingHook || pair.Key == ItemID.FinWings || pair.Key == ItemID.HoneyAbsorbantSponge || pair.Key == ItemID.BottomlessHoneyBucket))
+                        {
+                            rewardItems.Add(new Item(pair.Key));
+                            remove.Add(pair.Key);
+                        }
+                    }
+                }
+                AnglerPityAmounts = AnglerPityAmounts.Where(pair => !remove.Contains(pair.Key)).ToDictionary();
             }
         }
 

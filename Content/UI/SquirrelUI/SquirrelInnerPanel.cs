@@ -40,7 +40,7 @@ namespace Fargowiltas.Content.UI.SquirrelUI
         void OnItemSwap(Item newItem)
         {
             swapTimer = 0;
-            
+
         }
 
         void OnModeSwap()

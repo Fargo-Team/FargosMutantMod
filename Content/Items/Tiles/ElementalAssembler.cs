@@ -1,4 +1,5 @@
 using Fargowiltas.Common.Systems.Recipes;
+using Fargowiltas.Content.Items.Misc;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -33,6 +34,8 @@ namespace Fargowiltas.Content.Items.Tiles
         public override void AddRecipes()
         {
             CreateRecipe()
+                .AddIngredient<GizmoParts>(5)
+                .AddIngredient(ItemID.Bone, 5)
                 .AddIngredient(ItemID.AlchemyTable)
                 .AddIngredient(ItemID.TinkerersWorkshop)
                 .AddIngredient(ItemID.ImbuingStation)
@@ -49,7 +52,6 @@ namespace Fargowiltas.Content.Items.Tiles
                 .AddIngredient(ItemID.TeaKettle)
                 .AddRecipeGroup(RecipeGroups.AnyTombstone)
                 .AddRecipeGroup(RecipeGroups.AnyDemonAltar)
-                .AddIngredient(ItemID.Bone, 5)
                 .Register();
         }
     }
@@ -69,13 +71,13 @@ namespace Fargowiltas.Content.Items.Tiles
             TileID.Sets.CountsAsLavaSource[Type] = true;
 
             TileObjectData.newTile.CopyFrom(TileObjectData.Style3x3);
-            TileObjectData.newTile.Width = 4;   
+            TileObjectData.newTile.Width = 4;
             TileObjectData.newTile.CoordinateHeights = [16, 16, 16];
             TileObjectData.addTile(Type);
 
             LocalizedText name = CreateMapEntryName();
             AddMapEntry(new Color(200, 200, 200), name);
-           
+
             //counts as
             AdjTiles = [TileID.Hellforge, TileID.Furnaces, TileID.AlchemyTable, TileID.TinkerersWorkbench, TileID.ImbuingStation, TileID.DyeVat, TileID.LivingLoom, TileID.GlassKiln, TileID.IceMachine, TileID.HoneyDispenser, TileID.SkyMill, TileID.Solidifier, TileID.BoneWelder, TileID.Bottles, TileID.DemonAltar, TileID.Tombstones, TileID.TeaKettle];
 

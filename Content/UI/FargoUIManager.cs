@@ -71,7 +71,7 @@ namespace Fargowiltas.Content.UI
             if (ui.FargoUI.MenuToggleSound)
                 SoundEngine.PlaySound(SoundID.MenuClose);
         }
-        public static void Toggle<T>() where T: FargoUI
+        public static void Toggle<T>() where T : FargoUI
         {
             if (!IsOpen<T>())
                 Open<T>();
@@ -148,19 +148,19 @@ namespace Fargowiltas.Content.UI
                 }
 
             }
-                
+
             if (FargoUIManager.IsOpen<DevianttNPCUI>())
             {
                 foreach (GameInterfaceLayer layer in layers)
-                {   
+                {
                     if (layer.Name == "Vanilla: Map / Minimap" || layer.Name == "Vanilla: Hotbar" || layer.Name == "Vanilla: Info Accessories Bar" || layer.Name == "Vanilla: Resource Bars")
                     {
                         layer.Active = false;
                     }
-                
+
                 }
             }
-            
+
         }
     }
 }

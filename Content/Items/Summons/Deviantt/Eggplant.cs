@@ -1,4 +1,5 @@
 using Fargowiltas.Content.Buffs;
+using Fargowiltas.Content.Items.Misc;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -8,13 +9,14 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
     public class Eggplant : BaseSpawnBooster
     {
         public override int BuffType => ModContent.BuffType<EggplantBuff>();
-       
+
 
         public override void AddRecipes()
         {
             void Recipe(int fruit)
             {
                 CreateRecipe()
+                    .AddIngredient<GizmoParts>(2)
                     .AddIngredient(fruit)
                     .AddIngredient(ItemID.JungleSpores, 4)
                     .AddIngredient(ItemID.Vine, 2)

@@ -29,7 +29,7 @@ namespace Fargowiltas.Common.Systems
             }
         }
 
-        public static void Unload()
+        public override void Unload()
         {
             LoadedToggles?.Clear();
         }

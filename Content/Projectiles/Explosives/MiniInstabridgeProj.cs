@@ -42,7 +42,7 @@ namespace Fargowiltas.Content.Projectiles.Explosives
             int min = 0;
             int max = length;
 
-            int[] deletableTiles = [ 
+            int[] deletableTiles = [
                 TileID.Cactus,
                 TileID.Trees,
                 TileID.CorruptThorns,

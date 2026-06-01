@@ -42,7 +42,7 @@ namespace Fargowiltas.Content.Projectiles.Explosives
             int min = goLeft ? -length : 0;
             int max = goLeft ? 0 : length;
 
-            int[] deletableTiles = [ 
+            int[] deletableTiles = [
                 TileID.Cactus,
                 TileID.Trees,
                 TileID.CorruptThorns,
@@ -73,7 +73,7 @@ namespace Fargowiltas.Content.Projectiles.Explosives
                 // Spawn platforms
                 WorldGen.PlaceTile(xPosition, yPosition, TileID.Dirt);
 
-                
+
             }
             NetMessage.SendTileSquare(-1, (int)(min + position.X / 16.0f), (int)(position.Y / 16.0f), max - min + 1, 1);
         }

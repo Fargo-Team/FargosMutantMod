@@ -16,12 +16,12 @@ namespace Fargowiltas.Content.UI
     {
 
         public static bool ShouldDraw(Player player)
-            => !Main.hideUI 
-            && player.whoAmI == Main.myPlayer 
-            && player.active 
-            && !player.dead 
+            => !Main.hideUI
+            && player.whoAmI == Main.myPlayer
+            && player.active
+            && !player.dead
             && !player.ghost
-            && FargoClientConfig.Instance.DebuffOpacity > 0 
+            && FargoClientConfig.Instance.DebuffOpacity > 0
             && FargoClientConfig.Instance.DebuffDisplayMode != DebuffDisplayMode.Disabled
             && player.buffType.Any(d => Main.debuff[d] && !FargoBuffSets.BuffDisplayBlacklist[d]);
 
@@ -36,7 +36,7 @@ namespace Fargowiltas.Content.UI
             if (!ShouldDraw(player))
                 return;
 
-            
+
             List<int> debuffs = player.buffType.Where(d => Main.debuff[d] && !FargoBuffSets.BuffDisplayBlacklist[d]).ToList();
             const int maxPerLine = 10;
             int yOffset = 0;
@@ -60,7 +60,7 @@ namespace Fargowiltas.Content.UI
                         else
                             position = 260;
                     }
-                   
+
                     //Main.NewText(Main.menuMode);
                     if (player.lavaTime != player.lavaMax || player.breath != player.breathMax)
                     {
@@ -76,12 +76,12 @@ namespace Fargowiltas.Content.UI
                                 position = -330;
                             }
                         }
-                            
+
                     }
-                    
+
                     Vector2 drawPos = player.Top;
                     drawPos.Y -= (position * Main.UIScale + yOffset);
-                    drawPos.X += (36f * Main.UIScale) * (i - midpoint);              
+                    drawPos.X += (36f * Main.UIScale) * (i - midpoint);
 
                     drawPos -= player.MountedCenter; //turn it into just the offset from player center
                     drawPos += player.MountedCenter;
@@ -126,7 +126,7 @@ namespace Fargowiltas.Content.UI
                             {
                                 int maxDuration = knownDurations.Item2;
                                 float ratio = (float)currentDuration / maxDuration;
-                                
+
                                 int x = 0;
                                 int y = (int)(buffIcon.Bounds.Height * (1f - ratio));
                                 int width = buffIcon.Bounds.Width;
@@ -139,7 +139,7 @@ namespace Fargowiltas.Content.UI
                                 Color portionColor = buffColor * faderRatio;
 
                                 Texture2D line = FargoMutantAssets.UI.DebuffOverlayLine.Value;
-                               
+
                                 spriteBatch.Draw(
                                     buffIcon, drawPortion.Floor(), buffIconPortion, buffColor,
                                     rotation, buffIcon.Bounds.Size() / 2,

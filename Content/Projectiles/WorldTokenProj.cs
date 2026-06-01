@@ -37,7 +37,7 @@ namespace Fargowiltas.Content.Projectiles
             {
                 Projectile.Center = player.Center - Vector2.UnitY * 100;
             }
-            
+
             Projectile.scale += 2 / 60f;
             Projectile.Opacity -= 1 / 60f;
             if (Projectile.Opacity <= 0.01f)
@@ -48,7 +48,7 @@ namespace Fargowiltas.Content.Projectiles
             Texture2D texture = (Texture2D)ModContent.Request<Texture2D>($"Fargowiltas/Content/Items/Misc/ModeToggle_{Main.GameMode}");
             Rectangle frame = new Rectangle(0, 0, texture.Width, texture.Height);
             Vector2 origin = frame.Size() / 2f;
-            Main.spriteBatch.Draw(texture, Projectile.Center - Main.screenPosition + new Vector2 (0f, Projectile.gfxOffY), new Microsoft.Xna.Framework.Rectangle?(frame), Projectile.GetAlpha(lightColor), Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(texture, Projectile.Center - Main.screenPosition + new Vector2(0f, Projectile.gfxOffY), new Microsoft.Xna.Framework.Rectangle?(frame), Projectile.GetAlpha(lightColor), Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0f);
             return false;
         }
     }

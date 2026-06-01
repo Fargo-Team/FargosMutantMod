@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Fargowiltas.Common.Systems.Collections;
+using Fargowiltas.Content.NPCs;
+using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -17,10 +19,8 @@ namespace Fargowiltas
     {
         public static readonly BindingFlags UniversalBindingFlags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public;
 
-        public static bool EternityMode => Fargowiltas.ModLoaded["FargowiltasSouls"] && (bool)ModLoader.GetMod("FargowiltasSouls").Call("EternityMode");
         public static bool HasAnyItem(this Player player, params int[] itemIDs) => itemIDs.Any(itemID => player.HasItem(itemID));
 
-        public static bool ActuallyNight => !Main.dayTime || Main.remixWorld;
         public static FargoPlayer FargoMutant(this Player player) => player.GetModPlayer<FargoPlayer>();
 
         public static void AddWithCondition<T>(this List<T> list, T type, bool condition)
@@ -121,11 +121,6 @@ namespace Fargowiltas
             }
         }
 
-        public static bool AnyBossAlive()
-        {
-            return Main.npc.Any(npc => npc.active && (npc.boss || npc.type == NPCID.EaterofWorldsHead || npc.type == NPCID.DD2Betsy));
-        }
-
         public static int CountItemHeld(this Player player, int type)
         {
             if (player.selectedItem == 58) // Cursor
@@ -219,5 +214,21 @@ namespace Fargowiltas
             return false;
         }
         #endregion
+
+        /// <summary>
+        /// Checks whether an NPC is eligible for generic boss purposes.
+        /// <br/> Excludes <see cref="NPCID.MartianSaucerCore"/> and <see cref="NPCID.TorchGod"/>.
+        /// <br/> Examples of usage include Boss Zen, damage and health boost config, pylon use permission during events.
+        /// </summary>
+        /// <param name="npc"></param>
+        /// <returns></returns>
+        public static bool CountsAsBoss(this NPC npc) => (npc.boss && npc.type != NPCID.MartianSaucerCore && npc.type != NPCID.TorchGod) || FargoNPCSets.ShouldGrantBossZen[npc.type];
+        public static bool AnyBossAlive()
+        {
+            if (Main.npc.IndexInRange(FargoGlobalNPC.Boss) && Main.npc[FargoGlobalNPC.Boss].active && Main.npc[FargoGlobalNPC.Boss].CountsAsBoss())
+                return true;
+            FargoGlobalNPC.Boss = -1;
+            return false;
+        }
     }
 }

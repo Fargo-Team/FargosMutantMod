@@ -8,12 +8,12 @@ namespace Fargowiltas.Content.Items.Summons.Mutant
     public class PrismaticPrimrose : BaseSummon
     {
         public override int NPCType => NPCID.HallowBoss;
-        
+
         public override void SetStaticDefaults()
         {
             base.SetStaticDefaults();
-			ItemID.Sets.SortingPriorityBossSpawns[Type] = 12; // Places it right after the Truffle Worm
-		}
+            ItemID.Sets.SortingPriorityBossSpawns[Type] = 12; // Places it right after the Truffle Worm
+        }
 
         public override void AddRecipes()
         {

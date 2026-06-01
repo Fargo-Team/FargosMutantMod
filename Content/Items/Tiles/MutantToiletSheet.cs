@@ -2,8 +2,8 @@
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.Enums;
-using Terraria.GameContent.ObjectInteractions;
 using Terraria.GameContent;
+using Terraria.GameContent.ObjectInteractions;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -106,7 +106,7 @@ namespace Fargowiltas.Content.Items.Tiles
                     Main.dust[d].position = player.Center - vector;
                 }*/
 
-                if (Fargowiltas.ModLoaded["FargowiltasSouls"] && TryFind("FargowiltasSouls/MutantPresenceBuff", out ModBuff modBuff))
+                if (Fargowiltas.SoulsMod?.TryFind("FargowiltasSouls/MutantPresenceBuff", out ModBuff modBuff) == true)
                 {
                     player.AddBuff(modBuff.Type, 2);
                 }
@@ -162,8 +162,7 @@ namespace Fargowiltas.Content.Items.Tiles
             }
 
             if (Main.rand.NextBool(10)
-                && Fargowiltas.ModLoaded["FargowiltasSouls"]
-                && TryFind("FargowiltasSouls/MutantBoss", out ModNPC modNPC)
+                && Fargowiltas.SoulsMod?.TryFind("FargowiltasSouls/MutantBoss", out ModNPC modNPC) == true
                 && Main.netMode != NetmodeID.MultiplayerClient)
             {
                 int p = Player.FindClosest(new Vector2(spawnX * 16 + 8, spawnY * 16 + 12), 0, 0);

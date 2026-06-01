@@ -1,7 +1,7 @@
-using System.Collections.Generic;
 //using Fargowiltas.Content.Items.Ammos.Bullets;
 using Fargowiltas.Content.Items.Tiles;
 using Fargowiltas.Utilities;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;

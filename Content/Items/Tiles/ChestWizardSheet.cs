@@ -1,18 +1,18 @@
-﻿using System;
-using Terraria.DataStructures;
-using Terraria.ID;
-using Terraria.Localization;
-using Terraria;
-using Terraria.ModLoader;
-using Terraria.ObjectData;
+﻿using Fargowiltas.Common.Systems.Collections;
+using Fargowiltas.Content.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Fargowiltas.Content.UI;
-using Terraria.Audio;
-using Terraria.GameContent.ObjectInteractions;
 using ReLogic.Content;
+using System;
+using Terraria;
+using Terraria.Audio;
+using Terraria.DataStructures;
 using Terraria.GameContent;
-using Fargowiltas.Common.Systems.Collections;
+using Terraria.GameContent.ObjectInteractions;
+using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader;
+using Terraria.ObjectData;
 
 namespace Fargowiltas.Content.Items.Tiles
 {
@@ -26,12 +26,14 @@ namespace Fargowiltas.Content.Items.Tiles
             Main.tileNoAttach[Type] = true;
             Main.tileFrameImportant[Type] = true;
 
+
             TileID.Sets.HasOutlines[Type] = true;
+            TileID.Sets.AvoidedByNPCs[Type] = true;
 
             TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
             TileObjectData.newTile.Width = 2;
             TileObjectData.newTile.Height = 2;
-            TileObjectData.newTile.CoordinateHeights = new int[] { 16, 18};
+            TileObjectData.newTile.CoordinateHeights = new int[] { 16, 18 };
             TileObjectData.newTile.HookPostPlaceMyPlayer = ModContent.GetInstance<ChestWizardTileEntity>().Generic_HookPostPlaceMyPlayer;// new PlacementHook(ModContent.GetInstance<EnchantedTreeTileEntity>().Hook_AfterPlacement, -3, 0, false);
             TileObjectData.newTile.UsesCustomCanPlace = true;
             TileObjectData.newTile.Origin = new Point16(0, 1);
@@ -84,7 +86,7 @@ namespace Fargowiltas.Content.Items.Tiles
             {
                 return;
             }
-            
+
             Asset<Texture2D> eye = ModContent.Request<Texture2D>("Fargowiltas/Content/Items/Tiles/ChestWizardEyeAssembly");
             Rectangle ball = new(2, 6, 18, 18);
             Rectangle pupil = new(26, 10, 8, 8);
@@ -106,7 +108,7 @@ namespace Fargowiltas.Content.Items.Tiles
             Rectangle headSource = new(0, 0, hat.Width(), hat.Height() / 20);
             Vector2 pos = new Vector2(i, j).ToWorldCoordinates() - Main.screenPosition + new Vector2(8 , MathF.Sin(TE.drawTimer) - 24);
             spriteBatch.Draw(eye.Value, pos, ball, Lighting.GetColor(new Point(i, j)), 0, ball.Size() / 2, 1, SpriteEffects.None, 1);
-            
+
             float angle = (pos + Main.screenPosition).AngleTo(Main.LocalPlayer.Center);
             //Main.NewText(TE.item);
             spriteBatch.Draw(eye.Value, pos + new Vector2(3, 0).RotatedBy(angle), pupil, Lighting.GetColor(new Point(i, j)), 0, pupil.Size() / 2, 1, SpriteEffects.None, 1);
@@ -116,7 +118,7 @@ namespace Fargowiltas.Content.Items.Tiles
         }
         public override bool RightClick(int i, int j)
         {
-            
+
             FargoUtils.TryGetTileEntityAs(i, j, out ChestWizardTileEntity TE);
             int type = Main.LocalPlayer.HeldItem.type;
             if (Main.LocalPlayer.HeldItem.headSlot != -1 && TE.hatID != type)
@@ -153,7 +155,7 @@ namespace Fargowiltas.Content.Items.Tiles
                 {
                     for (int c = 0; c < Main.chest.Length; c++)
                     {
-                        if (Main.chest[c] != null && new Vector2(Main.chest[c].x*16, Main.chest[c].y*16).Distance(Main.LocalPlayer.Center) < 1000)
+                        if (Main.chest[c] != null && new Vector2(Main.chest[c].x * 16, Main.chest[c].y * 16).Distance(Main.LocalPlayer.Center) < 1000)
                         {
                             FargoNet.SendChizardRequestChestContents(Main.chest[c].x, Main.chest[c].y);
                         }

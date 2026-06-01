@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Fargowiltas.Common.Configs;
+﻿using Fargowiltas.Common.Configs;
 using Fargowiltas.Content.Biomes;
 using Fargowiltas.Content.Items.Summons.Deviantt;
 using Fargowiltas.Content.Items.Tiles;
@@ -9,6 +7,8 @@ using Fargowiltas.Content.UI.Emotes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
+using System.Collections.Generic;
+using System.Linq;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
@@ -109,16 +109,17 @@ namespace Fargowiltas.Content.NPCs
             //    Main.NPCCatchable[NPC.type] = true;
             //    NPC.catchItem = (short)mod.ItemType("Deviantt");
             //}
-                
+
         }
-        public override bool CanTownNPCSpawn(int numTownNPCs)/* tModPorter Suggestion: Copy the implementation of NPC.SpawnAllowed_Merchant in vanilla if you to count money, and be sure to set a flag when unlocked, so you don't count every tick. */
+        public override bool CanTownNPCSpawn(int numTownNPCs)
         {
-            if (Fargowiltas.ModLoaded["FargowiltasSouls"] && (bool)ModLoader.GetMod("FargowiltasSouls").Call("DevianttAlive"))
+            Mod souls = Fargowiltas.SoulsMod;
+            if ((bool?)souls?.Call("DevianttAlive") == true)
                 return false;
 
-            return FargoServerConfig.Instance.Devi && !FargoGlobalNPC.AnyBossAlive() 
-                && (FargoWorld.DownedBools.TryGetValue("rareEnemy", out bool value) && value
-                || Fargowiltas.ModLoaded["FargowiltasSouls"] && (bool)ModLoader.GetMod("FargowiltasSouls").Call("EternityMode"));
+            return FargoServerConfig.Instance.Devi && !FargoUtils.AnyBossAlive()
+                && ((FargoWorld.DownedBools.TryGetValue("rareEnemy", out bool value) && value)
+                || FargoWorld.EternityMode);
         }
 
         public override bool CanGoToStatue(bool toKingStatue) => !toKingStatue;
@@ -144,14 +145,14 @@ namespace Fargowiltas.Content.NPCs
 
                 DoALittleTrolling();
             }
-        }       
+        }
         void DoALittleTrolling()
         {
             if (Main.netMode == NetmodeID.MultiplayerClient)
                 return;
 
             //no trolling when possible danger
-            if (FargoGlobalNPC.AnyBossAlive()
+            if (FargoUtils.AnyBossAlive()
                 || Main.npc.Any(n => n.active && n.damage > 0 && !n.friendly && NPC.Distance(n.Center) < 1200)
                 || NPC.life < NPC.lifeMax)
                 return;
@@ -236,10 +237,11 @@ namespace Fargowiltas.Content.NPCs
 
         public override string GetChat() //=> string.Empty;
         {
-            if (Fargowiltas.ModLoaded["FargowiltasSouls"] && (bool)ModLoader.GetMod("FargowiltasSouls").Call("EternityMode")
-                && !(bool)ModLoader.GetMod("FargowiltasSouls").Call("GiftsReceived"))
+            Mod souls = Fargowiltas.SoulsMod;
+            if (FargoWorld.EternityMode
+                && (bool?)souls?.Call("GiftsReceived") == false)
             {
-                ModLoader.GetMod("FargowiltasSouls").Call("GiveDevianttGifts");
+                souls?.Call("GiveDevianttGifts");
                 return Main.npcChatText = DeviChat("GiveGifts");
             }
 
@@ -253,16 +255,16 @@ namespace Fargowiltas.Content.NPCs
                 return text;
             }
 
-            if (Fargowiltas.ModLoaded["FargowiltasSouls"] && Main.rand.NextBool())
+            if (souls != null && Main.rand.NextBool())
             {
-                if ((bool)ModLoader.GetMod("FargowiltasSouls").Call("EridanusArmor"))
+                if ((bool)souls.Call("EridanusArmor"))
                     return DeviChat("EridanusArmor");
 
-                if ((bool)ModLoader.GetMod("FargowiltasSouls").Call("NekomiArmor"))
+                if ((bool)souls.Call("NekomiArmor"))
                     return DeviChat("NekomiArmor");
             }
 
-            if (NPC.homeless && canSayDefeatQuote && Fargowiltas.ModLoaded["FargowiltasSouls"] && (bool)ModLoader.GetMod("FargowiltasSouls").Call("DownedDevi"))
+            if (NPC.homeless && canSayDefeatQuote && (bool?)souls?.Call("DownedDevi") == true)
             {
                 canSayDefeatQuote = false;
                 return DeviChat("Defeat");
@@ -301,7 +303,7 @@ namespace Fargowiltas.Content.NPCs
                 dialogue.Add(DeviChat("Lumber", Main.npc[lumberjack].GivenName));
             }
 
-            if (Fargowiltas.ModLoaded["FargowiltasSouls"] && (bool)ModLoader.GetMod("FargowiltasSouls").Call("EternityMode"))
+            if (FargoWorld.EternityMode)
             {
                 dialogue.Add(DeviChat("EternityMode"));
             }
@@ -312,7 +314,7 @@ namespace Fargowiltas.Content.NPCs
         public override void SetChatButtons(ref string button, ref string button2)
         {
             button = Language.GetTextValue("LegacyInterface.28");
-            if (Fargowiltas.ModLoaded["FargowiltasSouls"] && (bool)ModLoader.GetMod("FargowiltasSouls").Call("EternityMode"))
+            if (FargoWorld.EternityMode)
             {
                 button2 = Language.GetTextValue("Mods.Fargowiltas.NPCs.Deviantt.HelpButton"); //(bool)ModLoader.GetMod("FargowiltasSouls").Call("GiftsReceived") ? "Help" : "Receive Gift";
             }
@@ -326,7 +328,7 @@ namespace Fargowiltas.Content.NPCs
             {
                 shopName = ShopName;
             }
-            else if (Fargowiltas.ModLoaded["FargowiltasSouls"] && (bool)ModLoader.GetMod("FargowiltasSouls").Call("EternityMode"))
+            else if (FargoWorld.EternityMode)
             {
                 Main.npcChatText = Fargowiltas.dialogueTracker.GetDialogue(NPC.GivenName);
             }
@@ -341,7 +343,7 @@ namespace Fargowiltas.Content.NPCs
         {
             var npcShop = new NPCShop(Type, ShopName);
 
-            if (Fargowiltas.ModLoaded["FargowiltasSoulsDLC"] && TryFind("FargowiltasSoulsDLC", "PandorasBox", out ModItem pandorasBox))
+            if (Fargowiltas.SoulsExtrasMod?.TryFind("PandorasBox", out ModItem pandorasBox) == true)
             {
                 npcShop.Add(new Item(pandorasBox.Type));
             }
@@ -362,7 +364,7 @@ namespace Fargowiltas.Content.NPCs
                 .Add(new Item(ItemType<DilutedRainbowMatter>()) { shopCustomPrice = Item.buyPrice(copper: 100000) }, new Condition("Mods.Fargowiltas.Conditions.RainbowSlimeDown", () => Main.hardMode && FargoWorld.DownedBools["rainbowSlime"]))
                 .Add(new Item(ItemType<CloudSnack>()) { shopCustomPrice = Item.buyPrice(copper: 100000) }, new Condition("Mods.Fargowiltas.Conditions.WyvernDown", () => Main.hardMode && FargoWorld.DownedBools["wyvern"]))
                 .Add(new Item(ItemType<RuneOrb>()) { shopCustomPrice = Item.buyPrice(copper: 150000) }, new Condition("Mods.Fargowiltas.Conditions.RuneDown", () => Main.hardMode && FargoWorld.DownedBools["runeWizard"]))
-                .Add(new Item(ItemType<SuspiciousLookingChest>()) { shopCustomPrice = Item.buyPrice(copper: 300000) }, new Condition("Mods.Fargowiltas.Conditions.MimicDown", () => Main.hardMode && FargoWorld.DownedBools["mimic"]))
+                .Add(new Item(ItemType<SuspiciousLookingChest>()) { shopCustomPrice = Item.buyPrice(copper: 800000) }, new Condition("Mods.Fargowiltas.Conditions.MimicDown", () => Main.hardMode && FargoWorld.DownedBools["mimic"]))
                 .Add(new Item(ItemType<HallowChest>()) { shopCustomPrice = Item.buyPrice(copper: 300000) }, new Condition("Mods.Fargowiltas.Conditions.MimicHallowDown", () => Main.hardMode && FargoWorld.DownedBools["mimicHallow"]))
                 .Add(new Item(ItemType<CorruptChest>()) { shopCustomPrice = Item.buyPrice(copper: 300000) }, new Condition("Mods.Fargowiltas.Conditions.MimicCorruptDown", () => Main.hardMode && (FargoWorld.DownedBools["mimicCorrupt"] || FargoWorld.DownedBools["mimicCrimson"])))
                 .Add(new Item(ItemType<CrimsonChest>()) { shopCustomPrice = Item.buyPrice(copper: 300000) }, new Condition("Mods.Fargowiltas.Conditions.MimicCrimsonDown", () => Main.hardMode && (FargoWorld.DownedBools["mimicCorrupt"] || FargoWorld.DownedBools["mimicCrimson"])))
@@ -388,7 +390,7 @@ namespace Fargowiltas.Content.NPCs
 
         public override void ModifyActiveShop(string shopName, Item[] items)
         {
-            
+
         }
 
         public override void TownNPCAttackStrength(ref int damage, ref float knockback)
@@ -463,11 +465,11 @@ namespace Fargowiltas.Content.NPCs
 
         public override void OnKill()
         {
-            if (Fargowiltas.ModLoaded["FargowiltasSouls"] && TryFind("FargowiltasSouls", "CosmosChampion", out ModNPC cosmosChamp) && NPC.AnyNPCs(cosmosChamp.Type))
+            if (Fargowiltas.SoulsMod?.TryFind("CosmosChampion", out ModNPC cosmosChamp) == true && NPC.AnyNPCs(cosmosChamp.Type))
                 Item.NewItem(NPC.GetSource_Loot(), NPC.Hitbox, ItemType<WalkingRick>());
         }
 
-        
+
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
@@ -476,9 +478,9 @@ namespace Fargowiltas.Content.NPCs
             Rectangle rectangle = NPC.frame;
             Vector2 origin2 = rectangle.Size() / 2f;
             SpriteEffects effects = NPC.IsShimmerVariant ? NPC.spriteDirection < 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally : SpriteEffects.None;
-            if (Fargowiltas.ModLoaded["FargowiltasSouls"] && !(bool)ModLoader.GetMod("FargowiltasSouls").Call("GiftsReceived"))
+            if ((bool?)Fargowiltas.SoulsMod?.Call("GiftsReceived") == false)
             {
-                
+
 
                 Color color26 = Main.DiscoColor;
                 color26.A = 0;
@@ -507,11 +509,11 @@ namespace Fargowiltas.Content.NPCs
             }
             else
                 return true;
-            
 
-            
 
-            
+
+
+
         }
 
         private static string DeviChat(string key, params object[] args) => Language.GetTextValue($"Mods.Fargowiltas.NPCs.Deviantt.Chat.{key}", args);

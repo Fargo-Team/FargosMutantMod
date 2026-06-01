@@ -1,4 +1,5 @@
 ﻿using Fargowiltas.Common.Systems.Recipes;
+using Fargowiltas.Content.Items.Misc;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -32,12 +33,13 @@ namespace Fargowiltas.Content.Items.Tiles
         public override void AddRecipes()
         {
             CreateRecipe()
+                .AddIngredient<GizmoParts>(5)
+                .AddIngredient(ItemID.LunarBar, 25)
                 .AddRecipeGroup(RecipeGroups.AnyForge)
                 .AddRecipeGroup(RecipeGroups.AnyHMAnvil)
                 .AddIngredient(ItemID.CrystalBall)
                 .AddIngredient(ItemID.Autohammer)
                 .AddIngredient(ItemID.LunarCraftingStation)
-                .AddIngredient(ItemID.LunarBar, 25)
                 .Register();
         }
     }
@@ -61,7 +63,7 @@ namespace Fargowiltas.Content.Items.Tiles
 
             LocalizedText name = CreateMapEntryName();
             AddMapEntry(new(200, 200, 200), name);
-           
+
             #region Counts as
             AdjTiles =
                 [

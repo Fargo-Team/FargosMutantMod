@@ -1,5 +1,5 @@
-using Fargowiltas.Content.NPCs;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -38,13 +38,7 @@ namespace Fargowiltas.Content.Projectiles
             if ((int)Projectile.ai[0] == NPCID.CultistBoss && NPC.downedAncientCultist)
             {
                 // Lunatic Cultist
-                int npc = NPC.NewNPC(NPC.GetBossSpawnSource(Main.myPlayer), (int)Projectile.Center.X, (int)Projectile.Center.Y, (int)Projectile.ai[0]);
-                if (npc != Main.maxNPCs)
-                {
-                    Main.npc[npc].GetGlobalNPC<FargoGlobalNPC>().PillarSpawn = false;
-                    if (Main.netMode == NetmodeID.Server)
-                        NetMessage.SendData(MessageID.SyncNPC, number: npc);
-                }
+                int npc = NPC.NewNPC(new EntitySource_BossSpawn(Main.LocalPlayer, "PreventLunarPillars"), (int)Projectile.Center.X, (int)Projectile.Center.Y, (int)Projectile.ai[0]);
             }
             else if (Projectile.ai[1] == 2)
             {
@@ -52,8 +46,6 @@ namespace Fargowiltas.Content.Projectiles
                 for (int i = 0; i < 7; i++)
                 {
                     int n = NPC.NewNPC(NPC.GetBossSpawnSource(Main.myPlayer), (int)Projectile.Center.X, (int)Projectile.Center.Y, bosses[i]);
-                    if (n != Main.maxNPCs && Main.netMode == NetmodeID.Server)
-                        NetMessage.SendData(MessageID.SyncNPC, number: n);
                 }
 
                 NPC.SpawnWOF(Main.player[Projectile.owner].Center);
@@ -63,14 +55,12 @@ namespace Fargowiltas.Content.Projectiles
                 // Mutant Voodoo (All bosses)
                 foreach (int boss in bosses)
                 {
-                    int spawn = NPC.NewNPC(NPC.GetBossSpawnSource(Main.myPlayer), (int)Projectile.Center.X, (int)Projectile.Center.Y, boss);
-
+                    IEntitySource source = NPC.GetBossSpawnSource(Main.myPlayer);
                     if (boss == NPCID.CultistBoss)
                     {
-                        Main.npc[spawn].GetGlobalNPC<FargoGlobalNPC>().PillarSpawn = false;
-                        if (spawn != Main.maxNPCs && Main.netMode == NetmodeID.Server)
-                            NetMessage.SendData(MessageID.SyncNPC, number: spawn);
+                        source = new EntitySource_BossSpawn(Main.LocalPlayer, "PreventLunarPillars");
                     }
+                    int spawn = NPC.NewNPC(source, (int)Projectile.Center.X, (int)Projectile.Center.Y, boss);
                 }
 
                 NPC.SpawnWOF(Main.player[Projectile.owner].Center);
@@ -78,8 +68,6 @@ namespace Fargowiltas.Content.Projectiles
             else
             {
                 int n = NPC.NewNPC(NPC.GetBossSpawnSource(Main.myPlayer), (int)Projectile.Center.X, (int)Projectile.Center.Y, (int)Projectile.ai[0]);
-                if (n != Main.maxNPCs && Main.netMode == NetmodeID.Server)
-                    NetMessage.SendData(MessageID.SyncNPC, number: n);
             }
         }
     }

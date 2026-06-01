@@ -27,7 +27,7 @@ namespace Fargowiltas.Content.Items.Tiles
         {
             public Vector2 center;
             public Vector2 velocity;
-            public Vector2 targetPosition; 
+            public Vector2 targetPosition;
             public int type; //item sprite to draw
             public bool grabbed; //if the current client is dragging it around
             public int grabCooldown; //dont allow grabbing (on new fruit & right after duping)
@@ -36,7 +36,7 @@ namespace Fargowiltas.Content.Items.Tiles
             public float despawnTimer; //fade out to despawn
             public Fruit(int type, Vector2 position, Vector2 targetPosition, Vector2 velocity, int previousItem = 0, int layer = 0)
             {
-                
+
                 this.type = type;
                 this.center = position;
                 this.velocity = velocity;
@@ -53,7 +53,7 @@ namespace Fargowiltas.Content.Items.Tiles
             for (int i = 0; i < Fruits.Count; i++)
             {
                 Fruit fruit = Fruits[i];
-                
+
             }
         }
         public override bool IsTileValidForEntity(int x, int y)
@@ -130,8 +130,8 @@ namespace Fargowiltas.Content.Items.Tiles
                 Fruits.Add(fruit);
             }
         }
-       
-        
+
+
 
         public static bool IsItemDupable(int type)
         {
@@ -174,7 +174,7 @@ namespace Fargowiltas.Content.Items.Tiles
                         }
                         if (Main.MouseWorld.Distance(fruit.center) <= size)
                         {
-                            Main.instance.MouseText(Lang.GetItemNameValue(fruit.type) + "\n[i:Fargowiltas/EnchantedAcorn] [c/3BFFEB:" + cost + "]", ContentSamples.ItemsByType[fruit.type].rare);
+                            Main.instance.MouseText(Lang.GetItemNameValue(fruit.type) + "\n[i:Fargowiltas/EnchantedAcorn] [c/3BFFEB:" + cost + "]", 0);
                         }
                         if (Main.MouseWorld.Distance(fruit.center) <= size && Main.LocalPlayer.controlUseItem && fruit.grabCooldown == 0 &&
                             (Main.LocalPlayer.FargoMutant().grabbedFruit == null || Main.LocalPlayer.FargoMutant().grabbedFruit == fruit))
@@ -277,7 +277,7 @@ namespace Fargowiltas.Content.Items.Tiles
             {
                 if (FargoUtils.TryGetTileEntityAs<EnchantedTreeTileEntity>(EnchantedTreeSheet.EnchantedTrees[i].X, EnchantedTreeSheet.EnchantedTrees[i].Y, out EnchantedTreeTileEntity tree))
                 {
-                    Main.spriteBatch.Begin( SpriteSortMode.Immediate, BlendState.AlphaBlend, Main.Camera.Sampler, DepthStencilState.None, Main.Camera.Rasterizer,null, transformMatrix: Main.Camera.GameViewMatrix.TransformationMatrix);
+                    Main.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, Main.Camera.Sampler, DepthStencilState.None, Main.Camera.Rasterizer, null, transformMatrix: Main.Camera.GameViewMatrix.TransformationMatrix);
                     Asset<Texture2D> line = TextureAssets.Extra[ExtrasID.FairyQueenLance];
                     //draw lines
                     for (int f = 0; f < tree.Fruits.Count; f++)

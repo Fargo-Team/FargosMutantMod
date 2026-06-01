@@ -48,7 +48,7 @@ namespace Fargowiltas.Content.Items.Tiles
                 .AddIngredient(ModContent.ItemType<MultitaskCenter>())
                 .AddIngredient(ModContent.ItemType<ElementalAssembler>())
                 .AddIngredient(ModContent.ItemType<LuminiteOmniforge>())
-				.AddIngredient(ModContent.ItemType<GoldenDippingVat>())
+                .AddIngredient(ModContent.ItemType<GoldenDippingVat>())
                 .AddRecipeGroup(RecipeGroups.AnyBookcase)
                 .AddIngredient(ItemID.BlendOMatic)
                 .AddIngredient(ItemID.MeatGrinder)

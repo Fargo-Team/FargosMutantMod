@@ -16,8 +16,8 @@ namespace Fargowiltas.Content.Items.Summons.Abom
         public override void SetStaticDefaults()
         {
             base.SetStaticDefaults();
-			ItemID.Sets.SortingPriorityBossSpawns[Type] = ItemID.Sets.SortingPriorityBossSpawns[ItemID.BloodMoonStarter]; // 18 [Redigit why]
-		}
+            ItemID.Sets.SortingPriorityBossSpawns[Type] = ItemID.Sets.SortingPriorityBossSpawns[ItemID.BloodMoonStarter]; // 18 [Redigit why]
+        }
 
         public override void SetDefaults()
         {
@@ -53,7 +53,7 @@ namespace Fargowiltas.Content.Items.Summons.Abom
 
         public override bool CanUseItem(Player player)
         {
-            return FargoUtils.ActuallyNight && Main.bloodMoon;
+            return !Main.IsItDay() && Main.bloodMoon;
         }
 
         public override void AddRecipes()

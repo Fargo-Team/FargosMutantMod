@@ -1,4 +1,5 @@
 using Fargowiltas.Common.Configs;
+using Fargowiltas.Content.Items.Misc;
 using Fargowiltas.Content.Items.Tiles;
 using Fargowiltas.Content.Projectiles.Explosives;
 using Microsoft.Xna.Framework;
@@ -32,6 +33,7 @@ namespace Fargowiltas.Content.Items.Explosives
         public override void AddRecipes()
         {
             CreateRecipe()
+                .AddIngredient<GizmoParts>(2)
                 .AddIngredient(ModContent.ItemType<InstaBridge>())
                 .AddTile(ModContent.TileType<SemistationSheet>())
                 .Register();

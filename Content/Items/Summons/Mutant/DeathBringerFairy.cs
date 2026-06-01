@@ -16,9 +16,9 @@ namespace Fargowiltas.Content.Items.Summons.Mutant
         {
             Item.ResearchUnlockCount = 3;
 
-			ItemID.Sets.SortingPriorityBossSpawns[Type] = 5; // Places it right after Deer Thing and Abeemination, and before Gelatin Crystal
+            ItemID.Sets.SortingPriorityBossSpawns[Type] = 5; // Places it right after Deer Thing and Abeemination, and before Gelatin Crystal
 
-			Main.RegisterItemAnimation(Type, new DrawAnimationVertical(8, 3));
+            Main.RegisterItemAnimation(Type, new DrawAnimationVertical(8, 3));
             ItemID.Sets.AnimatesAsSoul[Type] = true;
         }
 
@@ -38,7 +38,7 @@ namespace Fargowiltas.Content.Items.Summons.Mutant
 
         public override bool CanUseItem(Player player)
         {
-            return FargoUtils.ActuallyNight;
+            return !Main.IsItDay();
         }
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)

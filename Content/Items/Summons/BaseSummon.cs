@@ -45,12 +45,16 @@ namespace Fargowiltas.Content.Items.Summons
             if (ResetTimeWhenUsed)
             {
                 Main.time = 0;
-
-                if (Main.netMode == NetmodeID.Server) //sync time
-                    NetMessage.SendData(MessageID.WorldData, -1, -1, null, 0, 0f, 0f, 0f, 0, 0, 0);
+                if (Main.netMode == NetmodeID.MultiplayerClient)
+                {
+                    ModPacket syncTime = Mod.GetPacket();
+                    syncTime.Write((byte)Fargowiltas.PacketID.SyncWorldTime);
+                    syncTime.Write(Main.time);
+                    syncTime.Send();
+                }
             }
 
-            Vector2 pos = new Vector2((int)player.position.X + Main.rand.Next(-800, 800), (int)player.position.Y + Main.rand.Next(-800, -250));
+            Vector2 pos = new((int)player.position.X + Main.rand.Next(-800, 800), (int)player.position.Y + Main.rand.Next(-800, -250));
 
             if (NPCType == NPCID.Golem)
             {
@@ -67,7 +71,7 @@ namespace Fargowiltas.Content.Items.Summons
                 }
             }
 
-            Projectile.NewProjectile(player.GetSource_ItemUse(source.Item), pos, Vector2.Zero, ModContent.ProjectileType<SpawnProj>(), 0, 0, Main.myPlayer, NPCType);
+            Projectile.NewProjectile(player.GetSource_ItemUse(Item), pos, Vector2.Zero, ModContent.ProjectileType<SpawnProj>(), 0, 0, player.whoAmI, NPCType);
 
             LocalizedText text = Language.GetText("Announcement.HasAwoken");
             string npcName = NPCName ?? (ModContent.GetModNPC(NPCType) == null ? Lang.GetNPCNameValue(NPCType) : ModContent.GetModNPC(NPCType).DisplayName.Value);

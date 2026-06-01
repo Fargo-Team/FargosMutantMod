@@ -1,14 +1,13 @@
-﻿using System;
+﻿using Fargowiltas.Content.Items.Tiles;
+using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.IO;
-using Fargowiltas.Content.Items.Tiles;
-using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
-using Terraria.ModLoader.IO;
 using static Fargowiltas.Fargowiltas;
 
 namespace Fargowiltas
@@ -290,7 +289,7 @@ namespace Fargowiltas
         }
         public static void SendChizardChestContentsToClient(int client, int chestX, int chestY)
         {
-           
+
             int c = Chest.FindChest(chestX, chestY);
             if (c >= 0)
             {
@@ -308,11 +307,11 @@ namespace Fargowiltas
             if (c >= 0)
             {
                 NetMessage.SendData(MessageID.SyncChestItem, -1, -1, null, c, itemIndex);
-            }   
+            }
         }
         public static void RequestTakeItemOut(int itemIndex, Item expectedItem, int amount, int chestX, int chestY)
         {
-            
+
             int c = Chest.FindChest(chestX, chestY);
             if (c >= 0)
             {
@@ -327,6 +326,15 @@ namespace Fargowiltas
                 packet.Write(expectedItem.prefix);
                 packet.Send();
             }
+        }
+
+        public static void AddPotionToPotionBag(int itemID, int count)
+        {
+            ModPacket packet = Instance.GetPacket();
+            packet.Write((byte)PacketID.AddPotionToBag);
+            packet.Write(itemID);
+            packet.Write(count);
+            packet.Send();
         }
     }
 }

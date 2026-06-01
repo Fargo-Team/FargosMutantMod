@@ -3,6 +3,7 @@ using Terraria;
 using Terraria.GameContent.Events;
 using Terraria.ID;
 using static Fargowiltas.Fargowiltas;
+using static Fargowiltas.FargowiltasDetours;
 
 namespace Fargowiltas.Content.Items.Summons.Abom
 {
@@ -15,8 +16,8 @@ namespace Fargowiltas.Content.Items.Summons.Abom
         public override void SetStaticDefaults()
         {
             base.SetStaticDefaults();
-			ItemID.Sets.SortingPriorityBossSpawns[Type] = 17; // Places it right after Solar Tablet
-		}
+            ItemID.Sets.SortingPriorityBossSpawns[Type] = 17; // Places it right after Solar Tablet
+        }
 
         public override bool CanUseItem(Player player)
         {

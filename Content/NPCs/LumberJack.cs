@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
 using Fargowiltas.Common.Configs;
 using Fargowiltas.Content.Achievements;
 using Fargowiltas.Content.Items.Tiles;
@@ -12,6 +10,8 @@ using Fargowiltas.Content.UI.LumberjackUI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
+using System.Collections.Generic;
+using System.Linq;
 using Terraria;
 using Terraria.Enums;
 using Terraria.GameContent;
@@ -75,6 +75,7 @@ namespace Fargowiltas.Content.NPCs
             NPC.Happiness.SetNPCAffection(NPCID.Dryad, AffectionLevel.Dislike);
             NPC.Happiness.SetNPCAffection(NPCID.Demolitionist, AffectionLevel.Hate);
 
+            //SetupRegionalWood();
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
@@ -178,7 +179,7 @@ namespace Fargowiltas.Content.NPCs
         public override string GetChat()
         {
             List<string> dialogue = Language.FindAll(Lang.CreateDialogFilter("Mods.Fargowiltas.NPCs.LumberJack.Chat.Normal")).Select(item => item.Value).ToList();
-            
+
             int nurse = NPC.FindFirstNPC(NPCID.Nurse);
             if (nurse >= 0)
             {
@@ -387,20 +388,8 @@ namespace Fargowiltas.Content.NPCs
                 Main.npcChatText = LumberChat("Rest");
             }
         }
+        public static Condition OwnsRegionalWood(int woodID) => new("Mods.Fargowiltas.Conditions.OwnsRegionalWood", () => Main.LocalPlayer.FargoMutant().ItemHasBeenOwned[woodID]);
 
-        public static Condition OwnsRegionalWood(int woodID)
-        {
-            bool AnyoneOwnsWood()
-            {
-                foreach (Player player in Main.ActivePlayers)
-                {
-                    if (player.FargoMutant().ItemHasBeenOwned[woodID])
-                        return true;
-                }
-                return false;
-            }
-            return new("Mods.Fargowiltas.Conditions.OwnsRegionalWood", AnyoneOwnsWood);
-        }
         public override void AddShops()
         {
             var npcShop = new NPCShop(Type, ShopName)
@@ -416,10 +405,10 @@ namespace Fargowiltas.Content.NPCs
                 .Add(new Item(ItemID.SpookyWood) { shopCustomPrice = Item.buyPrice(copper: 50) }, [OwnsRegionalWood(ItemID.SpookyWood), Condition.DownedPumpking])
                 .Add(new Item(ItemID.Cactus) { shopCustomPrice = Item.buyPrice(copper: 10) }, OwnsRegionalWood(ItemID.Cactus))
                 .Add(new Item(ItemID.BambooBlock) { shopCustomPrice = Item.buyPrice(copper: 10) }, OwnsRegionalWood(ItemID.BambooBlock))
-                .Add(new Item(ItemID.LivingWoodWand) { shopCustomPrice = Item.buyPrice(copper: 10000) })
-                .Add(new Item(ItemID.LeafWand) { shopCustomPrice = Item.buyPrice(copper: 10000) })
-                .Add(new Item(ItemID.LivingMahoganyWand) { shopCustomPrice = Item.buyPrice(copper: 10000) }, OwnsRegionalWood(ItemID.RichMahogany))
-                .Add(new Item(ItemID.LivingMahoganyLeafWand) { shopCustomPrice = Item.buyPrice(copper: 10000) }, OwnsRegionalWood(ItemID.RichMahogany))
+                .Add(new Item(ItemID.LivingWoodWand) { shopCustomPrice = Item.buyPrice(copper: 12500) })
+                .Add(new Item(ItemID.LeafWand) { shopCustomPrice = Item.buyPrice(copper: 12500) })
+                .Add(new Item(ItemID.LivingMahoganyWand) { shopCustomPrice = Item.buyPrice(copper: 12500) }, OwnsRegionalWood(ItemID.RichMahogany))
+                .Add(new Item(ItemID.LivingMahoganyLeafWand) { shopCustomPrice = Item.buyPrice(copper: 12500) }, OwnsRegionalWood(ItemID.RichMahogany))
                 .Add(new Item(ItemType<LumberjackMask>()) { shopCustomPrice = Item.buyPrice(copper: 10000) })
                 .Add(new Item(ItemType<LumberjackBody>()) { shopCustomPrice = Item.buyPrice(copper: 10000) })
                 .Add(new Item(ItemType<LumberjackPants>()) { shopCustomPrice = Item.buyPrice(copper: 10000) })
@@ -430,10 +419,60 @@ namespace Fargowiltas.Content.NPCs
 
             npcShop.Register();
         }
-
-        public override void ModifyActiveShop(string shopName, Item[] items)
+        /*internal static void SetupRegionalWood()
         {
+            WoodDictionary.Add(ItemID.BorealWood, (modPlayer) => modPlayer.ItemHasBeenOwned[ItemID.BorealWood]);
+            WoodDictionary.Add(ItemID.RichMahogany, (modPlayer) => modPlayer.ItemHasBeenOwned[ItemID.RichMahogany]);
+            WoodDictionary.Add(ItemID.PalmWood, (modPlayer) => modPlayer.ItemHasBeenOwned[ItemID.PalmWood]);
+            WoodDictionary.Add(ItemID.Ebonwood, (modPlayer) => modPlayer.ItemHasBeenOwned[ItemID.Ebonwood]);
+            WoodDictionary.Add(ItemID.Shadewood, (modPlayer) => modPlayer.ItemHasBeenOwned[ItemID.Shadewood]);
+            WoodDictionary.Add(ItemID.AshWood, (modPlayer) => modPlayer.ItemHasBeenOwned[ItemID.AshWood]);
+            WoodDictionary.Add(ItemID.Cactus, (modPlayer) => modPlayer.ItemHasBeenOwned[ItemID.Cactus]);
+            WoodDictionary.Add(ItemID.BambooBlock, (modPlayer) => modPlayer.ItemHasBeenOwned[ItemID.BambooBlock]);
+            WoodDictionary.Add(ItemID.LivingMahoganyWand, (modPlayer) => modPlayer.ItemHasBeenOwned[ItemID.RichMahogany]);
+            WoodDictionary.Add(ItemID.LivingMahoganyLeafWand, (modPlayer) => modPlayer.ItemHasBeenOwned[ItemID.RichMahogany]);
+            WoodDictionary.Add(ItemID.Pearlwood, (modPlayer) => modPlayer.ItemHasBeenOwned[ItemID.Pearlwood] && Main.hardMode);
+            WoodDictionary.Add(ItemID.SpookyWood, (modPlayer) => modPlayer.ItemHasBeenOwned[ItemID.SpookyWood] && Condition.DownedPumpking.IsMet());
         }
+        internal static Dictionary<int, Func<FargoPlayer, bool>> WoodDictionary = [];*/
+        /*public override void ModifyActiveShop(string shopName, Item[] items)
+        {
+            void Overflow()
+            {
+                Main.NewText(Language.GetTextValue("tModLoader.ShopOverflow"), Color.Orange);
+                Fargowiltas.Instance.Logger.Warn("Unable to fit all item in the shop " + shopName);
+            }
+            List<int> emptySlots = [];
+            for (int i = 0; i < items.Length; i++)
+            {
+                if (items[i] == null)
+                {
+                    emptySlots.Add(i);
+                }
+            }
+            if (emptySlots.Count == 0)
+            {
+                Overflow();
+                return;
+            }
+            foreach (KeyValuePair<int, Func<FargoPlayer, int>> pair in WoodDictionary)
+            {
+                if (pair.Value(Main.LocalPlayer.FargoMutant()) != -1)
+                {
+                    if (emptySlots.Count == 0)
+                    {
+                        Overflow();
+                        return;
+                    }
+                    int first = emptySlots.First();
+                    if (emptySlots.Remove(first))
+                    {
+                        items[first] = new(pair.Key) { shopCustomPrice = pair.Value(Main.LocalPlayer.FargoMutant()) };
+                    }
+
+                }
+            }
+        }*/
 
         public override void TownNPCAttackStrength(ref int damage, ref float knockback)
         {

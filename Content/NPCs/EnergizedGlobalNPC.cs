@@ -1,5 +1,4 @@
 using Fargowiltas.Common.Systems.Collections;
-using Microsoft.Xna.Framework;
 using System.Reflection;
 using Terraria;
 using Terraria.DataStructures;
@@ -24,7 +23,7 @@ namespace Fargowiltas.Content.NPCs
         public bool SwarmActive(NPC npc) => npc.GetGlobalNPC<FargoGlobalNPC>().SwarmActive;
         public bool SwarmHealth = false;
 
-        internal static int[] Bosses = [ 
+        internal static int[] Bosses = [
             NPCID.KingSlime,
             NPCID.EyeofCthulhu,
             //NPCID.EaterofWorldsHead,
@@ -54,7 +53,7 @@ namespace Fargowiltas.Content.NPCs
             NPCID.MourningWood,
             NPCID.SantaNK1,
             NPCID.HeadlessHorseman,
-            NPCID.PirateShip 
+            NPCID.PirateShip
         ];
 
         public override void SetDefaults(NPC npc)

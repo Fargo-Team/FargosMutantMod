@@ -1,3 +1,5 @@
+using Fargowiltas.Content.NPCs;
+using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent.Events;
@@ -6,30 +8,31 @@ using Terraria.ModLoader;
 
 namespace Fargowiltas.Content.Items.Misc
 {
-	public class AutoSummoner : ModItem
-	{
-		public override void SetDefaults()
-		{
-			Item.width = 18;
-			Item.height = 18;
-			Item.maxStack = 1;
-			Item.accessory = true;
+    public class AutoSummoner : ModItem
+    {
+        public override void SetDefaults()
+        {
+            Item.width = 18;
+            Item.height = 18;
+            Item.maxStack = 1;
+            Item.accessory = true;
             Item.value = Item.sellPrice(0, 1);
             Item.rare = ItemRarityID.Blue;
-		}
+        }
 
-		public static void PassiveEffect(Player player, Item item)
-		{
-			player.FargoMutant().AutoSummon = true;
-		}
+        public static void PassiveEffect(Player player, Item item)
+        {
+            player.FargoMutant().AutoSummon = true;
+        }
 
-		public override void UpdateInventory(Player player) => PassiveEffect(player, Item);
+        public override void UpdateInventory(Player player) => PassiveEffect(player, Item);
         public override void UpdateVanity(Player player) => PassiveEffect(player, Item);
         public override void UpdateEquip(Player player) => PassiveEffect(player, Item);
 
         public override void AddRecipes()
         {
             CreateRecipe()
+                .AddIngredient<GizmoParts>(4)
                 .AddIngredient(ItemID.RichMahogany, 10)
                 .AddIngredient(ItemID.Bone, 4)
                 .AddIngredient(ItemID.ManaCrystal)
@@ -38,18 +41,18 @@ namespace Fargowiltas.Content.Items.Misc
                 .Register();
         }
 
-		public static void TryAutoSummoner(Player player)
-		{
-			FargoPlayer fargoPlayer = player.FargoMutant();
+        public static void TryAutoSummoner(Player player)
+        {
+            FargoPlayer fargoPlayer = player.FargoMutant();
 
             if (player.whoAmI != Main.myPlayer)
                 return;
 
-			if (!fargoPlayer.AutoSummon) 
-				return;
+            if (!fargoPlayer.AutoSummon)
+                return;
 
-			if (++fargoPlayer.AutoSummonCD < 30)
-				return;
+            if (++fargoPlayer.AutoSummonCD < 30)
+                return;
 
             fargoPlayer.AutoSummonCD = 0;
 
@@ -75,7 +78,7 @@ namespace Fargowiltas.Content.Items.Misc
                 Item item = player.inventory[i];
 
                 if (item != null && item.DamageType == DamageClass.Summon && item.damage > 0 && item.shoot > ProjectileID.None && item.ammo <= 0 && !item.channel
-                    && ((ContentSamples.ProjectilesByType[item.shoot].minion && ItemID.Sets.StaffMinionSlotsRequired[item.type] <= player.maxMinions - player.slotsMinions) 
+                    && ((ContentSamples.ProjectilesByType[item.shoot].minion && ItemID.Sets.StaffMinionSlotsRequired[item.type] <= player.maxMinions - player.slotsMinions)
                     || (item.sentry && ContentSamples.ProjectilesByType[item.shoot].sentry && sentrycount < player.maxTurrets && !DD2Event.Ongoing)))
                 {
                     if (!player.HasAmmo(item) || (item.mana > 0 && player.statMana < item.mana))
@@ -83,7 +86,7 @@ namespace Fargowiltas.Content.Items.Misc
 
                     if (!PlayerLoader.CanUseItem(player, item) || !ItemLoader.CanUseItem(item, player))
                         continue;
-                    
+
                     weaponsUsed++;
                     if (weaponsUsed > 1)
                         break;
@@ -122,7 +125,8 @@ namespace Fargowiltas.Content.Items.Misc
             }
 
             float minionsLeft = player.maxMinions - player.slotsMinions;
-            fargoPlayer.AutoSummonCap = FargoUtils.AnyBossAlive() ? System.Math.Min(fargoPlayer.AutoSummonCap, minionsLeft) : minionsLeft;
+            fargoPlayer.AutoSummonCap = FargoUtils.AnyBossAlive()
+                ? Math.Min(fargoPlayer.AutoSummonCap, minionsLeft) : minionsLeft;
         }
     }
 }

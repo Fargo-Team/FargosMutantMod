@@ -10,8 +10,8 @@ namespace Fargowiltas.Content.Items.Summons.Abom
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 1;
-			ItemID.Sets.SortingPriorityBossSpawns[Type] = 0; // Places it before any other boss summons
-		}
+            ItemID.Sets.SortingPriorityBossSpawns[Type] = 0; // Places it before any other boss summons
+        }
 
         public override void SetDefaults()
         {
@@ -26,7 +26,7 @@ namespace Fargowiltas.Content.Items.Summons.Abom
         {
             FargoWorld.Matsuri = false;
             FargoUtils.PrintLocalization("MessageInfo.StopLanternNight", new Color(175, 75, 255));
-            
+
             if (Main.netMode == NetmodeID.Server)
                 NetMessage.SendData(MessageID.WorldData);
 

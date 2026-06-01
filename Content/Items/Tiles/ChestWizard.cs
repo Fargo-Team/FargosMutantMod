@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Input;
+﻿using Fargowiltas.Content.Items.Misc;
+using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
@@ -41,11 +42,12 @@ namespace Fargowiltas.Content.Items.Tiles
             {
                 tooltips.Add(new TooltipLine(Fargowiltas.Instance, "ChizardInstructionsRuminated", Language.GetTextValue("Mods.Fargowiltas.Items.ChestWizard.Ruminate")));
             }
-                base.ModifyTooltips(tooltips);
+            base.ModifyTooltips(tooltips);
         }
         public override void AddRecipes()
         {
             CreateRecipe()
+                .AddIngredient<GizmoParts>(4)
                 .AddIngredient(ItemID.GoldChest)
                 .AddIngredient(ItemID.StoneBlock, 50)
                 .AddIngredient(ItemID.Lens, 3)

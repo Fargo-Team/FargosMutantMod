@@ -78,7 +78,7 @@ namespace Fargowiltas
                     if (sortedDialogue.Count != 0)
                         break;
                 }
-                
+
                 if (attempts == 100)
                 {
                     typeChoice = HelpDialogueType.BossOrEvent;

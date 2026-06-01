@@ -3,6 +3,7 @@ using Fargowiltas.Common.Configs;
 using Fargowiltas.Content.Items.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Mono.Cecil;
 using System;
 using System.Linq;
 using Terraria;
@@ -333,9 +334,11 @@ namespace Fargowiltas.Content.UI
                     {
                         float score = 0;
                         Item item = chest.item[j];
+                        
                         if (item != null && item.type != ItemID.None)
                         {
                             string name = Lang.GetItemName(item.type).Value;
+                            if (!name.ToLower().Contains(currentText.ToLower())) continue;
                             for (int c = currentText.Length; c > 0; c--)
                             {
                                 if (name.ToLower().Contains(currentText.ToLower().Substring(0, c)))

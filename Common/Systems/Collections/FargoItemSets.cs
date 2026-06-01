@@ -225,6 +225,7 @@ namespace Fargowiltas.Common.Systems.Collections
 
         public static bool[] TreeTreasureObtainable = ItemFactory.CreateBoolSet(false);
         public static bool[] ChizardHats = ItemFactory.CreateBoolSet(false, ItemID.GreenCap,
+            ItemID.PharaohsMask,
             ItemID.CenxsTiara,
             ItemID.DevilHorns,
             ItemID.GiantBow,

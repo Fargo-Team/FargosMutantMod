@@ -1650,15 +1650,16 @@ PotionCooler: {
 	DisplayName: Холодильник для зелий
 	Tooltip:
 		'''
+		Работает из инвентаря
+		Нажмите <right>, чтобы отключить
 		Хранит зелья и даёт их эффекты
-		«Выпьем холодненького»
+		«По баночке холодненького»
 		'''
 	Ruminate: "[c/FF3399:Удерживайте Shift, чтобы узнать больше]"
 	Rumination:
 		'''
 		Хранимые зелья являются общими для всех игроков
-		Включённые эффекты, однако, для всех уникальные
-		Этот предмет работает из инвентаря
+		Включённые эффекты, однако, для всех уникальные-
 		'''
 }
 
@@ -1668,12 +1669,12 @@ GizmoParts: {
 }
 
 PotionCoolerInactive: {
-	// DisplayName: Potion Cooler (Inactive)
-	/* Tooltip:
+	DisplayName: Холодильник для зелий (Выкл.)
+	Tooltip:
 		'''
-		Works from the inventory
-		Effects are currently inactive, <right> to reactivate
-		Stores potions and grants you their buffs
-		'Cracking open a cold one'
-		''' */
+		Работает из инвентаря
+		Нажмите <right>, чтобы отключить
+		Хранит зелья и даёт их эффекты
+		«По баночке холодненького»
+		'''
 }

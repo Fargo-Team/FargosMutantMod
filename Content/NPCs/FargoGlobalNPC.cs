@@ -550,7 +550,7 @@ namespace Fargowiltas.Content.NPCs
         }
         public override void EditSpawnRate(Player player, ref int spawnRate, ref int maxSpawns)
         {
-            if (FargoServerConfig.Instance.BossZen && Main.npc.Any(n => n.CountsAsBoss() && player.DistanceSQ(n.Center) < 6000 * 6000))
+            if (FargoServerConfig.Instance.BossZen && Main.npc.Any(n => n.active && n.CountsAsBoss() && player.DistanceSQ(n.Center) < 6000 * 6000))
             {
                 maxSpawns = 0;
                 return;

@@ -1,4 +1,4 @@
-﻿namespace Fargowiltas
+﻿namespace Fargowiltas.Common.Configs
 {
     public enum SeasonSelections
     {

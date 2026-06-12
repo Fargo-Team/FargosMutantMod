@@ -160,7 +160,7 @@ namespace Fargowiltas.Content.Items
                         names = ExpandedTooltipLoc("SeveralVendors");
                     string text = $"[h:{id}] [c/AAAAAA:{ExpandedTooltipLoc("SoldBy")} {names}{tooltip.Condition}]";
 
-                    if (id == -1 && names == "Skeleton Merchant")
+                    if (id == -1 && names.Contains("Skeleton Merchant"))
                         text = $"[s:Fargowiltas/SkeletonMerchantHead] [c/AAAAAA:{ExpandedTooltipLoc("SoldBy")} {names}{tooltip.Condition}]";
                     else if (id == -1)
                         text = $"[s:Fargowiltas/UnknownNPC] [c/AAAAAA:{ExpandedTooltipLoc("SoldBy")} {names}{tooltip.Condition}]";

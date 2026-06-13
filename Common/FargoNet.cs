@@ -10,7 +10,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using static Fargowiltas.Fargowiltas;
 
-namespace Fargowiltas
+namespace Fargowiltas.Common
 {
     public static class FargoNet
     {

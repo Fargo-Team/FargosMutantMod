@@ -1,3 +1,4 @@
+using Fargowiltas.Common;
 using Fargowiltas.Common.Configs;
 using Fargowiltas.Content.Biomes;
 using Fargowiltas.Content.Items.Misc;

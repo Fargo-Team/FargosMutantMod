@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Fargowiltas.Common;
+using Microsoft.Xna.Framework.Graphics;
 using System.Reflection;
 using Terraria.GameContent.UI.Elements;
 

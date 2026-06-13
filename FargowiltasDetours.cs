@@ -1,4 +1,5 @@
-﻿using Fargowiltas.Common.Configs;
+﻿using Fargowiltas.Common;
+using Fargowiltas.Common.Configs;
 using Fargowiltas.Common.Systems;
 using Fargowiltas.Content.Items;
 using Fargowiltas.Content.Items.Tiles;

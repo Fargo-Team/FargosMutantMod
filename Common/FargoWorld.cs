@@ -17,7 +17,7 @@ using static Fargowiltas.Common.Systems.Collections.FargoItemSets;
 using static Fargowiltas.Fargowiltas;
 using static Terraria.ModLoader.ModContent;
 
-namespace Fargowiltas
+namespace Fargowiltas.Common
 {
     public class FargoWorld : ModSystem
     {

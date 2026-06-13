@@ -1,4 +1,5 @@
-﻿using Fargowiltas.Common.Systems.Collections;
+﻿using Fargowiltas.Common;
+using Fargowiltas.Common.Systems.Collections;
 using Fargowiltas.Content.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

@@ -1,3 +1,4 @@
+using Fargowiltas.Common;
 using Fargowiltas.Common.Configs;
 using System.Linq;
 using Terraria;

@@ -13,7 +13,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
-namespace Fargowiltas
+namespace Fargowiltas.Common
 {
     internal static class FargoUtils
     {

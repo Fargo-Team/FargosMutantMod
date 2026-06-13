@@ -1,4 +1,5 @@
-﻿using Fargowiltas.Common.Configs;
+﻿using Fargowiltas.Common;
+using Fargowiltas.Common.Configs;
 using Fargowiltas.Content.Biomes;
 using Fargowiltas.Content.Items.Summons.Deviantt;
 using Fargowiltas.Content.Items.Tiles;

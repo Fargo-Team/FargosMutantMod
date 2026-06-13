@@ -1,4 +1,5 @@
-﻿using Fargowiltas.Common.Configs;
+﻿using Fargowiltas.Common;
+using Fargowiltas.Common.Configs;
 using Fargowiltas.Common.Systems;
 using Fargowiltas.Common.Systems.Collections;
 using Fargowiltas.Content.Items.CaughtNPCs;

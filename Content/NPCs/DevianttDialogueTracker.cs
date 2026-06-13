@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Fargowiltas.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
@@ -7,7 +8,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.Utilities;
 
-namespace Fargowiltas
+namespace Fargowiltas.Content.NPCs
 {
     internal class DevianttDialogueTracker
     {

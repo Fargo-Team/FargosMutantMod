@@ -1,4 +1,5 @@
-﻿using Fargowiltas.Common.Systems.Recipes;
+﻿using Fargowiltas.Common;
+using Fargowiltas.Common.Systems.Recipes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;

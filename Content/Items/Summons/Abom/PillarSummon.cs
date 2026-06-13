@@ -1,3 +1,4 @@
+using Fargowiltas.Common;
 using Fargowiltas.Content.Projectiles;
 using Microsoft.Xna.Framework;
 using Terraria;

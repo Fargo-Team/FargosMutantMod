@@ -1,4 +1,5 @@
-﻿using Fargowiltas.Common.Systems;
+﻿using Fargowiltas.Common;
+using Fargowiltas.Common.Systems;
 using Terraria;
 
 namespace Fargowiltas.Utilities.Extensions

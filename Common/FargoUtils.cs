@@ -15,7 +15,7 @@ using Terraria.ObjectData;
 
 namespace Fargowiltas.Common
 {
-    internal static class FargoUtils
+    public static class FargoUtils
     {
         public static readonly BindingFlags UniversalBindingFlags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public;
 

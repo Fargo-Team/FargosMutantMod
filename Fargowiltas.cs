@@ -106,15 +106,15 @@ namespace Fargowiltas
             //            HookIntoLoad();
         }
 
-        internal static Mod SoulsMod;
-        internal static Mod SoulsExtrasMod;
-        internal static Mod ThoriumMod;
-        internal static Mod CalamityMod;
-        internal static Mod MagicStorageMod;
-        internal static Mod WikiThisMod;
-        internal static Mod WoTG;
-        internal static Mod AlchemistNPCMod;
-        internal static Mod AlchemistNPCLiteMod;
+        public static Mod SoulsMod;
+        public static Mod SoulsExtrasMod;
+        public static Mod ThoriumMod;
+        public static Mod CalamityMod;
+        public static Mod MagicStorageMod;
+        public static Mod WikiThisMod;
+        public static Mod WoTG;
+        public static Mod AlchemistNPCMod;
+        public static Mod AlchemistNPCLiteMod;
 
         public override void Load()
         {

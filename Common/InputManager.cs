@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.GameInput;
 using Terraria.ModLoader;
 
-namespace Fargowiltas.Common
+namespace Fargowiltas
 {
     public class InputManager : ModPlayer
     {

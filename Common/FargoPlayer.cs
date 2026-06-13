@@ -33,7 +33,7 @@ using static Terraria.ModLoader.ModContent;
 
 ////using Fargowiltas.Toggler;
 
-namespace Fargowiltas.Common
+namespace Fargowiltas
 {
     public class FargoPlayer : ModPlayer
     {

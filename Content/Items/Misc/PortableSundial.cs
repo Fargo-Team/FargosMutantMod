@@ -103,7 +103,7 @@ namespace Fargowiltas.Content.Items.Misc
                     FargoWorld.BlockPortaDialCooldown = true;
                     SkipToTime_MethodInfo.Invoke(null, [0, !Main.dayTime]);
                     FargoWorld.BlockPortaDialCooldown = false;
-                    if (currentlyNight != Main.dayTime)
+                    if (currentlyNight != Main.dayTime && Main.dayTime)
                     {
                         Chest.SetupTravelShop();
                         NetMessage.SendTravelShop(-1);

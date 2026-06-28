@@ -99,9 +99,15 @@ namespace Fargowiltas.Content.Items.Misc
                 }
                 else
                 {
+                    bool currentlyNight = Main.dayTime;
                     FargoWorld.BlockPortaDialCooldown = true;
                     SkipToTime_MethodInfo.Invoke(null, [0, !Main.dayTime]);
                     FargoWorld.BlockPortaDialCooldown = false;
+                    if (currentlyNight != Main.dayTime && Main.dayTime)
+                    {
+                        Chest.SetupTravelShop();
+                        NetMessage.SendTravelShop(-1);
+                    }
                     /*Main.dayTime = !Main.dayTime;
                     Main.time = 0;
 

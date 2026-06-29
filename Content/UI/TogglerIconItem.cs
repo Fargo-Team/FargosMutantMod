@@ -23,7 +23,7 @@ namespace Fargowiltas.Content.UI
         }
         public override bool? UseItem(Player player)
         {
-            FargoUIManager.Toggle<CombinedUI>();
+            //FargoUIManager.Toggle<CombinedUI>();
             return true;
         }
     }

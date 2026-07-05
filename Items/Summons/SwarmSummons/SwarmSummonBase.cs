@@ -59,7 +59,7 @@ namespace Fargowiltas.Items.Summons.SwarmSummons
             Fargowiltas.SwarmNoHyperActive = Fargowiltas.SwarmItemsUsed < 5;
 
             //DG special case
-            if (npcType == NPCID.SkeletronHead && Main.dayTime)
+            if (npcType == NPCID.SkeletronHead && (FargoUtils.ActuallyNight && !(Main.remixWorld && !(Main.LocalPlayer.Center.Y > Main.worldSurface * 16))))
             {
                 npcType = NPCID.DungeonGuardian;
             }

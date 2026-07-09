@@ -122,11 +122,6 @@ HeartChocolateBuff: {
 	Description: Greatly increases Nymph spawn rates
 }
 
-HemoclawCrabBuff: {
-	DisplayName: Hemoclaw Crab
-	Description: Causes Hemogoblin Shark and Blood Eel to spawn at the Ocean during a Blood Moon
-}
-
 HolyGrailBuff: {
 	DisplayName: Holy Grail
 	Description: Greatly increases Tim spawn rates
@@ -189,9 +184,4 @@ SuspiciousLookingChestBuff: {
 		Greatly increases Mimic spawn rates
 		Greatly increases Ice Mimic spawn rates when in the ice biome
 		'''
-}
-
-SuspiciousLookingLureBuff: {
-	DisplayName: Suspicious Looking Lure
-	Description: Causes Wandering Eye Fish and Zombie Merman to spawn at the Ocean during a Blood Moon
 }

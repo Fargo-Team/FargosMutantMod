@@ -560,7 +560,7 @@ HeartChocolate: {
 
 HemoclawCrab: {
 	DisplayName: Hemoclaw Crab
-	Tooltip: Causes Hemogoblin Shark and Blood Eel to spawn at the Ocean during a Blood Moon
+	Tooltip: Summons a Hemogoblin Shark or Blood Eel when used as bait during a Blood Moon
 }
 
 HolyGrail: {
@@ -635,7 +635,7 @@ SuspiciousLookingChest: {
 
 SuspiciousLookingLure: {
 	DisplayName: Suspicious Looking Lure
-	Tooltip: Causes Wandering Eye Fish and Zombie Merman to spawn at the Ocean during a Blood Moon
+	Tooltip: Summons a Zombie Merman or Wandering Eye Fish when used as bait during a Blood Moon
 }
 
 AncientSeal: {

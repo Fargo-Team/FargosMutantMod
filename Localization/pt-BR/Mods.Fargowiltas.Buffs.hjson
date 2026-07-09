@@ -24,7 +24,7 @@ CoolCrabBuff: {
 }
 
 WormSnackBuff: {
-	// DisplayName: Worm Snack Buff
+	// DisplayName: Worm Snack
 	/* Description:
 		'''
 		Greatly increases Giant Worm spawn rates
@@ -33,165 +33,155 @@ WormSnackBuff: {
 }
 
 AmalgamatedSkullBuff: {
-	// DisplayName: Amalgamated Skull Buff
+	// DisplayName: Amalgamated Skull
 	// Description: Greatly increases dungeon skeleton gunner spawn rates
 }
 
 AmalgamatedSpiritBuff: {
-	// DisplayName: Amalgamated Spirit Buff
+	// DisplayName: Amalgamated Spirit
 	// Description: Greatly increases dungeon skeleton mages spawn rates
 }
 
 AthenianIdolBuff: {
-	// DisplayName: Athenian Idol Buff
+	// DisplayName: Athenian Idol
 	// Description: Greatly increases Medusa spawn rates
 }
 
 AttractiveOreBuff: {
-	// DisplayName: Attractive Ore Buff
+	// DisplayName: Attractive Ore
 	// Description: Greatly increases Undead Miner spawn rates
 }
 
 CloudSnackBuff: {
-	// DisplayName: Cloud Snack Buff
+	// DisplayName: Cloud Snack
 	// Description: Greatly increases Wyvern spawn rates
 }
 
 ClownLicenseBuff: {
-	// DisplayName: Clown License Buff
+	// DisplayName: Clown License
 	// Description: Greatly increases Clown spawn rates
 }
 
 CoreoftheFrostCoreBuff: {
-	// DisplayName: Core of the Frost Core Buff
+	// DisplayName: Core of the Frost Core
 	// Description: Greatly increases Ice Golem spawn rates
 }
 
 CorruptChestBuff: {
-	// DisplayName: Corrupt Chest Buff
+	// DisplayName: Corrupt Chest
 	// Description: Causes Corrupt Mimics to spawn in the underground Corruption
 }
 
 CrimsonChestBuff: {
-	// DisplayName: Crimson Chest Buff
+	// DisplayName: Crimson Chest
 	// Description: Causes Crimson Mimics to spawn in the underground Crimson
 }
 
 DemonicPlushieBuff: {
-	// DisplayName: Demonic Plushie Buff
+	// DisplayName: Demonic Plushie
 	// Description: Greatly increases Red Devil spawn rates
 }
 
 DilutedRainbowMatterBuff: {
-	// DisplayName: Diluted Rainbow Matter Buff
+	// DisplayName: Diluted Rainbow Matter
 	// Description: Greatly increases Rainbow Slime spawn rates
 }
 
 EggplantBuff: {
-	// DisplayName: Eggplant Buff
+	// DisplayName: Eggplant
 	// Description: Greatly increases Doctor Bones spawn rates
 }
 
 ForbiddenForbiddenFragmentBuff: {
-	// DisplayName: Forbidden Forbidden Fragment Buff
+	// DisplayName: Forbidden Forbidden Fragment
 	// Description: Greatly increases Sand Elemental spawn rates
 }
 
 GnomeHatBuff: {
-	// DisplayName: Gnome Hat Buff
+	// DisplayName: Gnome Hat
 	// Description: Greatly increases Gnome spawn rates
 }
 
 GoblinScrapBuff: {
-	// DisplayName: Goblin Scout Cookies Buff
+	// DisplayName: Goblin Scout Cookies
 	// Description: Greatly increases Goblin Scout spawn rates
 }
 
 GrandCrossBuff: {
-	// DisplayName: Grand Cross Buff
+	// DisplayName: Grand Cross
 	// Description: Greatly increases Paladin spawn rates
 }
 
 HallowChestBuff: {
-	// DisplayName: Hallow Chest Buff
+	// DisplayName: Hallow Chest
 	// Description: Causes Hallowed Mimics to spawn in the underground Hallow
 }
 
 HeartChocolateBuff: {
-	// DisplayName: Heart Chocolate Buff
+	// DisplayName: Heart Chocolate
 	// Description: Greatly increases Nymph spawn rates
 }
 
-HemoclawCrabBuff: {
-	// DisplayName: Hemoclaw Crab Buff
-	// Description: Causes Hemogoblin Shark and Blood Eel to spawn at the Ocean during a Blood Moon
-}
-
 HolyGrailBuff: {
-	// DisplayName: Holy Grail Buff
+	// DisplayName: Holy Grail
 	// Description: Greatly increases Tim spawn rates
 }
 
 JungleChestBuff: {
-	// DisplayName: Jungle Chest Buff
+	// DisplayName: Jungle Chest
 	// Description: Causes Jungle Mimics to spawn in the underground Jungle
 }
 
 LeesHeadbandBuff: {
-	// DisplayName: Lees Headband Buff
+	// DisplayName: Lees Headband
 	// Description: Greatly increases Bone Lee spawn rates
 }
 
 MothLampBuff: {
-	// DisplayName: Moth Lamp Buff
+	// DisplayName: Moth Lamp
 	// Description: Greatly increases Moth spawn rates
 }
 
 MothronEggBuff: {
-	// DisplayName: Mothron Egg Buff
+	// DisplayName: Mothron Egg
 	// Description: Greatly increases Mothron spawn rates
 }
 
 PincushionBuff: {
-	// DisplayName: Pincushion Buff
+	// DisplayName: Pincushion
 	// Description: Greatly increases Nailhead spawn rates
 }
 
 PinkSlimeCrownBuff: {
-	// DisplayName: Pink Slime Tiara Buff
+	// DisplayName: Pink Slime Tiara
 	// Description: Greatly increases Pinky spawn rates
 }
 
 PirateFlagBuff: {
-	// DisplayName: Pirate Flag Buff
+	// DisplayName: Pirate Flag
 	// Description: Greatly increases Pirate Captain spawn rates
 }
 
 RuneOrbBuff: {
-	// DisplayName: Rune Orb Buff
+	// DisplayName: Rune Orb
 	// Description: Greatly increases Rune Wizard spawn rates
 }
 
 ShadowflameIconBuff: {
-	// DisplayName: Shadowflame Icon Buff
+	// DisplayName: Shadowflame Icon
 	// Description: Greatly increases Goblin Warlock spawn rates
 }
 
 SlimyLockBoxBuff: {
-	// DisplayName: Slimy Lock Buff
+	// DisplayName: Slimy Lock
 	// Description: Greatly increases Dungeon Slime spawn rates
 }
 
 SuspiciousLookingChestBuff: {
-	// DisplayName: Suspicious Looking Chest Buff
+	// DisplayName: Suspicious Looking Chest
 	/* Description:
 		'''
 		Greatly increases Mimic spawn rates
 		Greatly increases Ice Mimic spawn rates when in the ice biome
 		''' */
-}
-
-SuspiciousLookingLureBuff: {
-	// DisplayName: Suspicious Looking Lure Buff
-	// Description: Causes Wandering Eye Fish and Zombie Merman to spawn at the Ocean during a Blood Moon
 }

@@ -695,7 +695,7 @@ namespace Fargowiltas
 
         public override void PostBuyItem(NPC vendor, Item[] shopInventory, Item item)
         {
-            if (vendor.type == ModContent.NPCType<Squirrel>())
+            /*if (vendor.type == ModContent.NPCType<Squirrel>())
             {
                 foreach (var npc in Main.npc.Where(n => n.active && n.townNPC && CaughtNPCItem.CaughtTownies.ContainsKey(n.type)))
                 {
@@ -704,7 +704,7 @@ namespace Fargowiltas
                         ModContent.GetInstance<BuyNPCAchievement>().Condition.Complete();
                     }
                 }
-            }
+            }*/
         }
 
         public override IEnumerable<Item> AddStartingItems(bool mediumCoreDeath)

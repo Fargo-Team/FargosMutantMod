@@ -6,6 +6,7 @@ namespace Fargowiltas.Content.Achievements
 {
     public class BuyNPCAchievement : ModAchievement
     {
+        public override bool IsLoadingEnabled(Mod mod) => false;
         public override string TextureName => "Fargowiltas/Content/Achievements/MutantAchievements";
 
         public override int Index => 2;

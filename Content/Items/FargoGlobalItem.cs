@@ -80,9 +80,6 @@ namespace Fargowiltas.Content.Items
                     {
                         foreach (var entry in shop.ActiveEntries.Where(e => !e.Item.IsAir && e.Item.type == item.type))
                         {
-                            if (shop.NpcType == NPCType<Squirrel>() && (!Squirrel.SquirrelShopAlways.Contains(entry.Item.type)))
-                                continue;
-
                             /*
                             Item npcItem = null;
                             foreach (var tryNPCItem in ContentSamples.ItemsByType.Where(i => i.Value.ModItem != null && i.Value.ModItem is CaughtNPCItem modItem && modItem.AssociatedNpcId == shop.NpcType))

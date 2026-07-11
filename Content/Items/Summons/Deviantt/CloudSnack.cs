@@ -13,10 +13,9 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient<GizmoParts>(2)
-                .AddIngredient(ItemID.SoulofLight, 3)
                 .AddIngredient(ItemID.Cloud, 50)
                 .AddRecipeGroup(RecipeGroups.AnyFoodT3)
+                .AddIngredient(ItemID.SoulofLight, 3)
                 .AddTile(TileID.MythrilAnvil)
                 .Register();
         }

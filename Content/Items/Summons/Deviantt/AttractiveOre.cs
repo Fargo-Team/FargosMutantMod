@@ -13,7 +13,6 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient<GizmoParts>(2)
                 .AddRecipeGroup("Fargowiltas:AnyGoldOre", 8)
                 .AddIngredient(ItemID.SpelunkerPotion)
                 .AddIngredient(ItemID.SilverDye)
@@ -23,7 +22,7 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
     }
     public class AttractiveOreBuff : BaseSpawnBoosterBuff
     {
-        public AttractiveOreBuff() : base(() => [NPCID.UndeadMiner], () => Main.LocalPlayer.ZoneRockLayerHeight, 0.2f)
+        public AttractiveOreBuff() : base(() => [NPCID.UndeadMiner], () => Main.LocalPlayer.ZoneRockLayerHeight, 0.15f)
         {
         }
     }

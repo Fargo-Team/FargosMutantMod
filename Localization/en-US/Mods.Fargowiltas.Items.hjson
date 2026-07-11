@@ -505,12 +505,12 @@ CoreoftheFrostCore: {
 
 CorruptChest: {
 	DisplayName: Corrupt Chest
-	Tooltip: Causes Corrupt Mimics to spawn in the underground Corruption
+	Tooltip: Summons a Corrupt Mimic
 }
 
 CrimsonChest: {
 	DisplayName: Crimson Chest
-	Tooltip: Causes Crimson Mimics to spawn in the underground Crimson
+	Tooltip: Summons a Crimson Mimic
 }
 
 DemonicPlushie: {
@@ -550,12 +550,12 @@ GrandCross: {
 
 HallowChest: {
 	DisplayName: Hallow Chest
-	Tooltip: Causes Hallowed Mimics to spawn in the underground Hallow
+	Tooltip: Summons a Hallowed Mimic
 }
 
 HeartChocolate: {
 	DisplayName: Heart Chocolate
-	Tooltip: Greatly increases Nymph spawn rates
+	Tooltip: Greatly increases Lost Girl spawn rates
 }
 
 HemoclawCrab: {
@@ -570,7 +570,7 @@ HolyGrail: {
 
 JungleChest: {
 	DisplayName: Jungle Chest
-	Tooltip: Causes Jungle Mimics to spawn in the underground Jungle
+	Tooltip: Summons a Jungle Mimic
 }
 
 LeesHeadband: {
@@ -627,8 +627,8 @@ SuspiciousLookingChest: {
 	DisplayName: Suspicious Looking Chest
 	Tooltip:
 		'''
-		Greatly increases Mimic spawn rates
-		Greatly increases Ice Mimic spawn rates when in the ice biome
+		Summons a Mimic
+		Summons an Ice Mimic when used in the snow biome
 		'''
 	HardmodeLock: Only usable in Hardmode
 }

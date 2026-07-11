@@ -1,4 +1,5 @@
 using Fargowiltas.Common.Configs;
+using Fargowiltas.Content.Items.Summons.Deviantt;
 using Fargowiltas.Content.Items.Tiles;
 using Fargowiltas.Content.NPCs;
 using Fargowiltas.Content.Projectiles;
@@ -378,6 +379,8 @@ namespace Fargowiltas
                 packet.Write(current);
                 packet.Send();
             }
+
+            GnomeHatBuff.livingWoodTileCount = tileCounts[TileID.LivingWood];
         }
 
         public override void PreUpdateWorld()

@@ -13,7 +13,6 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient<GizmoParts>(2)
                 .AddRecipeGroup("Fargowiltas:AnyGoldBar", 10)
                 .AddIngredient(ItemID.SoulofNight, 3)
                 .AddIngredient(ItemID.SoulofLight, 3)

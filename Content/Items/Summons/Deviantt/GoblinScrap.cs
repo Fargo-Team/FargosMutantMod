@@ -1,5 +1,5 @@
+using System;
 using Fargowiltas.Content.Buffs;
-using Fargowiltas.Content.Items.Misc;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -18,17 +18,15 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient<GizmoParts>(2)
-                .AddIngredient(ItemID.Silk, 20)
-                .AddIngredient(RecipeGroupID.IronBar, 10)
-                .AddIngredient(ItemID.Diamond, 1)
-                .AddTile(TileID.Anvils)
+                .AddIngredient(ItemID.Hay, 20) //do not fucking askkkkkkkk
+                .AddIngredient(ItemID.ClayBlock, 20)
+                .AddTile(TileID.Furnaces)
                 .Register();
         }
     }
     public class GoblinScrapBuff : BaseSpawnBoosterBuff
     {
-        public GoblinScrapBuff() : base(() => [NPCID.GoblinScout], () => Main.LocalPlayer.ZonePurity && Main.LocalPlayer.ZoneOverworldHeight && ((Main.LocalPlayer.Center.X / 16f - Main.spawnTileX) > Main.maxTilesX / 3), 0.2f) // condition is close enough
+        public GoblinScrapBuff() : base(() => [NPCID.GoblinScout], () => Main.LocalPlayer.ZoneOverworldHeight && !Main.LocalPlayer.ZoneGraveyard && ((Math.Abs(Main.LocalPlayer.Center.X / 16f - Main.spawnTileX) > Main.maxTilesX / 3) || Main.remixWorld), 0.2f)
         {
         }
     }

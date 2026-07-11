@@ -25,7 +25,6 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient<GizmoParts>(2)
                 .AddIngredient(ItemID.SeafoodDinner)
                 .AddIngredient(ItemID.DeepRedPaint)
                 .AddIngredient(ItemID.SoulofNight, 6)

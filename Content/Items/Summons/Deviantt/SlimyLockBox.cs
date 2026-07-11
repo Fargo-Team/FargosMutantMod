@@ -13,10 +13,8 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
         public override void AddRecipes()
         {
             CreateRecipe()
-                  .AddIngredient<GizmoParts>(2)
-                  .AddIngredient(ItemID.Bone, 50)
-                  .AddIngredient(ItemID.Gel, 50)
-                  .AddRecipeGroup("Fargowiltas:AnyGoldBar", 10)
+                  .AddIngredient(ItemID.ChestLock)
+                  .AddIngredient(ItemID.Gel, 30)
                   .AddTile(TileID.Solidifier)
                   .Register();
         }

@@ -1,5 +1,4 @@
 using Fargowiltas.Content.Buffs;
-using Fargowiltas.Content.Items.Misc;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -13,9 +12,9 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient<GizmoParts>(2)
-                .AddIngredient(ItemID.Vine, 10)
-                .AddIngredient(ItemID.Stinger, 10)
+                .AddIngredient(ItemID.Torch, 3)
+                .AddIngredient(ItemID.Silk, 10)
+                .AddIngredient(ItemID.Vine, 6)
                 .AddIngredient(ItemID.SoulofFlight, 6)
                 .AddTile(TileID.MythrilAnvil)
                 .Register();

@@ -1,6 +1,5 @@
 ﻿using Fargowiltas.Common.Systems.Recipes;
 using Fargowiltas.Content.Buffs;
-using Fargowiltas.Content.Items.Misc;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -14,7 +13,7 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient<GizmoParts>(2)
+                .AddIngredient(ItemID.DirtBlock, 50)
                 .AddRecipeGroup(RecipeGroups.AnyFoodT2, 2)
                 .AddTile(TileID.Anvils)
                 .Register();
@@ -22,7 +21,7 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
     }
     public class WormSnackBuff : BaseSpawnBoosterBuff
     {
-        public WormSnackBuff() : base(() => Main.hardMode ? [NPCID.DiggerHead] : [NPCID.GiantWormHead], () => Main.LocalPlayer.ZoneDirtLayerHeight || Main.LocalPlayer.ZoneRockLayerHeight, 0.2f)
+        public WormSnackBuff() : base(() => Main.hardMode ? [NPCID.DiggerHead] : [NPCID.GiantWormHead], () => (Main.LocalPlayer.ZoneDirtLayerHeight || Main.LocalPlayer.ZoneRockLayerHeight) && !Main.LocalPlayer.ZoneSnow, 0.2f)
         {
         }
     }

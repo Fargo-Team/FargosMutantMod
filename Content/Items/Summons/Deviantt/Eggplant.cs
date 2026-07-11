@@ -16,7 +16,6 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
             void Recipe(int fruit)
             {
                 CreateRecipe()
-                    .AddIngredient<GizmoParts>(2)
                     .AddIngredient(fruit)
                     .AddIngredient(ItemID.JungleSpores, 4)
                     .AddIngredient(ItemID.Vine, 2)
@@ -31,7 +30,8 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
     }
     public class EggplantBuff : BaseSpawnBoosterBuff
     {
-        public EggplantBuff() : base(() => [NPCID.DoctorBones], () => !Main.IsItDay() && Main.LocalPlayer.ZoneJungle, 0.2f)
+        //vanilla uses !Main.daytime instead of IsItDay for non-boss npc spawns
+        public EggplantBuff() : base(() => [NPCID.DoctorBones], () => !Main.dayTime && Main.LocalPlayer.ZoneJungle, 0.15f)
         {
         }
     }

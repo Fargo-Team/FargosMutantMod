@@ -119,7 +119,7 @@ HallowChestBuff: {
 
 HeartChocolateBuff: {
 	// DisplayName: Heart Chocolate
-	// Description: Greatly increases Nymph spawn rates
+	// Description: Greatly increases Lost Girl spawn rates
 }
 
 HolyGrailBuff: {

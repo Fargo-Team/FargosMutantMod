@@ -17,8 +17,7 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient<GizmoParts>(2)
-                .AddIngredient(ItemID.Chest, 1)
+                .AddIngredient(ItemID.CrystalChest, 1)
                 .AddIngredient(ItemID.LightKey, 1)
                 .AddTile(TileID.MythrilAnvil)
                 .Register();

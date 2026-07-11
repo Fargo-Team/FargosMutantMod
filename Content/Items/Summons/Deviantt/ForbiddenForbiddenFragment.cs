@@ -22,7 +22,6 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient<GizmoParts>(2)
                 .AddIngredient(ItemID.Sandstone, 100)
                 .AddIngredient(ItemID.AntlionMandible, 6)
                 .AddIngredient(ItemID.SoulofLight, 3)

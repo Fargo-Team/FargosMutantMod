@@ -1,5 +1,4 @@
 using Fargowiltas.Content.Buffs;
-using Fargowiltas.Content.Items.Misc;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -13,10 +12,9 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient<GizmoParts>(2)
                 .AddIngredient(ItemID.Gel, 100)
-                .AddIngredient(ItemID.RainbowDye, 1)
-                .AddIngredient(ItemID.SoulofLight, 6)
+                .AddIngredient(ItemID.RainbowMoss, 20) //this is the only consistently obtainable rainbow item premechs
+                .AddIngredient(ItemID.SoulofLight, 3)
                 .AddTile(TileID.MythrilAnvil)
                 .Register();
         }

@@ -1,5 +1,4 @@
 using Fargowiltas.Content.Buffs;
-using Fargowiltas.Content.Items.Misc;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -13,17 +12,16 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient<GizmoParts>(2)
                 .AddIngredient(ItemID.ClayBlock, 50)
-                .AddIngredient(RecipeGroupID.IronBar, 10)
-                .AddIngredient(ItemID.Ruby, 1)
+                .AddRecipeGroup("Fargowiltas:AnyCopperBar", 5)
                 .AddTile(TileID.LivingLoom)
                 .Register();
         }
     }
     public class GnomeHatBuff : BaseSpawnBoosterBuff
     {
-        public GnomeHatBuff() : base(() => [NPCID.Gnome], () => Main.LocalPlayer.ZoneOverworldHeight && Main.LocalPlayer.ZonePurity && !Main.IsItDay(), 0.2f)
+        public static int livingWoodTileCount; //living tree has no biome definition and these only spawn on living wood walls, close enough
+        public GnomeHatBuff() : base(() => [NPCID.Gnome], () => Main.LocalPlayer.ZoneOverworldHeight && livingWoodTileCount >= 200, 0.4f)
         {
         }
     }

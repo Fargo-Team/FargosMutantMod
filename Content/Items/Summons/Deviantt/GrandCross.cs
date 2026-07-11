@@ -13,7 +13,6 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient<GizmoParts>(2)
                 .AddIngredient(ItemID.HallowedBar, 10)
                 .AddIngredient(ItemID.Ectoplasm, 5)
                 .AddIngredient(ItemID.SoulofMight, 3)

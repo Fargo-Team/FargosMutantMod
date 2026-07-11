@@ -1692,7 +1692,7 @@ BlackHolePotion: {
 
 BridgeAtomizer: {
 	// DisplayName: Bridge Atomizer
-	// Tooltip: Deletes all platforms connected horizontally
+	// Tooltip: Destroys all platforms connected horizontally
 }
 
 PotionCooler: {
@@ -1714,7 +1714,7 @@ PotionCooler: {
 
 GizmoParts: {
 	// DisplayName: Gizmo Parts
-	// Tooltip: ""
+	// Tooltip: Used to craft convenient gadgets and stations
 }
 
 PotionCoolerInactive: {

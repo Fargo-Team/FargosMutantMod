@@ -1,7 +1,7 @@
-﻿using Fargowiltas.Content.Items.Tiles;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
-using Terraria.Audio;
+using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -9,61 +9,46 @@ namespace Fargowiltas.Content.Projectiles.Explosives
 {
     public class BridgeAtomizerProj : ModProjectile
     {
-        public override string Texture => "Fargowiltas/Content/Items/Explosives/InstaBridge";
+        public override void SetStaticDefaults()
+        {
+            Main.projFrames[Type] = 2;
+        }
         public override void SetDefaults()
         {
-            Projectile.width = 20;
-            Projectile.height = 36;
-            Projectile.aiStyle = ProjAIStyleID.Explosive;
+            Projectile.width = 46;
+            Projectile.height = 40;
+            Projectile.tileCollide = false;
+            Projectile.aiStyle = ProjAIStyleID.Drill;
             Projectile.friendly = true;
             Projectile.penetrate = -1;
-            Projectile.timeLeft = 1;
+            Projectile.hide = true;
         }
 
-        public override bool? CanDamage()
+        public override void AI()
         {
+            if (Projectile.frameCounter++ >= 4)
+            {
+                Projectile.frameCounter = 0;
+                if (++Projectile.frame >= Main.projFrames[Type])
+                    Projectile.frame = 0;
+            }
+        }
+
+        public override bool PreDraw(ref Color lightColor)
+        {
+            Texture2D t = TextureAssets.Projectile[Type].Value;
+            int sizeY = t.Height / Main.projFrames[Type];
+            int frameY = Projectile.frame * sizeY;
+            Rectangle rectangle = new(0, frameY, t.Width, sizeY);
+            Vector2 origin = rectangle.Size() / 2f;
+            Vector2 pos = Projectile.Center - Main.screenPosition + new Vector2(0f, 4 + Projectile.gfxOffY);
+            float rot = Projectile.rotation + MathHelper.PiOver2;
+            if (Projectile.spriteDirection > 0)
+                rot += MathHelper.Pi;
+            SpriteEffects spriteEffects = Projectile.spriteDirection > 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
+            Main.EntitySpriteDraw(t, pos, rectangle, Projectile.GetAlpha(lightColor),
+                    rot, origin, Projectile.scale, spriteEffects, 0);
             return false;
-        }
-
-        public override void OnKill(int timeLeft)
-        {
-            Vector2 position = Projectile.Center;
-            SoundEngine.PlaySound(SoundID.Item14, position);
-
-            if (Main.netMode == NetmodeID.MultiplayerClient)
-            {
-                return;
-            }
-            Point tileCenter = position.ToTileCoordinates();
-            int left = 0;
-            int right = 0;
-            for (int dir = -1; dir <= 1; dir += 2)
-            {
-                for (int x = 0; x < Main.maxTilesX; x++)
-                {
-                    if (x != 0)
-                    {
-                        if (dir == -1)
-                            left++;
-                        else
-                            right++;
-                    }
-                    else if (dir == 1)
-                        continue;
-                    Point pos = new(tileCenter.X + dir * x, tileCenter.Y);
-                    if (pos.X < 0 || pos.X >= Main.maxTilesX || pos.Y < 0 || pos.Y >= Main.maxTilesY)
-                        break;
-                    if (Main.tile[pos].HasTile && Main.tile[pos].TileType > TileID.Dirt && TileID.Sets.Platforms[Main.tile[pos].TileType] && FargoGlobalProjectile.OkayToDestroyTileAt(pos.X, pos.Y))
-                    {
-                        FargoGlobalTile.ClearEverything(pos.X, pos.Y, false);
-                        continue;
-                    }
-                    break;
-                }
-            }
-
-            if (Main.netMode == NetmodeID.Server)
-                NetMessage.SendTileSquare(-1, tileCenter.X - left, tileCenter.Y, left + right, 1, TileChangeType.None);
         }
     }
 }

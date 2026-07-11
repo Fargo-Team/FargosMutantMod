@@ -1655,7 +1655,7 @@ PotionCooler: {
 
 GizmoParts: {
 	DisplayName: Части штуковин
-	// Tooltip: ""
+	// Tooltip: Used to craft convenient gadgets and stations
 }
 
 PotionCoolerInactive: {

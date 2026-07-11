@@ -1654,7 +1654,7 @@ PotionCooler: {
 
 GizmoParts: {
 	DisplayName: Gizmo Parts
-	Tooltip: ""
+	Tooltip: "Used to craft convenient gadgets and stations"
 }
 
 PotionCoolerInactive: {

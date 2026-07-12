@@ -1,6 +1,7 @@
 ﻿using Fargowiltas.Assets.Textures;
 using Fargowiltas.Common;
 using Fargowiltas.Common.Systems;
+using Fargowiltas.Content.Items.Summons;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -114,7 +115,7 @@ namespace Fargowiltas.Content.UI.PotionBag
         void TryConsumePotion()
         {
             Item item = AddSlot.Item.Clone();
-            if (item.IsAir || item.buffType == 0)
+            if (item.IsAir || item.buffType == 0 || item.buffTime < 60 * 60 * 2 || item.ModItem is BaseSpawnBooster)
                 return;
 
             if (PotionBagSystem.CanConsumePotion(item.type, item.stack, out int amountToConsume, out int leftOvers))

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Fargowiltas.Content.Items.Summons;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -22,7 +23,7 @@ namespace Fargowiltas.Common.Systems
             for (int i = 0; i < ContentSamples.ItemsByType.Count; i++)
             {
                 Item item = ContentSamples.ItemsByType[i];
-                if (item.buffTime > 0)
+                if (item.buffTime > 60 * 60 * 2 && item.ModItem is not BaseSpawnBooster)
                 {
                     RegisterToggle(new PotionToggle(i, item.buffType));
                 }

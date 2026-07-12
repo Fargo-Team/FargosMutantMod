@@ -11,7 +11,7 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
     }
     public class PincushionBuff : BaseSpawnBoosterBuff
     {
-        public PincushionBuff() : base(() => [NPCID.Nailhead], () => Main.eclipse, 0.2f)
+        public PincushionBuff() : base(() => [NPCID.Nailhead], () => Main.eclipse && NPC.downedPlantBoss && (Main.LocalPlayer.ZoneOverworldHeight || (Main.remixWorld && Main.LocalPlayer.ZoneRockLayerHeight)), 1f)
         {
         }
     }

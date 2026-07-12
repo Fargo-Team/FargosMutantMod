@@ -21,7 +21,7 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
     }
     public class WormSnackBuff : BaseSpawnBoosterBuff
     {
-        public WormSnackBuff() : base(() => Main.hardMode ? [NPCID.DiggerHead] : [NPCID.GiantWormHead], () => (Main.LocalPlayer.ZoneDirtLayerHeight || Main.LocalPlayer.ZoneRockLayerHeight) && !Main.LocalPlayer.ZoneSnow, 0.2f)
+        public WormSnackBuff() : base(() => Main.hardMode ? [NPCID.DiggerHead] : [NPCID.GiantWormHead], () => (Main.LocalPlayer.ZoneDirtLayerHeight || Main.LocalPlayer.ZoneRockLayerHeight) && !Main.LocalPlayer.ZoneSnow, 0.4f)
         {
         }
     }

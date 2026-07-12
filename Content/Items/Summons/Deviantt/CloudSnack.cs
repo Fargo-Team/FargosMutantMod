@@ -22,7 +22,7 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
     }
     public class CloudSnackBuff : BaseSpawnBoosterBuff
     {
-        public CloudSnackBuff() : base(() => [NPCID.WyvernHead], () => Main.LocalPlayer.ZoneSkyHeight, 0.2f)
+        public CloudSnackBuff() : base(() => [NPCID.WyvernHead], () => Main.LocalPlayer.ZoneSkyHeight && Main.hardMode, 0.4f)
         {
         }
     }

@@ -21,7 +21,7 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
     }
     public class ClownLicenseBuff : BaseSpawnBoosterBuff
     {
-        public ClownLicenseBuff() : base(() => [NPCID.Clown], () => Main.bloodMoon, 0.2f)
+        public ClownLicenseBuff() : base(() => [NPCID.Clown], () => Main.bloodMoon && Main.LocalPlayer.ZoneOverworldHeight && Main.hardMode, 0.2f)
         {
         }
     }

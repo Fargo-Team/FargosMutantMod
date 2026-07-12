@@ -22,7 +22,7 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
     }
     public class MothLampBuff : BaseSpawnBoosterBuff
     {
-        public MothLampBuff() : base(() => [NPCID.Moth], () => Main.LocalPlayer.ZoneJungle && (Main.LocalPlayer.ZoneDirtLayerHeight || Main.LocalPlayer.ZoneRockLayerHeight), 0.2f)
+        public MothLampBuff() : base(() => [NPCID.Moth], () => Main.LocalPlayer.ZoneJungle && !Main.LocalPlayer.ZoneLihzhardTemple && !Main.LocalPlayer.ZoneCrimson && !Main.LocalPlayer.ZoneCorrupt && Main.hardMode && (Main.LocalPlayer.ZoneDirtLayerHeight || Main.LocalPlayer.ZoneRockLayerHeight), 0.08f)
         {
         }
     }

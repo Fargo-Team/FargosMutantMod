@@ -21,7 +21,7 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
     }
     public class AmalgamatedSpiritBuff : BaseSpawnBoosterBuff
     {
-        public AmalgamatedSpiritBuff() : base(() => [NPCID.Necromancer, NPCID.NecromancerArmored, NPCID.DiabolistRed, NPCID.DiabolistWhite, NPCID.RaggedCaster, NPCID.RaggedCasterOpenCoat], () => Main.LocalPlayer.ZoneDungeon, 0.2f)
+        public AmalgamatedSpiritBuff() : base(() => [NPCID.Necromancer, NPCID.NecromancerArmored, NPCID.DiabolistRed, NPCID.DiabolistWhite, NPCID.RaggedCaster, NPCID.RaggedCasterOpenCoat], () => Main.LocalPlayer.ZoneDungeon && NPC.downedBoss3 && NPC.downedPlantBoss && Main.hardMode, 0.2f)
         {
         }
     }

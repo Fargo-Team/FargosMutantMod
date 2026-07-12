@@ -11,7 +11,7 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
     }
     public class ShadowflameIconBuff : BaseSpawnBoosterBuff
     {
-        public ShadowflameIconBuff() : base(() => [NPCID.GoblinSummoner], () => Main.invasionType == InvasionID.GoblinArmy, 0.2f)
+        public ShadowflameIconBuff() : base(() => [NPCID.GoblinSummoner], () => Main.invasionType == InvasionID.GoblinArmy && Main.hardMode && (Main.LocalPlayer.position.X > Main.invasionX * 16.0 - 3000 && Main.LocalPlayer.position.X < Main.invasionX * 16.0 + 3000), 1f)
         {
         }
     }

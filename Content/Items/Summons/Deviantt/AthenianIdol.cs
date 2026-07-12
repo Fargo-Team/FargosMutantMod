@@ -22,7 +22,7 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
     }
     public class AthenianIdolBuff : BaseSpawnBoosterBuff
     {
-        public AthenianIdolBuff() : base(() => [NPCID.Medusa], () => Main.LocalPlayer.ZoneMarble, 0.2f)
+        public AthenianIdolBuff() : base(() => [NPCID.Medusa], () => Main.LocalPlayer.ZoneMarble && Main.hardMode, 0.25f)
         {
         }
     }

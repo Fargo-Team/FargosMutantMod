@@ -22,7 +22,7 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
     }
     public class GrandCrossBuff : BaseSpawnBoosterBuff
     {
-        public GrandCrossBuff() : base(() => [NPCID.Paladin], () => Main.LocalPlayer.ZoneDungeon, 0.2f)
+        public GrandCrossBuff() : base(() => [NPCID.Paladin], () => Main.LocalPlayer.ZoneDungeon && NPC.downedBoss3 && NPC.downedPlantBoss && Main.hardMode, 0.2f)
         {
         }
     }

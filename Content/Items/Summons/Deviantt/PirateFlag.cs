@@ -11,7 +11,7 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
     }
     public class PirateFlagBuff : BaseSpawnBoosterBuff
     {
-        public PirateFlagBuff() : base(() => [NPCID.PirateCaptain], () => Main.invasionType == InvasionID.PirateInvasion, 0.2f)
+        public PirateFlagBuff() : base(() => [NPCID.PirateCaptain], () => Main.invasionType == InvasionID.PirateInvasion && (Main.LocalPlayer.position.X > Main.invasionX * 16.0 - 3000 && Main.LocalPlayer.position.X < Main.invasionX * 16.0 + 3000 || Main.invasionProgressNearInvasion), 1f)
         {
         }
     }

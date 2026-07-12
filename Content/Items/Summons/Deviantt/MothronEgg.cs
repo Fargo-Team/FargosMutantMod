@@ -11,7 +11,7 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
     }
     public class MothronEggBuff : BaseSpawnBoosterBuff
     {
-        public MothronEggBuff() : base(() => [NPCID.Mothron], () => Main.eclipse, 0.2f)
+        public MothronEggBuff() : base(() => [NPCID.Mothron], () => Main.eclipse && NPC.downedPlantBoss && (Main.LocalPlayer.ZoneOverworldHeight || (Main.remixWorld && Main.LocalPlayer.ZoneRockLayerHeight)), 0.2f)
         {
         }
     }

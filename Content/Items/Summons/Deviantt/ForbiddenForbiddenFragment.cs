@@ -2,6 +2,7 @@ using Fargowiltas.Content.Buffs;
 using Fargowiltas.Content.Items.Misc;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.GameContent.Events;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -32,7 +33,7 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
     }
     public class ForbiddenForbiddenFragmentBuff : BaseSpawnBoosterBuff
     {
-        public ForbiddenForbiddenFragmentBuff() : base(() => [NPCID.SandElemental], () => Main.LocalPlayer.ZoneSandstorm, 0.2f)
+        public ForbiddenForbiddenFragmentBuff() : base(() => [NPCID.SandElemental], () => Main.LocalPlayer.ZoneSandstorm && Sandstorm.Happening && Main.hardMode && (Main.LocalPlayer.ZoneOverworldHeight || Main.LocalPlayer.ZoneSkyHeight), 0.2f)
         {
         }
     }

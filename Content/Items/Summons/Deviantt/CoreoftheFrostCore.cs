@@ -32,7 +32,7 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
     }
     public class CoreoftheFrostCoreBuff : BaseSpawnBoosterBuff
     {
-        public CoreoftheFrostCoreBuff() : base(() => [NPCID.IceGolem], () => Main.LocalPlayer.ZoneSnow && Main.IsItStorming, 0.2f)
+        public CoreoftheFrostCoreBuff() : base(() => [NPCID.IceGolem], () => Main.LocalPlayer.ZoneSnow && Main.hardMode && (Main.LocalPlayer.ZoneOverworldHeight || Main.LocalPlayer.ZoneSkyHeight) && Main.IsItRaining, 0.2f)
         {
         }
     }

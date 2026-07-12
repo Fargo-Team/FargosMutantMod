@@ -23,7 +23,7 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
     }
     public class DemonicPlushieBuff : BaseSpawnBoosterBuff
     {
-        public DemonicPlushieBuff() : base(() => [NPCID.RedDevil], () => Main.LocalPlayer.ZoneUnderworldHeight && MathF.Abs(Main.LocalPlayer.Center.X / 16f - Main.spawnTileX) > Main.maxTilesX / 3, 0.2f)
+        public DemonicPlushieBuff() : base(() => [NPCID.RedDevil], () => Main.LocalPlayer.ZoneUnderworldHeight && Main.hardMode && NPC.downedMechBossAny && MathF.Abs(Main.LocalPlayer.Center.X / 16f - Main.spawnTileX) > Main.maxTilesX / 3, 0.2f)
         {
         }
     }

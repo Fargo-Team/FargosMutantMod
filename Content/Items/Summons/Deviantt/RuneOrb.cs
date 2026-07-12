@@ -21,7 +21,7 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
     }
     public class RuneOrbBuff : BaseSpawnBoosterBuff
     {
-        public RuneOrbBuff() : base(() => [NPCID.RuneWizard], () => Main.LocalPlayer.ZoneRockLayerHeight && (double)Main.LocalPlayer.Center.Y / 16 > (Main.rockLayer + Main.maxTilesY) / 2.0, 0.2f)
+        public RuneOrbBuff() : base(() => [NPCID.RuneWizard], () => Main.LocalPlayer.ZoneRockLayerHeight && ((double)Main.LocalPlayer.Center.Y / 16 > (Main.rockLayer + Main.maxTilesY) / 2.0) && Main.hardMode, 0.2f)
         {
         }
     }

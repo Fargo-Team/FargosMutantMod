@@ -16,7 +16,6 @@ StatSheet: {
 	KnockbackImmunity: Knockback Immunity: {0}
 	Aggro: Aggro: {0}
 	DamageReduction: Damage Reduction: {0}%
-	AttackSpeed: Attack Speed: {0}%
 	// movement
 	Movement: Movement
 	MovementSpeed: Movement Speed: {0}%
@@ -55,8 +54,6 @@ StatSheet: {
 	ManaCostReduction: Mana Cost Reduction: {0}%
 	//summon
 	Summon: Summon
-	SummonDamage: Summon Damage: {0}%
-	SummonCritical: Summon Critical: {0}%
 	MaxMinions: Max Minions: {0}
 	MaxSentries: Max Sentries: {0}
 	WhipSpeed: Whip Speed: {0}%

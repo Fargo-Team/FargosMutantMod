@@ -16,7 +16,6 @@ StatSheet: {
 	// KnockbackImmunity: Knockback Immunity: {0}
 	Aggro: 仇恨：{0}
 	DamageReduction: 伤害减免：{0}%{1}
-	AttackSpeed: 攻击速度：{0}%
 	// movement
 	// Movement: Movement
 	// MovementSpeed: Movement Speed: {0}%
@@ -55,8 +54,6 @@ StatSheet: {
 	ManaCostReduction: 魔力消耗降低：{0}%
 	//summon
 	// Summon: Summon
-	SummonDamage: 召唤伤害：{0}%
-	SummonCritical: 召唤暴击率：{0}%
 	MaxMinions: 仆从数量上限：{0}
 	MaxSentries: 哨兵数量上限：{0}
 	// WhipSpeed: Whip Speed: {0}%

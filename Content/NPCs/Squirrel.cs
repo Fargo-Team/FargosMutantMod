@@ -24,6 +24,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.Utilities;
 using static Fargowiltas.Fargowiltas;
+using static Terraria.GameContent.LucyAxeMessage;
 using static Terraria.ModLoader.ModContent;
 
 namespace Fargowiltas.Content.NPCs
@@ -746,6 +747,19 @@ namespace Fargowiltas.Content.NPCs
                     {
                         NPC.NewNPC(new EntitySource_WorldEvent(), (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, NPCID.TownCat);
                     }
+                }
+                return true;
+            }
+
+            // lucy the axe: wait, don't!
+            if (item.type == ItemID.LucyTheAxe)
+            {
+                consumeCount = 1;
+                if (action)
+                {
+                    FargoItemSets.SacrificeCount[item.type]--;
+                    Player localPlayer = Main.LocalPlayer;
+                    Create((MessageSource)8, localPlayer.Top, new Vector2(Main.rand.NextFloatDirection() * 7f, -2f + Main.rand.NextFloat() * -2f));
                 }
                 return true;
             }

@@ -16,7 +16,6 @@ StatSheet: {
 	// KnockbackImmunity: Knockback Immunity: {0}
 	Aggro: Agressividade: {0}
 	DamageReduction: Redução de Dano: {0}%{1}
-	AttackSpeed: Velocidade de ataque: {0}%
 	// movement
 	// Movement: Movement
 	// MovementSpeed: Movement Speed: {0}%
@@ -55,8 +54,6 @@ StatSheet: {
 	ManaCostReduction: Redução no custo de mana: {0}%
 	//summon
 	// Summon: Summon
-	SummonDamage: Dano de invocação: {0}%
-	SummonCritical: Crítico de invocação: {0}%
 	MaxMinions: Lacaios máximos: {0}
 	MaxSentries: Sentinelas máximas: {0}
 	// WhipSpeed: Whip Speed: {0}%

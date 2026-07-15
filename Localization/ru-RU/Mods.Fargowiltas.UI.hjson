@@ -1,4 +1,4 @@
-﻿Close: Закрыть
+Close: Закрыть
 Clear: Очистить поиск
 CombinedUIButton: Открыть полезные меню
 PotionToggler: "[s:Fargowiltas/PotionToggler] Переключатель зелий"
@@ -16,7 +16,6 @@ StatSheet: {
 	KnockbackImmunity: Сопр. отбрасыванию: {0}
 	Aggro: Агро: {0}
 	DamageReduction: Сопротивление урону: {0}%
-	AttackSpeed: Скорость атаки: {0}%
 	// movement
 	Movement: Передвижение
 	MovementSpeed: Скорость передвижения: {0}%
@@ -55,8 +54,6 @@ StatSheet: {
 	ManaCostReduction: Снижение траты маны: {0}%
 	//summon
 	Summon: Призывательные
-	SummonDamage: Урон: {0}%
-	SummonCritical: Шанс крит. удара: {0}%
 	MaxMinions: Макс. миньоны: {0}
 	MaxSentries: Макс. стражи: {0}
 	WhipSpeed: Скорость атаки: {0}%

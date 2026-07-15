@@ -12,6 +12,7 @@ using System.Diagnostics;
 using System.Linq;
 using Terraria;
 using Terraria.Audio;
+using Terraria.GameContent;
 using Terraria.GameContent.Events;
 using Terraria.ID;
 using Terraria.Localization;
@@ -57,6 +58,25 @@ namespace Fargowiltas
             On_WorldGen.CountTileTypesInArea += CountTileTypesInArea_PurityTotemHack;
 
             On_ChatManager.DrawColorCodedStringShadow_SpriteBatch_DynamicSpriteFont_TextSnippetArray_Vector2_Color_float_Vector2_Vector2_float_float += SymbolsFix;
+
+            On_LucyAxeMessage.SpawnPopupText += AddMessage;
+        }
+
+        private void AddMessage(On_LucyAxeMessage.orig_SpawnPopupText orig, LucyAxeMessage.MessageSource source, int variationUnwrapped, Vector2 position, Vector2 velocity)
+        {
+            LocalizedText LucyTheAxeAdditions = Language.GetText("Mods.Fargowiltas.Items.LucyTheAxe.Eaten");
+            string lucyTheAxeAdditions = LucyTheAxeAdditions.Value;
+            if (source == (LucyAxeMessage.MessageSource)8)
+            {
+                AdvancedPopupRequest request = default(AdvancedPopupRequest);
+                request.Text = lucyTheAxeAdditions;
+                request.DurationInFrames = 420;
+                request.Velocity = velocity;
+                request.Color = new Color(184, 96, 98) * 1.15f;
+                PopupText.NewText(request, position);
+                return;
+            }
+            orig(source, variationUnwrapped,position,velocity);
         }
 
         private void SymbolsFix(On_ChatManager.orig_DrawColorCodedStringShadow_SpriteBatch_DynamicSpriteFont_TextSnippetArray_Vector2_Color_float_Vector2_Vector2_float_float orig, SpriteBatch spriteBatch, DynamicSpriteFont font, IEnumerable<TextSnippet> snippets, Vector2 position, Color shadowColor, float rotation, Vector2 origin, Vector2 scale, float maxWidth, float spread = 2f)

@@ -201,18 +201,6 @@ namespace Fargowiltas.Common.Systems.Recipes
             recipe.AddTile(TileID.Furnaces);
             recipe.DisableDecraft();
             recipe.Register();*/
-
-            recipe = Recipe.Create(ItemID.Gel, 10);
-            recipe.AddRecipeGroup(AnyCaughtSlime);
-            recipe.AddTile(TileID.Solidifier);
-            recipe.DisableDecraft();
-            recipe.Register();
-
-            recipe = Recipe.Create(ItemID.PinkGel, 5);
-            recipe.AddIngredient(null, "SurlySlime");
-            recipe.AddTile(TileID.Solidifier);
-            recipe.DisableDecraft();
-            recipe.Register();
         }
 
         private static void AddSkeletonMerchantNPCRecipes()

@@ -306,6 +306,12 @@ namespace Fargowiltas.Content.Items
                         tooltips.Add(line);
 
                     }
+                    if (item.type == ItemID.LucyTheAxe)
+                    {
+                        line = new TooltipLine(Mod, "TooltipSacrificable",
+                        $"[h:{TownNPCProfiles.GetHeadIndexSafe(ContentSamples.NpcsByNetId[ModContent.NPCType<Squirrel>()])}] [c/AAAAAA:{ExpandedTooltipLoc("Sacrificable")}]");
+                        tooltips.Add(line);
+                    }
                     else
                     {
                         line = new TooltipLine(Mod, "TooltipSacrificable",

@@ -37,8 +37,12 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
     public class PinkSlimeCrownGlobal : GlobalNPC
     {
         public override void OnSpawn(NPC npc, IEntitySource source)
-        {
-            Player player = Main.player[npc.FindClosestPlayer()];
+        {   
+            int whoAmI = npc.FindClosestPlayer();
+            if (whoAmI == -1)
+                return;
+            Player player = Main.player[whoAmI];
+            
             if (npc.type == NPCID.BlueSlime && source is EntitySource_SpawnNPC && npc.lastInteraction == 255 && !npc.SpawnedFromStatue && player != null && player.HasBuff(ModContent.BuffType<PinkSlimeCrownBuff>()))
             {
                 //vanilla chance is RollLuck(180), 10 is extra generous to make sure multiple spawn from one use
@@ -47,6 +51,7 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
                     npc.Transform(-4);
                 }
             }
+            
         }
     }
 }

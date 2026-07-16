@@ -1,4 +1,5 @@
 ﻿using Fargowiltas.Content.NPCs;
+using System.Linq;
 using Terraria;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -7,6 +8,21 @@ namespace Fargowiltas.Common
 {
     public class WoTGModCompatability : GlobalNPC
     {
+        public override bool IsLoadingEnabled(Mod mod)
+        {
+            return ModLoader.HasMod("NoxusBoss");
+        }
+        public override bool AppliesToEntity(NPC entity, bool lateInstantiation)
+        {
+            int[] npcs = [
+                ModContent.NPCType<Squirrel>(),
+                ModContent.NPCType<LumberJack>(),
+                ModContent.NPCType<Deviantt>(),
+                ModContent.NPCType<Abominationn>(),
+                ModContent.NPCType<Mutant>(),
+                ];
+            return lateInstantiation && npcs.Contains(entity.type);
+        }
         public override void GetChat(NPC npc, ref string chat)
         {
             Mod wotg = Fargowiltas.WoTG;

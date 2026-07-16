@@ -36,6 +36,7 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
 
     public class PinkSlimeCrownGlobal : GlobalNPC
     {
+        public override bool AppliesToEntity(NPC entity, bool lateInstantiation) => lateInstantiation && entity.type == NPCID.BlueSlime;
         public override void OnSpawn(NPC npc, IEntitySource source)
         {   
             int whoAmI = npc.FindClosestPlayer();
@@ -43,7 +44,7 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
                 return;
             Player player = Main.player[whoAmI];
             
-            if (npc.type == NPCID.BlueSlime && source is EntitySource_SpawnNPC && npc.lastInteraction == 255 && !npc.SpawnedFromStatue && player != null && player.HasBuff(ModContent.BuffType<PinkSlimeCrownBuff>()))
+            if (source is EntitySource_SpawnNPC && npc.lastInteraction == 255 && !npc.SpawnedFromStatue && player != null && player.HasBuff(ModContent.BuffType<PinkSlimeCrownBuff>()))
             {
                 //vanilla chance is RollLuck(180), 10 is extra generous to make sure multiple spawn from one use
                 if (player.RollLuck(10) == 0)

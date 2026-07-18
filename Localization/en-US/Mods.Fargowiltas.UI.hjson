@@ -54,6 +54,7 @@ StatSheet: {
 	ManaCostReduction: Mana Cost Reduction: {0}%
 	//summon
 	Summon: Summon
+	SummonDamage: Summon Damage: {0}%
 	MaxMinions: Max Minions: {0}
 	MaxSentries: Max Sentries: {0}
 	WhipSpeed: Whip Speed: {0}%

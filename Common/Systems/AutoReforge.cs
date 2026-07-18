@@ -20,9 +20,10 @@ namespace Fargowiltas.Common.Systems
 {
     public class AutoReforge : GlobalNPC
     {
+        public override bool AppliesToEntity(NPC entity, bool lateInstantiation) => lateInstantiation && entity.type == NPCID.GoblinTinkerer;
         public override bool PreChatButtonClicked(NPC npc, bool firstButton)
         {
-            if (npc.type == NPCID.GoblinTinkerer && !firstButton && FargoClientConfig.Instance.AutoReforge)
+            if (!firstButton && FargoClientConfig.Instance.AutoReforge)
             {
                 FargoUIManager.Open<AutoReforgeUI>();
                 return false;

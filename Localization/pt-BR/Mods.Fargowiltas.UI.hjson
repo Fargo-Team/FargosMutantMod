@@ -54,6 +54,7 @@ StatSheet: {
 	ManaCostReduction: Redução no custo de mana: {0}%
 	//summon
 	// Summon: Summon
+	SummonDamage: Dano de invocação: {0}%
 	MaxMinions: Lacaios máximos: {0}
 	MaxSentries: Sentinelas máximas: {0}
 	// WhipSpeed: Whip Speed: {0}%

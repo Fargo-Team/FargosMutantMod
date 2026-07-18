@@ -54,6 +54,7 @@ StatSheet: {
 	ManaCostReduction: 魔力消耗降低：{0}%
 	//summon
 	// Summon: Summon
+	SummonDamage: 召唤伤害：{0}%
 	MaxMinions: 仆从数量上限：{0}
 	MaxSentries: 哨兵数量上限：{0}
 	// WhipSpeed: Whip Speed: {0}%

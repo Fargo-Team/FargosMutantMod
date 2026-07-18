@@ -54,6 +54,7 @@ StatSheet: {
 	ManaCostReduction: Снижение траты маны: {0}%
 	//summon
 	Summon: Призывательные
+	SummonDamage: Урон: {0}%
 	MaxMinions: Макс. миньоны: {0}
 	MaxSentries: Макс. стражи: {0}
 	WhipSpeed: Скорость атаки: {0}%

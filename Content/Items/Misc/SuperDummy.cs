@@ -20,6 +20,8 @@ namespace Fargowiltas.Content.Items.Misc
             Item.rare = ItemRarityID.Blue;
         }
 
+        public override bool CanUseItem(Player player) => !FargoUtils.AnyBossAlive();
+
         public override bool AltFunctionUse(Player player)
         {
             return true;

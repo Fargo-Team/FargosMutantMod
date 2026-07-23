@@ -29,7 +29,7 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
     public class PinkSlimeCrownBuff : BaseSpawnBoosterBuff
     {
         //buff itself does not increase spawn rates the normal way since pinkies spawn by replacing blue slimes
-        public PinkSlimeCrownBuff() : base(() => [NPCID.Pinky], () => !Main.LocalPlayer.ZoneUnderworldHeight, 0f)
+        public PinkSlimeCrownBuff() : base(() => [NPCID.Pinky], () => !Main.LocalPlayer.ZoneUnderworldHeight, 1f)
         {
         }
     }
@@ -46,8 +46,8 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
             
             if (source is EntitySource_SpawnNPC && npc.lastInteraction == 255 && !npc.SpawnedFromStatue && player != null && player.HasBuff(ModContent.BuffType<PinkSlimeCrownBuff>()))
             {
-                //vanilla chance is RollLuck(180), 10 is extra generous to make sure multiple spawn from one use
-                if (player.RollLuck(10) == 0)
+                //vanilla chance is RollLuck(180), 4 is extra generous to make sure multiple spawn from one use
+                if (player.RollLuck(4) == 0)
                 {
                     npc.Transform(-4);
                 }

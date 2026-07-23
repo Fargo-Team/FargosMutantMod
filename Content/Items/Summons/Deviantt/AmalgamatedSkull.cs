@@ -22,7 +22,7 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
     }
     public class AmalgamatedSkullBuff : BaseSpawnBoosterBuff
     {
-        public AmalgamatedSkullBuff() : base(() => [NPCID.SkeletonSniper, NPCID.TacticalSkeleton, NPCID.SkeletonCommando], () => Main.LocalPlayer.ZoneDungeon && NPC.downedBoss3 && NPC.downedPlantBoss && Main.hardMode, 0.2f)
+        public AmalgamatedSkullBuff() : base(() => [NPCID.SkeletonSniper, NPCID.TacticalSkeleton, NPCID.SkeletonCommando], () => Main.LocalPlayer.ZoneDungeon && NPC.downedBoss3 && NPC.downedPlantBoss && Main.hardMode, 0.3f)
         {
         }
     }

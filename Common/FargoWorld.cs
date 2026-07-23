@@ -299,7 +299,6 @@ namespace Fargowiltas
             //SeasonSelections halloween = GetInstance<FargoConfig>().Halloween;
             //SeasonSelections xmas = GetInstance<FargoConfig>().Christmas;
 
-
             SetWorldBool(FargoServerConfig.Instance.Halloween, ref Main.halloween);
             SetWorldBool(FargoServerConfig.Instance.Christmas, ref Main.xMas);
 

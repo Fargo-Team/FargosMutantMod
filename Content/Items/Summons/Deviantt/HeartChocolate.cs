@@ -22,7 +22,7 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
     }
     public class HeartChocolateBuff : BaseSpawnBoosterBuff
     {
-        public HeartChocolateBuff() : base(() => [NPCID.LostGirl], () => Main.LocalPlayer.ZoneRockLayerHeight, 0.1f)
+        public HeartChocolateBuff() : base(() => [NPCID.LostGirl], () => Main.LocalPlayer.ZoneRockLayerHeight, 0.2f)
         {
         }
     }

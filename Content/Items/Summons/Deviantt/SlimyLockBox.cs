@@ -20,7 +20,7 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
     }
     public class SlimyLockBoxBuff : BaseSpawnBoosterBuff
     {
-        public SlimyLockBoxBuff() : base(() => [NPCID.DungeonSlime], () => Main.LocalPlayer.ZoneDungeon && NPC.downedBoss3, 0.2f)
+        public SlimyLockBoxBuff() : base(() => [NPCID.DungeonSlime], () => Main.LocalPlayer.ZoneDungeon && NPC.downedBoss3, 0.33f)
         {
         }
     }

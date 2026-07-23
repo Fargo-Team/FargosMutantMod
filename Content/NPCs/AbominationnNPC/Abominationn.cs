@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
@@ -394,20 +395,42 @@ namespace Fargowiltas.Content.NPCs.AbominationnNPC
             return !NPC.IsShimmerVariant;
         }
 
+        public void HandleCapeAnimation(int frameType, bool windy = false)
+        {
+            if (CapeFrameX != (windy ? frameType + 1 : frameType))
+            {
+                CapeFrameX = (windy ? frameType + 1 : frameType);
+                CapeFrameY = 0;
+            }
+        }
+
+        enum CapeAnimationID
+        {
+            Idle,
+            WindyIdle,
+            Walking,
+            Falling,
+            Attacking
+        }
+
         public override void FindFrame(int frameHeight)
         {
             base.FindFrame(frameHeight);
+            Tile tile = Main.tile[(int)NPC.Center.X / 16, (int)NPC.Center.Y / 16];
+            bool shouldFlourishCape = Main.WindyEnoughForKiteDrops 
+                && !(tile != null && tile.WallType > WallID.None && !WallID.Sets.AllowsWind[tile.WallType])
+                && (((int)NPC.Center.Y / 16) !< Main.worldSurface);
 
             #region cape
             switch (CapeFrameX)
             {
-                case 0: // idle
+                case (int)CapeAnimationID.Idle:
                     {
                         CapeFrameX = CapeFrameY = 0;
                         CapeFrameCounter = 0;
                     } break;
 
-                case 1: // walking
+                case (int)CapeAnimationID.WindyIdle:
                     {
                         if (++CapeFrameCounter >= 6)
                         {
@@ -417,7 +440,17 @@ namespace Fargowiltas.Content.NPCs.AbominationnNPC
                         }
                     } break;
 
-                case 2: // im falling!
+                case (int)CapeAnimationID.Walking:
+                    {
+                        if (++CapeFrameCounter >= 6)
+                        {
+                            CapeFrameCounter = 0;
+                            if (++CapeFrameY >= 4)
+                                CapeFrameY = 0;
+                        }
+                    } break;
+
+                case (int)CapeAnimationID.Falling:
                     {
                         if (++CapeFrameCounter >= 6)
                         {
@@ -428,7 +461,7 @@ namespace Fargowiltas.Content.NPCs.AbominationnNPC
                     }
                     break;
 
-                case 3: // attaaackk
+                case (int)CapeAnimationID.Attacking:
                     {
                         if (++CapeFrameCounter >= 6)
                         {
@@ -444,14 +477,9 @@ namespace Fargowiltas.Content.NPCs.AbominationnNPC
 
 
 
-            if (NPC.velocity.Y != 0)
-            {
-                if (CapeFrameX != 2)
-                {
-                    CapeFrameX = 2;
-                    CapeFrameY = 0;
-                }
-            } 
+            if (NPC.velocity.Y != 0) // falling
+                HandleCapeAnimation((int)CapeAnimationID.Falling);
+
             /*
             else if (NPC.ai[0] == 10f || NPC.ai[0] == 13f)
             {
@@ -461,26 +489,13 @@ namespace Fargowiltas.Content.NPCs.AbominationnNPC
                     if (++ArmFrame >= 3)
                         ArmFrame = 0;
                 }
-                if (CapeFrameX != 3)
-                {
-                    CapeFrameX = 3;
-                    CapeFrameY = 0;
-                }
+                HandleCapeAnimation((int)CapeAnimationID.Attacking);
             }
             */
-            else if (NPC.velocity.X != 0 || Main.WindyEnoughForKiteDrops)
-            {
-                if (CapeFrameX != 1)
-                {
-                    CapeFrameX = 1;
-                    CapeFrameY = 0;
-                }
-            }        
+            else if (NPC.velocity.X != 0)
+                HandleCapeAnimation((int)CapeAnimationID.Walking);       
             else if (NPC.velocity.Length() == 0)
-            {
-                if (CapeFrameX != 0)
-                    CapeFrameX = 0;
-            }
+                HandleCapeAnimation((int)CapeAnimationID.Idle, shouldFlourishCape);
             #endregion
 
             /*

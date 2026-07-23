@@ -27,7 +27,7 @@ namespace Fargowiltas.Content.Items.Summons
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.consumable = true;
             Item.buffType = BuffType;
-            Item.buffTime = 60 * 60 * 5;
+            Item.buffTime = 60 * 60 * 4;
             Item.UseSound = SoundID.Item2;
         }
     }

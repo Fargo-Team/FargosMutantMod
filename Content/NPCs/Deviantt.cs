@@ -3,6 +3,7 @@ using Fargowiltas.Common.Configs;
 using Fargowiltas.Content.Biomes;
 using Fargowiltas.Content.Items.Summons.Deviantt;
 using Fargowiltas.Content.Items.Tiles;
+using Fargowiltas.Content.NPCs.AbominationnNPC;
 using Fargowiltas.Content.Projectiles;
 using Fargowiltas.Content.UI.Emotes;
 using Microsoft.Xna.Framework;

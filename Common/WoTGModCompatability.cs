@@ -1,4 +1,5 @@
 ﻿using Fargowiltas.Content.NPCs;
+using Fargowiltas.Content.NPCs.AbominationnNPC;
 using System.Linq;
 using Terraria;
 using Terraria.Localization;

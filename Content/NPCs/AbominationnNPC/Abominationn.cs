@@ -295,6 +295,7 @@ namespace Fargowiltas.Content.NPCs.AbominationnNPC
 
         public override void AddShops()
         {
+            Condition siblingPylonCondition = new Condition("Mods.Fargowiltas.Conditions.SiblingPylon", () => Condition.NpcIsPresent(NPCType<Deviantt>()).Predicate.Invoke() && Condition.NpcIsPresent(NPCType<Mutant>()).Predicate.Invoke());
             var npcShop = new NPCShop(Type, ShopName)
                 .Add(new Item(ItemType<PartyInvite>()) { shopCustomPrice = Item.buyPrice(copper: 10000) })
                 .Add(new Item(ItemType<WeatherBalloon>()) { shopCustomPrice = Item.buyPrice(copper: 20000) })
@@ -323,7 +324,7 @@ namespace Fargowiltas.Content.NPCs.AbominationnNPC
                 .Add(new Item(ItemType<MartianMemoryStick>()) { shopCustomPrice = Item.buyPrice(copper: 300000) }, Condition.DownedMartians)
                 .Add(new Item(ItemType<PillarSummon>()) { shopCustomPrice = Item.buyPrice(copper: 750000) }, new Condition("Mods.Fargowiltas.Conditions.PillarsDown", () => NPC.downedTowers))
                 .Add(new Item(ItemType<AbominationnScythe>()) { shopCustomPrice = Item.buyPrice(copper: 50000) }, new Condition("Mods.Fargowiltas.Conditions.PillarsDown", () => NPC.downedTowers))
-                .Add(new Item(ItemType<SiblingPylon>()), Condition.HappyEnoughToSellPylons, Condition.NpcIsPresent(NPCType<Mutant>()), Condition.NpcIsPresent(NPCType<Deviantt>()))
+                .Add(new Item(ItemType<SiblingPylon>()), Condition.HappyEnoughToSellPylons, siblingPylonCondition)
 
             ;
 

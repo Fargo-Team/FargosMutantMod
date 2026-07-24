@@ -350,6 +350,8 @@ namespace Fargowiltas.Content.NPCs
                 npcShop.Add(new Item(pandorasBox.Type));
             }
 
+            Condition siblingPylonCondition = new Condition("Mods.Fargowiltas.Conditions.SiblingPylon", () => Condition.NpcIsPresent(NPCType<Abominationn>()).Predicate.Invoke() && Condition.NpcIsPresent(NPCType<Mutant>()).Predicate.Invoke());
+
             npcShop
                 .Add(new Item(ItemType<WormSnack>()) { shopCustomPrice = Item.buyPrice(copper: 20000) }, new Condition("Mods.Fargowiltas.Conditions.WormDown", () => FargoWorld.DownedBools["worm"]))
                 .Add(new Item(ItemType<PinkSlimeCrown>()) { shopCustomPrice = Item.buyPrice(copper: 50000) }, new Condition("Mods.Fargowiltas.Conditions.PinkyDown", () => FargoWorld.DownedBools["pinky"]))
@@ -384,7 +386,7 @@ namespace Fargowiltas.Content.NPCs
                 .Add(new Item(ItemType<GrandCross>()) { shopCustomPrice = Item.buyPrice(copper: 150000) }, new Condition("Mods.Fargowiltas.Conditions.PaladinDown", () => NPC.downedPlantBoss && FargoWorld.DownedBools["paladin"]))
                 .Add(new Item(ItemType<AmalgamatedSkull>()) { shopCustomPrice = Item.buyPrice(copper: 300000) }, new Condition("Mods.Fargowiltas.Conditions.SkeleGunDown", () => NPC.downedPlantBoss && FargoWorld.DownedBools["skeletonGun"]))
                 .Add(new Item(ItemType<AmalgamatedSpirit>()) { shopCustomPrice = Item.buyPrice(copper: 300000) }, new Condition("Mods.Fargowiltas.Conditions.SkeleMagesDown", () => NPC.downedPlantBoss && FargoWorld.DownedBools["skeletonMage"]))
-                .Add(new Item(ItemType<SiblingPylon>()), Condition.HappyEnoughToSellPylons, Condition.NpcIsPresent(NPCType<Mutant>()), Condition.NpcIsPresent(NPCType<Abominationn>()))
+                .Add(new Item(ItemType<SiblingPylon>()), Condition.HappyEnoughToSellPylons, siblingPylonCondition)
             ;
 
             npcShop.Register();

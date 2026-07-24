@@ -427,9 +427,10 @@ namespace Fargowiltas.Content.NPCs
 
             npcShop3.Add(new Item(ItemType<AncientSeal>()) { shopCustomPrice = Item.buyPrice(copper: 100000000) });
 
-            npcShop1.Add(new Item(ItemType<SiblingPylon>()), Condition.HappyEnoughToSellPylons, Condition.NpcIsPresent(NPCType<Abominationn>()), Condition.NpcIsPresent(NPCType<Deviantt>()));
-            npcShop2.Add(new Item(ItemType<SiblingPylon>()), Condition.HappyEnoughToSellPylons, Condition.NpcIsPresent(NPCType<Abominationn>()), Condition.NpcIsPresent(NPCType<Deviantt>()));
-            npcShop3.Add(new Item(ItemType<SiblingPylon>()), Condition.HappyEnoughToSellPylons, Condition.NpcIsPresent(NPCType<Abominationn>()), Condition.NpcIsPresent(NPCType<Deviantt>()));
+            Condition siblingPylonCondition = new Condition("Mods.Fargowiltas.Conditions.SiblingPylon", () => Condition.NpcIsPresent(NPCType<Abominationn>()).Predicate.Invoke() && Condition.NpcIsPresent(NPCType<Deviantt>()).Predicate.Invoke());
+            npcShop1.Add(new Item(ItemType<SiblingPylon>()), Condition.HappyEnoughToSellPylons, siblingPylonCondition);
+            npcShop2.Add(new Item(ItemType<SiblingPylon>()), Condition.HappyEnoughToSellPylons, siblingPylonCondition);
+            npcShop3.Add(new Item(ItemType<SiblingPylon>()), Condition.HappyEnoughToSellPylons, siblingPylonCondition);
 
             npcShop1.Register();
             npcShop2.Register();

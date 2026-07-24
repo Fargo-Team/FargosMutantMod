@@ -1,6 +1,6 @@
 ﻿using Fargowiltas.Common.Configs;
 using Fargowiltas.Content.Items.CaughtNPCs;
-using Fargowiltas.Content.NPCs;
+using Fargowiltas.Content.NPCs.SquirrelNPC;
 using Fargowiltas.Utilities;
 using System.Collections.Generic;
 using System.Linq;

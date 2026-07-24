@@ -1,4 +1,4 @@
-﻿Abominationn: {
+Abominationn: {
 	DisplayName: Отвратт
 	NPCName1: Вилта
 	NPCName2: Джек
@@ -473,15 +473,20 @@ Squirrel: {
 	Chat: {
 		// Special
 		BloodMoon: "[c/FF0000:Ты будешь страдать.]"
+		// BloodMoonCritterCompanionship: ""
 		// Normal
 		Normal1: *писк*
 		Normal2: *щебет*
 		Normal3: *чёс-чёс*
+		// CritterCompanionship1: ""
+		// CritterCompanionship2: ""
+		// CritterCompanionship3: ""
 		FeedSuccess: *хруст*
 		FeedFail: *разочарованный писк*
 	}
 
 	WoTGDialogue: "[{0} поднимает взгляд на вас. Вы не можете понять, что он пытается сказать.]"
+	// WoTGDialogueCritterCompanionship: ""
 	Census.SpawnCondition: Если у вас в инвентаре есть белка в цилиндре.
 	Feed: Скормить предмет
 	BlackMarket: Чёрный рынок

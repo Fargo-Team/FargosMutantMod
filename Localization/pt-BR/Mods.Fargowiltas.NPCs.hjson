@@ -473,15 +473,20 @@ Squirrel: {
 	Chat: {
 		// Special
 		BloodMoon: "[c/FF0000:Você irá sofrer.]"
+		// BloodMoonCritterCompanionship: ""
 		// Normal
 		Normal1: *guincho*
 		Normal2: *chiado*
 		Normal3: *morde morde*
+		// CritterCompanionship1: ""
+		// CritterCompanionship2: ""
+		// CritterCompanionship3: ""
 		// FeedSuccess: *crunch*
 		// FeedFail: *disappointed squeak*
 	}
 
 	// WoTGDialogue: "[{0} looks up at you. You can't tell what its expression means.]"
+	// WoTGDialogueCritterCompanionship: ""
 	Census.SpawnCondition: Tenha um esquilo de cartola no seu inventário.
 	// Feed: Feed Held Item
 	// BlackMarket: Black Market

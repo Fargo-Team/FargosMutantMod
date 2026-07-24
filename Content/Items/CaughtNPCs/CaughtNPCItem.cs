@@ -1,6 +1,7 @@
 ﻿using Fargowiltas.Common.Configs;
 using Fargowiltas.Content.NPCs;
 using Fargowiltas.Content.NPCs.AbominationnNPC;
+using Fargowiltas.Content.NPCs.SquirrelNPC;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
@@ -50,7 +51,26 @@ namespace Fargowiltas.Content.Items.CaughtNPCs
             CaughtTownies.Clear();
         }
 
-        public override string Texture => AssociatedNpcId < NPCID.Count ? (AssociatedNpcId == NPCID.Princess ? $"Terraria/Images/TownNPCs/Princess_Default" : $"Terraria/Images/NPC_{AssociatedNpcId}") : NPCLoader.GetNPC(AssociatedNpcId).Texture;
+        public override string Texture => GetTexture();
+
+        public string GetTexture()
+        {
+            string texture;
+            if (AssociatedNpcId < NPCID.Count) // vanilla
+            {
+                texture = $"Terraria/Images/NPC_{AssociatedNpcId}";
+                if (AssociatedNpcId == NPCID.Princess)
+                    texture = $"Terraria/Images/TownNPCs/Princess_Default";
+            }
+            else // modded
+            {
+                texture = NPCLoader.GetNPC(AssociatedNpcId).Texture;
+                if (AssociatedNpcId == ModContent.NPCType<Squirrel>())
+                    texture = "Fargowiltas/Content/NPCs/SquirrelNPC/CaughtSquirrelItem";
+            }
+
+            return texture;
+        }
 
         public override void SetStaticDefaults()
         {

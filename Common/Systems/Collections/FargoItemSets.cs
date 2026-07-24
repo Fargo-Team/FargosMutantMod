@@ -1,6 +1,6 @@
 ﻿using Fargowiltas.Content.Items.Misc;
 using Fargowiltas.Content.Items.Tiles;
-using Fargowiltas.Content.NPCs;
+using Fargowiltas.Content.NPCs.SquirrelNPC;
 using ReLogic.Reflection;
 using System.Collections.Generic;
 using Terraria.ID;

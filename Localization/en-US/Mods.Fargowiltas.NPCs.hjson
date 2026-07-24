@@ -1,4 +1,4 @@
-﻿Abominationn: {
+Abominationn: {
 	DisplayName: Abominationn
 	NPCName1: Wilta
 	NPCName2: Jack
@@ -473,15 +473,20 @@ Squirrel: {
 	Chat: {
 		// Special
 		BloodMoon: "[c/FF0000:You will suffer.]"
+		BloodMoonCritterCompanionship: ""
 		// Normal
 		Normal1: *squeak*
 		Normal2: *chitter*
 		Normal3: *scratch scratch*
+		CritterCompanionship1: ""
+		CritterCompanionship2: ""
+		CritterCompanionship3: ""
 		FeedSuccess: *crunch*
 		FeedFail: *disappointed squeak*
 	}
 
 	WoTGDialogue: "[{0} looks up at you. You can't tell what its expression means.]"
+	WoTGDialogueCritterCompanionship: ""
 	Census.SpawnCondition: Have a Top Hat Squirrel in your inventory.
 	Feed: Feed Held Item
 	BlackMarket: Black Market

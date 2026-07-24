@@ -1,5 +1,6 @@
 ﻿using Fargowiltas.Content.NPCs;
 using Fargowiltas.Content.NPCs.AbominationnNPC;
+using Fargowiltas.Content.NPCs.SquirrelNPC;
 using System.Linq;
 using Terraria;
 using Terraria.Localization;

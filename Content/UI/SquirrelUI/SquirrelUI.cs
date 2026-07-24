@@ -1,4 +1,4 @@
-﻿using Fargowiltas.Content.NPCs;
+﻿using Fargowiltas.Content.NPCs.SquirrelNPC;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;

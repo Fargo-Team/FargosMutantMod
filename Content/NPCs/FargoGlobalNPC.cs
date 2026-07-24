@@ -4,6 +4,7 @@ using Fargowiltas.Content.Items.Explosives;
 using Fargowiltas.Content.Items.Misc;
 using Fargowiltas.Content.Items.Summons.SwarmSummons.Energizers;
 using Fargowiltas.Content.Items.Tiles;
+using Fargowiltas.Content.NPCs.SquirrelNPC;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;

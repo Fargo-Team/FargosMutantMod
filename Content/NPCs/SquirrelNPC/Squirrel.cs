@@ -19,15 +19,17 @@ using Terraria.GameContent;
 using Terraria.GameContent.Achievements;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.Personalities;
+using Terraria.GameContent.Shaders;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using Terraria.Social.Base;
 using Terraria.Utilities;
 using static Fargowiltas.Fargowiltas;
 using static Terraria.GameContent.LucyAxeMessage;
 using static Terraria.ModLoader.ModContent;
 
-namespace Fargowiltas.Content.NPCs
+namespace Fargowiltas.Content.NPCs.SquirrelNPC
 {
     [AutoloadHead]
     public class Squirrel : ModNPC
@@ -45,15 +47,13 @@ namespace Fargowiltas.Content.NPCs
 
         public override void SetStaticDefaults()
         {
-            Main.npcFrameCount[Type] = 6;
-            NPCID.Sets.ExtraFramesCount[Type] = 9;
+            Main.npcFrameCount[Type] = 4;
+            NPCID.Sets.ExtraFramesCount[Type] = 0;
             NPCID.Sets.AttackFrameCount[Type] = 4;
             NPCID.Sets.DangerDetectRange[Type] = 700;
-            NPCID.Sets.AttackType[Type] = 0;
-            NPCID.Sets.AttackTime[Type] = 90;
-            NPCID.Sets.AttackAverageChance[Type] = 30;
-            //NPCID.Sets.HatOffsetY[Type] = 4;
-            NPCID.Sets.FaceEmote[NPC.type] = ModContent.EmoteBubbleType<SquirrelEmote>();
+            NPCID.Sets.AttackType[Type] = -1;
+
+            NPCID.Sets.FaceEmote[Type] = ModContent.EmoteBubbleType<SquirrelEmote>();
 
             NPCID.Sets.CannotSitOnFurniture[Type] = true;
 
@@ -66,10 +66,10 @@ namespace Fargowiltas.Content.NPCs
 
             NPC.Happiness.SetBiomeAffection<ForestBiome>(AffectionLevel.Love);
             NPC.Happiness.SetBiomeAffection<UndergroundBiome>(AffectionLevel.Hate);
-            NPC.Happiness.SetNPCAffection<LumberJack>(AffectionLevel.Like);
+            NPC.Happiness.SetNPCAffection<LumberJack>(AffectionLevel.Love);
 
             NPCProfile = new Profiles.StackedNPCProfile(
-                new Profiles.DefaultNPCProfile(Texture, NPCHeadLoader.GetHeadSlot(HeadTexture), Texture + "_Party")
+                new Profiles.DefaultNPCProfile(Texture, NPCHeadLoader.GetHeadSlot(HeadTexture)) //, Texture + "_Party")
             //new Profiles.DefaultNPCProfile(Texture + "_Shimmer", ShimmerHeadIndex, null)
             );
         }
@@ -129,13 +129,30 @@ namespace Fargowiltas.Content.NPCs
             FargoWorld.DownedBools["squirrel"] = true;
             base.OnSpawn(source);
         }
+        public const int IdleThreshold = (int)(60 * 60 * 1.5f);
+        public bool doIdleAnimation;
         public override void AI()
         {
             NPC.dontTakeDamage = Main.bloodMoon;
             DrawOffsetY = -2;
+
+            if (NPC.velocity.X == 0)
+            {   
+                if (!doIdleAnimation)
+                    NPC.localAI[0]++;
+                if (NPC.localAI[0] >= IdleThreshold)
+                {
+                    doIdleAnimation = true;
+                    NPC.localAI[0] = 60 * Main.rand.NextFloat(1.5f, 2f) * -1f;
+                }
+            }
+
+            // prevent squirrel from running away during the idle animation
+            if (doIdleAnimation || idleLoops != 0)
+                NPC.ai[1]++;
         }
 
-        public override bool CanTownNPCSpawn(int numTownNPCs)/* tModPorter Suggestion: Copy the implementation of NPC.SpawnAllowed_Merchant in vanilla if you to count money, and be sure to set a flag when unlocked, so you don't count every tick. */
+        public override bool CanTownNPCSpawn(int numTownNPCs)
         {
             if (FargoUtils.AnyBossAlive() || !FargoServerConfig.Instance.Squirrel)
             {
@@ -158,8 +175,23 @@ namespace Fargowiltas.Content.NPCs
             return false;
         }
 
+        public override void ModifyHoverBoundingBox(ref Rectangle boundingBox)
+        {
+            boundingBox = new((int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height);
+        }
+
         public override string GetChat()
         {
+            bool hasCritterCompanionship = false; //Main.LocalPlayer.dontHurtCritters;
+            if (hasCritterCompanionship)
+            {
+                return Main.rand.Next(3) switch
+                {
+                    0 => SquirrelChat("CritterCompanionship1"),
+                    1 => SquirrelChat("CritterCompanionship2"),
+                    _ => SquirrelChat("CritterCompanionship3"),
+                };
+            }
             return Main.rand.Next(3) switch
             {
                 0 => SquirrelChat("Normal1"),
@@ -191,6 +223,7 @@ namespace Fargowiltas.Content.NPCs
                     Main.npcChatText = SquirrelChat("FeedFail");
             }
         }
+
         public override void AddShops()
         {
             var npcShop = new NPCShop(Type, ShopName);
@@ -210,53 +243,112 @@ namespace Fargowiltas.Content.NPCs
             npcShop.Register();
         }
 
-        public override bool CanGoToStatue(bool toKingStatue)
-        {
-            return toKingStatue;
-        }
+        public override bool CanGoToStatue(bool toKingStatue) => toKingStatue;
 
-        public override bool UsesPartyHat()
+        public override bool UsesPartyHat() => false;
+
+        public int idleLoops;
+        public override void FindFrame(int frameHeight)
         {
+            // todo: internally cleanup
+            /*
+             * Main.NewText("x: " + FrameX);
+            Main.NewText("y: " + FrameY);
+            Main.NewText("idle loops: " + idleLoops);
+            Main.NewText("idling: " + doIdleAnimation);
+            */
+            if (NPC.velocity.X != 0) // movement
+            {
+                FrameX = 2;
+                if (++FrameCounter >= 6)
+                {
+                    FrameCounter = 0;
+                    if (++FrameY >= Main.npcFrameCount[Type])
+                        FrameY = 0;
+                }
+
+            }
+            else if (doIdleAnimation) // idle animation
+            {
+                if (FrameX != 3 && FrameX != 4)
+                    FrameX = 3;
+
+                if (++FrameCounter >= 6)
+                {
+                    FrameCounter = 0;
+                    ++FrameY;
+                    if (FrameY >= 3 && FrameX == 3)
+                    {
+                        FrameY = 0;
+                        FrameX++;
+                    }
+                    if (FrameY >= 2 && FrameX == 4)
+                    {
+                        FrameY = 0;
+                        idleLoops++;
+                    }
+                        
+                    if (idleLoops >= 8)
+                    {
+                        doIdleAnimation = false;
+                        idleLoops = 0;
+                    }
+
+                }
+
+            }
+            else if (!doIdleAnimation && (FrameX == 3 || FrameX == 4)) //idle animation end
+            {
+                if (FrameX != 3)
+                {
+                    FrameX = 3;
+                    FrameY = 2;
+                }
+
+                if (++FrameCounter >= 6)
+                {
+                    FrameCounter = 0;
+                    if (--FrameY <= 0)
+                    {
+                        FrameX = 1; FrameY = 0;
+                    }
+                }
+            }
+            else // still
+            {
+                FrameX = 1;
+                FrameCounter = FrameY = 0;
+            }
+        }
+        public int FrameCounter, FrameX, FrameY;
+        public override bool PreDraw(SpriteBatch sb, Vector2 screenPos, Color drawColor)
+        {
+            Texture2D texture = TextureAssets.Npc[Type].Value;
+            bool bloodMoon = Main.bloodMoon;
+
+            Rectangle frame = new(50 * FrameX, 42 * FrameY, 50, 42);
+            Vector2 origin = frame.Size() / 2f;
+            SpriteEffects effects = NPC.spriteDirection < 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
+            float scale = (Main.mouseTextColor / 200f - 0.35f) * 0.3f + 0.8f;
+            Vector2 position = NPC.Center - screenPos + new Vector2(0, NPC.gfxOffY) + new Vector2(0, 4);
+            
+            if (bloodMoon)
+            {
+                for (int j = 0; j < 12; j++)
+                {
+                    Vector2 afterimageOffset = (MathHelper.TwoPi * j / 12f).ToRotationVector2() * 4f + Vector2.UnitY * 3;
+                    Color glowColor = new Color(255, 0, 0, 0);
+                    Main.EntitySpriteDraw(texture, position + afterimageOffset - new Vector2(0, 4), frame, glowColor, NPC.rotation, origin, scale, effects, 0f);
+                }
+            }
+
+            sb.Draw(texture, position, frame, drawColor, NPC.rotation, origin, NPC.scale, effects, 0);
+
+            if (bloodMoon)
+                sb.Draw(EyesAsset.Value, position, frame, Color.White * NPC.Opacity, NPC.rotation, origin, NPC.scale, effects, 0f);
+            
             return false;
         }
-
-        public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
-        {
-            if (!Main.bloodMoon)
-            {
-                return true;
-            }
-
-
-            Rectangle frame = NPC.frame;
-            SpriteEffects effects = NPC.spriteDirection < 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
-            //Vector2 position = NPC.Center - screenPos + new Vector2(0f, NPC.gfxOffY + 2);
-            float scale = (Main.mouseTextColor / 200f - 0.35f) * 0.3f + 0.9f;
-            //glow
-            for (int j = 0; j < 12; j++)
-            {
-                Vector2 afterimageOffset = (MathHelper.TwoPi * j / 12f).ToRotationVector2() * 4f + Vector2.UnitY * 3;
-                Color glowColor = Color.Red with { A = 0 };
-                Texture2D texture = ModContent.Request<Texture2D>(Texture).Value;
-                Main.EntitySpriteDraw(texture, NPC.Center + afterimageOffset - screenPos + Vector2.UnitY * (NPC.gfxOffY - 1), frame, glowColor, NPC.rotation, new Vector2(texture.Width / 2, texture.Height / 2 / Main.npcFrameCount[NPC.type]), NPC.scale, effects, 0f);
-            }
-            return true;
-        }
-
-        public override void PostDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
-        {
-            if (!Main.bloodMoon)
-            {
-                return;
-            }
-
-            Rectangle frame = NPC.frame;
-            SpriteEffects effects = NPC.spriteDirection < 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
-            Vector2 position = NPC.Center - screenPos + new Vector2(0f, NPC.gfxOffY + 2);
-
-            spriteBatch.Draw(EyesAsset.Value, position, frame, Color.White * NPC.Opacity, NPC.rotation, frame.Size() / 2f, NPC.scale, effects, 0f);
-        }
-
         public override void HitEffect(NPC.HitInfo hit)
         {
             if (NPC.life <= 0)

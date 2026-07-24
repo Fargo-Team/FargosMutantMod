@@ -473,15 +473,20 @@ Squirrel: {
 	Chat: {
 		// Special
 		BloodMoon: "[c/FF0000:你会受苦的。]"
+		// BloodMoonCritterCompanionship: ""
 		// Normal
 		Normal1: *吱吱*
 		Normal2: *啾啾*
 		Normal3: *嘎吱嘎吱*
+		// CritterCompanionship1: ""
+		// CritterCompanionship2: ""
+		// CritterCompanionship3: ""
 		// FeedSuccess: *crunch*
 		// FeedFail: *disappointed squeak*
 	}
 
 	// WoTGDialogue: "[{0} looks up at you. You can't tell what its expression means.]"
+	// WoTGDialogueCritterCompanionship: ""
 	Census.SpawnCondition: 库存中有一只高顶礼帽松鼠。
 	// Feed: Feed Held Item
 	// BlackMarket: Black Market

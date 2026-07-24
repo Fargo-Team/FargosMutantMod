@@ -26,9 +26,13 @@ namespace Fargowiltas.Common.Systems.Collections
             ItemID.HandOfCreation,
             ItemID.ActuationAccessory,
             ItemID.EncumberingStone,
+            ItemID.UncumberingStone, // encumbering stone inactive
             ItemID.DontHurtCrittersBook,
+            ItemID.DontHurtCrittersBookInactive,
             ItemID.DontHurtComboBook,
+            ItemID.DontHurtComboBookInactive,
             ItemID.DontHurtNatureBook,
+            ItemID.DontHurtNatureBookInactive,
             ItemID.LucyTheAxe);
 
         public static bool[] InfoAccessory = ItemFactory.CreateBoolSet(false,

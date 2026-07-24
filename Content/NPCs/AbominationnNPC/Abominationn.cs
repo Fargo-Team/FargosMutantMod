@@ -508,8 +508,6 @@ namespace Fargowiltas.Content.NPCs.AbominationnNPC
         public int ArmFrameCounter, ArmFrame;
         public override bool PreDraw(SpriteBatch sb, Vector2 screenPos, Color drawColor)
         {
-            //if (NPC.IsABestiaryIconDummy)
-            //    return true;
             Texture2D texture = (Texture2D)TownNPCProfile().GetTextureNPCShouldUse(NPC);
             Rectangle rectangle = NPC.frame;
             Vector2 origin = rectangle.Size() / 2f;

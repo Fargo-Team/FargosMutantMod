@@ -2,7 +2,6 @@ CorruptNukeProj.DisplayName: ПорчПреобразователь
 CorruptNukeSupremeProj.DisplayName: ПорчаПреобразовательВысш
 CrimsonNukeProj.DisplayName: БагрПреобразователь
 CrimsonNukeSupremeProj.DisplayName: БагрПреобразовательВысш
-DeathScythe.DisplayName: Коса Отвратта
 Explosion.DisplayName: Взрыв
 AltarExterminatorProj.DisplayName: Истребитель Алтарей
 AutoHouseProj.DisplayName: МоментДом Снар
@@ -46,4 +45,4 @@ MiniDirtInstabridgeProj.DisplayName: Мини Грязь МоментМост С
 CoolCrab.DisplayName: Крутой краб
 LumberJaxeProjectile.DisplayName: Снаряд Древопила
 BridgeAtomizerProj.DisplayName: Уничтожитель Мостов
-// AbominationnRocket.DisplayName: Abominationn Rocket
+// AbominationnRocket.DisplayName: Styx Rocket

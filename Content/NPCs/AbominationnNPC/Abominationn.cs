@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Security.Policy;
 using Terraria;
 using Terraria.GameContent;
@@ -507,11 +508,16 @@ namespace Fargowiltas.Content.NPCs.AbominationnNPC
         public int ArmFrameCounter, ArmFrame;
         public override bool PreDraw(SpriteBatch sb, Vector2 screenPos, Color drawColor)
         {
+            //if (NPC.IsABestiaryIconDummy)
+            //    return true;
             Texture2D texture = (Texture2D)TownNPCProfile().GetTextureNPCShouldUse(NPC);
             Rectangle rectangle = NPC.frame;
             Vector2 origin = rectangle.Size() / 2f;
             SpriteEffects effects = NPC.direction == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
             Vector2 position = NPC.Center - Main.screenPosition + new Vector2(6 * NPC.direction, 1 + NPC.gfxOffY);
+
+            if (NPC.IsABestiaryIconDummy)
+                position = NPC.Center + new Vector2(6 * NPC.direction, 1 + NPC.gfxOffY);
 
             Texture2D capeTexture = Cape.Value;
             Rectangle capeRect = new(54 * CapeFrameX, 72 * CapeFrameY, 54, 72);
@@ -522,7 +528,7 @@ namespace Fargowiltas.Content.NPCs.AbominationnNPC
 
             sb.Draw(capeTexture, capePosition, capeRect, drawColor, CapeRotation, capeOrigin, NPC.scale, effects, 0);
 
-            sb.Draw(texture, position, new Microsoft.Xna.Framework.Rectangle?(rectangle), NPC.GetAlpha(drawColor), NPC.rotation, origin, NPC.scale, effects, 0);
+            sb.Draw(texture, position, new Microsoft.Xna.Framework.Rectangle?(rectangle), drawColor, NPC.rotation, origin, NPC.scale, effects, 0);
             sb.Draw(Glow.Value, position, new Microsoft.Xna.Framework.Rectangle?(rectangle), NPC.GetAlpha(Color.White), NPC.rotation, origin, NPC.scale, effects, 0);
 
             // if attacking

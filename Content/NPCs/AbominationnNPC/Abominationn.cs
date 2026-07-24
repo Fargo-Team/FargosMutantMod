@@ -337,16 +337,12 @@ namespace Fargowiltas.Content.NPCs.AbominationnNPC
 
         public override void TownNPCAttackCooldown(ref int cooldown, ref int randExtraCooldown)
         {
-            cooldown = NPC.downedMoonlord ? 1 : 30;
-            if (!NPC.downedMoonlord)
-            {
-                randExtraCooldown = 30;
-            }
+            cooldown = 30;
         }
 
         public override void TownNPCAttackProj(ref int projType, ref int attackDelay)
         {
-            projType = NPC.downedMoonlord ? ProjectileType<Projectiles.DeathScythe>() : ProjectileID.DeathSickle;
+            projType = ProjectileType<AbominationnRocket>();
             attackDelay = 1;
         }
 

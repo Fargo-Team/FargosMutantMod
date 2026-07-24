@@ -1,20 +1,19 @@
 ﻿using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Fargowiltas.Content.Projectiles
+namespace Fargowiltas.Content.NPCs.AbominationnNPC
 {
-    public class DeathScythe : ModProjectile
+    public class AbominationnRocket : ModProjectile
     {
-        public override string Texture => "Terraria/Images/Projectile_274";
-
         public override Color? GetAlpha(Color lightColor) => Color.White * Projectile.Opacity;
 
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Abominationn Scythe");
+            Main.projFrames[Type] = 3;
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 6;
             ProjectileID.Sets.TrailingMode[Projectile.type] = 2;
         }
@@ -25,13 +24,14 @@ namespace Fargowiltas.Content.Projectiles
             Projectile.height = 42;
             Projectile.friendly = true;
             Projectile.npcProj = true;
-            Projectile.penetrate = 50;
+            Projectile.penetrate = 1;
             Projectile.scale = 1f;
             Projectile.timeLeft = 180;
             Projectile.ignoreWater = true;
             Projectile.tileCollide = false;
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 10;
+            Projectile.aiStyle = -1;
         }
 
         public override void AI()
@@ -40,14 +40,13 @@ namespace Fargowiltas.Content.Projectiles
             {
                 Projectile.localAI[0] = 1;
                 Projectile.ai[0] = -1;
-                SoundEngine.PlaySound(SoundID.Item71, Projectile.Center);
             }
 
-            Projectile.rotation += 1f;
+            Projectile.rotation = Projectile.velocity.ToRotation() + (float)Math.PI / 2;
 
             const int aislotHomingCooldown = 1;
             const int homingDelay = 30;
-            const float desiredFlySpeedInPixelsPerFrame = 70;
+            const float desiredFlySpeedInPixelsPerFrame = 30;
             const float amountOfFramesToLerpBy = 10; // Minimum of 1, please keep in full numbers even though it's a float!
 
             Projectile.ai[aislotHomingCooldown]++;
@@ -70,11 +69,41 @@ namespace Fargowiltas.Content.Projectiles
                     Projectile.ai[0] = -1;
                 }
             }
-        }
 
-        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+            Vector2 dustPos = Vector2.UnitY.RotatedBy(Projectile.rotation) * 8f * 2;
+            Dust d = Dust.NewDustPerfect(Projectile.Center, DustID.OrangeTorch, Vector2.Zero);
+            d.position = Projectile.Center + dustPos;
+            d.noGravity = true;
+
+            if (++Projectile.frameCounter >= 3)
+            {
+                Projectile.frameCounter = 0;
+                if (++Projectile.frame >= 3)
+                    Projectile.frame = 0;
+            }
+        }
+        public override void OnKill(int timeLeft)
         {
-            target.AddBuff(BuffID.ShadowFlame, 600);
+            for (int i = 0; i < 8; i++)
+            {
+                int d = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.InfernoFork);
+                Main.dust[d].velocity *= 3;
+                if (!Main.rand.NextBool(3))
+                    Main.dust[d].noGravity = true;
+                else Main.dust[d].velocity /= 2f;
+            }
+
+            Projectile.position = Projectile.Center;
+            Projectile.width = Projectile.height = 112;
+            Projectile.position.X -= Projectile.width / 2;
+            Projectile.position.Y -= Projectile.height / 2;
+            for (int index = 0; index < 4; ++index)
+                Dust.NewDustPerfect(Projectile.Center + Main.rand.NextVector2Circular(Projectile.width / 2, Projectile.height / 2), DustID.Smoke);
+            for (int index1 = 0; index1 < 20; ++index1)
+            {
+                Dust index2 = Dust.NewDustPerfect(Projectile.Center + Main.rand.NextVector2Circular(Projectile.width / 2, Projectile.height / 2), DustID.InfernoFork, Scale: 1.2f);
+                index2.noGravity = true;
+            }
         }
 
         //public override bool PreDraw(ref Color lightColor)

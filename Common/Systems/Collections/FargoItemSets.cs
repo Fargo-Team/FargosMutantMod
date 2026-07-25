@@ -64,7 +64,7 @@ namespace Fargowiltas.Common.Systems.Collections
             ItemID.FishFinder,
             ItemID.REK);
 
-        public static int[] ShimmerTransformsFromItem = ItemFactory.CreateIntSet(-1);
+        public static List<int>[] ShimmerTransformsFromItem = ItemFactory.CreateCustomSet<List<int>>(null);
 
 
         public static DupeType[] DuplicatableItems = ItemFactory.CreateCustomSet<DupeType>(DupeType.NotDupable,
@@ -333,7 +333,13 @@ namespace Fargowiltas.Common.Systems.Collections
             {
                 int shimmerItem = ItemID.Sets.ShimmerTransformToItem[i];
                 if (shimmerItem > 0)
-                    FargoItemSets.ShimmerTransformsFromItem[shimmerItem] = i;
+                {
+                    if (FargoItemSets.ShimmerTransformsFromItem[shimmerItem] == null)
+                        FargoItemSets.ShimmerTransformsFromItem[shimmerItem] = [];
+
+                    FargoItemSets.ShimmerTransformsFromItem[shimmerItem].Add(i);
+                }
+                    
             }
         }
     }

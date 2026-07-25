@@ -343,7 +343,15 @@ namespace Fargowiltas.Content.Items
                 }
 
                 int shimmerItem = ItemID.Sets.ShimmerTransformToItem[item.type];
-                int shimmerFromItem = FargoItemSets.ShimmerTransformsFromItem[item.type];
+                int shimmerFromItem = -1;
+                if (FargoItemSets.ShimmerTransformsFromItem[item.type] != null)
+                {
+                    int shimmerTimer = (int)(Main.GlobalTimeWrappedHourly * 60);
+                    int shimmerIndex = shimmerTimer / 60;
+                    shimmerIndex %= FargoItemSets.ShimmerTransformsFromItem[item.type].Count;
+                    shimmerFromItem = FargoItemSets.ShimmerTransformsFromItem[item.type][shimmerIndex];
+                }
+
                 string shimmerText = "";
                 if (shimmerItem > 0 && shimmerFromItem <= 0)
                     shimmerText = $"[s:Fargowiltas/Shimmer] [c/FFC0CB:{ExpandedTooltipLoc("Shimmerable")}] [i:{shimmerItem}] [c/FFC0CB:{ContentSamples.ItemsByType[shimmerItem].Name}]";

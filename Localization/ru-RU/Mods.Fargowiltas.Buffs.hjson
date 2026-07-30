@@ -119,7 +119,7 @@ HallowChestBuff: {
 
 HeartChocolateBuff: {
 	DisplayName: Шоколадное сердце
-	Description: Скорость появления нимф значительно увеличена
+	Description: Скорость появления потерянных девочек значительно увеличена
 }
 
 HolyGrailBuff: {

@@ -849,9 +849,25 @@ namespace Fargowiltas.Content.NPCs.SquirrelNPC
                 consumeCount = 1;
                 if (action)
                 {
+                    Player player = Main.LocalPlayer;
                     FargoItemSets.SacrificeCount[item.type]--;
                     Player localPlayer = Main.LocalPlayer;
                     Create((MessageSource)8, localPlayer.Top, new Vector2(Main.rand.NextFloatDirection() * 7f, -2f + Main.rand.NextFloat() * -2f));
+                    Item.NewItem(new EntitySource_WorldEvent(), player.Center, new Item(ItemID.Wood, 100));
+                    Item.NewItem(new EntitySource_WorldEvent(), player.Center, new Item(ItemID.BorealWood, 100));
+                    Item.NewItem(new EntitySource_WorldEvent(), player.Center, new Item(ItemID.PalmWood, 100));
+                    Item.NewItem(new EntitySource_WorldEvent(), player.Center, new Item(ItemID.Shadewood, 100));
+                    Item.NewItem(new EntitySource_WorldEvent(), player.Center, new Item(ItemID.Ebonwood, 100));
+                    Item.NewItem(new EntitySource_WorldEvent(), player.Center, new Item(ItemID.RichMahogany, 100));
+
+                    if (Main.LocalPlayer.FargoMutant().ItemHasBeenOwned[ItemID.AshWood])
+                        Item.NewItem(new EntitySource_WorldEvent(), player.Center, new Item(ItemID.AshWood, 100));
+
+                    if (Main.hardMode && Main.LocalPlayer.FargoMutant().ItemHasBeenOwned[ItemID.Pearlwood])
+                        Item.NewItem(new EntitySource_WorldEvent(), player.Center, new Item(ItemID.Pearlwood, 100));
+
+                    if (Main.hardMode && Main.LocalPlayer.FargoMutant().ItemHasBeenOwned[ItemID.SpookyWood])
+                        Item.NewItem(new EntitySource_WorldEvent(), player.Center, new Item(ItemID.SpookyWood, 100));
                 }
                 return true;
             }

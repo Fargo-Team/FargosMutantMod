@@ -154,8 +154,8 @@ BattleCryNone: Nenhum
 PotionCooler: {
 	// EmptyInfo: Insert a potion!
 	// Maxed: This potion is already maxed!
-	// Enabled: effect is currently [c/77FF77:enabled].
-	// Disabled: effect is currently [c/FF7777:disabled].
+	// Enabled: "[c/9999FF:{0}] effect is currently [c/77FF77:enabled]."
+	// Disabled: "[c/9999FF:{0}] effect is currently [c/FF7777:disabled]."
 	// Progress: Progress ({0}%)
 	// MaxEffect: On max stack, grants [c/9999FF:{0}] effect.
 	// FlaskWarn: "[c/FFFF99:Warning:] Only one flask can be active at a time! (Active Flask: {0})"

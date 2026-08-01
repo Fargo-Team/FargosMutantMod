@@ -1,4 +1,4 @@
-﻿using Fargowiltas.Assets.Textures;
+using Fargowiltas.Assets.Textures;
 using Fargowiltas.Common;
 using Fargowiltas.Common.Systems;
 using Fargowiltas.Content.Items.Summons;
@@ -280,11 +280,11 @@ namespace Fargowiltas.Content.UI.PotionBag
                     bool toggled = Main.LocalPlayer.FargoMutant().PotionToggler.Toggles.Any(t => t.Value.BuffID == buffType && t.Value.ToggleBool);
                     if (toggled)
                     {
-                        display += $"\n[c/9999FF:{Lang.GetBuffName(buffType)}] {PotionBagUI.GetCoolerText("Enabled")}";
+                        display += $"\n{PotionBagUI.GetCoolerText("Enabled", [Lang.GetBuffName(buffType)])}";
                     }
                     else
                     {
-                        display += $"\n[c/9999FF:{Lang.GetBuffName(buffType)}] {PotionBagUI.GetCoolerText("Disabled")}";
+                        display += $"\n{PotionBagUI.GetCoolerText("Disabled", [Lang.GetBuffName(buffType)])}";
                     }
                 }
                 else
@@ -663,7 +663,7 @@ namespace Fargowiltas.Content.UI.PotionBag
 
                 if (item.IsAir)
                 {
-                    var emptyText = new UIText("Insert a potion!");
+                    var emptyText = new UIText(Language.GetTextValue("Mods.Fargowiltas.UI.PotionCooler.EmptyInfo"));
                     emptyText.VAlign = emptyText.HAlign = 0.5f;
                     Append(emptyText);
                     return;

@@ -44,10 +44,14 @@ namespace Fargowiltas.Content.Items.Misc
 
         public static void TryAutoSummoner(Player player)
         {
-            FargoPlayer fargoPlayer = player.FargoMutant();
-
             if (player.whoAmI != Main.myPlayer)
                 return;
+
+            float emptySlots = player.maxMinions - player.slotsMinions;
+            if (emptySlots <= 0)
+                return;
+
+            FargoPlayer fargoPlayer = player.FargoMutant();
 
             if (!fargoPlayer.AutoSummon)
                 return;
@@ -57,7 +61,8 @@ namespace Fargowiltas.Content.Items.Misc
 
             fargoPlayer.AutoSummonCD = 0;
 
-            if (FargoUtils.AnyBossAlive())
+            bool anyBoss = FargoUtils.AnyBossAlive();
+            if (anyBoss)
             {
                 //during boss, can only summon so many times and then no more
                 if (fargoPlayer.AutoSummonCap <= 0)
@@ -79,13 +84,13 @@ namespace Fargowiltas.Content.Items.Misc
                 Item item = player.inventory[i];
 
                 if (item != null && item.DamageType == DamageClass.Summon && item.damage > 0 && item.shoot > ProjectileID.None && item.ammo <= 0 && !item.channel
-                    && ((ContentSamples.ProjectilesByType[item.shoot].minion && ItemID.Sets.StaffMinionSlotsRequired[item.type] <= player.maxMinions - player.slotsMinions)
+                    && ((ContentSamples.ProjectilesByType[item.shoot].minion && ContentSamples.ProjectilesByType[item.shoot].minionSlots > 0f && ItemID.Sets.StaffMinionSlotsRequired[item.type] <= emptySlots)
                     || (item.sentry && ContentSamples.ProjectilesByType[item.shoot].sentry && sentrycount < player.maxTurrets && !DD2Event.Ongoing)))
                 {
-                    if (!player.HasAmmo(item) || (item.mana > 0 && player.statMana < item.mana))
+                    if (!player.HasAmmo(item) || (item.mana > 0 && !player.CheckMana(item, -1, false, true)))
                         continue;
 
-                    if (!PlayerLoader.CanUseItem(player, item) || !ItemLoader.CanUseItem(item, player))
+                    if (!CombinedHooks.CanUseItem(player, item))
                         continue;
 
                     weaponsUsed++;
@@ -111,9 +116,9 @@ namespace Fargowiltas.Content.Items.Misc
 
                     if (item.mana > 0)
                     {
-                        if (player.CheckMana(item.mana / 2, true, false))
+                        if (player.CheckMana(item, -1, true, false))
                         {
-                            player.manaRegenDelay = 300;
+                            player.manaRegenDelay = player.maxRegenDelay;
                         }
                     }
                     if (item.consumable)
@@ -125,9 +130,7 @@ namespace Fargowiltas.Content.Items.Misc
                 }
             }
 
-            float minionsLeft = player.maxMinions - player.slotsMinions;
-            fargoPlayer.AutoSummonCap = FargoUtils.AnyBossAlive()
-                ? Math.Min(fargoPlayer.AutoSummonCap, minionsLeft) : minionsLeft;
+            fargoPlayer.AutoSummonCap = anyBoss ? Math.Min(fargoPlayer.AutoSummonCap, emptySlots) : emptySlots;
         }
     }
 }

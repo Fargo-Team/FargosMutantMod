@@ -412,7 +412,7 @@ namespace Fargowiltas
                 drawInfo.DustCache.Add(d.dustIndex);
             }
         }
-        public override void PostUpdateEquips()
+        public override void PreUpdateMovement()
         {
             AutoSummoner.TryAutoSummoner(Player);
         }

@@ -19,11 +19,9 @@ using Terraria.GameContent;
 using Terraria.GameContent.Achievements;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.Personalities;
-using Terraria.GameContent.Shaders;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
-using Terraria.Social.Base;
 using Terraria.Utilities;
 using static Fargowiltas.Fargowiltas;
 using static Terraria.GameContent.LucyAxeMessage;
@@ -851,8 +849,7 @@ namespace Fargowiltas.Content.NPCs.SquirrelNPC
                 {
                     Player player = Main.LocalPlayer;
                     FargoItemSets.SacrificeCount[item.type]--;
-                    Player localPlayer = Main.LocalPlayer;
-                    Create((MessageSource)8, localPlayer.Top, new Vector2(Main.rand.NextFloatDirection() * 7f, -2f + Main.rand.NextFloat() * -2f));
+                    Create((MessageSource)8, player.Top, new Vector2(Main.rand.NextFloatDirection() * 7f, -2f + Main.rand.NextFloat() * -2f));
                     Item.NewItem(new EntitySource_WorldEvent(), player.Center, new Item(ItemID.Wood, 100));
                     Item.NewItem(new EntitySource_WorldEvent(), player.Center, new Item(ItemID.BorealWood, 100));
                     Item.NewItem(new EntitySource_WorldEvent(), player.Center, new Item(ItemID.PalmWood, 100));
@@ -860,13 +857,14 @@ namespace Fargowiltas.Content.NPCs.SquirrelNPC
                     Item.NewItem(new EntitySource_WorldEvent(), player.Center, new Item(ItemID.Ebonwood, 100));
                     Item.NewItem(new EntitySource_WorldEvent(), player.Center, new Item(ItemID.RichMahogany, 100));
 
-                    if (Main.LocalPlayer.FargoMutant().ItemHasBeenOwned[ItemID.AshWood])
+                    FargoPlayer modPlayer = player.FargoMutant();
+                    if (modPlayer.ItemHasBeenOwned[ItemID.AshWood])
                         Item.NewItem(new EntitySource_WorldEvent(), player.Center, new Item(ItemID.AshWood, 100));
 
-                    if (Main.hardMode && Main.LocalPlayer.FargoMutant().ItemHasBeenOwned[ItemID.Pearlwood])
+                    if (Main.hardMode && modPlayer.ItemHasBeenOwned[ItemID.Pearlwood])
                         Item.NewItem(new EntitySource_WorldEvent(), player.Center, new Item(ItemID.Pearlwood, 100));
 
-                    if (Main.hardMode && Main.LocalPlayer.FargoMutant().ItemHasBeenOwned[ItemID.SpookyWood])
+                    if (Main.hardMode && modPlayer.ItemHasBeenOwned[ItemID.SpookyWood])
                         Item.NewItem(new EntitySource_WorldEvent(), player.Center, new Item(ItemID.SpookyWood, 100));
                 }
                 return true;

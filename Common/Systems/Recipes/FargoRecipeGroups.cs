@@ -12,11 +12,21 @@ namespace Fargowiltas.Common.Systems.Recipes
     public class FargoRecipeGroups : ModSystem
     {
         public static string ItemXOrY(int id1, int id2) => $"{Lang.GetItemName(id1)} {Language.GetTextValue($"Mods.Fargowiltas.RecipeGroups.Or")} {Lang.GetItemName(id2)}";
-        internal static RecipeGroup AnyGoldBar, AnyEvilBar;
-        internal static RecipeGroup AnyDemonAltar, AnyAnvil, AnyHMAnvil, AnyForge, AnyBookcase, AnyCookingPot, AnyTombstone, AnyWoodenTable, AnyWoodenChair, AnyWoodenSink, AnyDecayChamber, AnyWoodenPlatform;
-        internal static RecipeGroup AnyButterfly, /*AnySquirrel,*/ AnyCommonFish, AnyDragonfly, AnyBird, AnyDuck;
-        internal static RecipeGroup AnyFoodT2, AnyFoodT3, AnyGemRobe;
-        internal static RecipeGroup AnyWoodCrate, AnyIronCrate, AnyGoldCrate, AnyJungleCrate, AnySkyCrate, AnyCorruptCrate, AnyCrimsonCrate, AnyHallowedCrate, AnyDungeonCrate, AnyFrozenCrate, AnySandCrate, AnyLavaCrate, AnyOceanCrate;
+        public static RecipeGroup AnyGoldBar, AnyEvilBar;
+        public static RecipeGroup AnyDemonAltar, AnyAnvil, AnyHMAnvil, AnyForge, AnyBookcase, AnyCookingPot, AnyTombstone, AnyWoodenTable, AnyWoodenChair, AnyWoodenSink, AnyDecayChamber, AnyWoodenPlatform;
+        public static RecipeGroup AnyButterfly, /*AnySquirrel,*/ AnyCommonFish, AnyDragonfly, AnyBird, AnyDuck;
+        public static RecipeGroup AnyFoodT2, AnyFoodT3, AnyGemRobe;
+        public static RecipeGroup AnyWoodCrate, AnyIronCrate, AnyGoldCrate, AnyJungleCrate, AnySkyCrate, AnyCorruptCrate, AnyCrimsonCrate, AnyHallowedCrate, AnyDungeonCrate, AnyFrozenCrate, AnySandCrate, AnyLavaCrate, AnyOceanCrate;
+
+        public override void Unload()
+        {
+            AnyGoldBar = AnyEvilBar = null;
+            AnyDemonAltar = AnyAnvil = AnyHMAnvil = AnyForge = AnyBookcase = AnyCookingPot = AnyTombstone = AnyWoodenTable = AnyWoodenChair = AnyWoodenSink = AnyDecayChamber = AnyWoodenPlatform = null;
+
+            AnyButterfly = AnyCommonFish = AnyDragonfly = AnyBird = AnyDuck = null;
+            AnyFoodT2 = AnyFoodT3 = AnyGemRobe = null;
+            AnyWoodCrate = AnyIronCrate = AnyGoldCrate = AnyJungleCrate = AnySkyCrate = AnyCorruptCrate = AnyCrimsonCrate = AnyHallowedCrate = AnyDungeonCrate = AnyFrozenCrate = AnySandCrate = AnyLavaCrate = AnyOceanCrate = null;
+        }
 
         public override void AddRecipeGroups()
         {

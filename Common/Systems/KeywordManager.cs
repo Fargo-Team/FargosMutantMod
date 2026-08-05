@@ -45,7 +45,6 @@ namespace Fargowiltas.Common.Systems
                 base.Color = Color.White;
             }
 
-            public static bool ShouldDraw = true;
 
             public Color ShadowColor = Color.Navy;
 
@@ -53,7 +52,7 @@ namespace Fargowiltas.Common.Systems
             {
                 DynamicSpriteFont font = FontAssets.MouseText.Value;
                 TextSnippet[] snippet = ChatManager.ParseMessage(Text, Color.White).ToArray();
-                if (!justCheckingString && ShouldDraw)
+                if (!justCheckingString)
                 {
                     ChatManager.DrawColorCodedStringWithShadow(spriteBatch, font, snippet, position, color, ShadowColor, 0, Vector2.Zero, Vector2.One, out _, -1);
                     ShadowColor = Color.Navy;
@@ -61,13 +60,6 @@ namespace Fargowiltas.Common.Systems
                 size = ChatManager.GetStringSize(font, snippet, Vector2.One);
                 return true;
             }
-
-            /*
-            public override float GetStringLength(DynamicSpriteFont font)
-            {
-                return base.GetStringLength(font);
-            }
-            */
 
             public override void OnHover()
             {

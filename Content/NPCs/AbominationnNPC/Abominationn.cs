@@ -87,6 +87,13 @@ namespace Fargowiltas.Content.NPCs.AbominationnNPC
                 new Profiles.DefaultNPCProfile(Texture + "_Shimmer", ShimmerHeadIndex, null)
             );
 
+            NPCID.Sets.NPCPortraits.Add(Type, NPCID.Sets.PrioritizedPortrait().Default(NPCID.Sets.BasicPortrait($"{Texture}_Portrait")));
+
+            //Close up portrait mode
+            NPCID.Sets.NPCPortraitsCloseUpOffsets.Add(Type, new Vector2(-3f, -36f));
+
+            NPCID.Sets.NPCPortraitsFullBodyRetroOffsets.Add(Type, new Vector2(0, -18));
+
             if (!Main.dedServ)
             {
                 Cape = Request<Texture2D>("Fargowiltas/Content/NPCs/AbominationnNPC/AbominationnCape");

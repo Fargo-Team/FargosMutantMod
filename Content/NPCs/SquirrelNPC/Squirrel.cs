@@ -70,6 +70,12 @@ namespace Fargowiltas.Content.NPCs.SquirrelNPC
                 new Profiles.DefaultNPCProfile(Texture, NPCHeadLoader.GetHeadSlot(HeadTexture)) //, Texture + "_Party")
             //new Profiles.DefaultNPCProfile(Texture + "_Shimmer", ShimmerHeadIndex, null)
             );
+
+            //Close up portrait mode
+            NPCID.Sets.NPCPortraitsCloseUpOffsets.Add(Type, new Vector2(-3f, -36f));
+
+            NPCID.Sets.NPCPortraitsFullBodyRetroOffsets.Add(Type, new Vector2(-3, -12));
+
         }
 
         public override void SetDefaults()
@@ -371,6 +377,7 @@ namespace Fargowiltas.Content.NPCs.SquirrelNPC
             {
                 if (Main.LocalPlayer.CountItemHeld(itemType) >= consumeCount)
                 {
+                    Main.NewText(consumeCount);
                     for (int consume = 0; consume < consumeCount; consume++)
                     {
                         Main.LocalPlayer.ConsumeItemHeld(itemType, true);

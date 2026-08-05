@@ -141,7 +141,7 @@ namespace Fargowiltas
             Item item = player.inventory[player.selectedItem];
             if (item != null && item.stack > 0 && item.type == type)
             {
-                if (ItemLoader.ConsumeItem(item, player) || ignoreCanConsumeItem)
+                if (player.ConsumeItem(item.type) || ignoreCanConsumeItem)
                     item.stack--;
 
                 if (item.stack <= 0)

@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using System;
+using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
 
@@ -19,9 +20,10 @@ namespace Fargowiltas.Utilities
         public static void CreateSimpleRecipe(int ingredientID, int resultID, int tileID, int ingredientAmount = 1, int resultAmount = 1, bool disableDecraft = false, RecipeGroup group = null, params Condition[] conditions)
         {
             var recipe = Recipe.Create(resultID, resultAmount);
+
             if (group != null)
             {
-                recipe.AddRecipeGroup(ingredientID, ingredientAmount);
+                recipe.AddRecipeGroup(group, ingredientAmount);
             }
             else
             {

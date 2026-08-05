@@ -25,6 +25,23 @@ namespace Fargowiltas.Common.Systems.Recipes
         private static RecipeGroup AnyDarkShardBanner, AnyLightShardBanner, AnyBrainScramblerBanner, AnyChainKnifeBanner, AnyRareCavelingBanner;
         private static RecipeGroup AnyCascadeBanner, AnyIceSickleBanner, AnyFrostStaffBanner;
 
+        public override void Unload()
+        {   
+            //yes this is unneccessary otherwise it does not unload correctly.
+            AnyPirateBanner = AnyArmoredBonesBanner = AnySlimesBanner = AnyBananaSplitBanner = AnyPureSkeletonBanner = null;
+            AnyHallowBanner = AnyCorruptBanner = AnyCrimsonBanner = AnyJungleBanner = AnySnowBanner = AnyDesertBanner = null;
+            AnyTentacleSpikeBanner = AntlionChargerOrSwarmerBanner = AnyBananaSplitBanner = AnyBloodMoonFishingT1Banner = null;
+            AnySharktoothNecklaceBanner = AnyJellyfishNecklaceBanner = AnyShackleBanner = AnyMilkshakeBanner = AnyMagmaStoneBanner = null;
+            AnyNazarBanner = AnyBezoarBanner = AnyAdhesiveBandageBanner = AnyBlindfoldBanner = AnyArmorPolishBanner = null;
+            AnyTrifoldMapBanner = AnyVitaminsBanner = AnyMegaphoneBanner = AnyFastClockBanner = AnyDungeonSkeletonT1Banner = null;
+            AnyCompassBanner = AnyDepthMeterBanner = AnyDungeonSkeletalT1Banner = AnyGraniteBanner = AnyVikingBanner = null;
+            AnyRobotHatBanner = AnyBunnyHoodBanner = AnyEvilPenguinBanner = AnyMummyBanner = AnyCoffeeCupBanner = null;
+            AnyCreamSodaBanner = AnyIceCreamBanner = AnyNachosBanner = AnyShrimpPoBoyBanner = AnyFriedEggBanner = null;
+            AnyGrapesBanner = AnyMeatGrinderBanner = AnyBlackLensBanner = AnyHotdogBanner = AnyApplePieBanner = AnyBBQRibsBanner = null;
+            AnyDarkShardBanner = AnyLightShardBanner = AnyBrainScramblerBanner = AnyChainKnifeBanner = AnyRareCavelingBanner = null;
+            AnyCascadeBanner = AnyIceSickleBanner = AnyFrostStaffBanner = null;
+        }
+
         public override bool IsLoadingEnabled(Mod mod)
         {
             return FargoServerConfig.Instance.BannerRecipes;

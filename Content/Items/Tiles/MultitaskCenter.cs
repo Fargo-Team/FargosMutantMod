@@ -3,6 +3,8 @@ using Fargowiltas.Content.Items.Misc;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
+using System.Collections.Generic;
+using System.Linq;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.GameContent.ObjectInteractions;
@@ -73,7 +75,7 @@ namespace Fargowiltas.Content.Items.Tiles
             AddMapEntry(new Color(200, 200, 200), name);
 
             //counts as
-            AdjTiles =
+            int[] countsAs = 
                 [
                 TileID.WorkBenches,
                 TileID.HeavyWorkBench,
@@ -89,6 +91,11 @@ namespace Fargowiltas.Content.Items.Tiles
                 TileID.Kegs
                 ];
             TileID.Sets.CountsAsWaterForCrafting[Type] = true;
+
+            foreach (int item in countsAs)
+            {
+                Recipe.AddTileCountsAs(Type, item);
+            }
             AnimationFrameHeight = 54;
 
             glowTexture = ModContent.Request<Texture2D>(Texture + "_Glow");

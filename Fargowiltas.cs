@@ -653,7 +653,9 @@ namespace Fargowiltas
                                 NPC.waveNumber = 6;
                                 NPC.waveKills = 220;
                                 DD2Event.CheckProgress(NPCID.DD2GoblinT3);
-                                player.QuickSpawnItem(egg.GetSource_FromThis(), ItemID.DD2EnergyCrystal, (int)(140f * NPC.GetBalance())); // give all missing crystals
+                                egg.ToWorldItem().GetSource_FromThis();
+                                
+                                player.QuickSpawnItem(egg.ToWorldItem().GetSource_FromThis(), ItemID.DD2EnergyCrystal, (int)(140f * NPC.GetBalance())); // give all missing crystals
                                 FargowiltasDetours.BetsyEggUsed = false;
                                 NetMessage.SendData(MessageID.WorldData);
                             }
@@ -1043,7 +1045,6 @@ namespace Fargowiltas
             {
                 int npcID = NPC.NewNPC(NPC.GetBossSpawnSource(Main.myPlayer), (int)npcCenter.X, (int)npcCenter.Y, bossType);
                 Main.npc[npcID].Center = npcCenter;
-                Main.npc[npcID].netUpdate2 = true;
 
 
                 if (spawnMessage)

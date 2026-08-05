@@ -12,8 +12,8 @@ namespace Fargowiltas.Common.Systems.Recipes
 {
     public class NPCRecipeSystem : ModSystem
     {
-        internal static int AnyCaughtNPC;
-        internal static int AnyCaughtSlime;
+        internal static RecipeGroup AnyCaughtNPC;
+        internal static RecipeGroup AnyCaughtSlime;
         public override void AddRecipeGroups()
         {
             int[] townies = CaughtNPCItem.CaughtTownies.Values.ToArray();
@@ -28,11 +28,9 @@ namespace Fargowiltas.Common.Systems.Recipes
                 temp.Remove(slimes[i]);
                 townies = temp.ToArray();
             }
-            var group = new RecipeGroup(() => RecipeHelper.GenerateAnyItemRecipeGroupText("CaughtNPC"), townies);
-            AnyCaughtNPC = RecipeGroup.RegisterGroup("Fargowiltas:AnyCaughtNPC", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
+            AnyCaughtNPC = RecipeGroup.Register("Fargowiltas:AnyCaughtNPC", () => RecipeHelper.GenerateAnyItemRecipeGroupText("CaughtNPC"), townies);
 
-            var groupSlimes = new RecipeGroup(() => RecipeHelper.GenerateAnyItemRecipeGroupText("CaughtSlime"), slimes);
-            AnyCaughtSlime = RecipeGroup.RegisterGroup("Fargowiltas:AnyCaughtSlime", groupSlimes)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
+            AnyCaughtSlime = RecipeGroup.Register("Fargowiltas:AnyCaughtSlime", () => RecipeHelper.GenerateAnyItemRecipeGroupText("CaughtSlime"), slimes);
         }
 
         public override void AddRecipes()
@@ -89,7 +87,7 @@ namespace Fargowiltas.Common.Systems.Recipes
             recipe.Register();
 
             recipe = Recipe.Create(CaughtNPCItem.CaughtTownies[ModContent.NPCType<Squirrel>()]);
-            recipe.AddRecipeGroup(RecipeGroups.Squirrels);
+            recipe.AddRecipeGroup(Terraria.ID.RecipeGroups.Squirrels);
             recipe.AddIngredient(ItemID.TopHat);
             recipe.AddTile(TileID.DemonAltar);
             recipe.DisableDecraft();
@@ -275,7 +273,7 @@ namespace Fargowiltas.Common.Systems.Recipes
             recipe = Recipe.Create(ItemID.ArtisanLoaf);
             recipe.AddIngredient(null, "SkeletonMerchant");
             recipe.AddIngredient(ItemID.GoldCoin, 20);
-            recipe.AddRecipeGroup(RecipeGroups.AnyFoodT2);
+            recipe.AddRecipeGroup(FargoRecipeGroups.AnyFoodT2);
             recipe.AddTile(TileID.TinkerersWorkbench);
             recipe.DisableDecraft();
             recipe.Register();
@@ -503,7 +501,7 @@ namespace Fargowiltas.Common.Systems.Recipes
             recipe = Recipe.Create(ItemID.SittingDucksFishingRod);
             recipe.AddIngredient(null, "TravellingMerchant", 2);
             recipe.AddIngredient(ItemID.GoldCoin, 70);
-            recipe.AddRecipeGroup(RecipeGroups.AnyDuck);
+            recipe.AddRecipeGroup(FargoRecipeGroups.AnyDuck);
             recipe.AddTile(TileID.TinkerersWorkbench);
             recipe.AddCondition(Condition.DownedSkeletron);
             recipe.DisableDecraft();

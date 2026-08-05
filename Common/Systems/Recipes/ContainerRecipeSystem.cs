@@ -284,150 +284,150 @@ namespace Fargowiltas.Common.Systems.Recipes
         private static void AddCrateRecipes()
         {
             //wooden
-            CreateCrateRecipe(ItemID.SailfishBoots, RecipeGroups.AnyWoodCrate, 5);
-            CreateCrateRecipe(ItemID.TsunamiInABottle, RecipeGroups.AnyWoodCrate, 5);
-            CreateCrateRecipe(ItemID.Extractinator, RecipeGroups.AnyWoodCrate, 5);
-            CreateCrateRecipe(ItemID.Aglet, RecipeGroups.AnyWoodCrate, 5);
-            CreateCrateRecipe(ItemID.CordageGuide, RecipeGroups.AnyWoodCrate, 5);
-            CreateCrateRecipe(ItemID.Umbrella, RecipeGroups.AnyWoodCrate, 5);
-            CreateCrateRecipe(ItemID.ClimbingClaws, RecipeGroups.AnyWoodCrate, 5);
-            CreateCrateRecipe(ItemID.Radar, RecipeGroups.AnyWoodCrate, 5);
-            CreateCrateRecipe(ItemID.WoodenBoomerang, RecipeGroups.AnyWoodCrate, 5);
-            CreateCrateRecipe(ItemID.WandofSparking, RecipeGroups.AnyWoodCrate, 5, conditions: Condition.NotRemixWorld);
-            CreateCrateRecipe(ItemID.Spear, RecipeGroups.AnyWoodCrate, 5);
-            CreateCrateRecipe(ItemID.Blowpipe, RecipeGroups.AnyWoodCrate, 5);
-            CreateCrateRecipe(ItemID.PortableStool, RecipeGroups.AnyWoodCrate, 5);
+            CreateCrateRecipe(ItemID.SailfishBoots, FargoRecipeGroups.AnyWoodCrate, 5);
+            CreateCrateRecipe(ItemID.TsunamiInABottle, FargoRecipeGroups.AnyWoodCrate, 5);
+            CreateCrateRecipe(ItemID.Extractinator, FargoRecipeGroups.AnyWoodCrate, 5);
+            CreateCrateRecipe(ItemID.Aglet, FargoRecipeGroups.AnyWoodCrate, 5);
+            CreateCrateRecipe(ItemID.CordageGuide, FargoRecipeGroups.AnyWoodCrate, 5);
+            CreateCrateRecipe(ItemID.Umbrella, FargoRecipeGroups.AnyWoodCrate, 5);
+            CreateCrateRecipe(ItemID.ClimbingClaws, FargoRecipeGroups.AnyWoodCrate, 5);
+            CreateCrateRecipe(ItemID.Radar, FargoRecipeGroups.AnyWoodCrate, 5);
+            CreateCrateRecipe(ItemID.WoodenBoomerang, FargoRecipeGroups.AnyWoodCrate, 5);
+            CreateCrateRecipe(ItemID.WandofSparking, FargoRecipeGroups.AnyWoodCrate, 5, conditions: Condition.NotRemixWorld);
+            CreateCrateRecipe(ItemID.Spear, FargoRecipeGroups.AnyWoodCrate, 5);
+            CreateCrateRecipe(ItemID.Blowpipe, FargoRecipeGroups.AnyWoodCrate, 5);
+            CreateCrateRecipe(ItemID.PortableStool, FargoRecipeGroups.AnyWoodCrate, 5);
             //CreateCrateRecipe(ItemID.BabyBirdStaff, ItemID.WoodenCrate, 5, ItemID.WoodenCrateHard);
-            CreateCrateRecipe(ItemID.SunflowerMinecart, RecipeGroups.AnyWoodCrate, 5);
-            CreateCrateRecipe(ItemID.LadybugMinecart, RecipeGroups.AnyWoodCrate, 5);
-            CreateCrateRecipe(ItemID.Anchor, -1, 5, ItemID.WoodenCrateHard);
+            CreateCrateRecipe(ItemID.SunflowerMinecart, FargoRecipeGroups.AnyWoodCrate, 5);
+            CreateCrateRecipe(ItemID.LadybugMinecart, FargoRecipeGroups.AnyWoodCrate, 5);
+            CreateCrateRecipe(ItemID.Anchor, null, 5, ItemID.WoodenCrateHard);
 
             //iron
-            CreateCrateRecipe(ItemID.FalconBlade, RecipeGroups.AnyIronCrate, 5);
-            CreateCrateRecipe(ItemID.TartarSauce, RecipeGroups.AnyIronCrate, 5);
-            CreateCrateRecipe(ItemID.GingerBeard, RecipeGroups.AnyIronCrate, 5);
+            CreateCrateRecipe(ItemID.FalconBlade, FargoRecipeGroups.AnyIronCrate, 5);
+            CreateCrateRecipe(ItemID.TartarSauce, FargoRecipeGroups.AnyIronCrate, 5);
+            CreateCrateRecipe(ItemID.GingerBeard, FargoRecipeGroups.AnyIronCrate, 5);
 
             //gold
-            CreateCrateRecipe(ItemID.BandofRegeneration, RecipeGroups.AnyGoldCrate, 2);
-            CreateCrateRecipe(ItemID.MagicMirror, RecipeGroups.AnyGoldCrate, 2);
-            CreateCrateRecipe(ItemID.FlareGun, RecipeGroups.AnyGoldCrate, 2);
-            CreateCrateRecipe(ItemID.HermesBoots, RecipeGroups.AnyGoldCrate, 2);
-            CreateCrateRecipe(ItemID.ShoeSpikes, RecipeGroups.AnyGoldCrate, 2);
-            CreateCrateRecipe(ItemID.Mace, RecipeGroups.AnyGoldCrate, 2);
-            CreateCrateRecipe(ItemID.CloudinaBottle, RecipeGroups.AnyGoldCrate, 2);
-            CreateCrateRecipe(ItemID.LifeCrystal, RecipeGroups.AnyGoldCrate, 2);
-            CreateCrateRecipe(ItemID.HardySaddle, RecipeGroups.AnyGoldCrate, 2);
-            CreateCrateRecipe(ItemID.EnchantedSword, RecipeGroups.AnyGoldCrate, 2);
+            CreateCrateRecipe(ItemID.BandofRegeneration, FargoRecipeGroups.AnyGoldCrate, 2);
+            CreateCrateRecipe(ItemID.MagicMirror, FargoRecipeGroups.AnyGoldCrate, 2);
+            CreateCrateRecipe(ItemID.FlareGun, FargoRecipeGroups.AnyGoldCrate, 2);
+            CreateCrateRecipe(ItemID.HermesBoots, FargoRecipeGroups.AnyGoldCrate, 2);
+            CreateCrateRecipe(ItemID.ShoeSpikes, FargoRecipeGroups.AnyGoldCrate, 2);
+            CreateCrateRecipe(ItemID.Mace, FargoRecipeGroups.AnyGoldCrate, 2);
+            CreateCrateRecipe(ItemID.CloudinaBottle, FargoRecipeGroups.AnyGoldCrate, 2);
+            CreateCrateRecipe(ItemID.LifeCrystal, FargoRecipeGroups.AnyGoldCrate, 2);
+            CreateCrateRecipe(ItemID.HardySaddle, FargoRecipeGroups.AnyGoldCrate, 2);
+            CreateCrateRecipe(ItemID.EnchantedSword, FargoRecipeGroups.AnyGoldCrate, 2);
 
-            CreateCrateRecipe(ItemID.Sundial, RecipeGroups.AnyGoldCrate, 2); //actually should be hm but fuck it
+            CreateCrateRecipe(ItemID.Sundial, FargoRecipeGroups.AnyGoldCrate, 2); //actually should be hm but fuck it
 
             //jungle
-            CreateCrateRecipe(ItemID.AnkletoftheWind, RecipeGroups.AnyJungleCrate, 3);
-            CreateCrateRecipe(ItemID.Boomstick, RecipeGroups.AnyJungleCrate, 3);
-            CreateCrateRecipe(ItemID.FeralClaws, RecipeGroups.AnyJungleCrate, 3);
-            CreateCrateRecipe(ItemID.StaffofRegrowth, RecipeGroups.AnyJungleCrate, 3);
-            CreateCrateRecipe(ItemID.FiberglassFishingPole, RecipeGroups.AnyJungleCrate, 3);
-            CreateCrateRecipe(ItemID.BeeMinecart, RecipeGroups.AnyJungleCrate, 3);
-            CreateCrateRecipe(ItemID.Seaweed, RecipeGroups.AnyJungleCrate, 5);
-            CreateCrateRecipe(ItemID.FlowerBoots, RecipeGroups.AnyJungleCrate, 5);
-            CreateCrateRecipe(ItemID.HoneyDispenser, RecipeGroups.AnyJungleCrate, 5);
+            CreateCrateRecipe(ItemID.AnkletoftheWind, FargoRecipeGroups.AnyJungleCrate, 3);
+            CreateCrateRecipe(ItemID.Boomstick, FargoRecipeGroups.AnyJungleCrate, 3);
+            CreateCrateRecipe(ItemID.FeralClaws, FargoRecipeGroups.AnyJungleCrate, 3);
+            CreateCrateRecipe(ItemID.StaffofRegrowth, FargoRecipeGroups.AnyJungleCrate, 3);
+            CreateCrateRecipe(ItemID.FiberglassFishingPole, FargoRecipeGroups.AnyJungleCrate, 3);
+            CreateCrateRecipe(ItemID.BeeMinecart, FargoRecipeGroups.AnyJungleCrate, 3);
+            CreateCrateRecipe(ItemID.Seaweed, FargoRecipeGroups.AnyJungleCrate, 5);
+            CreateCrateRecipe(ItemID.FlowerBoots, FargoRecipeGroups.AnyJungleCrate, 5);
+            CreateCrateRecipe(ItemID.HoneyDispenser, FargoRecipeGroups.AnyJungleCrate, 5);
 
             //sky
-            CreateCrateRecipe(ItemID.ShinyRedBalloon, RecipeGroups.AnySkyCrate, 3);
-            CreateCrateRecipe(ItemID.Starfury, RecipeGroups.AnySkyCrate, 3);
-            CreateCrateRecipe(ItemID.CreativeWings, RecipeGroups.AnySkyCrate, 3);
-            CreateCrateRecipe(ItemID.SkyMill, RecipeGroups.AnySkyCrate, 3);
-            CreateCrateRecipe(ItemID.LuckyHorseshoe, RecipeGroups.AnySkyCrate, 3);
-            CreateCrateRecipe(ItemID.CelestialMagnet, RecipeGroups.AnySkyCrate, 3);
+            CreateCrateRecipe(ItemID.ShinyRedBalloon, FargoRecipeGroups.AnySkyCrate, 3);
+            CreateCrateRecipe(ItemID.Starfury, FargoRecipeGroups.AnySkyCrate, 3);
+            CreateCrateRecipe(ItemID.CreativeWings, FargoRecipeGroups.AnySkyCrate, 3);
+            CreateCrateRecipe(ItemID.SkyMill, FargoRecipeGroups.AnySkyCrate, 3);
+            CreateCrateRecipe(ItemID.LuckyHorseshoe, FargoRecipeGroups.AnySkyCrate, 3);
+            CreateCrateRecipe(ItemID.CelestialMagnet, FargoRecipeGroups.AnySkyCrate, 3);
 
             //corrupt
-            CreateCrateRecipe(ItemID.BallOHurt, RecipeGroups.AnyCorruptCrate, 3);
-            CreateCrateRecipe(ItemID.BandofStarpower, RecipeGroups.AnyCorruptCrate, 3);
-            CreateCrateRecipe(ItemID.ShadowOrb, RecipeGroups.AnyCorruptCrate, 3);
-            CreateCrateRecipe(ItemID.Musket, RecipeGroups.AnyCorruptCrate, 3);
-            CreateCrateRecipe(ItemID.Vilethorn, RecipeGroups.AnyCorruptCrate, 3);
+            CreateCrateRecipe(ItemID.BallOHurt, FargoRecipeGroups.AnyCorruptCrate, 3);
+            CreateCrateRecipe(ItemID.BandofStarpower, FargoRecipeGroups.AnyCorruptCrate, 3);
+            CreateCrateRecipe(ItemID.ShadowOrb, FargoRecipeGroups.AnyCorruptCrate, 3);
+            CreateCrateRecipe(ItemID.Musket, FargoRecipeGroups.AnyCorruptCrate, 3);
+            CreateCrateRecipe(ItemID.Vilethorn, FargoRecipeGroups.AnyCorruptCrate, 3);
 
             //crimson
-            CreateCrateRecipe(ItemID.TheUndertaker, RecipeGroups.AnyCrimsonCrate, 3);
-            CreateCrateRecipe(ItemID.TheRottedFork, RecipeGroups.AnyCrimsonCrate, 3);
-            CreateCrateRecipe(ItemID.CrimsonRod, RecipeGroups.AnyCrimsonCrate, 3);
-            CreateCrateRecipe(ItemID.PanicNecklace, RecipeGroups.AnyCrimsonCrate, 3);
-            CreateCrateRecipe(ItemID.CrimsonHeart, RecipeGroups.AnyCrimsonCrate, 3);
+            CreateCrateRecipe(ItemID.TheUndertaker, FargoRecipeGroups.AnyCrimsonCrate, 3);
+            CreateCrateRecipe(ItemID.TheRottedFork, FargoRecipeGroups.AnyCrimsonCrate, 3);
+            CreateCrateRecipe(ItemID.CrimsonRod, FargoRecipeGroups.AnyCrimsonCrate, 3);
+            CreateCrateRecipe(ItemID.PanicNecklace, FargoRecipeGroups.AnyCrimsonCrate, 3);
+            CreateCrateRecipe(ItemID.CrimsonHeart, FargoRecipeGroups.AnyCrimsonCrate, 3);
 
             //hallow
 
             //dungeon
-            CreateCrateRecipe(ItemID.WaterBolt, RecipeGroups.AnyDungeonCrate, 3, -1, ItemID.GoldenKey);
-            CreateCrateRecipe(ItemID.Muramasa, RecipeGroups.AnyDungeonCrate, 3, -1, ItemID.GoldenKey);
-            CreateCrateRecipe(ItemID.CobaltShield, RecipeGroups.AnyDungeonCrate, 3, -1, ItemID.GoldenKey);
-            CreateCrateRecipe(ItemID.MagicMissile, RecipeGroups.AnyDungeonCrate, 3, -1, ItemID.GoldenKey);
-            CreateCrateRecipe(ItemID.AquaScepter, RecipeGroups.AnyDungeonCrate, 3, -1, ItemID.GoldenKey, conditions: Condition.NotRemixWorld);
-            CreateCrateRecipe(ItemID.Valor, RecipeGroups.AnyDungeonCrate, 3, -1, ItemID.GoldenKey);
-            CreateCrateRecipe(ItemID.Handgun, RecipeGroups.AnyDungeonCrate, 3, -1, ItemID.GoldenKey);
-            CreateCrateRecipe(ItemID.ShadowKey, RecipeGroups.AnyDungeonCrate, 3, -1, ItemID.GoldenKey);
-            CreateCrateRecipe(ItemID.BlueMoon, RecipeGroups.AnyDungeonCrate, 3, -1, ItemID.GoldenKey);
-            CreateCrateRecipe(ItemID.BoneWelder, RecipeGroups.AnyDungeonCrate, 3, -1, ItemID.GoldenKey);
-            CreateCrateRecipe(ItemID.AlchemyTable, RecipeGroups.AnyDungeonCrate, 3, -1, ItemID.GoldenKey);
-            CreateCrateRecipe(ItemID.BewitchingTable, RecipeGroups.AnyDungeonCrate, 3, -1, ItemID.GoldenKey);
+            CreateCrateRecipe(ItemID.WaterBolt, FargoRecipeGroups.AnyDungeonCrate, 3, -1, ItemID.GoldenKey);
+            CreateCrateRecipe(ItemID.Muramasa, FargoRecipeGroups.AnyDungeonCrate, 3, -1, ItemID.GoldenKey);
+            CreateCrateRecipe(ItemID.CobaltShield, FargoRecipeGroups.AnyDungeonCrate, 3, -1, ItemID.GoldenKey);
+            CreateCrateRecipe(ItemID.MagicMissile, FargoRecipeGroups.AnyDungeonCrate, 3, -1, ItemID.GoldenKey);
+            CreateCrateRecipe(ItemID.AquaScepter, FargoRecipeGroups.AnyDungeonCrate, 3, -1, ItemID.GoldenKey, conditions: Condition.NotRemixWorld);
+            CreateCrateRecipe(ItemID.Valor, FargoRecipeGroups.AnyDungeonCrate, 3, -1, ItemID.GoldenKey);
+            CreateCrateRecipe(ItemID.Handgun, FargoRecipeGroups.AnyDungeonCrate, 3, -1, ItemID.GoldenKey);
+            CreateCrateRecipe(ItemID.ShadowKey, FargoRecipeGroups.AnyDungeonCrate, 3, -1, ItemID.GoldenKey);
+            CreateCrateRecipe(ItemID.BlueMoon, FargoRecipeGroups.AnyDungeonCrate, 3, -1, ItemID.GoldenKey);
+            CreateCrateRecipe(ItemID.BoneWelder, FargoRecipeGroups.AnyDungeonCrate, 3, -1, ItemID.GoldenKey);
+            CreateCrateRecipe(ItemID.AlchemyTable, FargoRecipeGroups.AnyDungeonCrate, 3, -1, ItemID.GoldenKey);
+            CreateCrateRecipe(ItemID.BewitchingTable, FargoRecipeGroups.AnyDungeonCrate, 3, -1, ItemID.GoldenKey);
 
             //frozen crate
-            CreateCrateRecipe(ItemID.SnowballCannon, RecipeGroups.AnyFrozenCrate, 3, conditions: Condition.NotRemixWorld);
-            CreateCrateRecipe(ItemID.BlizzardinaBottle, RecipeGroups.AnyFrozenCrate, 3);
-            CreateCrateRecipe(ItemID.IceBlade, RecipeGroups.AnyFrozenCrate, 3);
-            CreateCrateRecipe(ItemID.IceSkates, RecipeGroups.AnyFrozenCrate, 3);
-            CreateCrateRecipe(ItemID.IceMirror, RecipeGroups.AnyFrozenCrate, 3);
-            CreateCrateRecipe(ItemID.FlurryBoots, RecipeGroups.AnyFrozenCrate, 3);
-            CreateCrateRecipe(ItemID.IceBoomerang, RecipeGroups.AnyFrozenCrate, 3);
-            CreateCrateRecipe(ItemID.IceMachine, RecipeGroups.AnyFrozenCrate, 3);
-            CreateCrateRecipe(ItemID.Fish, RecipeGroups.AnyFrozenCrate, 5);
+            CreateCrateRecipe(ItemID.SnowballCannon, FargoRecipeGroups.AnyFrozenCrate, 3, conditions: Condition.NotRemixWorld);
+            CreateCrateRecipe(ItemID.BlizzardinaBottle, FargoRecipeGroups.AnyFrozenCrate, 3);
+            CreateCrateRecipe(ItemID.IceBlade, FargoRecipeGroups.AnyFrozenCrate, 3);
+            CreateCrateRecipe(ItemID.IceSkates, FargoRecipeGroups.AnyFrozenCrate, 3);
+            CreateCrateRecipe(ItemID.IceMirror, FargoRecipeGroups.AnyFrozenCrate, 3);
+            CreateCrateRecipe(ItemID.FlurryBoots, FargoRecipeGroups.AnyFrozenCrate, 3);
+            CreateCrateRecipe(ItemID.IceBoomerang, FargoRecipeGroups.AnyFrozenCrate, 3);
+            CreateCrateRecipe(ItemID.IceMachine, FargoRecipeGroups.AnyFrozenCrate, 3);
+            CreateCrateRecipe(ItemID.Fish, FargoRecipeGroups.AnyFrozenCrate, 5);
 
             //oasis crate
-            CreateCrateRecipe(ItemID.SandBoots, RecipeGroups.AnySandCrate, 3);
-            CreateCrateRecipe(ItemID.AncientChisel, RecipeGroups.AnySandCrate, 3);
-            CreateCrateRecipe(ItemID.ThunderSpear, RecipeGroups.AnySandCrate, 3);
-            CreateCrateRecipe(ItemID.ScarabFishingRod, RecipeGroups.AnySandCrate, 3);
-            CreateCrateRecipe(ItemID.ThunderStaff, RecipeGroups.AnySandCrate, 3);
-            CreateCrateRecipe(ItemID.CatBast, RecipeGroups.AnySandCrate, 3);
-            CreateCrateRecipe(ItemID.MagicConch, RecipeGroups.AnySandCrate, 3);
-            CreateCrateRecipe(ItemID.MysticCoilSnake, RecipeGroups.AnySandCrate, 3);
-            CreateCrateRecipe(ItemID.DesertMinecart, RecipeGroups.AnySandCrate, 3);
-            CreateCrateRecipe(ItemID.EncumberingStone, RecipeGroups.AnySandCrate, 3);
-            CreateCrateRecipe(ItemID.FlyingCarpet, RecipeGroups.AnySandCrate, 5);
-            CreateCrateRecipe(ItemID.SandstorminaBottle, RecipeGroups.AnySandCrate, 5);
+            CreateCrateRecipe(ItemID.SandBoots, FargoRecipeGroups.AnySandCrate, 3);
+            CreateCrateRecipe(ItemID.AncientChisel, FargoRecipeGroups.AnySandCrate, 3);
+            CreateCrateRecipe(ItemID.ThunderSpear, FargoRecipeGroups.AnySandCrate, 3);
+            CreateCrateRecipe(ItemID.ScarabFishingRod, FargoRecipeGroups.AnySandCrate, 3);
+            CreateCrateRecipe(ItemID.ThunderStaff, FargoRecipeGroups.AnySandCrate, 3);
+            CreateCrateRecipe(ItemID.CatBast, FargoRecipeGroups.AnySandCrate, 3);
+            CreateCrateRecipe(ItemID.MagicConch, FargoRecipeGroups.AnySandCrate, 3);
+            CreateCrateRecipe(ItemID.MysticCoilSnake, FargoRecipeGroups.AnySandCrate, 3);
+            CreateCrateRecipe(ItemID.DesertMinecart, FargoRecipeGroups.AnySandCrate, 3);
+            CreateCrateRecipe(ItemID.EncumberingStone, FargoRecipeGroups.AnySandCrate, 3);
+            CreateCrateRecipe(ItemID.FlyingCarpet, FargoRecipeGroups.AnySandCrate, 5);
+            CreateCrateRecipe(ItemID.SandstorminaBottle, FargoRecipeGroups.AnySandCrate, 5);
 
             //obsidian
-            CreateCrateRecipe(ItemID.DarkLance, RecipeGroups.AnyLavaCrate, 3, -1, ItemID.ShadowKey);
-            CreateCrateRecipe(ItemID.HellwingBow, RecipeGroups.AnyLavaCrate, 3, -1, ItemID.ShadowKey);
-            CreateCrateRecipe(ItemID.Flamelash, RecipeGroups.AnyLavaCrate, 3, -1, ItemID.ShadowKey);
-            CreateCrateRecipe(ItemID.FlowerofFire, RecipeGroups.AnyLavaCrate, 3, -1, ItemID.ShadowKey, conditions: Condition.NotRemixWorld);
-            CreateCrateRecipe(ItemID.Sunfury, RecipeGroups.AnyLavaCrate, 3, -1, ItemID.ShadowKey);
-            CreateCrateRecipe(ItemID.TreasureMagnet, RecipeGroups.AnyLavaCrate, 3, -1, ItemID.ShadowKey);
+            CreateCrateRecipe(ItemID.DarkLance, FargoRecipeGroups.AnyLavaCrate, 3, -1, ItemID.ShadowKey);
+            CreateCrateRecipe(ItemID.HellwingBow, FargoRecipeGroups.AnyLavaCrate, 3, -1, ItemID.ShadowKey);
+            CreateCrateRecipe(ItemID.Flamelash, FargoRecipeGroups.AnyLavaCrate, 3, -1, ItemID.ShadowKey);
+            CreateCrateRecipe(ItemID.FlowerofFire, FargoRecipeGroups.AnyLavaCrate, 3, -1, ItemID.ShadowKey, conditions: Condition.NotRemixWorld);
+            CreateCrateRecipe(ItemID.Sunfury, FargoRecipeGroups.AnyLavaCrate, 3, -1, ItemID.ShadowKey);
+            CreateCrateRecipe(ItemID.TreasureMagnet, FargoRecipeGroups.AnyLavaCrate, 3, -1, ItemID.ShadowKey);
 
-            CreateCrateRecipe(ItemID.LavaCharm, RecipeGroups.AnyLavaCrate, 5);
-            CreateCrateRecipe(ItemID.HellCake, RecipeGroups.AnyLavaCrate, 5);
-            CreateCrateRecipe(ItemID.OrnateShadowKey, RecipeGroups.AnyLavaCrate, 5);
-            CreateCrateRecipe(ItemID.SuperheatedBlood, RecipeGroups.AnyLavaCrate, 3);
-            CreateCrateRecipe(ItemID.FlameWakerBoots, RecipeGroups.AnyLavaCrate, 3);
-            CreateCrateRecipe(ItemID.LavaFishingHook, RecipeGroups.AnyLavaCrate, 3);
-            CreateCrateRecipe(ItemID.HellMinecart, RecipeGroups.AnyLavaCrate, 3);
-            CreateCrateRecipe(ItemID.WetBomb, RecipeGroups.AnyLavaCrate, 3);
-            CreateCrateRecipe(ItemID.DemonConch, RecipeGroups.AnyLavaCrate, 3);
+            CreateCrateRecipe(ItemID.LavaCharm, FargoRecipeGroups.AnyLavaCrate, 5);
+            CreateCrateRecipe(ItemID.HellCake, FargoRecipeGroups.AnyLavaCrate, 5);
+            CreateCrateRecipe(ItemID.OrnateShadowKey, FargoRecipeGroups.AnyLavaCrate, 5);
+            CreateCrateRecipe(ItemID.SuperheatedBlood, FargoRecipeGroups.AnyLavaCrate, 3);
+            CreateCrateRecipe(ItemID.FlameWakerBoots, FargoRecipeGroups.AnyLavaCrate, 3);
+            CreateCrateRecipe(ItemID.LavaFishingHook, FargoRecipeGroups.AnyLavaCrate, 3);
+            CreateCrateRecipe(ItemID.HellMinecart, FargoRecipeGroups.AnyLavaCrate, 3);
+            CreateCrateRecipe(ItemID.WetBomb, FargoRecipeGroups.AnyLavaCrate, 3);
+            CreateCrateRecipe(ItemID.DemonConch, FargoRecipeGroups.AnyLavaCrate, 3);
 
             // ocean crate
-            CreateCrateRecipe(ItemID.Trident, RecipeGroups.AnyOceanCrate, 3);
-            CreateCrateRecipe(ItemID.BreathingReed, RecipeGroups.AnyOceanCrate, 3);
-            CreateCrateRecipe(ItemID.Flipper, RecipeGroups.AnyOceanCrate, 3);
-            CreateCrateRecipe(ItemID.FloatingTube, RecipeGroups.AnyOceanCrate, 3);
-            CreateCrateRecipe(ItemID.WaterWalkingBoots, RecipeGroups.AnyOceanCrate, 5);
-            CreateCrateRecipe(ItemID.SharkBait, RecipeGroups.AnyOceanCrate, 5);
+            CreateCrateRecipe(ItemID.Trident, FargoRecipeGroups.AnyOceanCrate, 3);
+            CreateCrateRecipe(ItemID.BreathingReed, FargoRecipeGroups.AnyOceanCrate, 3);
+            CreateCrateRecipe(ItemID.Flipper, FargoRecipeGroups.AnyOceanCrate, 3);
+            CreateCrateRecipe(ItemID.FloatingTube, FargoRecipeGroups.AnyOceanCrate, 3);
+            CreateCrateRecipe(ItemID.WaterWalkingBoots, FargoRecipeGroups.AnyOceanCrate, 5);
+            CreateCrateRecipe(ItemID.SharkBait, FargoRecipeGroups.AnyOceanCrate, 5);
         }
 
-        private static void CreateCrateRecipe(int result, int crate, int crateAmount, int hardmodeCrate = -1, int extraItem = -1, params Condition[] conditions)
+        private static void CreateCrateRecipe(int result, RecipeGroup crateGroup, int crateAmount, int hardmodeCrate = -1, int extraItem = -1, params Condition[] conditions)
         {
-            if (crate != -1)
+            if (crateGroup != null)
             {
                 var recipe = Recipe.Create(result);
-                recipe.AddRecipeGroup(crate, crateAmount);
+                recipe.AddRecipeGroup(crateGroup, crateAmount);
                 if (extraItem != -1)
                 {
                     recipe.AddIngredient(extraItem);

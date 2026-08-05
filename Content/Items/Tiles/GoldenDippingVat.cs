@@ -43,9 +43,9 @@ namespace Fargowiltas.Content.Items.Tiles
             AddCritter(ItemID.Worm, ItemID.GoldWorm);
 
             AddCritterFromGroup(RecipeGroups.Squirrels, ItemID.SquirrelGold);
-            AddCritterFromGroup(RecipeGroups.AnyButterfly, ItemID.GoldButterfly);
-            AddCritterFromGroup(RecipeGroups.AnyCommonFish, ItemID.GoldenCarp);
-            AddCritterFromGroup(RecipeGroups.AnyDragonfly, ItemID.GoldDragonfly);
+            AddCritterFromGroup(FargoRecipeGroups.AnyButterfly, ItemID.GoldButterfly);
+            AddCritterFromGroup(FargoRecipeGroups.AnyCommonFish, ItemID.GoldenCarp);
+            AddCritterFromGroup(FargoRecipeGroups.AnyDragonfly, ItemID.GoldDragonfly);
         }
 
         private static void AddCritter(int critterID, int goldCritterID)
@@ -58,10 +58,10 @@ namespace Fargowiltas.Content.Items.Tiles
                 .Register();
         }
 
-        private static void AddCritterFromGroup(int critterGroup, int goldCritterID)
+        private static void AddCritterFromGroup(RecipeGroup group, int goldCritterID)
         {
             Recipe.Create(goldCritterID)
-                .AddRecipeGroup(critterGroup)
+                .AddRecipeGroup(group)
                 .AddIngredient(ItemID.GoldDust, 100)
                 .AddTile(ModContent.TileType<GoldenDippingVatSheet>())
                 .DisableDecraft()

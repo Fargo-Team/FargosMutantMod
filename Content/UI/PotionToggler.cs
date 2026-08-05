@@ -88,11 +88,11 @@ namespace Fargowiltas.Content.UI
             Scrollbar.SetView(200f, 1000f);
             Scrollbar.Width.Set(20, 0);
             Scrollbar.OverflowHidden = true;
-            Scrollbar.OnScrollWheel += HotbarScrollFix;
+            //Scrollbar.OnScrollWheel += HotbarScrollFix;
 
             ToggleList = [];
             ToggleList.SetScrollbar(Scrollbar);
-            ToggleList.OnScrollWheel += HotbarScrollFix;
+            //ToggleList.OnScrollWheel += HotbarScrollFix;
 
             BackPanel = new UIDragablePanel(Scrollbar, ToggleList);
             BackPanel.Left.Set(offset.X, 0);
@@ -212,7 +212,9 @@ namespace Fargowiltas.Content.UI
         }
         private void SearchBar_OnTextChange(string oldText, string currentText) => NeedsToggleListBuilding = true;
 
-        private void HotbarScrollFix(UIScrollWheelEvent evt, UIElement listeningElement) => Main.LocalPlayer.ScrollHotbar(PlayerInput.ScrollWheelDelta / 120);
+        //Player.ScrollHotbar was removed in 1.4.5. todo: Investigate.
+
+        //private void HotbarScrollFix(UIScrollWheelEvent evt, UIElement listeningElement) => Main.LocalPlayer.ScrollHotbar(PlayerInput.ScrollWheelDelta / 120);
         public override void Update(GameTime gameTime)
         {
             if (Main.LocalPlayer.mouseInterface && (Main.mouseLeft || Main.mouseRight))

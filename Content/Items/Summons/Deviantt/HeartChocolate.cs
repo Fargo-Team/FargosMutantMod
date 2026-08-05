@@ -15,7 +15,7 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
         {
             CreateRecipe()
                 .AddIngredient(ItemID.LifeCrystal)
-                .AddRecipeGroup(RecipeGroups.AnyFoodT2)
+                .AddRecipeGroup(FargoRecipeGroups.AnyFoodT2)
                 .AddTile(TileID.CookingPots)
                 .Register();
         }

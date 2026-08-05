@@ -14,7 +14,7 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
         {
             CreateRecipe()
                 .AddIngredient(ItemID.DirtBlock, 50)
-                .AddRecipeGroup(RecipeGroups.AnyFoodT2, 2)
+                .AddRecipeGroup(FargoRecipeGroups.AnyFoodT2, 2)
                 .AddTile(TileID.Anvils)
                 .Register();
         }

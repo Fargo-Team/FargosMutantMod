@@ -159,7 +159,7 @@ namespace Fargowiltas.Content.Items.Misc
         {
             CreateRecipe()
                 .AddIngredient<GizmoParts>(5)
-                .AddRecipeGroup(RecipeGroups.AnyEvilBar, 5)
+                .AddRecipeGroup(FargoRecipeGroups.AnyEvilBar, 5)
                 .AddIngredient(ItemID.BattlePotion, 5)
                 .AddIngredient(ItemID.WaterCandle, 3)
                 .AddIngredient(ItemID.CalmingPotion, 5)

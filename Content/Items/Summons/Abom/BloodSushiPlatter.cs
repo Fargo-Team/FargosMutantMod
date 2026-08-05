@@ -59,7 +59,7 @@ namespace Fargowiltas.Content.Items.Summons.Abom
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddRecipeGroup(RecipeGroups.AnyFoodT3, 3)
+                .AddRecipeGroup(FargoRecipeGroups.AnyFoodT3, 3)
                 .AddIngredient(ItemID.BloodMoonStarter)
                 .AddIngredient(ItemID.DeepRedPaint)
                 .AddTile(TileID.MythrilAnvil)

@@ -51,8 +51,8 @@ namespace Fargowiltas.Content.Items.Tiles
                 .AddIngredient(ItemID.LavaBucket)
                 .AddIngredient(ItemID.HoneyBucket)
                 .AddIngredient(ItemID.TeaKettle)
-                .AddRecipeGroup(RecipeGroups.AnyTombstone)
-                .AddRecipeGroup(RecipeGroups.AnyDemonAltar)
+                .AddRecipeGroup(FargoRecipeGroups.AnyTombstone)
+                .AddRecipeGroup(FargoRecipeGroups.AnyDemonAltar)
                 .Register();
         }
     }

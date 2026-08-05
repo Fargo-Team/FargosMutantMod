@@ -14,7 +14,7 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
         {
             CreateRecipe()
                 .AddIngredient(ItemID.Cloud, 50)
-                .AddRecipeGroup(RecipeGroups.AnyFoodT3)
+                .AddRecipeGroup(FargoRecipeGroups.AnyFoodT3)
                 .AddIngredient(ItemID.SoulofLight, 3)
                 .AddTile(TileID.MythrilAnvil)
                 .Register();

@@ -148,7 +148,7 @@ namespace Fargowiltas.Content.UI
         public void HandleGiveItem(int chestIndex, int itemslot, int amount)
         {
             Chest chest = Main.chest[chestIndex];
-            Chest.VisualizeChestTransfer(Main.LocalPlayer.Center, new Vector2(chest.x, chest.y).ToWorldCoordinates() + new Vector2(8, 8), ItemInsert.Item, amount);
+            Chest.VisualizeChestTransfer(Main.LocalPlayer.Center, new Vector2(chest.x, chest.y).ToWorldCoordinates() + new Vector2(8, 8), ItemInsert.Item.type, Chest.ItemTransferVisualizationSettings.PlayerToChest);
             if (chest.item[itemslot].type == ItemID.None)
             {
                 chest.item[itemslot] = ItemInsert.Item.Clone();
@@ -262,8 +262,8 @@ namespace Fargowiltas.Content.UI
             if (amount > item.stack) amount = item.stack;
 
             FargoUtils.TryGetTileEntityAs(tilepos.X, tilepos.Y, out ChestWizardTileEntity entity);
-            Chest.VisualizeChestTransfer(new Vector2(chest.x, chest.y).ToWorldCoordinates(), Main.LocalPlayer.Center, item, amount);
-            Main.LocalPlayer.QuickSpawnItem(Main.LocalPlayer.GetSource_TileInteraction(tilepos.X, tilepos.Y), item, amount);
+            Chest.VisualizeChestTransfer(new Vector2(chest.x, chest.y).ToWorldCoordinates(), Main.LocalPlayer.Center, item.type, Chest.ItemTransferVisualizationSettings.PlayerToChest);
+            Main.LocalPlayer.QuickSpawnItem(Main.LocalPlayer.GetSource_TileInteraction(tilepos.X, tilepos.Y), item.type, amount);
 
             item.stack -= amount;
             if (item.stack == 0) item.TurnToAir();

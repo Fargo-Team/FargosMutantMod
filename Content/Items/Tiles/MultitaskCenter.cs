@@ -39,14 +39,12 @@ namespace Fargowiltas.Content.Items.Tiles
                 .AddIngredient(ItemID.WorkBench)
                 .AddIngredient(ItemID.HeavyWorkBench)
                 .AddIngredient(ItemID.Furnace)
-                .AddRecipeGroup(RecipeGroups.AnyAnvil)
+                .AddRecipeGroup(FargoRecipeGroups.AnyAnvil)
                 .AddIngredient(ItemID.Bottle)
                 .AddIngredient(ItemID.Sawmill)
                 .AddIngredient(ItemID.Loom)
-                .AddRecipeGroup(RecipeGroups.AnyWoodenTable)
-                .AddRecipeGroup(RecipeGroups.AnyWoodenChair)
-                .AddRecipeGroup(RecipeGroups.AnyCookingPot)
-                .AddRecipeGroup(RecipeGroups.AnyWoodenSink)
+                .AddRecipeGroup(FargoRecipeGroups.AnyCookingPot)
+                .AddRecipeGroup(FargoRecipeGroups.AnyWoodenSink)
                 .AddIngredient(ItemID.Keg)
                 .Register();
         }

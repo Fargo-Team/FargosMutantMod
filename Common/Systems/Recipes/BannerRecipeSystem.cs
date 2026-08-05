@@ -1,5 +1,6 @@
 ﻿using Fargowiltas.Common.Configs;
 using Fargowiltas.Utilities;
+using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent;
@@ -11,18 +12,18 @@ namespace Fargowiltas.Common.Systems.Recipes
 {
     public class BannerRecipeSystem : ModSystem
     {
-        private static int AnyPirateBanner, AnyArmoredBonesBanner, AnySlimesBanner, AnyBatBanner, AnyPureSkeletonBanner;
-        private static int AnyHallowBanner, AnyCorruptBanner, AnyCrimsonBanner, AnyJungleBanner, AnySnowBanner, AnyDesertBanner;
-        private static int AnyTentacleSpikeBanner, AntlionChargerOrSwarmerBanner, AnyBananaSplitBanner, AnyBloodMoonFishingT1Banner;
-        private static int AnySharktoothNecklaceBanner, AnyJellyfishNecklaceBanner, AnyShackleBanner, AnyMilkshakeBanner, AnyMagmaStoneBanner;
-        private static int AnyNazarBanner, AnyBezoarBanner, AnyAdhesiveBandageBanner, AnyBlindfoldBanner, AnyArmorPolishBanner;
-        private static int AnyTrifoldMapBanner, AnyVitaminsBanner, AnyMegaphoneBanner, AnyFastClockBanner, AnyDungeonSkeletonT1Banner;
-        private static int AnyCompassBanner, AnyDepthMeterBanner, AnyDungeonSkeletalT1Banner, AnyGraniteBanner, AnyVikingBanner;
-        private static int AnyRobotHatBanner, AnyBunnyHoodBanner, AnyEvilPenguinBanner, AnyMummyBanner, AnyCoffeeCupBanner;
-        private static int AnyCreamSodaBanner, AnyIceCreamBanner, AnyNachosBanner, AnyShrimpPoBoyBanner, AnyFriedEggBanner;
-        private static int AnyGrapesBanner, AnyMeatGrinderBanner, AnyBlackLensBanner, AnyHotdogBanner, AnyApplePieBanner, AnyBBQRibsBanner;
-        private static int AnyDarkShardBanner, AnyLightShardBanner, AnyBrainScramblerBanner, AnyChainKnifeBanner, AnyRareCavelingBanner;
-        private static int AnyCascadeBanner, AnyIceSickleBanner, AnyFrostStaffBanner;
+        private static RecipeGroup AnyPirateBanner, AnyArmoredBonesBanner, AnySlimesBanner, AnyBatBanner, AnyPureSkeletonBanner;
+        private static RecipeGroup AnyHallowBanner, AnyCorruptBanner, AnyCrimsonBanner, AnyJungleBanner, AnySnowBanner, AnyDesertBanner;
+        private static RecipeGroup AnyTentacleSpikeBanner, AntlionChargerOrSwarmerBanner, AnyBananaSplitBanner, AnyBloodMoonFishingT1Banner;
+        private static RecipeGroup AnySharktoothNecklaceBanner, AnyJellyfishNecklaceBanner, AnyShackleBanner, AnyMilkshakeBanner, AnyMagmaStoneBanner;
+        private static RecipeGroup AnyNazarBanner, AnyBezoarBanner, AnyAdhesiveBandageBanner, AnyBlindfoldBanner, AnyArmorPolishBanner;
+        private static RecipeGroup AnyTrifoldMapBanner, AnyVitaminsBanner, AnyMegaphoneBanner, AnyFastClockBanner, AnyDungeonSkeletonT1Banner;
+        private static RecipeGroup AnyCompassBanner, AnyDepthMeterBanner, AnyDungeonSkeletalT1Banner, AnyGraniteBanner, AnyVikingBanner;
+        private static RecipeGroup AnyRobotHatBanner, AnyBunnyHoodBanner, AnyEvilPenguinBanner, AnyMummyBanner, AnyCoffeeCupBanner;
+        private static RecipeGroup AnyCreamSodaBanner, AnyIceCreamBanner, AnyNachosBanner, AnyShrimpPoBoyBanner, AnyFriedEggBanner;
+        private static RecipeGroup AnyGrapesBanner, AnyMeatGrinderBanner, AnyBlackLensBanner, AnyHotdogBanner, AnyApplePieBanner, AnyBBQRibsBanner;
+        private static RecipeGroup AnyDarkShardBanner, AnyLightShardBanner, AnyBrainScramblerBanner, AnyChainKnifeBanner, AnyRareCavelingBanner;
+        private static RecipeGroup AnyCascadeBanner, AnyIceSickleBanner, AnyFrostStaffBanner;
 
         public override bool IsLoadingEnabled(Mod mod)
         {
@@ -31,67 +32,59 @@ namespace Fargowiltas.Common.Systems.Recipes
 
         public override void AddRecipeGroups()
         {
-            RecipeGroup group = new RecipeGroup(() => RecipeHelper.GenerateAnyBannerRecipeGroupText("NPCName.Pirate"), ItemID.PirateDeadeyeBanner, ItemID.PirateCorsairBanner, ItemID.PirateCrossbowerBanner, ItemID.PirateBanner);
-            AnyPirateBanner = RecipeGroup.RegisterGroup("Fargowiltas:AnyPirateBanner", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
+            AnyPirateBanner = RecipeGroup.Register("Fargowiltas:AnyPirateBanner", "ItemName.PirateBanner", ItemID.PirateDeadeyeBanner, ItemID.PirateCorsairBanner, ItemID.PirateCrossbowerBanner, ItemID.PirateBanner);
 
-            group = new RecipeGroup(() => RecipeHelper.GenerateAnyItemRecipeGroupText("ArmoredBonesBanner"), ItemID.BlueArmoredBonesBanner, ItemID.HellArmoredBonesBanner, ItemID.RustyArmoredBonesBanner);
-            AnyArmoredBonesBanner = RecipeGroup.RegisterGroup("Fargowiltas:AnyArmoredBonesBanner", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
+            AnyArmoredBonesBanner = RecipeGroup.Register("Fargowiltas:AnyArmoredBonesBanner", () => RecipeHelper.GenerateAnyItemRecipeGroupText("ArmoredBonesBanner"), ItemID.BlueArmoredBonesBanner, ItemID.HellArmoredBonesBanner, ItemID.RustyArmoredBonesBanner);
 
             // Slimes (excluding ones that don't drop gel)
-            group = new RecipeGroup(() => RecipeHelper.GenerateAnyItemRecipeGroupText(ItemID.SlimeBanner),
+            AnySlimesBanner = RecipeGroup.Register("Fargowiltas:AnySlimes", () => RecipeHelper.GenerateAnyItemRecipeGroupText(ItemID.SlimeBanner),
                 ItemID.SlimeBanner, ItemID.GreenSlimeBanner, ItemID.RedSlimeBanner, ItemID.PurpleSlimeBanner,
                 ItemID.YellowSlimeBanner, ItemID.BlackSlimeBanner, ItemID.IceSlimeBanner, ItemID.SandSlimeBanner,
                 ItemID.JungleSlimeBanner, ItemID.SpikedIceSlimeBanner, ItemID.SpikedJungleSlimeBanner, ItemID.MotherSlimeBanner,
                 ItemID.UmbrellaSlimeBanner, ItemID.ToxicSludgeBanner, ItemID.CorruptSlimeBanner, ItemID.SlimerBanner,
                 ItemID.CrimslimeBanner, ItemID.GastropodBanner, ItemID.IlluminantSlimeBanner, ItemID.RainbowSlimeBanner
             );
-            AnySlimesBanner = RecipeGroup.RegisterGroup("Fargowiltas:AnySlimes", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             // Any Hallow enemy
-            group = new RecipeGroup(() => RecipeHelper.GenerateAnyBannerRecipeGroupText("RandomWorldName_Adjective.Hallowed"),
+            AnyHallowBanner = RecipeGroup.Register("Fargowiltas:AnyHallows", () => RecipeHelper.GenerateAnyBannerRecipeGroupText("RandomWorldName_Adjective.Hallowed"),
                 ItemID.PixieBanner, ItemID.UnicornBanner, ItemID.RainbowSlimeBanner, ItemID.GastropodBanner,
                 ItemID.LightMummyBanner, ItemID.IlluminantBatBanner, ItemID.IlluminantSlimeBanner, ItemID.ChaosElementalBanner,
                 ItemID.EnchantedSwordBanner, ItemID.BigMimicHallowBanner
             );
-            AnyHallowBanner = RecipeGroup.RegisterGroup("Fargowiltas:AnyHallows", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             // Any Corruption enemy
-            group = new RecipeGroup(() => RecipeHelper.GenerateAnyBannerRecipeGroupText("CLI.Corrupt"),
+            AnyCorruptBanner = RecipeGroup.Register("Fargowiltas:AnyCorrupts", () => RecipeHelper.GenerateAnyBannerRecipeGroupText("CLI.Corrupt"),
                 ItemID.EaterofSoulsBanner, ItemID.CorruptorBanner, ItemID.CorruptSlimeBanner, ItemID.SlimerBanner,
                 ItemID.DevourerBanner, ItemID.WorldFeederBanner, ItemID.DarkMummyBanner, ItemID.CursedHammerBanner,
                 ItemID.ClingerBanner, ItemID.BigMimicCorruptionBanner
             );
-            AnyCorruptBanner = RecipeGroup.RegisterGroup("Fargowiltas:AnyCorrupts", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             // Any Crimson enemy
-            group = new RecipeGroup(() => RecipeHelper.GenerateAnyBannerRecipeGroupText("CLI.Crimson"),
+            AnyCrimsonBanner = RecipeGroup.Register("Fargowiltas:AnyCrimsons", () => RecipeHelper.GenerateAnyBannerRecipeGroupText("CLI.Crimson"),
                 ItemID.BloodCrawlerBanner, ItemID.FaceMonsterBanner, ItemID.CrimeraBanner, ItemID.HerplingBanner,
                 ItemID.CrimslimeBanner, ItemID.BloodJellyBanner, ItemID.BloodFeederBanner, ItemID.BloodMummyBanner,
                 ItemID.CrimsonAxeBanner, ItemID.IchorStickerBanner, ItemID.FloatyGrossBanner, ItemID.BigMimicCrimsonBanner
             );
-            AnyCrimsonBanner = RecipeGroup.RegisterGroup("Fargowiltas:AnyCrimsons", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             // Any Jungle enemy
-            group = new RecipeGroup(() => RecipeHelper.GenerateAnyBannerRecipeGroupText("RandomWorldName_Location.Jungle"),
+            AnyJungleBanner = RecipeGroup.Register("Fargowiltas:AnyJungles", () => RecipeHelper.GenerateAnyBannerRecipeGroupText("RandomWorldName_Location.Jungle"),
                 ItemID.PiranhaBanner, ItemID.SnatcherBanner, ItemID.JungleBatBanner, ItemID.JungleSlimeBanner,
                 ItemID.DoctorBonesBanner, ItemID.AnglerFishBanner, ItemID.ArapaimaBanner, ItemID.TortoiseBanner,
                 ItemID.AngryTrapperBanner, ItemID.DerplingBanner, ItemID.GiantFlyingFoxBanner, ItemID.HornetBanner,
                 ItemID.SpikedJungleSlimeBanner, ItemID.JungleCreeperBanner, ItemID.MothBanner, ItemID.ManEaterBanner,
                 ItemID.MossHornetBanner
             );
-            AnyJungleBanner = RecipeGroup.RegisterGroup("Fargowiltas:AnyJungles", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             // Any Snow enemy
-            group = new RecipeGroup(() => RecipeHelper.GenerateAnyBannerRecipeGroupText("RandomWorldName_Noun.Snow"),
+            AnySnowBanner = RecipeGroup.Register("Fargowiltas:AnySnows", () => RecipeHelper.GenerateAnyBannerRecipeGroupText("RandomWorldName_Noun.Snow"),
                 ItemID.IceSlimeBanner, ItemID.ZombieEskimoBanner, ItemID.IceElementalBanner, ItemID.WolfBanner,
                 ItemID.IceGolemBanner, ItemID.IceBatBanner, ItemID.SnowFlinxBanner, ItemID.SpikedIceSlimeBanner,
                 ItemID.UndeadVikingBanner, ItemID.ArmoredVikingBanner, ItemID.IceTortoiseBanner, ItemID.IcyMermanBanner,
                 ItemID.PigronBanner
             );
-            AnySnowBanner = RecipeGroup.RegisterGroup("Fargowiltas:AnySnows", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             // Any desert enemy
-            group = new RecipeGroup(() => RecipeHelper.GenerateAnyBannerRecipeGroupText("RandomWorldName_Location.Desert"),
+            AnyDesertBanner = RecipeGroup.Register("Fargowiltas:AnyDeserts", () => RecipeHelper.GenerateAnyBannerRecipeGroupText("RandomWorldName_Location.Desert"),
                 ItemID.VultureBanner, ItemID.MummyBanner, ItemID.BloodMummyBanner, ItemID.DarkMummyBanner,
                 ItemID.LightMummyBanner, ItemID.FlyingAntlionBanner, ItemID.WalkingAntlionBanner, ItemID.LarvaeAntlionBanner,
                 ItemID.AntlionBanner, ItemID.SandSlimeBanner, ItemID.TombCrawlerBanner, ItemID.DesertBasiliskBanner,
@@ -99,209 +92,175 @@ namespace Fargowiltas.Common.Systems.Recipes
                 ItemID.DuneSplicerBanner, ItemID.SandElementalBanner, ItemID.SandsharkBanner, ItemID.SandsharkCorruptBanner,
                 ItemID.SandsharkCrimsonBanner, ItemID.SandsharkHallowedBanner, ItemID.TumbleweedBanner
             );
-            AnyDesertBanner = RecipeGroup.RegisterGroup("Fargowiltas:AnyDeserts", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             // Any bats
-            group = new RecipeGroup(() => RecipeHelper.GenerateAnyBannerRecipeGroupText("RandomWorldName_Noun.Bats"),
+            AnyBatBanner = RecipeGroup.Register("Fargowiltas:AnyBats", () => RecipeHelper.GenerateAnyBannerRecipeGroupText("RandomWorldName_Noun.Bats"),
                 ItemID.BatBanner, ItemID.GiantBatBanner, ItemID.GiantFlyingFoxBanner, ItemID.IceBatBanner,
                 ItemID.IlluminantBatBanner, ItemID.JungleBatBanner, ItemID.HellbatBanner, ItemID.LavaBatBanner,
                 ItemID.SporeBatBanner
             );
-            AnyBatBanner = RecipeGroup.RegisterGroup("Fargowiltas:AnyBats", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             // Spore or Pure Skeletons
-            group = new RecipeGroup(() => ItemXOrY(ItemID.SkeletonBanner, ItemID.SporeSkeletonBanner), ItemID.SkeletonBanner, ItemID.SporeSkeletonBanner);
-            AnyPureSkeletonBanner = RecipeGroup.RegisterGroup("Fargowiltas:AnyPureSkeleton", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
+            AnyPureSkeletonBanner = RecipeGroup.Register("Fargowiltas:AnyPureSkeleton", () => ItemXOrY(ItemID.SkeletonBanner, ItemID.SporeSkeletonBanner), ItemID.SkeletonBanner, ItemID.SporeSkeletonBanner);
 
             // Corruption and Crimson enemies that drop Tentacle Spike
-            group = new RecipeGroup(() => RecipeHelper.GenerateAnyBannerRecipeGroupText("ItemName.TentacleSpike"),
+            AnyTentacleSpikeBanner = RecipeGroup.Register("Fargowiltas:AnyTentacleSpikeBanner", () => RecipeHelper.GenerateAnyBannerRecipeGroupText("ItemName.TentacleSpike"),
                 ItemID.BloodCrawlerBanner, ItemID.CrimeraBanner, ItemID.EaterofSoulsBanner,
                 ItemID.FaceMonsterBanner
             );
-            AnyTentacleSpikeBanner = RecipeGroup.RegisterGroup("Fargowiltas:AnyTentacleSpikeBanner", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             // Antlion Charger and Swarmer
-            group = new RecipeGroup(() => ItemXOrY(ItemID.WalkingAntlionBanner, ItemID.FlyingAntlionBanner), ItemID.WalkingAntlionBanner, ItemID.FlyingAntlionBanner);
-            AntlionChargerOrSwarmerBanner = RecipeGroup.RegisterGroup("Fargowiltas:AnyMandibleClawBanner", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
+            AntlionChargerOrSwarmerBanner = RecipeGroup.Register("Fargowiltas:AnyMandibleClawBanner", () => ItemXOrY(ItemID.WalkingAntlionBanner, ItemID.FlyingAntlionBanner), ItemID.WalkingAntlionBanner, ItemID.FlyingAntlionBanner);
 
             // Antlion Charger and Swarmer
-            group = new RecipeGroup(() => RecipeHelper.GenerateAnyBannerRecipeGroupText("ItemName.BananaSplit"),
+            AnyBananaSplitBanner = RecipeGroup.Register("Fargowiltas:AnyBananaSplitBanner", () => RecipeHelper.GenerateAnyBannerRecipeGroupText("ItemName.BananaSplit"),
                 ItemID.WalkingAntlionBanner, ItemID.FlyingAntlionBanner, ItemID.AntlionBanner
             );
-            AnyBananaSplitBanner = RecipeGroup.RegisterGroup("Fargowiltas:AnyBananaSplitBanner", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             // Wandering Eye Fish and Zombie Merman
-            group = new RecipeGroup(() => ItemXOrY(ItemID.EyeballFlyingFishBanner, ItemID.ZombieMermanBanner), ItemID.EyeballFlyingFishBanner, ItemID.ZombieMermanBanner);
-            AnyBloodMoonFishingT1Banner = RecipeGroup.RegisterGroup("Fargowiltas:AnyBloodMoonFishingT1", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
+            AnyBloodMoonFishingT1Banner = RecipeGroup.Register("Fargowiltas:AnyBloodMoonFishingT1", () => ItemXOrY(ItemID.EyeballFlyingFishBanner, ItemID.ZombieMermanBanner), ItemID.EyeballFlyingFishBanner, ItemID.ZombieMermanBanner);
 
             // Blood Zombie and Drippler
-            group = new RecipeGroup(() => ItemXOrY(ItemID.BloodZombieBanner, ItemID.DripplerBanner), ItemID.BloodZombieBanner, ItemID.DripplerBanner);
-            AnySharktoothNecklaceBanner = RecipeGroup.RegisterGroup("Fargowiltas:AnySharktoothNecklaceBanner", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
+            AnySharktoothNecklaceBanner = RecipeGroup.Register("Fargowiltas:AnySharktoothNecklaceBanner", () => ItemXOrY(ItemID.BloodZombieBanner, ItemID.DripplerBanner), ItemID.BloodZombieBanner, ItemID.DripplerBanner);
+            
 
             // The Jellyfish
-            group = new RecipeGroup(() => RecipeHelper.GenerateAnyBannerRecipeGroupText("ItemName.JellyfishNecklace"),
+            AnyJellyfishNecklaceBanner = RecipeGroup.Register("Fargowiltas:AnyJellyfishNecklaceBanner", () => RecipeHelper.GenerateAnyBannerRecipeGroupText("ItemName.JellyfishNecklace"),
                 ItemID.JellyfishBanner, ItemID.PinkJellyfishBanner, ItemID.GreenJellyfishBanner
             );
-            AnyJellyfishNecklaceBanner = RecipeGroup.RegisterGroup("Fargowiltas:AnyJellyfishNecklaceBanner", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             // The Shackles
-            group = new RecipeGroup(() => RecipeHelper.GenerateAnyBannerRecipeGroupText("ItemName.Shackle"),
+            AnyShackleBanner = RecipeGroup.Register("Fargowiltas:AnyShackleBanner", () => RecipeHelper.GenerateAnyBannerRecipeGroupText("ItemName.Shackle"),
                 ItemID.RaincoatZombieBanner, ItemID.ZombieBanner, ItemID.ZombieEskimoBanner
             );
-            AnyShackleBanner = RecipeGroup.RegisterGroup("Fargowiltas:AnyShackleBanner", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             // The Milkshakes
-            group = new RecipeGroup(() => ItemXOrY(ItemID.IcyMermanBanner, ItemID.IceTortoiseBanner), ItemID.IcyMermanBanner, ItemID.IceTortoiseBanner);
-            AnyMilkshakeBanner = RecipeGroup.RegisterGroup("Fargowiltas:AnyMilkshakeBanner", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
+            AnyMilkshakeBanner = RecipeGroup.Register("Fargowiltas:AnyMilkshakeBanner", () => ItemXOrY(ItemID.IcyMermanBanner, ItemID.IceTortoiseBanner), ItemID.IcyMermanBanner, ItemID.IceTortoiseBanner);
 
             // The Magma Stones
-            group = new RecipeGroup(() => ItemXOrY(ItemID.HellbatBanner, ItemID.LavaBatBanner), ItemID.HellbatBanner, ItemID.LavaBatBanner);
-            AnyMagmaStoneBanner = RecipeGroup.RegisterGroup("Fargowiltas:AnyMagmaStoneBanner", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
+            AnyMagmaStoneBanner = RecipeGroup.Register("Fargowiltas:AnyMagmaStoneBanner", () => ItemXOrY(ItemID.HellbatBanner, ItemID.LavaBatBanner), ItemID.HellbatBanner, ItemID.LavaBatBanner);
 
             // The Nazars
-            group = new RecipeGroup(() => RecipeHelper.GenerateAnyBannerRecipeGroupText("ItemName.Nazar"),
+            AnyNazarBanner = RecipeGroup.Register("Fargowiltas:AnyNazarBanner", () => RecipeHelper.GenerateAnyBannerRecipeGroupText("ItemName.Nazar"),
                 ItemID.CrimsonAxeBanner, ItemID.CursedHammerBanner, ItemID.EnchantedSwordBanner,
                 ItemID.CursedSkullBanner, ItemID.GiantCursedSkullBanner
             );
-            AnyNazarBanner = RecipeGroup.RegisterGroup("Fargowiltas:AnyNazarBanner", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             // The Bezoars
-            group = new RecipeGroup(() => RecipeHelper.GenerateAnyBannerRecipeGroupText("ItemName.Bezoar"),
+            AnyBezoarBanner = RecipeGroup.Register("Fargowiltas:AnyBezoarBanner", () => RecipeHelper.GenerateAnyBannerRecipeGroupText("ItemName.Bezoar"),
                 ItemID.HornetBanner, ItemID.ToxicSludgeBanner, ItemID.MossHornetBanner
             );
-            AnyBezoarBanner = RecipeGroup.RegisterGroup("Fargowiltas:AnyBezoarBanner", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             // The Adhesive Bandages
-            group = new RecipeGroup(() => RecipeHelper.GenerateAnyBannerRecipeGroupText("ItemName.AdhesiveBandage"),
+            AnyAdhesiveBandageBanner = RecipeGroup.Register("Fargowiltas:AnyAdhesiveBandageBanner", () => RecipeHelper.GenerateAnyBannerRecipeGroupText("ItemName.AdhesiveBandage"),
                 ItemID.AnglerFishBanner, ItemID.WerewolfBanner, ItemID.RustyArmoredBonesBanner
             );
-            AnyAdhesiveBandageBanner = RecipeGroup.RegisterGroup("Fargowiltas:AnyAdhesiveBandageBanner", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             // The Blindfolds
-            group = new RecipeGroup(() => RecipeHelper.GenerateAnyBannerRecipeGroupText("ItemName.Blindfold"),
+            AnyBlindfoldBanner = RecipeGroup.Register("Fargowiltas:AnyBlindfoldBanner", () => RecipeHelper.GenerateAnyBannerRecipeGroupText("ItemName.Blindfold"),
                 ItemID.CorruptSlimeBanner, ItemID.CrimslimeBanner, ItemID.DarkMummyBanner,
                 ItemID.BloodMummyBanner
             );
-            AnyBlindfoldBanner = RecipeGroup.RegisterGroup("Fargowiltas:AnyBlindfoldBanner", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             // The Armor Polishes
-            group = new RecipeGroup(() => ItemXOrY(ItemID.ArmoredSkeletonBanner, ItemID.BlueArmoredBonesBanner), ItemID.ArmoredSkeletonBanner, ItemID.BlueArmoredBonesBanner);
-            AnyArmorPolishBanner = RecipeGroup.RegisterGroup("Fargowiltas:AnyArmorPolishBanner", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
+            AnyArmorPolishBanner = RecipeGroup.Register("Fargowiltas:AnyArmorPolishBanner", () => ItemXOrY(ItemID.ArmoredSkeletonBanner, ItemID.BlueArmoredBonesBanner), ItemID.ArmoredSkeletonBanner, ItemID.BlueArmoredBonesBanner);
 
             // The Trifold Maps
-            group = new RecipeGroup(() => RecipeHelper.GenerateAnyBannerRecipeGroupText("ItemName.TrifoldMap"),
+            AnyTrifoldMapBanner = RecipeGroup.Register("Fargowiltas:AnyTrifoldMapBanner", () => RecipeHelper.GenerateAnyBannerRecipeGroupText("ItemName.TrifoldMap"),
                 ItemID.ClownBanner, ItemID.GiantBatBanner, ItemID.LightMummyBanner
             );
-            AnyTrifoldMapBanner = RecipeGroup.RegisterGroup("Fargowiltas:AnyTrifoldMapBanner", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
-
+          
             // The Vitamins
-            group = new RecipeGroup(() => ItemXOrY(ItemID.FloatyGrossBanner, ItemID.CorruptorBanner), ItemID.FloatyGrossBanner, ItemID.CorruptorBanner);
-            AnyVitaminsBanner = RecipeGroup.RegisterGroup("Fargowiltas:AnyVitaminsBanner", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
-
+            AnyVitaminsBanner = RecipeGroup.Register("Fargowiltas:AnyVitaminsBanner", () => ItemXOrY(ItemID.FloatyGrossBanner, ItemID.CorruptorBanner), ItemID.FloatyGrossBanner, ItemID.CorruptorBanner);
+           
             // The Megaphones
-            group = new RecipeGroup(() => RecipeHelper.GenerateAnyBannerRecipeGroupText("ItemName.Megaphone"),
+            AnyMegaphoneBanner = RecipeGroup.Register("Fargowiltas:AnyMegaphoneBanner", () => RecipeHelper.GenerateAnyBannerRecipeGroupText("ItemName.Megaphone"),
                 ItemID.PixieBanner, ItemID.GreenJellyfishBanner, ItemID.DarkMummyBanner,
                 ItemID.BloodMummyBanner
             );
-            AnyMegaphoneBanner = RecipeGroup.RegisterGroup("Fargowiltas:AnyMegaphoneBanner", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
-
+          
             // The Fast Clocks
-            group = new RecipeGroup(() => RecipeHelper.GenerateAnyBannerRecipeGroupText("ItemName.FastClock"),
+            AnyFastClockBanner = RecipeGroup.Register("Fargowiltas:AnyFastClockBanner", () => RecipeHelper.GenerateAnyBannerRecipeGroupText("ItemName.FastClock"),
                 ItemID.MummyBanner, ItemID.PixieBanner, ItemID.WraithBanner
             );
-            AnyFastClockBanner = RecipeGroup.RegisterGroup("Fargowiltas:AnyFastClockBanner", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
-
+            
             // Tally Counter, Bone, Bone Wand
-            group = new RecipeGroup(() => $"{Language.GetTextValue($"NPCName.AngryBones")} {Language.GetTextValue($"Mods.Fargowiltas.RecipeGroups.Or")} {Language.GetTextValue($"NPCName.CursedSkull")} {Language.GetTextValue($"Mods.Fargowiltas.RecipeGroups.Or")} {Language.GetTextValue($"NPCName.DarkCaster")} {Language.GetTextValue("MapObject.Banner")}",
+            AnyDungeonSkeletalT1Banner = RecipeGroup.Register("Fargowiltas:AnyDungeonSkeletalT1Banner", () => $"{Language.GetTextValue($"NPCName.AngryBones")} {Language.GetTextValue($"Mods.Fargowiltas.RecipeGroups.Or")} {Language.GetTextValue($"NPCName.CursedSkull")} {Language.GetTextValue($"Mods.Fargowiltas.RecipeGroups.Or")} {Language.GetTextValue($"NPCName.DarkCaster")} {Language.GetTextValue("MapObject.Banner")}",
                 ItemID.AngryBonesBanner, ItemID.CursedSkullBanner, ItemID.SkeletonMageBanner
             );
-            AnyDungeonSkeletalT1Banner = RecipeGroup.RegisterGroup("Fargowiltas:AnyDungeonSkeletalT1Banner", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             // The Compasses
-            group = new RecipeGroup(() => RecipeHelper.GenerateAnyBannerRecipeGroupText("ItemName.Compass"),
+            AnyCompassBanner = RecipeGroup.Register("Fargowiltas:AnyCompassBanner", () => RecipeHelper.GenerateAnyBannerRecipeGroupText("ItemName.Compass"),
                 ItemID.ArmoredVikingBanner, ItemID.CrawdadBanner, ItemID.GiantShellyBanner,
                 ItemID.MotherSlimeBanner, ItemID.PiranhaBanner, ItemID.SalamanderBanner,
                 ItemID.SnowFlinxBanner, ItemID.UndeadVikingBanner
             );
-            AnyCompassBanner = RecipeGroup.RegisterGroup("Fargowiltas:AnyCompassBanner", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             // The Depth Meters
-            group = new RecipeGroup(() => RecipeHelper.GenerateAnyBannerRecipeGroupText("ItemName.DepthMeter"),
+            AnyDepthMeterBanner = RecipeGroup.Register("Fargowiltas:AnyDepthMeterBanner", () => RecipeHelper.GenerateAnyBannerRecipeGroupText("ItemName.DepthMeter"),
                 ItemID.BatBanner, ItemID.CrawdadBanner, ItemID.GiantBatBanner,
                 ItemID.GiantShellyBanner, ItemID.IceBatBanner, ItemID.JungleBatBanner,
                 ItemID.SalamanderBanner, ItemID.SporeBatBanner
             );
-            AnyDepthMeterBanner = RecipeGroup.RegisterGroup("Fargowiltas:AnyDepthMeterBanner", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             // Angry Bones and Dark Caster
-            group = new RecipeGroup(() => ItemXOrY(ItemID.AngryBonesBanner, ItemID.SkeletonMageBanner), ItemID.AngryBonesBanner, ItemID.SkeletonMageBanner);
-            AnyDungeonSkeletonT1Banner = RecipeGroup.RegisterGroup("Fargowiltas:AnyDungeonSkeletonT1Banner", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
+            AnyDungeonSkeletonT1Banner = RecipeGroup.Register("Fargowiltas:AnyDungeonSkeletonT1Banner", () => ItemXOrY(ItemID.AngryBonesBanner, ItemID.SkeletonMageBanner), ItemID.AngryBonesBanner, ItemID.SkeletonMageBanner);
 
             // Granite Elemental and Golem
-            group = new RecipeGroup(() => ItemXOrY(ItemID.GraniteFlyerBanner, ItemID.GraniteGolemBanner), ItemID.GraniteFlyerBanner, ItemID.GraniteGolemBanner);
-            AnyGraniteBanner = RecipeGroup.RegisterGroup("Fargowiltas:AnyGraniteBanner", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
+            AnyGraniteBanner = RecipeGroup.Register("Fargowiltas:AnyGraniteBanner", () => ItemXOrY(ItemID.GraniteFlyerBanner, ItemID.GraniteGolemBanner), ItemID.GraniteFlyerBanner, ItemID.GraniteGolemBanner);
 
             // Undead and Armored Vikings
-            group = new RecipeGroup(() => ItemXOrY(ItemID.ArmoredVikingBanner, ItemID.UndeadVikingBanner), ItemID.ArmoredVikingBanner, ItemID.UndeadVikingBanner);
-            AnyVikingBanner = RecipeGroup.RegisterGroup("Fargowiltas:AnyVikingBanner", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
+            AnyVikingBanner = RecipeGroup.Register("Fargowiltas:AnyVikingBanner", () => ItemXOrY(ItemID.ArmoredVikingBanner, ItemID.UndeadVikingBanner), ItemID.ArmoredVikingBanner, ItemID.UndeadVikingBanner);
 
             // Piranha and Angler Fish
-            group = new RecipeGroup(() => ItemXOrY(ItemID.PiranhaBanner, ItemID.AnglerFishBanner), ItemID.PiranhaBanner, ItemID.AnglerFishBanner);
-            AnyRobotHatBanner = RecipeGroup.RegisterGroup("Fargowiltas:AnyRobotHatBanner", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
+            AnyRobotHatBanner = RecipeGroup.Register("Fargowiltas:AnyRobotHatBanner", () => ItemXOrY(ItemID.PiranhaBanner, ItemID.AnglerFishBanner), ItemID.PiranhaBanner, ItemID.AnglerFishBanner);
+           
 
             // Corrupt and Crimson Bunnies
-            group = new RecipeGroup(() => ItemXOrY(ItemID.CorruptBunnyBanner, ItemID.CrimsonBunnyBanner), ItemID.CorruptBunnyBanner, ItemID.CrimsonBunnyBanner);
-            AnyBunnyHoodBanner = RecipeGroup.RegisterGroup("Fargowiltas:AnyBunnyHoodBanner", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
+            AnyBunnyHoodBanner = RecipeGroup.Register("Fargowiltas:AnyBunnyHoodBanner", () => ItemXOrY(ItemID.CorruptBunnyBanner, ItemID.CrimsonBunnyBanner), ItemID.CorruptBunnyBanner, ItemID.CrimsonBunnyBanner);
+          
 
             // Corrupt and Crimson Penguins
-            group = new RecipeGroup(() => ItemXOrY(ItemID.CorruptPenguinBanner, ItemID.CrimsonPenguinBanner), ItemID.CorruptPenguinBanner, ItemID.CrimsonPenguinBanner);
-            AnyEvilPenguinBanner = RecipeGroup.RegisterGroup("Fargowiltas:AnyEvilPenguinBanner", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
+            AnyEvilPenguinBanner = RecipeGroup.Register("Fargowiltas:AnyEvilPenguinBanner", () => ItemXOrY(ItemID.CorruptPenguinBanner, ItemID.CrimsonPenguinBanner), ItemID.CorruptPenguinBanner, ItemID.CrimsonPenguinBanner);
 
             // The Mummies
-            group = new RecipeGroup(() => $"{Language.GetTextValue("LegacyMisc.37")} {Language.GetTextValue("ItemName.MummyBanner")}",
+            AnyMummyBanner = RecipeGroup.Register("Fargowiltas:AnyMummyBanner", () => $"{Language.GetTextValue("LegacyMisc.37")} {Language.GetTextValue("ItemName.MummyBanner")}",
                 ItemID.MummyBanner, ItemID.BloodMummyBanner, ItemID.DarkMummyBanner, ItemID.LightMummyBanner
             );
-            AnyMummyBanner = RecipeGroup.RegisterGroup("Fargowiltas:AnyMummyBanner", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             // Green Tea
-            group = new RecipeGroup(() => RecipeHelper.GenerateAnyBannerRecipeGroupText("ItemName.CoffeeCup"),
+            AnyCoffeeCupBanner = RecipeGroup.Register("Fargowiltas:AnyCoffeeCupBanner", () => RecipeHelper.GenerateAnyBannerRecipeGroupText("ItemName.CoffeeCup"),
                 ItemID.ManEaterBanner, ItemID.SnatcherBanner, ItemID.AngryTrapperBanner
             );
-            AnyCoffeeCupBanner = RecipeGroup.RegisterGroup("Fargowiltas:AnyCoffeeCupBanner", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             // Cursed and Giant Cursed Skulls
-            group = new RecipeGroup(() => ItemXOrY(ItemID.CursedSkullBanner, ItemID.GiantCursedSkullBanner), ItemID.CursedSkullBanner, ItemID.GiantCursedSkullBanner);
-            AnyCreamSodaBanner = RecipeGroup.RegisterGroup("Fargowiltas:AnyCreamSodaBanner", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
+            AnyCreamSodaBanner = RecipeGroup.Register("Fargowiltas:AnyCreamSodaBanner", () => ItemXOrY(ItemID.CursedSkullBanner, ItemID.GiantCursedSkullBanner), ItemID.CursedSkullBanner, ItemID.GiantCursedSkullBanner);
 
             // Ice Cream
-            group = new RecipeGroup(() => RecipeHelper.GenerateAnyBannerRecipeGroupText("ItemName.IceCream"),
+            AnyIceCreamBanner = RecipeGroup.Register("Fargowiltas:AnyIceCreamBanner", () => RecipeHelper.GenerateAnyBannerRecipeGroupText("ItemName.IceCream"),
                 ItemID.IceSlimeBanner, ItemID.IceBatBanner, ItemID.SpikedIceSlimeBanner
             );
-            AnyIceCreamBanner = RecipeGroup.RegisterGroup("Fargowiltas:AnyIceCreamBanner", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             // Nachos
-            group = new RecipeGroup(() => RecipeHelper.GenerateAnyBannerRecipeGroupText("ItemName.Nachos"),
+            AnyNachosBanner = RecipeGroup.Register("Fargowiltas:AnyNachosBanner", () => RecipeHelper.GenerateAnyBannerRecipeGroupText("ItemName.Nachos"),
                 ItemID.TumbleweedBanner, ItemID.SandsharkBanner, ItemID.SandsharkCorruptBanner,
                 ItemID.SandsharkCrimsonBanner, ItemID.SandsharkHallowedBanner
             );
-            AnyNachosBanner = RecipeGroup.RegisterGroup("Fargowiltas:AnyNachosBanner", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             // Shark and Crab
-            group = new RecipeGroup(() => ItemXOrY(ItemID.CrabBanner, ItemID.SharkBanner), ItemID.CrabBanner, ItemID.SharkBanner);
-            AnyShrimpPoBoyBanner = RecipeGroup.RegisterGroup("Fargowiltas:AnyShrimpPoBoyBanner", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
+            AnyShrimpPoBoyBanner = RecipeGroup.Register("Fargowiltas:AnyShrimpPoBoyBanner", () => ItemXOrY(ItemID.CrabBanner, ItemID.SharkBanner), ItemID.CrabBanner, ItemID.SharkBanner);
 
             // Fried Egg
-            group = new RecipeGroup(() => RecipeHelper.GenerateAnyBannerRecipeGroupText("ItemName.FriedEgg"),
+            AnyFriedEggBanner = RecipeGroup.Register("Fargowiltas:AnyFriedEggBanner", () => RecipeHelper.GenerateAnyBannerRecipeGroupText("ItemName.FriedEgg"),
                 ItemID.SpiderBanner, ItemID.BlackRecluseBanner, ItemID.RavagerScorpionBanner
             );
-            AnyFriedEggBanner = RecipeGroup.RegisterGroup("Fargowiltas:AnyFriedEggBanner", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             // Derpling and Giant Flying Fox
-            group = new RecipeGroup(() => ItemXOrY(ItemID.GiantFlyingFoxBanner, ItemID.DerplingBanner), ItemID.GiantFlyingFoxBanner, ItemID.DerplingBanner);
-            AnyGrapesBanner = RecipeGroup.RegisterGroup("Fargowiltas:AnyGrapesBanner", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
+            AnyGrapesBanner = RecipeGroup.Register("Fargowiltas:AnyGrapesBanner", () => ItemXOrY(ItemID.GiantFlyingFoxBanner, ItemID.DerplingBanner), ItemID.GiantFlyingFoxBanner, ItemID.DerplingBanner);
+            
 
             // Meat Grinder
-            group = new RecipeGroup(() => RecipeHelper.GenerateAnyBannerRecipeGroupText("ItemName.MeatGrinder"),
+            AnyMeatGrinderBanner = RecipeGroup.Register("Fargowiltas:AnyMeatGrinderBanner", () => RecipeHelper.GenerateAnyBannerRecipeGroupText("ItemName.MeatGrinder"),
                 ItemID.EaterofSoulsBanner, ItemID.CorruptorBanner, ItemID.CorruptSlimeBanner, ItemID.SlimerBanner,
                 ItemID.DevourerBanner, ItemID.WorldFeederBanner, ItemID.DarkMummyBanner, ItemID.CursedHammerBanner,
                 ItemID.ClingerBanner, ItemID.BigMimicCorruptionBanner, ItemID.BloodCrawlerBanner, ItemID.FaceMonsterBanner,
@@ -309,72 +268,60 @@ namespace Fargowiltas.Common.Systems.Recipes
                 ItemID.BloodFeederBanner, ItemID.BloodMummyBanner, ItemID.CrimsonAxeBanner, ItemID.IchorStickerBanner,
                 ItemID.FloatyGrossBanner, ItemID.BigMimicCrimsonBanner
             );
-            AnyMeatGrinderBanner = RecipeGroup.RegisterGroup("Fargowiltas:AnyMeatGrinderBanner", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             // Demon and Wandering Eyes
-            group = new RecipeGroup(() => ItemXOrY(ItemID.DemonEyeBanner, ItemID.WanderingEyeBanner), ItemID.DemonEyeBanner, ItemID.WanderingEyeBanner);
-            AnyBlackLensBanner = RecipeGroup.RegisterGroup("Fargowiltas:AnyBlackLensBanner", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
+            AnyBlackLensBanner = RecipeGroup.Register("Fargowiltas:AnyBlackLensBanner", () => ItemXOrY(ItemID.DemonEyeBanner, ItemID.WanderingEyeBanner), ItemID.DemonEyeBanner, ItemID.WanderingEyeBanner);
 
             // Bone Serpent and Red Devil
-            group = new RecipeGroup(() => ItemXOrY(ItemID.BoneSerpentBanner, ItemID.RedDevilBanner), ItemID.BoneSerpentBanner, ItemID.RedDevilBanner);
-            AnyHotdogBanner = RecipeGroup.RegisterGroup("Fargowiltas:AnyHotdogBanner", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
+            AnyHotdogBanner = RecipeGroup.Register("Fargowiltas:AnyHotdogBanner", () => ItemXOrY(ItemID.BoneSerpentBanner, ItemID.RedDevilBanner), ItemID.BoneSerpentBanner, ItemID.RedDevilBanner);
 
             // Apple Pie
-            group = new RecipeGroup(() => RecipeHelper.GenerateAnyBannerRecipeGroupText("ItemName.ApplePie"),
+            AnyApplePieBanner = RecipeGroup.Register("Fargowiltas:AnyApplePieBanner", () => RecipeHelper.GenerateAnyBannerRecipeGroupText("ItemName.ApplePie"),
                 ItemID.ChaosElementalBanner, ItemID.IlluminantSlimeBanner, ItemID.IlluminantBatBanner
             );
-            AnyApplePieBanner = RecipeGroup.RegisterGroup("Fargowiltas:AnyApplePieBanner", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             // BBQ Ribs
-            group = new RecipeGroup(() => RecipeHelper.GenerateAnyBannerRecipeGroupText("ItemName.BBQRibs"),
+            AnyBBQRibsBanner = RecipeGroup.Register("Fargowiltas:AnyBBQRibsBanner", () => RecipeHelper.GenerateAnyBannerRecipeGroupText("ItemName.BBQRibs"),
                 ItemID.SkeletonCommandoBanner, ItemID.SkeletonSniperBanner, ItemID.TacticalSkeletonBanner
             );
-            AnyBBQRibsBanner = RecipeGroup.RegisterGroup("Fargowiltas:AnyBBQRibsBanner", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             // Dark Shard
-            group = new RecipeGroup(() => RecipeHelper.GenerateAnyBannerRecipeGroupText("ItemName.DarkShard"),
+            AnyDarkShardBanner = RecipeGroup.Register("Fargowiltas:AnyDarkShardBanner", () => RecipeHelper.GenerateAnyBannerRecipeGroupText("ItemName.DarkShard"),
                 ItemID.DesertGhoulBanner, ItemID.BloodMummyBanner, ItemID.DarkMummyBanner,
                 ItemID.SandsharkCorruptBanner, ItemID.SandsharkCrimsonBanner
             );
-            AnyDarkShardBanner = RecipeGroup.RegisterGroup("Fargowiltas:AnyDarkShardBanner", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             // Light Shard
-            group = new RecipeGroup(() => RecipeHelper.GenerateAnyBannerRecipeGroupText("ItemName.LightShard"),
+            AnyLightShardBanner = RecipeGroup.Register("Fargowiltas:AnyLightShardBanner", () => RecipeHelper.GenerateAnyBannerRecipeGroupText("ItemName.LightShard"),
                 ItemID.DesertGhoulBanner, ItemID.LightMummyBanner, ItemID.SandsharkHallowedBanner
             );
-            AnyLightShardBanner = RecipeGroup.RegisterGroup("Fargowiltas:AnyLightShardBanner", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
+
 
             // Brain Scrambler
-            group = new RecipeGroup(() => ItemXOrY(ItemID.MartianScutlixGunnerBanner, ItemID.ScutlixBanner), ItemID.MartianScutlixGunnerBanner, ItemID.ScutlixBanner);
-            AnyBrainScramblerBanner = RecipeGroup.RegisterGroup("Fargowiltas:AnyBrainScramblerBanner", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
+            AnyBrainScramblerBanner = RecipeGroup.Register("Fargowiltas:AnyBrainScramblerBanner", () => ItemXOrY(ItemID.MartianScutlixGunnerBanner, ItemID.ScutlixBanner), ItemID.MartianScutlixGunnerBanner, ItemID.ScutlixBanner);
 
             // Chain Knife
-            group = new RecipeGroup(() => ItemXOrY(ItemID.BatBanner, ItemID.GiantBatBanner), ItemID.BatBanner, ItemID.GiantBatBanner);
-            AnyChainKnifeBanner = RecipeGroup.RegisterGroup("Fargowiltas:AnyChainKnifeBanner", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
+            AnyChainKnifeBanner = RecipeGroup.Register("Fargowiltas:AnyChainKnifeBanner", () => ItemXOrY(ItemID.BatBanner, ItemID.GiantBatBanner), ItemID.BatBanner, ItemID.GiantBatBanner);
 
             // Rare Cavelings
-            group = new RecipeGroup(() => $"{Language.GetTextValue($"NPCName.Salamander")} {Language.GetTextValue($"Mods.Fargowiltas.RecipeGroups.Or")} {Language.GetTextValue($"NPCName.GiantShelly")} {Language.GetTextValue($"Mods.Fargowiltas.RecipeGroups.Or")} {Language.GetTextValue($"NPCName.Crawdad")} {Language.GetTextValue("MapObject.Banner")}",
+            AnyRareCavelingBanner = RecipeGroup.Register("Fargowiltas:AnyRareCavelingBanner", () => $"{Language.GetTextValue($"NPCName.Salamander")} {Language.GetTextValue($"Mods.Fargowiltas.RecipeGroups.Or")} {Language.GetTextValue($"NPCName.GiantShelly")} {Language.GetTextValue($"Mods.Fargowiltas.RecipeGroups.Or")} {Language.GetTextValue($"NPCName.Crawdad")} {Language.GetTextValue("MapObject.Banner")}",
                 ItemID.SalamanderBanner, ItemID.GiantShellyBanner, ItemID.CrawdadBanner
             );
-            AnyRareCavelingBanner = RecipeGroup.RegisterGroup("Fargowiltas:AnyRareCavelingBanner", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             // Cascade
-            group = new RecipeGroup(() => RecipeHelper.GenerateAnyBannerRecipeGroupText("ItemName.Cascade"),
+            AnyCascadeBanner = RecipeGroup.Register("Fargowiltas:AnyCascadeBanner", () => RecipeHelper.GenerateAnyBannerRecipeGroupText("ItemName.Cascade"),
                 ItemID.BoneSerpentBanner, ItemID.DemonBanner, ItemID.HellbatBanner,
                 ItemID.FireImpBanner, ItemID.LavaSlimeBanner
             );
-            AnyCascadeBanner = RecipeGroup.RegisterGroup("Fargowiltas:AnyCascadeBanner", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             // Ice Sickle
-            group = new RecipeGroup(() => RecipeHelper.GenerateAnyBannerRecipeGroupText("ItemName.IceSickle"),
+            AnyIceSickleBanner = RecipeGroup.Register("Fargowiltas:AnyIceSickleBanner", () => RecipeHelper.GenerateAnyBannerRecipeGroupText("ItemName.IceSickle"),
                 ItemID.IceElementalBanner, ItemID.IcyMermanBanner, ItemID.ArmoredVikingBanner,
                 ItemID.IceTortoiseBanner
             );
-            AnyIceSickleBanner = RecipeGroup.RegisterGroup("Fargowiltas:AnyIceSickleBanner", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             // Frost Staff
-            group = new RecipeGroup(() => ItemXOrY(ItemID.IceElementalBanner, ItemID.IcyMermanBanner), ItemID.IceElementalBanner, ItemID.IcyMermanBanner);
-            AnyFrostStaffBanner = RecipeGroup.RegisterGroup("Fargowiltas:AnyFrostStaffBanner", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
+            AnyFrostStaffBanner = RecipeGroup.Register("Fargowiltas:AnyFrostStaffBanner", () => ItemXOrY(ItemID.IceElementalBanner, ItemID.IcyMermanBanner), ItemID.IceElementalBanner, ItemID.IcyMermanBanner);
 
         }
 
@@ -596,7 +543,7 @@ namespace Fargowiltas.Common.Systems.Recipes
 
         private static void AddBannerToMiscItemRecipes()
         {
-            AddBannerToItemRecipe(AnySlimesBanner, ItemID.SlimeStaff, bannerAmount: 50);
+            AddBannerGroupToItemRecipe(AnySlimesBanner, ItemID.SlimeStaff, groupAmount: 50);
             AddBannerToItemRecipe(ItemID.PinkyBanner, ItemID.SlimeStaff, bannerAmount: 2);
             AddBannerToItemRecipe(ItemID.DripplerBanner, ItemID.MoneyTrough);
             AddBannerToItemRecipe(ItemID.FlyingFishBanner, ItemID.CarbonGuitar);
@@ -726,9 +673,9 @@ namespace Fargowiltas.Common.Systems.Recipes
             AddBannerToItemRecipe(ItemID.TacticalSkeletonBanner, ItemID.TacticalShotgun, conditions: Condition.DownedPlantera);
         }
 
-        private static void AddBannerGroupToItemRecipe(int recipeGroupID, int resultID, int resultAmount = 1, int groupAmount = 1, params Condition[] conditions)
+        private static void AddBannerGroupToItemRecipe(RecipeGroup group, int resultID, int resultAmount = 1, int groupAmount = 1, params Condition[] conditions)
         {
-            RecipeHelper.CreateSimpleRecipe(recipeGroupID, resultID, TileID.Solidifier, groupAmount, resultAmount, true, true, conditions);
+            RecipeHelper.CreateSimpleRecipe(default, resultID, TileID.Solidifier, groupAmount, resultAmount, true, group, conditions);
         }
 
         private static void AddBannerToItemRecipe(int bannerItemID, int resultID, int bannerAmount = 1, int resultAmount = 1, params Condition[] conditions)

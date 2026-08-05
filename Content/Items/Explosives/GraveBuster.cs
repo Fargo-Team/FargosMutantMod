@@ -37,7 +37,7 @@ namespace Fargowiltas.Content.Items.Explosives
                 .AddIngredient<GizmoParts>(2)
                 .AddIngredient(ItemID.Dynamite, 5)
                 .AddIngredient(ItemID.FallenStar, 1)
-                .AddRecipeGroup(RecipeGroups.AnyTombstone)
+                .AddRecipeGroup(FargoRecipeGroups.AnyTombstone)
                 .AddTile(TileID.Anvils)
                 .Register();
         }

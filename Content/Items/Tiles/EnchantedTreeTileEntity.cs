@@ -237,8 +237,9 @@ namespace Fargowiltas.Content.Items.Tiles
                                     {
                                         int item = Item.NewItem(Main.LocalPlayer.GetSource_TileInteraction(tree.Position.X, tree.Position.Y, "EnchantedTreeDuplication"), fruit.center, fruit.type, prefixGiven: tree.Prefix);
 
-                                        Main.item[item].GetGlobalItem<FargoGlobalItem>().Grabbed = Main.myPlayer;
-                                        Main.item[item].GetGlobalItem<FargoGlobalItem>().FromEnchantedTree = true;
+                                  
+                                        Main.item[item].inner.GetGlobalItem<FargoGlobalItem>().Grabbed = Main.myPlayer;
+                                        Main.item[item].inner.GetGlobalItem<FargoGlobalItem>().FromEnchantedTree = true;
                                         //FargoNet.SyncItemFromFruitPacket(Main.item[item].type, Main.myPlayer, tree.Position.ToVector2(), fruit.center, item);
                                         NetMessage.SendData(MessageID.SyncItem, Main.myPlayer, number: item, number2: 1f);
 

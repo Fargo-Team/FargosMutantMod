@@ -55,16 +55,18 @@ namespace Fargowiltas.Content.UI
                 Item oldItem = _item.Clone();
                 bool leftClick = Main.mouseLeftRelease && Main.mouseLeft;
                 if (leftClick)
-                {
-                    ItemSlot.LeftClick(ref _item);
+                {   
+                    //Porting note: In 1.4.5 ItemSlot.LeftClick & RightClick's first parameter was changed to an array
+                    //todo: Investigate and fix
+                    //ItemSlot.LeftClick(_item);
                 }
-                ItemSlot.RightClick(ref _item);
+                //ItemSlot.RightClick(_item);
                 if (_item.IsNotSameTypePrefixAndStack(oldItem))
                 {
                     OnItemSwap(ref oldItem, ref _item);
                 }
             }
-            ItemSlot.MouseHover(ref _item);
+            ItemSlot.MouseHover(_item);
         }
 
         public override void Update(GameTime gameTime)
@@ -167,7 +169,7 @@ namespace Fargowiltas.Content.UI
             if (!HasItem)
                 return;
 
-            Main.LocalPlayer.QuickSpawnItem(new EntitySource_WorldEvent(), _item.Clone(), _item.stack);
+            Main.LocalPlayer.QuickSpawnItem(new EntitySource_WorldEvent(), _item.Clone().type, _item.stack);
             _item.TurnToAir(true);
         }
 

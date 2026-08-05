@@ -16,10 +16,10 @@ namespace Fargowiltas.Utilities
         /// <param name="resultAmount">The amount of the resulting item created by the recipe. Defaults to 1.</param>
         /// <param name="disableDecraft">A flag indicating whether the crafted item can be de-crafted. Defaults to false.</param>
         /// <param name="usesRecipeGroup">A flag indicating whether the supplied ingredient ID is a recipe group. Defaults to <see langword="false"/>.</param>
-        public static void CreateSimpleRecipe(int ingredientID, int resultID, int tileID, int ingredientAmount = 1, int resultAmount = 1, bool disableDecraft = false, bool usesRecipeGroup = false, params Condition[] conditions)
+        public static void CreateSimpleRecipe(int ingredientID, int resultID, int tileID, int ingredientAmount = 1, int resultAmount = 1, bool disableDecraft = false, RecipeGroup group = null, params Condition[] conditions)
         {
             var recipe = Recipe.Create(resultID, resultAmount);
-            if (usesRecipeGroup)
+            if (group != null)
             {
                 recipe.AddRecipeGroup(ingredientID, ingredientAmount);
             }

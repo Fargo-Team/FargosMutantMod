@@ -22,7 +22,7 @@ namespace Fargowiltas.Content.Items.Tiles
             {
                 if (tooltipLine.Mod == "Terraria" && tooltipLine.Name == "ItemName")
                 {
-                    tooltipLine.Color = new Color?(new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB));
+                    tooltipLine.Color = new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB);
                 }
             }
         }
@@ -50,11 +50,11 @@ namespace Fargowiltas.Content.Items.Tiles
                 .AddIngredient(ModContent.ItemType<ElementalAssembler>())
                 .AddIngredient(ModContent.ItemType<LuminiteOmniforge>())
                 .AddIngredient(ModContent.ItemType<GoldenDippingVat>())
-                .AddRecipeGroup(RecipeGroups.AnyBookcase)
+                .AddRecipeGroup(FargoRecipeGroups.AnyBookcase)
                 .AddIngredient(ItemID.BlendOMatic)
                 .AddIngredient(ItemID.MeatGrinder)
                 .AddIngredient(ItemID.SteampunkBoiler)
-                .AddRecipeGroup(RecipeGroups.AnyDecayChamber)
+                .AddRecipeGroup(FargoRecipeGroups.AnyDecayChamber)
                 .AddIngredient(ItemID.LihzahrdFurnace)
                 .Register();
 

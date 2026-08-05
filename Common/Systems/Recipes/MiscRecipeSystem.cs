@@ -84,7 +84,7 @@ namespace Fargowiltas.Common.Systems.Recipes
                     var groupItems = RecipeGroup.recipeGroups[groupID].ValidItems.ToList();
                     foreach (Item item in recipe.requiredItem)
                     {
-                        if (RecipeGroup.recipeGroups[groupID].IconicItemId == item.type)
+                        if (RecipeGroup.recipeGroups[groupID].Items[0] == item.type)
                         {
                             // add tag that it should animate draw
                             item.GetGlobalItem<FargoGlobalItem>().RecipeGroupAnimationItems = groupItems;
@@ -205,49 +205,49 @@ namespace Fargowiltas.Common.Systems.Recipes
             recipe.Register();
 
             recipe = Recipe.Create(ItemID.GemSquirrelAmber);
-            recipe.AddRecipeGroup(RecipeGroups.Squirrels);
+            recipe.AddRecipeGroup(Terraria.ID.RecipeGroups.Squirrels);
             recipe.AddIngredient(ItemID.Amber, 5);
             recipe.AddTile(TileID.Solidifier);
             recipe.DisableDecraft();
             recipe.Register();
 
             recipe = Recipe.Create(ItemID.GemSquirrelAmethyst);
-            recipe.AddRecipeGroup(RecipeGroups.Squirrels);
+            recipe.AddRecipeGroup(Terraria.ID.RecipeGroups.Squirrels);
             recipe.AddIngredient(ItemID.Amethyst, 5);
             recipe.AddTile(TileID.Solidifier);
             recipe.DisableDecraft();
             recipe.Register();
 
             recipe = Recipe.Create(ItemID.GemSquirrelDiamond);
-            recipe.AddRecipeGroup(RecipeGroups.Squirrels);
+            recipe.AddRecipeGroup(Terraria.ID.RecipeGroups.Squirrels);
             recipe.AddIngredient(ItemID.Diamond, 5);
             recipe.AddTile(TileID.Solidifier);
             recipe.DisableDecraft();
             recipe.Register();
 
             recipe = Recipe.Create(ItemID.GemSquirrelEmerald);
-            recipe.AddRecipeGroup(RecipeGroups.Squirrels);
+            recipe.AddRecipeGroup(Terraria.ID.RecipeGroups.Squirrels);
             recipe.AddIngredient(ItemID.Emerald, 5);
             recipe.AddTile(TileID.Solidifier);
             recipe.DisableDecraft();
             recipe.Register();
 
             recipe = Recipe.Create(ItemID.GemSquirrelRuby);
-            recipe.AddRecipeGroup(RecipeGroups.Squirrels);
+            recipe.AddRecipeGroup(Terraria.ID.RecipeGroups.Squirrels);
             recipe.AddIngredient(ItemID.Ruby, 5);
             recipe.AddTile(TileID.Solidifier);
             recipe.DisableDecraft();
             recipe.Register();
 
             recipe = Recipe.Create(ItemID.GemSquirrelSapphire);
-            recipe.AddRecipeGroup(RecipeGroups.Squirrels);
+            recipe.AddRecipeGroup(Terraria.ID.RecipeGroups.Squirrels);
             recipe.AddIngredient(ItemID.Sapphire, 5);
             recipe.AddTile(TileID.Solidifier);
             recipe.DisableDecraft();
             recipe.Register();
 
             recipe = Recipe.Create(ItemID.GemSquirrelTopaz);
-            recipe.AddRecipeGroup(RecipeGroups.Squirrels);
+            recipe.AddRecipeGroup(Terraria.ID.RecipeGroups.Squirrels);
             recipe.AddIngredient(ItemID.Topaz, 5);
             recipe.AddTile(TileID.Solidifier);
             recipe.DisableDecraft();

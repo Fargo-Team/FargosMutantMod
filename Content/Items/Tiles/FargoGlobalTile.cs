@@ -97,6 +97,8 @@ namespace Fargowiltas.Content.Items.Tiles
         public override void NearbyEffects(int i, int j, int type, bool closer)
         {
             Player player = Main.LocalPlayer;
+
+            //Porting note: Is this neccessary with 1.4.5's new Torch God's Flavor potion?
             if (closer && TileID.Sets.Torches[type] && !Main.dedServ
                 && player.UsingBiomeTorches
                 && (LastTorchUpdate < Main.GameUpdateCount - 60 || LastTorchUpdate == Main.GameUpdateCount))
@@ -129,8 +131,9 @@ namespace Fargowiltas.Content.Items.Tiles
 
                     if (replaceTorch)
                     {
-                        int style = 0;
-                        int correctTorch = player.BiomeTorchPlaceStyle(ref type, ref style);
+                        //int style = 0;
+                        int correctTorch = player.BiomeTorchHoldStyle(type);
+
                         if (correctTorch == (int)TorchStyle.Demon)
                             correctTorch = (int)TorchStyle.Bone; //because bone gives bonus in hell but demon doesnt????
                         else if (player.ZoneBeach)

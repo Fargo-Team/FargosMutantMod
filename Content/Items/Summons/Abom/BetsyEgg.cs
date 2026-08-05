@@ -92,7 +92,9 @@ namespace Fargowiltas.Content.Items.Summons.Abom
                 NPC.waveNumber = 6;
                 NPC.waveKills = 220;
                 DD2Event.CheckProgress(NPCID.DD2GoblinT3);
-                player.QuickSpawnItem(Item.GetSource_FromThis(), ItemID.DD2EnergyCrystal, 140); // give all missing crystals
+
+                //porting note: source was formerly Item.GetSource_FromThis().
+                player.QuickSpawnItem(player.GetSource_FromThis(), ItemID.DD2EnergyCrystal, 140); // give all missing crystals
                 BetsyEggUsed = false;
             }
             else

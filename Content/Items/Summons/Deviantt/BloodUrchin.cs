@@ -28,7 +28,7 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
                 .AddIngredient<GizmoParts>(2)
                 .AddIngredient(ItemID.BloodMoonStarter)
                 .AddIngredient(ItemID.DeepRedPaint)
-                .AddRecipeGroup(RecipeGroups.AnyFoodT3)
+                .AddRecipeGroup(FargoRecipeGroups.AnyFoodT3)
                 .AddTile(TileID.MythrilAnvil)
                 .Register();
         }

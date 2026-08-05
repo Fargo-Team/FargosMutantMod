@@ -11,7 +11,7 @@ namespace Fargowiltas.Content.Items.Summons.SwarmSummons
 
         public override void SetStaticDefaults()
         {
-            ItemID.Sets.SortingPriorityBossSpawns[Type] = ItemID.Sets.SortingPriorityBossSpawns[ItemID.QueenSlimeCrystal]; // 6
+            ItemID.Sets.SortingPriorityMiscImportants[Type] = ItemID.Sets.SortingPriorityMiscImportants[ItemID.QueenSlimeCrystal]; // 6
         }
 
         public override bool CanUseItem(Player player)

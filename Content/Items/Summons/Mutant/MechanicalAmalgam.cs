@@ -11,7 +11,7 @@ namespace Fargowiltas.Content.Items.Summons.Mutant
         {
             Item.ResearchUnlockCount = 3;
 
-            ItemID.Sets.SortingPriorityBossSpawns[Type] = 10; // Places it right after the three mech summons
+            ItemID.Sets.SortingPriorityMiscImportants[Type] = 10; // Places it right after the three mech summons
         }
 
         public override void SetDefaults()

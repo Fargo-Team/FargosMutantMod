@@ -8,7 +8,8 @@ using Terraria.ModLoader;
 namespace Fargowiltas.Content.Items.Tiles
 {
     public class FargoGlobalPylon : GlobalPylon
-    {
+    {   
+        /*
         public override bool? ValidTeleportCheck_PreAnyDanger(TeleportPylonInfo pylonInfo)
         {
             if (FargoServerConfig.Instance.PylonsIgnoreEvents && !FargoUtils.AnyBossAlive())
@@ -16,5 +17,6 @@ namespace Fargowiltas.Content.Items.Tiles
 
             return base.ValidTeleportCheck_PreAnyDanger(pylonInfo);
         }
+        */
     }
 }

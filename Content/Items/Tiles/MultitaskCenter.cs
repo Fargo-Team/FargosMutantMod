@@ -35,7 +35,7 @@ namespace Fargowiltas.Content.Items.Tiles
         {
             CreateRecipe()
                 .AddIngredient<GizmoParts>(5)
-                .AddRecipeGroup(RecipeGroupID.IronBar, 5)
+                .AddRecipeGroup(RecipeGroups.IronBar, 5)
                 .AddIngredient(ItemID.WorkBench)
                 .AddIngredient(ItemID.HeavyWorkBench)
                 .AddIngredient(ItemID.Furnace)
@@ -90,7 +90,7 @@ namespace Fargowiltas.Content.Items.Tiles
                 TileID.Sinks,
                 TileID.Kegs
                 ];
-            TileID.Sets.CountsAsWaterSource[Type] = true;
+            TileID.Sets.CountsAsWaterForCrafting[Type] = true;
             AnimationFrameHeight = 54;
 
             glowTexture = ModContent.Request<Texture2D>(Texture + "_Glow");

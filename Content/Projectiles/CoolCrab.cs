@@ -90,7 +90,7 @@ namespace Fargowiltas.Content.Projectiles
             Projectile.direction = Projectile.spriteDirection = MathF.Sign(player.Center.X - Projectile.Center.X);
 
         }
-        public override bool PreDraw(ref Color lightColor)
+        public override bool PreDraw(Player player, ref Color lightColor)
         {
             Texture2D texture2D13 = Terraria.GameContent.TextureAssets.Projectile[Projectile.type].Value;
 

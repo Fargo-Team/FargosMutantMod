@@ -16,7 +16,7 @@ namespace Fargowiltas.Content.Items.Summons.Abom
         public override void SetStaticDefaults()
         {
             base.SetStaticDefaults();
-            ItemID.Sets.SortingPriorityBossSpawns[Type] = ItemID.Sets.SortingPriorityBossSpawns[ItemID.BloodMoonStarter]; // 18 [Redigit why]
+            ItemID.Sets.SortingPriorityMiscImportants[Type] = ItemID.Sets.SortingPriorityMiscImportants[ItemID.BloodMoonStarter]; // 18 [Redigit why]
         }
 
         public override void SetDefaults()

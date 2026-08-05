@@ -10,7 +10,7 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
         public override void SetStaticDefaults()
         {
             base.SetStaticDefaults();
-            ItemID.Sets.SortingPriorityBossSpawns[Type] = 6; // Places it right after Gelatin Crystal
+            ItemID.Sets.SortingPriorityMiscImportants[Type] = 6; // Places it right after Gelatin Crystal
         }
 
         public override void AddRecipes()

@@ -145,7 +145,7 @@ namespace Fargowiltas
                     item.stack--;
 
                 if (item.stack <= 0)
-                    item.SetDefaults();
+                    item.SetDefaults(item.type);
 
                 return true;
             }

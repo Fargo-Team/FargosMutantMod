@@ -11,7 +11,7 @@ namespace Fargowiltas.Content.Items.Summons.SwarmSummons
 
         public override void SetStaticDefaults()
         {
-            ItemID.Sets.SortingPriorityBossSpawns[Type] = ItemID.Sets.SortingPriorityBossSpawns[ItemID.SuspiciousLookingEye]; // 1
+            ItemID.Sets.SortingPriorityMiscImportants[Type] = ItemID.Sets.SortingPriorityMiscImportants[ItemID.SuspiciousLookingEye]; // 1
         }
         public override bool CanUseItem(Player player)
         {

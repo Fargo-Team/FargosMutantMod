@@ -55,17 +55,19 @@ namespace Fargowiltas.Common.Systems
                 TextSnippet[] snippet = ChatManager.ParseMessage(Text, Color.White).ToArray();
                 if (!justCheckingString && ShouldDraw)
                 {
-                    ChatManager.DrawColorCodedStringWithShadow(spriteBatch, font, snippet, position, 0f, color, ShadowColor, Vector2.Zero, Vector2.One, out _, -1);
+                    ChatManager.DrawColorCodedStringWithShadow(spriteBatch, font, snippet, position, color, ShadowColor, 0, Vector2.Zero, Vector2.One, out _, -1);
                     ShadowColor = Color.Navy;
                 }
                 size = ChatManager.GetStringSize(font, snippet, Vector2.One);
                 return true;
             }
 
+            /*
             public override float GetStringLength(DynamicSpriteFont font)
             {
                 return base.GetStringLength(font);
             }
+            */
 
             public override void OnHover()
             {

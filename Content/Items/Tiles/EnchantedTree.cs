@@ -26,7 +26,7 @@ namespace Fargowiltas.Content.Items.Tiles
         {
             CreateRecipe()
                 .AddIngredient<GizmoParts>(3)
-                .AddRecipeGroup(RecipeGroupID.Wood, 50)
+                .AddRecipeGroup(RecipeGroups.Wood, 50)
                 .AddIngredient(ItemID.Mushroom, 3)
                 .AddIngredient(ItemID.GlowingMushroom, 3)
                 .AddIngredient(ItemID.FallenStar, 3)

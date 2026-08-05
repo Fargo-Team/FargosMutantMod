@@ -11,7 +11,7 @@ namespace Fargowiltas.Content.Items.Summons.Mutant
         {
             Item.ResearchUnlockCount = 3;
 
-            ItemID.Sets.SortingPriorityBossSpawns[Type] = 5; // Places it right after Deer Thing and Abeemination, and before Gelatin Crystal
+            ItemID.Sets.SortingPriorityMiscImportants[Type] = 5; // Places it right after Deer Thing and Abeemination, and before Gelatin Crystal
         }
 
         public override void SetDefaults()
@@ -41,11 +41,11 @@ namespace Fargowiltas.Content.Items.Summons.Mutant
             return true;
         }
 
-        public override void PostUpdate()
+        public override void PostUpdate(WorldItem item)
         {
-            if (Item.lavaWet && !NPC.AnyNPCs(NPCID.WallofFlesh))
+            if (item.lavaWet && !NPC.AnyNPCs(NPCID.WallofFlesh))
             {
-                NPC.SpawnWOF(Item.position);
+                NPC.SpawnWOF(item.position);
                 Item.TurnToAir();
             }
         }

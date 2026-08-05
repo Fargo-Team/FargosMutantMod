@@ -43,7 +43,7 @@ namespace Fargowiltas.Content.Projectiles
             if (Projectile.Opacity <= 0.01f)
                 Projectile.Kill();
         }
-        public override bool PreDraw(ref Color lightColor)
+        public override bool PreDraw(Player player, ref Color lightColor)
         {
             Texture2D texture = (Texture2D)ModContent.Request<Texture2D>($"Fargowiltas/Content/Items/Misc/ModeToggle_{Main.GameMode}");
             Rectangle frame = new Rectangle(0, 0, texture.Width, texture.Height);

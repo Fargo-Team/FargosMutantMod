@@ -91,10 +91,10 @@ namespace Fargowiltas.Content.Items.Misc
             return base.PreDrawInInventory(spriteBatch, position, drawFrame, drawColor, itemColor, drawFrame.Size() * 0.5f, scale);
         }
 
-        public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI)
+        public override bool PreDrawInWorld(WorldItem item, SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI)
         {
             Main.itemFrame[whoAmI] = PotionBagSystem.AnyCompletedPotions ? 1 : 0;
-            return base.PreDrawInWorld(spriteBatch, lightColor, alphaColor, ref rotation, ref scale, whoAmI);
+            return base.PreDrawInWorld(item, spriteBatch, lightColor, alphaColor, ref rotation, ref scale, whoAmI);
         }
 
         public override void UpdateInventory(Player player)
@@ -107,11 +107,12 @@ namespace Fargowiltas.Content.Items.Misc
         {
             CreateRecipe()
                 .AddIngredient<GizmoParts>(2)
-                .AddRecipeGroup(RecipeGroupID.IronBar, 5)
+                .AddRecipeGroup(RecipeGroups.IronBar, 5)
                 .AddIngredient(ItemID.IceBlock, 20)
                 .AddIngredient(ItemID.FallenStar, 3)
                 .AddTile(TileID.Anvils)
                 .Register();
+
         }
     }
 

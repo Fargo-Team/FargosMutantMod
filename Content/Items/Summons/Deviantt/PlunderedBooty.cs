@@ -12,7 +12,7 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
             // DisplayName.SetDefault("Plundered Booty");
             // Tooltip.SetDefault("Summons Flying Dutchman");
 
-            ItemID.Sets.SortingPriorityBossSpawns[Type] = ItemID.Sets.SortingPriorityBossSpawns[ItemID.PirateMap]; // 11
+            ItemID.Sets.SortingPriorityMiscImportants[Type] = ItemID.Sets.SortingPriorityMiscImportants[ItemID.PirateMap]; // 11
         }
     }
 }

@@ -42,7 +42,7 @@ namespace Fargowiltas.Content.Items.Tiles
             AddCritter(ItemID.WaterStrider, ItemID.GoldWaterStrider);
             AddCritter(ItemID.Worm, ItemID.GoldWorm);
 
-            AddCritterFromGroup(RecipeGroupID.Squirrels, ItemID.SquirrelGold);
+            AddCritterFromGroup(RecipeGroups.Squirrels, ItemID.SquirrelGold);
             AddCritterFromGroup(RecipeGroups.AnyButterfly, ItemID.GoldButterfly);
             AddCritterFromGroup(RecipeGroups.AnyCommonFish, ItemID.GoldenCarp);
             AddCritterFromGroup(RecipeGroups.AnyDragonfly, ItemID.GoldDragonfly);

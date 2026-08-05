@@ -16,7 +16,7 @@ namespace Fargowiltas.Content.Items.Summons.Mutant
         {
             Item.ResearchUnlockCount = 3;
 
-            ItemID.Sets.SortingPriorityBossSpawns[Type] = 19; // Places it right after Celestial Sigil
+            ItemID.Sets.SortingPriorityMiscImportants[Type] = 19; // Places it right after Celestial Sigil
         }
 
         public override void SetDefaults()

@@ -155,12 +155,12 @@ namespace Fargowiltas.Content.Items.Misc
             }
         }
 
-        public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
+        public override void PostDrawInWorld(WorldItem item, SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
         {
             if (Main.sundialCooldown == 0)
             {
                 Texture2D texture = ModContent.Request<Texture2D>(Texture + "_glow").Value;
-                Vector2 cent = Item.Bottom - Main.screenPosition - new Vector2(0, (texture.Size() / 2).Y).RotatedBy(rotation);
+                Vector2 cent = item.Bottom - Main.screenPosition - new Vector2(0, (texture.Size() / 2).Y).RotatedBy(rotation);
                 Color color3 = new(100, 100, 100, 0);
                 for (int j = 0; j < 4; j++)
                 {

@@ -22,7 +22,7 @@ namespace Fargowiltas.Content.Items.Tiles
             {
                 if (tooltipLine.Mod == "Terraria" && tooltipLine.Name == "ItemName")
                 {
-                    tooltipLine.OverrideColor = new Color?(new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB));
+                    tooltipLine.Color = new Color?(new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB));
                 }
             }
         }
@@ -132,9 +132,9 @@ namespace Fargowiltas.Content.Items.Tiles
                 ModContent.TileType<LuminiteOmniforgeTile>()
                 ];
 
-            TileID.Sets.CountsAsHoneySource[Type] = true;
-            TileID.Sets.CountsAsLavaSource[Type] = true;
-            TileID.Sets.CountsAsWaterSource[Type] = true;
+            TileID.Sets.CountsAsHoneyForCrafting[Type] = true;
+            TileID.Sets.CountsAsLavaForCrafting[Type] = true;
+            TileID.Sets.CountsAsWaterForCrafting[Type] = true;
             #endregion
 
             AnimationFrameHeight = 54;

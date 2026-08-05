@@ -34,7 +34,7 @@ namespace Fargowiltas.Content.Projectiles.Explosives
             }
         }
 
-        public override bool PreDraw(ref Color lightColor)
+        public override bool PreDraw(Player player, ref Color lightColor)
         {
             Texture2D t = TextureAssets.Projectile[Type].Value;
             int sizeY = t.Height / Main.projFrames[Type];

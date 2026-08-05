@@ -10,7 +10,7 @@ namespace Fargowiltas.Content.Items.Summons.Abom
         public override void SetStaticDefaults()
         {
             base.SetStaticDefaults();
-            ItemID.Sets.SortingPriorityBossSpawns[Type] = ItemID.Sets.SortingPriorityBossSpawns[ItemID.NaughtyPresent]; // 15
+            ItemID.Sets.SortingPriorityMiscImportants[Type] = ItemID.Sets.SortingPriorityMiscImportants[ItemID.NaughtyPresent]; // 15
         }
 
         public override bool CanUseItem(Player player) => !Main.IsItDay();

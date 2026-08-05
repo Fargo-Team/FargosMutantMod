@@ -1045,6 +1045,7 @@ namespace Fargowiltas
                 Main.npc[npcID].Center = npcCenter;
                 Main.npc[npcID].netUpdate2 = true;
 
+
                 if (spawnMessage)
                 {
                     string npcName = !string.IsNullOrEmpty(Main.npc[npcID].GivenName) ? Main.npc[npcID].GivenName : overrideDisplayName;

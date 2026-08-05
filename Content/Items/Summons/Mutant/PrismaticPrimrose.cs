@@ -12,7 +12,7 @@ namespace Fargowiltas.Content.Items.Summons.Mutant
         public override void SetStaticDefaults()
         {
             base.SetStaticDefaults();
-            ItemID.Sets.SortingPriorityBossSpawns[Type] = 12; // Places it right after the Truffle Worm
+            ItemID.Sets.SortingPriorityMiscImportants[Type] = 12; // Places it right after the Truffle Worm
         }
 
         public override void AddRecipes()

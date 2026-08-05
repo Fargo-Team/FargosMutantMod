@@ -13,7 +13,7 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
         {
             CreateRecipe()
                 .AddIngredient(ItemID.Bone, 30)
-                .AddRecipeGroup(RecipeGroupID.IronBar, 5)
+                .AddRecipeGroup(RecipeGroups.IronBar, 5)
                 .AddIngredient(ItemID.Ectoplasm, 5)
                 .AddIngredient(ItemID.SoulofFright, 3)
                 .AddTile(TileID.MythrilAnvil)

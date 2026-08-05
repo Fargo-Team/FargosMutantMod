@@ -13,7 +13,7 @@ namespace Fargowiltas.Content.Items.Summons.SwarmSummons
 
         public override void SetStaticDefaults()
         {
-            ItemID.Sets.SortingPriorityBossSpawns[Type] = 17; // Puts it right after Lihzahrd Power Cell and Solar Tablet
+            ItemID.Sets.SortingPriorityMiscImportants[Type] = 17; // Puts it right after Lihzahrd Power Cell and Solar Tablet
         }
 
         public override bool CanUseItem(Player player)

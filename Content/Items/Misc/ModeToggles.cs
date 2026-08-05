@@ -125,7 +125,7 @@ namespace Fargowiltas.Content.Items.Misc
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddRecipeGroup(RecipeGroupID.IronBar, 5)
+                .AddRecipeGroup(RecipeGroups.IronBar, 5)
                 .AddTile(TileID.WorkBenches)
                 .DisableDecraft()
                 .Register();
@@ -151,10 +151,10 @@ namespace Fargowiltas.Content.Items.Misc
             return false;
         }
 
-        public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI)
+        public override bool PreDrawInWorld(WorldItem item, SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI)
         {
             Texture2D texture = (Texture2D)ModContent.Request<Texture2D>($"Fargowiltas/Content/Items/Misc/ModeToggle_{Main.GameMode}");
-            Vector2 position = Item.position - Main.screenPosition + new Vector2(16, 16);
+            Vector2 position = item.position - Main.screenPosition + new Vector2(16, 16);
             Rectangle frame = new Rectangle(0, 0, 32, 32);
             spriteBatch.Draw(texture, position, frame, lightColor, rotation, new Vector2(16, 16), scale, SpriteEffects.None, 0f);
             return false;

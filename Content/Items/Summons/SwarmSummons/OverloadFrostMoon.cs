@@ -16,7 +16,7 @@ namespace Fargowiltas.Content.Items.Summons.SwarmSummons
             // DisplayName.SetDefault("Naughty Present Sack");
             // Tooltip.SetDefault("Summons an Overloaded Frost Moon\nUse again to stop the event");
 
-            ItemID.Sets.SortingPriorityBossSpawns[Type] = ItemID.Sets.SortingPriorityBossSpawns[ItemID.NaughtyPresent]; // 15
+            ItemID.Sets.SortingPriorityMiscImportants[Type] = ItemID.Sets.SortingPriorityMiscImportants[ItemID.NaughtyPresent]; // 15
         }
 
         public override void SetDefaults()

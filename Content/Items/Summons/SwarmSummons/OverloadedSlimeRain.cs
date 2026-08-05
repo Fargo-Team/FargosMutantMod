@@ -13,7 +13,7 @@ namespace Fargowiltas.Content.Items.Summons.SwarmSummons
 
         public override void SetStaticDefaults()
         {
-            ItemID.Sets.SortingPriorityBossSpawns[Type] = 2; // Puts it right after Slime Crown
+            ItemID.Sets.SortingPriorityMiscImportants[Type] = 2; // Puts it right after Slime Crown
         }
 
         public override void SetDefaults()

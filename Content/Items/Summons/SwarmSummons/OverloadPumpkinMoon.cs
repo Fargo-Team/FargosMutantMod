@@ -16,7 +16,7 @@ namespace Fargowiltas.Content.Items.Summons.SwarmSummons
             // DisplayName.SetDefault("Overloaded Pumpkin Moon Medallion");
             // Tooltip.SetDefault("Summons an Overloaded Pumpkin Moon\nUse again to stop the event");
 
-            ItemID.Sets.SortingPriorityBossSpawns[Type] = ItemID.Sets.SortingPriorityBossSpawns[ItemID.PumpkinMoonMedallion]; // 14
+            ItemID.Sets.SortingPriorityMiscImportants[Type] = ItemID.Sets.SortingPriorityMiscImportants[ItemID.PumpkinMoonMedallion]; // 14
         }
 
         public override void SetDefaults()

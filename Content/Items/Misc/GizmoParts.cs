@@ -18,7 +18,7 @@ namespace Fargowiltas.Content.Items.Misc
         public override void AddRecipes()
         {
             CreateRecipe()
-            .AddRecipeGroup(RecipeGroupID.Wood, 10)
+            .AddRecipeGroup(RecipeGroups.Wood, 10)
             .AddIngredient(ItemID.Chain, 30)
             .AddIngredient(ItemID.Glass, 4)
             .AddTile(TileID.Anvils)

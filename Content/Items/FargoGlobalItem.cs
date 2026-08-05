@@ -467,7 +467,7 @@ namespace Fargowiltas.Content.Items
             }
 
         }
-        public override void Update(Item item, ref float gravity, ref float maxFallSpeed)
+        public override void Update(WorldItem item, ref float gravity, ref float maxFallSpeed)
         {
             if (FromEnchantedTree)
             {
@@ -485,7 +485,7 @@ namespace Fargowiltas.Content.Items
             }
             base.Update(item, ref gravity, ref maxFallSpeed);
         }
-        public override void PostUpdate(Item item)
+        public override void PostUpdate(WorldItem item)
         {
             if (FargoServerConfig.Instance.Halloween == SeasonSelections.AlwaysOn && FargoServerConfig.Instance.Christmas == SeasonSelections.AlwaysOn && firstTick)
             {
@@ -602,7 +602,7 @@ namespace Fargowiltas.Content.Items
 
                     if (accessory.accessory && accessory.type == item.type)
                     {
-                        player.armor[i].SetDefaults(itemId, false);
+                        player.armor[i].SetDefaults(itemId);
                         break;
                     }
                 }
@@ -636,7 +636,7 @@ namespace Fargowiltas.Content.Items
             return base.ConsumeItem(item, player);
         }
 
-        public override bool OnPickup(Item item, Player player)
+        public override bool OnPickup(WorldItem item, Player player)
         {
             string dye = "";
 
@@ -709,13 +709,13 @@ namespace Fargowiltas.Content.Items
             player.GetModPlayer<FargoPlayer>().StatSheetWingSpeed = speed;
         }
 
-        public override void GrabRange(Item item, Player player, ref int grabRange)
+        public override void GrabRange(WorldItem item, Player player, ref int grabRange)
         {
             if (player.FargoMutant().bigSuck && !ItemID.Sets.IsAPickup[item.type])
-                grabRange += Main.LogicCheckScreenWidth * 3; //360 blocks
+                grabRange += Main.MaxWorldViewSize.X * 3; //360 blocks
         }
 
-        public override bool GrabStyle(Item item, Player player)
+        public override bool GrabStyle(WorldItem item, Player player)
         {
             if (player.FargoMutant().bigSuck && !ItemID.Sets.IsAPickup[item.type])
             {
@@ -742,7 +742,9 @@ namespace Fargowiltas.Content.Items
                                     if (cat.Distance(Main.item[i].Center) < cat.Size.Length() && Main.MouseWorld.Distance(cat.Center) < cat.Size.Length())
                                     {
                                         Item.NewItem(player.GetSource_ItemUse(item), cat.Center, ItemType<WiresPainting>());
-                                        Main.item[i].active = false;
+                                        //Main.item[i].active = false;
+                                        Main.item[i] = null;
+                                                   
                                         cat.active = false;
                                         EmoteBubble.MakeLocalPlayerEmote(ModContent.EmoteBubbleType<WiresEmote>());
                                         return;

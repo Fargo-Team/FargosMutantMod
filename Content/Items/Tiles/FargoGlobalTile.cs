@@ -42,7 +42,7 @@ namespace Fargowiltas.Content.Items.Tiles
 
         public override void KillTile(int i, int j, int type, ref bool fail, ref bool effectOnly, ref bool noItem)
         {
-            if (WorldGen.gen)
+            if (WorldGen.isGeneratingOrLoadingWorld)
             {
                 return;
             }
@@ -97,7 +97,7 @@ namespace Fargowiltas.Content.Items.Tiles
         public override void NearbyEffects(int i, int j, int type, bool closer)
         {
             Player player = Main.LocalPlayer;
-            if (closer && TileID.Sets.Torch[type] && !Main.dedServ
+            if (closer && TileID.Sets.Torches[type] && !Main.dedServ
                 && player.UsingBiomeTorches
                 && (LastTorchUpdate < Main.GameUpdateCount - 60 || LastTorchUpdate == Main.GameUpdateCount))
             {

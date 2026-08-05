@@ -198,23 +198,22 @@ namespace Fargowiltas.Content.NPCs.SquirrelNPC
             };
         }
 
-        public override void SetChatButtons(ref string button, ref string button2)
+        public override void RegisterChatButtons(NPCInteractionList interactions)
         {
-            button = Language.GetTextValue("LegacyInterface.28");
-            button2 = Language.GetTextValue("Mods.Fargowiltas.NPCs.Squirrel.Feed");
+            interactions.InsertBefore(NPCInteractions.Shop(ShopName), NPCInteractionDatabase.CloseButton);
 
+            interactions.InsertBefore(new SquirrelFeedButton(), NPCInteractionDatabase.HappinessButton);
         }
 
-        public override void OnChatButtonClicked(bool firstButton, ref string shopName)
+        public class SquirrelFeedButton : NPCInteraction
         {
-            if (firstButton)
+            public override string GetText() => Language.GetTextValue("Mods.Fargowiltas.NPCs.Squirrel.Feed");
+            public override bool Condition() => true;
+
+            public override bool ShowExcalmation => FargoItemSets.SacrificeCount[Main.LocalPlayer.HeldItem.type] > 0;
+
+            public override void Interact()
             {
-                shopName = ShopName;
-            }
-            else
-            {
-                //FargoUIManager.Open<SquirrelUI>();
-                //return;
                 if (SacrificeThing(Main.LocalPlayer, Main.LocalPlayer.HeldItem))
                     Main.npcChatText = SquirrelChat("FeedSuccess");
                 else

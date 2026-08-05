@@ -29,10 +29,10 @@ namespace Fargowiltas.Common.Systems.Recipes
                 townies = temp.ToArray();
             }
             var group = new RecipeGroup(() => RecipeHelper.GenerateAnyItemRecipeGroupText("CaughtNPC"), townies);
-            AnyCaughtNPC = RecipeGroup.RegisterGroup("Fargowiltas:AnyCaughtNPC", group);
+            AnyCaughtNPC = RecipeGroup.RegisterGroup("Fargowiltas:AnyCaughtNPC", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             var groupSlimes = new RecipeGroup(() => RecipeHelper.GenerateAnyItemRecipeGroupText("CaughtSlime"), slimes);
-            AnyCaughtSlime = RecipeGroup.RegisterGroup("Fargowiltas:AnyCaughtSlime", groupSlimes);
+            AnyCaughtSlime = RecipeGroup.RegisterGroup("Fargowiltas:AnyCaughtSlime", groupSlimes)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
         }
 
         public override void AddRecipes()
@@ -89,7 +89,7 @@ namespace Fargowiltas.Common.Systems.Recipes
             recipe.Register();
 
             recipe = Recipe.Create(CaughtNPCItem.CaughtTownies[ModContent.NPCType<Squirrel>()]);
-            recipe.AddRecipeGroup(RecipeGroupID.Squirrels);
+            recipe.AddRecipeGroup(RecipeGroups.Squirrels);
             recipe.AddIngredient(ItemID.TopHat);
             recipe.AddTile(TileID.DemonAltar);
             recipe.DisableDecraft();
@@ -314,7 +314,7 @@ namespace Fargowiltas.Common.Systems.Recipes
             recipe = Recipe.Create(ItemID.Stopwatch);
             recipe.AddIngredient(null, "TravellingMerchant");
             recipe.AddIngredient(ItemID.GoldCoin, 10);
-            recipe.AddRecipeGroup(RecipeGroupID.IronBar, 5);
+            recipe.AddRecipeGroup(RecipeGroups.IronBar, 5);
             recipe.AddTile(TileID.TinkerersWorkbench);
             recipe.DisableDecraft();
             recipe.Register();
@@ -322,7 +322,7 @@ namespace Fargowiltas.Common.Systems.Recipes
             recipe = Recipe.Create(ItemID.LifeformAnalyzer);
             recipe.AddIngredient(null, "TravellingMerchant");
             recipe.AddIngredient(ItemID.GoldCoin, 10);
-            recipe.AddRecipeGroup(RecipeGroupID.IronBar, 5);
+            recipe.AddRecipeGroup(RecipeGroups.IronBar, 5);
             recipe.AddTile(TileID.TinkerersWorkbench);
             recipe.DisableDecraft();
             recipe.Register();
@@ -330,7 +330,7 @@ namespace Fargowiltas.Common.Systems.Recipes
             recipe = Recipe.Create(ItemID.DPSMeter);
             recipe.AddIngredient(null, "TravellingMerchant");
             recipe.AddIngredient(ItemID.GoldCoin, 10);
-            recipe.AddRecipeGroup(RecipeGroupID.IronBar, 5);
+            recipe.AddRecipeGroup(RecipeGroups.IronBar, 5);
             recipe.AddTile(TileID.TinkerersWorkbench);
             recipe.DisableDecraft();
             recipe.Register();
@@ -339,7 +339,7 @@ namespace Fargowiltas.Common.Systems.Recipes
             recipe = Recipe.Create(ItemID.Katana);
             recipe.AddIngredient(null, "TravellingMerchant");
             recipe.AddIngredient(ItemID.GoldCoin, 20);
-            recipe.AddRecipeGroup(RecipeGroupID.IronBar, 5);
+            recipe.AddRecipeGroup(RecipeGroups.IronBar, 5);
             recipe.AddTile(TileID.TinkerersWorkbench);
             recipe.AddCondition(Condition.NotRemixWorld);
             recipe.DisableDecraft();

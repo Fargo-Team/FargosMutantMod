@@ -13,7 +13,7 @@ namespace Fargowiltas.Content.Items.Summons.SwarmSummons
 
         public override void SetStaticDefaults()
         {
-            ItemID.Sets.SortingPriorityBossSpawns[Type] = 18; // Puts it right before Celestial Sigil
+            ItemID.Sets.SortingPriorityMiscImportants[Type] = 18; // Puts it right before Celestial Sigil
         }
 
         public override bool CanUseItem(Player player)

@@ -68,8 +68,8 @@ namespace Fargowiltas.Content.Items.Tiles
 
             TileID.Sets.HasOutlines[Type] = true;
             TileID.Sets.DisableSmartCursor[Type] = true;
-            TileID.Sets.CountsAsHoneySource[Type] = true;
-            TileID.Sets.CountsAsLavaSource[Type] = true;
+            TileID.Sets.CountsAsHoneyForCrafting[Type] = true;
+            TileID.Sets.CountsAsLavaForCrafting[Type] = true;
 
             TileObjectData.newTile.CopyFrom(TileObjectData.Style3x3);
             TileObjectData.newTile.Width = 4;

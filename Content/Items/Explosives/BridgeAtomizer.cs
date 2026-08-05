@@ -67,7 +67,7 @@ namespace Fargowiltas.Content.Items.Explosives
             CreateRecipe()
                 .AddIngredient<GizmoParts>(1)
                 .AddIngredient(ItemID.Chain, 15)
-                .AddRecipeGroup(RecipeGroupID.IronBar, 6)
+                .AddRecipeGroup(RecipeGroups.IronBar, 6)
                 .AddRecipeGroup("Fargowiltas:AnyWoodenPlatform", 10)
                 .AddTile(TileID.Anvils)
                 .Register();

@@ -14,7 +14,7 @@ namespace Fargowiltas.Content.Items.Summons.SwarmSummons
 
         public override void SetStaticDefaults()
         {
-            ItemID.Sets.SortingPriorityBossSpawns[Type] = 4; // Puts it right after Goblin Battle Standard
+            ItemID.Sets.SortingPriorityMiscImportants[Type] = 4; // Puts it right after Goblin Battle Standard
         }
 
         public override bool CanUseItem(Player player)

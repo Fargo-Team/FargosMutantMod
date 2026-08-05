@@ -308,77 +308,67 @@ namespace Fargowiltas.Content.NPCs
             return Main.rand.Next(dialogue);
         }
 
-        private bool AnyHardmodeSummon => Main.hardMode || Fargowiltas.summonTracker.SortedSummons.Any(s => s.progression >= MutantSummonTracker.WallOfFlesh && s.downed.Invoke());
-        private bool AnyPostMLSummon => NPC.downedMoonlord || Fargowiltas.summonTracker.SortedSummons.Any(s => s.progression >= MutantSummonTracker.Moonlord && s.downed.Invoke());
+        private static bool AnyHardmodeSummon => Main.hardMode || Fargowiltas.summonTracker.SortedSummons.Any(s => s.progression >= MutantSummonTracker.WallOfFlesh && s.downed.Invoke());
+        private static bool AnyPostMLSummon => NPC.downedMoonlord || Fargowiltas.summonTracker.SortedSummons.Any(s => s.progression >= MutantSummonTracker.Moonlord && s.downed.Invoke());
         private static string GetLocalization(string line) => Language.GetTextValue($"Mods.Fargowiltas.NPCs.Mutant.{line}");
-        public override void SetChatButtons(ref string button, ref string button2)
+        public override void RegisterChatButtons(NPCInteractionList interactions)
         {
-            if (AnyHardmodeSummon)
-            {
-                button2 = GetLocalization("CycleShop");
-            }
-            else
-            {
-                shopNum = 1;
-            }
-            switch (shopNum)
-            {
-                case 1:
-                    button = GetLocalization("PreHM");
-                    break;
+            interactions.InsertBefore(new PreHMShop(ShopName1, GetLocalization("PreHM")), NPCInteractionDatabase.CloseButton);
+            interactions.InsertBefore(new HMShop(ShopName2, GetLocalization("HM")), NPCInteractionDatabase.CloseButton);
+            interactions.InsertBefore(new PostHMShop(ShopName3, GetLocalization("PostML")), NPCInteractionDatabase.CloseButton);
 
-                case 2:
-                    button = GetLocalization("HM");
-                    break;
-
-                default:
-                    button = GetLocalization("PostML");
-                    break;
-            }
-
-
-
-            if (AnyPostMLSummon)
-            {
-                if (shopNum >= 4)
-                {
-                    shopNum = 1;
-                }
-            }
-            else
-            {
-                if (shopNum >= 3)
-                {
-                    shopNum = 1;
-                }
-            }
+            interactions.InsertBefore(new SwitchShopButton(), NPCInteractionDatabase.HappinessButton);
         }
 
         public const string ShopName1 = "Pre Hardmode Shop";
         public const string ShopName2 = "Hardmode Shop";
-        public const string ShopName3 = "Post Moon Lord Shop";
+        public const string ShopName3 = "Post Moonlord Shop";
 
-        public override void OnChatButtonClicked(bool firstButton, ref string shopName)
+        public class PreHMShop(string shopName, string customTextKey) : NPCInteractions.Actions.OpenShop(shopName, customTextKey)
         {
-            if (firstButton)
-            {
-                switch (shopNum)
-                {
-                    case 1:
-                        shopName = ShopName1;
-                        break;
-                    case 2:
-                        shopName = ShopName2;
-                        break;
-                    default:
-                        shopName = ShopName3;
-                        break;
-                }
-            }
-            else if (!firstButton && AnyHardmodeSummon)
+            public override string GetText() => GetLocalization("PreHM");
+
+            public override bool Condition() => shopNum == 1;
+
+        }
+
+        public class HMShop(string shopName, string customTextKey) : NPCInteractions.Actions.OpenShop(shopName, customTextKey)
+        {
+            public override string GetText() => GetLocalization("HM");
+            public override bool Condition() => shopNum == 2;
+        }
+
+        public class PostHMShop(string shopName, string customTextKey) : NPCInteractions.Actions.OpenShop(shopName, customTextKey)
+        {
+            public override string GetText() => GetLocalization("PostML");
+            public override bool Condition() => shopNum == 3;
+        }
+
+        public class SwitchShopButton : NPCInteraction
+        {
+            public override string GetText() => GetLocalization("CycleShop");
+
+            public override bool Condition() => AnyHardmodeSummon || AnyPostMLSummon;
+
+            public override void Interact()
             {
                 shopNum++;
+                if (AnyPostMLSummon)
+                {
+                    if (shopNum >= 4)
+                    {
+                        shopNum = 1;
+                    }
+                }
+                else
+                {
+                    if (shopNum >= 3)
+                    {
+                        shopNum = 1;
+                    }
+                }
             }
+
         }
 
         public override void AddShops()
@@ -428,9 +418,9 @@ namespace Fargowiltas.Content.NPCs
             npcShop3.Add(new Item(ItemType<AncientSeal>()) { shopCustomPrice = Item.buyPrice(copper: 100000000) });
 
             Condition siblingPylonCondition = new Condition("Mods.Fargowiltas.Conditions.SiblingPylon", () => Condition.NpcIsPresent(NPCType<Abominationn>()).Predicate.Invoke() && Condition.NpcIsPresent(NPCType<Deviantt>()).Predicate.Invoke());
-            npcShop1.Add(new Item(ItemType<SiblingPylon>()), Condition.HappyEnoughToSellPylons, siblingPylonCondition);
-            npcShop2.Add(new Item(ItemType<SiblingPylon>()), Condition.HappyEnoughToSellPylons, siblingPylonCondition);
-            npcShop3.Add(new Item(ItemType<SiblingPylon>()), Condition.HappyEnoughToSellPylons, siblingPylonCondition);
+            npcShop1.Add(new Item(ItemType<SiblingPylon>()), siblingPylonCondition);
+            npcShop2.Add(new Item(ItemType<SiblingPylon>()), siblingPylonCondition);
+            npcShop3.Add(new Item(ItemType<SiblingPylon>()), siblingPylonCondition);
 
             npcShop1.Register();
             npcShop2.Register();

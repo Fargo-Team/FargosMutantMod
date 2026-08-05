@@ -313,27 +313,26 @@ namespace Fargowiltas.Content.NPCs
             return Main.rand.Next(dialogue);
         }
 
-        public override void SetChatButtons(ref string button, ref string button2)
-        {
-            button = Language.GetTextValue("LegacyInterface.28");
-            if (FargoWorld.EternityMode)
-            {
-                button2 = Language.GetTextValue("Mods.Fargowiltas.NPCs.Deviantt.HelpButton"); //(bool)ModLoader.GetMod("FargowiltasSouls").Call("GiftsReceived") ? "Help" : "Receive Gift";
-            }
-        }
-
         public const string ShopName = "Shop";
 
-        public override void OnChatButtonClicked(bool firstButton, ref string shopName)
+        public override void RegisterChatButtons(NPCInteractionList interactions)
         {
-            if (firstButton)
-            {
-                shopName = ShopName;
+            interactions.InsertBefore(NPCInteractions.Shop(ShopName), NPCInteractionDatabase.CloseButton);
+
+            interactions.InsertBefore(new HelpButton(NPC.GivenName), NPCInteractionDatabase.HappinessButton);
+        }
+
+        public class HelpButton(string NPCGivenName) : NPCInteraction
+        {
+            public override string GetText() => Language.GetTextValue("Mods.Fargowiltas.NPCs.Deviantt.HelpButton");
+
+            public override bool Condition() => FargoWorld.EternityMode;
+
+            public override void Interact()
+            {   
+                Main.npcChatText = Fargowiltas.dialogueTracker.GetDialogue(NPCGivenName);
             }
-            else if (FargoWorld.EternityMode)
-            {
-                Main.npcChatText = Fargowiltas.dialogueTracker.GetDialogue(NPC.GivenName);
-            }
+
         }
 
         public override void AddShops()
@@ -386,7 +385,7 @@ namespace Fargowiltas.Content.NPCs
                 .Add(new Item(ItemType<GrandCross>()) { shopCustomPrice = Item.buyPrice(copper: 150000) }, new Condition("Mods.Fargowiltas.Conditions.PaladinDown", () => NPC.downedPlantBoss && FargoWorld.DownedBools["paladin"]))
                 .Add(new Item(ItemType<AmalgamatedSkull>()) { shopCustomPrice = Item.buyPrice(copper: 300000) }, new Condition("Mods.Fargowiltas.Conditions.SkeleGunDown", () => NPC.downedPlantBoss && FargoWorld.DownedBools["skeletonGun"]))
                 .Add(new Item(ItemType<AmalgamatedSpirit>()) { shopCustomPrice = Item.buyPrice(copper: 300000) }, new Condition("Mods.Fargowiltas.Conditions.SkeleMagesDown", () => NPC.downedPlantBoss && FargoWorld.DownedBools["skeletonMage"]))
-                .Add(new Item(ItemType<SiblingPylon>()), Condition.HappyEnoughToSellPylons, siblingPylonCondition)
+                .Add(new Item(ItemType<SiblingPylon>()), siblingPylonCondition)
             ;
 
             npcShop.Register();

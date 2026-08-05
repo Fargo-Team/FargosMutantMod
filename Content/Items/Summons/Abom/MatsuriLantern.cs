@@ -11,7 +11,7 @@ namespace Fargowiltas.Content.Items.Summons.Abom
     {
         public override void SetStaticDefaults()
         {
-            ItemID.Sets.SortingPriorityBossSpawns[Type] = 0; // Places it before any other boss summons
+            ItemID.Sets.SortingPriorityMiscImportants[Type] = 0; // Places it before any other boss summons
 
             Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(6, 4));
             ItemID.Sets.AnimatesAsSoul[Item.type] = true;

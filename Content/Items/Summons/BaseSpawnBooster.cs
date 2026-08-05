@@ -12,7 +12,7 @@ namespace Fargowiltas.Content.Items.Summons
         {
             Item.ResearchUnlockCount = 3;
 
-            ItemID.Sets.SortingPriorityBossSpawns[Type] = 0; // Places it before any other boss summons
+            ItemID.Sets.SortingPriorityMiscImportants[Type] = 0; // Places it before any other boss summons
         }
 
         public override void SetDefaults()

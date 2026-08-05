@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.GameContent;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.Localization;
@@ -598,11 +599,11 @@ namespace Fargowiltas.Content.NPCs
                 maxSpawns = (int)(maxSpawns * 30f);
             }
         }
-
-        public override void EditSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)
-        {
+        public override void EditSpawnPool(IDictionary<int, float> pool, NPC.Spawner spawner)
+        {   
+            
             Player player = Main.LocalPlayer;
-            bool normalSpawn = !spawnInfo.PlayerInTown && !spawnInfo.Invasion && !spawnInfo.Player.ZoneOldOneArmy;
+            bool normalSpawn = !spawner.spawnFriendly && !spawner.invaders;
 
             if (FargoWorld.OverloadGoblins && player.position.X > Main.invasionX * 16.0 - 3000 && player.position.X < Main.invasionX * 16.0 + 3000)
             {
@@ -1085,7 +1086,7 @@ namespace Fargowiltas.Content.NPCs
             }
         }
 
-        public override void OnChatButtonClicked(NPC npc, bool firstButton)
+        public override void OnChatButtonClicked(NPC npc, NPCInteraction interaction)
         {
             // No angler check enables luiafk compatibility
             if (FargoServerConfig.Instance.AnglerQuestInstantReset && Main.anglerQuestFinished)

@@ -141,7 +141,7 @@ namespace Fargowiltas.Content.Projectiles
 
         public override Color? GetAlpha(Color lightColor) => Color.White * Projectile.Opacity;
 
-        public override bool PreDraw(ref Color lightColor)
+        public override bool PreDraw(Player player,ref Color lightColor)
         {
             Texture2D glow = ModContent.Request<Texture2D>(Texture + "_Glow").Value;
             int rect1 = glow.Height / Main.projFrames[Projectile.type];
@@ -183,7 +183,7 @@ namespace Fargowiltas.Content.Projectiles
             return false;
         }
 
-        public override void PostDraw(Color lightColor)
+        public override void PostDraw(Player player, Color lightColor)
         {
             Texture2D texture2D13 = ModContent.Request<Texture2D>(Texture).Value;
             int num156 = texture2D13.Height / Main.projFrames[Projectile.type]; //ypos of lower right corner of sprite to draw

@@ -12,7 +12,7 @@ namespace Fargowiltas.Content.Items.Summons.Mutant
         public override void SetStaticDefaults()
         {
             base.SetStaticDefaults();
-            ItemID.Sets.SortingPriorityBossSpawns[Type] = 5; // Places it right after Deer Thing and Abeemination
+            ItemID.Sets.SortingPriorityMiscImportants[Type] = 5; // Places it right after Deer Thing and Abeemination
         }
 
         public override bool CanUseItem(Player player) => true;

@@ -49,7 +49,7 @@ namespace Fargowiltas.Content.Items.Tiles
 
             TileObjectData.addTile(Type);
 
-            TileID.Sets.InteractibleByNPCs[Type] = true;
+            TileID.Sets.InteractableByNPCs[Type] = true;
             TileID.Sets.PreventsSandfall[Type] = true;
 
             // Adds functionality for proximity of pylons; if this is true, then being near this tile will count as being near a pylon for the teleportation process.

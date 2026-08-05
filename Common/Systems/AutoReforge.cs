@@ -21,15 +21,17 @@ namespace Fargowiltas.Common.Systems
     public class AutoReforge : GlobalNPC
     {
         public override bool AppliesToEntity(NPC entity, bool lateInstantiation) => lateInstantiation && entity.type == NPCID.GoblinTinkerer;
-        public override bool PreChatButtonClicked(NPC npc, bool firstButton)
-        {
-            if (!firstButton && FargoClientConfig.Instance.AutoReforge)
+        public override bool PreChatButtonClicked(NPC npc, NPCInteraction interaction)
+        {   
+            // todo: figure out what firstButton translates to in NPCInteraction
+            if (/*!firstButton &&*/ FargoClientConfig.Instance.AutoReforge)
             {
                 FargoUIManager.Open<AutoReforgeUI>();
                 return false;
             }
-            return base.PreChatButtonClicked(npc, firstButton);
+            return base.PreChatButtonClicked(npc, interaction);
         }
+        
     }
 
     public class ReforgeItemSlot : FargoItemSlot
@@ -58,8 +60,7 @@ namespace Fargowiltas.Common.Systems
             item.Prefix(-2);
 
             ItemLoader.PostReforge(item);
-            item.Center = player.Center; // so item popup text is near player
-            PopupText.NewText(PopupTextContext.ItemReforge, item, item.stack, noStack: true);
+            PopupText.NewText(PopupTextContext.ItemReforge, item, player.Center, item.stack, noStack: true);
             SoundEngine.PlaySound(in SoundID.Item37);
             parent.RebuildPrice(item);
             parent.hammerSwing?.Invoke(); // start swing animation
@@ -412,12 +413,12 @@ namespace Fargowiltas.Common.Systems
 
     internal static class ReforgeUtils
     {
-        public static int GetReforgePrice(Item item)
+        public static long GetReforgePrice(Item item)
         {
             if (item.type <= ItemID.None)
                 return -1;
 
-            int num58 = item.value;
+            long num58 = item.value;
             num58 *= item.stack;
             bool canApplyDiscount = true;
             if (ItemLoader.ReforgePrice(item, ref num58, ref canApplyDiscount))
@@ -434,17 +435,17 @@ namespace Fargowiltas.Common.Systems
 
         public static string GetPriceString(Item item)
         {
-            int price = GetReforgePrice(item);
+            long price = GetReforgePrice(item);
 
             if (price < 0)
                 return "";
 
             string ret = "[c/" + Colors.AlphaDarken(Color.Lerp(Color.Green, Color.LightGray, 0.5f)).Hex3() + ":" + $"{Language.GetTextValue("Mods.Fargowiltas.UI.ReforgeCost")}:]\n";
-            int num59 = 0;
-            int num60 = 0;
-            int num61 = 0;
-            int num62 = 0;
-            int num63 = price;
+            long num59 = 0;
+            long num60 = 0;
+            long num61 = 0;
+            long num62 = 0;
+            long num63 = price;
             if (num63 < 1)
             {
                 num63 = 1;
@@ -518,8 +519,9 @@ namespace Fargowiltas.Common.Systems
                 }
             }
             void AddPrefix(int prefix)
-            {
-                if (item.CanApplyPrefix(prefix) && !prefixes.Contains(prefix))
+            {   
+                     
+                if (item.CanRollPrefix(prefix) && !prefixes.Contains(prefix))
                     prefixes.Add(prefix);
             }
         }

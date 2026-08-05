@@ -608,8 +608,9 @@ namespace Fargowiltas
             if (autoRevertSelectedItem)
             {
                 if (Player.itemTime == 0 && Player.itemAnimation == 0)
-                {
-                    Player.selectedItem = originalSelectedItem;
+                {   
+                    //Player.selectedItem is now read only. todo: investigate
+                    //Player.selectedItem = originalSelectedItem;
                     autoRevertSelectedItem = false;
                 }
             }
@@ -683,7 +684,8 @@ namespace Fargowiltas
             {
                 originalSelectedItem = Player.selectedItem;
                 autoRevertSelectedItem = true;
-                Player.selectedItem = index;
+                //Player.selectedItem was made read-only. todo: investigate
+                //Player.selectedItem = index;
                 Player.controlUseItem = true;
                 if (use && CombinedHooks.CanUseItem(Player, Player.inventory[Player.selectedItem]))
                 {

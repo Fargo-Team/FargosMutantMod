@@ -15,7 +15,7 @@ namespace Fargowiltas.Content.Items.Summons.SwarmSummons
         {
             // DisplayName.SetDefault("Martian Communications Satellite");
             // Tooltip.SetDefault("Summons an Overloaded Martian Invasion\nUse again to stop the event");
-            ItemID.Sets.SortingPriorityBossSpawns[Type] = 17;
+            ItemID.Sets.SortingPriorityMiscImportants[Type] = 17;
         }
 
         public override void SetDefaults()

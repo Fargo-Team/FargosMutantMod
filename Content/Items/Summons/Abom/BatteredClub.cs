@@ -9,7 +9,7 @@ namespace Fargowiltas.Content.Items.Summons.Abom
         public override void SetStaticDefaults()
         {
             base.SetStaticDefaults();
-            ItemID.Sets.SortingPriorityBossSpawns[Type] = 11; // Places it right after Pirate Map
+            ItemID.Sets.SortingPriorityMiscImportants[Type] = 11; // Places it right after Pirate Map
         }
     }
 }

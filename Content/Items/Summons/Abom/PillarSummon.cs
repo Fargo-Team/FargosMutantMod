@@ -14,7 +14,7 @@ namespace Fargowiltas.Content.Items.Summons.Abom
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 3;
-            ItemID.Sets.SortingPriorityBossSpawns[Type] = 18; // Places it right before Celestial Sigil
+            ItemID.Sets.SortingPriorityMiscImportants[Type] = 18; // Places it right before Celestial Sigil
         }
 
         public override void SetDefaults()

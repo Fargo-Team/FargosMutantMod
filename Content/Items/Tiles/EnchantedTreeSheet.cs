@@ -38,10 +38,6 @@ namespace Fargowiltas.Content.Items.Tiles
 
             DustType = DustID.Stone;
         }
-        public override void RandomUpdate(int i, int j)
-        {
-            base.RandomUpdate(i, j);
-        }
         public override void PlaceInWorld(int i, int j, Item item)
         {
             EnchantedTrees.Add(FargoUtils.GetTopLeftTileInMultitile(i, j));
@@ -56,8 +52,9 @@ namespace Fargowiltas.Content.Items.Tiles
             //drop item currently inside it
 
             if (FargoUtils.TryGetTileEntityAs<EnchantedTreeTileEntity>(i, j, out EnchantedTreeTileEntity entity) == true && entity.ItemType >= 0 && !Main.dedServ)
-            {
-                int item = Item.NewItem(Item.GetSource_NaturalSpawn(), new Rectangle(i * 16 + 50, j * 16 + 50, 1, 1), entity.ItemType, 1, prefixGiven: entity.Prefix);
+            {   
+                //todo: Item.GetSource_NaturalSpawn() does not exist on Item instances anymore. Has it been moved to WorldItem? Investigate.
+                int item = Item.NewItem(null /*Item.GetSource_NaturalSpawn()*/, new Rectangle(i * 16 + 50, j * 16 + 50, 1, 1), entity.ItemType, 1, prefixGiven: entity.Prefix);
                 if (Main.netMode == NetmodeID.MultiplayerClient)
                     NetMessage.SendData(MessageID.SyncItem, Main.myPlayer, number: item, number2: -1);
             }

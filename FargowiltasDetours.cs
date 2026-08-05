@@ -30,7 +30,8 @@ namespace Fargowiltas
 
             On_DD2Event.DropMedals += BetsyMedals;
 
-            On_Item.GetShimmered += FixRecipeGroupsShimmerInteraction;
+            On_WorldItem.GetShimmered += FixRecipeGroupsShimmerInteraction;
+
 
             On_Main.DoUpdateInWorld += UpdateEnchantedTreeFruit;
             On_Main.DrawPlayers_AfterProjectiles += DrawEnchantedTrees;
@@ -43,7 +44,7 @@ namespace Fargowiltas
             On_Player.DoCommonDashHandle += OnVanillaDash;
             On_Player.DropTombstone += DisableTombstones;
             On_Player.HasUnityPotion += OnHasUnityPotion;
-            On_Player.ItemCheck_CheckCanUse += AllowUseSummons;
+            On_Player.ItemCheck_CanUse += AllowUseSummons;
             On_Player.ItemCheck_UseBossSpawners += AllowUseSummons2EvilEdition;
             On_Player.ItemCheck_UseEventItems += AllowUseEventSummons;
             On_Player.KeyDoubleTap += OnVanillaDoubleTapSetBonus;
@@ -51,13 +52,17 @@ namespace Fargowiltas
             On_Player.SummonItemCheck += AllowMultipleBosses;
             On_Player.TakeUnityPotion += OnTakeUnityPotion;
 
-            On_Recipe.FindRecipes += FindRecipes_ElementalAssemblerGraveyardHack;
+            // FindRecipes was removed in 1.4.5. Is it still neccessory with the new Terraria crafting system?
+            //On_Recipe.FindRecipes += FindRecipes_ElementalAssemblerGraveyardHack;
 
-            On_SceneMetrics.ExportTileCountsToMain += ExportTileCountsToMain_PurityTotemHack;
+            // ExportTileCountsToMain was seemingly removed in 1.4.5. Find equivilant?
+            //On_SceneMetrics.ExportTileCountsToMain += ExportTileCountsToMain_PurityTotemHack;
+
 
             On_WorldGen.CountTileTypesInArea += CountTileTypesInArea_PurityTotemHack;
 
-            On_ChatManager.DrawColorCodedStringShadow_SpriteBatch_DynamicSpriteFont_TextSnippetArray_Vector2_Color_float_Vector2_Vector2_float_float += SymbolsFix;
+            On_ChatManager.DrawColorCodedStringShadow_SpriteBatch_DynamicSpriteFont_IEnumerable1_Vector2_Color_float_Vector2_Vector2_float_float += SymbolsFix;
+            //On_ChatManager.DrawColorCodedStringShadow_SpriteBatch_DynamicSpriteFont_TextSnippetArray_Vector2_Color_float_Vector2_Vector2_float_float += SymbolsFix;
 
             On_LucyAxeMessage.SpawnPopupText += AddMessage;
         }
@@ -79,12 +84,12 @@ namespace Fargowiltas
             orig(source, variationUnwrapped,position,velocity);
         }
 
-        private void SymbolsFix(On_ChatManager.orig_DrawColorCodedStringShadow_SpriteBatch_DynamicSpriteFont_TextSnippetArray_Vector2_Color_float_Vector2_Vector2_float_float orig, SpriteBatch spriteBatch, DynamicSpriteFont font, IEnumerable<TextSnippet> snippets, Vector2 position, Color shadowColor, float rotation, Vector2 origin, Vector2 scale, float maxWidth, float spread = 2f)
+        private void SymbolsFix(On_ChatManager.orig_DrawColorCodedStringShadow_SpriteBatch_DynamicSpriteFont_IEnumerable1_Vector2_Color_float_Vector2_Vector2_float_float orig, SpriteBatch spriteBatch, DynamicSpriteFont font, IEnumerable<TextSnippet> snippets, Vector2 position, Color shadowColor, float rotation, Vector2 origin, Vector2 scale, float maxWidth, float spread = 2f)
         {
             SymbolTagHandler.SymbolSnippet.ShouldDraw = false;
             KeywordTagHandler.KeywordSnippet.ShouldDraw = false;
             NPCIconTagHandler.NPCIconSnippet.ShouldDraw = false;
-            orig(spriteBatch, font, snippets.ToArray(), position, shadowColor, rotation, origin, scale, maxWidth, spread);
+            orig(spriteBatch, font, snippets, position, shadowColor, rotation, origin, scale, maxWidth, spread);
             NPCIconTagHandler.NPCIconSnippet.ShouldDraw = true;
             KeywordTagHandler.KeywordSnippet.ShouldDraw = true;
             SymbolTagHandler.SymbolSnippet.ShouldDraw = true;
@@ -128,6 +133,7 @@ namespace Fargowiltas
             return GetWormholes(self).Length > 0;
         }
 
+        /*
         private static void FindRecipes_ElementalAssemblerGraveyardHack(
             On_Recipe.orig_FindRecipes orig,
             bool canDelayCheck)
@@ -140,7 +146,7 @@ namespace Fargowiltas
             orig(canDelayCheck);
 
             Main.LocalPlayer.ZoneGraveyard = oldZoneGraveyard;
-        }
+        }*/
 
         //for town npc housing check, independent from player biome
         private static void CountTileTypesInArea_PurityTotemHack(
@@ -157,6 +163,7 @@ namespace Fargowiltas
         }
 
         //for current biome
+        /*
         private void ExportTileCountsToMain_PurityTotemHack(
             On_SceneMetrics.orig_ExportTileCountsToMain orig,
             SceneMetrics self)
@@ -177,7 +184,7 @@ namespace Fargowiltas
                 if (self.GetTileCount(TileID.Sunflower) > 0)
                     self.HasSunflower = true;
             }
-        }
+        } */
         private static void OnVanillaDash(On_Player.orig_DoCommonDashHandle orig, Player player, out int dir, out bool dashing, Player.DashStartAction dashStartAction)
         {
             if (FargoClientConfig.Instance.DoubleTapDashDisabled)
@@ -265,7 +272,7 @@ namespace Fargowiltas
             }
         }
 
-        private bool AllowUseSummons(On_Player.orig_ItemCheck_CheckCanUse orig, Player self, Item item)
+        private bool AllowUseSummons(On_Player.orig_ItemCheck_CanUse orig, Player self, Item item, bool cursed)
         {
             if (FargoGlobalItem.AlwaysUsableVanillaSummons.Contains(item.type) && FargoServerConfig.Instance.EasySummons)
             {
@@ -280,7 +287,7 @@ namespace Fargowiltas
                     return true;
                 }
             }
-            return orig(self, item);
+            return orig(self, item, cursed);
         }
         private bool AllowMultipleBosses(On_Player.orig_SummonItemCheck orig, Player self, Item item)
         {
@@ -449,7 +456,7 @@ namespace Fargowiltas
             orig(ref stopEvents);
         }
 
-        private void FixRecipeGroupsShimmerInteraction(On_Item.orig_GetShimmered orig, Item self)
+        private void FixRecipeGroupsShimmerInteraction(On_WorldItem.orig_GetShimmered orig, WorldItem self)
         {
             if (!FargoClientConfig.Instance.AnimatedRecipeGroups)
             {
@@ -460,13 +467,14 @@ namespace Fargowiltas
             {
                 foreach (int groupID in recipe.acceptedGroups)
                 {
-                    foreach (Item material in recipe.requiredItem.Where(material => RecipeGroup.recipeGroups[groupID].ContainsItem(material.type) && material.type != RecipeGroup.recipeGroups[groupID].IconicItemId))
+                    foreach (Item material in recipe.requiredItem.Where(material => RecipeGroup.recipeGroups[groupID].Contains(material.type) && material.type != RecipeGroup.recipeGroups[groupID].DecraftItemId))
                     {
                         string name = material.Name;
                         int stack = material.stack;
-                        material.ChangeItemType(RecipeGroup.recipeGroups[groupID].IconicItemId);
+                        material.ChangeItemType(RecipeGroup.recipeGroups[groupID].DecraftItemId); //formerly IconicItemID
                         material.SetNameOverride(name);
                         material.stack = stack;
+
                     }
                 }
             }

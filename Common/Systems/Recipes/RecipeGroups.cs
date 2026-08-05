@@ -22,19 +22,19 @@ namespace Fargowiltas.Common.Systems.Recipes
         {
             //copper bar
             var group = new RecipeGroup(() => ItemXOrY(ItemID.CopperBar, ItemID.TinBar), ItemID.CopperBar, ItemID.TinBar);
-            AnyGoldBar = RecipeGroup.RegisterGroup("Fargowiltas:AnyCopperBar", group);
+            AnyGoldBar = RecipeGroup.RegisterGroup("Fargowiltas:AnyCopperBar", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             //gold ore
             group = new RecipeGroup(() => ItemXOrY(ItemID.GoldOre, ItemID.PlatinumOre), ItemID.GoldOre, ItemID.PlatinumOre);
-            AnyGoldBar = RecipeGroup.RegisterGroup("Fargowiltas:AnyGoldOre", group);
+            AnyGoldBar = RecipeGroup.RegisterGroup("Fargowiltas:AnyGoldOre", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             //gold bar
             group = new RecipeGroup(() => ItemXOrY(ItemID.GoldBar, ItemID.PlatinumBar), ItemID.GoldBar, ItemID.PlatinumBar);
-            AnyGoldBar = RecipeGroup.RegisterGroup("Fargowiltas:AnyGoldBar", group);
+            AnyGoldBar = RecipeGroup.RegisterGroup("Fargowiltas:AnyGoldBar", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             //demonite bar
             group = new RecipeGroup(() => ItemXOrY(ItemID.DemoniteBar, ItemID.CrimtaneBar), ItemID.DemoniteBar, ItemID.CrimtaneBar);
-            AnyEvilBar = RecipeGroup.RegisterGroup("Fargowiltas:AnyEvilBar", group);
+            AnyEvilBar = RecipeGroup.RegisterGroup("Fargowiltas:AnyEvilBar", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             //demon altar
             List<int> demonaltars = new() { ModContent.ItemType<DemonAltar>(), ModContent.ItemType<CrimsonAltar>() };
@@ -43,19 +43,19 @@ namespace Fargowiltas.Common.Systems.Recipes
             if (ModLoader.HasMod("CalValEX"))
                 demonaltars.AddRange([ModLoader.GetMod("CalValEX").Find<ModItem>("MoulderingAltarItem").Type, ModLoader.GetMod("CalValEX").Find<ModItem>("VisceralAltarItem").Type]);
             group = new RecipeGroup(() => RecipeHelper.GenerateAnyItemRecipeGroupText(ModContent.ItemType<DemonAltar>()), demonaltars.ToArray());
-            AnyDemonAltar = RecipeGroup.RegisterGroup("Fargowiltas:AnyDemonAltar", group);
+            AnyDemonAltar = RecipeGroup.RegisterGroup("Fargowiltas:AnyDemonAltar", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             //iron anvil
             group = new RecipeGroup(() => ItemXOrY(ItemID.IronAnvil, ItemID.LeadAnvil), ItemID.IronAnvil, ItemID.LeadAnvil);
-            AnyAnvil = RecipeGroup.RegisterGroup("Fargowiltas:AnyAnvil", group);
+            AnyAnvil = RecipeGroup.RegisterGroup("Fargowiltas:AnyAnvil", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             //anvil HM
             group = new RecipeGroup(() => ItemXOrY(ItemID.MythrilAnvil, ItemID.OrichalcumAnvil), ItemID.MythrilAnvil, ItemID.OrichalcumAnvil);
-            AnyHMAnvil = RecipeGroup.RegisterGroup("Fargowiltas:AnyHMAnvil", group);
+            AnyHMAnvil = RecipeGroup.RegisterGroup("Fargowiltas:AnyHMAnvil", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             //forge HM
             group = new RecipeGroup(() => ItemXOrY(ItemID.AdamantiteForge, ItemID.TitaniumForge), ItemID.AdamantiteForge, ItemID.TitaniumForge);
-            AnyForge = RecipeGroup.RegisterGroup("Fargowiltas:AnyForge", group);
+            AnyForge = RecipeGroup.RegisterGroup("Fargowiltas:AnyForge", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             //book cases
             group = new RecipeGroup(() => RecipeHelper.GenerateAnyItemRecipeGroupText(ItemID.Bookcase),
@@ -74,17 +74,17 @@ namespace Fargowiltas.Common.Systems.Recipes
                 ContentSamples.ItemsByType.Keys.Where(i => (ContentSamples.ItemsByType[i].Name.Contains("Bookcase"))).Cast<int>().ToArray()
             );
             */
-            AnyBookcase = RecipeGroup.RegisterGroup("Fargowiltas:AnyBookcase", group);
+            AnyBookcase = RecipeGroup.RegisterGroup("Fargowiltas:AnyBookcase", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             group = new RecipeGroup(() => ItemXOrY(ItemID.CookingPot, ItemID.Cauldron), ItemID.CookingPot, ItemID.Cauldron);
-            AnyCookingPot = RecipeGroup.RegisterGroup("Fargowiltas:AnyCookingPot", group);
+            AnyCookingPot = RecipeGroup.RegisterGroup("Fargowiltas:AnyCookingPot", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             group = new RecipeGroup(() => RecipeHelper.GenerateAnyItemRecipeGroupText("LegacyMisc.87", true),
                 ItemID.JuliaButterfly, ItemID.MonarchButterfly, ItemID.PurpleEmperorButterfly, ItemID.RedAdmiralButterfly,
                 ItemID.SulphurButterfly, ItemID.TreeNymphButterfly, ItemID.UlyssesButterfly, ItemID.ZebraSwallowtailButterfly,
                 ItemID.HellButterfly
             );
-            AnyButterfly = RecipeGroup.RegisterGroup("Fargowiltas:AnyButterfly", group);
+            AnyButterfly = RecipeGroup.RegisterGroup("Fargowiltas:AnyButterfly", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             /* //vanilla squirrels
             group = new RecipeGroup(() => ItemXOrY(ItemID.Squirrel, ItemID.SquirrelRed),
@@ -103,7 +103,7 @@ namespace Fargowiltas.Common.Systems.Recipes
                 ItemID.Tuna
             //ItemID.GoldenCarp
             );
-            AnyCommonFish = RecipeGroup.RegisterGroup("Fargowiltas:AnyCommonFish", group);
+            AnyCommonFish = RecipeGroup.RegisterGroup("Fargowiltas:AnyCommonFish", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             //vanilla dragonfly
             group = new RecipeGroup(() => RecipeHelper.GenerateAnyItemRecipeGroupText("LegacyMisc.105", true),
@@ -115,7 +115,7 @@ namespace Fargowiltas.Common.Systems.Recipes
                 ItemID.RedDragonfly,
                 ItemID.YellowDragonfly
             );
-            AnyDragonfly = RecipeGroup.RegisterGroup("Fargowiltas:AnyDragonfly", group);
+            AnyDragonfly = RecipeGroup.RegisterGroup("Fargowiltas:AnyDragonfly", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             //vanilla birds
             group = new RecipeGroup(() => RecipeHelper.GenerateAnyItemRecipeGroupText(ItemID.Bird),
@@ -128,7 +128,7 @@ namespace Fargowiltas.Common.Systems.Recipes
                 ItemID.Grebe,
                 ItemID.Seagull
             );
-            AnyBird = RecipeGroup.RegisterGroup("Fargowiltas:AnyBird", group);
+            AnyBird = RecipeGroup.RegisterGroup("Fargowiltas:AnyBird", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             //vanilla ducks
             group = new RecipeGroup(() => RecipeHelper.GenerateAnyItemRecipeGroupText(ItemID.Duck),
@@ -136,7 +136,7 @@ namespace Fargowiltas.Common.Systems.Recipes
                 ItemID.MallardDuck,
                 ItemID.Grebe
             );
-            AnyDuck = RecipeGroup.RegisterGroup("Fargowiltas:AnyDuck", group);
+            AnyDuck = RecipeGroup.RegisterGroup("Fargowiltas:AnyDuck", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             //tombstones
             group = new RecipeGroup(() => RecipeHelper.GenerateAnyItemRecipeGroupText(ItemID.Tombstone),
@@ -152,7 +152,7 @@ namespace Fargowiltas.Common.Systems.Recipes
                 ItemID.RichGravestone4,
                 ItemID.RichGravestone5
             );
-            AnyTombstone = RecipeGroup.RegisterGroup("Fargowiltas:AnyTombstone", group);
+            AnyTombstone = RecipeGroup.RegisterGroup("Fargowiltas:AnyTombstone", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             //wooden tables
             group = new RecipeGroup(() => RecipeHelper.GenerateAnyItemRecipeGroupText(ItemID.WoodenTable),
@@ -169,7 +169,7 @@ namespace Fargowiltas.Common.Systems.Recipes
                 ItemID.DynastyTable,
                 ItemID.BambooTable
             );
-            AnyWoodenTable = RecipeGroup.RegisterGroup("Fargowiltas:AnyWoodenTable", group);
+            AnyWoodenTable = RecipeGroup.RegisterGroup("Fargowiltas:AnyWoodenTable", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             //wooden chairs
             group = new RecipeGroup(() => RecipeHelper.GenerateAnyItemRecipeGroupText(ItemID.WoodenChair),
@@ -186,7 +186,7 @@ namespace Fargowiltas.Common.Systems.Recipes
                 ItemID.DynastyChair,
                 ItemID.BambooChair
             );
-            AnyWoodenChair = RecipeGroup.RegisterGroup("Fargowiltas:AnyWoodenChair", group);
+            AnyWoodenChair = RecipeGroup.RegisterGroup("Fargowiltas:AnyWoodenChair", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             //wooden sinks
             group = new RecipeGroup(() => RecipeHelper.GenerateAnyItemRecipeGroupText(ItemID.WoodenSink),
@@ -203,10 +203,10 @@ namespace Fargowiltas.Common.Systems.Recipes
                 ItemID.DynastySink,
                 ItemID.BambooSink
             );
-            AnyWoodenSink = RecipeGroup.RegisterGroup("Fargowiltas:AnyWoodenSink", group);
+            AnyWoodenSink = RecipeGroup.RegisterGroup("Fargowiltas:AnyWoodenSink", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             group = new RecipeGroup(() => ItemXOrY(ItemID.LesionStation, ItemID.FleshCloningVaat), ItemID.LesionStation, ItemID.FleshCloningVaat);
-            AnyDecayChamber = RecipeGroup.RegisterGroup("Fargowiltas:AnyDecayChamber", group);
+            AnyDecayChamber = RecipeGroup.RegisterGroup("Fargowiltas:AnyDecayChamber", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             //t2 foods
             group = new RecipeGroup(() => RecipeHelper.GenerateAnyItemRecipeGroupText("FoodT2"),
@@ -233,7 +233,7 @@ namespace Fargowiltas.Common.Systems.Recipes
                 ItemID.ShrimpPoBoy,
                 ItemID.CoffeeCup
             );
-            AnyFoodT2 = RecipeGroup.RegisterGroup("Fargowiltas:AnyFoodT2", group);
+            AnyFoodT2 = RecipeGroup.RegisterGroup("Fargowiltas:AnyFoodT2", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             //t3 foods
             group = new RecipeGroup(() => RecipeHelper.GenerateAnyItemRecipeGroupText("FoodT3"),
@@ -251,7 +251,7 @@ namespace Fargowiltas.Common.Systems.Recipes
                 ItemID.SugarCookie,
                 ItemID.ChristmasPudding
             );
-            AnyFoodT3 = RecipeGroup.RegisterGroup("Fargowiltas:AnyFoodT3", group);
+            AnyFoodT3 = RecipeGroup.RegisterGroup("Fargowiltas:AnyFoodT3", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             //gem robes
             group = new RecipeGroup(() => RecipeHelper.GenerateAnyItemRecipeGroupText("GemRobe"),
@@ -263,7 +263,7 @@ namespace Fargowiltas.Common.Systems.Recipes
                 ItemID.SapphireRobe,
                 ItemID.TopazRobe
             );
-            AnyGemRobe = RecipeGroup.RegisterGroup("Fargowiltas:AnyGemRobe", group);
+            AnyGemRobe = RecipeGroup.RegisterGroup("Fargowiltas:AnyGemRobe", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             //any wood platforms
             group = new RecipeGroup(() => RecipeHelper.GenerateAnyItemRecipeGroupText("WoodenPlatform"),
@@ -280,59 +280,59 @@ namespace Fargowiltas.Common.Systems.Recipes
                 ItemID.DynastyPlatform,
                 ItemID.BambooPlatform
             );
-            AnyWoodenPlatform = RecipeGroup.RegisterGroup("Fargowiltas:AnyWoodenPlatform", group);
+            AnyWoodenPlatform = RecipeGroup.RegisterGroup("Fargowiltas:AnyWoodenPlatform", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             //wooden crates
             group = new RecipeGroup(() => ItemXOrY(ItemID.WoodenCrate, ItemID.WoodenCrateHard), ItemID.WoodenCrate, ItemID.WoodenCrateHard);
-            AnyWoodCrate = RecipeGroup.RegisterGroup("Fargowiltas:AnyWoodCrate", group);
+            AnyWoodCrate = RecipeGroup.RegisterGroup("Fargowiltas:AnyWoodCrate", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             //iron crates
             group = new RecipeGroup(() => ItemXOrY(ItemID.IronCrate, ItemID.IronCrateHard), ItemID.IronCrate, ItemID.IronCrateHard);
-            AnyIronCrate = RecipeGroup.RegisterGroup("Fargowiltas:AnyIronCrate", group);
+            AnyIronCrate = RecipeGroup.RegisterGroup("Fargowiltas:AnyIronCrate", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             //gold crates
             group = new RecipeGroup(() => ItemXOrY(ItemID.GoldenCrate, ItemID.GoldenCrateHard), ItemID.GoldenCrate, ItemID.GoldenCrateHard);
-            AnyGoldCrate = RecipeGroup.RegisterGroup("Fargowiltas:AnyGoldCrate", group);
+            AnyGoldCrate = RecipeGroup.RegisterGroup("Fargowiltas:AnyGoldCrate", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             //jungle crates
             group = new RecipeGroup(() => ItemXOrY(ItemID.JungleFishingCrate, ItemID.JungleFishingCrateHard), ItemID.JungleFishingCrate, ItemID.JungleFishingCrateHard);
-            AnyJungleCrate = RecipeGroup.RegisterGroup("Fargowiltas:AnyJunglCrate", group);
+            AnyJungleCrate = RecipeGroup.RegisterGroup("Fargowiltas:AnyJunglCrate", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             //sky crates
             group = new RecipeGroup(() => ItemXOrY(ItemID.FloatingIslandFishingCrate, ItemID.FloatingIslandFishingCrateHard), ItemID.FloatingIslandFishingCrate, ItemID.FloatingIslandFishingCrateHard);
-            AnySkyCrate = RecipeGroup.RegisterGroup("Fargowiltas:AnySkyCrate", group);
+            AnySkyCrate = RecipeGroup.RegisterGroup("Fargowiltas:AnySkyCrate", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             //corrupt crates
             group = new RecipeGroup(() => ItemXOrY(ItemID.CorruptFishingCrate, ItemID.CorruptFishingCrateHard), ItemID.CorruptFishingCrate, ItemID.CorruptFishingCrateHard);
-            AnyCorruptCrate = RecipeGroup.RegisterGroup("Fargowiltas:AnyCorruptCrate", group);
+            AnyCorruptCrate = RecipeGroup.RegisterGroup("Fargowiltas:AnyCorruptCrate", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             //crimson crates
             group = new RecipeGroup(() => ItemXOrY(ItemID.CrimsonFishingCrate, ItemID.CrimsonFishingCrateHard), ItemID.CrimsonFishingCrate, ItemID.CrimsonFishingCrateHard);
-            AnyCrimsonCrate = RecipeGroup.RegisterGroup("Fargowiltas:AnyCrimsonCrate", group);
+            AnyCrimsonCrate = RecipeGroup.RegisterGroup("Fargowiltas:AnyCrimsonCrate", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             //hallowed crates
             group = new RecipeGroup(() => ItemXOrY(ItemID.HallowedFishingCrate, ItemID.HallowedFishingCrateHard), ItemID.HallowedFishingCrate, ItemID.HallowedFishingCrateHard);
-            AnyHallowedCrate = RecipeGroup.RegisterGroup("Fargowiltas:AnyHallowedCrate", group);
+            AnyHallowedCrate = RecipeGroup.RegisterGroup("Fargowiltas:AnyHallowedCrate", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             //dungeon crates
             group = new RecipeGroup(() => ItemXOrY(ItemID.DungeonFishingCrate, ItemID.DungeonFishingCrateHard), ItemID.DungeonFishingCrate, ItemID.DungeonFishingCrateHard);
-            AnyDungeonCrate = RecipeGroup.RegisterGroup("Fargowiltas:AnyDungeonCrate", group);
+            AnyDungeonCrate = RecipeGroup.RegisterGroup("Fargowiltas:AnyDungeonCrate", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             //frozen crates
             group = new RecipeGroup(() => ItemXOrY(ItemID.FrozenCrate, ItemID.FrozenCrateHard), ItemID.FrozenCrate, ItemID.FrozenCrateHard);
-            AnyFrozenCrate = RecipeGroup.RegisterGroup("Fargowiltas:AnyFrozenCrate", group);
+            AnyFrozenCrate = RecipeGroup.RegisterGroup("Fargowiltas:AnyFrozenCrate", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             //oasis crates
             group = new RecipeGroup(() => ItemXOrY(ItemID.OasisCrate, ItemID.OasisCrateHard), ItemID.OasisCrate, ItemID.OasisCrateHard);
-            AnySandCrate = RecipeGroup.RegisterGroup("Fargowiltas:AnySandCrate", group);
+            AnySandCrate = RecipeGroup.RegisterGroup("Fargowiltas:AnySandCrate", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             //lava crates
             group = new RecipeGroup(() => ItemXOrY(ItemID.LavaCrate, ItemID.LavaCrateHard), ItemID.LavaCrate, ItemID.LavaCrateHard);
-            AnyLavaCrate = RecipeGroup.RegisterGroup("Fargowiltas:AnyLavaCrate", group);
+            AnyLavaCrate = RecipeGroup.RegisterGroup("Fargowiltas:AnyLavaCrate", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
 
             //ocean crates
             group = new RecipeGroup(() => ItemXOrY(ItemID.OceanCrate, ItemID.OceanCrateHard), ItemID.OceanCrate, ItemID.OceanCrateHard);
-            AnyOceanCrate = RecipeGroup.RegisterGroup("Fargowiltas:AnyOceanCrate", group);
+            AnyOceanCrate = RecipeGroup.RegisterGroup("Fargowiltas:AnyOceanCrate", group)/* tModPorter Note: Removed. Replace this and "new RecipeGroup()" with RecipeGroup.Register */;
         }
     }
 }

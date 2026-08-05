@@ -91,14 +91,14 @@ namespace Fargowiltas.Content.Items.CaughtNPCs
             }*/
         }
 
-        public override void PostUpdate()
+        public override void PostUpdate(WorldItem item)
         {
-            if (AssociatedNpcId != NPCID.Guide || !Item.lavaWet || NPC.AnyNPCs(NPCID.WallofFlesh))
+            if (AssociatedNpcId != NPCID.Guide || !item.lavaWet || NPC.AnyNPCs(NPCID.WallofFlesh))
             {
                 return;
             }
 
-            NPC.SpawnWOF(Item.position);
+            NPC.SpawnWOF(item.position);
             Item.TurnToAir();
         }
 

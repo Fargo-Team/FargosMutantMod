@@ -231,37 +231,39 @@ namespace Fargowiltas.Content.NPCs.AbominationnNPC
 
             return Main.rand.Next(dialogue);
         }
-
-        public override void SetChatButtons(ref string button, ref string button2)
+        public override void RegisterChatButtons(NPCInteractionList interactions)
         {
-            button = Language.GetTextValue("LegacyInterface.28");
-            button2 = Language.GetTextValue("Mods.Fargowiltas.NPCs.Abominationn.CancelEvent");
+            interactions.InsertBefore(NPCInteractions.Shop(ShopName), NPCInteractionDatabase.CloseButton);
+
+            interactions.InsertBefore(new CancelEventsButton(), NPCInteractionDatabase.HappinessButton);
         }
 
         public const string ShopName = "Shop";
 
-        public override void OnChatButtonClicked(bool firstButton, ref string shopName)
+        public class CancelEventsButton : NPCInteraction
         {
-            if (firstButton)
-            {
-                shopName = ShopName;
-            }
-            else
+            public override string GetText() => Language.GetTextValue("Mods.Fargowiltas.NPCs.Abominationn.CancelEvent");
+
+            public override bool Condition() => true;
+
+            public override bool ShowExcalmation => Fargowiltas.IsEventOccurring;
+
+            public override void Interact()
             {
                 if (Main.netMode == NetmodeID.MultiplayerClient)
                 {
-                    var netMessage = Mod.GetPacket();
-                    netMessage.Write((byte)PacketID.ClientUpdateWorld);
-                    netMessage.Send();
+                    //var netMessage = Mod.GetPacket();
+                    //netMessage.Write((byte)PacketID.ClientUpdateWorld);
+                    //netMessage.Send();
                 }
 
                 if (!NPC.downedTowers && NPC.LunarApocalypseIsUp)
                 {
                     if (Main.netMode == NetmodeID.MultiplayerClient)
                     {
-                        var netMessage = Mod.GetPacket();
-                        netMessage.Write((byte)PacketID.AbomClearEvent);
-                        netMessage.Send();
+                        //var netMessage = Mod.GetPacket(); //todo: decipher error
+                        //netMessage.Write((byte)PacketID.AbomClearEvent);
+                        //netMessage.Send();
                     }
 
                     if (Fargowiltas.IsEventOccurring)
@@ -278,9 +280,9 @@ namespace Fargowiltas.Content.NPCs.AbominationnNPC
                 {
                     if (Main.netMode == NetmodeID.MultiplayerClient)
                     {
-                        var netMessage = Mod.GetPacket();
-                        netMessage.Write((byte)PacketID.AbomClearEvent);
-                        netMessage.Send();
+                        //var netMessage = Mod.GetPacket(); //todo: decipher error
+                        //netMessage.Write((byte)PacketID.AbomClearEvent);
+                        //netMessage.Send();
                     }
 
                     Main.npcChatText = Fargowiltas.TryClearEvents() ? AbomChat("Canceled") : AbomChat("CancelCD", FargoWorld.AbomClearCD / 60);
@@ -291,6 +293,7 @@ namespace Fargowiltas.Content.NPCs.AbominationnNPC
                     Main.npcChatText = AbomChat("NoEvent");
                 }
             }
+
         }
 
         public override void AddShops()
@@ -324,7 +327,7 @@ namespace Fargowiltas.Content.NPCs.AbominationnNPC
                 .Add(new Item(ItemType<MartianMemoryStick>()) { shopCustomPrice = Item.buyPrice(copper: 300000) }, Condition.DownedMartians)
                 .Add(new Item(ItemType<PillarSummon>()) { shopCustomPrice = Item.buyPrice(copper: 750000) }, new Condition("Mods.Fargowiltas.Conditions.PillarsDown", () => NPC.downedTowers))
                 .Add(new Item(ItemType<AbominationnScythe>()) { shopCustomPrice = Item.buyPrice(copper: 50000) }, new Condition("Mods.Fargowiltas.Conditions.PillarsDown", () => NPC.downedTowers))
-                .Add(new Item(ItemType<SiblingPylon>()), Condition.HappyEnoughToSellPylons, siblingPylonCondition)
+                .Add(new Item(ItemType<SiblingPylon>()), siblingPylonCondition)
 
             ;
 

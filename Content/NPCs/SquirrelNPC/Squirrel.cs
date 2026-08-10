@@ -71,6 +71,10 @@ namespace Fargowiltas.Content.NPCs.SquirrelNPC
             //new Profiles.DefaultNPCProfile(Texture + "_Shimmer", ShimmerHeadIndex, null)
             );
 
+            NPCID.Sets.NPCPortraits.Add(
+                Type,
+                NPCID.Sets.PrioritizedPortrait().Default(NPCID.Sets.BasicPortrait($"{Texture}_Portrait")));
+
             //Close up portrait mode
             NPCID.Sets.NPCPortraitsCloseUpOffsets.Add(Type, new Vector2(-3f, -36f));
 

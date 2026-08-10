@@ -30,7 +30,7 @@ namespace Fargowiltas.Content.Items.Tiles
             TileObjectData.newTile.CoordinateHeights = new int[] { 16, 16, 16, 18 };
             TileObjectData.newTile.HookPostPlaceMyPlayer = ModContent.GetInstance<EnchantedTreeTileEntity>().Generic_HookPostPlaceMyPlayer;// new PlacementHook(ModContent.GetInstance<EnchantedTreeTileEntity>().Hook_AfterPlacement, -3, 0, false);
             TileObjectData.newTile.UsesCustomCanPlace = true;
-            TileObjectData.newTile.Origin = new Point16(0, 3);
+            TileObjectData.newTile.Origin = new Point16(1, 3);
             TileObjectData.addTile(Type);
 
             LocalizedText name = CreateMapEntryName();

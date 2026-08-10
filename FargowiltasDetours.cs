@@ -57,8 +57,6 @@ namespace Fargowiltas
 
             On_WorldGen.CountTileTypesInArea += CountTileTypesInArea_PurityTotemHack;
 
-            On_ChatManager.DrawColorCodedStringShadow_SpriteBatch_DynamicSpriteFont_TextSnippetArray_Vector2_Color_float_Vector2_Vector2_float_float += SymbolsFix;
-
             On_LucyAxeMessage.SpawnPopupText += AddMessage;
         }
 
@@ -77,17 +75,6 @@ namespace Fargowiltas
                 return;
             }
             orig(source, variationUnwrapped,position,velocity);
-        }
-
-        private void SymbolsFix(On_ChatManager.orig_DrawColorCodedStringShadow_SpriteBatch_DynamicSpriteFont_TextSnippetArray_Vector2_Color_float_Vector2_Vector2_float_float orig, SpriteBatch spriteBatch, DynamicSpriteFont font, IEnumerable<TextSnippet> snippets, Vector2 position, Color shadowColor, float rotation, Vector2 origin, Vector2 scale, float maxWidth, float spread = 2f)
-        {
-            SymbolTagHandler.SymbolSnippet.ShouldDraw = false;
-            KeywordTagHandler.KeywordSnippet.ShouldDraw = false;
-            NPCIconTagHandler.NPCIconSnippet.ShouldDraw = false;
-            orig(spriteBatch, font, snippets.ToArray(), position, shadowColor, rotation, origin, scale, maxWidth, spread);
-            NPCIconTagHandler.NPCIconSnippet.ShouldDraw = true;
-            KeywordTagHandler.KeywordSnippet.ShouldDraw = true;
-            SymbolTagHandler.SymbolSnippet.ShouldDraw = true;
         }
         private static Item[] GetWormholes(Player self)
         {

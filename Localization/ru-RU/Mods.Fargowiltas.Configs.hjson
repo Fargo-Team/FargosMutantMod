@@ -1,4 +1,4 @@
-﻿FargoServerConfig: {
+FargoServerConfig: {
 	DisplayName: Серверная конфигурация
 
 	Headers: {
@@ -432,6 +432,11 @@ UnlimitedBuffSelections: {
 	BossOnly: {
 		Label: Битвы с боссами
 		Tooltip: Включается только если в мире есть босс
+	}
+
+	Off: {
+		// Label: Off
+		// Tooltip: ""
 	}
 }
 

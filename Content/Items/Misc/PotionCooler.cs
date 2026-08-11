@@ -18,6 +18,7 @@ using Terraria.ModLoader;
 
 namespace Fargowiltas.Content.Items.Misc
 {
+    [LegacyName("PotionCoolerInactive")]
     public class PotionCooler : ModItem
     {
         public override string Texture => "Fargowiltas/Content/Items/Misc/PotionCooler";
@@ -44,8 +45,6 @@ namespace Fargowiltas.Content.Items.Misc
 
         public override bool? UseItem(Player player)
         {
-            if (player.altFunctionUse == 2)
-                return true;
 
             if (Main.LocalPlayer == player)
             {
@@ -58,9 +57,7 @@ namespace Fargowiltas.Content.Items.Misc
 
         public override bool AltFunctionUse(Player player)
         {
-            SoundEngine.PlaySound(SoundID.Grab);
-            Item.ChangeItemType(ModContent.ItemType<PotionCoolerInactive>());
-            return false;
+            return true;
         }
 
         public override bool ConsumeItem(Player player) => false;
@@ -68,11 +65,16 @@ namespace Fargowiltas.Content.Items.Misc
         public override bool CanRightClick() => true;
         public override void RightClick(Player player)
         {
-            Item.ChangeItemType(ModContent.ItemType<PotionCoolerInactive>());
+            if (Main.LocalPlayer == player)
+            {
+                FargoUIManager.Toggle<PotionBagUI>();
+                return;
+            }
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
+            /*
             if (Keyboard.GetState().IsKeyDown(Keys.LeftShift))
             {
                 tooltips.Add(new TooltipLine(Fargowiltas.Instance, "CoolerInstructions", Language.GetTextValue("Mods.Fargowiltas.Items.PotionCooler.Rumination")));
@@ -81,6 +83,7 @@ namespace Fargowiltas.Content.Items.Misc
             {
                 tooltips.Add(new TooltipLine(Fargowiltas.Instance, "CoolerInstructionsRuminated", Language.GetTextValue("Mods.Fargowiltas.Items.PotionCooler.Ruminate", PotionBagSystem.MaxPotions)));
             }
+            */
             base.ModifyTooltips(tooltips);
         }
 
@@ -112,56 +115,6 @@ namespace Fargowiltas.Content.Items.Misc
                 .AddIngredient(ItemID.FallenStar, 3)
                 .AddTile(TileID.Anvils)
                 .Register();
-        }
-    }
-
-    public class PotionCoolerInactive : ModItem
-    {
-        public override string Texture => "Fargowiltas/Content/Items/Misc/PotionCooler_Inactive";
-
-        public override void SetStaticDefaults()
-        {
-            Item.ResearchUnlockCount = 0;
-        }
-
-        public override void SetDefaults()
-        {
-            Item.width = 20;
-            Item.height = 20;
-            Item.rare = ItemRarityID.Green;
-            Item.value = Item.buyPrice(gold: 1);
-            Item.useAnimation = 10;
-            Item.useTime = 10;
-            Item.useStyle = ItemUseStyleID.HoldUp;
-            Item.noUseGraphic = true;
-        }
-
-        public override bool? UseItem(Player player)
-        {
-            if (player.altFunctionUse == 2)
-                return true;
-
-            if (Main.LocalPlayer == player)
-            {
-                FargoUIManager.Toggle<PotionBagUI>();
-                return true;
-            }
-
-            return base.UseItem(player);
-        }
-
-        public override bool AltFunctionUse(Player player)
-        {
-            SoundEngine.PlaySound(SoundID.Grab);
-            Item.ChangeItemType(ModContent.ItemType<PotionCooler>());
-            return false;
-        }
-
-        public override bool ConsumeItem(Player player) => false;
-        public override bool CanRightClick() => true;
-        public override void RightClick(Player player)
-        {
-            Item.ChangeItemType(ModContent.ItemType<PotionCooler>());
         }
     }
 

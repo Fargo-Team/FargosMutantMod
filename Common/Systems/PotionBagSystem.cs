@@ -188,9 +188,14 @@ namespace Fargowiltas.Common.Systems
         /// <param name="player"></param>
         public static void TryApplyBuff(int type, Player player)
         {
-            Item item = new(type);
             TryGetCount(type, out int count);
 
+            TryApplyBuff(type, player, count);
+        }
+
+        public static void TryApplyBuff(int type, Player player, int count)
+        {
+            Item item = new(type);
             if (item.IsAir || !FargoServerConfig.Instance.PotionCooler ||
                 (FargoServerConfig.Instance.UnlimitedPotionBuffs is UnlimitedBuffSelections.BossOnly &&
                 !FargoUtils.AnyBossAlive()))

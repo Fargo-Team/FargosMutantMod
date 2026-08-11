@@ -1,8 +1,10 @@
 ﻿using Fargowiltas.Common;
 using Fargowiltas.Common.Configs;
+using Fargowiltas.Common.Systems;
 using Fargowiltas.Common.Systems.Collections;
 using Fargowiltas.Content.Items.Summons.Abom;
 using Fargowiltas.Content.Items.Tiles;
+using Fargowiltas.Content.NPCs;
 using Fargowiltas.Content.NPCs.SquirrelNPC;
 using Fargowiltas.Content.UI.Emotes;
 using Microsoft.Xna.Framework;
@@ -250,8 +252,8 @@ namespace Fargowiltas.Content.Items
                     line = new TooltipLine(Mod, "TooltipTorchGod2", $"[s:Fargowiltas/AbidesTrueTorchLuck] [c/AAAAAA:{ExpandedTooltipLoc("TrueTorchLuck")}]");
                     tooltips.Add(line);
                 }
-
-                if (FargoServerConfig.Instance.PotionCooler && item.maxStack > 1)
+                bool infInventory = FargoServerConfig.Instance.UnlimitedPotionBuffs is UnlimitedBuffSelections.On || (FargoServerConfig.Instance.UnlimitedPotionBuffs is UnlimitedBuffSelections.BossOnly && FargoUtils.AnyBossAlive());
+                if ((infInventory || FargoServerConfig.Instance.PotionCooler) && item.maxStack > 1)
                 {
                     if (item.buffType != 0 && item.buffTime >= 60 * 60 * 2)
                     {
@@ -551,6 +553,7 @@ namespace Fargowiltas.Content.Items
         }
         public override void UpdateInventory(Item item, Player player)
         {
+            PotionBagSystem.TryApplyBuff(item.type, player, item.stack);
             CheckForIsOldUnlimitedAmmo(item);
             if (Main.netMode != NetmodeID.Server)
             {

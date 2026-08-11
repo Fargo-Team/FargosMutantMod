@@ -687,7 +687,6 @@ namespace Fargowiltas.Content.NPCs
             {
                 foreach (var spawnPlayer in Main.ActivePlayers)
                 {
-                    ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral(spawnPlayer.FargoMutant().ActiveSpawnBoosters.Count.ToString()), Color.White);
                     foreach (var spawnBooster in spawnPlayer.FargoMutant().ActiveSpawnBoosters)
                     {
                         if (!spawnBooster.SpawnCondition.Invoke())

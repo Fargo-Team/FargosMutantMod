@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
+using Terraria.Chat;
 using Terraria.DataStructures;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
@@ -686,6 +687,7 @@ namespace Fargowiltas.Content.NPCs
             {
                 foreach (var spawnPlayer in Main.ActivePlayers)
                 {
+                    ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral(spawnPlayer.FargoMutant().ActiveSpawnBoosters.Count.ToString()), Color.White);
                     foreach (var spawnBooster in spawnPlayer.FargoMutant().ActiveSpawnBoosters)
                     {
                         if (!spawnBooster.SpawnCondition.Invoke())

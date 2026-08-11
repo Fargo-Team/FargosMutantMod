@@ -72,7 +72,6 @@ namespace Fargowiltas.Content.Items.Explosives
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient<GizmoParts>(1)
                 .AddIngredient(ItemID.Dynamite)
                 .AddRecipeGroup("Fargowiltas:AnyWoodenPlatform", 100)
                 .AddIngredient(ItemID.FallenStar)

@@ -179,7 +179,7 @@ namespace Fargowiltas.Common.Configs
         [DefaultValue(true)]
         public bool ModdedPiggyBankAcc;
 
-        [DefaultValue(true)]
+        [DefaultValue(false)]
         public bool StalkerMoneyTrough;
 
         [DefaultValue(true)]

@@ -48,7 +48,6 @@ namespace Fargowiltas.Content.Items.Explosives
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient<GizmoParts>(1)
                 .AddRecipeGroup("Wood", 50)
                 .AddIngredient(ItemID.Torch)
                 .AddTile(TileID.WorkBenches)

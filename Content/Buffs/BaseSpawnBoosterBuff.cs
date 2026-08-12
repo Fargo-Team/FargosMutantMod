@@ -5,7 +5,9 @@ using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.ID;
 using Terraria.ModLoader;
+using static Fargowiltas.Fargowiltas;
 
 namespace Fargowiltas.Content.Buffs
 {
@@ -26,6 +28,13 @@ namespace Fargowiltas.Content.Buffs
         public override void Update(Player player, ref int buffIndex)
         {
             player.FargoMutant().ActiveSpawnBoosters.Add(this);
+            if (Main.netMode == NetmodeID.MultiplayerClient)
+            {
+                ModPacket packet = Fargowiltas.Instance.GetPacket();
+                packet.Write((byte)PacketID.AddDeviSummon);
+                packet.Write(this.Type);
+                packet.Write((byte)player.whoAmI);
+            }
         }
         public override bool PreDraw(SpriteBatch spriteBatch, int buffIndex, ref BuffDrawParams drawParams)
         {

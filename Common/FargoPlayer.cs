@@ -387,6 +387,18 @@ namespace Fargowiltas
         }
         public override void PostUpdateBuffs()
         {
+            if (FargoServerConfig.Instance.UnlimitedPotionBuffs is UnlimitedBuffSelections.On || (FargoServerConfig.Instance.UnlimitedPotionBuffs is UnlimitedBuffSelections.BossOnly && FargoUtils.AnyBossAlive()))
+            {
+                foreach (Item item in Player.bank.item)
+                {
+                    PotionBagSystem.TryApplyBuff(item.type, Player, item.stack);
+                }
+
+                foreach (Item item in Player.bank2.item)
+                {
+                    PotionBagSystem.TryApplyBuff(item.type, Player, item.stack);
+                }
+            }
             if (FargoServerConfig.Instance.PiggyBankAcc || FargoServerConfig.Instance.ModdedPiggyBankAcc)
             {
                 foreach (Item item in Player.bank.item)
@@ -398,6 +410,22 @@ namespace Fargowiltas
                 {
                     FargoGlobalItem.TryPiggyBankAcc(item, Player);
                 }
+            }
+            foreach (var potToggle in PotionToggleLoader.LoadedToggles.Values)
+            {
+                if (Player.HasBuff(potToggle.BuffID))
+                {
+                    ActivePotions.Add(potToggle.BuffID);
+                }
+                else if (Player.buffImmune[potToggle.BuffID])
+                {
+                    ActivePotions.Remove(potToggle.BuffID);
+                }
+
+                /*if (!Player.GetPotionToggleValue(potToggle.ItemID))
+                {
+                    Player.buffImmune[potToggle.BuffID] = true;
+                }*/
             }
             if (PotionCooler)
                 PotionBagSystem.ApplyCoolerBuffs(Player);

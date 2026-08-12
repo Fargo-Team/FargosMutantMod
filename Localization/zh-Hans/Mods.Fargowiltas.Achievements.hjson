@@ -44,8 +44,8 @@ T1TreeTreasureAchievement: {
 }
 
 T2TreeTreasureAchievement: {
-	// FriendlyName: Chronic Hoarder
-	// Description: Retrieve your 25th tree treasure from the LumberJack.
+	// FriendlyName: Mr. Woodwide
+	// Description: Retrieve a tree treasure from the LumberJack from every biome.
 }
 
 WiresAchievement: {

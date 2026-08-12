@@ -1,4 +1,4 @@
-﻿MultitaskCenterAchievement: {
+MultitaskCenterAchievement: {
 	FriendlyName: Как третья рука
 	Description: Зажгите своё творчество, соединив несколько станций создания в компактный верстачок!
 }
@@ -44,8 +44,8 @@ T1TreeTreasureAchievement: {
 }
 
 T2TreeTreasureAchievement: {
-	FriendlyName: Хронический хламовщик
-	Description: Получите свой 25-й лесной дар от ДревоБилла.
+	FriendlyName: Мировое древо
+	Description: Получите по лесному дару от ДревоБилла из каждого биома.
 }
 
 WiresAchievement: {

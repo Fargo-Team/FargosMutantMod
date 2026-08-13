@@ -201,7 +201,8 @@ namespace Fargowiltas.Content.NPCs.SquirrelNPC
         public override void SetChatButtons(ref string button, ref string button2)
         {
             button = Language.GetTextValue("LegacyInterface.28");
-            button2 = Language.GetTextValue("Mods.Fargowiltas.NPCs.Squirrel.Feed");
+            if (FargoWorld.EternityMode)
+                button2 = Language.GetTextValue("Mods.Fargowiltas.NPCs.Squirrel.Feed");
 
         }
 
@@ -211,8 +212,9 @@ namespace Fargowiltas.Content.NPCs.SquirrelNPC
             {
                 shopName = ShopName;
             }
-            else
+            else if (FargoWorld.EternityMode)
             {
+
                 //FargoUIManager.Open<SquirrelUI>();
                 //return;
                 if (SacrificeThing(Main.LocalPlayer, Main.LocalPlayer.HeldItem))
@@ -689,37 +691,8 @@ namespace Fargowiltas.Content.NPCs.SquirrelNPC
         {
             WeightedRandom<Result> result = new(Main.rand.Next(int.MaxValue));
 
-            // misc materials
-            result.Add(new(ItemID.Lens, 6), 0.5);
-            result.Add(new(ItemID.RottenChunk, 6), 0.5);
-            result.Add(new(ItemID.Vertebrae, 6), 0.5);
-            result.Add(new(ItemID.Mushroom, 50), 1);
-            result.Add(new(ItemID.Gel, 200), 0.5);
-            result.Add(new(ItemID.Feather, 6), 0.25);
-            result.Add(new(ItemID.FallenStar, 6), 0.2);
+            result.Add(new(ItemID.HerbBag, 2), 1);
 
-            // ores
-            result.Add(new(ItemID.CopperOre, OreCount), OreWeight);
-            result.Add(new(ItemID.TinOre, OreCount), OreWeight);
-            result.Add(new(ItemID.LeadOre, OreCount), OreWeight);
-            result.Add(new(ItemID.IronOre, OreCount), OreWeight);
-            result.Add(new(ItemID.TungstenOre, OreCount), OreWeight);
-            result.Add(new(ItemID.SilverOre, OreCount), OreWeight);
-            result.Add(new(ItemID.GoldOre, OreCount), OreWeight);
-            result.Add(new(ItemID.PlatinumOre, OreCount), OreWeight);
-
-            result.Add(new(ItemID.HerbBag, 3), 2);
-
-            // fishe
-            result.Add(new(ItemID.ArmoredCavefish, FishCount), FishWeight);
-            result.Add(new(ItemID.CrimsonTigerfish, FishCount), FishWeight);
-            result.Add(new(ItemID.Damselfish, FishCount), FishWeight);
-            result.Add(new(ItemID.DoubleCod, FishCount), FishWeight);
-            result.Add(new(ItemID.Ebonkoi, FishCount), FishWeight);
-            result.Add(new(ItemID.FrostMinnow, FishCount), FishWeight);
-            result.Add(new(ItemID.Hemopiranha, FishCount), FishWeight);
-            result.Add(new(ItemID.SpecularFish, FishCount), FishWeight);
-            result.Add(new(ItemID.VariegatedLardfish, FishCount), FishWeight);
 
             Result real = result.Get();
             result.Clear();
@@ -732,16 +705,8 @@ namespace Fargowiltas.Content.NPCs.SquirrelNPC
         {
             WeightedRandom<Result> result = new(Main.rand.Next(int.MaxValue));
 
-            // misc materials
-            result.Add(new(ItemID.Ichor, 10), 1);
-            result.Add(new(ItemID.CursedFlame, 10), 1);
-
-            // ores
-            result.Add(new(ItemID.CobaltOre, OreCount), OreWeight);
-            result.Add(new(ItemID.PalladiumOre, OreCount), OreWeight);
-
             // lootboxes
-            result.Add(new(ItemID.HerbBag, 6), 1);
+            result.Add(new(ItemID.HerbBag, 3), 1);
 
             Result real = result.Get();
             result.Clear();

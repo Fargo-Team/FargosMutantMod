@@ -403,7 +403,9 @@ namespace Fargowiltas.Content.NPCs.SquirrelNPC
                                 result = SacrificeResultHardmode(out amount);
                             else
                                 result = SacrificeResult(out amount);
-                            Item.NewItem(new EntitySource_WorldEvent(), player.Center, new Item(result, amount));
+                            //Item.NewItem(new EntitySource_WorldEvent(), player.Center, new Item(result, amount));
+                            player.QuickSpawnItem(new EntitySource_WorldEvent(), new Item(result, amount));
+                            
                         }
 
                         for (int i = 0; i < 32; i++)

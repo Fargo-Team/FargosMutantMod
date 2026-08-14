@@ -1625,6 +1625,7 @@ LuminiteOmniforge: {
 		Функционирует как несколько станций создания поздней игры
 		«[i:3460]а возможностей с ней не существует»
 		'''
+	// SoulsTooltip: Used to craft Forces and Souls
 }
 
 BlackHolePotion: {

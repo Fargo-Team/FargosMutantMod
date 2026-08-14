@@ -33,9 +33,10 @@ namespace Fargowiltas.Content.Items.Tiles
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            if (ModLoader.HasMod("FargowiltasSouls"))
-            {
-                tooltips.Insert(4, new TooltipLine(Mod, "SoulsCrafts", "Can craft Forces and Souls"));
+            Mod souls = Fargowiltas.SoulsMod;
+            if (souls != null)
+            {          
+                tooltips.Insert(4, new TooltipLine(Mod, "SoulsCrafts", Language.GetTextValue("Mods.Fargowiltas.Items.LuminiteOmniforge.SoulsTooltip")));
             }
         }
 

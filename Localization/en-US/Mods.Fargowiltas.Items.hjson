@@ -32,10 +32,10 @@ CityBuster: {
 	DisplayName: City Buster
 	Tooltip:
 		'''
-		Destroys a large area
-		Will not remove background walls
-		Avoids breaking areas denoted as important
-		Use at your own risk
+		Destroys a large area of blocks
+		Avoids breaking blocks in areas denoted as important
+		Has a 10 second fuse. Can be disarmed using <right>
+		Use at your own risk.
 		'''
 }
 

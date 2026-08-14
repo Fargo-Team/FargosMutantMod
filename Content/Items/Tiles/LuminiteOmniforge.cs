@@ -3,6 +3,7 @@ using Fargowiltas.Content.Items.Misc;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.GameContent.ObjectInteractions;
@@ -28,6 +29,14 @@ namespace Fargowiltas.Content.Items.Tiles
             Item.useStyle = ItemUseStyleID.Swing;
             Item.consumable = true;
             Item.createTile = ModContent.TileType<LuminiteOmniforgeTile>();
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            if (ModLoader.HasMod("FargowiltasSouls"))
+            {
+                tooltips.Insert(4, new TooltipLine(Mod, "SoulsCrafts", "Can craft Forces and Souls"));
+            }
         }
 
         public override void AddRecipes()

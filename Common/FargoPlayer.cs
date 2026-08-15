@@ -1,5 +1,6 @@
 using Fargowiltas.Common.Configs;
 using Fargowiltas.Common.Systems;
+using Fargowiltas.Common.Systems.Collections;
 using Fargowiltas.Content.Buffs;
 using Fargowiltas.Content.Dusts;
 using Fargowiltas.Content.Items;
@@ -78,6 +79,8 @@ namespace Fargowiltas
 
         public bool[] ItemHasBeenOwned; // If you've owned this item type ever
         public HashSet<ItemDefinition> ItemHasBeenOwnedCache = []; // Only used for saving and loading
+        public int[] SacrificeCount;
+        public Dictionary<ItemDefinition, int> SacrificeCountCache; // Only used for saving and loading
 
         public int DeathCamTimer = 0;
         public int SpectatePlayer = 0;
@@ -124,11 +127,12 @@ namespace Fargowiltas
         public override void Initialize()
         {
             ItemHasBeenOwned = ItemID.Sets.Factory.CreateBoolSet(false);
+            SacrificeCount = FargoItemSets.SacrificeCountDefault.Clone() as int[];
+            SacrificeCountCache = [];
         }
         public override void Load()
         {
             AutoSummonShootMethod = typeof(Player).GetMethod("ItemCheck_Shoot", BindingFlags.NonPublic | BindingFlags.Instance);
-            base.Load();
         }
         public override void SaveData(TagCompound tag)
         {
@@ -189,6 +193,26 @@ namespace Fargowiltas
                 AnglerPittyCache.Add(new(pair.Key));
             }
             tag.Add("AnglerPitty", AnglerPittyCache.ToList());
+
+            HashSet<ItemDefinition> keys = [];
+            List<int> values = [];
+            for (int i = 0; i < SacrificeCount.Length; i++)
+            {
+                if (SacrificeCount[i] == FargoItemSets.SacrificeCountDefault[i])
+                    continue;
+                keys.Add(new(i));
+                values.Add(SacrificeCount[i]);
+            }
+            foreach (KeyValuePair<ItemDefinition, int> pair in SacrificeCountCache)
+            {
+                if (pair.Key.Type == -1)
+                {
+                    keys.Add(pair.Key);
+                    values.Add(pair.Value);
+                }
+            }
+            tag.Add("SacrificeCountKeys", keys.ToList());
+            tag.Add("SacrificeCountValues", values);
         }
         public override void LoadData(TagCompound tag)
         {
@@ -224,6 +248,16 @@ namespace Fargowiltas
                 AnglerPittyCache = pittyList.ToHashSet();
                 var validTypes = AnglerPittyCache.Where(i => i.Type != -1).Select(s => s.Type);
                 AnglerPityAmounts = AnglerPityAmounts.Where(pair => validTypes.Contains(pair.Key)).ToDictionary();
+            }
+
+            if (tag.TryGet<IList<ItemDefinition>>("SacrificeCountKeys", out var sacrificeKeys) && tag.TryGet<IList<int>>("SacrificeCountValues", out var sacrificeValues))
+            {
+                for (int i = 0; i < sacrificeKeys.Count; i++)
+                {
+                    SacrificeCountCache.Add(sacrificeKeys[i], sacrificeValues[i]);
+                    if (sacrificeKeys[i].Type != -1)
+                        SacrificeCount[sacrificeKeys[i].Type] = sacrificeValues[i];
+                }
             }
         }
         public void SyncPotionToggle(int itemID)

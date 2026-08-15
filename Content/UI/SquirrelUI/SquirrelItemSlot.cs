@@ -1,5 +1,4 @@
-﻿using Fargowiltas.Common.Systems.Collections;
-using Fargowiltas.Content.NPCs.SquirrelNPC;
+﻿using Fargowiltas.Content.NPCs.SquirrelNPC;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
@@ -44,64 +43,6 @@ namespace Fargowiltas.Content.UI.SquirrelUI
             if (!HasItem)
                 return null;
             return Squirrel.CanSacrifice(Item);
-        }
-    }
-
-    public class SquirrelPotionSlot : SquirrelItemSlot
-    {
-        UIPanel panel;
-        UIText text;
-
-        public SquirrelPotionSlot(SquirrelInnerPanel parent) : base(parent, SquirrelUI.PotionMode) { }
-
-        public override bool? HasValidItem()
-        {
-            if (!HasItem)
-                return null;
-            return Item.buffType > 0;
-        }
-
-        public string GetDisplayString(Item item)
-        {
-            if (item.IsAir)
-                return "";
-
-            int stack = FargoItemSets.SacrificeCount[item.type];
-            return $"{stack}/30";
-        }
-
-        protected override void DrawChildren(SpriteBatch spriteBatch)
-        {
-            if (!HasItem || !IsSelected)
-                return;
-
-            base.DrawChildren(spriteBatch);
-        }
-
-        public override void OnInitialize()
-        {
-            text = new("")
-            {
-                HAlign = 0.5f,
-                VAlign = 0.5f
-            };
-            text.Width.Set(0, 1f);
-
-            panel = new UIPanel();
-            panel.Top.Set(0, 1f);
-            panel.Width.Set(0, 1f);
-            panel.Height.Set(30, 0f);
-
-            Append(panel);
-            panel.Append(text);
-
-            base.OnInitialize();
-        }
-
-        public override void OnItemSwap(ref Item oldItem, ref Item newItem)
-        {
-            panel.Top.Set(-30, 0f);
-            text.SetText(GetDisplayString(newItem));
         }
     }
 }

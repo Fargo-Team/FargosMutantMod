@@ -1,4 +1,3 @@
-using Fargowiltas.Content.Items.Misc;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;

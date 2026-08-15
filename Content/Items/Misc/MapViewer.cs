@@ -21,12 +21,12 @@ namespace Fargowiltas.Content.Items.Misc
         public override bool? UseItem(Player player)
         {
             if (Main.netMode != NetmodeID.MultiplayerClient)
-            {   
+            {
                 //todo: update logic in 1.4.5 (i think theres a method that fills the map)
                 for (int i = 0; i < Main.maxTilesX; i++)
-                {   
+                {
                     for (int j = 0; j < Main.maxTilesY; j++)
-                    {   
+                    {
                         if (WorldGen.InWorld(i, j))
                         {
                             Main.Map.Update(i, j, 255);

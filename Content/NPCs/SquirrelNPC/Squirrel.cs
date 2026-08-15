@@ -1,4 +1,3 @@
-using Fargowiltas.Common;
 using Fargowiltas.Common.Configs;
 using Fargowiltas.Common.Systems.Collections;
 using Fargowiltas.Content.Achievements;
@@ -135,7 +134,7 @@ namespace Fargowiltas.Content.NPCs.SquirrelNPC
             DrawOffsetY = -2;
 
             if (NPC.velocity.X == 0)
-            {   
+            {
                 if (!doIdleAnimation)
                     NPC.localAI[0]++;
                 if (NPC.localAI[0] >= IdleThreshold)
@@ -288,7 +287,7 @@ namespace Fargowiltas.Content.NPCs.SquirrelNPC
                         FrameY = 0;
                         idleLoops++;
                     }
-                        
+
                     if (idleLoops >= 8)
                     {
                         doIdleAnimation = false;
@@ -332,7 +331,7 @@ namespace Fargowiltas.Content.NPCs.SquirrelNPC
             SpriteEffects effects = NPC.spriteDirection < 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
             float scale = (Main.mouseTextColor / 200f - 0.35f) * 0.3f + 0.8f;
             Vector2 position = NPC.Center - screenPos + new Vector2(0, NPC.gfxOffY) + new Vector2(0, 4);
-            
+
             if (bloodMoon)
             {
                 for (int j = 0; j < 12; j++)
@@ -347,7 +346,7 @@ namespace Fargowiltas.Content.NPCs.SquirrelNPC
 
             if (bloodMoon)
                 sb.Draw(EyesAsset.Value, position, frame, Color.White * NPC.Opacity, NPC.rotation, origin, NPC.scale, effects, 0f);
-            
+
             return false;
         }
         public override void HitEffect(NPC.HitInfo hit)
@@ -405,7 +404,7 @@ namespace Fargowiltas.Content.NPCs.SquirrelNPC
                                 result = SacrificeResult(out amount);
                             //Item.NewItem(new EntitySource_WorldEvent(), player.Center, new Item(result, amount));
                             player.QuickSpawnItem(new EntitySource_WorldEvent(), new Item(result, amount));
-                            
+
                         }
 
                         for (int i = 0; i < 32; i++)

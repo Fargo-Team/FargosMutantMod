@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Fargowiltas.Content.Items.Summons;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using Fargowiltas.Content.Items.Summons;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

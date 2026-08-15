@@ -1,10 +1,8 @@
 using Fargowiltas.Common.Configs;
 using Fargowiltas.Common.Systems;
-using Fargowiltas.Content.Achievements;
 using Fargowiltas.Content.Buffs;
 using Fargowiltas.Content.Dusts;
 using Fargowiltas.Content.Items;
-using Fargowiltas.Content.Items.CaughtNPCs;
 using Fargowiltas.Content.Items.Misc;
 using Fargowiltas.Content.Items.Vanity;
 using Fargowiltas.Content.NPCs;

@@ -1,19 +1,15 @@
-﻿using Fargowiltas.Common;
-using Fargowiltas.Common.Configs;
+﻿using Fargowiltas.Common.Configs;
 using Fargowiltas.Common.Systems;
 using Fargowiltas.Content.UI;
 using Fargowiltas.Content.UI.PotionBag;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using ReLogic.Content;
 using System.Collections.Generic;
 using Terraria;
-using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Fargowiltas.Content.Items.Misc

@@ -339,7 +339,7 @@ namespace Fargowiltas.Common.Systems.Collections
 
                     FargoItemSets.ShimmerTransformsFromItem[shimmerItem].Add(i);
                 }
-                    
+
             }
         }
     }

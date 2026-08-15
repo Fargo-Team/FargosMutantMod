@@ -597,7 +597,7 @@ namespace Fargowiltas.Content.UI.LumberjackUI
                             ModContent.GetInstance<TreeTreasureAchievements.T2TreeTreasureAchievement>().DesertCondition.Complete();
                             break;
                         case TeleportPylonType.Underground:
-                            {       
+                            {
                                 if (biome.ID == "Underworld") // this check can be removed in 1.4.5 due to Underworld Pylon existing
                                     ModContent.GetInstance<TreeTreasureAchievements.T2TreeTreasureAchievement>().UnderworldCondition.Complete();
                                 ModContent.GetInstance<TreeTreasureAchievements.T2TreeTreasureAchievement>().CavernCondition.Complete();

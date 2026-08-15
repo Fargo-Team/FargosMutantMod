@@ -1,4 +1,3 @@
-using Fargowiltas.Common;
 using Fargowiltas.Common.Configs;
 using Fargowiltas.Content.Biomes;
 using Fargowiltas.Content.Items.Summons.Abom;
@@ -11,8 +10,6 @@ using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection.Metadata.Ecma335;
-using System.Security.Policy;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
@@ -412,9 +409,9 @@ namespace Fargowiltas.Content.NPCs.AbominationnNPC
         {
             base.FindFrame(frameHeight);
             Tile tile = Main.tile[(int)NPC.Center.X / 16, (int)NPC.Center.Y / 16];
-            bool shouldFlourishCape = Main.WindyEnoughForKiteDrops 
+            bool shouldFlourishCape = Main.WindyEnoughForKiteDrops
                 && !(tile != null && tile.WallType > WallID.None && !WallID.Sets.AllowsWind[tile.WallType])
-                && (((int)NPC.Center.Y / 16) !< Main.worldSurface);
+                && (((int)NPC.Center.Y / 16)! < Main.worldSurface);
 
             #region cape
             switch (CapeFrameX)
@@ -423,7 +420,8 @@ namespace Fargowiltas.Content.NPCs.AbominationnNPC
                     {
                         CapeFrameX = CapeFrameY = 0;
                         CapeFrameCounter = 0;
-                    } break;
+                    }
+                    break;
 
                 case (int)CapeAnimationID.WindyIdle:
                     {
@@ -433,7 +431,8 @@ namespace Fargowiltas.Content.NPCs.AbominationnNPC
                             if (++CapeFrameY >= 4)
                                 CapeFrameY = 0;
                         }
-                    } break;
+                    }
+                    break;
 
                 case (int)CapeAnimationID.Walking:
                     {
@@ -443,7 +442,8 @@ namespace Fargowiltas.Content.NPCs.AbominationnNPC
                             if (++CapeFrameY >= 4)
                                 CapeFrameY = 0;
                         }
-                    } break;
+                    }
+                    break;
 
                 case (int)CapeAnimationID.Falling:
                     {
@@ -464,7 +464,8 @@ namespace Fargowiltas.Content.NPCs.AbominationnNPC
                             if (++CapeFrameY >= 6)
                                 CapeFrameY = 0;
                         }
-                    } break;
+                    }
+                    break;
 
             }
 
@@ -488,7 +489,7 @@ namespace Fargowiltas.Content.NPCs.AbominationnNPC
             }
             */
             else if (NPC.velocity.X != 0)
-                HandleCapeAnimation((int)CapeAnimationID.Walking);       
+                HandleCapeAnimation((int)CapeAnimationID.Walking);
             else if (NPC.velocity.Length() == 0)
                 HandleCapeAnimation((int)CapeAnimationID.Idle, shouldFlourishCape);
             #endregion
@@ -501,7 +502,7 @@ namespace Fargowiltas.Content.NPCs.AbominationnNPC
                     StyxFrame = 2;
             }
             */
-            
+
         }
 
         public int CapeFrameCounter, CapeFrameX, CapeFrameY;
@@ -521,7 +522,7 @@ namespace Fargowiltas.Content.NPCs.AbominationnNPC
             Texture2D capeTexture = Cape.Value;
             Rectangle capeRect = new(54 * CapeFrameX, 72 * CapeFrameY, 54, 72);
             Vector2 capeOrigin = capeRect.Size() / 2f;
-            
+
             Vector2 capePosition = position - new Vector2(31 * NPC.direction, 0);
             float CapeRotation = 0;
 

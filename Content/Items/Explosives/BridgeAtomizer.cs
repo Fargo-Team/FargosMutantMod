@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Fargowiltas.Common.Configs;
+﻿using Fargowiltas.Common.Configs;
 using Fargowiltas.Content.Items.Misc;
 using Fargowiltas.Content.Items.Tiles;
 using Fargowiltas.Content.Projectiles;
 using Fargowiltas.Content.Projectiles.Explosives;
 using Microsoft.Xna.Framework;
+using System.Collections.Generic;
+using System.Linq;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
@@ -85,7 +85,7 @@ namespace Fargowiltas.Content.Items.Explosives
 
         public override void KillTile(int i, int j, int type, ref bool fail, ref bool effectOnly, ref bool noItem)
         {
-            if (Main.netMode != NetmodeID.MultiplayerClient && TileID.Sets.Platforms[type] && !fail && !noItem && 
+            if (Main.netMode != NetmodeID.MultiplayerClient && TileID.Sets.Platforms[type] && !fail && !noItem &&
                 Main.LocalPlayer.HeldItem.type == ModContent.ItemType<BridgeAtomizer>() && Main.LocalPlayer.channel)
             {
                 noItem = true;

@@ -1,5 +1,5 @@
-using System;
 using Fargowiltas.Content.Buffs;
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

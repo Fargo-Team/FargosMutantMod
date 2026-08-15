@@ -1,13 +1,8 @@
-﻿using Fargowiltas.Common;
-using Fargowiltas.Common.Configs;
-using Fargowiltas.Common.Systems;
+﻿using Fargowiltas.Common.Configs;
 using Fargowiltas.Content.Items;
 using Fargowiltas.Content.Items.Tiles;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Graphics;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using Terraria;
@@ -17,7 +12,6 @@ using Terraria.GameContent.Events;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
-using Terraria.UI.Chat;
 
 namespace Fargowiltas
 {
@@ -74,7 +68,7 @@ namespace Fargowiltas
                 PopupText.NewText(request, position);
                 return;
             }
-            orig(source, variationUnwrapped,position,velocity);
+            orig(source, variationUnwrapped, position, velocity);
         }
         private static Item[] GetWormholes(Player self)
         {

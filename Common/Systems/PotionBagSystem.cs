@@ -1,5 +1,4 @@
 ﻿using Fargowiltas.Common.Configs;
-using Fargowiltas.Content.NPCs;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -158,7 +157,7 @@ namespace Fargowiltas.Common.Systems
         /// </summary>
         /// <returns></returns>
         public static bool AnyCompletedPotions => Potions.Any(p => p.Value >= MaxPotions);
-        
+
 
         /// <summary>
         /// Whether a potion of the given type of the given count can be stored.

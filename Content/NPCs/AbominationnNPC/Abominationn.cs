@@ -147,7 +147,10 @@ namespace Fargowiltas.Content.NPCs.AbominationnNPC
             }
         }
 
-        public override List<string> SetNPCNameList() => [Language.GetTextValue("Mods.Fargowiltas.NPCs.Abominationn.DisplayName")];
+        public override void ModifyTypeName(ref string typeName)
+        {
+            typeName = Language.GetTextValue("Mods.Fargowiltas.NPCs.Abominationn.DisplayName");
+        }
 
         public override void ChatBubblePosition(ref Vector2 position, ref SpriteEffects spriteEffects)
         {

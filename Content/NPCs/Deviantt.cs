@@ -216,7 +216,10 @@ namespace Fargowiltas.Content.NPCs
             }
         }
 
-        public override List<string> SetNPCNameList() => [Language.GetTextValue("Mods.Fargowiltas.NPCs.Deviantt.DisplayName")];
+        public override void ModifyTypeName(ref string typeName)
+        {
+            typeName = Language.GetTextValue("Mods.Fargowiltas.NPCs.Deviantt.DisplayName");
+        }
 
         public override string GetChat() //=> string.Empty;
         {

@@ -153,8 +153,10 @@ namespace Fargowiltas.Content.NPCs
             return FargoServerConfig.Instance.Mutant && FargoWorld.DownedBools["boss"] && FargoUtils.AnyBossAlive();
         }
 
-        public override List<string> SetNPCNameList() => [Language.GetTextValue("Mods.Fargowiltas.NPCs.Mutant.DisplayName")];
-
+        public override void ModifyTypeName(ref string typeName)
+        {
+            typeName = Language.GetTextValue("Mods.Fargowiltas.NPCs.Mutant.DisplayName");
+        }
         public override string GetChat()
         {
             Mod souls = Fargowiltas.SoulsMod;

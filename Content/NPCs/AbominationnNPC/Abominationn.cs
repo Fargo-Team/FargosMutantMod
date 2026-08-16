@@ -150,24 +150,7 @@ namespace Fargowiltas.Content.NPCs.AbominationnNPC
             }
         }
 
-        public override List<string> SetNPCNameList()
-        {
-            string[] names =
-                [Language.GetTextValue("Mods.Fargowiltas.NPCs.Abominationn.NPCName1"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Abominationn.NPCName2"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Abominationn.NPCName3"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Abominationn.NPCName4"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Abominationn.NPCName5"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Abominationn.NPCName6"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Abominationn.NPCName7"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Abominationn.NPCName8"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Abominationn.NPCName9"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Abominationn.NPCName10"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Abominationn.NPCName11"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Abominationn.NPCName12")];
-
-            return new List<string>(names);
-        }
+        public override List<string> SetNPCNameList() => [Language.GetTextValue("Mods.Fargowiltas.NPCs.Abominationn.DisplayName")];
 
         public override void ChatBubblePosition(ref Vector2 position, ref SpriteEffects spriteEffects)
         {

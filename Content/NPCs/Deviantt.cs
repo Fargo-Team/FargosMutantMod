@@ -217,25 +217,7 @@ namespace Fargowiltas.Content.NPCs
             }
         }
 
-        public override List<string> SetNPCNameList()
-        {
-            string[] names =
-                [Language.GetTextValue("Mods.Fargowiltas.NPCs.Deviantt.NPCName1"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Deviantt.NPCName2"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Deviantt.NPCName3"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Deviantt.NPCName4"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Deviantt.NPCName5"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Deviantt.NPCName6"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Deviantt.NPCName7"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Deviantt.NPCName8"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Deviantt.NPCName9"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Deviantt.NPCName10"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Deviantt.NPCName11"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Deviantt.NPCName12"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Deviantt.NPCName13")];
-
-            return new List<string>(names);
-        }
+        public override List<string> SetNPCNameList() => [Language.GetTextValue("Mods.Fargowiltas.NPCs.Deviantt.DisplayName")];
 
         public override string GetChat() //=> string.Empty;
         {

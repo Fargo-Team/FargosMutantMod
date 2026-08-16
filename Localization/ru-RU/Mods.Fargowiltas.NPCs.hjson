@@ -1,17 +1,19 @@
 Abominationn: {
 	DisplayName: Отвратт
-	NPCName1: Вилта
-	NPCName2: Джек
-	NPCName3: Харли
-	NPCName4: Жнец
-	NPCName5: Стивенн
-	NPCName6: Фуфел
-	NPCName7: Бару
-	NPCName8: Фаргус
-	NPCName9: Собети
-	NPCName10: Катастроф
-	NPCName11: Бардо
-	NPCName12: Бетсон
+	/*
+	NPCName1: Wilta
+	NPCName2: Jack
+	NPCName3: Harley
+	NPCName4: Reaper
+	NPCName5: Stevenn
+	NPCName6: Doof
+	NPCName7: Baroo
+	NPCName8: Fergus
+	NPCName9: Entev
+	NPCName10: Catastrophe
+	NPCName11: Bardo
+	NPCName12: Betson
+	*/
 	Bestiary: Может управлять погодой и останавливать нашествия, но очень ленив, а его оружие слилось с его руками. Хорошо, что ему не нужно есть, а двери сами как по волшебству открываются перед ним.
 
 	TownNPCMood: {
@@ -90,19 +92,21 @@ Abominationn: {
 
 Deviantt: {
 	DisplayName: Девиантт
-	NPCName1: Акира
-	NPCName2: Реми
-	NPCName3: Саку
-	NPCName4: Сэйра
-	NPCName5: Кой
-	NPCName6: Элли
-	NPCName7: Лори
-	NPCName8: Калия
-	NPCName9: Тери
-	NPCName10: Артт
-	NPCName11: Флан
-	NPCName12: Сион
-	NPCName13: Теви
+	/*
+	NPCName1: Akira
+	NPCName2: Remi
+	NPCName3: Saku
+	NPCName4: Seira
+	NPCName5: Koi
+	NPCName6: Elly
+	NPCName7: Lori
+	NPCName8: Calia
+	NPCName9: Teri
+	NPCName10: Artt
+	NPCName11: Flan
+	NPCName12: Shion
+	NPCName13: Tewi
+	*/
 	Bestiary: Предоставляет предметы призыва для монстров и (если захочет) руку помощи. Это оптимистичное и полное энергии существо любит деньги почти настолько же, насколько она любит насилие. Только немного в ином виде.
 
 	TownNPCMood: {
@@ -311,19 +315,21 @@ LumberJack: {
 
 Mutant: {
 	DisplayName: Мутант
-	NPCName1: Флакен
-	NPCName2: Дорф
-	NPCName3: Бинго
-	NPCName4: Ганс
-	NPCName5: Фарго
-	NPCName6: Мрак
-	NPCName7: Майк
-	NPCName8: Фаргу
-	NPCName9: Терренс
-	NPCName10: Кэтти Н. Пем
-	NPCName11: Том
-	NPCName12: Странникус
-	NPCName13: Полли
+	/*
+	NPCName1: Flacken
+	NPCName2: Dorf
+	NPCName3: Bingo
+	NPCName4: Hans
+	NPCName5: Fargo
+	NPCName6: Grim
+	NPCName7: Mike
+	NPCName8: Fargu
+	NPCName9: Terrance
+	NPCName10: Catty N. Pem
+	NPCName11: Tom
+	NPCName12: Weirdus
+	NPCName13: Polly
+	*/
 	Bestiary: Собратья называют его братом, но называть свой пол он не желает. Больше заинтересован в наблюдении за сражениями и маленькими питомцами, нежели в разговорах о своём прошлом. Будто бы в поисках кого-то сильного...
 
 	TownNPCMood: {

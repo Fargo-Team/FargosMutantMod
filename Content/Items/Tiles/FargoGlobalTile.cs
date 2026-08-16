@@ -1,4 +1,3 @@
-using Fargowiltas.Common;
 using Fargowiltas.Common.Configs;
 using Fargowiltas.Common.Systems.Collections;
 using Microsoft.Xna.Framework;

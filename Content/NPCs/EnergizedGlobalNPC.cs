@@ -1,4 +1,3 @@
-using Fargowiltas.Common;
 using Fargowiltas.Common.Systems.Collections;
 using System.Reflection;
 using Terraria;

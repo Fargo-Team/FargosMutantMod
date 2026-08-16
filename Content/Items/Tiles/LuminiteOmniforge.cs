@@ -35,7 +35,7 @@ namespace Fargowiltas.Content.Items.Tiles
         {
             Mod souls = Fargowiltas.SoulsMod;
             if (souls != null)
-            {          
+            {
                 tooltips.Insert(4, new TooltipLine(Mod, "SoulsCrafts", Language.GetTextValue("Mods.Fargowiltas.Items.LuminiteOmniforge.SoulsTooltip")));
             }
         }

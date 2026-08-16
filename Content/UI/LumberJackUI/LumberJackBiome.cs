@@ -57,6 +57,7 @@ namespace Fargowiltas.Content.UI.LumberjackUI
                 .SetIcon(vanillaIcons, vanillaIcons.Frame(16, 5, 3, 0))
                 .SetWood(ItemID.Cactus, 100)
                 .AddCritter([ItemID.Scorpion, ItemID.BlackScorpion], 5, 1, () => 1f)
+                .AddFruit(ItemID.PinkPricklyPear, 1, () => 1f)
                 .Register();
 
             LumberJackBiome.Create("Snow", LocalPath, Item.buyPrice(0, 5), Color.LightGray, TeleportPylonType.Snow)

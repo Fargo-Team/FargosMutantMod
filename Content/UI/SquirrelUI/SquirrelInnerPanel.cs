@@ -14,7 +14,6 @@ namespace Fargowiltas.Content.UI.SquirrelUI
     public class SquirrelInnerPanel : UIPanel
     {
         SquirrelFeedSlot FeedSlot;
-        SquirrelPotionSlot PotionSlot;
 
         public int mode;
         int prevMode;
@@ -34,7 +33,6 @@ namespace Fargowiltas.Content.UI.SquirrelUI
             timer = 0;
             swapTimer = 0;
             FeedSlot?.ReturnItemToPlayer();
-            PotionSlot?.ReturnItemToPlayer();
         }
 
         void OnItemSwap(Item newItem)
@@ -62,14 +60,6 @@ namespace Fargowiltas.Content.UI.SquirrelUI
             FeedSlot.Left.Set(0.75f * GetInnerDimensions().Width, 0);
             FeedSlot.OnSwap = OnItemSwap;
             Append(FeedSlot);
-
-            PotionSlot = new SquirrelPotionSlot(this);
-            PotionSlot.Width.Set(50, 0);
-            PotionSlot.Height.Set(50, 0);
-            PotionSlot.Top.Set(0.75f * GetOuterDimensions().Height, 0);
-            PotionSlot.Left.Set(0.25f * GetInnerDimensions().Width - PotionSlot.Width.Pixels, 0);
-            PotionSlot.OnSwap = OnItemSwap;
-            Append(PotionSlot);
         }
 
         Asset<Texture2D> speechBubble => ModContent.Request<Texture2D>(FargoMutantAssets.GetAssetString("UI", "SpeechBubble"));
@@ -97,7 +87,7 @@ namespace Fargowiltas.Content.UI.SquirrelUI
 
             float swapScale = MathHelper.Clamp(swapTimer / 60f, 0, 1);
 
-            SquirrelItemSlot selectedSlot = InFeedMode() ? FeedSlot : PotionSlot;
+            SquirrelItemSlot selectedSlot = FeedSlot;
             bool? valid = selectedSlot.HasValidItem();
 
             // underglow
@@ -139,7 +129,7 @@ namespace Fargowiltas.Content.UI.SquirrelUI
         {
             base.LeftClick(evt);
 
-            int n = Main.MouseScreen.X > GetOuterDimensions().X + 0.5f * GetOuterDimensions().Width ? SquirrelUI.FeedMode : SquirrelUI.PotionMode;
+            int n = SquirrelUI.FeedMode;
             if (mode != n)
                 OnModeSwap();
             mode = n;

@@ -4,7 +4,6 @@ using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using Terraria;
 using Terraria.Audio;
-using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.GameInput;
 using Terraria.ID;
@@ -40,7 +39,7 @@ namespace Fargowiltas.Content.Projectiles.Explosives
         }
 
         public override void AI()
-        {   
+        {
             float ratio = Projectile.timeLeft / 800f;
             float tps = MathHelper.Lerp(2, 24, ratio);
             if (++Projectile.frameCounter >= tps)
@@ -163,7 +162,7 @@ namespace Fargowiltas.Content.Projectiles.Explosives
         public override bool PreDraw(ref Color lightColor)
         {
             Texture2D texture = TextureAssets.Projectile[Type].Value;
-            Vector2 position = Projectile.Center - Main.screenPosition -  new Vector2(0, Projectile.gfxOffY);
+            Vector2 position = Projectile.Center - Main.screenPosition - new Vector2(0, Projectile.gfxOffY);
             Rectangle rect = new(0, 66 * Projectile.frame, 52, 66);
             Vector2 origin = rect.Size() / 2f;
 
@@ -188,6 +187,6 @@ namespace Fargowiltas.Content.Projectiles.Explosives
             return false;
         }
 
-        
+
     }
 }

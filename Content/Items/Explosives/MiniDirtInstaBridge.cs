@@ -1,6 +1,5 @@
 ﻿using Fargowiltas.Common.Configs;
 using Fargowiltas.Common.Systems;
-using Fargowiltas.Content.Items.Misc;
 using Fargowiltas.Content.Projectiles.Explosives;
 using Microsoft.Xna.Framework;
 using System;

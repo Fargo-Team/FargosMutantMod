@@ -1,5 +1,4 @@
 using Fargowiltas.Content.Buffs;
-using Fargowiltas.Content.Items.Misc;
 using System;
 using Terraria;
 using Terraria.ID;

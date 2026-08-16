@@ -1,4 +1,3 @@
-using Fargowiltas.Common;
 using Fargowiltas.Common.Configs;
 using Fargowiltas.Common.Systems.Collections;
 using Fargowiltas.Content.Achievements;
@@ -135,7 +134,7 @@ namespace Fargowiltas.Content.NPCs.SquirrelNPC
             DrawOffsetY = -2;
 
             if (NPC.velocity.X == 0)
-            {   
+            {
                 if (!doIdleAnimation)
                     NPC.localAI[0]++;
                 if (NPC.localAI[0] >= IdleThreshold)
@@ -288,7 +287,7 @@ namespace Fargowiltas.Content.NPCs.SquirrelNPC
                         FrameY = 0;
                         idleLoops++;
                     }
-                        
+
                     if (idleLoops >= 8)
                     {
                         doIdleAnimation = false;
@@ -332,7 +331,7 @@ namespace Fargowiltas.Content.NPCs.SquirrelNPC
             SpriteEffects effects = NPC.spriteDirection < 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
             float scale = (Main.mouseTextColor / 200f - 0.35f) * 0.3f + 0.8f;
             Vector2 position = NPC.Center - screenPos + new Vector2(0, NPC.gfxOffY) + new Vector2(0, 4);
-            
+
             if (bloodMoon)
             {
                 for (int j = 0; j < 12; j++)
@@ -347,7 +346,7 @@ namespace Fargowiltas.Content.NPCs.SquirrelNPC
 
             if (bloodMoon)
                 sb.Draw(EyesAsset.Value, position, frame, Color.White * NPC.Opacity, NPC.rotation, origin, NPC.scale, effects, 0f);
-            
+
             return false;
         }
         public override void HitEffect(NPC.HitInfo hit)
@@ -361,7 +360,7 @@ namespace Fargowiltas.Content.NPCs.SquirrelNPC
             }
         }
 
-        public static bool CanSacrifice(Item item) => EventSacrifice(Main.LocalPlayer.HeldItem, out int consumeCount, false) || FargoItemSets.SacrificeCount[item.type] > 0;
+        public static bool CanSacrifice(Item item) => EventSacrifice(Main.LocalPlayer.HeldItem, out _, false) || Main.LocalPlayer.FargoMutant().SacrificeCount[item.type] > 0;
 
         private static string SquirrelChat(string key) => Language.GetTextValue($"Mods.Fargowiltas.NPCs.Squirrel.Chat.{key}");
 
@@ -371,16 +370,17 @@ namespace Fargowiltas.Content.NPCs.SquirrelNPC
             if (item == null || item.favorited)
                 return false;
             int itemType = item.type;
-            if (EventSacrifice(Main.LocalPlayer.HeldItem, out int consumeCount, false) || FargoItemSets.SacrificeCount[itemType] > 0) // item sacrificable; do the sacrifice thing
+            FargoPlayer modPlayer = player.FargoMutant();
+            if (EventSacrifice(player.HeldItem, out int consumeCount, false) || modPlayer.SacrificeCount[itemType] > 0) // item sacrificable; do the sacrifice thing
             {
-                if (Main.LocalPlayer.CountItemHeld(itemType) >= consumeCount)
+                if (player.CountItemHeld(itemType) >= consumeCount)
                 {
                     for (int consume = 0; consume < consumeCount; consume++)
                     {
-                        Main.LocalPlayer.ConsumeItemHeld(itemType, true);
+                        player.ConsumeItemHeld(itemType, true);
                     }
-                    if (FargoItemSets.SacrificeCount[itemType] > 0)
-                        FargoItemSets.SacrificeCount[itemType]--;
+                    if (modPlayer.SacrificeCount[itemType] > 0)
+                        modPlayer.SacrificeCount[itemType]--;
 
                     //Vector2 spawnPos = Main.MouseWorld;
                     //SoundEngine.PlaySound(a, spawnPos);
@@ -405,7 +405,7 @@ namespace Fargowiltas.Content.NPCs.SquirrelNPC
                                 result = SacrificeResult(out amount);
                             //Item.NewItem(new EntitySource_WorldEvent(), player.Center, new Item(result, amount));
                             player.QuickSpawnItem(new EntitySource_WorldEvent(), new Item(result, amount));
-                            
+
                         }
 
                         for (int i = 0; i < 32; i++)
@@ -720,7 +720,9 @@ namespace Fargowiltas.Content.NPCs.SquirrelNPC
         public static bool EventSacrifice(Item item, out int consumeCount, bool action = true)
         {
             consumeCount = 1;
-            if (!action && FargoItemSets.SacrificeCount[item.type] <= 0)
+            Player player = Main.LocalPlayer;
+            FargoPlayer modPlayer = player.FargoMutant();
+            if (!action && modPlayer.SacrificeCount[item.type] <= 0)
                 return false;
 
             // spawn blood moon
@@ -728,7 +730,7 @@ namespace Fargowiltas.Content.NPCs.SquirrelNPC
             {
                 if (action)
                 {
-                    FargoItemSets.SacrificeCount[item.type]--;
+                    modPlayer.SacrificeCount[item.type]--;
                     SoundEngine.PlaySound(SoundID.Roar);
 
                     ModContent.GetInstance<NPCSacrificeAchievement>().Condition.Complete();
@@ -762,7 +764,7 @@ namespace Fargowiltas.Content.NPCs.SquirrelNPC
                 consumeCount = 10;
                 if (action)
                 {
-                    FargoItemSets.SacrificeCount[item.type]--;
+                    modPlayer.SacrificeCount[item.type]--;
                     if (!Main.slimeRain)
                     {
                         Main.StartSlimeRain();
@@ -780,8 +782,8 @@ namespace Fargowiltas.Content.NPCs.SquirrelNPC
                 consumeCount = 10;
                 if (action)
                 {
-                    FargoItemSets.SacrificeCount[ItemID.ShadowScale]--;
-                    FargoItemSets.SacrificeCount[ItemID.TissueSample]--;
+                    modPlayer.SacrificeCount[ItemID.ShadowScale]--;
+                    modPlayer.SacrificeCount[ItemID.TissueSample]--;
 
                     if (Main.netMode == NetmodeID.SinglePlayer)
                         WorldGen.dropMeteor();
@@ -800,7 +802,7 @@ namespace Fargowiltas.Content.NPCs.SquirrelNPC
             {
                 if (action)
                 {
-                    FargoItemSets.SacrificeCount[ModContent.ItemType<WiresPainting>()]--;
+                    modPlayer.SacrificeCount[ModContent.ItemType<WiresPainting>()]--;
                     for (int i = 0; i < 20; i++)
                     {
                         NPC.NewNPC(new EntitySource_WorldEvent(), (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, NPCID.TownCat);
@@ -815,8 +817,7 @@ namespace Fargowiltas.Content.NPCs.SquirrelNPC
                 consumeCount = 1;
                 if (action)
                 {
-                    Player player = Main.LocalPlayer;
-                    FargoItemSets.SacrificeCount[item.type]--;
+                    modPlayer.SacrificeCount[item.type]--;
                     Create((MessageSource)8, player.Top, new Vector2(Main.rand.NextFloatDirection() * 7f, -2f + Main.rand.NextFloat() * -2f));
                     Item.NewItem(new EntitySource_WorldEvent(), player.Center, new Item(ItemID.Wood, 100));
                     Item.NewItem(new EntitySource_WorldEvent(), player.Center, new Item(ItemID.BorealWood, 100));
@@ -825,7 +826,6 @@ namespace Fargowiltas.Content.NPCs.SquirrelNPC
                     Item.NewItem(new EntitySource_WorldEvent(), player.Center, new Item(ItemID.Ebonwood, 100));
                     Item.NewItem(new EntitySource_WorldEvent(), player.Center, new Item(ItemID.RichMahogany, 100));
 
-                    FargoPlayer modPlayer = player.FargoMutant();
                     if (modPlayer.ItemHasBeenOwned[ItemID.AshWood])
                         Item.NewItem(new EntitySource_WorldEvent(), player.Center, new Item(ItemID.AshWood, 100));
 

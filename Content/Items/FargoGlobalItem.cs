@@ -1,10 +1,8 @@
-﻿using Fargowiltas.Common;
-using Fargowiltas.Common.Configs;
+﻿using Fargowiltas.Common.Configs;
 using Fargowiltas.Common.Systems;
 using Fargowiltas.Common.Systems.Collections;
 using Fargowiltas.Content.Items.Summons.Abom;
 using Fargowiltas.Content.Items.Tiles;
-using Fargowiltas.Content.NPCs;
 using Fargowiltas.Content.NPCs.SquirrelNPC;
 using Fargowiltas.Content.UI.Emotes;
 using Microsoft.Xna.Framework;
@@ -69,6 +67,8 @@ namespace Fargowiltas.Content.Items
         }
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
+            Player player = Main.LocalPlayer;
+            FargoPlayer modPlayer = player.FargoMutant();
             var fargoServerConfig = FargoServerConfig.Instance;
 
             if (FargoClientConfig.Instance.ExpandedTooltips)
@@ -271,7 +271,7 @@ namespace Fargowiltas.Content.Items
                 {
                     string text = "";
                     string buff = Lang.GetBuffName(FargoItemSets.BuffStation[item.type]);
-                    if (Main.LocalPlayer.FargoMutant().ItemHasBeenOwned[item.type])
+                    if (modPlayer.ItemHasBeenOwned[item.type])
                     {
                         string loc = Language.GetTextValue($"Mods.Fargowiltas.ExpandedTooltips.PermanentEffectNearby", buff);
                         text = $"[s:Fargowiltas/PermanentStationsNearby] [c/AAAAAA:{loc}]";
@@ -298,7 +298,7 @@ namespace Fargowiltas.Content.Items
                     tooltips.Add(line);
                 }
 
-                int sacCount = FargoItemSets.SacrificeCount[item.type];
+                int sacCount = modPlayer.SacrificeCount[item.type];
                 if (Squirrel.EventSacrifice(item, out int consumeCount, false))
                 {
                     if (consumeCount > 1)
@@ -397,7 +397,7 @@ namespace Fargowiltas.Content.Items
                     }
                     if (tooltip.Name == "Knockback")
                     {
-                        float kb = Main.LocalPlayer.GetWeaponKnockback(item, item.knockBack);
+                        float kb = player.GetWeaponKnockback(item, item.knockBack);
                         if (kb > 0 && kb < 1000) // to make it not show when dragonlens does whatever the fuck causes it to skyrocket to infinity
                         {
                             int i = tooltip.Text.IndexOf("\n");

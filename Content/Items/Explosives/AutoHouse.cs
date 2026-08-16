@@ -1,6 +1,5 @@
 using Fargowiltas.Common.Configs;
 using Fargowiltas.Common.Systems;
-using Fargowiltas.Content.Items.Misc;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;

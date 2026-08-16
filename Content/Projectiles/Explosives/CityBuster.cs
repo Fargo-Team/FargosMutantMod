@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using Terraria;
 using Terraria.Audio;
+using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.GameInput;
 using Terraria.ID;
@@ -38,10 +39,23 @@ namespace Fargowiltas.Content.Projectiles.Explosives
             Projectile.timeLeft = 600;
         }
 
+        public override void OnSpawn(IEntitySource source)
+        {
+            if (Main.netMode != NetmodeID.Server)
+            {
+                SoundStyle arm = new("Fargowiltas/Assets/Sounds/CityBusterArm");
+                SoundEngine.PlaySound(arm with { Variants =  [1, 2], PauseBehavior = PauseBehavior.PauseWithGame}, Projectile.Center, delegate (ActiveSound s)
+                {
+                    if (!Projectile.active)
+                        return false;
+                    return true;
+                });
+            }
+        }
         public override void AI()
         {
             float ratio = Projectile.timeLeft / 800f;
-            float tps = MathHelper.Lerp(2, 24, ratio);
+            float tps = MathHelper.Lerp(0, 6, ratio);
             if (++Projectile.frameCounter >= tps)
             {
                 Projectile.frameCounter = 0;

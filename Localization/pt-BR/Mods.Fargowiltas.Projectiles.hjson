@@ -5,7 +5,6 @@ CrimsonNukeSupremeProj.DisplayName: RenovadordeCarmimSupremo
 Explosion.DisplayName: Explosão
 AltarExterminatorProj.DisplayName: Exerminador de Altares
 AutoHouseProj.DisplayName: Proj Instacasa
-CityBuster.DisplayName: Destruidor de Cidades
 DoubleObsInstaBridgeProj.DisplayName: Instaponte de Obsidiana Dupla
 GraveBuster.DisplayName: Destruidor de túmulos
 HalfInstaProj.DisplayName: Meio Instavador
@@ -46,3 +45,6 @@ CoolCrab.DisplayName: Carangueijo Maneiro
 // LumberJaxeProjectile.DisplayName: Lumber Jaxe Projectile
 // BridgeAtomizerProj.DisplayName: Bridge Atomizer Proj
 // AbominationnRocket.DisplayName: Styx Rocket
+// CityBusterBomb.DisplayName: City Buster
+// GalacticReformerBomb.DisplayName: Galactic Reformer
+// UniversalCollapseBomb.DisplayName: Universal Collapse

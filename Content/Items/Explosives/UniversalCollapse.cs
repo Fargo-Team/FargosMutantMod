@@ -1,10 +1,12 @@
-﻿using Fargowiltas.Common.Configs;
-using Fargowiltas.Content.Items.Misc;
-using Fargowiltas.Content.Items.Tiles;
-using Fargowiltas.Content.Projectiles;
+﻿using Fargowiltas.Content.Items.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -15,62 +17,49 @@ using Terraria.ModLoader;
 
 namespace Fargowiltas.Content.Items.Explosives
 {
-    public class CityBuster : ModItem
+    public class UniversalCollapse : ModItem
     {
-        public override bool IsLoadingEnabled(Mod mod)
-        {
-            return FargoServerConfig.Instance.InstantItems;
-        }
-
         public override void SetStaticDefaults()
         {
-            Item.ResearchUnlockCount = 10;
+            Item.ResearchUnlockCount = 99;
         }
 
         public override void SetDefaults()
         {
-            Item.width = 38;
+            Item.width = 52;
             Item.height = 46;
             Item.maxStack = Item.CommonMaxStack;
             Item.consumable = true;
             Item.useStyle = ItemUseStyleID.Swing;
-            Item.rare = ItemRarityID.Green;
+            Item.rare = ItemRarityID.Red;
             Item.UseSound = SoundID.Item1;
             Item.useAnimation = 20;
             Item.useTime = 20;
-            Item.value = Item.buyPrice(0, 0, 1);
+            Item.value = Item.buyPrice(0, 0, 3);
             Item.noUseGraphic = true;
             Item.noMelee = true;
-            Item.shoot = ModContent.ProjectileType<CityBusterBomb>();
+            Item.shoot = ModContent.ProjectileType<UniversalCollapseBomb>();
             Item.shootSpeed = 5f;
-        }
-
-        public override bool CanUseItem(Player player)
-        {
-            if (player.HasBuff(BuffID.NoBuilding))
-                return false;
-            return base.CanUseItem(player);
         }
 
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient<GizmoParts>(10)
-                .AddIngredient(ItemID.Dynamite, 50)
-                .AddIngredient(ItemID.FallenStar, 1)
-                .AddTile(TileID.Anvils)
-                .Register();
+            .AddIngredient<GalacticReformer>(100)
+            .AddTile<LuminiteOmniforgeTile>()
+
+            .Register();
         }
     }
 
-    public class CityBusterBomb : ModProjectile
+    public class UniversalCollapseBomb : ModProjectile
     {
         public static Asset<Texture2D> glowTexture;
         public static Asset<Texture2D> highlightTexture;
         public override void SetStaticDefaults()
         {
             ProjectileID.Sets.IsInteractable[Type] = true;
-            Main.projFrames[Type] = 8;
+            Main.projFrames[Type] = 9;
 
             if (!Main.dedServ)
             {
@@ -84,10 +73,9 @@ namespace Fargowiltas.Content.Items.Explosives
         {
             Projectile.width = 52;
             Projectile.height = 52;
-            //Projectile.aiStyle = ProjAIStyleID.Explosive;
             Projectile.friendly = true;
             Projectile.penetrate = -1;
-            Projectile.timeLeft = 600; // 10 seconds
+            Projectile.timeLeft = 900; // 15 seconds
         }
 
         public override void OnSpawn(IEntitySource source)
@@ -95,18 +83,20 @@ namespace Fargowiltas.Content.Items.Explosives
             if (Main.netMode != NetmodeID.Server)
             {
                 SoundStyle arm = new("Fargowiltas/Assets/Sounds/CityBusterArm");
-                SoundEngine.PlaySound(arm with { Variants = [1, 2], PauseBehavior = PauseBehavior.PauseWithGame }, Projectile.Center, delegate (ActiveSound s)
+                /*
+                 * SoundEngine.PlaySound(arm with { Variants = [1, 2], PauseBehavior = PauseBehavior.PauseWithGame }, Projectile.Center, delegate (ActiveSound s)
                 {
                     s.Position = Projectile.Center;
                     if (!Projectile.active)
                         return false;
                     return true;
                 });
+                */
             }
         }
         public override void AI()
         {
-            float ratio = Projectile.timeLeft / 800f;
+            float ratio = Projectile.timeLeft / 1100f;
             float tps = MathHelper.Lerp(0, 6, ratio);
             if (++Projectile.frameCounter >= tps)
             {
@@ -115,40 +105,13 @@ namespace Fargowiltas.Content.Items.Explosives
                     Projectile.frame = 0;
             }
 
-            if (Main.rand.NextBool())
-            {
-                Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Smoke, 0f, 0f, 100, default, 1f);
-                dust.scale = 0.1f + Main.rand.Next(5) * 0.1f;
-                dust.fadeIn = 1.5f + Main.rand.Next(5) * 0.1f;
-                dust.noGravity = true;
-                dust.position = Projectile.Center + new Vector2(2, 3).RotatedBy(Projectile.rotation - 2.1f, default) * 10f;
+            Projectile.velocity *= 0.96f;
+            Projectile.rotation += (Projectile.velocity.X / 2);
+            Projectile.rotation = MathHelper.SmoothStep(Projectile.rotation, 0, 0.18f);
 
-                dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Torch, 0f, 0f, 100, default, 1f);
-                dust.scale = 1f + Main.rand.Next(5) * 0.1f;
-                dust.noGravity = true;
-                dust.position = Projectile.Center + new Vector2(2, 3).RotatedBy(Projectile.rotation - 2.1f, default) * 10f;
-            }
-
-            Projectile.ai[0] += 1f;
-            if (Projectile.ai[0] > 10f)
-            {
-                Projectile.ai[0] = 10f;
-                // Roll speed dampening.
-                if (Projectile.velocity.Y == 0f && Projectile.velocity.X != 0f)
-                {
-                    Projectile.velocity.X = Projectile.velocity.X * 0.96f;
-
-                    if (Projectile.velocity.X > -0.01 && Projectile.velocity.X < 0.01)
-                    {
-                        Projectile.velocity.X = 0f;
-                        Projectile.netUpdate = true;
-                    }
-                }
-                // Delayed gravity
-                Projectile.velocity.Y = Projectile.velocity.Y + 0.2f;
-            }
             // Rotation increased by velocity.X
-            Projectile.rotation += Projectile.velocity.X * 0.1f;
+            Projectile.rotation = MathHelper.Lerp(Projectile.velocity.X * 0.1f, 0, 0.1f);
+            Projectile.velocity.Y *= 0.98f;
 
             Main.CurrentFrameFlags.HadAnActiveInteractibleProjectile = true;
 
@@ -162,7 +125,7 @@ namespace Fargowiltas.Content.Items.Explosives
                 {
                     player.noThrow = 2;
                     player.cursorItemIconEnabled = true;
-                    player.cursorItemIconID = ModContent.ItemType<CityBuster>();
+                    player.cursorItemIconID = ModContent.ItemType<UniversalCollapse>();
 
                     if (Main.mouseRight && Main.mouseRightRelease && Player.BlockInteractionWithProjectiles == 0)
                     {
@@ -171,55 +134,46 @@ namespace Fargowiltas.Content.Items.Explosives
                         player.tileInteractionHappened = true;
                         player.releaseUseTile = true;
                         Projectile.active = false;
-                        player.QuickSpawnItem(Projectile.GetSource_DropAsItem(), ModContent.ItemType<CityBuster>());
+                        player.QuickSpawnItem(Projectile.GetSource_DropAsItem(), ModContent.ItemType<UniversalCollapse>());
                     }
                 }
             }
         }
 
-        public override bool? CanDamage()
-        {
-            return false;
-        }
-
-        public override bool OnTileCollide(Vector2 oldVelocity)
-        {
-            Projectile.velocity.X = 0;
-            return base.OnTileCollide(oldVelocity);
-        }
-
         public override void OnKill(int timeLeft)
         {
-            SoundEngine.PlaySound(SoundID.Item15, Projectile.Center);
-            SoundEngine.PlaySound(SoundID.Item14, Projectile.Center);
-
-            if (Main.netMode == NetmodeID.MultiplayerClient)
+            for (int i = 0; i < Main.maxTilesX; i++)
             {
-                return;
+                for (int j = 0; j < Main.maxTilesY; j++)
+                {
+                    Main.tile[i, j].ClearEverything();
+
+                    if (WorldGen.InWorld(i, j))
+                        Main.Map.Update(i, j, 255);
+                }
             }
 
-            Vector2 position = Projectile.Center;
-            int radius = 64;     //bigger = boomer
-
-            for (int x = -radius; x <= radius; x++)
+            for (int i = 0; i < Main.maxNPCs; i++)
             {
-                for (int y = -radius * 2; y <= 0; y++)
+                NPC npc = Main.npc[i];
+                if (npc.active && !npc.boss && !npc.dontTakeDamage)
                 {
-                    int xPosition = (int)(x + position.X / 16.0f);
-                    int yPosition = (int)(y + position.Y / 16.0f);
-
-                    if (xPosition < 0 || xPosition >= Main.maxTilesX || yPosition < 0 || yPosition >= Main.maxTilesY)
-                        continue;
-
-                    Tile tile = Main.tile[xPosition, yPosition];
-                    if (tile == null)
-                        continue;
-
-                    if (!FargoGlobalProjectile.OkayToDestroyTileAt(xPosition, yPosition) || FargoGlobalProjectile.TileIsLiterallyAir(tile))
-                        continue;
-
-                    FargoGlobalTile.ClearTileAndLiquid(xPosition, yPosition);
+                    npc.SimpleStrikeNPC(int.MaxValue, 0, false, 0, null, false, 0, true);
                 }
+            }
+
+            if (Main.LocalPlayer.active && !Main.LocalPlayer.dead && !Main.LocalPlayer.ghost)
+            {
+                var def = Main.LocalPlayer.statDefense;
+                float dr = Main.LocalPlayer.endurance;
+                Main.LocalPlayer.statDefense.FinalMultiplier *= 0;
+                Main.LocalPlayer.endurance = 0f;
+
+                int damage = Math.Max(9999, Main.LocalPlayer.statLifeMax2 * 2);
+                Main.LocalPlayer.Hurt(PlayerDeathReason.ByProjectile(Main.LocalPlayer.whoAmI, Projectile.whoAmI), damage, 0);
+
+                Main.LocalPlayer.statDefense = def;
+                Main.LocalPlayer.endurance = dr;
             }
 
             Main.refreshMap = true;
@@ -229,7 +183,7 @@ namespace Fargowiltas.Content.Items.Explosives
         {
             Texture2D texture = TextureAssets.Projectile[Type].Value;
             Vector2 position = Projectile.Center - Main.screenPosition - new Vector2(0, Projectile.gfxOffY);
-            Rectangle rect = new(0, 66 * Projectile.frame, 52, 66);
+            Rectangle rect = new(0, 70 * Projectile.frame, 68, 70);
             Vector2 origin = rect.Size() / 2f;
 
             Main.EntitySpriteDraw(texture, position, rect, lightColor, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0);

@@ -1724,3 +1724,25 @@ PotionCoolerInactive: {
 }
 
 // LucyTheAxe.Eaten: Wait, don't. Wait... don't!!!
+
+GalacticReformer: {
+	// DisplayName: Galactic Reformer
+	/* Tooltip:
+		'''
+		Destroys a gigantic area of blocks
+		Does not avoid breaking blocks in areas denoted as important
+		Has a 12 second fuse. Can be disarmed using <right>
+		Use at your own risk.
+		''' */
+}
+
+UniversalCollapse: {
+	// DisplayName: Universal Collapse
+	/* Tooltip:
+		'''
+		Destroys the universe
+		Does not avoid breaking blocks in areas denoted as important
+		Has a 15 second fuse. Can be disarmed using <right>
+		Use at your own risk.
+		''' */
+}

@@ -106,12 +106,8 @@ namespace Fargowiltas.Content.Items.Explosives
             }
 
             Projectile.velocity *= 0.96f;
-            Projectile.rotation += (Projectile.velocity.X / 2);
+            Projectile.rotation += (Projectile.velocity.X / 24);
             Projectile.rotation = MathHelper.SmoothStep(Projectile.rotation, 0, 0.18f);
-
-            // Rotation increased by velocity.X
-            Projectile.rotation = MathHelper.Lerp(Projectile.velocity.X * 0.1f, 0, 0.1f);
-            Projectile.velocity.Y *= 0.98f;
 
             Main.CurrentFrameFlags.HadAnActiveInteractibleProjectile = true;
 

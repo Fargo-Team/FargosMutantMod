@@ -1625,7 +1625,7 @@ LuminiteOmniforge: {
 		Функционирует как несколько станций создания поздней игры
 		«[i:3460]а возможностей с ней не существует»
 		'''
-	// SoulsTooltip: Used to craft Forces and Souls
+	SoulsTooltip: Используется для создания артефактов и душ
 }
 
 BlackHolePotion: {
@@ -1670,23 +1670,23 @@ PotionCoolerInactive: {
 LucyTheAxe.Eaten: Подожди, стой. Постой... Нет!!!
 
 GalacticReformer: {
-	// DisplayName: Galactic Reformer
-	/* Tooltip:
+	DisplayName: Галактический преобразователь
+	Tooltip:
 		'''
-		Destroys a gigantic area of blocks
-		Does not avoid breaking blocks in areas denoted as important
-		Has a 12 second fuse. Can be disarmed using <right>
-		Use at your own risk.
-		''' */
+		Уничтожает всё в невероятно большой области
+		Уничтожает блоки даже в зонах, отмеченных как важные
+		Фитиль горит 12 секунд. Его можно потушить, нажав <right>
+		Используйте на свой страх и риск
+		'''
 }
 
 UniversalCollapse: {
-	// DisplayName: Universal Collapse
-	/* Tooltip:
+	DisplayName: Вселенский коллапс
+	Tooltip:
 		'''
-		Destroys the universe
-		Does not avoid breaking blocks in areas denoted as important
-		Has a 15 second fuse. Can be disarmed using <right>
-		Use at your own risk.
-		''' */
+		Уничтожает Вселенную
+		Уничтожает блоки даже в зонах, отмеченных как важные
+		Фитиль горит 15 секунд. Его можно потушить, нажав <right>
+		Используйте на свой страх и риск
+		'''
 }

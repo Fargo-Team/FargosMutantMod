@@ -133,8 +133,7 @@ namespace Fargowiltas.Content.Items.Explosives
                         Projectile.active = false;
                         if (!Main.dedServ)
                         {
-                            SoundStyle disarm = new("Fargowiltas/Assets/Sounds/CityBusterDisarm");
-                            SoundEngine.PlaySound(disarm with { Volume = 0.4f, PauseBehavior = PauseBehavior.PauseWithGame }, Projectile.Center);
+                            SoundEngine.PlaySound(CityBusterBomb.DisarmSound with { Volume = 0.4f, PauseBehavior = PauseBehavior.PauseWithGame }, Projectile.Center);
                         }
                         player.QuickSpawnItem(Projectile.GetSource_DropAsItem(), ModContent.ItemType<GalacticReformer>());
                     }

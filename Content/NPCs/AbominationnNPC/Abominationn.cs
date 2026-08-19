@@ -394,9 +394,9 @@ namespace Fargowiltas.Content.NPCs.AbominationnNPC
         public override void FindFrame(int frameHeight)
         {
             base.FindFrame(frameHeight);
-            Tile tile = Main.tile[(int)NPC.Center.X / 16, (int)NPC.Center.Y / 16];
-            bool shouldFlourishCape = Main.WindyEnoughForKiteDrops
-                && !(tile != null && tile.WallType > WallID.None && !WallID.Sets.AllowsWind[tile.WallType])
+            Tile? tile = NPC.IsABestiaryIconDummy ? null : Main.tile[(int)NPC.Center.X / 16, (int)NPC.Center.Y / 16];
+            bool shouldFlourishCape = tile.HasValue && Main.WindyEnoughForKiteDrops
+                && !(tile.Value.WallType > WallID.None && !WallID.Sets.AllowsWind[tile.Value.WallType])
                 && (((int)NPC.Center.Y / 16)! < Main.worldSurface);
 
             #region cape

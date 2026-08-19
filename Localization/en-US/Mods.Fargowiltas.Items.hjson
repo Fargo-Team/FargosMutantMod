@@ -238,7 +238,7 @@ SuperDummy: {
 		'''
 		Spawns a super dummy at your cursor
 		Can be detected by minions and homing projectiles, and can activate on hit effects
-		Right click to remove all spawned super dummies
+		<right> to remove all spawned super dummies
 		Can spawn up to 50 super dummies at once
 		Super dummies are disabled during boss fights
 		'''

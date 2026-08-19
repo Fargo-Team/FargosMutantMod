@@ -171,6 +171,11 @@ namespace Fargowiltas.Content.Items.Explosives
                         player.tileInteractionHappened = true;
                         player.releaseUseTile = true;
                         Projectile.active = false;
+                        if (!Main.dedServ)
+                        {
+                            SoundStyle disarm = new("Fargowiltas/Assets/Sounds/CityBusterDisarm");
+                            SoundEngine.PlaySound(disarm with { Volume = 0.4f, PauseBehavior = PauseBehavior.PauseWithGame }, Projectile.Center);
+                        }
                         player.QuickSpawnItem(Projectile.GetSource_DropAsItem(), ModContent.ItemType<CityBuster>());
                     }
                 }
@@ -189,9 +194,12 @@ namespace Fargowiltas.Content.Items.Explosives
         }
 
         public override void OnKill(int timeLeft)
-        {
-            SoundEngine.PlaySound(SoundID.Item15, Projectile.Center);
-            SoundEngine.PlaySound(SoundID.Item14, Projectile.Center);
+        {   
+            if (!Main.dedServ)
+            {
+                SoundStyle kaboom = new("Fargowiltas/Assets/Sounds/CityBusterExplosion");
+                SoundEngine.PlaySound(kaboom with { Volume = 0.8f, PauseBehavior = PauseBehavior.PauseWithGame }, Projectile.Center);
+            }
 
             if (Main.netMode == NetmodeID.MultiplayerClient)
             {

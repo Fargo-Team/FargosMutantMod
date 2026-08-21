@@ -1195,11 +1195,6 @@ UnsafeMarbleWall: {
 	Tooltip: Опасная часть каменной стены, из которой появляются монстры
 }
 
-WalkingRick: {
-	DisplayName: «Идущий Рик»
-	Tooltip: «Kien R. Oco»
-}
-
 WoodenToken: {
 	DisplayName: Деревянный жетон
 	Tooltip: «Знак истинного любителя дерева»

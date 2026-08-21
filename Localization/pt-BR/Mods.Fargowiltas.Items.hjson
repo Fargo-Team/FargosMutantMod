@@ -1252,11 +1252,6 @@ UnsafeMarbleWall: {
 	Tooltip: Permite que inimigos específicos à área sejam criados
 }
 
-WalkingRick: {
-	DisplayName: Rick Andante
-	Tooltip: "'Kien R. Oco'"
-}
-
 WoodenToken: {
 	DisplayName: Símbolo de Madeira
 	Tooltip: "'O sinal de um verdadeiro amante da madeira'"

@@ -1195,11 +1195,6 @@ UnsafeMarbleWall: {
 	Tooltip: An enchanted slab of stone that will spawn monsters
 }
 
-WalkingRick: {
-	DisplayName: Walking Rick
-	Tooltip: "'Kien R. Oco'"
-}
-
 WoodenToken: {
 	DisplayName: Wooden Token
 	Tooltip: "'The sign of a true wood lover'"

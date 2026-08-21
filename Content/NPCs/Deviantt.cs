@@ -451,14 +451,6 @@ namespace Fargowiltas.Content.NPCs
             }
         }
 
-        public override void OnKill()
-        {
-            if (Fargowiltas.SoulsMod?.TryFind("CosmosChampion", out ModNPC cosmosChamp) == true && NPC.AnyNPCs(cosmosChamp.Type))
-                Item.NewItem(NPC.GetSource_Loot(), NPC.Hitbox, ItemType<WalkingRick>());
-        }
-
-
-
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
             int offset = -5;

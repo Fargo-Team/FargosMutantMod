@@ -118,7 +118,6 @@ namespace Fargowiltas.Common.Systems.Collections
         public static List<ShopTooltip>[] RegisteredShopTooltips = ItemFactory.CreateCustomSet<List<ShopTooltip>>(null);
 
         public static int[] SacrificeCountDefault = Squirrel.SetDefaultSacrificeCount(ItemFactory);
-        public static int[] SacrificeCount = ItemFactory.CreateIntSet(0);
         public static bool[] HardmodeSacrifice = ItemFactory.CreateBoolSet(false,
             ItemID.DualHook,
             ItemID.MagicDagger,
@@ -342,7 +341,7 @@ namespace Fargowiltas.Common.Systems.Collections
 
                     FargoItemSets.ShimmerTransformsFromItem[shimmerItem].Add(i);
                 }
-                    
+
             }
         }
     }

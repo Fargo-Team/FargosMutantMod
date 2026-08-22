@@ -1,13 +1,8 @@
-﻿using Fargowiltas.Common;
-using Fargowiltas.Common.Configs;
-using Fargowiltas.Common.Systems;
+﻿using Fargowiltas.Common.Configs;
 using Fargowiltas.Content.Items;
 using Fargowiltas.Content.Items.Tiles;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Graphics;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using Terraria;
@@ -17,7 +12,6 @@ using Terraria.GameContent.Events;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
-using Terraria.UI.Chat;
 
 namespace Fargowiltas
 {
@@ -57,8 +51,6 @@ namespace Fargowiltas
 
             On_WorldGen.CountTileTypesInArea += CountTileTypesInArea_PurityTotemHack;
 
-            On_ChatManager.DrawColorCodedStringShadow_SpriteBatch_DynamicSpriteFont_TextSnippetArray_Vector2_Color_float_Vector2_Vector2_float_float += SymbolsFix;
-
             On_LucyAxeMessage.SpawnPopupText += AddMessage;
         }
 
@@ -76,18 +68,7 @@ namespace Fargowiltas
                 PopupText.NewText(request, position);
                 return;
             }
-            orig(source, variationUnwrapped,position,velocity);
-        }
-
-        private void SymbolsFix(On_ChatManager.orig_DrawColorCodedStringShadow_SpriteBatch_DynamicSpriteFont_TextSnippetArray_Vector2_Color_float_Vector2_Vector2_float_float orig, SpriteBatch spriteBatch, DynamicSpriteFont font, IEnumerable<TextSnippet> snippets, Vector2 position, Color shadowColor, float rotation, Vector2 origin, Vector2 scale, float maxWidth, float spread = 2f)
-        {
-            SymbolTagHandler.SymbolSnippet.ShouldDraw = false;
-            KeywordTagHandler.KeywordSnippet.ShouldDraw = false;
-            NPCIconTagHandler.NPCIconSnippet.ShouldDraw = false;
-            orig(spriteBatch, font, snippets.ToArray(), position, shadowColor, rotation, origin, scale, maxWidth, spread);
-            NPCIconTagHandler.NPCIconSnippet.ShouldDraw = true;
-            KeywordTagHandler.KeywordSnippet.ShouldDraw = true;
-            SymbolTagHandler.SymbolSnippet.ShouldDraw = true;
+            orig(source, variationUnwrapped, position, velocity);
         }
         private static Item[] GetWormholes(Player self)
         {

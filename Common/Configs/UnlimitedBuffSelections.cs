@@ -3,6 +3,7 @@
     public enum UnlimitedBuffSelections
     {
         On,
-        BossOnly
+        BossOnly,
+        Off
     }
 }

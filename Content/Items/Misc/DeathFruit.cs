@@ -1,4 +1,3 @@
-using Fargowiltas.Common;
 using System;
 using Terraria;
 using Terraria.Audio;

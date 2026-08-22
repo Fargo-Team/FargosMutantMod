@@ -1,7 +1,7 @@
-﻿using Fargowiltas.Common;
-using Fargowiltas.Common.Configs;
+﻿using Fargowiltas.Common.Configs;
 using Fargowiltas.Common.Systems;
 using Fargowiltas.Common.Systems.Collections;
+using Fargowiltas.Content.Buffs;
 using Fargowiltas.Content.Items.CaughtNPCs;
 using Fargowiltas.Content.Items.Misc;
 using Fargowiltas.Content.Items.Summons.Abom;
@@ -492,6 +492,7 @@ namespace Fargowiltas
             SyncInactiveNPC,
             SyncWorldTime,
             SyncOwnedItem,
+            AddDeviSummon,
         }
 
         public override void HandlePacket(BinaryReader reader, int whoAmI)
@@ -867,6 +868,17 @@ namespace Fargowiltas
                                 {
                                     p.FargoMutant().ItemHasBeenOwned[type] = true;
                                 }
+                            }
+                        }
+                        break;
+
+                    case PacketID.AddDeviSummon:
+                        {
+                            int type = reader.ReadInt32();
+                            int player = reader.ReadByte();
+                            if (Main.netMode == NetmodeID.Server)
+                            {
+                                Main.player[player].FargoMutant().ActiveSpawnBoosters.Add((BaseSpawnBoosterBuff)BuffLoader.GetBuff(type));
                             }
                         }
                         break;

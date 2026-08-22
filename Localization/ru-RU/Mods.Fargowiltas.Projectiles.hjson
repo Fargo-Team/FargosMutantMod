@@ -5,7 +5,6 @@ CrimsonNukeSupremeProj.DisplayName: БагрПреобразовательВыс
 Explosion.DisplayName: Взрыв
 AltarExterminatorProj.DisplayName: Истребитель Алтарей
 AutoHouseProj.DisplayName: МоментДом Снар
-CityBuster.DisplayName: Разрушитель Городов
 DoubleObsInstaBridgeProj.DisplayName: Двойной Обсидиановый МоментМост
 GraveBuster.DisplayName: Разрушитель Могил
 HalfInstaProj.DisplayName: Полу-Моментуннель
@@ -46,3 +45,6 @@ CoolCrab.DisplayName: Крутой краб
 LumberJaxeProjectile.DisplayName: Снаряд Древопила
 BridgeAtomizerProj.DisplayName: Уничтожитель Мостов
 // AbominationnRocket.DisplayName: Styx Rocket
+// CityBusterBomb.DisplayName: City Buster
+// GalacticReformerBomb.DisplayName: Galactic Reformer
+// UniversalCollapseBomb.DisplayName: Universal Collapse

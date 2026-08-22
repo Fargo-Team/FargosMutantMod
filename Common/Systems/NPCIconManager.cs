@@ -43,17 +43,14 @@ namespace Fargowiltas.Common.Systems
                 this.frameSize = new Vector2(TextureAssets.NpcHead[npcID].Size().X, 26);
             }
 
-            public static bool ShouldDraw = true;
-
             public override bool UniqueDraw(bool justCheckingString, out Vector2 size, SpriteBatch spriteBatch, Vector2 position = default(Vector2), Color color = default(Color), float scale = 1f)
             {
-                if (!justCheckingString && color != Color.Black)
+                if (!justCheckingString && color is { R: > 0, G: > 0, B: > 0 })
                 {
                     Texture2D value = TextureAssets.NpcHead[id].Value;
                     Rectangle frame = value.Frame();
-                    Vector2 origin2 = frame.Size() / 2f;
-                    if (ShouldDraw)
-                        spriteBatch.Draw(value, position + origin2, frame, Color.White, 0f, origin2, scale, SpriteEffects.None, 0f);
+                    Vector2 origin = frame.Size() / 2f;
+                    spriteBatch.Draw(value, position + origin, frame, Color.White, 0f, origin, scale, SpriteEffects.None, 0f);
                 }
                 size = frameSize;
                 return true;

@@ -1,6 +1,5 @@
 using Fargowiltas.Common.Configs;
 using Fargowiltas.Common.Systems;
-using Fargowiltas.Content.Items.Misc;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -48,7 +47,6 @@ namespace Fargowiltas.Content.Items.Explosives
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient<GizmoParts>(1)
                 .AddRecipeGroup("Wood", 50)
                 .AddIngredient(ItemID.Torch)
                 .AddTile(TileID.WorkBenches)

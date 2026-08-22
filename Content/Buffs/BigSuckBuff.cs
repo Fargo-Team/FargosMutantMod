@@ -1,4 +1,3 @@
-using Fargowiltas.Common;
 using Terraria;
 using Terraria.ModLoader;
 

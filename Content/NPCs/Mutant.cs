@@ -1,4 +1,3 @@
-using Fargowiltas.Common;
 using Fargowiltas.Common.Configs;
 using Fargowiltas.Content.Biomes;
 using Fargowiltas.Content.Items.Misc;
@@ -154,26 +153,10 @@ namespace Fargowiltas.Content.NPCs
             return FargoServerConfig.Instance.Mutant && FargoWorld.DownedBools["boss"] && FargoUtils.AnyBossAlive();
         }
 
-        public override List<string> SetNPCNameList()
+        public override void ModifyTypeName(ref string typeName)
         {
-            string[] names =
-               [Language.GetTextValue("Mods.Fargowiltas.NPCs.Mutant.NPCName1"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Mutant.NPCName2"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Mutant.NPCName3"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Mutant.NPCName4"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Mutant.NPCName5"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Mutant.NPCName6"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Mutant.NPCName7"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Mutant.NPCName8"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Mutant.NPCName9"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Mutant.NPCName10"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Mutant.NPCName11"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Mutant.NPCName12"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Mutant.NPCName13")];
-
-            return new List<string>(names);
+            typeName = Language.GetTextValue("Mods.Fargowiltas.NPCs.Mutant.DisplayName");
         }
-
         public override string GetChat()
         {
             Mod souls = Fargowiltas.SoulsMod;

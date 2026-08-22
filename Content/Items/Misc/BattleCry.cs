@@ -1,5 +1,4 @@
-﻿using Fargowiltas.Common;
-using Fargowiltas.Common.Systems.Recipes;
+﻿using Fargowiltas.Common.Systems.Recipes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -36,6 +35,32 @@ namespace Fargowiltas.Content.Items.Misc
         }
 
         public override bool AltFunctionUse(Player player) => true;
+
+        public override bool CanRightClick() => true;
+
+        public override bool ConsumeItem(Player player) => false;
+
+        public override void RightClick(Player player)
+        {
+            FargoPlayer modPlayer = player.FargoMutant();
+
+            if (!modPlayer.BattleCry && !modPlayer.CalmingCry)
+            {
+                ToggleCry(true, player, ref modPlayer.BattleCry);
+            }
+            else if (modPlayer.BattleCry)
+            {
+                ToggleCry(true, player, ref modPlayer.BattleCry);
+                ToggleCry(false, player, ref modPlayer.CalmingCry);
+            }
+            else
+            {
+                ToggleCry(false, player, ref modPlayer.CalmingCry);
+            }
+
+            if(!Main.dedServ)
+                SoundEngine.PlaySound(new SoundStyle("Fargowiltas/Assets/Sounds/Horn"), player.Center);
+        }
 
         public static void GenerateText(bool isBattle, Player player, bool cry)
         {

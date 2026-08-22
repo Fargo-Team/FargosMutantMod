@@ -1250,11 +1250,6 @@ UnsafeMarbleWall: {
 	Tooltip: 允许区域特有的敌怪生成
 }
 
-WalkingRick: {
-	DisplayName: 走路的Rick
-	// Tooltip: "'Kien R. Oco'"
-}
-
 WoodenToken: {
 	DisplayName: 木牌
 	Tooltip: “真正的木材爱好者的标志”
@@ -1681,6 +1676,7 @@ LuminiteOmniforge: {
 		Functions as several advanced crafting stations
 		'It's fit to birth un[i:3460]d possibilities'
 		''' */
+	// SoulsTooltip: Used to craft Forces and Souls
 }
 
 BlackHolePotion: {
@@ -1698,15 +1694,11 @@ PotionCooler: {
 	/* Tooltip:
 		'''
 		Works from the inventory
-		<right> to disable
+		<right> to open
 		Stores potions and grants you their buffs
-		'Cracking open a cold one'
-		''' */
-	// Ruminate: "[c/FF3399:Hold Left Shift for more details]"
-	/* Rumination:
-		'''
 		Potions stored within are shared between all players
 		Toggles are not shared between players
+		'Cracking open a cold one'
 		''' */
 }
 
@@ -1727,3 +1719,25 @@ PotionCoolerInactive: {
 }
 
 // LucyTheAxe.Eaten: Wait, don't. Wait... don't!!!
+
+GalacticReformer: {
+	// DisplayName: Galactic Reformer
+	/* Tooltip:
+		'''
+		Destroys a gigantic area of blocks
+		Does not avoid breaking blocks in areas denoted as important
+		Has a 12 second fuse. Can be disarmed using <right>
+		Use at your own risk.
+		''' */
+}
+
+UniversalCollapse: {
+	// DisplayName: Universal Collapse
+	/* Tooltip:
+		'''
+		Destroys the universe
+		Does not avoid breaking blocks in areas denoted as important
+		Has a 15 second fuse. Can be disarmed using <right>
+		Use at your own risk.
+		''' */
+}

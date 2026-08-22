@@ -1,5 +1,3 @@
-using Fargowiltas.Common;
-using Fargowiltas.Content.NPCs;
 using System;
 using Terraria;
 using Terraria.Audio;

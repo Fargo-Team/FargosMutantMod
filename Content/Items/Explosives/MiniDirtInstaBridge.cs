@@ -1,6 +1,5 @@
 ﻿using Fargowiltas.Common.Configs;
 using Fargowiltas.Common.Systems;
-using Fargowiltas.Content.Items.Misc;
 using Fargowiltas.Content.Projectiles.Explosives;
 using Microsoft.Xna.Framework;
 using System;
@@ -72,7 +71,6 @@ namespace Fargowiltas.Content.Items.Explosives
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient<GizmoParts>(1)
                 .AddIngredient(ItemID.Dynamite)
                 .AddIngredient(ItemID.DirtBlock, 100)
                 .AddIngredient(ItemID.FallenStar)

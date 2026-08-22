@@ -1,4 +1,3 @@
-using Fargowiltas.Common;
 using Fargowiltas.Common.Configs;
 using Fargowiltas.Content.Items.Explosives;
 using Fargowiltas.Content.Items.Misc;

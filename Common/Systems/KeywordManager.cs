@@ -45,15 +45,13 @@ namespace Fargowiltas.Common.Systems
                 base.Color = Color.White;
             }
 
-            public static bool ShouldDraw = true;
-
             public Color ShadowColor = Color.Navy;
 
             public override bool UniqueDraw(bool justCheckingString, out Vector2 size, SpriteBatch spriteBatch, Vector2 position = default(Vector2), Color color = default(Color), float scale = 1f)
             {
                 DynamicSpriteFont font = FontAssets.MouseText.Value;
                 TextSnippet[] snippet = ChatManager.ParseMessage(Text, Color.White).ToArray();
-                if (!justCheckingString && ShouldDraw)
+                if (!justCheckingString && color is { R: > 0, G: > 0, B: > 0 })
                 {
                     ChatManager.DrawColorCodedStringWithShadow(spriteBatch, font, snippet, position, 0f, color, ShadowColor, Vector2.Zero, Vector2.One, out _, -1);
                     ShadowColor = Color.Navy;

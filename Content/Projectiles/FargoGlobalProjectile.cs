@@ -1,7 +1,5 @@
-using Fargowiltas.Common;
 using Fargowiltas.Common.Configs;
 using Fargowiltas.Common.Systems.Collections;
-using Fargowiltas.Content.NPCs;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.Linq;

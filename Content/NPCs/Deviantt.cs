@@ -1,5 +1,4 @@
-﻿using Fargowiltas.Common;
-using Fargowiltas.Common.Configs;
+﻿using Fargowiltas.Common.Configs;
 using Fargowiltas.Content.Biomes;
 using Fargowiltas.Content.Items.Summons.Deviantt;
 using Fargowiltas.Content.Items.Tiles;
@@ -217,24 +216,9 @@ namespace Fargowiltas.Content.NPCs
             }
         }
 
-        public override List<string> SetNPCNameList()
+        public override void ModifyTypeName(ref string typeName)
         {
-            string[] names =
-                [Language.GetTextValue("Mods.Fargowiltas.NPCs.Deviantt.NPCName1"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Deviantt.NPCName2"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Deviantt.NPCName3"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Deviantt.NPCName4"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Deviantt.NPCName5"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Deviantt.NPCName6"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Deviantt.NPCName7"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Deviantt.NPCName8"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Deviantt.NPCName9"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Deviantt.NPCName10"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Deviantt.NPCName11"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Deviantt.NPCName12"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Deviantt.NPCName13")];
-
-            return new List<string>(names);
+            typeName = Language.GetTextValue("Mods.Fargowiltas.NPCs.Deviantt.DisplayName");
         }
 
         public override string GetChat() //=> string.Empty;
@@ -466,14 +450,6 @@ namespace Fargowiltas.Content.NPCs
                 }
             }
         }
-
-        public override void OnKill()
-        {
-            if (Fargowiltas.SoulsMod?.TryFind("CosmosChampion", out ModNPC cosmosChamp) == true && NPC.AnyNPCs(cosmosChamp.Type))
-                Item.NewItem(NPC.GetSource_Loot(), NPC.Hitbox, ItemType<WalkingRick>());
-        }
-
-
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {

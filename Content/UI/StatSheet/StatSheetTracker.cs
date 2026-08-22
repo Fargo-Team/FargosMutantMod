@@ -1,5 +1,4 @@
-﻿using Fargowiltas.Common;
-using System;
+﻿using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;

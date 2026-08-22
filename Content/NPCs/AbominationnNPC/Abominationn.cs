@@ -1,4 +1,3 @@
-using Fargowiltas.Common;
 using Fargowiltas.Common.Configs;
 using Fargowiltas.Content.Biomes;
 using Fargowiltas.Content.Items.Summons.Abom;
@@ -11,8 +10,6 @@ using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection.Metadata.Ecma335;
-using System.Security.Policy;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
@@ -150,23 +147,9 @@ namespace Fargowiltas.Content.NPCs.AbominationnNPC
             }
         }
 
-        public override List<string> SetNPCNameList()
+        public override void ModifyTypeName(ref string typeName)
         {
-            string[] names =
-                [Language.GetTextValue("Mods.Fargowiltas.NPCs.Abominationn.NPCName1"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Abominationn.NPCName2"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Abominationn.NPCName3"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Abominationn.NPCName4"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Abominationn.NPCName5"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Abominationn.NPCName6"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Abominationn.NPCName7"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Abominationn.NPCName8"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Abominationn.NPCName9"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Abominationn.NPCName10"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Abominationn.NPCName11"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Abominationn.NPCName12")];
-
-            return new List<string>(names);
+            typeName = Language.GetTextValue("Mods.Fargowiltas.NPCs.Abominationn.DisplayName");
         }
 
         public override void ChatBubblePosition(ref Vector2 position, ref SpriteEffects spriteEffects)
@@ -411,10 +394,10 @@ namespace Fargowiltas.Content.NPCs.AbominationnNPC
         public override void FindFrame(int frameHeight)
         {
             base.FindFrame(frameHeight);
-            Tile tile = Main.tile[(int)NPC.Center.X / 16, (int)NPC.Center.Y / 16];
-            bool shouldFlourishCape = Main.WindyEnoughForKiteDrops 
-                && !(tile != null && tile.WallType > WallID.None && !WallID.Sets.AllowsWind[tile.WallType])
-                && (((int)NPC.Center.Y / 16) !< Main.worldSurface);
+            Tile? tile = NPC.IsABestiaryIconDummy ? null : Main.tile[(int)NPC.Center.X / 16, (int)NPC.Center.Y / 16];
+            bool shouldFlourishCape = tile.HasValue && Main.WindyEnoughForKiteDrops
+                && !(tile.Value.WallType > WallID.None && !WallID.Sets.AllowsWind[tile.Value.WallType])
+                && (((int)NPC.Center.Y / 16)! < Main.worldSurface);
 
             #region cape
             switch (CapeFrameX)
@@ -423,7 +406,8 @@ namespace Fargowiltas.Content.NPCs.AbominationnNPC
                     {
                         CapeFrameX = CapeFrameY = 0;
                         CapeFrameCounter = 0;
-                    } break;
+                    }
+                    break;
 
                 case (int)CapeAnimationID.WindyIdle:
                     {
@@ -433,7 +417,8 @@ namespace Fargowiltas.Content.NPCs.AbominationnNPC
                             if (++CapeFrameY >= 4)
                                 CapeFrameY = 0;
                         }
-                    } break;
+                    }
+                    break;
 
                 case (int)CapeAnimationID.Walking:
                     {
@@ -443,7 +428,8 @@ namespace Fargowiltas.Content.NPCs.AbominationnNPC
                             if (++CapeFrameY >= 4)
                                 CapeFrameY = 0;
                         }
-                    } break;
+                    }
+                    break;
 
                 case (int)CapeAnimationID.Falling:
                     {
@@ -464,7 +450,8 @@ namespace Fargowiltas.Content.NPCs.AbominationnNPC
                             if (++CapeFrameY >= 6)
                                 CapeFrameY = 0;
                         }
-                    } break;
+                    }
+                    break;
 
             }
 
@@ -488,7 +475,7 @@ namespace Fargowiltas.Content.NPCs.AbominationnNPC
             }
             */
             else if (NPC.velocity.X != 0)
-                HandleCapeAnimation((int)CapeAnimationID.Walking);       
+                HandleCapeAnimation((int)CapeAnimationID.Walking);
             else if (NPC.velocity.Length() == 0)
                 HandleCapeAnimation((int)CapeAnimationID.Idle, shouldFlourishCape);
             #endregion
@@ -501,7 +488,7 @@ namespace Fargowiltas.Content.NPCs.AbominationnNPC
                     StyxFrame = 2;
             }
             */
-            
+
         }
 
         public int CapeFrameCounter, CapeFrameX, CapeFrameY;
@@ -521,7 +508,7 @@ namespace Fargowiltas.Content.NPCs.AbominationnNPC
             Texture2D capeTexture = Cape.Value;
             Rectangle capeRect = new(54 * CapeFrameX, 72 * CapeFrameY, 54, 72);
             Vector2 capeOrigin = capeRect.Size() / 2f;
-            
+
             Vector2 capePosition = position - new Vector2(31 * NPC.direction, 0);
             float CapeRotation = 0;
 

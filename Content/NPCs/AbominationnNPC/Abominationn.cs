@@ -8,6 +8,7 @@ using Fargowiltas.Content.UI.Emotes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
@@ -130,6 +131,7 @@ namespace Fargowiltas.Content.NPCs.AbominationnNPC
 
         public override bool CanGoToStatue(bool toKingStatue) => toKingStatue;
 
+        public bool shouldDrawStyxGazer;
         public override void AI()
         {
             NPC.breath = 200;
@@ -145,6 +147,15 @@ namespace Fargowiltas.Content.NPCs.AbominationnNPC
                     canSayMutantShimmerQuote = true;
                 }
             }
+
+            //Main.NewText(NPC.DistanceSQ(Main.LocalPlayer.Center));
+            bool shouldBrandish = NPC.DistanceSQ(Main.LocalPlayer.Center) / 10 <= 2500 
+                || NPC.HasNPCTarget;
+            if (shouldBrandish)
+                shouldDrawStyxGazer = true;
+            else
+                shouldDrawStyxGazer = false;
+            
         }
 
         public override void ModifyTypeName(ref string typeName)
@@ -479,16 +490,25 @@ namespace Fargowiltas.Content.NPCs.AbominationnNPC
             else if (NPC.velocity.Length() == 0)
                 HandleCapeAnimation((int)CapeAnimationID.Idle, shouldFlourishCape);
             #endregion
-
-            /*
-            if (++StyxFrameCounter >= 6)
+            
+            if (shouldDrawStyxGazer)
             {
-                StyxFrameCounter = 0;
-                if (++StyxFrame >= 7)
-                    StyxFrame = 2;
+                if (++StyxFrameCounter >= 4)
+                {
+                    StyxFrameCounter = 0;
+                    if (++StyxFrame >= 8)
+                        StyxFrame = 3;
+                }
             }
-            */
-
+            else
+            {
+                if (++StyxFrameCounter >= 4)
+                {
+                    StyxFrameCounter = 0;
+                    if (--StyxFrame <= 0)
+                        StyxFrame = 0;
+                }
+            }
         }
 
         public int CapeFrameCounter, CapeFrameX, CapeFrameY;
@@ -539,13 +559,42 @@ namespace Fargowiltas.Content.NPCs.AbominationnNPC
             }
             */
 
-            Texture2D styxGazer = StyxGazer.Value;
+            Texture2D styxGazerTop = StyxGazer.Value;
+            Vector2 styxPosition = position + GetStyxGazerPosition(NPC.frame.Y / NPC.frame.Height);
             Rectangle styxRect = new(0, 72 * StyxFrame, 72, 72);
             Vector2 styxOrigin = styxRect.Size() / 2f;
-            Vector2 styxPosition = position + new Vector2(4 * NPC.direction, 2);
-            //if (StyxFrame != -1)
-            //    sb.Draw(styxGazer, styxPosition, styxRect, NPC.GetAlpha(Color.White), NPC.rotation, styxOrigin, NPC.scale, effects, 0);
+            if (StyxFrame != 0)
+                sb.Draw(styxGazerTop, styxPosition, styxRect, NPC.GetAlpha(Color.White), NPC.rotation, styxOrigin, NPC.scale, effects, 0);
+            
             return false;
+        }
+
+        public Vector2 GetStyxGazerPosition(int currentFrame)
+        {
+            Vector2 position = currentFrame switch
+            {
+                0 => new(4, 2),
+                1 or 2 => new(2, 0), // im falling!
+                // walking
+                3 or 4 or 5 => new(4, -2),
+                6 or 7 or 8 or 9 => new(2, 0),
+                10 => new(2, -2),
+                11 or 12 => new(-2, -2),
+                13 => new(0, 0),
+                14 or 15 => new(2, 0),
+                //
+                16 or 17 => new(4, 2),
+                18 => new(4, -2), // im sitting!
+
+                // blinking
+                19 or 20 => new(4, 2),
+
+                // firing da cannon
+                21 or 22 or 23 or 24 => new(4, 2),
+                _ => new(4, 2),
+            };
+            position.X *= NPC.direction;
+            return position;
         }
 
         private static string AbomChat(string key, params object[] args) => Language.GetTextValue($"Mods.Fargowiltas.NPCs.Abominationn.Chat.{key}", args);

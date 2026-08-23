@@ -25,12 +25,12 @@ FargoServerConfig: {
 	}
 
 	UnlimitedPotionBuffs: {
-		Label: "[i:Fargowiltas/PotionCooler] Unlimited Potions at High Stack"
+		Label: "[i:292] Unlimited Potions at High Stack"
 		Tooltip: Whether potions with buff durations of at least 2 minutes should be granted infinitely when at high stack, when carried or stored in the Potion Cooler.
 	}
 
 	UnlimitedPotionBuffsAmount: {
-		Label: "[i:Fargowiltas/PotionCooler] Potion Cooler Amount"
+		Label: "[i:292] Unlimited Potion Stack"
 		Tooltip: Stack size of potions that must be carried or stored in the Potion Cooler to grant infinite buffs.
 	}
 

@@ -30,7 +30,7 @@ FargoServerConfig: {
 	}
 
 	UnlimitedPotionBuffsAmount: {
-		// Label: "[i:Fargowiltas/PotionCooler] Potion Cooler Amount"
+		// Label: "[i:292] Unlimited Potion Stack"
 		// Tooltip: Stack size of potions that must be carried or stored in the Potion Cooler to grant infinite buffs.
 	}
 

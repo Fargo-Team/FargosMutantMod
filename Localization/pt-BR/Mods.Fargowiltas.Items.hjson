@@ -1631,13 +1631,8 @@ EnchantedTree: {
 		<right> with an item to place it
 		If applicable, <left> placed item to show its crafting tree
 		<left> and pull the item you want to duplicate
-		Duplication consumes Enchanted Acorns based on item complexity
+		Duplication consumes coins based on item complexity
 		''' */
-}
-
-EnchantedAcorn: {
-	// DisplayName: Enchanted Acorn
-	// Tooltip: ""
 }
 
 AutoSummoner: {

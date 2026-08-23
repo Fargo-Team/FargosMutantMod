@@ -32,8 +32,8 @@ CityBuster: {
 	DisplayName: City Buster
 	Tooltip:
 		'''
-		Destroys a large area of blocks
-		Avoids breaking blocks in areas denoted as important
+		Destroys blocks in a 128x128 area above the bomb
+		Uses your best pickaxe's mining power
 		Has a 10 second fuse. Can be disarmed using <right>
 		Use at your own risk.
 		'''
@@ -46,14 +46,14 @@ DoubleObsidianInstabridge: {
 		Creates 2 bridges of obsidian platforms across the whole world
 		Also clears the area between and above the platforms
 		The bottom bridge appears at your cursor
-		Avoids breaking areas denoted as important
+		Uses your best pickaxe's mining power
 		Use at your own risk
 		'''
 }
 
 GraveBuster: {
 	DisplayName: Grave Buster
-	Tooltip: Destroys tombstones in a large area
+	Tooltip: Destroys tombstones in a 360x360 area
 }
 
 HalfInstavator: {
@@ -62,7 +62,7 @@ HalfInstavator: {
 		'''
 		Drops a bomb that creates half a hellevator instantly
 		Will not dig below a certain depth
-		Avoids breaking areas denoted as important
+		Uses your best pickaxe's mining power
 		Use at your own risk
 		'''
 }
@@ -74,7 +74,7 @@ InstaBridge: {
 		Creates a bridge of platforms across the whole world
 		Also clears the area right above the platforms
 		The bridge appears at your cursor
-		Avoids breaking areas denoted as important
+		Uses your best pickaxe's mining power
 		Right Click to clear the area without placing a bridge
 		Use at your own risk
 		'''
@@ -87,7 +87,7 @@ InstaTrack: {
 		Creates a minecart track across the whole world
 		Also clears the area right above the tracks
 		The track appears at your cursor
-		Avoids breaking areas denoted as important
+		Uses your best pickaxe's mining power
 		Use at your own risk
 		'''
 }
@@ -97,7 +97,7 @@ Instavator: {
 	Tooltip:
 		'''
 		Drops a bomb that creates a hellevator instantly
-		Avoids breaking areas denoted as important
+		Uses your best pickaxe's mining power
 		Use at your own risk
 		'''
 }
@@ -128,7 +128,7 @@ ObsidianInstaBridge: {
 		Creates a bridge of obsidian platforms across the whole world
 		Also clears the area right above the platforms
 		The bridge appears at your cursor
-		Avoids breaking areas denoted as important
+		Uses your best pickaxe's mining power
 		Use at your own risk
 		'''
 }
@@ -173,6 +173,7 @@ DeathFruit: {
 	DisplayName: Death Fruit
 	Tooltip:
 		'''
+		[c/ff0000:Debug item]
 		Left click to decrease the amount of Life Crystals, or Life Fruit if you have any, by 1
 		If both are 0, decreases base maximum health by 20, down to a minimum of 20
 		Right click to reverse 1 use of the latter effect, otherwise remove all Life Fruits
@@ -183,7 +184,7 @@ InstantResearch: {
 	DisplayName: Instant Research
 	Tooltip:
 		'''
-		DEBUG ITEM
+		[c/ff0000:Debug item]
 		Researches everything
 		'''
 	ResearchText: researched {0} items
@@ -449,7 +450,7 @@ SuspiciousLookingScythe: {
 
 WeatherBalloon: {
 	DisplayName: Weather Balloon
-	Tooltip: Starts the Rain
+	Tooltip: Starts a Thunderstorm
 }
 
 AmalgamatedSkull: {
@@ -1481,18 +1482,22 @@ PurityTotem: {
 }
 
 InstaPond: {
-	DisplayName: Instalake
+	DisplayName: Instapond
 	Tooltip:
 		'''
-		Drops a bomb that creates a 150x50 body of water below it
-		Avoids breaking areas denoted as important
+		Drops a bomb that creates a 25x15 body of water below it
+		Uses your best pickaxe's mining power
 		Use at your own risk
 		'''
 }
 
 KohaCrystal: {
 	DisplayName: Koha Crystal
-	Tooltip: Decreases the amount of Mana Crystals you have by 1
+	Tooltip:
+		'''
+		[c/ff0000:Debug item]
+		Decreases the amount of Mana Crystals you have by 1
+		'''
 }
 
 MiniDirtInstaBridge: {
@@ -1664,7 +1669,6 @@ GalacticReformer: {
 	Tooltip:
 		'''
 		Destroys a gigantic area of blocks
-		Does not avoid breaking blocks in areas denoted as important
 		Has a 12 second fuse. Can be disarmed using <right>
 		Use at your own risk.
 		'''
@@ -1675,7 +1679,6 @@ UniversalCollapse: {
 	Tooltip:
 		'''
 		Destroys the universe
-		Does not avoid breaking blocks in areas denoted as important
 		Has a 15 second fuse. Can be disarmed using <right>
 		Use at your own risk.
 		'''

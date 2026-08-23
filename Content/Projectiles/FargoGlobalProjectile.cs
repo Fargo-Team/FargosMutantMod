@@ -3,6 +3,7 @@ using Fargowiltas.Common.Systems.Collections;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -20,7 +21,12 @@ namespace Fargowiltas.Content.Projectiles
         public static HashSet<Rectangle> CannotDestroyRectangle = [];
 
         public float DamageMultiplier = 1;
-
+        public static MethodInfo GetPickaxeDamage_Method;
+        public override void Load()
+        {
+            base.Load();
+            GetPickaxeDamage_Method = typeof(Player).GetMethod("GetPickaxeDamage", FargoUtils.UniversalBindingFlags);
+        }
         public override void SetDefaults(Projectile projectile)
         {
             //if (projectile.CountsAsClass(DamageClass.Summon) || projectile.minion || projectile.sentry || projectile.minionSlots > 0 || ProjectileID.Sets.MinionShot[projectile.type] || ProjectileID.Sets.SentryShot[projectile.type])
@@ -229,6 +235,28 @@ namespace Fargowiltas.Content.Projectiles
 
             return true;
         }
+        public static bool InstaDestructionCheck(int x, int y, Player player, Item pickaxe, bool bypassVanillaCanPlace = false) // This is the mother method that should be used for destructive items
+        {
+            if (!OkayToDestroyTileAt(x, y, bypassVanillaCanPlace))
+                return false;
+
+            if (!Main.tile[x, y].HasTile)
+                return true;
+
+            if (!CanMine(x, y, player, pickaxe) || !WorldGen.CanKillTile(x, y))
+                return false;
+
+            return true;
+        }
+        public static bool CanMine(int x, int y, Player player, Item pickaxe) // doing this to avoid iterating through player inventory looking for pickaxe for every block in insta-items
+        {
+            Tile tile = Main.tile[x, y];
+            int hitBufferIndex = player.hitTile.HitObject(x, y, 1);
+            if ((int)GetPickaxeDamage_Method.Invoke(player, [x, y, pickaxe.pick, hitBufferIndex, tile]) == 0)
+                return false;
+
+            return true;
+        }
         public static bool OkayToDestroyTileAt(int x, int y, bool bypassVanillaCanPlace = false) // Testing for blocks that should not be destroyed
         {
             if (!WorldGen.InWorld(x, y))
@@ -249,12 +277,6 @@ namespace Fargowiltas.Content.Projectiles
                 }
             }
             Rectangle area = new(x, y, 3, 3);
-            if (!FargoServerConfig.Instance.SafeTerraformers)
-                bypassVanillaCanPlace = true;
-            if (!bypassVanillaCanPlace && GenVars.structures != null && !GenVars.structures.CanPlace(area))
-            {
-                return false;
-            }
 
             return OkayToDestroyTile(tile);
         }

@@ -98,14 +98,6 @@ namespace Fargowiltas
 
         public override void PreWorldGen()
         {
-            SetWorldBool(FargoServerConfig.Instance.DrunkWorld, ref Main.drunkWorld);
-            SetWorldBool(FargoServerConfig.Instance.BeeWorld, ref Main.notTheBeesWorld);
-            SetWorldBool(FargoServerConfig.Instance.WorthyWorld, ref Main.getGoodWorld);
-            SetWorldBool(FargoServerConfig.Instance.CelebrationWorld, ref Main.tenthAnniversaryWorld);
-            SetWorldBool(FargoServerConfig.Instance.ConstantWorld, ref Main.dontStarveWorld);
-            SetWorldBool(FargoServerConfig.Instance.NoTrapsWorld, ref Main.noTrapsWorld);
-            SetWorldBool(FargoServerConfig.Instance.RemixWorld, ref Main.remixWorld);
-            SetWorldBool(FargoServerConfig.Instance.ZenithWorld, ref Main.zenithWorld);
 
             foreach (string tag in tags)
             {
@@ -249,16 +241,6 @@ namespace Fargowiltas
 
             SetWorldBool(FargoServerConfig.Instance.Halloween, ref Main.halloween);
             SetWorldBool(FargoServerConfig.Instance.Christmas, ref Main.xMas);
-
-            //seeds
-            SetWorldBool(FargoServerConfig.Instance.DrunkWorld, ref Main.drunkWorld);
-            SetWorldBool(FargoServerConfig.Instance.BeeWorld, ref Main.notTheBeesWorld);
-            SetWorldBool(FargoServerConfig.Instance.WorthyWorld, ref Main.getGoodWorld);
-            SetWorldBool(FargoServerConfig.Instance.CelebrationWorld, ref Main.tenthAnniversaryWorld);
-            SetWorldBool(FargoServerConfig.Instance.ConstantWorld, ref Main.dontStarveWorld);
-            SetWorldBool(FargoServerConfig.Instance.NoTrapsWorld, ref Main.noTrapsWorld);
-            SetWorldBool(FargoServerConfig.Instance.RemixWorld, ref Main.remixWorld);
-            SetWorldBool(FargoServerConfig.Instance.ZenithWorld, ref Main.zenithWorld);
 
             if (Matsuri)
             {

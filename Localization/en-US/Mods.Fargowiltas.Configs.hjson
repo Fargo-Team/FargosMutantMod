@@ -260,7 +260,7 @@ FargoServerConfig: {
 
 	InstantItems: {
 		Label: "[i:Dynamite] Instant Items"
-		Tooltip: Enables/disables Insta items such as the InstaHouse
+		Tooltip: Enables/disables Instant items, such as the Instahouse, Instabridge and Instavator.
 	}
 
 	FasterBedSpeed: {
@@ -313,12 +313,12 @@ FargoClientConfig: {
 	}
 
 	HideTogglerWhenInventoryIsClosed: {
-		Label: Only show effect toggler when inventory is open
-		Tooltip: If true, the effect toggler is automatically hidden when your inventory is closed.
+		Label: "[i:Fargowiltas/TogglerIconItem] Only show toggler menu when inventory is open"
+		Tooltip: If true, the toggle menu is automatically hidden when your inventory is closed.
 	}
 
 	ToggleSearchReset: {
-		Label: Accessory Effects menu resets search bar when closed
+		Label: "[i:Fargowiltas/TogglerIconItem] Toggle menu resets search bar when closed"
 		Tooltip: ""
 	}
 

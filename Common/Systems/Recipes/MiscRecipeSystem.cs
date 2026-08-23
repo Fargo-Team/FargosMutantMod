@@ -282,40 +282,12 @@ namespace Fargowiltas.Common.Systems.Recipes
             recipe.DisableDecraft();
             recipe.Register();
 
-            /*recipe = Recipe.Create(ItemID.JungleRose);
-            recipe.AddIngredient(ItemID.NaturesGift);
-            recipe.AddIngredient(ItemID.RedHusk);
-            recipe.AddTile(TileID.LivingLoom);
-            recipe.DisableDecraft();
-            recipe.Register();
-
-            recipe = Recipe.Create(ItemID.NaturesGift);
-            recipe.AddIngredient(ItemID.JungleRose);
-            recipe.AddIngredient(ItemID.CyanHusk);
-            recipe.AddTile(TileID.LivingLoom);
-            recipe.DisableDecraft();
-            recipe.Register();*/
-
             recipe = Recipe.Create(ItemID.AmberMosquito);
             recipe.AddIngredient(ItemID.Amber, 15);
             recipe.AddIngredient(ItemID.Firefly);
             recipe.AddTile(TileID.CookingPots);
             recipe.DisableDecraft();
             recipe.Register();
-
-            /*recipe = Recipe.Create(ItemID.NaturesGift);
-            recipe.AddIngredient(ItemID.Moonglow, 15);
-            recipe.AddIngredient(ItemID.ManaCrystal);
-            recipe.AddTile(TileID.AlchemyTable);
-            recipe.DisableDecraft();
-            recipe.Register();*/
-
-            /*recipe = Recipe.Create(ItemID.ShroomiteBar);
-            recipe.AddIngredient(ItemID.ChlorophyteBar);
-            recipe.AddIngredient(ItemID.DarkBlueSolution);
-            recipe.AddTile(TileID.Autohammer);
-            recipe.DisableDecraft();
-            recipe.Register();*/
 
             recipe = Recipe.Create(ItemID.WebSlinger);
             recipe.AddIngredient(ItemID.Hook);
@@ -350,20 +322,6 @@ namespace Fargowiltas.Common.Systems.Recipes
             recipe.AddIngredient(ItemID.TeleportationPylonSnow);
             recipe.AddIngredient(ItemID.TeleportationPylonUnderground);
             recipe.AddTile(TileID.LunarCraftingStation);
-            recipe.DisableDecraft();
-            recipe.Register();
-
-            recipe = Recipe.Create(ItemID.KiteBlueAndYellow);
-            recipe.AddIngredient(ItemID.KiteBlue);
-            recipe.AddIngredient(ItemID.KiteYellow);
-            recipe.AddTile(TileID.Solidifier);
-            recipe.DisableDecraft();
-            recipe.Register();
-
-            recipe = Recipe.Create(ItemID.KiteRedAndYellow);
-            recipe.AddIngredient(ItemID.KiteRed);
-            recipe.AddIngredient(ItemID.KiteYellow);
-            recipe.AddTile(TileID.Solidifier);
             recipe.DisableDecraft();
             recipe.Register();
 

@@ -268,7 +268,7 @@ FargoServerConfig: {
 
 	InstantItems: {
 		// Label: "[i:Dynamite] Instant Items"
-		// Tooltip: Enables/disables Insta items such as the InstaHouse
+		// Tooltip: Enables/disables Instant items, such as the Instahouse, Instabridge and Instavator.
 	}
 
 	FasterBedSpeed: {

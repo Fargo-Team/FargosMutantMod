@@ -9,6 +9,7 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
+using Terraria.GameContent.Achievements;
 using Terraria.GameInput;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -206,9 +207,10 @@ namespace Fargowiltas.Content.Items.Explosives
                 return;
             }
 
+            Player player = Main.player[Projectile.owner];
+
             Vector2 position = Projectile.Center;
             int radius = 64;     //bigger = boomer
-
             for (int x = -radius; x <= radius; x++)
             {
                 for (int y = -radius * 2; y <= 0; y++)
@@ -224,6 +226,9 @@ namespace Fargowiltas.Content.Items.Explosives
                         continue;
 
                     if (!FargoGlobalProjectile.OkayToDestroyTileAt(xPosition, yPosition) || FargoGlobalProjectile.TileIsLiterallyAir(tile))
+                        continue;
+
+                    if (!player.HasEnoughPickPowerToHurtTile(xPosition, yPosition) || !WorldGen.CanKillTile(xPosition, yPosition))
                         continue;
 
                     FargoGlobalTile.ClearTileAndLiquid(xPosition, yPosition);

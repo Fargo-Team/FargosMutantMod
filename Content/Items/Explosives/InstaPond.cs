@@ -45,7 +45,7 @@ namespace Fargowiltas.Content.Items.Explosives
             {
                 Vector2 mouse = Main.MouseWorld;
                 InstaVisual.DrawOrigin drawOrigin = InstaVisual.DrawOrigin.Top;
-                InstaVisual.DrawInstaVisual(player, mouse, new(150, 50), drawOrigin);
+                InstaVisual.DrawInstaVisual(player, mouse, new(25, 15), drawOrigin);
             }
         }
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
@@ -59,9 +59,9 @@ namespace Fargowiltas.Content.Items.Explosives
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient<GizmoParts>(10)
-                .AddIngredient(ItemID.Dynamite, 25)
-                .AddIngredient(ItemID.WetBomb, 3)
+                .AddIngredient<GizmoParts>(2)
+                .AddIngredient(ItemID.Dynamite, 5)
+                .AddIngredient(ItemID.WaterBucket, 3)
                 .AddTile(TileID.Anvils)
                 .Register();
         }

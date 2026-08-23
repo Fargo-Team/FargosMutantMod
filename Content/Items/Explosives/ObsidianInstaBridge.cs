@@ -72,7 +72,7 @@ namespace Fargowiltas.Content.Items.Explosives
                 .AddIngredient<GizmoParts>(5)
                 .AddIngredient(ItemID.Dynamite, 10)
                 .AddIngredient(ItemID.ObsidianPlatform, 1000)
-                .AddIngredient(ItemID.FallenStar, 3)
+                .AddIngredient(ItemID.Bone, 3)
                 .AddTile(TileID.Anvils)
                 .Register();
         }

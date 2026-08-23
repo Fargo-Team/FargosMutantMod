@@ -109,8 +109,9 @@ namespace Fargowiltas.Content.Projectiles.Explosives
             int yPosition = (int)(y + position.Y / 16.0f);
             Tile tile = Main.tile[xPosition, yPosition];
 
+            var pickaxe = player.GetBestPickaxe() ?? ContentSamples.ItemsByType[ItemID.CopperPickaxe];
             // Testing for blocks that should not be destroyed
-            if (!FargoGlobalProjectile.OkayToDestroyTileAt(xPosition, yPosition, true))
+            if (!FargoGlobalProjectile.InstaDestructionCheck(xPosition, yPosition, player, pickaxe))
                 return;
 
             GetTiles(player, out int wallType, out int tileType, out int platformStyle, out bool moddedPlatform);

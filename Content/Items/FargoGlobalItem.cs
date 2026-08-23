@@ -296,7 +296,7 @@ namespace Fargowiltas.Content.Items
                         $"[s:Fargowiltas/DuplicatableAtTree] [c/AAAAAA:{ExpandedTooltipLoc("EnchantedTreeDupable")}]");
                     tooltips.Add(line);
                 }
-
+                /*
                 int sacCount = modPlayer.SacrificeCount[item.type];
                 if (Squirrel.EventSacrifice(item, out int consumeCount, false))
                 {
@@ -336,6 +336,7 @@ namespace Fargowiltas.Content.Items
                         tooltips.Add(line);
                     }
                 }
+                */
 
                 if (FargoItemSets.TreeTreasureObtainable[item.type])
                 {

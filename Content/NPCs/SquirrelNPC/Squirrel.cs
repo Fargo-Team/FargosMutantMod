@@ -200,8 +200,8 @@ namespace Fargowiltas.Content.NPCs.SquirrelNPC
         public override void SetChatButtons(ref string button, ref string button2)
         {
             button = Language.GetTextValue("LegacyInterface.28");
-            if (FargoWorld.EternityMode)
-                button2 = Language.GetTextValue("Mods.Fargowiltas.NPCs.Squirrel.Feed");
+            //if (FargoWorld.EternityMode)
+            //    button2 = Language.GetTextValue("Mods.Fargowiltas.NPCs.Squirrel.Feed");
 
         }
 
@@ -211,6 +211,7 @@ namespace Fargowiltas.Content.NPCs.SquirrelNPC
             {
                 shopName = ShopName;
             }
+            /*
             else if (FargoWorld.EternityMode)
             {
 
@@ -221,6 +222,7 @@ namespace Fargowiltas.Content.NPCs.SquirrelNPC
                 else
                     Main.npcChatText = SquirrelChat("FeedFail");
             }
+            */
         }
 
         public override void AddShops()
@@ -732,7 +734,7 @@ namespace Fargowiltas.Content.NPCs.SquirrelNPC
                     modPlayer.SacrificeCount[item.type]--;
                     SoundEngine.PlaySound(SoundID.Roar);
 
-                    ModContent.GetInstance<NPCSacrificeAchievement>().Condition.Complete();
+                    //ModContent.GetInstance<NPCSacrificeAchievement>().Condition.Complete();
 
                     // turn it to night
                     Main.dayTime = false;

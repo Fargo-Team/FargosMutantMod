@@ -35,6 +35,8 @@ namespace Fargowiltas.Content.Projectiles.Explosives
                 return;
             }
 
+            Player player = Main.player[Projectile.owner];
+            var pickaxe = player.GetBestPickaxe() ?? ContentSamples.ItemsByType[ItemID.CopperPickaxe];
             // All the way across
             for (int x = 1; x <= Main.maxTilesX; x++)
             {
@@ -52,10 +54,8 @@ namespace Fargowiltas.Content.Projectiles.Explosives
                     if (tile == null)
                         continue;
 
-                    if (!FargoGlobalProjectile.OkayToDestroyTileAt(xPosition, yPosition))
+                    if (!FargoGlobalProjectile.InstaDestructionCheck(xPosition, yPosition, player, pickaxe))
                         continue;
-
-                    FargoGlobalTile.ClearEverything(xPosition, yPosition);
 
                     if (y == 0 && Projectile.ai[2] != 2)
                     {

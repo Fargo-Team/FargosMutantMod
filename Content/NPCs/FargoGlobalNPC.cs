@@ -492,21 +492,6 @@ namespace Fargowiltas.Content.NPCs
 
                         break;
 
-                    case NPCID.WitchDoctor:
-                        bool alreadySellsTable = false;
-                        foreach (NPCShop.Entry entry in shop.Entries)
-                        {
-                            if (!entry.Item.IsAir && entry.Item.type == ItemID.BewitchingTable)
-                            {
-                                alreadySellsTable = true;
-                                break;
-                            }
-                        }
-
-                        if (!alreadySellsTable)
-                            AddItem(ItemID.BewitchingTable, condition: Condition.DownedSkeletron);
-                        break;
-
                     case NPCID.Steampunker:
                         AddItem(ItemID.PurpleSolution, conditions: [Condition.CrimsonWorld, Condition.InGraveyard]);
                         AddItem(ItemID.RedSolution, conditions: [Condition.CorruptWorld, Condition.InGraveyard]);

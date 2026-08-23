@@ -592,23 +592,6 @@ namespace Fargowiltas
 
         private void ForceBiomes()
         {
-            if (Main.IsNPCActiveAndOneOfTypes(FargoGlobalNPC.eaterBoss, NPCID.EaterofWorldsHead)
-                && Player.DistanceSQ(Main.npc[FargoGlobalNPC.eaterBoss].Center) < 3000 * 3000)
-            {
-                Player.ZoneCorrupt = true;
-            }
-
-            if (Main.IsNPCActiveAndOneOfTypes(NPC.crimsonBoss, NPCID.BrainofCthulhu)
-                && Player.DistanceSQ(Main.npc[NPC.crimsonBoss].Center) < 3000 * 3000)
-            {
-                Player.ZoneCrimson = true;
-            }
-
-            if ((Main.IsNPCActiveAndOneOfTypes(NPC.plantBoss, NPCID.Plantera) && Player.DistanceSQ(Main.npc[NPC.plantBoss].Center) < 3000 * 3000)
-                || (Main.IsNPCActiveAndOneOfTypes(FargoGlobalNPC.beeBoss, NPCID.QueenBee) && Player.DistanceSQ(Main.npc[FargoGlobalNPC.beeBoss].Center) < 3000 * 3000))
-            {
-                Player.ZoneJungle = true;
-            }
 
             if (FargoServerConfig.Instance.Fountains)
             {

@@ -1,57 +1,18 @@
-A Quality of Life mod that makes various adjustments and additions across the game to provide information and convenience.
-Adds the Mutant town NPC, who sells boss summons of nearly every mod, along several others.
-Other features include:
--Infinite ammos, potions, etc at high enough stack
--Craftable instant builds for common world infrastructure like skybridges, obsidian underworld bridges, hellevators
--Powerful explosives for clearing out large parts of the world
--Spawn rate increase/decrease items
--Helpful extra tooltips, showing things such as which items are sold by which NPCs
--Several configs for shaping the game and mod to your wishes
+A Quality of Life mod that adds various configurable adjustments and additions to provide information and convenience.
+ALL features of this mod can be toggled in the Config menu.
+
+Some features include:
+- Adds several town NPCs, selling rare enemy spawn boosters, boss summons and event starters
+- Helpful extra tooltips, for example showing which items are sold by which NPCs, and special Shimmer recipes
+- Infinite ammos, potions, etc at high enough stack
+- Craftable instant builds for common world infrastructure like long platforms and fishing lakes 
+- Powerful explosives for clearing out large parts of the world
+- Spawn rate increase/decrease items
+
 And much more!
 
 Fargo Discord: https://discord.gg/Rgen4Vv
 Fargo Wiki: https://fargosmods.wiki.gg
 
-NEW UPDATE - v3.3.5
-Reworked boss Swarms into Energized bosses; now summons one super-powered boss instead of a swarm of lesser bosses
-Added Multiplayer spectate feature
-Added Dirt Instabridge
-Added new config that lets Modded item inventory effects work from Piggy Bank or Safe
-
-Added Deviantt dialogue for new environmental effects
-Mutant doesn't spawn from Trojan Squirrel
-Mutant, Abom, Deviantt, Lumberjack now get increased health in Hardmode
-Abominationn now has a shimmer sprite
-
-Instabridge: Right Click clears area without placing bridge
-Instalake: Fixed showing wrong visual when held, now spawns on mouse
-Bottled Honey no longer grants infinite Honey buff at 30, but Omnistation now provides Honey buff as aura effect
-
-Boom Shurikens:
--Doubled cost in Demolitionist shop
--Doubled cost of recipe
--Boom Shurikens can hurt you now
--Improved multiplayer performance
-
-Added Souls Mod attack speed stat to Stat Sheet
-Fixed Stat Sheet UI focusing in search bar when right clicking anywhere while it's open
-World Token is now craftable with 5 Iron/Lead Bars
-Fixed Destroyer summon not resetting night
-Increased Big Suck Potion money value
-Many summons now always work as if it was night on Remix worlds
-Reduced Super Dummy health
-Removed Dungeon Guardian from Ancient Seal
-Moved Wires painting to Mutant Mod from Souls Mod
-Energizers have 10x the value
-Ruler no longer falsely has piggy bank effect tooltip
-Bewitching Table only grants buff when nearby post-Skeletron
-Important structures now save per-world across sessions
-Added Census compatibility
-Added "AddCaughtNPC" ModCall
-
-Resprited and renamed Jelly Crystal to Royal Slime Crown
-Resprited and renamed Mutant Voodoo Doll into Mutant Plushie
-Resprited and renamed Truffly Worm into Concentrated Truffle Worm Oil
-Resprited and renamed Overloadfish into Can of Truffle Worms
-Renamed Dragon's Egg to Old Dragon Egg
-Resprited Sibling Pylon, fixed right click (opening map) not working correctly
+NEW UPDATE - v3.4
+- Overhauled most of the mod's features, alongside the release of Fargo's Souls Returnal

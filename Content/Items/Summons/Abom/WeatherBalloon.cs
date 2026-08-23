@@ -44,6 +44,7 @@ namespace Fargowiltas.Content.Items.Summons.Abom
             Main.rainTime = hour * 12;
             Main.raining = true;
             Main.maxRaining = Main.cloudAlpha = 0.9f;
+            Main.windSpeedTarget = Main.windSpeedCurrent = 0.8f; //40mph?
 
             if (Main.netMode == NetmodeID.Server)
             {

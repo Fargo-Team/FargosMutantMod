@@ -1250,11 +1250,6 @@ UnsafeMarbleWall: {
 	Tooltip: 允许区域特有的敌怪生成
 }
 
-WalkingRick: {
-	DisplayName: 走路的Rick
-	// Tooltip: "'Kien R. Oco'"
-}
-
 WoodenToken: {
 	DisplayName: 木牌
 	Tooltip: “真正的木材爱好者的标志”

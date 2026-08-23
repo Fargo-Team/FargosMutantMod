@@ -234,7 +234,6 @@ namespace Fargowiltas.Content.NPCs.SquirrelNPC
 
             npcShop
                 .Add(new Item(ItemType<GizmoParts>()))
-                .Add(new Item(ItemType<EnchantedAcorn>()))
                 .Add(new Item(ItemType<EnchantedTree>()))
                 .Add(new Item(ItemType<PotionCooler>()))
                 .Add(new Item(ItemType<SuperDummy>()))

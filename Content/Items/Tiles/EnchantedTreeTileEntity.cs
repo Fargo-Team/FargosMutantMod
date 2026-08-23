@@ -1,4 +1,5 @@
-﻿using Fargowiltas.Common.Systems.Collections;
+﻿using Fargowiltas.Common.Systems;
+using Fargowiltas.Common.Systems.Collections;
 using Fargowiltas.Content.Items.Misc;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -11,6 +12,7 @@ using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Config;
 using Terraria.ModLoader.IO;
@@ -164,16 +166,16 @@ namespace Fargowiltas.Content.Items.Tiles
                         EnchantedTreeTileEntity.Fruit fruit = tree.Fruits[i];
                         //radius for a dist check so width / 2
                         float size = 30;
-                        //enchanted acorns cost 2 gold. divide value by 10000 to get cost in gold coins, then by 2 for cost in acorns.
-                        int cost = ContentSamples.ItemsByType[fruit.type].value / 10000 / 2 * 2;
-                        cost = Math.Clamp(cost, 1, 9999);
+                        
+                        int cost = ContentSamples.ItemsByType[fruit.type].value * 2;
+                        //cost = Math.Clamp(cost, 1, 9999);
                         if (!Main.LocalPlayer.controlUseItem)
                         {
                             fruit.grabbed = false;
                         }
                         if (Main.MouseWorld.Distance(fruit.center) <= size)
                         {
-                            Main.instance.MouseText(Lang.GetItemNameValue(fruit.type) + "\n[i:Fargowiltas/EnchantedAcorn] [c/3BFFEB:" + cost + "]", 0);
+                            Main.instance.MouseText(Lang.GetItemNameValue(fruit.type) + "\n" + ReforgeUtils.GetPriceString(cost, false, true), 0);
                         }
                         if (Main.MouseWorld.Distance(fruit.center) <= size && Main.LocalPlayer.controlUseItem && fruit.grabCooldown == 0 &&
                             (Main.LocalPlayer.FargoMutant().grabbedFruit == null || Main.LocalPlayer.FargoMutant().grabbedFruit == fruit))
@@ -229,7 +231,7 @@ namespace Fargowiltas.Content.Items.Tiles
                                 Main.LocalPlayer.FargoMutant().grabbedFruit = null;
                                 fruit.grabCooldown = 30;
 
-                                if (Main.LocalPlayer.CountItem(ModContent.ItemType<EnchantedAcorn>()) >= cost)
+                                if (Main.LocalPlayer.BuyItem(cost))
                                 {
                                     if (Main.netMode != NetmodeID.Server)
                                     {
@@ -246,10 +248,6 @@ namespace Fargowiltas.Content.Items.Tiles
                                         //FargoNet.SyncItemFromFruitPacket(fruit.type, Main.myPlayer, tree.Position.ToVector2(), fruit.center);
                                     }
                                     SoundEngine.PlaySound(SoundID.Item176 with { Pitch = 0.2f }, fruit.center);
-                                    for (int a = 0; a < cost; a++)
-                                    {
-                                        Main.LocalPlayer.ConsumeItem(ModContent.ItemType<EnchantedAcorn>(), includeVoidBag: true);
-                                    }
                                 }
                                 else
                                 {

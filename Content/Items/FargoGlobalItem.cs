@@ -44,7 +44,6 @@ namespace Fargowiltas.Content.Items
         //follow cursor when = myplayer
         public int Grabbed = -1;
 
-
         public override bool InstancePerEntity => true;
 
         static string ExpandedTooltipLoc(string line) => Language.GetTextValue($"Mods.Fargowiltas.ExpandedTooltips.{line}");

@@ -159,6 +159,7 @@ BattleCry: {
 		'''
 		Left click to toggle increased spawn rates
 		Right click to toggle decreased spawn rates
+		May also be toggled between modes by right clicking the item in the inventory
 		'''
 	Battle: Battle
 	Calming: Calming
@@ -238,7 +239,7 @@ SuperDummy: {
 		'''
 		Spawns a super dummy at your cursor
 		Can be detected by minions and homing projectiles, and can activate on hit effects
-		Right click to remove all spawned super dummies
+		<right> to remove all spawned super dummies
 		Can spawn up to 50 super dummies at once
 		Super dummies are disabled during boss fights
 		'''
@@ -1194,11 +1195,6 @@ UnsafeMarbleWall: {
 	Tooltip: An enchanted slab of stone that will spawn monsters
 }
 
-WalkingRick: {
-	DisplayName: Walking Rick
-	Tooltip: "'Kien R. Oco'"
-}
-
 WoodenToken: {
 	DisplayName: Wooden Token
 	Tooltip: "'The sign of a true wood lover'"
@@ -1577,13 +1573,8 @@ EnchantedTree: {
 		<right> with an item to place it
 		If applicable, <left> placed item to show its crafting tree
 		<left> and pull the item you want to duplicate
-		Duplication consumes Enchanted Acorns based on item complexity
+		Duplication consumes coins based on item complexity
 		'''
-}
-
-EnchantedAcorn: {
-	DisplayName: Enchanted Acorn
-	Tooltip: ""
 }
 
 AutoSummoner: {

@@ -31,20 +31,7 @@ namespace Fargowiltas.Content.Items.Misc
         {
             if (player.altFunctionUse == ItemAlternativeFunctionID.ActivatedAndUsed)
             {
-                foreach (NPC n in Main.ActiveNPCs)
-                {
-                    if (n.type == ModContent.NPCType<SuperDummyNPC>())
-                    {
-                        n.active = false;
-                        if (Main.netMode == NetmodeID.MultiplayerClient)
-                        {
-                            ModPacket deactivate = Mod.GetPacket();
-                            deactivate.Write((byte)Fargowiltas.PacketID.SyncInactiveNPC);
-                            deactivate.Write((byte)n.whoAmI);
-                            deactivate.Send();
-                        }
-                    }
-                }
+                ClearAllSuperDummies(player);
             }
             else if (NPC.CountNPCS(ModContent.NPCType<SuperDummyNPC>()) < 50 && player.whoAmI == Main.myPlayer)
             {
@@ -53,6 +40,33 @@ namespace Fargowiltas.Content.Items.Misc
             }
 
             return true;
+        }
+
+        public override bool CanRightClick() => true;
+
+        public override bool ConsumeItem(Player player) => false;
+
+        public override void RightClick(Player player)
+        {
+            ClearAllSuperDummies(player);
+        }
+
+        private void ClearAllSuperDummies(Player player)
+        {
+            foreach (NPC n in Main.ActiveNPCs)
+            {
+                if (n.type == ModContent.NPCType<SuperDummyNPC>())
+                {
+                    n.active = false;
+                    if (Main.netMode == NetmodeID.MultiplayerClient)
+                    {
+                        ModPacket deactivate = Mod.GetPacket();
+                        deactivate.Write((byte)Fargowiltas.PacketID.SyncInactiveNPC);
+                        deactivate.Write((byte)n.whoAmI);
+                        deactivate.Send();
+                    }
+                }
+            }
         }
 
         public override void AddRecipes()

@@ -431,15 +431,19 @@ namespace Fargowiltas.Common.Systems
             }
             return num58;
         }
-
         public static string GetPriceString(Item item)
         {
-            int price = GetReforgePrice(item);
+            return GetPriceString(GetReforgePrice(item));
+        }
+        public static string GetPriceString(int price, bool reforgeText = true, bool coinIcon = false)
+        {
+            //int price = GetReforgePrice(item);
 
             if (price < 0)
                 return "";
-
-            string ret = "[c/" + Colors.AlphaDarken(Color.Lerp(Color.Green, Color.LightGray, 0.5f)).Hex3() + ":" + $"{Language.GetTextValue("Mods.Fargowiltas.UI.ReforgeCost")}:]\n";
+            string ret = "";
+            if (reforgeText)
+                ret += "[c/" + Colors.AlphaDarken(Color.Lerp(Color.Green, Color.LightGray, 0.5f)).Hex3() + ":" + $"{Language.GetTextValue("Mods.Fargowiltas.UI.ReforgeCost")}:]\n";
             int num59 = 0;
             int num60 = 0;
             int num61 = 0;
@@ -451,38 +455,50 @@ namespace Fargowiltas.Common.Systems
             }
             if (num63 >= 1000000)
             {
+                if (coinIcon)
+                    ret += "[i:" + ItemID.PlatinumCoin + "]";
                 num59 = num63 / 1000000;
                 num63 -= num59 * 1000000;
+                ret += "[c/" + Colors.AlphaDarken(Colors.CoinPlatinum).Hex3() + ":" + num59 + " " + Lang.inter[15].Value + "]\n";
             }
             if (num63 >= 10000)
             {
+                if (coinIcon)
+                    ret += "[i:" + ItemID.GoldCoin + "]";
                 num60 = num63 / 10000;
                 num63 -= num60 * 10000;
+                ret += "[c/" + Colors.AlphaDarken(Colors.CoinGold).Hex3() + ":" + num60 + " " + Lang.inter[16].Value + "]\n";
             }
             if (num63 >= 100)
             {
+                if (coinIcon)
+                    ret += "[i:" + ItemID.SilverCoin + "]";
                 num61 = num63 / 100;
                 num63 -= num61 * 100;
+                ret += "[c/" + Colors.AlphaDarken(Colors.CoinSilver).Hex3() + ":" + num61 + " " + Lang.inter[17].Value + "]\n";
             }
             if (num63 >= 1)
             {
+                if (coinIcon)
+                    ret += "[i:" + ItemID.CopperCoin + "]";
                 num62 = num63;
+                ret += "[c/" + Colors.AlphaDarken(Colors.CoinCopper).Hex3() + ":" + num62 + " " + Lang.inter[18].Value + "] ";
             }
             if (num59 > 0)
             {
-                ret += "[c/" + Colors.AlphaDarken(Colors.CoinPlatinum).Hex3() + ":" + num59 + " " + Lang.inter[15].Value + "]\n";
+                
             }
             if (num60 > 0)
             {
-                ret += "[c/" + Colors.AlphaDarken(Colors.CoinGold).Hex3() + ":" + num60 + " " + Lang.inter[16].Value + "]\n";
+                
             }
             if (num61 > 0)
             {
-                ret += "[c/" + Colors.AlphaDarken(Colors.CoinSilver).Hex3() + ":" + num61 + " " + Lang.inter[17].Value + "]\n";
+                
             }
             if (num62 > 0)
             {
-                ret += "[c/" + Colors.AlphaDarken(Colors.CoinCopper).Hex3() + ":" + num62 + " " + Lang.inter[18].Value + "] ";
+                
             }
             return ret;
         }

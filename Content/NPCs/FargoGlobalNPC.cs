@@ -359,9 +359,6 @@ namespace Fargowiltas.Content.NPCs
 
                         //AddItem(ItemID.PinkBrick, Item.buyPrice(silver: 1));
 
-                        AddItem(ItemType<BrittleBone>(), condition: new Condition("Mods.Fargowiltas.Conditions.BrittleBone", () => Main.LocalPlayer.inventory.Any(i => !i.IsAir && i.useAmmo == ItemID.Bone)));
-                        break;
-
                     case NPCID.Merchant:
 
                         //AddItem(ItemID.FuzzyCarrot, condition: angler5);

@@ -43,7 +43,7 @@ namespace Fargowiltas.Content.NPCs.AbominationnNPC
 
         public static Asset<Texture2D> Cape;
         public static Asset<Texture2D> Glow;
-        public static Asset<Texture2D> StyxGazer;
+        public static Asset<Texture2D> StyxGazer, StyxGazerFlames;
         public static Asset<Texture2D> Arm, ArmGlow;
         public override void SetStaticDefaults()
         {
@@ -89,7 +89,8 @@ namespace Fargowiltas.Content.NPCs.AbominationnNPC
             {
                 Cape = Request<Texture2D>("Fargowiltas/Content/NPCs/AbominationnNPC/AbominationnCape");
                 Glow = Request<Texture2D>("Fargowiltas/Content/NPCs/AbominationnNPC/Abominationn_glow");
-                StyxGazer = Request<Texture2D>("Fargowiltas/Content/NPCs/AbominationnNPC/AbominationnStyxGazer");
+                StyxGazer = Request<Texture2D>("Fargowiltas/Content/NPCs/AbominationnNPC/StyxGazer");
+                StyxGazerFlames = Request<Texture2D>("Fargowiltas/Content/NPCs/AbominationnNPC/StyxGazerFlames");
                 Arm = Request<Texture2D>("Fargowiltas/Content/NPCs/AbominationnNPC/AbominationnArm");
                 ArmGlow = Request<Texture2D>("Fargowiltas/Content/NPCs/AbominationnNPC/AbominationnArm_glow");
             }
@@ -525,14 +526,21 @@ namespace Fargowiltas.Content.NPCs.AbominationnNPC
             if (NPC.IsABestiaryIconDummy)
                 position = NPC.Center + new Vector2(6 * NPC.direction, 1 + NPC.gfxOffY);
 
-            Texture2D capeTexture = Cape.Value;
             Rectangle capeRect = new(54 * CapeFrameX, 72 * CapeFrameY, 54, 72);
             Vector2 capeOrigin = capeRect.Size() / 2f;
 
             Vector2 capePosition = position - new Vector2(31 * NPC.direction, 0);
             float CapeRotation = 0;
 
-            sb.Draw(capeTexture, capePosition, capeRect, drawColor, CapeRotation, capeOrigin, NPC.scale, effects, 0);
+            sb.Draw(Cape.Value, capePosition, capeRect, drawColor, CapeRotation, capeOrigin, NPC.scale, effects, 0);
+
+            Vector2 styxFlamesPosition = position + GetFlamesPosition(NPC.frame.Y / NPC.frame.Height);
+            Rectangle styxFlamesRect = new(0, 72 * StyxFrame, 72, 72);
+            Vector2 styxFlamesOrigin = styxFlamesRect.Size() / 2f;
+
+            sb.Draw(StyxGazer.Value, position, new Microsoft.Xna.Framework.Rectangle?(rectangle), drawColor, NPC.rotation, origin, NPC.scale, effects, 0);
+            if (StyxFrame != 0)
+                sb.Draw(StyxGazerFlames.Value, styxFlamesPosition, styxFlamesRect, NPC.GetAlpha(Color.White), NPC.rotation, styxFlamesOrigin, NPC.scale, effects, 0);
 
             sb.Draw(texture, position, new Microsoft.Xna.Framework.Rectangle?(rectangle), drawColor, NPC.rotation, origin, NPC.scale, effects, 0);
             sb.Draw(Glow.Value, position, new Microsoft.Xna.Framework.Rectangle?(rectangle), NPC.GetAlpha(Color.White), NPC.rotation, origin, NPC.scale, effects, 0);
@@ -558,18 +566,11 @@ namespace Fargowiltas.Content.NPCs.AbominationnNPC
                 sb.Draw(ArmGlow.Value, armPosition, armRect, NPC.GetAlpha(Color.White), armRotation, armOrigin, NPC.scale, effects, 0);
             }
             */
-
-            Texture2D styxGazerTop = StyxGazer.Value;
-            Vector2 styxPosition = position + GetStyxGazerPosition(NPC.frame.Y / NPC.frame.Height);
-            Rectangle styxRect = new(0, 72 * StyxFrame, 72, 72);
-            Vector2 styxOrigin = styxRect.Size() / 2f;
-            if (StyxFrame != 0)
-                sb.Draw(styxGazerTop, styxPosition, styxRect, NPC.GetAlpha(Color.White), NPC.rotation, styxOrigin, NPC.scale, effects, 0);
             
             return false;
         }
 
-        public Vector2 GetStyxGazerPosition(int currentFrame)
+        public Vector2 GetFlamesPosition(int currentFrame)
         {
             Vector2 position = currentFrame switch
             {

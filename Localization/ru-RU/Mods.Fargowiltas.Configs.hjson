@@ -25,7 +25,7 @@ FargoServerConfig: {
 	}
 
 	UnlimitedPotionBuffs: {
-		Label: "[i:Fargowiltas/PotionCooler] Бесконечные зелья"
+		Label: "[i:292] Бесконечные зелья"
 		Tooltip:
 			'''
 			Определяет, когда зелья с эффектами, длящимися дольше двух минут,
@@ -34,7 +34,7 @@ FargoServerConfig: {
 	}
 
 	UnlimitedPotionBuffsAmount: {
-		Label: "[i:Fargowiltas/PotionCooler] Количество зелий для бесконечных эффектов"
+		Label: "[i:292] Количество зелий для бесконечных эффектов"
 		Tooltip:
 			'''
 			Определяет, сколько зелий одного вида нужно сложить в холодильник,
@@ -272,7 +272,7 @@ FargoServerConfig: {
 
 	InstantItems: {
 		Label: "[i:Dynamite] Моментальные предметы"
-		Tooltip: Включает/выключает моментальные предметы по типу МоментМоста.
+		Tooltip: Включает/выключает моментальные предметы по типу МоментМоста, МоментДома и Моментуннеля.
 	}
 
 	FasterBedSpeed: {
@@ -325,12 +325,12 @@ FargoClientConfig: {
 	}
 
 	HideTogglerWhenInventoryIsClosed: {
-		Label: Переключатель эффектов только при открытом инвентаре
-		Tooltip: Если включена, переключатель эффектов автоматически выключается когда инвентарь закрыт.
+		Label: "[i:Fargowiltas/TogglerIconItem] Меню переключателей только при открытом инвентаре"
+		Tooltip: Если включена, меню переключателей автоматически выключается когда инвентарь закрыт.
 	}
 
 	ToggleSearchReset: {
-		Label: Строка поиска меню переключателей эффектов сбрасывается при закрытии
+		Label: "[i:Fargowiltas/TogglerIconItem] Строка поиска меню переключателей сбрасывается при закрытии"
 		Tooltip: ""
 	}
 

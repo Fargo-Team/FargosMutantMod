@@ -140,7 +140,7 @@ public class ShurikenProj : ModProjectile
                 // Circle
                 if (x * x + y * y <= radius)
                 {
-                    if (tile.IsActuated || FargoGlobalProjectile.TileIsLiterallyAir(tile) || FargoGlobalProjectile.TileBelongsToMagicStorage(tile))
+                    if (tile.IsActuated || FargoGlobalProjectile.TileIsLiterallyAir(tile) || tile.TileType == TileID.DemonAltar || FargoGlobalProjectile.TileBelongsToMagicStorage(tile))
                         continue;
 
                     if (FargoGlobalProjectile.CanMine(xPosition, yPosition, player, pickaxe) && WorldGen.CanKillTile(xPosition, yPosition))

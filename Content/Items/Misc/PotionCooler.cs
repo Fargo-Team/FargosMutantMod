@@ -12,118 +12,117 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Fargowiltas.Content.Items.Misc
+namespace Fargowiltas.Content.Items.Misc;
+
+[LegacyName("PotionCoolerInactive")]
+public class PotionCooler : ModItem
 {
-    [LegacyName("PotionCoolerInactive")]
-    public class PotionCooler : ModItem
+    public override string Texture => "Fargowiltas/Content/Items/Misc/PotionCooler";
+
+    public override bool IsLoadingEnabled(Mod mod) => FargoServerConfig.Instance.PotionCooler;
+
+    public override void SetStaticDefaults()
     {
-        public override string Texture => "Fargowiltas/Content/Items/Misc/PotionCooler";
+        Main.RegisterItemAnimation(Type, new PotionCoolerDrawAnimation());
+        ItemID.Sets.AnimatesAsSoul[Type] = true;
+    }
 
-        public override bool IsLoadingEnabled(Mod mod) => FargoServerConfig.Instance.PotionCooler;
+    public override void SetDefaults()
+    {
+        Item.width = 20;
+        Item.height = 20;
+        Item.value = Item.buyPrice(gold: 1);
+        Item.rare = ItemRarityID.Green;
+        Item.useAnimation = 10;
+        Item.useTime = 10;
+        Item.useStyle = ItemUseStyleID.HoldUp;
+        Item.noUseGraphic = true;
+    }
 
-        public override void SetStaticDefaults()
+    public override bool? UseItem(Player player)
+    {
+
+        if (Main.LocalPlayer == player)
         {
-            Main.RegisterItemAnimation(Type, new PotionCoolerDrawAnimation());
-            ItemID.Sets.AnimatesAsSoul[Type] = true;
-        }
-
-        public override void SetDefaults()
-        {
-            Item.width = 20;
-            Item.height = 20;
-            Item.value = Item.buyPrice(gold: 1);
-            Item.rare = ItemRarityID.Green;
-            Item.useAnimation = 10;
-            Item.useTime = 10;
-            Item.useStyle = ItemUseStyleID.HoldUp;
-            Item.noUseGraphic = true;
-        }
-
-        public override bool? UseItem(Player player)
-        {
-
-            if (Main.LocalPlayer == player)
-            {
-                FargoUIManager.Toggle<PotionBagUI>();
-                return true;
-            }
-
-            return base.UseItem(player);
-        }
-
-        public override bool AltFunctionUse(Player player)
-        {
+            FargoUIManager.Toggle<PotionBagUI>();
             return true;
         }
 
-        public override bool ConsumeItem(Player player) => false;
+        return base.UseItem(player);
+    }
 
-        public override bool CanRightClick() => true;
-        public override void RightClick(Player player)
-        {
-            if (Main.LocalPlayer == player)
-            {
-                FargoUIManager.Toggle<PotionBagUI>();
-                return;
-            }
-        }
+    public override bool AltFunctionUse(Player player)
+    {
+        return true;
+    }
 
-        public override void ModifyTooltips(List<TooltipLine> tooltips)
-        {
-            /*
-            if (Keyboard.GetState().IsKeyDown(Keys.LeftShift))
-            {
-                tooltips.Add(new TooltipLine(Fargowiltas.Instance, "CoolerInstructions", Language.GetTextValue("Mods.Fargowiltas.Items.PotionCooler.Rumination")));
-            }
-            else
-            {
-                tooltips.Add(new TooltipLine(Fargowiltas.Instance, "CoolerInstructionsRuminated", Language.GetTextValue("Mods.Fargowiltas.Items.PotionCooler.Ruminate", PotionBagSystem.MaxPotions)));
-            }
-            */
-            base.ModifyTooltips(tooltips);
-        }
+    public override bool ConsumeItem(Player player) => false;
 
-        public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
+    public override bool CanRightClick() => true;
+    public override void RightClick(Player player)
+    {
+        if (Main.LocalPlayer == player)
         {
-            Asset<Texture2D> texture = TextureAssets.Item[Type];
-            Rectangle drawFrame = texture.Frame(1, 2, 0, PotionBagSystem.AnyCompletedPotions ? 1 : 0);
-            return base.PreDrawInInventory(spriteBatch, position, drawFrame, drawColor, itemColor, drawFrame.Size() * 0.5f, scale);
-        }
-
-        public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI)
-        {
-            Main.itemFrame[whoAmI] = PotionBagSystem.AnyCompletedPotions ? 1 : 0;
-            return base.PreDrawInWorld(spriteBatch, lightColor, alphaColor, ref rotation, ref scale, whoAmI);
-        }
-
-        public override void UpdateInventory(Player player)
-        {
-            player.FargoMutant().PotionCooler = true;
-            player.FargoMutant().PotionCoolerBuffer = true;
-        }
-
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-                .AddIngredient<GizmoParts>(2)
-                .AddRecipeGroup(RecipeGroupID.IronBar, 5)
-                .AddIngredient(ItemID.IceBlock, 20)
-                .AddIngredient(ItemID.FallenStar, 3)
-                .AddTile(TileID.Anvils)
-                .Register();
+            FargoUIManager.Toggle<PotionBagUI>();
+            return;
         }
     }
 
-    public class PotionCoolerDrawAnimation : DrawAnimation
+    public override void ModifyTooltips(List<TooltipLine> tooltips)
     {
-        public override void Update()
+        /*
+        if (Keyboard.GetState().IsKeyDown(Keys.LeftShift))
         {
-            base.Frame = PotionBagSystem.AnyCompletedPotions ? 1 : 0;
+            tooltips.Add(new TooltipLine(Fargowiltas.Instance, "CoolerInstructions", Language.GetTextValue("Mods.Fargowiltas.Items.PotionCooler.Rumination")));
         }
+        else
+        {
+            tooltips.Add(new TooltipLine(Fargowiltas.Instance, "CoolerInstructionsRuminated", Language.GetTextValue("Mods.Fargowiltas.Items.PotionCooler.Ruminate", PotionBagSystem.MaxPotions)));
+        }
+        */
+        base.ModifyTooltips(tooltips);
+    }
 
-        public override Rectangle GetFrame(Texture2D texture, int frameCounterOverride = -1)
-        {
-            return texture.Frame(1, 2, 0, base.Frame);
-        }
+    public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
+    {
+        Asset<Texture2D> texture = TextureAssets.Item[Type];
+        Rectangle drawFrame = texture.Frame(1, 2, 0, PotionBagSystem.AnyCompletedPotions ? 1 : 0);
+        return base.PreDrawInInventory(spriteBatch, position, drawFrame, drawColor, itemColor, drawFrame.Size() * 0.5f, scale);
+    }
+
+    public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI)
+    {
+        Main.itemFrame[whoAmI] = PotionBagSystem.AnyCompletedPotions ? 1 : 0;
+        return base.PreDrawInWorld(spriteBatch, lightColor, alphaColor, ref rotation, ref scale, whoAmI);
+    }
+
+    public override void UpdateInventory(Player player)
+    {
+        player.FargoMutant().PotionCooler = true;
+        player.FargoMutant().PotionCoolerBuffer = true;
+    }
+
+    public override void AddRecipes()
+    {
+        CreateRecipe()
+            .AddIngredient<GizmoParts>(2)
+            .AddRecipeGroup(RecipeGroupID.IronBar, 5)
+            .AddIngredient(ItemID.IceBlock, 20)
+            .AddIngredient(ItemID.FallenStar, 3)
+            .AddTile(TileID.Anvils)
+            .Register();
+    }
+}
+
+public class PotionCoolerDrawAnimation : DrawAnimation
+{
+    public override void Update()
+    {
+        base.Frame = PotionBagSystem.AnyCompletedPotions ? 1 : 0;
+    }
+
+    public override Rectangle GetFrame(Texture2D texture, int frameCounterOverride = -1)
+    {
+        return texture.Frame(1, 2, 0, base.Frame);
     }
 }

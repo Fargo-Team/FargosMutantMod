@@ -3,22 +3,21 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Fargowiltas.Content.Items.Summons.SwarmSummons
+namespace Fargowiltas.Content.Items.Summons.SwarmSummons;
+
+public class OverloadSkele : SwarmSummonBase
 {
-    public class OverloadSkele : SwarmSummonBase
+    public OverloadSkele() : base(NPCID.SkeletronHead, nameof(OverloadSkele), 40, ModContent.ItemType<SuspiciousSkull>())
     {
-        public OverloadSkele() : base(NPCID.SkeletronHead, nameof(OverloadSkele), 40, ModContent.ItemType<SuspiciousSkull>())
-        {
-        }
+    }
 
-        public override void SetStaticDefaults()
-        {
-            ItemID.Sets.SortingPriorityBossSpawns[Type] = 5; // Puts it right after Deer Thing and Abeemination
-        }
+    public override void SetStaticDefaults()
+    {
+        ItemID.Sets.SortingPriorityBossSpawns[Type] = 5; // Puts it right after Deer Thing and Abeemination
+    }
 
-        public override bool CanUseItem(Player player)
-        {
-            return !Fargowiltas.SwarmActive;
-        }
+    public override bool CanUseItem(Player player)
+    {
+        return !Fargowiltas.SwarmActive;
     }
 }

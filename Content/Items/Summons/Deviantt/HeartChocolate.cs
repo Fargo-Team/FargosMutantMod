@@ -4,26 +4,25 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Fargowiltas.Content.Items.Summons.Deviantt
+namespace Fargowiltas.Content.Items.Summons.Deviantt;
+
+public class HeartChocolate : BaseSpawnBooster
 {
-    public class HeartChocolate : BaseSpawnBooster
+    public override int BuffType => ModContent.BuffType<HeartChocolateBuff>();
+
+
+    public override void AddRecipes()
     {
-        public override int BuffType => ModContent.BuffType<HeartChocolateBuff>();
-
-
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-                .AddIngredient(ItemID.LifeCrystal)
-                .AddRecipeGroup(RecipeGroups.AnyFoodT2)
-                .AddTile(TileID.CookingPots)
-                .Register();
-        }
+        CreateRecipe()
+            .AddIngredient(ItemID.LifeCrystal)
+            .AddRecipeGroup(RecipeGroups.AnyFoodT2)
+            .AddTile(TileID.CookingPots)
+            .Register();
     }
-    public class HeartChocolateBuff : BaseSpawnBoosterBuff
+}
+public class HeartChocolateBuff : BaseSpawnBoosterBuff
+{
+    public HeartChocolateBuff() : base(() => [NPCID.LostGirl], () => Main.LocalPlayer.ZoneRockLayerHeight, 0.2f)
     {
-        public HeartChocolateBuff() : base(() => [NPCID.LostGirl], () => Main.LocalPlayer.ZoneRockLayerHeight, 0.2f)
-        {
-        }
     }
 }

@@ -7,69 +7,68 @@ using Terraria;
 using Terraria.ID;
 using Terraria.UI;
 
-namespace Fargowiltas.Content.UI
+namespace Fargowiltas.Content.UI;
+
+public class UIPotionToggle : UIElement
 {
-    public class UIPotionToggle : UIElement
+    public const int CheckboxTextSpace = 4;
+
+    public static DynamicSpriteFont Font => Terraria.GameContent.FontAssets.ItemStack.Value;
+
+    public int ItemID;
+    public int BuffID;
+
+    public UIPotionToggle(int itemID, int buffID)
     {
-        public const int CheckboxTextSpace = 4;
+        ItemID = itemID;
+        BuffID = buffID;
 
-        public static DynamicSpriteFont Font => Terraria.GameContent.FontAssets.ItemStack.Value;
+        Width.Set(18, 0);
+        Height.Set(18, 0);
+    }
 
-        public int ItemID;
-        public int BuffID;
+    protected override void DrawSelf(SpriteBatch spriteBatch)
+    {
+        base.DrawSelf(spriteBatch);
+        Vector2 position = GetDimensions().Position();
+        Player player = Main.LocalPlayer;
+        FargoPlayer modPlayer = player.FargoMutant();
 
-        public UIPotionToggle(int itemID, int buffID)
+        if (IsMouseHovering && Main.mouseLeft && Main.mouseLeftRelease)
         {
-            ItemID = itemID;
-            BuffID = buffID;
+            modPlayer.PotionToggler.Toggles[ItemID].ToggleBool = !modPlayer.PotionToggler.Toggles[ItemID].ToggleBool;
 
-            Width.Set(18, 0);
-            Height.Set(18, 0);
+            if (Main.netMode == NetmodeID.MultiplayerClient)
+                modPlayer.SyncPotionToggle(ItemID);
         }
 
-        protected override void DrawSelf(SpriteBatch spriteBatch)
+        bool toggled = Main.LocalPlayer.GetPotionToggleValue(ItemID);
+
+        spriteBatch.Draw(FargoMutantAssets.UI.Toggler.CheckBox.Value, position + new Vector2(0, 0), Color.White);
+
+        if (toggled)
         {
-            base.DrawSelf(spriteBatch);
-            Vector2 position = GetDimensions().Position();
-            Player player = Main.LocalPlayer;
-            FargoPlayer modPlayer = player.FargoMutant();
-
-            if (IsMouseHovering && Main.mouseLeft && Main.mouseLeftRelease)
+            spriteBatch.Draw(FargoMutantAssets.UI.Toggler.CheckMark.Value, position + new Vector2(0, -4), Color.White);
+            if (IsMouseHovering)
             {
-                modPlayer.PotionToggler.Toggles[ItemID].ToggleBool = !modPlayer.PotionToggler.Toggles[ItemID].ToggleBool;
-
-                if (Main.netMode == NetmodeID.MultiplayerClient)
-                    modPlayer.SyncPotionToggle(ItemID);
+                spriteBatch.Draw(FargoMutantAssets.UI.Toggler.CheckMarkGlow.Value, position + new Vector2(0, -4), Color.White);
             }
-
-            bool toggled = Main.LocalPlayer.GetPotionToggleValue(ItemID);
-
-            spriteBatch.Draw(FargoMutantAssets.UI.Toggler.CheckBox.Value, position + new Vector2(0, 0), Color.White);
-
-            if (toggled)
-            {
-                spriteBatch.Draw(FargoMutantAssets.UI.Toggler.CheckMark.Value, position + new Vector2(0, -4), Color.White);
-                if (IsMouseHovering)
-                {
-                    spriteBatch.Draw(FargoMutantAssets.UI.Toggler.CheckMarkGlow.Value, position + new Vector2(0, -4), Color.White);
-                }
-            }
-
-
-            string GetText()
-            {
-                string desc = Lang.GetBuffName(BuffID);
-                if (ItemID <= 0) return desc;
-                string itemIcon = $"[i:{ItemID}]";
-                return $"{itemIcon} {desc}";
-            }
-            string text = GetText();
-            position += new Vector2(Width.Pixels * Main.UIScale, 0);
-            position += new Vector2(CheckboxTextSpace, 0);
-            position += new Vector2(0, Font.MeasureString(text).Y * 0.175f);
-            Color color = Color.White;
-
-            Utils.DrawBorderString(spriteBatch, text, position, color);
         }
+
+
+        string GetText()
+        {
+            string desc = Lang.GetBuffName(BuffID);
+            if (ItemID <= 0) return desc;
+            string itemIcon = $"[i:{ItemID}]";
+            return $"{itemIcon} {desc}";
+        }
+        string text = GetText();
+        position += new Vector2(Width.Pixels * Main.UIScale, 0);
+        position += new Vector2(CheckboxTextSpace, 0);
+        position += new Vector2(0, Font.MeasureString(text).Y * 0.175f);
+        Color color = Color.White;
+
+        Utils.DrawBorderString(spriteBatch, text, position, color);
     }
 }

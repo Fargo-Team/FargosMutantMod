@@ -6,76 +6,75 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Fargowiltas.Content.Projectiles.Explosives
+namespace Fargowiltas.Content.Projectiles.Explosives;
+
+public class MiniDirtInstabridgeProj : ModProjectile
 {
-    public class MiniDirtInstabridgeProj : ModProjectile
+    public override string Texture => "Fargowiltas/Content/Items/Explosives/MiniDirtInstaBridge";
+    public override void SetDefaults()
     {
-        public override string Texture => "Fargowiltas/Content/Items/Explosives/MiniDirtInstaBridge";
-        public override void SetDefaults()
+        Projectile.width = 20;
+        Projectile.height = 36;
+        Projectile.aiStyle = ProjAIStyleID.Explosive;
+        Projectile.friendly = true;
+        Projectile.penetrate = -1;
+        Projectile.timeLeft = 1;
+    }
+
+    public override bool? CanDamage()
+    {
+        return false;
+    }
+
+    public override void OnKill(int timeLeft)
+    {
+        Vector2 position = Projectile.Center;
+        SoundEngine.PlaySound(SoundID.Item14, position);
+
+        if (Main.netMode == NetmodeID.MultiplayerClient)
         {
-            Projectile.width = 20;
-            Projectile.height = 36;
-            Projectile.aiStyle = ProjAIStyleID.Explosive;
-            Projectile.friendly = true;
-            Projectile.penetrate = -1;
-            Projectile.timeLeft = 1;
+            return;
         }
 
-        public override bool? CanDamage()
-        {
-            return false;
-        }
+        // All the way across
+        const int length = 150;
+        bool goLeft = Projectile.Center.X < Main.player[Projectile.owner].Center.X;
+        int min = goLeft ? -length : 0;
+        int max = goLeft ? 0 : length;
 
-        public override void OnKill(int timeLeft)
-        {
-            Vector2 position = Projectile.Center;
-            SoundEngine.PlaySound(SoundID.Item14, position);
+        int[] deletableTiles = [
+            TileID.Cactus,
+            TileID.Trees,
+            TileID.CorruptThorns,
+            TileID.CrimsonThorns,
+            TileID.JungleThorns
+        ];
 
-            if (Main.netMode == NetmodeID.MultiplayerClient)
+        for (int x = min; x < max; x++)
+        {
+            int xPosition = (int)(x + position.X / 16.0f);
+            int yPosition = (int)(position.Y / 16.0f);
+
+            if (xPosition < 0 || xPosition >= Main.maxTilesX || yPosition < 0 || yPosition >= Main.maxTilesY)
+                continue;
+
+            Tile tile = Main.tile[xPosition, yPosition];
+
+            if (tile == null)
             {
-                return;
+                continue;
             }
 
-            // All the way across
-            const int length = 150;
-            bool goLeft = Projectile.Center.X < Main.player[Projectile.owner].Center.X;
-            int min = goLeft ? -length : 0;
-            int max = goLeft ? 0 : length;
-
-            int[] deletableTiles = [
-                TileID.Cactus,
-                TileID.Trees,
-                TileID.CorruptThorns,
-                TileID.CrimsonThorns,
-                TileID.JungleThorns
-            ];
-
-            for (int x = min; x < max; x++)
+            if (deletableTiles.Contains(tile.TileType))
             {
-                int xPosition = (int)(x + position.X / 16.0f);
-                int yPosition = (int)(position.Y / 16.0f);
-
-                if (xPosition < 0 || xPosition >= Main.maxTilesX || yPosition < 0 || yPosition >= Main.maxTilesY)
-                    continue;
-
-                Tile tile = Main.tile[xPosition, yPosition];
-
-                if (tile == null)
-                {
-                    continue;
-                }
-
-                if (deletableTiles.Contains(tile.TileType))
-                {
-                    FargoGlobalTile.ClearEverything(xPosition, yPosition);
-                }
-
-                // Spawn platforms
-                WorldGen.PlaceTile(xPosition, yPosition, TileID.Dirt);
-
-
+                FargoGlobalTile.ClearEverything(xPosition, yPosition);
             }
-            NetMessage.SendTileSquare(-1, (int)(min + position.X / 16.0f), (int)(position.Y / 16.0f), max - min + 1, 1);
+
+            // Spawn platforms
+            WorldGen.PlaceTile(xPosition, yPosition, TileID.Dirt);
+
+
         }
+        NetMessage.SendTileSquare(-1, (int)(min + position.X / 16.0f), (int)(position.Y / 16.0f), max - min + 1, 1);
     }
 }

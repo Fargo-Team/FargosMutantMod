@@ -1,24 +1,23 @@
 using Terraria.ID;
 
-namespace Fargowiltas.Content.Items.Summons.Deviantt
+namespace Fargowiltas.Content.Items.Summons.Deviantt;
+
+public class CrimsonChest : BaseSummon
 {
-    public class CrimsonChest : BaseSummon
+    public override int NPCType => NPCID.BigMimicCrimson;
+
+    public override void SetStaticDefaults()
     {
-        public override int NPCType => NPCID.BigMimicCrimson;
+        base.SetStaticDefaults();
+        ItemID.Sets.SortingPriorityBossSpawns[Type] = 6; // Places it right after Gelatin Crystal
+    }
 
-        public override void SetStaticDefaults()
-        {
-            base.SetStaticDefaults();
-            ItemID.Sets.SortingPriorityBossSpawns[Type] = 6; // Places it right after Gelatin Crystal
-        }
-
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-                .AddIngredient(ItemID.FleshChest, 1)
-                .AddIngredient(ItemID.NightKey, 1)
-                .AddTile(TileID.MythrilAnvil)
-                .Register();
-        }
+    public override void AddRecipes()
+    {
+        CreateRecipe()
+            .AddIngredient(ItemID.FleshChest, 1)
+            .AddIngredient(ItemID.NightKey, 1)
+            .AddTile(TileID.MythrilAnvil)
+            .Register();
     }
 }

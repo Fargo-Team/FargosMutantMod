@@ -4,17 +4,16 @@ using System.Collections.Generic;
 using Terraria.ModLoader;
 using Terraria.UI;
 
-namespace Fargowiltas.Common.Systems
+namespace Fargowiltas.Common.Systems;
+
+public class UIManagerSystem : ModSystem
 {
-    public class UIManagerSystem : ModSystem
+    public override void UpdateUI(GameTime gameTime)
     {
-        public override void UpdateUI(GameTime gameTime)
-        {
-            FargoUIManager.UpdateUI(gameTime);
-        }
-        public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
-        {
-            FargoUIManager.ModifyInterfaceLayers(layers);
-        }
+        FargoUIManager.UpdateUI(gameTime);
+    }
+    public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
+    {
+        FargoUIManager.ModifyInterfaceLayers(layers);
     }
 }

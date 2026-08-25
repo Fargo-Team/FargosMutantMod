@@ -1,23 +1,22 @@
 using Terraria.ID;
 
-namespace Fargowiltas.Content.Items.Summons.Deviantt
-{
-    public class CorruptChest : BaseSummon
-    {
-        public override int NPCType => NPCID.BigMimicCorruption;
+namespace Fargowiltas.Content.Items.Summons.Deviantt;
 
-        public override void SetStaticDefaults()
-        {
-            base.SetStaticDefaults();
-            ItemID.Sets.SortingPriorityBossSpawns[Type] = 6; // Places it right after Gelatin Crystal
-        }
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-                .AddIngredient(ItemID.LesionChest, 1)
-                .AddIngredient(ItemID.NightKey, 1)
-                .AddTile(TileID.MythrilAnvil)
-                .Register();
-        }
+public class CorruptChest : BaseSummon
+{
+    public override int NPCType => NPCID.BigMimicCorruption;
+
+    public override void SetStaticDefaults()
+    {
+        base.SetStaticDefaults();
+        ItemID.Sets.SortingPriorityBossSpawns[Type] = 6; // Places it right after Gelatin Crystal
+    }
+    public override void AddRecipes()
+    {
+        CreateRecipe()
+            .AddIngredient(ItemID.LesionChest, 1)
+            .AddIngredient(ItemID.NightKey, 1)
+            .AddTile(TileID.MythrilAnvil)
+            .Register();
     }
 }

@@ -14,4 +14,10 @@
     <Folder Include="Localization\zh-Hans\" />
     <Folder Include="Localization\ru-RU\" />
   </ItemGroup>
+  <ItemGroup>
+    <EditorConfigFiles Remove="C:\Users\Hayde\Documents\My Games\Terraria\tModLoader\ModSources\Fargowiltas\.editorconfig" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\Users\Hayde\Documents\My Games\Terraria\tModLoader\ModSources\Fargowiltas\.editorconfig" />
+  </ItemGroup>
 </Project>

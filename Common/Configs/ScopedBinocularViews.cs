@@ -1,10 +1,9 @@
-﻿namespace Fargowiltas.Common.Configs
+﻿namespace Fargowiltas.Common.Configs;
+
+public enum ScopedBinocularViews
 {
-    public enum ScopedBinocularViews
-    {
-        AllDisabled,
-        RifleScopeAccessoryDisabled,
-        SniperRifleScopeDisabled,
-        AllEnabled
-    }
+    AllDisabled,
+    RifleScopeAccessoryDisabled,
+    SniperRifleScopeDisabled,
+    AllEnabled
 }

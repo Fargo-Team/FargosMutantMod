@@ -3,24 +3,23 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
-namespace Fargowiltas.Content.Items.Tiles
+namespace Fargowiltas.Content.Items.Tiles;
+
+public class EchPaintingSheet : ModTile
 {
-    public class EchPaintingSheet : ModTile
+    public override void SetStaticDefaults()
     {
-        public override void SetStaticDefaults()
-        {
-            Main.tileFrameImportant[Type] = true;
-            Main.tileLavaDeath[Type] = true;
-            Main.tileSpelunker[Type] = true;
+        Main.tileFrameImportant[Type] = true;
+        Main.tileLavaDeath[Type] = true;
+        Main.tileSpelunker[Type] = true;
 
-            TileID.Sets.DisableSmartCursor[Type] = true;
+        TileID.Sets.DisableSmartCursor[Type] = true;
 
-            TileObjectData.newTile.CopyFrom(TileObjectData.Style3x3Wall);
-            TileObjectData.newTile.StyleHorizontal = true;
-            TileObjectData.newTile.StyleWrapLimit = 36;
-            TileObjectData.addTile(Type);
+        TileObjectData.newTile.CopyFrom(TileObjectData.Style3x3Wall);
+        TileObjectData.newTile.StyleHorizontal = true;
+        TileObjectData.newTile.StyleWrapLimit = 36;
+        TileObjectData.addTile(Type);
 
-            DustType = DustID.WoodFurniture;
-        }
+        DustType = DustID.WoodFurniture;
     }
 }

@@ -3,16 +3,15 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Fargowiltas.Content.Items.Summons.Deviantt
+namespace Fargowiltas.Content.Items.Summons.Deviantt;
+
+public class Pincushion : BaseSpawnBooster
 {
-    public class Pincushion : BaseSpawnBooster
+    public override int BuffType => ModContent.BuffType<PincushionBuff>();
+}
+public class PincushionBuff : BaseSpawnBoosterBuff
+{
+    public PincushionBuff() : base(() => [NPCID.Nailhead], () => Main.eclipse && NPC.downedPlantBoss && (Main.LocalPlayer.ZoneOverworldHeight || (Main.remixWorld && Main.LocalPlayer.ZoneRockLayerHeight)), 1f)
     {
-        public override int BuffType => ModContent.BuffType<PincushionBuff>();
-    }
-    public class PincushionBuff : BaseSpawnBoosterBuff
-    {
-        public PincushionBuff() : base(() => [NPCID.Nailhead], () => Main.eclipse && NPC.downedPlantBoss && (Main.LocalPlayer.ZoneOverworldHeight || (Main.remixWorld && Main.LocalPlayer.ZoneRockLayerHeight)), 1f)
-        {
-        }
     }
 }

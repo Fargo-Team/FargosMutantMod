@@ -2,16 +2,15 @@ using Fargowiltas.Common.Configs;
 using Terraria.GameContent;
 using Terraria.ModLoader;
 
-namespace Fargowiltas.Content.Items.Tiles
-{
-    public class FargoGlobalPylon : GlobalPylon
-    {
-        public override bool? ValidTeleportCheck_PreAnyDanger(TeleportPylonInfo pylonInfo)
-        {
-            if (FargoServerConfig.Instance.PylonsIgnoreEvents && !FargoUtils.AnyBossAlive())
-                return true;
+namespace Fargowiltas.Content.Items.Tiles;
 
-            return base.ValidTeleportCheck_PreAnyDanger(pylonInfo);
-        }
+public class FargoGlobalPylon : GlobalPylon
+{
+    public override bool? ValidTeleportCheck_PreAnyDanger(TeleportPylonInfo pylonInfo)
+    {
+        if (FargoServerConfig.Instance.PylonsIgnoreEvents && !FargoUtils.AnyBossAlive())
+            return true;
+
+        return base.ValidTeleportCheck_PreAnyDanger(pylonInfo);
     }
 }

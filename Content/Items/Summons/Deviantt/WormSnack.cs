@@ -4,25 +4,24 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Fargowiltas.Content.Items.Summons.Deviantt
-{
-    public class WormSnack : BaseSpawnBooster
-    {
-        public override int BuffType => ModContent.BuffType<WormSnackBuff>();
+namespace Fargowiltas.Content.Items.Summons.Deviantt;
 
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-                .AddIngredient(ItemID.DirtBlock, 50)
-                .AddRecipeGroup(RecipeGroups.AnyFoodT2, 2)
-                .AddTile(TileID.Anvils)
-                .Register();
-        }
-    }
-    public class WormSnackBuff : BaseSpawnBoosterBuff
+public class WormSnack : BaseSpawnBooster
+{
+    public override int BuffType => ModContent.BuffType<WormSnackBuff>();
+
+    public override void AddRecipes()
     {
-        public WormSnackBuff() : base(() => Main.hardMode ? [NPCID.DiggerHead] : [NPCID.GiantWormHead], () => (Main.LocalPlayer.ZoneDirtLayerHeight || Main.LocalPlayer.ZoneRockLayerHeight) && !Main.LocalPlayer.ZoneSnow, 0.4f)
-        {
-        }
+        CreateRecipe()
+            .AddIngredient(ItemID.DirtBlock, 50)
+            .AddRecipeGroup(RecipeGroups.AnyFoodT2, 2)
+            .AddTile(TileID.Anvils)
+            .Register();
+    }
+}
+public class WormSnackBuff : BaseSpawnBoosterBuff
+{
+    public WormSnackBuff() : base(() => Main.hardMode ? [NPCID.DiggerHead] : [NPCID.GiantWormHead], () => (Main.LocalPlayer.ZoneDirtLayerHeight || Main.LocalPlayer.ZoneRockLayerHeight) && !Main.LocalPlayer.ZoneSnow, 0.4f)
+    {
     }
 }

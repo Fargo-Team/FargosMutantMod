@@ -5,54 +5,53 @@ using Terraria.GameContent.Events;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Fargowiltas.Content.Items.Summons.Abom
+namespace Fargowiltas.Content.Items.Summons.Abom;
+
+public class ForbiddenScarab : ModItem
 {
-    public class ForbiddenScarab : ModItem
+    //private static MethodInfo startSandstormMethod;
+
+    public override void SetStaticDefaults()
     {
-        //private static MethodInfo startSandstormMethod;
+        Item.ResearchUnlockCount = 3;
+        ItemID.Sets.SortingPriorityBossSpawns[Type] = 0; // Places it before any other boss summons
+    }
 
-        public override void SetStaticDefaults()
+    public override void SetDefaults()
+    {
+        Item.width = 20;
+        Item.height = 20;
+        Item.maxStack = 9999;
+        Item.value = Item.sellPrice(0, 0, 2);
+        Item.rare = ItemRarityID.Blue;
+        Item.useAnimation = 30;
+        Item.useTime = 30;
+        Item.useStyle = ItemUseStyleID.Shoot;
+        Item.consumable = true;
+    }
+
+    public override bool CanUseItem(Player player)
+    {
+        return !Sandstorm.Happening;
+    }
+
+    public override bool? UseItem(Player player)
+    {
+        Main.windSpeedTarget = Main.windSpeedCurrent = 0.8f; //40mph?
+
+        Sandstorm.StartSandstorm();
+
+
+
+        if (Main.netMode == NetmodeID.Server)
         {
-            Item.ResearchUnlockCount = 3;
-            ItemID.Sets.SortingPriorityBossSpawns[Type] = 0; // Places it before any other boss summons
+            NetMessage.SendData(MessageID.WorldData);
+            Main.SyncRain();
         }
 
-        public override void SetDefaults()
-        {
-            Item.width = 20;
-            Item.height = 20;
-            Item.maxStack = 9999;
-            Item.value = Item.sellPrice(0, 0, 2);
-            Item.rare = ItemRarityID.Blue;
-            Item.useAnimation = 30;
-            Item.useTime = 30;
-            Item.useStyle = ItemUseStyleID.Shoot;
-            Item.consumable = true;
-        }
+        FargoUtils.PrintLocalization("MessageInfo.StartSandStorm", new Color(175, 75, 255));
+        SoundEngine.PlaySound(SoundID.Roar, player.position);
 
-        public override bool CanUseItem(Player player)
-        {
-            return !Sandstorm.Happening;
-        }
-
-        public override bool? UseItem(Player player)
-        {
-            Main.windSpeedTarget = Main.windSpeedCurrent = 0.8f; //40mph?
-
-            Sandstorm.StartSandstorm();
-
-
-
-            if (Main.netMode == NetmodeID.Server)
-            {
-                NetMessage.SendData(MessageID.WorldData);
-                Main.SyncRain();
-            }
-
-            FargoUtils.PrintLocalization("MessageInfo.StartSandStorm", new Color(175, 75, 255));
-            SoundEngine.PlaySound(SoundID.Roar, player.position);
-
-            return true;
-        }
+        return true;
     }
 }

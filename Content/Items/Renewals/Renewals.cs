@@ -5,229 +5,228 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Fargowiltas.Content.Items.Renewals
+namespace Fargowiltas.Content.Items.Renewals;
+
+public class CorruptRenewal : BaseRenewalItem
 {
-    public class CorruptRenewal : BaseRenewalItem
+    public CorruptRenewal() : base("Corruption Renewal", "Corrupts a large radius", ItemID.PurpleSolution)
     {
-        public CorruptRenewal() : base("Corruption Renewal", "Corrupts a large radius", ItemID.PurpleSolution)
-        {
-        }
-
-        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-        {
-            Projectile.NewProjectile(player.GetSource_ItemUse(source.Item), position, velocity, ModContent.ProjectileType<CorruptNukeProj>(), 0, 0, Main.myPlayer);
-
-            return false;
-        }
     }
 
-    public class CorruptRenewalSupreme : BaseRenewalItem
+    public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
     {
-        public CorruptRenewalSupreme() : base("Corruption Renewal Supreme", "Corrupts the entire world", -1, true, ModContent.ItemType<CorruptRenewal>())
-        {
-        }
+        Projectile.NewProjectile(player.GetSource_ItemUse(source.Item), position, velocity, ModContent.ProjectileType<CorruptNukeProj>(), 0, 0, Main.myPlayer);
 
-        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-        {
-            Projectile.NewProjectile(player.GetSource_ItemUse(source.Item), position, velocity, ModContent.ProjectileType<CorruptNukeSupremeProj>(), 0, 0, Main.myPlayer);
+        return false;
+    }
+}
 
-            return false;
-        }
+public class CorruptRenewalSupreme : BaseRenewalItem
+{
+    public CorruptRenewalSupreme() : base("Corruption Renewal Supreme", "Corrupts the entire world", -1, true, ModContent.ItemType<CorruptRenewal>())
+    {
     }
 
-    public class CrimsonRenewal : BaseRenewalItem
+    public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
     {
-        public CrimsonRenewal() : base("Crimson Renewal", "Crimsons a large radius", ItemID.RedSolution)
-        {
-        }
+        Projectile.NewProjectile(player.GetSource_ItemUse(source.Item), position, velocity, ModContent.ProjectileType<CorruptNukeSupremeProj>(), 0, 0, Main.myPlayer);
 
-        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-        {
-            Projectile.NewProjectile(player.GetSource_ItemUse(source.Item), position, velocity, ModContent.ProjectileType<CrimsonNukeProj>(), 0, 0, Main.myPlayer);
+        return false;
+    }
+}
 
-            return false;
-        }
+public class CrimsonRenewal : BaseRenewalItem
+{
+    public CrimsonRenewal() : base("Crimson Renewal", "Crimsons a large radius", ItemID.RedSolution)
+    {
     }
 
-    public class CrimsonRenewalSupreme : BaseRenewalItem
+    public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
     {
-        public CrimsonRenewalSupreme() : base("Crimson Renewal Supreme", "Crimsons the entire world", -1, true, ModContent.ItemType<CrimsonRenewal>())
-        {
-        }
+        Projectile.NewProjectile(player.GetSource_ItemUse(source.Item), position, velocity, ModContent.ProjectileType<CrimsonNukeProj>(), 0, 0, Main.myPlayer);
 
-        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-        {
-            Projectile.NewProjectile(player.GetSource_ItemUse(source.Item), position, velocity, ModContent.ProjectileType<CrimsonNukeSupremeProj>(), 0, 0, Main.myPlayer);
+        return false;
+    }
+}
 
-            return false;
-        }
+public class CrimsonRenewalSupreme : BaseRenewalItem
+{
+    public CrimsonRenewalSupreme() : base("Crimson Renewal Supreme", "Crimsons the entire world", -1, true, ModContent.ItemType<CrimsonRenewal>())
+    {
     }
 
-    public class HallowRenewal : BaseRenewalItem
+    public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
     {
-        public HallowRenewal() : base("Hallowed Renewal", "Hallows a large radius", ItemID.BlueSolution)
-        {
-        }
+        Projectile.NewProjectile(player.GetSource_ItemUse(source.Item), position, velocity, ModContent.ProjectileType<CrimsonNukeSupremeProj>(), 0, 0, Main.myPlayer);
 
-        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-        {
-            Projectile.NewProjectile(player.GetSource_ItemUse(source.Item), position, velocity, ModContent.ProjectileType<HallowNukeProj>(), 0, 0, Main.myPlayer);
+        return false;
+    }
+}
 
-            return false;
-        }
+public class HallowRenewal : BaseRenewalItem
+{
+    public HallowRenewal() : base("Hallowed Renewal", "Hallows a large radius", ItemID.BlueSolution)
+    {
     }
 
-    public class HallowRenewalSupreme : BaseRenewalItem
+    public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
     {
-        public HallowRenewalSupreme() : base("Hallowed Renewal Supreme", "Hallows the entire world", -1, true, ModContent.ItemType<HallowRenewal>())
-        {
-        }
+        Projectile.NewProjectile(player.GetSource_ItemUse(source.Item), position, velocity, ModContent.ProjectileType<HallowNukeProj>(), 0, 0, Main.myPlayer);
 
-        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-        {
-            Projectile.NewProjectile(player.GetSource_ItemUse(source.Item), position, velocity, ModContent.ProjectileType<HallowNukeSupremeProj>(), 0, 0, Main.myPlayer);
+        return false;
+    }
+}
 
-            return false;
-        }
+public class HallowRenewalSupreme : BaseRenewalItem
+{
+    public HallowRenewalSupreme() : base("Hallowed Renewal Supreme", "Hallows the entire world", -1, true, ModContent.ItemType<HallowRenewal>())
+    {
     }
 
-    public class MushroomRenewal : BaseRenewalItem
+    public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
     {
-        public MushroomRenewal() : base("Mushroom Renewal", "Shroomifies a large radius", ItemID.DarkBlueSolution)
-        {
-        }
+        Projectile.NewProjectile(player.GetSource_ItemUse(source.Item), position, velocity, ModContent.ProjectileType<HallowNukeSupremeProj>(), 0, 0, Main.myPlayer);
 
-        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-        {
-            Projectile.NewProjectile(player.GetSource_ItemUse(source.Item), position, velocity, ModContent.ProjectileType<MushroomNukeProj>(), 0, 0, Main.myPlayer);
+        return false;
+    }
+}
 
-            return false;
-        }
+public class MushroomRenewal : BaseRenewalItem
+{
+    public MushroomRenewal() : base("Mushroom Renewal", "Shroomifies a large radius", ItemID.DarkBlueSolution)
+    {
     }
 
-    public class MushroomRenewalSupreme : BaseRenewalItem
+    public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
     {
-        public MushroomRenewalSupreme() : base("Mushroom Renewal Supreme", "Shroomifies the entire world", -1, true, ModContent.ItemType<MushroomRenewal>())
-        {
-        }
+        Projectile.NewProjectile(player.GetSource_ItemUse(source.Item), position, velocity, ModContent.ProjectileType<MushroomNukeProj>(), 0, 0, Main.myPlayer);
 
-        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-        {
-            Projectile.NewProjectile(player.GetSource_ItemUse(source.Item), position, velocity, ModContent.ProjectileType<MushroomNukeSupremeProj>(), 0, 0, Main.myPlayer);
+        return false;
+    }
+}
 
-            return false;
-        }
+public class MushroomRenewalSupreme : BaseRenewalItem
+{
+    public MushroomRenewalSupreme() : base("Mushroom Renewal Supreme", "Shroomifies the entire world", -1, true, ModContent.ItemType<MushroomRenewal>())
+    {
     }
 
-    public class PurityRenewal : BaseRenewalItem
+    public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
     {
-        public PurityRenewal() : base("Purity Renewal", "Cleanses a large radius", ItemID.GreenSolution)
-        {
-        }
+        Projectile.NewProjectile(player.GetSource_ItemUse(source.Item), position, velocity, ModContent.ProjectileType<MushroomNukeSupremeProj>(), 0, 0, Main.myPlayer);
 
-        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-        {
-            Projectile.NewProjectile(player.GetSource_ItemUse(source.Item), position, velocity, ModContent.ProjectileType<PurityNukeProj>(), 0, 0, Main.myPlayer);
+        return false;
+    }
+}
 
-            return false;
-        }
+public class PurityRenewal : BaseRenewalItem
+{
+    public PurityRenewal() : base("Purity Renewal", "Cleanses a large radius", ItemID.GreenSolution)
+    {
     }
 
-    public class PurityRenewalSupreme : BaseRenewalItem
+    public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
     {
-        public PurityRenewalSupreme() : base("Purity Renewal Supreme", "Cleanses the entire world", -1, true, ModContent.ItemType<PurityRenewal>())
-        {
-        }
+        Projectile.NewProjectile(player.GetSource_ItemUse(source.Item), position, velocity, ModContent.ProjectileType<PurityNukeProj>(), 0, 0, Main.myPlayer);
 
-        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-        {
-            Projectile.NewProjectile(player.GetSource_ItemUse(source.Item), position, velocity, ModContent.ProjectileType<PurityNukeSupremeProj>(), 0, 0, Main.myPlayer);
+        return false;
+    }
+}
 
-            return false;
-        }
+public class PurityRenewalSupreme : BaseRenewalItem
+{
+    public PurityRenewalSupreme() : base("Purity Renewal Supreme", "Cleanses the entire world", -1, true, ModContent.ItemType<PurityRenewal>())
+    {
     }
 
-    public class SnowRenewal : BaseRenewalItem
+    public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
     {
-        public SnowRenewal() : base("Snow Renewal", "Snows a large radius", ItemID.SnowSolution)
-        {
-        }
+        Projectile.NewProjectile(player.GetSource_ItemUse(source.Item), position, velocity, ModContent.ProjectileType<PurityNukeSupremeProj>(), 0, 0, Main.myPlayer);
 
-        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-        {
-            Projectile.NewProjectile(player.GetSource_ItemUse(source.Item), position, velocity, ModContent.ProjectileType<SnowNukeProj>(), 0, 0, Main.myPlayer);
+        return false;
+    }
+}
 
-            return false;
-        }
+public class SnowRenewal : BaseRenewalItem
+{
+    public SnowRenewal() : base("Snow Renewal", "Snows a large radius", ItemID.SnowSolution)
+    {
     }
 
-    public class SnowRenewalSupreme : BaseRenewalItem
+    public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
     {
-        public SnowRenewalSupreme() : base("Snow Renewal Supreme", "Snows the entire world", -1, true, ModContent.ItemType<SnowRenewal>())
-        {
-        }
+        Projectile.NewProjectile(player.GetSource_ItemUse(source.Item), position, velocity, ModContent.ProjectileType<SnowNukeProj>(), 0, 0, Main.myPlayer);
 
-        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-        {
-            Projectile.NewProjectile(player.GetSource_ItemUse(source.Item), position, velocity, ModContent.ProjectileType<SnowNukeSupremeProj>(), 0, 0, Main.myPlayer);
+        return false;
+    }
+}
 
-            return false;
-        }
+public class SnowRenewalSupreme : BaseRenewalItem
+{
+    public SnowRenewalSupreme() : base("Snow Renewal Supreme", "Snows the entire world", -1, true, ModContent.ItemType<SnowRenewal>())
+    {
     }
 
-    public class SandRenewal : BaseRenewalItem
+    public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
     {
-        public SandRenewal() : base("Desert Renewal", "Sands a large radius", ItemID.SandSolution)
-        {
-        }
+        Projectile.NewProjectile(player.GetSource_ItemUse(source.Item), position, velocity, ModContent.ProjectileType<SnowNukeSupremeProj>(), 0, 0, Main.myPlayer);
 
-        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-        {
-            Projectile.NewProjectile(player.GetSource_ItemUse(source.Item), position, velocity, ModContent.ProjectileType<SandNukeProj>(), 0, 0, Main.myPlayer);
+        return false;
+    }
+}
 
-            return false;
-        }
+public class SandRenewal : BaseRenewalItem
+{
+    public SandRenewal() : base("Desert Renewal", "Sands a large radius", ItemID.SandSolution)
+    {
     }
 
-    public class SandRenewalSupreme : BaseRenewalItem
+    public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
     {
-        public SandRenewalSupreme() : base("Desert Renewal Supreme", "Sands the entire world", -1, true, ModContent.ItemType<SandRenewal>())
-        {
-        }
+        Projectile.NewProjectile(player.GetSource_ItemUse(source.Item), position, velocity, ModContent.ProjectileType<SandNukeProj>(), 0, 0, Main.myPlayer);
 
-        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-        {
-            Projectile.NewProjectile(player.GetSource_ItemUse(source.Item), position, velocity, ModContent.ProjectileType<SandNukeSupremeProj>(), 0, 0, Main.myPlayer);
+        return false;
+    }
+}
 
-            return false;
-        }
+public class SandRenewalSupreme : BaseRenewalItem
+{
+    public SandRenewalSupreme() : base("Desert Renewal Supreme", "Sands the entire world", -1, true, ModContent.ItemType<SandRenewal>())
+    {
     }
 
-    public class DirtRenewal : BaseRenewalItem
+    public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
     {
-        public DirtRenewal() : base("Forest Renewal", "Dirts a large radius", ItemID.SandSolution)
-        {
-        }
+        Projectile.NewProjectile(player.GetSource_ItemUse(source.Item), position, velocity, ModContent.ProjectileType<SandNukeSupremeProj>(), 0, 0, Main.myPlayer);
 
-        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-        {
-            Projectile.NewProjectile(player.GetSource_ItemUse(source.Item), position, velocity, ModContent.ProjectileType<DirtNukeProj>(), 0, 0, Main.myPlayer);
+        return false;
+    }
+}
 
-            return false;
-        }
+public class DirtRenewal : BaseRenewalItem
+{
+    public DirtRenewal() : base("Forest Renewal", "Dirts a large radius", ItemID.SandSolution)
+    {
     }
 
-    public class DirtRenewalSupreme : BaseRenewalItem
+    public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
     {
-        public DirtRenewalSupreme() : base("Forest Renewal Supreme", "Dirts the entire world", -1, true, ModContent.ItemType<DirtRenewal>())
-        {
-        }
+        Projectile.NewProjectile(player.GetSource_ItemUse(source.Item), position, velocity, ModContent.ProjectileType<DirtNukeProj>(), 0, 0, Main.myPlayer);
 
-        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-        {
-            Projectile.NewProjectile(player.GetSource_ItemUse(source.Item), position, velocity, ModContent.ProjectileType<DirtNukeSupremeProj>(), 0, 0, Main.myPlayer);
+        return false;
+    }
+}
 
-            return false;
-        }
+public class DirtRenewalSupreme : BaseRenewalItem
+{
+    public DirtRenewalSupreme() : base("Forest Renewal Supreme", "Dirts the entire world", -1, true, ModContent.ItemType<DirtRenewal>())
+    {
+    }
+
+    public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+    {
+        Projectile.NewProjectile(player.GetSource_ItemUse(source.Item), position, velocity, ModContent.ProjectileType<DirtNukeSupremeProj>(), 0, 0, Main.myPlayer);
+
+        return false;
     }
 }

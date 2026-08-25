@@ -4,37 +4,36 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace Fargowiltas.Content.Items.Summons.Deviantt
+namespace Fargowiltas.Content.Items.Summons.Deviantt;
+
+public class SuspiciousLookingChest : BaseSummon
 {
-    public class SuspiciousLookingChest : BaseSummon
+    public override int NPCType => Main.LocalPlayer.ZoneSnow ? NPCID.IceMimic : NPCID.Mimic;
+
+    public override void SetStaticDefaults()
     {
-        public override int NPCType => Main.LocalPlayer.ZoneSnow ? NPCID.IceMimic : NPCID.Mimic;
+        base.SetStaticDefaults();
+        ItemID.Sets.SortingPriorityBossSpawns[Type] = 6; // Places it right after Gelatin Crystal
+    }
+    public override bool CanUseItem(Player player)
+    {
+        if (!(Main.hardMode || Main.remixWorld) && !FargoWorld.EternityMode)
+            return false;
+        return base.CanUseItem(player);
+    }
+    public override void ModifyTooltips(List<TooltipLine> tooltips)
+    {
+        if (!(FargoWorld.EternityMode || Main.remixWorld))
+            tooltips.Insert(4, new TooltipLine(Mod, "HardmodeLock", Language.GetTextValue($"Mods.Fargowiltas.Items.SuspiciousLookingChest.HardmodeLock")));
 
-        public override void SetStaticDefaults()
-        {
-            base.SetStaticDefaults();
-            ItemID.Sets.SortingPriorityBossSpawns[Type] = 6; // Places it right after Gelatin Crystal
-        }
-        public override bool CanUseItem(Player player)
-        {
-            if (!(Main.hardMode || Main.remixWorld) && !FargoWorld.EternityMode)
-                return false;
-            return base.CanUseItem(player);
-        }
-        public override void ModifyTooltips(List<TooltipLine> tooltips)
-        {
-            if (!(FargoWorld.EternityMode || Main.remixWorld))
-                tooltips.Insert(4, new TooltipLine(Mod, "HardmodeLock", Language.GetTextValue($"Mods.Fargowiltas.Items.SuspiciousLookingChest.HardmodeLock")));
-
-        }
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-                    .AddIngredient(ItemID.Chest, 1)
-                    .AddRecipeGroup("Fargowiltas:AnyEvilBar", 10)
-                    .AddIngredient(ItemID.GoldCoin, 10)
-                    .AddTile(TileID.DemonAltar)
-                    .Register();
-        }
+    }
+    public override void AddRecipes()
+    {
+        CreateRecipe()
+                .AddIngredient(ItemID.Chest, 1)
+                .AddRecipeGroup("Fargowiltas:AnyEvilBar", 10)
+                .AddIngredient(ItemID.GoldCoin, 10)
+                .AddTile(TileID.DemonAltar)
+                .Register();
     }
 }

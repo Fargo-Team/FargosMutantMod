@@ -1,21 +1,20 @@
 ﻿using Fargowiltas.Content.Items.Tiles;
 using Terraria.ModLoader;
 
-namespace Fargowiltas.Content.Achievements
+namespace Fargowiltas.Content.Achievements;
+
+public class MultitaskCenterAchievement : ModAchievement
 {
-    public class MultitaskCenterAchievement : ModAchievement
+    public override string TextureName => "Fargowiltas/Content/Achievements/MutantAchievements";
+
+    public override int Index => 7;
+
+    public override void SetStaticDefaults()
     {
-        public override string TextureName => "Fargowiltas/Content/Achievements/MutantAchievements";
+        Achievement.SetCategory(Terraria.Achievements.AchievementCategory.Collector);
 
-        public override int Index => 7;
-
-        public override void SetStaticDefaults()
-        {
-            Achievement.SetCategory(Terraria.Achievements.AchievementCategory.Collector);
-
-            AddItemCraftCondition(ModContent.ItemType<MultitaskCenter>());
-        }
-
-        public override Position GetDefaultPosition() => new After("HEAVY_METAL");
+        AddItemCraftCondition(ModContent.ItemType<MultitaskCenter>());
     }
+
+    public override Position GetDefaultPosition() => new After("HEAVY_METAL");
 }

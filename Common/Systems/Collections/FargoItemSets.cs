@@ -81,6 +81,9 @@ namespace Fargowiltas.Common.Systems.Collections
             ItemID.HandOfCreation, DupeType.Dupable,
             ItemID.Zenith, DupeType.MaterialsDupable,
             ItemID.AnglerTackleBag, DupeType.Dupable,
+            ItemID.AnglerHat, DupeType.Dupable,
+            ItemID.AnglerVest, DupeType.Dupable,
+            ItemID.AnglerPants, DupeType.Dupable,
             ItemID.LavaproofTackleBag, DupeType.Dupable,
             ItemID.GoldenFishingRod, DupeType.Dupable,
             ItemID.GoldenBugNet, DupeType.Dupable,
@@ -115,7 +118,6 @@ namespace Fargowiltas.Common.Systems.Collections
         public static List<ShopTooltip>[] RegisteredShopTooltips = ItemFactory.CreateCustomSet<List<ShopTooltip>>(null);
 
         public static int[] SacrificeCountDefault = Squirrel.SetDefaultSacrificeCount(ItemFactory);
-        public static int[] SacrificeCount = ItemFactory.CreateIntSet(0);
         public static bool[] HardmodeSacrifice = ItemFactory.CreateBoolSet(false,
             ItemID.DualHook,
             ItemID.MagicDagger,
@@ -339,7 +341,7 @@ namespace Fargowiltas.Common.Systems.Collections
 
                     FargoItemSets.ShimmerTransformsFromItem[shimmerItem].Add(i);
                 }
-                    
+
             }
         }
     }

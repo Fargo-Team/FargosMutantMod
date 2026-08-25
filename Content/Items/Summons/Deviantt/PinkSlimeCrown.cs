@@ -1,5 +1,4 @@
 using Fargowiltas.Content.Buffs;
-using Fargowiltas.Content.Items.Misc;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -38,12 +37,12 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
     {
         public override bool AppliesToEntity(NPC entity, bool lateInstantiation) => lateInstantiation && entity.type == NPCID.BlueSlime;
         public override void OnSpawn(NPC npc, IEntitySource source)
-        {   
+        {
             int whoAmI = npc.FindClosestPlayer();
             if (whoAmI == -1)
                 return;
             Player player = Main.player[whoAmI];
-            
+
             if (source is EntitySource_SpawnNPC && npc.lastInteraction == 255 && !npc.SpawnedFromStatue && player != null && player.HasBuff(ModContent.BuffType<PinkSlimeCrownBuff>()))
             {
                 //vanilla chance is RollLuck(180), 4 is extra generous to make sure multiple spawn from one use
@@ -52,7 +51,7 @@ namespace Fargowiltas.Content.Items.Summons.Deviantt
                     npc.Transform(-4);
                 }
             }
-            
+
         }
     }
 }

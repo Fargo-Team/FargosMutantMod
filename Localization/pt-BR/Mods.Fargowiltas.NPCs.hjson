@@ -1,17 +1,19 @@
 Abominationn: {
 	DisplayName: Abominationn
-	// NPCName1: Wilta
-	// NPCName2: Jack
-	// NPCName3: Harley
-	// NPCName4: Reaper
-	// NPCName5: Stevenn
-	// NPCName6: Doof
-	// NPCName7: Baroo
-	// NPCName8: Fergus
-	// NPCName9: Entev
-	// NPCName10: Catastrophe
-	// NPCName11: Bardo
-	// NPCName12: Betson
+	/*
+	NPCName1: Wilta
+	NPCName2: Jack
+	NPCName3: Harley
+	NPCName4: Reaper
+	NPCName5: Stevenn
+	NPCName6: Doof
+	NPCName7: Baroo
+	NPCName8: Fergus
+	NPCName9: Entev
+	NPCName10: Catastrophe
+	NPCName11: Bardo
+	NPCName12: Betson
+	*/
 	Bestiary: Consegue controlar o clima e para invasões, mas ele é preguiçoso e as suas armas estão fundidas com suas mãos. Que bom que ele não precisa de comer e as portas se abrem magicamente quando ele está perto.
 
 	TownNPCMood: {
@@ -90,19 +92,21 @@ Abominationn: {
 
 Deviantt: {
 	DisplayName: Deviantt
-	// NPCName1: Akira
-	// NPCName2: Remi
-	// NPCName3: Saku
-	// NPCName4: Seira
-	// NPCName5: Koi
-	// NPCName6: Elly
-	// NPCName7: Lori
-	// NPCName8: Calia
-	// NPCName9: Teri
-	// NPCName10: Artt
-	// NPCName11: Flan
-	// NPCName12: Shion
-	// NPCName13: Tewi
+	/*
+	NPCName1: Akira
+	NPCName2: Remi
+	NPCName3: Saku
+	NPCName4: Seira
+	NPCName5: Koi
+	NPCName6: Elly
+	NPCName7: Lori
+	NPCName8: Calia
+	NPCName9: Teri
+	NPCName10: Artt
+	NPCName11: Flan
+	NPCName12: Shion
+	NPCName13: Tewi
+	*/
 	Bestiary: Oferece invocadores de monstros e (caso ela queira) uma ajudinha. Essa criatura animada e energética gosta de dinheiro quase tanto quanto violência. Só um pouquinho deformada.
 
 	TownNPCMood: {
@@ -311,19 +315,21 @@ LumberJack: {
 
 Mutant: {
 	DisplayName: Mutant
-	// NPCName1: Flacken
-	// NPCName2: Dorf
-	// NPCName3: Bingo
-	// NPCName4: Hans
-	// NPCName5: Fargo
-	// NPCName6: Grim
-	// NPCName7: Mike
-	// NPCName8: Fargu
-	// NPCName9: Terrance
-	// NPCName10: Catty N. Pem
-	// NPCName11: Tom
-	// NPCName12: Weirdus
-	// NPCName13: Polly
+	/*
+	NPCName1: Flacken
+	NPCName2: Dorf
+	NPCName3: Bingo
+	NPCName4: Hans
+	NPCName5: Fargo
+	NPCName6: Grim
+	NPCName7: Mike
+	NPCName8: Fargu
+	NPCName9: Terrance
+	NPCName10: Catty N. Pem
+	NPCName11: Tom
+	NPCName12: Weirdus
+	NPCName13: Polly
+	*/
 	Bestiary: Chamado de irmão por seus irmãos, mas se recusa a confirmar seu gênero. Mais interessado em assistir lutas e pequenos animais do que falar sobre o seu passado. Parece estar procurando alguém forte...
 
 	TownNPCMood: {

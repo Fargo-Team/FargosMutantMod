@@ -1,4 +1,3 @@
-using Fargowiltas.Common;
 using Fargowiltas.Common.Configs;
 using Fargowiltas.Content.Items.Explosives;
 using Fargowiltas.Content.Items.Misc;
@@ -361,9 +360,6 @@ namespace Fargowiltas.Content.NPCs
 
                         //AddItem(ItemID.PinkBrick, Item.buyPrice(silver: 1));
 
-                        AddItem(ItemType<BrittleBone>(), condition: new Condition("Mods.Fargowiltas.Conditions.BrittleBone", () => Main.LocalPlayer.inventory.Any(i => !i.IsAir && i.useAmmo == ItemID.Bone)));
-                        break;
-
                     case NPCID.Merchant:
 
                         //AddItem(ItemID.FuzzyCarrot, condition: angler5);
@@ -492,21 +488,6 @@ namespace Fargowiltas.Content.NPCs
                         AddItem(ItemID.TitaniumOre, condition: Condition.DownedMoonLord);
                         AddItem(ItemID.ChlorophyteOre, condition: Condition.DownedMoonLord);*/
 
-                        break;
-
-                    case NPCID.WitchDoctor:
-                        bool alreadySellsTable = false;
-                        foreach (NPCShop.Entry entry in shop.Entries)
-                        {
-                            if (!entry.Item.IsAir && entry.Item.type == ItemID.BewitchingTable)
-                            {
-                                alreadySellsTable = true;
-                                break;
-                            }
-                        }
-
-                        if (!alreadySellsTable)
-                            AddItem(ItemID.BewitchingTable, condition: Condition.DownedSkeletron);
                         break;
 
                     case NPCID.Steampunker:

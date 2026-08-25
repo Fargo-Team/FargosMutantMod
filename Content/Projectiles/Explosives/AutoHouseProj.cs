@@ -83,14 +83,35 @@ namespace Fargowiltas.Content.Projectiles.Explosives
                 platformStyle = 13;
             }
         }
-        public static void PlaceHouse(int x, int y, Vector2 position, int side, Player player)
+
+        public static bool IsEnclosed(Vector2 position, int side)
+        {
+            for (int i=3; i <= 5; i++)
+            {
+                int x = side == 1 ? i : -i;
+                int xPosition = (int)(side * -1 + x + position.X / 16.0f);
+                int yPosition = (int)(-6 + position.Y / 16.0f);
+
+                if (!WorldGen.InWorld(xPosition, yPosition))
+                    return false;
+
+                Tile tile = Main.tile[xPosition, yPosition];
+                if (!tile.HasTile || !Main.tileSolid[tile.TileType])
+                    return false;
+            }
+
+            return true;
+        }
+
+        public static void PlaceHouse(int x, int y, Vector2 position, int side, Player player, bool enclosed)
         {
             int xPosition = (int)(side * -1 + x + position.X / 16.0f);
             int yPosition = (int)(y + position.Y / 16.0f);
             Tile tile = Main.tile[xPosition, yPosition];
 
+            var pickaxe = player.GetBestPickaxe() ?? ContentSamples.ItemsByType[ItemID.CopperPickaxe];
             // Testing for blocks that should not be destroyed
-            if (!FargoGlobalProjectile.OkayToDestroyTileAt(xPosition, yPosition, true))
+            if (!FargoGlobalProjectile.InstaDestructionCheck(xPosition, yPosition, player, pickaxe))
                 return;
 
             GetTiles(player, out int wallType, out int tileType, out int platformStyle, out bool moddedPlatform);
@@ -133,7 +154,7 @@ namespace Fargowiltas.Content.Projectiles.Explosives
             }
 
             //platforms on top
-            if (y == -5 && Math.Abs(x) >= 3 && Math.Abs(x) <= 5)
+            if (y == -5 && Math.Abs(x) >= 3 && Math.Abs(x) <= 5 && !enclosed)
             {
                 int type = TileID.Platforms;
                 int style = 0;
@@ -337,6 +358,9 @@ namespace Fargowiltas.Content.Projectiles.Explosives
             if (Main.netMode == NetmodeID.MultiplayerClient)
                 return;
 
+            int side = player.Center.X < position.X ? 1 : -1;
+            bool enclosed = IsEnclosed(position, side);
+
             if (player.Center.X < position.X)
             {
                 for (int i = 0; i < 3; i++)
@@ -353,7 +377,7 @@ namespace Fargowiltas.Content.Projectiles.Explosives
 
                             if (i == 0)
                             {
-                                PlaceHouse(x, y, position, 1, player);
+                                PlaceHouse(x, y, position, 1, player, enclosed);
                             }
                             else if (i == 1)
                             {
@@ -383,7 +407,7 @@ namespace Fargowiltas.Content.Projectiles.Explosives
 
                             if (i == 0)
                             {
-                                PlaceHouse(x, y, position, -1, player);
+                                PlaceHouse(x, y, position, -1, player, enclosed);
                             }
                             else if (i == 1)
                             {

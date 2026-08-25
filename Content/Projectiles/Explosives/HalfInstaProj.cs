@@ -48,6 +48,9 @@ namespace Fargowiltas.Content.Projectiles.Explosives
                 return;
             }
 
+            Player player = Main.player[Projectile.owner];
+            var pickaxe = player.GetBestPickaxe() ?? ContentSamples.ItemsByType[ItemID.CopperPickaxe];
+
             //cavern height plus halfway to hell
             int yEndpoint = (int)(Main.rockLayer + (Main.maxTilesY - 200 - Main.rockLayer) / 2);
 
@@ -66,7 +69,7 @@ namespace Fargowiltas.Content.Projectiles.Explosives
                     if (tile == null)
                         continue;
 
-                    if (!FargoGlobalProjectile.OkayToDestroyTileAt(xPosition, y))
+                    if (!FargoGlobalProjectile.InstaDestructionCheck(xPosition, y, player, pickaxe))
                         continue;
 
                     FargoGlobalTile.ClearEverything(xPosition, y, false);

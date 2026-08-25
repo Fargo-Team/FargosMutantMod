@@ -1,5 +1,4 @@
-﻿using Fargowiltas.Common;
-using Fargowiltas.Content.Items.Summons.Abom;
+﻿using Fargowiltas.Content.Items.Summons.Abom;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;

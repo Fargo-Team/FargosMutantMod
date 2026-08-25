@@ -1,4 +1,3 @@
-using Fargowiltas.Common;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;

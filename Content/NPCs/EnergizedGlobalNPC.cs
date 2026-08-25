@@ -1,5 +1,5 @@
-using Fargowiltas.Common;
 using Fargowiltas.Common.Systems.Collections;
+using Microsoft.Xna.Framework;
 using System.Reflection;
 using Terraria;
 using Terraria.DataStructures;
@@ -59,128 +59,121 @@ namespace Fargowiltas.Content.NPCs
 
         public override void SetDefaults(NPC npc)
         {
-            const int k = 1000;
-            //const int m = k * k;
-            int baseHealth = 18 * k;
-            int baseHealthHM = 48 * k;
+            int maxHealth = 180000; //
+            float HMmult = 2.5f;
             bool validBoss = true;
             if (Fargowiltas.SwarmSetDefaults)
             {
                 switch (npc.type)
                 {
                     case NPCID.KingSlime:
-                        npc.lifeMax = baseHealth;
                         Fargowiltas.Binding = Binding.PreHardmode;
                         break;
 
                     case NPCID.EyeofCthulhu:
-                        npc.lifeMax = baseHealth;
                         Fargowiltas.Binding = Binding.PreHardmode;
                         break;
 
                     case NPCID.EaterofWorldsHead:
-                        npc.lifeMax = baseHealth / 12;
+                        maxHealth = maxHealth / 12;
                         Fargowiltas.Binding = Binding.PreHardmode;
                         break;
 
                     case NPCID.BrainofCthulhu:
-                        npc.lifeMax = (int)(baseHealth / 2.5f);
+                        maxHealth = (int)(maxHealth / 2.5f);
                         Fargowiltas.Binding = Binding.PreHardmode;
                         break;
 
                     case NPCID.DD2DarkMageT1:
-                        npc.lifeMax = (int)(baseHealth / 1.5f);
+                        maxHealth = (int)(maxHealth / 1.5f);
                         Fargowiltas.Binding = Binding.PreHardmode;
                         break;
 
                     case NPCID.Deerclops:
-                        npc.lifeMax = baseHealth;
                         Fargowiltas.Binding = Binding.PreHardmode;
                         break;
 
                     case NPCID.QueenBee:
-                        npc.lifeMax = baseHealth;
                         Fargowiltas.Binding = Binding.PreHardmode;
                         break;
 
                     case NPCID.SkeletronHead:
-                        npc.lifeMax = baseHealth / 2;
+                        maxHealth = maxHealth / 2;
                         Fargowiltas.Binding = Binding.PreHardmode;
                         break;
 
                     case NPCID.WallofFlesh:
-                        npc.lifeMax = baseHealth;
                         Fargowiltas.Binding = Binding.PreHardmode;
                         break;
 
                     case NPCID.QueenSlimeBoss:
-                        npc.lifeMax = (int)(baseHealthHM * 0.6f);
+                        maxHealth = (int)(maxHealth * HMmult * 0.6f);
                         Fargowiltas.HardmodeSwarmActive = true;
                         Fargowiltas.Binding = Binding.PreMechs;
                         break;
 
                     case NPCID.TheDestroyer:
-                        npc.lifeMax = (int)(baseHealthHM * 1.5f);
+                        maxHealth = (int)(maxHealth * HMmult * 1.5f);
                         Fargowiltas.HardmodeSwarmActive = true;
                         Fargowiltas.Binding = Binding.PreMechs;
                         break;
 
                     case NPCID.Retinazer:
-                        npc.lifeMax = baseHealthHM / 2;
+                        maxHealth = (int)(maxHealth * HMmult / 2);
                         Fargowiltas.HardmodeSwarmActive = true;
                         Fargowiltas.Binding = Binding.PreMechs;
                         break;
 
                     case NPCID.Spazmatism:
-                        npc.lifeMax = baseHealthHM / 2;
+                        maxHealth = (int)(maxHealth * HMmult / 2);
                         Fargowiltas.HardmodeSwarmActive = true;
                         Fargowiltas.Binding = Binding.PreMechs;
                         break;
 
                     case NPCID.SkeletronPrime:
-                        npc.lifeMax = (int)(baseHealthHM / 1.5f);
+                        maxHealth = (int)(maxHealth * HMmult / 1.5f);
                         Fargowiltas.HardmodeSwarmActive = true;
                         Fargowiltas.Binding = Binding.PreMechs;
                         break;
 
                     case NPCID.Plantera:
-                        npc.lifeMax = baseHealthHM / 2;
+                        maxHealth = (int)(maxHealth * HMmult / 2);
                         Fargowiltas.HardmodeSwarmActive = true;
                         Fargowiltas.Binding = Binding.PostMechs;
                         break;
 
                     case NPCID.Golem:
-                        npc.lifeMax = baseHealthHM / 6;
+                        maxHealth = (int)(maxHealth * HMmult / 6);
                         Fargowiltas.HardmodeSwarmActive = true;
                         Fargowiltas.Binding = Binding.PostPlantera;
                         break;
 
                     case NPCID.DD2Betsy:
-                        npc.lifeMax = (int)(baseHealthHM / 1.5f);
+                        maxHealth = (int)(maxHealth * HMmult / 1.5f);
                         Fargowiltas.HardmodeSwarmActive = true;
                         Fargowiltas.Binding = Binding.PostPlantera;
                         break;
 
                     case NPCID.DukeFishron:
-                        npc.lifeMax = (int)(baseHealthHM / 1.5f);
+                        maxHealth = (int)(maxHealth * HMmult / 1.5f);
                         Fargowiltas.HardmodeSwarmActive = true;
                         Fargowiltas.Binding = Binding.PostPlantera;
                         break;
 
                     case NPCID.HallowBoss:
-                        npc.lifeMax = (int)(baseHealthHM / 1.5f);
+                        maxHealth = (int)(maxHealth * HMmult / 1.5f);
                         Fargowiltas.HardmodeSwarmActive = true;
                         Fargowiltas.Binding = Binding.PostPlantera;
                         break;
 
                     case NPCID.CultistBoss:
-                        npc.lifeMax = baseHealthHM / 4;
+                        maxHealth = (int)(maxHealth * HMmult / 4);
                         Fargowiltas.HardmodeSwarmActive = true;
                         Fargowiltas.Binding = Binding.PreMoonLord;
                         break;
 
                     case NPCID.MoonLordCore:
-                        npc.lifeMax = (int)(baseHealthHM / 2.5f);
+                        maxHealth = (int)(maxHealth * HMmult / 2.5f);
                         Fargowiltas.HardmodeSwarmActive = true;
                         Fargowiltas.Binding = Binding.PreMoonLord;
                         break;
@@ -194,9 +187,27 @@ namespace Fargowiltas.Content.NPCs
                         validBoss = false;
                         break;
                 }
+
+                if (validBoss) {
+                    float swarm = Fargowiltas.SwarmItemsUsed - 1;
+                    float progress = (swarm / 9f);
+                    float baseMult = 2f;
+                    int newhealth = (int)MathHelper.Lerp(npc.lifeMax * baseMult, maxHealth, progress);
+
+
+                    npc.lifeMax = newhealth;
+
+                    SwarmHealth = true;
+
+                    float damageMult = MathHelper.Lerp(1, 1.5f, progress);
+
+                    if (!npc.townNPC && npc.lifeMax > 10 && npc.damage > 0)
+                        npc.damage = (int)(npc.damage * damageMult);
+
+                }
             }
-            else
-                validBoss = false;
+            else validBoss = false;
+
             if (Fargowiltas.SwarmActive)
             {
                 if (!validBoss)
@@ -205,46 +216,46 @@ namespace Fargowiltas.Content.NPCs
                     switch (npc.type)
                     {
                         case NPCID.Creeper:
-                            npc.lifeMax = 1 * k;
+                            npc.lifeMax = 1000;
                             break;
 
                         case NPCID.EaterofWorldsBody:
                         case NPCID.EaterofWorldsTail:
-                            npc.lifeMax = baseHealth / 12;
+                            npc.lifeMax = maxHealth / 12;
                             break;
 
                         case NPCID.SkeletronHand:
-                            npc.lifeMax = baseHealth / 12;
+                            npc.lifeMax = maxHealth / 12;
                             break;
 
                         case NPCID.PrimeCannon:
                         case NPCID.PrimeLaser:
                         case NPCID.PrimeSaw:
                         case NPCID.PrimeVice:
-                            npc.lifeMax = baseHealthHM / 5;
+                            npc.lifeMax = maxHealth / 5;
                             break;
 
                         case NPCID.Probe:
-                            npc.lifeMax = baseHealthHM / 50;
+                            npc.lifeMax = maxHealth / 50;
                             break;
 
                         case NPCID.PlanterasHook:
                         case NPCID.PlanterasTentacle:
-                            npc.lifeMax = baseHealthHM / 20;
+                            npc.lifeMax = maxHealth / 20;
                             break;
                         case NPCID.Spore:
-                            npc.lifeMax = baseHealthHM / 40;
+                            npc.lifeMax = maxHealth / 40;
                             break;
 
                         case NPCID.GolemHead:
                         case NPCID.GolemFistLeft:
                         case NPCID.GolemHeadFree:
-                            npc.lifeMax = baseHealthHM / 4;
+                            npc.lifeMax = maxHealth / 4;
                             break;
 
                         case NPCID.MoonLordHand:
                         case NPCID.MoonLordHead:
-                            npc.lifeMax = baseHealthHM / 4;
+                            npc.lifeMax = maxHealth / 4;
                             break;
 
                         default:
@@ -258,15 +269,7 @@ namespace Fargowiltas.Content.NPCs
                     npc.lifeMax = FargoNPCSets.SwarmHealth[npc.type];
                 }
 
-                if (validBoss && Fargowiltas.SwarmItemsUsed > 1)
-                {
-                    npc.lifeMax *= Fargowiltas.SwarmItemsUsed;
-                    SwarmHealth = true;
-                }
-
-                int minDamage = Fargowiltas.SwarmMinDamage * 2;
-                if (!npc.townNPC && npc.lifeMax > 10 && npc.damage > 0 && npc.damage < minDamage)
-                    npc.damage = minDamage;
+                
             }
         }
 
@@ -377,7 +380,7 @@ namespace Fargowiltas.Content.NPCs
                     stats = ArmorIDs.Wing.Sets.Stats[ArmorIDs.Wing.FlameWings];
                     break;
                 case Binding.PostPlantera:
-                    stats = ArmorIDs.Wing.Sets.Stats[ArmorIDs.Wing.SpectreWings];
+                    stats = ArmorIDs.Wing.Sets.Stats[ArmorIDs.Wing.SpookyWings];
                     break;
                 case Binding.PreMoonLord:
                     stats = ArmorIDs.Wing.Sets.Stats[ArmorIDs.Wing.FishronWings];

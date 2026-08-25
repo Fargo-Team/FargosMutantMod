@@ -1,4 +1,3 @@
-using Fargowiltas.Common;
 using Fargowiltas.Common.Systems.Recipes;
 using Fargowiltas.Content.Items.Misc;
 using Microsoft.Xna.Framework;

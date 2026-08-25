@@ -21,7 +21,7 @@ FargoServerConfig: {
 
 	PotionCooler: {
 		// Label: "[i:Fargowiltas/PotionCooler] Potion Cooler"
-		// Tooltip: Enables the Potion Cooler that stores potions to provide infinite buffs.
+		// Tooltip: Enables the Potion Cooler that stores potions to provide infinite buffs to all players.
 	}
 
 	UnlimitedPotionBuffs: {
@@ -30,8 +30,8 @@ FargoServerConfig: {
 	}
 
 	UnlimitedPotionBuffsAmount: {
-		// Label: "[i:Fargowiltas/PotionCooler] Potion Cooler Amount"
-		// Tooltip: Stack size of potions that must be stored to grant infinite buffs.
+		// Label: "[i:292] Unlimited Potion Stack"
+		// Tooltip: Stack size of potions that must be carried or stored in the Potion Cooler to grant infinite buffs.
 	}
 
 	EasySummons: {
@@ -260,7 +260,7 @@ FargoServerConfig: {
 
 	InstantItems: {
 		// Label: "[i:Dynamite] Instant Items"
-		// Tooltip: Enables/disables Insta items such as the InstaHouse
+		// Tooltip: Enables/disables Instant items, such as the Instahouse, Instabridge and Instavator.
 	}
 
 	FasterBedSpeed: {
@@ -313,12 +313,12 @@ FargoClientConfig: {
 	}
 
 	HideTogglerWhenInventoryIsClosed: {
-		// Label: Only show effect toggler when inventory is open
-		// Tooltip: If true, the effect toggler is automatically hidden when your inventory is closed.
+		// Label: "[i:Fargowiltas/TogglerIconItem] Only show toggler menu when inventory is open"
+		// Tooltip: If true, the toggle menu is automatically hidden when your inventory is closed.
 	}
 
 	ToggleSearchReset: {
-		// Label: Accessory Effects menu resets search bar when closed
+		// Label: "[i:Fargowiltas/TogglerIconItem] Toggle menu resets search bar when closed"
 		// Tooltip: ""
 	}
 
@@ -424,6 +424,11 @@ UnlimitedBuffSelections: {
 	BossOnly: {
 		// Label: During bossfights
 		// Tooltip: Only enabled while any boss is alive
+	}
+
+	Off: {
+		// Label: Off
+		// Tooltip: ""
 	}
 }
 

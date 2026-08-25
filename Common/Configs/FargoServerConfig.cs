@@ -23,6 +23,16 @@ namespace Fargowiltas.Common.Configs
         [DefaultValue(true)]
         public bool UnlimitedConsumableWeapons;
 
+        [DefaultValue(0)]
+        [Slider]
+        public UnlimitedBuffSelections UnlimitedPotionBuffs;
+
+        [Range(30, 120)]
+        [Increment(10)]
+        [DefaultValue(30)]
+        [Slider]
+        public int UnlimitedPotionBuffsAmount;
+
         //[DefaultValue(true)]
         //public bool UnlimitedPotionBuffsOn120;
 
@@ -96,56 +106,6 @@ namespace Fargowiltas.Common.Configs
         [ReloadRequired]
         public bool PotionCooler;
 
-        [DefaultValue(0)]
-        [Slider]
-        public UnlimitedBuffSelections UnlimitedPotionBuffs;
-
-        [Range(30, 120)]
-        [Increment(1)]
-        [DefaultValue(30)]
-        [Slider]
-        public int UnlimitedPotionBuffsAmount;
-
-        [Header("$Mods.Fargowiltas.Configs.FargoServerConfig.Headers.WorldStates")]
-        [DefaultValue(0)]
-        [DrawTicks]
-        public SeasonSelections Halloween;
-
-        [DefaultValue(0)]
-        [DrawTicks]
-        public SeasonSelections Christmas;
-
-        [DefaultValue(0)]
-        [DrawTicks]
-        public SeasonSelections DrunkWorld;
-
-        [DefaultValue(0)]
-        [DrawTicks]
-        public SeasonSelections BeeWorld;
-
-        [DefaultValue(0)]
-        [DrawTicks]
-        public SeasonSelections WorthyWorld;
-
-        [DefaultValue(0)]
-        [DrawTicks]
-        public SeasonSelections CelebrationWorld;
-
-        [DefaultValue(0)]
-        [DrawTicks]
-        public SeasonSelections ConstantWorld;
-
-        [DefaultValue(0)]
-        [DrawTicks]
-        public SeasonSelections NoTrapsWorld;
-
-        [DefaultValue(0)]
-        [DrawTicks]
-        public SeasonSelections RemixWorld;
-
-        [DefaultValue(0)]
-        [DrawTicks]
-        public SeasonSelections ZenithWorld;
         [Header("$Mods.Fargowiltas.Configs.FargoServerConfig.Headers.StatMultipliers")]
 
         [Range(1f, 10f)]
@@ -173,13 +133,21 @@ namespace Fargowiltas.Common.Configs
 
         [Header("$Mods.Fargowiltas.Configs.FargoServerConfig.Headers.Misc")]
 
+        [DefaultValue(0)]
+        [DrawTicks]
+        public SeasonSelections Halloween;
+
+        [DefaultValue(0)]
+        [DrawTicks]
+        public SeasonSelections Christmas;
+
         [DefaultValue(true)]
         public bool PiggyBankAcc;
 
         [DefaultValue(true)]
         public bool ModdedPiggyBankAcc;
 
-        [DefaultValue(true)]
+        [DefaultValue(false)]
         public bool StalkerMoneyTrough;
 
         [DefaultValue(true)]
@@ -199,9 +167,6 @@ namespace Fargowiltas.Common.Configs
 
         [DefaultValue(true)]
         public bool PylonsIgnoreEvents;
-
-        [DefaultValue(false)]
-        public bool SafeTerraformers;
 
         [DefaultValue(false)]
         public bool DisableTombstones;

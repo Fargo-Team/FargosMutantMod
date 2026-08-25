@@ -1,5 +1,4 @@
 ﻿using Fargowiltas.Common.Configs;
-using Fargowiltas.Content.NPCs;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -158,7 +157,7 @@ namespace Fargowiltas.Common.Systems
         /// </summary>
         /// <returns></returns>
         public static bool AnyCompletedPotions => Potions.Any(p => p.Value >= MaxPotions);
-        
+
 
         /// <summary>
         /// Whether a potion of the given type of the given count can be stored.
@@ -188,9 +187,14 @@ namespace Fargowiltas.Common.Systems
         /// <param name="player"></param>
         public static void TryApplyBuff(int type, Player player)
         {
-            Item item = new(type);
             TryGetCount(type, out int count);
 
+            TryApplyBuff(type, player, count);
+        }
+
+        public static void TryApplyBuff(int type, Player player, int count)
+        {
+            Item item = new(type);
             if (item.IsAir || !FargoServerConfig.Instance.PotionCooler ||
                 (FargoServerConfig.Instance.UnlimitedPotionBuffs is UnlimitedBuffSelections.BossOnly &&
                 !FargoUtils.AnyBossAlive()))

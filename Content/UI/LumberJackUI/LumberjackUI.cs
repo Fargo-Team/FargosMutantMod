@@ -1,4 +1,5 @@
-﻿using Fargowiltas.Content.NPCs;
+﻿using Fargowiltas.Content.Achievements;
+using Fargowiltas.Content.NPCs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -6,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;
+using Terraria.GameContent;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
 using Terraria.Localization;
@@ -581,6 +583,50 @@ namespace Fargowiltas.Content.UI.LumberjackUI
             Player player = Main.LocalPlayer;
             if (player.CanAfford(biome.GetBuyPrice()))
             {
+                if (Main.myPlayer == player.whoAmI)
+                {
+                    ModContent.GetInstance<TreeTreasureAchievements.T1TreeTreasureAchievement>().Condition.Complete();
+
+
+                    switch (biome.PylonType)
+                    {
+                        case TeleportPylonType.SurfacePurity:
+                            ModContent.GetInstance<TreeTreasureAchievements.T2TreeTreasureAchievement>().PurityCondition.Complete();
+                            break;
+                        case TeleportPylonType.Desert:
+                            ModContent.GetInstance<TreeTreasureAchievements.T2TreeTreasureAchievement>().DesertCondition.Complete();
+                            break;
+                        case TeleportPylonType.Underground:
+                            {
+                                if (biome.ID == "Underworld") // this check can be removed in 1.4.5 due to Underworld Pylon existing
+                                    ModContent.GetInstance<TreeTreasureAchievements.T2TreeTreasureAchievement>().UnderworldCondition.Complete();
+                                ModContent.GetInstance<TreeTreasureAchievements.T2TreeTreasureAchievement>().CavernCondition.Complete();
+                            }
+                            break;
+                        case TeleportPylonType.Jungle:
+                            ModContent.GetInstance<TreeTreasureAchievements.T2TreeTreasureAchievement>().JungleCondition.Complete();
+                            break;
+                        case TeleportPylonType.Beach:
+                            ModContent.GetInstance<TreeTreasureAchievements.T2TreeTreasureAchievement>().BeachCondition.Complete();
+                            break;
+                        case TeleportPylonType.Hallow:
+                            ModContent.GetInstance<TreeTreasureAchievements.T2TreeTreasureAchievement>().HallowCondition.Complete();
+                            break;
+                        case TeleportPylonType.GlowingMushroom:
+                            ModContent.GetInstance<TreeTreasureAchievements.T2TreeTreasureAchievement>().MushroomCondition.Complete();
+                            break;
+                        case null:
+                            {
+                                if (biome.ID == "Crimson")
+                                    ModContent.GetInstance<TreeTreasureAchievements.T2TreeTreasureAchievement>().CrimsonCondition.Complete();
+
+                                if (biome.ID == "Corruption")
+                                    ModContent.GetInstance<TreeTreasureAchievements.T2TreeTreasureAchievement>().CorruptCondition.Complete();
+                            }
+                            break;
+                    }
+
+                }
                 SoundEngine.PlaySound(SoundID.Coins);
                 player.BuyItem(biome.GetBuyPrice());
                 biome.RollTreasures(ref player);

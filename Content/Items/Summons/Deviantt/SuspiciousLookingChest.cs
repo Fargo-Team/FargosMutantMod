@@ -1,5 +1,3 @@
-using Fargowiltas.Common;
-using Fargowiltas.Content.Items.Misc;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;

@@ -1,8 +1,3 @@
-BrittleBone: {
-	DisplayName: Brittle Bone
-	Tooltip: ""
-}
-
 AltarExterminator: {
 	DisplayName: Altar Exterminator
 	Tooltip:
@@ -32,10 +27,10 @@ CityBuster: {
 	DisplayName: City Buster
 	Tooltip:
 		'''
-		Destroys a large area
-		Will not remove background walls
-		Avoids breaking areas denoted as important
-		Use at your own risk
+		Destroys blocks in a 128x128 area above the bomb
+		Uses your best pickaxe's mining power
+		Has a 10 second fuse. Can be disarmed using <right>
+		Use at your own risk.
 		'''
 }
 
@@ -46,14 +41,14 @@ DoubleObsidianInstabridge: {
 		Creates 2 bridges of obsidian platforms across the whole world
 		Also clears the area between and above the platforms
 		The bottom bridge appears at your cursor
-		Avoids breaking areas denoted as important
+		Uses your best pickaxe's mining power
 		Use at your own risk
 		'''
 }
 
 GraveBuster: {
 	DisplayName: Grave Buster
-	Tooltip: Destroys tombstones in a large area
+	Tooltip: Destroys tombstones in a 360x360 area
 }
 
 HalfInstavator: {
@@ -62,7 +57,7 @@ HalfInstavator: {
 		'''
 		Drops a bomb that creates half a hellevator instantly
 		Will not dig below a certain depth
-		Avoids breaking areas denoted as important
+		Uses your best pickaxe's mining power
 		Use at your own risk
 		'''
 }
@@ -74,7 +69,7 @@ InstaBridge: {
 		Creates a bridge of platforms across the whole world
 		Also clears the area right above the platforms
 		The bridge appears at your cursor
-		Avoids breaking areas denoted as important
+		Uses your best pickaxe's mining power
 		Right Click to clear the area without placing a bridge
 		Use at your own risk
 		'''
@@ -87,7 +82,7 @@ InstaTrack: {
 		Creates a minecart track across the whole world
 		Also clears the area right above the tracks
 		The track appears at your cursor
-		Avoids breaking areas denoted as important
+		Uses your best pickaxe's mining power
 		Use at your own risk
 		'''
 }
@@ -97,7 +92,7 @@ Instavator: {
 	Tooltip:
 		'''
 		Drops a bomb that creates a hellevator instantly
-		Avoids breaking areas denoted as important
+		Uses your best pickaxe's mining power
 		Use at your own risk
 		'''
 }
@@ -128,7 +123,7 @@ ObsidianInstaBridge: {
 		Creates a bridge of obsidian platforms across the whole world
 		Also clears the area right above the platforms
 		The bridge appears at your cursor
-		Avoids breaking areas denoted as important
+		Uses your best pickaxe's mining power
 		Use at your own risk
 		'''
 }
@@ -159,6 +154,7 @@ BattleCry: {
 		'''
 		Left click to toggle increased spawn rates
 		Right click to toggle decreased spawn rates
+		May also be toggled between modes by right clicking the item in the inventory
 		'''
 	Battle: Battle
 	Calming: Calming
@@ -172,6 +168,7 @@ DeathFruit: {
 	DisplayName: Death Fruit
 	Tooltip:
 		'''
+		[c/ff0000:Debug item]
 		Left click to decrease the amount of Life Crystals, or Life Fruit if you have any, by 1
 		If both are 0, decreases base maximum health by 20, down to a minimum of 20
 		Right click to reverse 1 use of the latter effect, otherwise remove all Life Fruits
@@ -182,7 +179,7 @@ InstantResearch: {
 	DisplayName: Instant Research
 	Tooltip:
 		'''
-		DEBUG ITEM
+		[c/ff0000:Debug item]
 		Researches everything
 		'''
 	ResearchText: researched {0} items
@@ -238,8 +235,9 @@ SuperDummy: {
 		'''
 		Spawns a super dummy at your cursor
 		Can be detected by minions and homing projectiles, and can activate on hit effects
-		Right click to remove all spawned super dummies
+		<right> to remove all spawned super dummies
 		Can spawn up to 50 super dummies at once
+		Super dummies are disabled during boss fights
 		'''
 }
 
@@ -447,7 +445,7 @@ SuspiciousLookingScythe: {
 
 WeatherBalloon: {
 	DisplayName: Weather Balloon
-	Tooltip: Starts the Rain
+	Tooltip: Starts a Thunderstorm
 }
 
 AmalgamatedSkull: {
@@ -1193,11 +1191,6 @@ UnsafeMarbleWall: {
 	Tooltip: An enchanted slab of stone that will spawn monsters
 }
 
-WalkingRick: {
-	DisplayName: Walking Rick
-	Tooltip: "'Kien R. Oco'"
-}
-
 WoodenToken: {
 	DisplayName: Wooden Token
 	Tooltip: "'The sign of a true wood lover'"
@@ -1484,18 +1477,22 @@ PurityTotem: {
 }
 
 InstaPond: {
-	DisplayName: Instalake
+	DisplayName: Instapond
 	Tooltip:
 		'''
-		Drops a bomb that creates a 150x50 body of water below it
-		Avoids breaking areas denoted as important
+		Drops a bomb that creates a 25x15 body of water below it
+		Uses your best pickaxe's mining power
 		Use at your own risk
 		'''
 }
 
 KohaCrystal: {
 	DisplayName: Koha Crystal
-	Tooltip: Decreases the amount of Mana Crystals you have by 1
+	Tooltip:
+		'''
+		[c/ff0000:Debug item]
+		Decreases the amount of Mana Crystals you have by 1
+		'''
 }
 
 MiniDirtInstaBridge: {
@@ -1576,13 +1573,8 @@ EnchantedTree: {
 		<right> with an item to place it
 		If applicable, <left> placed item to show its crafting tree
 		<left> and pull the item you want to duplicate
-		Duplication consumes Enchanted Acorns based on item complexity
+		Duplication consumes coins based on item complexity
 		'''
-}
-
-EnchantedAcorn: {
-	DisplayName: Enchanted Acorn
-	Tooltip: ""
 }
 
 AutoSummoner: {
@@ -1623,6 +1615,7 @@ LuminiteOmniforge: {
 		Functions as several advanced crafting stations
 		'It's fit to birth un[i:3460]d possibilities'
 		'''
+	SoulsTooltip: Used to craft Forces and Souls
 }
 
 BlackHolePotion: {
@@ -1640,15 +1633,11 @@ PotionCooler: {
 	Tooltip:
 		'''
 		Works from the inventory
-		<right> to disable
+		<right> to open
 		Stores potions and grants you their buffs
-		'Cracking open a cold one'
-		'''
-	Ruminate: "[c/FF3399:Hold Left Shift for more details]"
-	Rumination:
-		'''
 		Potions stored within are shared between all players
 		Toggles are not shared between players
+		'Cracking open a cold one'
 		'''
 }
 
@@ -1669,3 +1658,23 @@ PotionCoolerInactive: {
 }
 
 LucyTheAxe.Eaten: Wait, don't. Wait... don't!!!
+
+GalacticReformer: {
+	DisplayName: Galactic Reformer
+	Tooltip:
+		'''
+		Destroys a gigantic area of blocks
+		Has a 12 second fuse. Can be disarmed using <right>
+		Use at your own risk.
+		'''
+}
+
+UniversalCollapse: {
+	DisplayName: Universal Collapse
+	Tooltip:
+		'''
+		Destroys the universe
+		Has a 15 second fuse. Can be disarmed using <right>
+		Use at your own risk.
+		'''
+}

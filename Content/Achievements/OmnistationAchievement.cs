@@ -12,9 +12,9 @@ namespace Fargowiltas.Content.Achievements
 
         public override void SetStaticDefaults()
         {
-            Achievement.SetCategory(Terraria.Achievements.AchievementCategory.Collector);
+            Achievement.SetCategory(AchievementCategory.Collector);
 
-            AddItemCraftCondition(ModContent.ItemType<Omnistation>());
+            AddItemCraftCondition([ModContent.ItemType<Omnistation>(), ModContent.ItemType<Omnistation2>()]);
         }
 
         public override Position GetDefaultPosition() => new After("ITS_HARD");

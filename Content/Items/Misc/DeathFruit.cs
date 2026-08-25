@@ -1,4 +1,3 @@
-using Fargowiltas.Common;
 using System;
 using Terraria;
 using Terraria.Audio;
@@ -32,10 +31,7 @@ namespace Fargowiltas.Content.Items.Misc
         }
         public override void AddRecipes()
         {
-            CreateRecipe()
-                .AddIngredient(ItemID.LifeFruit)
-                .AddCondition(Condition.NearShimmer)
-                .Register();
+
         }
         public override bool AltFunctionUse(Player player) => true;
         public override bool CanUseItem(Player player)

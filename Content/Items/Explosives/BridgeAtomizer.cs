@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Fargowiltas.Common.Configs;
+﻿using Fargowiltas.Common.Configs;
 using Fargowiltas.Content.Items.Misc;
 using Fargowiltas.Content.Items.Tiles;
 using Fargowiltas.Content.Projectiles;
 using Fargowiltas.Content.Projectiles.Explosives;
 using Microsoft.Xna.Framework;
+using System.Collections.Generic;
+using System.Linq;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
@@ -72,57 +72,58 @@ namespace Fargowiltas.Content.Items.Explosives
                 .AddTile(TileID.Anvils)
                 .Register();
         }
-    }
-
-    public class AtomizerGlobalTile : GlobalTile
-    {
-        public override bool CanKillTile(int i, int j, int type, ref bool blockDamaged)
+        public override void Load()
         {
-            if (Main.netMode != NetmodeID.MultiplayerClient && !TileID.Sets.Platforms[type] && Main.LocalPlayer.HeldItem.type == ModContent.ItemType<BridgeAtomizer>() && Main.LocalPlayer.channel)
-                return false;
-            return base.CanKillTile(i, j, type, ref blockDamaged);
+            On_Player.ItemCheck_UseMiningTools_ActuallyUseMiningTool += ItemCheck_UseMiningTools_ActuallyUseMiningTool_Detour;
         }
-
-        public override void KillTile(int i, int j, int type, ref bool fail, ref bool effectOnly, ref bool noItem)
+        public static void ItemCheck_UseMiningTools_ActuallyUseMiningTool_Detour(On_Player.orig_ItemCheck_UseMiningTools_ActuallyUseMiningTool orig, Player self, Item sItem, out bool canHitWalls, int x, int y)
         {
-            if (Main.netMode != NetmodeID.MultiplayerClient && TileID.Sets.Platforms[type] && !fail && !noItem && 
-                Main.LocalPlayer.HeldItem.type == ModContent.ItemType<BridgeAtomizer>() && Main.LocalPlayer.channel)
+            if (sItem.type == ModContent.ItemType<BridgeAtomizer>())
             {
-                noItem = true;
-                Vector2 position = new Vector2(i, j).ToWorldCoordinates();
-                SoundEngine.PlaySound(SoundID.Item14, position);
-
-                Point tileCenter = new(i, j);
-                int left = 0;
-                int right = 0;
-                for (int dir = -1; dir <= 1; dir += 2)
+                canHitWalls = true;
+                if (WorldGen.InWorld(x, y) && Main.tile[x, y].HasTile)
                 {
-                    for (int x = 0; x < Main.maxTilesX; x++)
+                    int type = Main.tile[x, y].TileType;
+                    if (TileID.Sets.Platforms[type])
                     {
-                        if (x != 0)
+                        orig(self, sItem, out canHitWalls, x, y);
+                        if (!Main.tile[x, y].HasTile) // killed successfully; propagate platform kill
                         {
-                            if (dir == -1)
-                                left++;
-                            else
-                                right++;
+                            Point tileCenter = new(x, y);
+                            int left = 0;
+                            int right = 0;
+                            for (int dir = -1; dir <= 1; dir += 2)
+                            {
+                                for (int i = 1; i < Main.maxTilesX; i++)
+                                {
+                                    if (dir == -1)
+                                        left++;
+                                    else
+                                        right++;
+
+                                    Point pos = new(tileCenter.X + dir * i, tileCenter.Y);
+                                    if (pos.X < 0 || pos.X >= Main.maxTilesX || pos.Y < 0 || pos.Y >= Main.maxTilesY)
+                                        break;
+
+                                    if (Main.tile[pos].HasTile && Main.tile[pos].TileType > TileID.Dirt && TileID.Sets.Platforms[Main.tile[pos].TileType] && FargoGlobalProjectile.OkayToDestroyTileAt(pos.X, pos.Y))
+                                    {
+                                        WorldGen.KillTile(pos.X, pos.Y, noItem: true);
+                                        continue;
+                                    }
+                                    break;
+                                }
+                            }
+
+                            if (Main.netMode != NetmodeID.SinglePlayer)
+                                NetMessage.SendTileSquare(-1, tileCenter.X - left, tileCenter.Y, left + right, 1, TileChangeType.None);
                         }
-                        else if (dir == 1)
-                            continue;
-                        Point pos = new(tileCenter.X + dir * x, tileCenter.Y);
-                        if (pos.X < 0 || pos.X >= Main.maxTilesX || pos.Y < 0 || pos.Y >= Main.maxTilesY)
-                            break;
-                        if (Main.tile[pos].HasTile && Main.tile[pos].TileType > TileID.Dirt && TileID.Sets.Platforms[Main.tile[pos].TileType] && FargoGlobalProjectile.OkayToDestroyTileAt(pos.X, pos.Y))
-                        {
-                            FargoGlobalTile.ClearEverything(pos.X, pos.Y, false);
-                            continue;
-                        }
-                        break;
+                        
                     }
                 }
-
-                if (Main.netMode == NetmodeID.Server)
-                    NetMessage.SendTileSquare(-1, tileCenter.X - left, tileCenter.Y, left + right, 1, TileChangeType.None);
+                
+                return;
             }
+            orig(self, sItem, out canHitWalls, x, y);
         }
     }
 }

@@ -1,17 +1,19 @@
 Abominationn: {
 	DisplayName: 憎恶
-	// NPCName1: Wilta
-	// NPCName2: Jack
-	// NPCName3: Harley
-	// NPCName4: Reaper
-	// NPCName5: Stevenn
-	// NPCName6: Doof
-	// NPCName7: Baroo
-	// NPCName8: Fergus
-	// NPCName9: Entev
-	// NPCName10: Catastrophe
-	// NPCName11: Bardo
-	// NPCName12: Betson
+	/*
+	NPCName1: Wilta
+	NPCName2: Jack
+	NPCName3: Harley
+	NPCName4: Reaper
+	NPCName5: Stevenn
+	NPCName6: Doof
+	NPCName7: Baroo
+	NPCName8: Fergus
+	NPCName9: Entev
+	NPCName10: Catastrophe
+	NPCName11: Bardo
+	NPCName12: Betson
+	*/
 	Bestiary: 他可以控制天气和停止入侵，但他很懒惰，并且他的武器和手融合在一起。好消息是，他不需要吃东西。当他靠近时，门神奇地打开了。
 
 	TownNPCMood: {
@@ -90,19 +92,21 @@ Abominationn: {
 
 Deviantt: {
 	DisplayName: 戴薇安
-	// NPCName1: Akira
-	// NPCName2: Remi
-	// NPCName3: Saku
-	// NPCName4: Seira
-	// NPCName5: Koi
-	// NPCName6: Elly
-	// NPCName7: Lori
-	// NPCName8: Calia
-	// NPCName9: Teri
-	// NPCName10: Artt
-	// NPCName11: Flan
-	// NPCName12: Shion
-	// NPCName13: Tewi
+	/*
+	NPCName1: Akira
+	NPCName2: Remi
+	NPCName3: Saku
+	NPCName4: Seira
+	NPCName5: Koi
+	NPCName6: Elly
+	NPCName7: Lori
+	NPCName8: Calia
+	NPCName9: Teri
+	NPCName10: Artt
+	NPCName11: Flan
+	NPCName12: Shion
+	NPCName13: Tewi
+	*/
 	Bestiary: 她提供敌怪召唤物和一些帮助（如果她想）。这个乐观又充满活力的生物喜爱钱的程度和喜爱暴力的程度相同。她有一点畸形。
 
 	TownNPCMood: {
@@ -311,19 +315,21 @@ LumberJack: {
 
 Mutant: {
 	DisplayName: 突变体
-	// NPCName1: Flacken
-	// NPCName2: Dorf
-	// NPCName3: Bingo
-	// NPCName4: Hans
-	// NPCName5: Fargo
-	// NPCName6: Grim
-	// NPCName7: Mike
-	// NPCName8: Fargu
-	// NPCName9: Terrance
-	// NPCName10: Catty N. Pem
-	// NPCName11: Tom
-	// NPCName12: Weirdus
-	// NPCName13: Polly
+	/*
+	NPCName1: Flacken
+	NPCName2: Dorf
+	NPCName3: Bingo
+	NPCName4: Hans
+	NPCName5: Fargo
+	NPCName6: Grim
+	NPCName7: Mike
+	NPCName8: Fargu
+	NPCName9: Terrance
+	NPCName10: Catty N. Pem
+	NPCName11: Tom
+	NPCName12: Weirdus
+	NPCName13: Polly
+	*/
 	Bestiary: 他被他的弟弟和妹妹叫做大哥，但他拒绝承认他的性别。相比于谈论他的过去，他对观看战斗和观察小宠物更感兴趣。他似乎在寻找某个强壮的人……
 
 	TownNPCMood: {

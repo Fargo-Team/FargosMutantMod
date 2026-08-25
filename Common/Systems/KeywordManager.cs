@@ -45,7 +45,6 @@ namespace Fargowiltas.Common.Systems
                 base.Color = Color.White;
             }
 
-
             public Color ShadowColor = Color.Navy;
 
             public override bool UniqueDraw(bool justCheckingString, out Vector2 size, SpriteBatch spriteBatch, Vector2 position = default(Vector2), Color color = default(Color), float scale = 1f)

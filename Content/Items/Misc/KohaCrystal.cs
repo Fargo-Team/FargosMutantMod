@@ -28,10 +28,7 @@ namespace Fargowiltas.Content.Items.Misc
         }
         public override void AddRecipes()
         {
-            CreateRecipe()
-                .AddIngredient(ItemID.ManaCrystal)
-                .AddCondition(Condition.NearShimmer)
-                .Register();
+
         }
         public override void HoldItem(Player player)
         {

@@ -119,6 +119,7 @@ namespace Fargowiltas.Content.Projectiles.Explosives
             int radius = 16;     // bigger = boomer
 
             Player player = Main.player[Projectile.owner];
+            var pickaxe = player.GetBestPickaxe() ?? ContentSamples.ItemsByType[ItemID.CopperPickaxe];
 
             NetMessage.SendData(MessageID.KillProjectile, -1, -1, null, Projectile.identity, Projectile.owner);
 
@@ -142,7 +143,7 @@ namespace Fargowiltas.Content.Projectiles.Explosives
                         if (tile.IsActuated || FargoGlobalProjectile.TileIsLiterallyAir(tile) || FargoGlobalProjectile.TileBelongsToMagicStorage(tile))
                             continue;
 
-                        if (player.HasEnoughPickPowerToHurtTile(xPosition, yPosition) && WorldGen.CanKillTile(xPosition, yPosition))
+                        if (FargoGlobalProjectile.CanMine(xPosition, yPosition, player, pickaxe) && WorldGen.CanKillTile(xPosition, yPosition))
                         {
                             WorldGen.KillTile(xPosition, yPosition);
                             /*

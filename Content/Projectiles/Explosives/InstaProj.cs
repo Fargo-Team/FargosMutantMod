@@ -50,9 +50,13 @@ namespace Fargowiltas.Content.Projectiles.Explosives
                 return;
             }
 
+            Player player = Main.player[Projectile.owner];
+            var pickaxe = player.GetBestPickaxe() ?? ContentSamples.ItemsByType[ItemID.CopperPickaxe];
+
             // Seven across
             int yStart = (int)(1 + position.Y / 16.0f);
-            int yEnd = Main.maxTilesY - 40;
+            
+            int yEnd = Main.UnderworldLayer - 10;
             for (int x = -3; x <= 3; x++)
             {
                 for (int y = yStart; y <= yEnd; y++)
@@ -67,7 +71,7 @@ namespace Fargowiltas.Content.Projectiles.Explosives
                     if (tile == null)
                         continue;
 
-                    if (!FargoGlobalProjectile.OkayToDestroyTileAt(xPosition, y))
+                    if (!FargoGlobalProjectile.InstaDestructionCheck(xPosition, y, player, pickaxe))
                         continue;
 
                     FargoGlobalTile.ClearEverything(xPosition, y, false);

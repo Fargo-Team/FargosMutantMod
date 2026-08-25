@@ -27,13 +27,24 @@ namespace Fargowiltas.Content.Achievements
 
             public override int Index => 1;
 
-            public CustomIntCondition IntCondition { get; private set; }
+            public CustomFlagCondition PurityCondition, DesertCondition, SnowCondition, CavernCondition, JungleCondition, UnderworldCondition;
+            public CustomFlagCondition CrimsonCondition, CorruptCondition, BeachCondition, HallowCondition, MushroomCondition;
 
             public override void SetStaticDefaults()
             {
                 Achievement.SetCategory(Terraria.Achievements.AchievementCategory.Collector);
 
-                IntCondition = AddIntCondition(25);
+                PurityCondition = AddCondition("LumberjackTreeTreasuresPurityCondition");
+                DesertCondition = AddCondition("LumberjackTreeTreasuresDesertCondition");
+                SnowCondition = AddCondition("LumberjackTreeTreasuresSnowCondition");
+                CavernCondition = AddCondition("LumberjackTreeTreasuresCavernCondition");
+                JungleCondition = AddCondition("LumberjackTreeTreasuresJungleCondition");
+                UnderworldCondition = AddCondition("LumberjackTreeTreasuresUnderworldCondition");
+                CrimsonCondition = AddCondition("LumberjackTreeTreasuresCrimsonCondition");
+                CorruptCondition = AddCondition("LumberjackTreeTreasuresCorruptCondition");
+                BeachCondition = AddCondition("LumberjackTreeTreasuresBeachCondition");
+                HallowCondition = AddCondition("LumberjackTreeTreasuresHallowCondition");
+                MushroomCondition = AddCondition("LumberjackTreeTreasuresMushroomCondition");
             }
 
             public override Position GetDefaultPosition() => new After("MASTERMIND");

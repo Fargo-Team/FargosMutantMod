@@ -13,7 +13,6 @@ namespace Fargowiltas.Content.UI.SquirrelUI
 
         // UI modes
         public static int FeedMode = 0;
-        public static int PotionMode = 1;
 
         public static int BackHeight = 350;
         public static int BackWidth = (int)(1.6f * BackHeight);

@@ -1,5 +1,6 @@
 Abominationn: {
 	DisplayName: Abominationn
+	/*
 	NPCName1: Wilta
 	NPCName2: Jack
 	NPCName3: Harley
@@ -12,6 +13,7 @@ Abominationn: {
 	NPCName10: Catastrophe
 	NPCName11: Bardo
 	NPCName12: Betson
+	*/
 	Bestiary: Can control the weather and stop invasions, but he's lazy and his weapons are fused to his hands. Good thing he doesn't need to eat and doors magically open when he approaches.
 
 	TownNPCMood: {
@@ -90,6 +92,7 @@ Abominationn: {
 
 Deviantt: {
 	DisplayName: Deviantt
+	/*
 	NPCName1: Akira
 	NPCName2: Remi
 	NPCName3: Saku
@@ -103,6 +106,7 @@ Deviantt: {
 	NPCName11: Flan
 	NPCName12: Shion
 	NPCName13: Tewi
+	*/
 	Bestiary: Provides monster spawners and (if she feels like it) a helping hand. This upbeat and energetic creature likes money almost as much as she likes violence. Only a little deformed.
 
 	TownNPCMood: {
@@ -311,6 +315,7 @@ LumberJack: {
 
 Mutant: {
 	DisplayName: Mutant
+	/*
 	NPCName1: Flacken
 	NPCName2: Dorf
 	NPCName3: Bingo
@@ -324,6 +329,7 @@ Mutant: {
 	NPCName11: Tom
 	NPCName12: Weirdus
 	NPCName13: Polly
+	*/
 	Bestiary: Called brother by its siblings, but refuses to confirm its gender. More interested in watching fights and small pets than talking about its past. It seems to be looking for someone strong...
 
 	TownNPCMood: {

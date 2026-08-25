@@ -1,5 +1,4 @@
 ﻿using Fargowiltas.Assets.Textures;
-using Fargowiltas.Common;
 using Fargowiltas.Utilities.Extensions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

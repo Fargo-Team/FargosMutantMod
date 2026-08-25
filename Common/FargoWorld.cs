@@ -14,7 +14,6 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.UI;
-using static Fargowiltas.Common.Systems.Collections.FargoItemSets;
 using static Fargowiltas.Fargowiltas;
 using static Terraria.ModLoader.ModContent;
 
@@ -34,7 +33,6 @@ namespace Fargowiltas
         internal static bool OverloadedSlimeRain;
 
         internal static bool Matsuri;
-        internal static bool GeneratedSacrificeCounts;
         internal static bool BlockPortaDialCooldown;
 
         internal static bool EternityMode;
@@ -100,22 +98,11 @@ namespace Fargowiltas
 
         public override void PreWorldGen()
         {
-            SetWorldBool(FargoServerConfig.Instance.DrunkWorld, ref Main.drunkWorld);
-            SetWorldBool(FargoServerConfig.Instance.BeeWorld, ref Main.notTheBeesWorld);
-            SetWorldBool(FargoServerConfig.Instance.WorthyWorld, ref Main.getGoodWorld);
-            SetWorldBool(FargoServerConfig.Instance.CelebrationWorld, ref Main.tenthAnniversaryWorld);
-            SetWorldBool(FargoServerConfig.Instance.ConstantWorld, ref Main.dontStarveWorld);
-            SetWorldBool(FargoServerConfig.Instance.NoTrapsWorld, ref Main.noTrapsWorld);
-            SetWorldBool(FargoServerConfig.Instance.RemixWorld, ref Main.remixWorld);
-            SetWorldBool(FargoServerConfig.Instance.ZenithWorld, ref Main.zenithWorld);
 
             foreach (string tag in tags)
             {
                 DownedBools[tag] = false;
             }
-
-            SacrificeCount = SacrificeCountDefault.Clone() as int[];
-            GeneratedSacrificeCounts = true;
 
             WoodChopped = 0;
         }
@@ -155,11 +142,6 @@ namespace Fargowiltas
         {
 
             ResetFlags();
-            if (!GeneratedSacrificeCounts)
-            {
-                SacrificeCount = SacrificeCountDefault.Clone() as int[];
-                GeneratedSacrificeCounts = true;
-            }
         }
         public override void ClearWorld()
         {
@@ -192,29 +174,6 @@ namespace Fargowiltas
 
             tag.Add("FargoIndestructibleRectangles", FargoGlobalProjectile.CannotDestroyRectangle.ToList());
 
-            List<string> sacrificeItems = [];
-            for (int i = 0; i < SacrificeCount.Length; i++)
-            {
-                int count = SacrificeCount[i];
-                if (count > 0)
-                {
-                    if (i >= ItemID.Count) // modded item, variable type, add name instead
-                    {
-                        if (ItemLoader.GetItem(i) is ModItem modItem && modItem != null)
-                        {
-                            sacrificeItems.Add(modItem.FullName + "_" + count);
-                        }
-                    }
-                    else // vanilla item
-                    {
-                        sacrificeItems.Add(i + "_" + count);
-                    }
-
-
-                }
-            }
-            tag.Add("sacrificeItems", sacrificeItems);
-            tag.Add("GeneratedSacrificeCounts", GeneratedSacrificeCounts);
             tag.Add("PortableSundialCooldown", PortableSundialCooldown);
         }
 
@@ -231,25 +190,6 @@ namespace Fargowiltas
             foreach (Rectangle rectangle in savedRectangles)
                 FargoGlobalProjectile.CannotDestroyRectangle.Add(rectangle);
 
-            IList<string> sacrificeItems = tag.GetList<string>("sacrificeItems");
-            foreach (string sacrificeItem in sacrificeItems)
-            {
-                string[] nameAndCount = sacrificeItem.Split("_");
-                string name = nameAndCount[0];
-                if (int.TryParse(nameAndCount[1], out int count))
-                {
-                    if (int.TryParse(name, out int type) && type < ItemID.Count) // vanilla item
-                    {
-                        SacrificeCount[type] = count;
-                    }
-                    else // modded item
-                    {
-                        if (TryFind(name, out ModItem item))
-                            SacrificeCount[item.Type] = count;
-                    }
-                }
-            }
-            GeneratedSacrificeCounts = tag.Get<bool>("GeneratedSacrificeCounts");
             PortableSundialCooldown = tag.Get<byte>("PortableSundialCooldown");
         }
 
@@ -301,16 +241,6 @@ namespace Fargowiltas
 
             SetWorldBool(FargoServerConfig.Instance.Halloween, ref Main.halloween);
             SetWorldBool(FargoServerConfig.Instance.Christmas, ref Main.xMas);
-
-            //seeds
-            SetWorldBool(FargoServerConfig.Instance.DrunkWorld, ref Main.drunkWorld);
-            SetWorldBool(FargoServerConfig.Instance.BeeWorld, ref Main.notTheBeesWorld);
-            SetWorldBool(FargoServerConfig.Instance.WorthyWorld, ref Main.getGoodWorld);
-            SetWorldBool(FargoServerConfig.Instance.CelebrationWorld, ref Main.tenthAnniversaryWorld);
-            SetWorldBool(FargoServerConfig.Instance.ConstantWorld, ref Main.dontStarveWorld);
-            SetWorldBool(FargoServerConfig.Instance.NoTrapsWorld, ref Main.noTrapsWorld);
-            SetWorldBool(FargoServerConfig.Instance.RemixWorld, ref Main.remixWorld);
-            SetWorldBool(FargoServerConfig.Instance.ZenithWorld, ref Main.zenithWorld);
 
             if (Matsuri)
             {

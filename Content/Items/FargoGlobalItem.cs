@@ -1,5 +1,5 @@
-﻿using Fargowiltas.Common;
-using Fargowiltas.Common.Configs;
+﻿using Fargowiltas.Common.Configs;
+using Fargowiltas.Common.Systems;
 using Fargowiltas.Common.Systems.Collections;
 using Fargowiltas.Content.Items.Summons.Abom;
 using Fargowiltas.Content.Items.Tiles;
@@ -44,7 +44,6 @@ namespace Fargowiltas.Content.Items
         //follow cursor when = myplayer
         public int Grabbed = -1;
 
-
         public override bool InstancePerEntity => true;
 
         static string ExpandedTooltipLoc(string line) => Language.GetTextValue($"Mods.Fargowiltas.ExpandedTooltips.{line}");
@@ -67,6 +66,8 @@ namespace Fargowiltas.Content.Items
         }
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
+            Player player = Main.LocalPlayer;
+            FargoPlayer modPlayer = player.FargoMutant();
             var fargoServerConfig = FargoServerConfig.Instance;
 
             if (FargoClientConfig.Instance.ExpandedTooltips)
@@ -250,8 +251,8 @@ namespace Fargowiltas.Content.Items
                     line = new TooltipLine(Mod, "TooltipTorchGod2", $"[s:Fargowiltas/AbidesTrueTorchLuck] [c/AAAAAA:{ExpandedTooltipLoc("TrueTorchLuck")}]");
                     tooltips.Add(line);
                 }
-
-                if (FargoServerConfig.Instance.PotionCooler && item.maxStack > 1)
+                bool infInventory = FargoServerConfig.Instance.UnlimitedPotionBuffs is UnlimitedBuffSelections.On || (FargoServerConfig.Instance.UnlimitedPotionBuffs is UnlimitedBuffSelections.BossOnly && FargoUtils.AnyBossAlive());
+                if ((infInventory || FargoServerConfig.Instance.PotionCooler) && item.maxStack > 1)
                 {
                     if (item.buffType != 0 && item.buffTime >= 60 * 60 * 2)
                     {
@@ -269,7 +270,7 @@ namespace Fargowiltas.Content.Items
                 {
                     string text = "";
                     string buff = Lang.GetBuffName(FargoItemSets.BuffStation[item.type]);
-                    if (Main.LocalPlayer.FargoMutant().ItemHasBeenOwned[item.type])
+                    if (modPlayer.ItemHasBeenOwned[item.type])
                     {
                         string loc = Language.GetTextValue($"Mods.Fargowiltas.ExpandedTooltips.PermanentEffectNearby", buff);
                         text = $"[s:Fargowiltas/PermanentStationsNearby] [c/AAAAAA:{loc}]";
@@ -295,8 +296,8 @@ namespace Fargowiltas.Content.Items
                         $"[s:Fargowiltas/DuplicatableAtTree] [c/AAAAAA:{ExpandedTooltipLoc("EnchantedTreeDupable")}]");
                     tooltips.Add(line);
                 }
-
-                int sacCount = FargoItemSets.SacrificeCount[item.type];
+                /*
+                int sacCount = modPlayer.SacrificeCount[item.type];
                 if (Squirrel.EventSacrifice(item, out int consumeCount, false))
                 {
                     if (consumeCount > 1)
@@ -335,6 +336,7 @@ namespace Fargowiltas.Content.Items
                         tooltips.Add(line);
                     }
                 }
+                */
 
                 if (FargoItemSets.TreeTreasureObtainable[item.type])
                 {
@@ -395,7 +397,7 @@ namespace Fargowiltas.Content.Items
                     }
                     if (tooltip.Name == "Knockback")
                     {
-                        float kb = Main.LocalPlayer.GetWeaponKnockback(item, item.knockBack);
+                        float kb = player.GetWeaponKnockback(item, item.knockBack);
                         if (kb > 0 && kb < 1000) // to make it not show when dragonlens does whatever the fuck causes it to skyrocket to infinity
                         {
                             int i = tooltip.Text.IndexOf("\n");
@@ -551,6 +553,7 @@ namespace Fargowiltas.Content.Items
         }
         public override void UpdateInventory(Item item, Player player)
         {
+            PotionBagSystem.TryApplyBuff(item.type, player, item.stack);
             CheckForIsOldUnlimitedAmmo(item);
             if (Main.netMode != NetmodeID.Server)
             {

@@ -22,7 +22,7 @@ namespace Fargowiltas.Common.Systems
     {
         public override bool AppliesToEntity(NPC entity, bool lateInstantiation) => lateInstantiation && entity.type == NPCID.GoblinTinkerer;
         public override bool PreChatButtonClicked(NPC npc, NPCInteraction interaction)
-        {   
+        {
             // todo: figure out what firstButton translates to in NPCInteraction
             if (/*!firstButton &&*/ FargoClientConfig.Instance.AutoReforge)
             {
@@ -31,7 +31,6 @@ namespace Fargowiltas.Common.Systems
             }
             return base.PreChatButtonClicked(npc, interaction);
         }
-        
     }
 
     public class ReforgeItemSlot : FargoItemSlot
@@ -432,15 +431,19 @@ namespace Fargowiltas.Common.Systems
             }
             return num58;
         }
-
         public static string GetPriceString(Item item)
         {
-            long price = GetReforgePrice(item);
+            return GetPriceString(GetReforgePrice(item));
+        }
+        public static string GetPriceString(long price, bool reforgeText = true, bool coinIcon = false)
+        {
+            //int price = GetReforgePrice(item);
 
             if (price < 0)
                 return "";
-
-            string ret = "[c/" + Colors.AlphaDarken(Color.Lerp(Color.Green, Color.LightGray, 0.5f)).Hex3() + ":" + $"{Language.GetTextValue("Mods.Fargowiltas.UI.ReforgeCost")}:]\n";
+            string ret = "";
+            if (reforgeText)
+                ret += "[c/" + Colors.AlphaDarken(Color.Lerp(Color.Green, Color.LightGray, 0.5f)).Hex3() + ":" + $"{Language.GetTextValue("Mods.Fargowiltas.UI.ReforgeCost")}:]\n";
             long num59 = 0;
             long num60 = 0;
             long num61 = 0;
@@ -452,38 +455,50 @@ namespace Fargowiltas.Common.Systems
             }
             if (num63 >= 1000000)
             {
+                if (coinIcon)
+                    ret += "[i:" + ItemID.PlatinumCoin + "]";
                 num59 = num63 / 1000000;
                 num63 -= num59 * 1000000;
+                ret += "[c/" + Colors.AlphaDarken(Colors.CoinPlatinum).Hex3() + ":" + num59 + " " + Lang.inter[15].Value + "]\n";
             }
             if (num63 >= 10000)
             {
+                if (coinIcon)
+                    ret += "[i:" + ItemID.GoldCoin + "]";
                 num60 = num63 / 10000;
                 num63 -= num60 * 10000;
+                ret += "[c/" + Colors.AlphaDarken(Colors.CoinGold).Hex3() + ":" + num60 + " " + Lang.inter[16].Value + "]\n";
             }
             if (num63 >= 100)
             {
+                if (coinIcon)
+                    ret += "[i:" + ItemID.SilverCoin + "]";
                 num61 = num63 / 100;
                 num63 -= num61 * 100;
+                ret += "[c/" + Colors.AlphaDarken(Colors.CoinSilver).Hex3() + ":" + num61 + " " + Lang.inter[17].Value + "]\n";
             }
             if (num63 >= 1)
             {
+                if (coinIcon)
+                    ret += "[i:" + ItemID.CopperCoin + "]";
                 num62 = num63;
+                ret += "[c/" + Colors.AlphaDarken(Colors.CoinCopper).Hex3() + ":" + num62 + " " + Lang.inter[18].Value + "] ";
             }
             if (num59 > 0)
             {
-                ret += "[c/" + Colors.AlphaDarken(Colors.CoinPlatinum).Hex3() + ":" + num59 + " " + Lang.inter[15].Value + "]\n";
+                
             }
             if (num60 > 0)
             {
-                ret += "[c/" + Colors.AlphaDarken(Colors.CoinGold).Hex3() + ":" + num60 + " " + Lang.inter[16].Value + "]\n";
+                
             }
             if (num61 > 0)
             {
-                ret += "[c/" + Colors.AlphaDarken(Colors.CoinSilver).Hex3() + ":" + num61 + " " + Lang.inter[17].Value + "]\n";
+                
             }
             if (num62 > 0)
             {
-                ret += "[c/" + Colors.AlphaDarken(Colors.CoinCopper).Hex3() + ":" + num62 + " " + Lang.inter[18].Value + "] ";
+                
             }
             return ret;
         }
@@ -520,7 +535,7 @@ namespace Fargowiltas.Common.Systems
             }
             void AddPrefix(int prefix)
             {   
-                     
+                // PN: item.CanApplyPrefix is missing. Is this a TML problem?
                 if (item.CanRollPrefix(prefix) && !prefixes.Contains(prefix))
                     prefixes.Add(prefix);
             }

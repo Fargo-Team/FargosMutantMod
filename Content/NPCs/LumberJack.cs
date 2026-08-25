@@ -1,6 +1,4 @@
-using Fargowiltas.Common;
 using Fargowiltas.Common.Configs;
-using Fargowiltas.Content.Achievements;
 using Fargowiltas.Content.Items.Tiles;
 using Fargowiltas.Content.Items.Vanity;
 using Fargowiltas.Content.Items.Weapons;
@@ -244,7 +242,7 @@ namespace Fargowiltas.Content.NPCs
                 .Add(new Item(ItemType<LumberjackBody>()) { shopCustomPrice = Item.buyPrice(copper: 10000) })
                 .Add(new Item(ItemType<LumberjackPants>()) { shopCustomPrice = Item.buyPrice(copper: 10000) })
                 .Add(new Item(ItemType<LumberJaxe>()) { shopCustomPrice = Item.buyPrice(copper: 10000) })
-                .Add(new Item(ItemID.SharpeningStation) { shopCustomPrice = Item.buyPrice(copper: 100000) })
+                .Add(new Item(ItemID.SharpeningStation) { shopCustomPrice = Item.buyPrice(copper: 100000) }, Condition.DownedEyeOfCthulhu)
                 .Add(new Item(ItemType<WoodenToken>()) { shopCustomPrice = Item.buyPrice(copper: 10000) })
                 ;
 

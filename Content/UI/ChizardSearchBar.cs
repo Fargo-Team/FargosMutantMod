@@ -1,10 +1,8 @@
 ﻿using Fargowiltas.Assets.Textures;
-using Fargowiltas.Common;
 using Fargowiltas.Common.Configs;
 using Fargowiltas.Content.Items.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Mono.Cecil;
 using System;
 using System.Linq;
 using Terraria;
@@ -335,7 +333,7 @@ namespace Fargowiltas.Content.UI
                     {
                         float score = 0;
                         Item item = chest.item[j];
-                        
+
                         if (item != null && item.type != ItemID.None)
                         {
                             string name = Lang.GetItemName(item.type).Value;

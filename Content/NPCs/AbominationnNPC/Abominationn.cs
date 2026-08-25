@@ -1,4 +1,3 @@
-using Fargowiltas.Common;
 using Fargowiltas.Common.Configs;
 using Fargowiltas.Content.Biomes;
 using Fargowiltas.Content.Items.Summons.Abom;
@@ -9,10 +8,9 @@ using Fargowiltas.Content.UI.Emotes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection.Metadata.Ecma335;
-using System.Security.Policy;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
@@ -45,7 +43,7 @@ namespace Fargowiltas.Content.NPCs.AbominationnNPC
 
         public static Asset<Texture2D> Cape;
         public static Asset<Texture2D> Glow;
-        public static Asset<Texture2D> StyxGazer;
+        public static Asset<Texture2D> StyxGazer, StyxGazerFlames;
         public static Asset<Texture2D> Arm, ArmGlow;
         public override void SetStaticDefaults()
         {
@@ -98,7 +96,8 @@ namespace Fargowiltas.Content.NPCs.AbominationnNPC
             {
                 Cape = Request<Texture2D>("Fargowiltas/Content/NPCs/AbominationnNPC/AbominationnCape");
                 Glow = Request<Texture2D>("Fargowiltas/Content/NPCs/AbominationnNPC/Abominationn_glow");
-                StyxGazer = Request<Texture2D>("Fargowiltas/Content/NPCs/AbominationnNPC/AbominationnStyxGazer");
+                StyxGazer = Request<Texture2D>("Fargowiltas/Content/NPCs/AbominationnNPC/StyxGazer");
+                StyxGazerFlames = Request<Texture2D>("Fargowiltas/Content/NPCs/AbominationnNPC/StyxGazerFlames");
                 Arm = Request<Texture2D>("Fargowiltas/Content/NPCs/AbominationnNPC/AbominationnArm");
                 ArmGlow = Request<Texture2D>("Fargowiltas/Content/NPCs/AbominationnNPC/AbominationnArm_glow");
             }
@@ -140,6 +139,9 @@ namespace Fargowiltas.Content.NPCs.AbominationnNPC
 
         public override bool CanGoToStatue(bool toKingStatue) => toKingStatue;
 
+        public bool shouldDrawStyxGazer;
+
+        //public int targetIndex = -1;
         public override void AI()
         {
             NPC.breath = 200;
@@ -155,25 +157,50 @@ namespace Fargowiltas.Content.NPCs.AbominationnNPC
                     canSayMutantShimmerQuote = true;
                 }
             }
+
+            //Main.NewText(NPC.DistanceSQ(Main.LocalPlayer.Center));
+            bool shouldBrandish = NPC.DistanceSQ(Main.LocalPlayer.Center) / 10 <= 2500;
+                //|| targetIndex != -1;
+            if (shouldBrandish)
+                shouldDrawStyxGazer = true;
+            else
+                shouldDrawStyxGazer = false;
+
+
+            /*
+            //fetch the NPC that Abominationn is currently targeting
+            foreach (NPC npc in Main.ActiveNPCs)
+            {
+                if (!npc.active || npc.type == NPCID.TargetDummy || npc == null)
+                    return;
+
+                if (npc.whoAmI == NPC.whoAmI)
+                    return;
+
+                if (npc.friendly || npc.damage <= 0)
+                    return;
+
+                if (npc.Distance(NPC.Center) >= NPCID.Sets.DangerDetectRange[Type])
+                    return;
+
+                if (npc.Distance(NPC.Center) <= NPCID.Sets.DangerDetectRange[Type] + 200)
+                    shouldBrandish = true;
+
+                //Main.NewText()
+                if (npc.CanBeChasedBy() && npc.Distance(NPC.Center) <= NPCID.Sets.DangerDetectRange[Type])
+                {
+                    targetIndex = npc.whoAmI;
+                    Main.NewText(npc.type);
+                }
+                else
+                    targetIndex = -1;
+            }
+            */
         }
 
-        public override List<string> SetNPCNameList()
+        public override void ModifyTypeName(ref string typeName)
         {
-            string[] names =
-                [Language.GetTextValue("Mods.Fargowiltas.NPCs.Abominationn.NPCName1"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Abominationn.NPCName2"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Abominationn.NPCName3"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Abominationn.NPCName4"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Abominationn.NPCName5"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Abominationn.NPCName6"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Abominationn.NPCName7"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Abominationn.NPCName8"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Abominationn.NPCName9"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Abominationn.NPCName10"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Abominationn.NPCName11"),
-                Language.GetTextValue("Mods.Fargowiltas.NPCs.Abominationn.NPCName12")];
-
-            return new List<string>(names);
+            typeName = Language.GetTextValue("Mods.Fargowiltas.NPCs.Abominationn.DisplayName");
         }
 
         public override void ChatBubblePosition(ref Vector2 position, ref SpriteEffects spriteEffects)
@@ -421,10 +448,10 @@ namespace Fargowiltas.Content.NPCs.AbominationnNPC
         public override void FindFrame(int frameHeight)
         {
             base.FindFrame(frameHeight);
-            Tile tile = Main.tile[(int)NPC.Center.X / 16, (int)NPC.Center.Y / 16];
-            bool shouldFlourishCape = Main.WindyEnoughForKiteDrops 
-                && !(tile != null && tile.WallType > WallID.None && !WallID.Sets.AllowsWind[tile.WallType])
-                && (((int)NPC.Center.Y / 16) !< Main.worldSurface);
+            Tile? tile = NPC.IsABestiaryIconDummy ? null : Main.tile[(int)NPC.Center.X / 16, (int)NPC.Center.Y / 16];
+            bool shouldFlourishCape = tile.HasValue && Main.WindyEnoughForKiteDrops
+                && !(tile.Value.WallType > WallID.None && !WallID.Sets.AllowsWind[tile.Value.WallType])
+                && (((int)NPC.Center.Y / 16)! < Main.worldSurface);
 
             #region cape
             switch (CapeFrameX)
@@ -433,7 +460,8 @@ namespace Fargowiltas.Content.NPCs.AbominationnNPC
                     {
                         CapeFrameX = CapeFrameY = 0;
                         CapeFrameCounter = 0;
-                    } break;
+                    }
+                    break;
 
                 case (int)CapeAnimationID.WindyIdle:
                     {
@@ -443,7 +471,8 @@ namespace Fargowiltas.Content.NPCs.AbominationnNPC
                             if (++CapeFrameY >= 4)
                                 CapeFrameY = 0;
                         }
-                    } break;
+                    }
+                    break;
 
                 case (int)CapeAnimationID.Walking:
                     {
@@ -453,7 +482,8 @@ namespace Fargowiltas.Content.NPCs.AbominationnNPC
                             if (++CapeFrameY >= 4)
                                 CapeFrameY = 0;
                         }
-                    } break;
+                    }
+                    break;
 
                 case (int)CapeAnimationID.Falling:
                     {
@@ -474,7 +504,8 @@ namespace Fargowiltas.Content.NPCs.AbominationnNPC
                             if (++CapeFrameY >= 6)
                                 CapeFrameY = 0;
                         }
-                    } break;
+                    }
+                    break;
 
             }
 
@@ -498,20 +529,45 @@ namespace Fargowiltas.Content.NPCs.AbominationnNPC
             }
             */
             else if (NPC.velocity.X != 0)
-                HandleCapeAnimation((int)CapeAnimationID.Walking);       
+                HandleCapeAnimation((int)CapeAnimationID.Walking);
             else if (NPC.velocity.Length() == 0)
                 HandleCapeAnimation((int)CapeAnimationID.Idle, shouldFlourishCape);
             #endregion
+            
+            if (shouldDrawStyxGazer)
+            {
+                if (++StyxFrameCounter >= 4)
+                {
+                    StyxFrameCounter = 0;
+                    if (++StyxFrame >= 8)
+                        StyxFrame = 3;
+                }
+            }
+            else
+            {
+                if (++StyxFrameCounter >= 4)
+                {
+                    StyxFrameCounter = 0;
+                    if (--StyxFrame <= 0)
+                        StyxFrame = 0;
+                }
+            }
 
             /*
-            if (++StyxFrameCounter >= 6)
+            if (targetIndex != -1)
             {
-                StyxFrameCounter = 0;
-                if (++StyxFrame >= 7)
-                    StyxFrame = 2;
+                if (NPC.frame.Y < frameHeight * 21)
+                    NPC.frame.Y = frameHeight * 24;
+                if (++ArmFrameCounter >= 4)
+                {
+                    ArmFrameCounter = 0;
+                    if (++ArmFrame >= 4)
+                        ArmFrame = 3; //hold
+                }
             }
+            else
+                ArmFrame = 0;
             */
-            
         }
 
         public int CapeFrameCounter, CapeFrameX, CapeFrameY;
@@ -528,47 +584,79 @@ namespace Fargowiltas.Content.NPCs.AbominationnNPC
             if (NPC.IsABestiaryIconDummy)
                 position = NPC.Center + new Vector2(6 * NPC.direction, 1 + NPC.gfxOffY);
 
-            Texture2D capeTexture = Cape.Value;
             Rectangle capeRect = new(54 * CapeFrameX, 72 * CapeFrameY, 54, 72);
             Vector2 capeOrigin = capeRect.Size() / 2f;
-            
+
             Vector2 capePosition = position - new Vector2(31 * NPC.direction, 0);
             float CapeRotation = 0;
 
-            sb.Draw(capeTexture, capePosition, capeRect, drawColor, CapeRotation, capeOrigin, NPC.scale, effects, 0);
+            sb.Draw(Cape.Value, capePosition, capeRect, drawColor, CapeRotation, capeOrigin, NPC.scale, effects, 0);
 
-            sb.Draw(texture, position, new Microsoft.Xna.Framework.Rectangle?(rectangle), drawColor, NPC.rotation, origin, NPC.scale, effects, 0);
-            sb.Draw(Glow.Value, position, new Microsoft.Xna.Framework.Rectangle?(rectangle), NPC.GetAlpha(Color.White), NPC.rotation, origin, NPC.scale, effects, 0);
+            Vector2 styxFlamesPosition = position + GetFlamesPosition(NPC.frame.Y / NPC.frame.Height);
+            Rectangle styxFlamesRect = new(0, 72 * StyxFrame, 72, 72);
+            Vector2 styxFlamesOrigin = styxFlamesRect.Size() / 2f;
+
+            sb.Draw(StyxGazer.Value, position, rectangle, drawColor, NPC.rotation, origin, NPC.scale, effects, 0);
+            if (StyxFrame != 0)
+                sb.Draw(StyxGazerFlames.Value, styxFlamesPosition, styxFlamesRect, NPC.GetAlpha(Color.White), NPC.rotation, styxFlamesOrigin, NPC.scale, effects, 0);
+
+            sb.Draw(texture, position, rectangle, drawColor, NPC.rotation, origin, NPC.scale, effects, 0);
+            sb.Draw(Glow.Value, position, rectangle, NPC.GetAlpha(Color.White), NPC.rotation, origin, NPC.scale, effects, 0);
 
             // if attacking
-            Rectangle armRect = new(0, 72 * ArmFrame, 52, 72);
+            Rectangle armRect = new(0, 18 * ArmFrame, 24, 18);
             Vector2 armOrigin = armRect.Size() / 2f;
-            Vector2 armPosition = position;
-            /* //todo: ?? figure out how town npc targetting works
+            Vector2 armPosition = position + new Vector2(14, 12);
+            /*
+            Main.NewText(targetIndex);
+            //todo: ?? figure out how town npc targetting works
             if (NPC.ai[0] == 10f || NPC.ai[0] == 13f)
             {
                 float armRotation = 0;
-                if (NPC.HasNPCTarget)
+
+                if (targetIndex != -1)
                 {
-                    NPC npc = Main.npc[NPC.TranslatedTargetIndex];
+                    NPC npc = Main.npc[targetIndex];
                     if (npc != null && npc.active)
                     {
                         armRotation = NPC.DirectionTo(npc.Center).ToRotation();
+                        //Main.NewText(npc.type);
                     }
+                    sb.Draw(Arm.Value, armPosition, armRect, NPC.GetAlpha(drawColor), armRotation, armOrigin, NPC.scale, effects, 0);
+                    sb.Draw(ArmGlow.Value, armPosition, armRect, NPC.GetAlpha(Color.White), armRotation, armOrigin, NPC.scale, effects, 0);
                 }
-
-                sb.Draw(Arm.Value, armPosition, armRect, NPC.GetAlpha(drawColor), armRotation, armOrigin, NPC.scale, effects, 0);
-                sb.Draw(ArmGlow.Value, armPosition, armRect, NPC.GetAlpha(Color.White), armRotation, armOrigin, NPC.scale, effects, 0);
             }
             */
-
-            Texture2D styxGazer = StyxGazer.Value;
-            Rectangle styxRect = new(0, 72 * StyxFrame, 72, 72);
-            Vector2 styxOrigin = styxRect.Size() / 2f;
-            Vector2 styxPosition = position + new Vector2(4 * NPC.direction, 2);
-            //if (StyxFrame != -1)
-            //    sb.Draw(styxGazer, styxPosition, styxRect, NPC.GetAlpha(Color.White), NPC.rotation, styxOrigin, NPC.scale, effects, 0);
+                      
             return false;
+        }
+
+        public Vector2 GetFlamesPosition(int currentFrame)
+        {
+            Vector2 position = currentFrame switch
+            {
+                0 => new(4, 2),
+                1 or 2 => new(2, 0), // im falling!
+                // walking
+                3 or 4 or 5 => new(4, -2),
+                6 or 7 or 8 or 9 => new(2, 0),
+                10 => new(2, -2),
+                11 or 12 => new(-2, -2),
+                13 => new(0, 0),
+                14 or 15 => new(2, 0),
+                //
+                16 or 17 => new(4, 2),
+                18 => new(4, -2), // im sitting!
+
+                // blinking
+                19 or 20 => new(4, 2),
+
+                // firing da cannon
+                21 or 22 or 23 or 24 => new(4, 2),
+                _ => new(4, 2),
+            };
+            position.X *= NPC.direction;
+            return position;
         }
 
         private static string AbomChat(string key, params object[] args) => Language.GetTextValue($"Mods.Fargowiltas.NPCs.Abominationn.Chat.{key}", args);

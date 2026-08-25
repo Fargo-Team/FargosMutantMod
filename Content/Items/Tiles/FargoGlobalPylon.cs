@@ -1,7 +1,4 @@
-using Fargowiltas.Common;
 using Fargowiltas.Common.Configs;
-using System.Linq;
-using Terraria;
 using Terraria.GameContent;
 using Terraria.ModLoader;
 

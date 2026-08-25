@@ -2,6 +2,7 @@
 using Fargowiltas.Content.Items.Summons.Mutant;
 using Fargowiltas.Content.Items.Summons.VanillaCopy;
 using Fargowiltas.Utilities;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -30,25 +31,26 @@ namespace Fargowiltas.Common.Systems.Recipes
 
         private static void AddEvilConversions()
         {
+            RecipeGroup evilBar = FargoRecipeGroups.AnyEvilBar;
             AddConvertRecipe(ItemID.Vertebrae, ItemID.RottenChunk);
             AddConvertRecipe(ItemID.ShadowScale, ItemID.TissueSample);
             AddConvertRecipe(ItemID.PurpleSolution, ItemID.RedSolution);
             AddConvertRecipe(ItemID.Ichor, ItemID.CursedFlame);
-            AddConvertRecipe(ItemID.FleshKnuckles, ItemID.PutridScent);
-            AddConvertRecipe(ItemID.DartPistol, ItemID.DartRifle);
-            AddConvertRecipe(ItemID.WormHook, ItemID.TendonHook);
-            AddConvertRecipe(ItemID.ChainGuillotines, ItemID.FetidBaghnakhs);
-            AddConvertRecipe(ItemID.ClingerStaff, ItemID.SoulDrain);
+            AddConvertRecipe(ItemID.PutridScent, ItemID.FleshKnuckles, evilBar);
+            AddConvertRecipe(ItemID.DartRifle, ItemID.DartPistol, evilBar);
+            AddConvertRecipe(ItemID.WormHook, ItemID.TendonHook, evilBar);
+            AddConvertRecipe(ItemID.ChainGuillotines, ItemID.FetidBaghnakhs, evilBar);
+            AddConvertRecipe(ItemID.ClingerStaff, ItemID.SoulDrain, evilBar);
             AddConvertRecipe(ItemID.ShadowOrb, ItemID.CrimsonHeart);
-            AddConvertRecipe(ItemID.Musket, ItemID.TheUndertaker);
+            AddConvertRecipe(ItemID.Musket, ItemID.TheUndertaker, evilBar);
             //AddConvertRecipe(ItemID.PanicNecklace, ItemID.BandofStarpower);
-            AddConvertRecipe(ItemID.BallOHurt, ItemID.TheRottedFork);
-            AddConvertRecipe(ItemID.CrimsonRod, ItemID.Vilethorn);
+            AddConvertRecipe(ItemID.BallOHurt, ItemID.TheRottedFork, evilBar);
+            AddConvertRecipe(ItemID.CrimsonRod, ItemID.Vilethorn, evilBar);
             AddConvertRecipe(ItemID.CrimstoneBlock, ItemID.EbonstoneBlock);
             AddConvertRecipe(ItemID.Shadewood, ItemID.Ebonwood);
             AddConvertRecipe(ItemID.VileMushroom, ItemID.ViciousMushroom);
-            AddConvertRecipe(ItemID.Bladetongue, ItemID.Toxikarp);
-            AddConvertRecipe(ItemID.VampireKnives, ItemID.ScourgeoftheCorruptor);
+            AddConvertRecipe(ItemID.Bladetongue, ItemID.Toxikarp, evilBar);
+            AddConvertRecipe(ItemID.VampireKnives, ItemID.ScourgeoftheCorruptor, evilBar);
             AddConvertRecipe(ItemID.Ebonkoi, ItemID.CrimsonTigerfish);
             AddConvertRecipe(ItemID.Hemopiranha, ItemID.Ebonkoi);
             AddConvertRecipe(ItemID.BoneRattle, ItemID.EatersBone);
@@ -77,10 +79,19 @@ namespace Fargowiltas.Common.Systems.Recipes
             AddConvertRecipe(ItemID.DemoniteBar, ItemID.CrimtaneBar);
         }
 
-        private static void AddConvertRecipe(int itemID, int otherItemID)
+        private static void AddConvertRecipe(int itemID, int otherItemID, RecipeGroup recipeGroup = null)
         {
-            RecipeHelper.CreateSimpleRecipe(itemID, otherItemID, TileID.DemonAltar, disableDecraft: true);
-            RecipeHelper.CreateSimpleRecipe(otherItemID, itemID, TileID.DemonAltar, disableDecraft: true);
+            if (recipeGroup != null)
+            {
+                Recipe.Create(otherItemID).AddIngredient(itemID).AddRecipeGroup(recipeGroup, 5).AddTile(TileID.DemonAltar).DisableDecraft().Register();
+                Recipe.Create(itemID).AddIngredient(otherItemID).AddRecipeGroup(recipeGroup, 5).AddTile(TileID.DemonAltar).DisableDecraft().Register();
+            }
+            else
+            {
+                RecipeHelper.CreateSimpleRecipe(itemID, otherItemID, TileID.DemonAltar, disableDecraft: true);
+                RecipeHelper.CreateSimpleRecipe(otherItemID, itemID, TileID.DemonAltar, disableDecraft: true);
+            }
+                
         }
     }
 }

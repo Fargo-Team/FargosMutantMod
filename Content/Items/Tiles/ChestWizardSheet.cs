@@ -1,6 +1,4 @@
-﻿using Fargowiltas.Common;
-using Fargowiltas.Common.Systems.Collections;
-using Fargowiltas.Content.UI;
+﻿using Fargowiltas.Content.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -107,7 +105,7 @@ namespace Fargowiltas.Content.Items.Tiles
             Main.instance.LoadArmorHead(armor);
             SpriteEffects hatSide = Main.LocalPlayer.Center.X > TE.Position.ToWorldCoordinates().X ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
             Rectangle headSource = new(0, 0, hat.Width(), hat.Height() / 20);
-            Vector2 pos = new Vector2(i, j).ToWorldCoordinates() - Main.screenPosition + new Vector2(8 , MathF.Sin(TE.drawTimer) - 24);
+            Vector2 pos = new Vector2(i, j).ToWorldCoordinates() - Main.screenPosition + new Vector2(8, MathF.Sin(TE.drawTimer) - 24);
             spriteBatch.Draw(eye.Value, pos, ball, Lighting.GetColor(new Point(i, j)), 0, ball.Size() / 2, 1, SpriteEffects.None, 1);
 
             float angle = (pos + Main.screenPosition).AngleTo(Main.LocalPlayer.Center);

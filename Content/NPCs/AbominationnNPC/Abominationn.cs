@@ -133,6 +133,8 @@ namespace Fargowiltas.Content.NPCs.AbominationnNPC
         public override bool CanGoToStatue(bool toKingStatue) => toKingStatue;
 
         public bool shouldDrawStyxGazer;
+
+        //public int targetIndex = -1;
         public override void AI()
         {
             NPC.breath = 200;
@@ -150,13 +152,43 @@ namespace Fargowiltas.Content.NPCs.AbominationnNPC
             }
 
             //Main.NewText(NPC.DistanceSQ(Main.LocalPlayer.Center));
-            bool shouldBrandish = NPC.DistanceSQ(Main.LocalPlayer.Center) / 10 <= 2500 
-                || NPC.HasNPCTarget;
+            bool shouldBrandish = NPC.DistanceSQ(Main.LocalPlayer.Center) / 10 <= 2500;
+                //|| targetIndex != -1;
             if (shouldBrandish)
                 shouldDrawStyxGazer = true;
             else
                 shouldDrawStyxGazer = false;
-            
+
+
+            /*
+            //fetch the NPC that Abominationn is currently targeting
+            foreach (NPC npc in Main.ActiveNPCs)
+            {
+                if (!npc.active || npc.type == NPCID.TargetDummy || npc == null)
+                    return;
+
+                if (npc.whoAmI == NPC.whoAmI)
+                    return;
+
+                if (npc.friendly || npc.damage <= 0)
+                    return;
+
+                if (npc.Distance(NPC.Center) >= NPCID.Sets.DangerDetectRange[Type])
+                    return;
+
+                if (npc.Distance(NPC.Center) <= NPCID.Sets.DangerDetectRange[Type] + 200)
+                    shouldBrandish = true;
+
+                //Main.NewText()
+                if (npc.CanBeChasedBy() && npc.Distance(NPC.Center) <= NPCID.Sets.DangerDetectRange[Type])
+                {
+                    targetIndex = npc.whoAmI;
+                    Main.NewText(npc.type);
+                }
+                else
+                    targetIndex = -1;
+            }
+            */
         }
 
         public override void ModifyTypeName(ref string typeName)
@@ -510,6 +542,22 @@ namespace Fargowiltas.Content.NPCs.AbominationnNPC
                         StyxFrame = 0;
                 }
             }
+
+            /*
+            if (targetIndex != -1)
+            {
+                if (NPC.frame.Y < frameHeight * 21)
+                    NPC.frame.Y = frameHeight * 24;
+                if (++ArmFrameCounter >= 4)
+                {
+                    ArmFrameCounter = 0;
+                    if (++ArmFrame >= 4)
+                        ArmFrame = 3; //hold
+                }
+            }
+            else
+                ArmFrame = 0;
+            */
         }
 
         public int CapeFrameCounter, CapeFrameX, CapeFrameY;
@@ -538,35 +586,38 @@ namespace Fargowiltas.Content.NPCs.AbominationnNPC
             Rectangle styxFlamesRect = new(0, 72 * StyxFrame, 72, 72);
             Vector2 styxFlamesOrigin = styxFlamesRect.Size() / 2f;
 
-            sb.Draw(StyxGazer.Value, position, new Microsoft.Xna.Framework.Rectangle?(rectangle), drawColor, NPC.rotation, origin, NPC.scale, effects, 0);
+            sb.Draw(StyxGazer.Value, position, rectangle, drawColor, NPC.rotation, origin, NPC.scale, effects, 0);
             if (StyxFrame != 0)
                 sb.Draw(StyxGazerFlames.Value, styxFlamesPosition, styxFlamesRect, NPC.GetAlpha(Color.White), NPC.rotation, styxFlamesOrigin, NPC.scale, effects, 0);
 
-            sb.Draw(texture, position, new Microsoft.Xna.Framework.Rectangle?(rectangle), drawColor, NPC.rotation, origin, NPC.scale, effects, 0);
-            sb.Draw(Glow.Value, position, new Microsoft.Xna.Framework.Rectangle?(rectangle), NPC.GetAlpha(Color.White), NPC.rotation, origin, NPC.scale, effects, 0);
+            sb.Draw(texture, position, rectangle, drawColor, NPC.rotation, origin, NPC.scale, effects, 0);
+            sb.Draw(Glow.Value, position, rectangle, NPC.GetAlpha(Color.White), NPC.rotation, origin, NPC.scale, effects, 0);
 
             // if attacking
-            Rectangle armRect = new(0, 72 * ArmFrame, 52, 72);
+            Rectangle armRect = new(0, 18 * ArmFrame, 24, 18);
             Vector2 armOrigin = armRect.Size() / 2f;
-            Vector2 armPosition = position;
-            /* //todo: ?? figure out how town npc targetting works
+            Vector2 armPosition = position + new Vector2(14, 12);
+            /*
+            Main.NewText(targetIndex);
+            //todo: ?? figure out how town npc targetting works
             if (NPC.ai[0] == 10f || NPC.ai[0] == 13f)
             {
                 float armRotation = 0;
-                if (NPC.HasNPCTarget)
+
+                if (targetIndex != -1)
                 {
-                    NPC npc = Main.npc[NPC.TranslatedTargetIndex];
+                    NPC npc = Main.npc[targetIndex];
                     if (npc != null && npc.active)
                     {
                         armRotation = NPC.DirectionTo(npc.Center).ToRotation();
+                        //Main.NewText(npc.type);
                     }
+                    sb.Draw(Arm.Value, armPosition, armRect, NPC.GetAlpha(drawColor), armRotation, armOrigin, NPC.scale, effects, 0);
+                    sb.Draw(ArmGlow.Value, armPosition, armRect, NPC.GetAlpha(Color.White), armRotation, armOrigin, NPC.scale, effects, 0);
                 }
-
-                sb.Draw(Arm.Value, armPosition, armRect, NPC.GetAlpha(drawColor), armRotation, armOrigin, NPC.scale, effects, 0);
-                sb.Draw(ArmGlow.Value, armPosition, armRect, NPC.GetAlpha(Color.White), armRotation, armOrigin, NPC.scale, effects, 0);
             }
             */
-            
+                      
             return false;
         }
 

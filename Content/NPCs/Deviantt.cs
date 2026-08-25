@@ -73,6 +73,15 @@ namespace Fargowiltas.Content.NPCs
             NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.OnFire] = true;
             //var2
 
+            /*
+            NPCID.Sets.NPCPortraits.Add(Type, NPCID.Sets.PrioritizedPortrait().Default(NPCID.Sets.BasicPortrait($"{Texture}_Portrait")));
+
+            //Close up portrait mode
+            NPCID.Sets.NPCPortraitsCloseUpOffsets.Add(Type, new Vector2(-3f, -16f));
+
+            NPCID.Sets.NPCPortraitsFullBodyRetroOffsets.Add(Type, new Vector2(0, -12));
+            */
+
             NPC.AddDebuffImmunities(new List<int>()
             {
                 BuffID.Suffocation,

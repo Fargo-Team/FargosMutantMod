@@ -1732,5 +1732,5 @@ UniversalCollapse: {
 
 HerbFertilizer: {
 	// DisplayName: Herb Fertilizer
-	// Tooltip: ""
+	// Tooltip: Causes herbs to instantly grow
 }

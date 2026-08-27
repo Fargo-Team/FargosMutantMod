@@ -160,6 +160,8 @@ public class Abominationn : ModNPC
             shouldDrawStyxGazer = false;
 
 
+        Lighting.AddLight(NPC.Top, TorchID.Orange);
+
         /*
         //fetch the NPC that Abominationn is currently targeting
         foreach (NPC npc in Main.ActiveNPCs)

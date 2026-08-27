@@ -1679,3 +1679,8 @@ UniversalCollapse: {
 		Используйте на свой страх и риск
 		'''
 }
+
+HerbFertilizer: {
+	// DisplayName: Herb Fertilizer
+	// Tooltip: ""
+}

@@ -1678,3 +1678,8 @@ UniversalCollapse: {
 		Use at your own risk.
 		'''
 }
+
+HerbFertilizer: {
+	DisplayName: Herb Fertilizer
+	Tooltip: "Causes herbs to instantly grow"
+}

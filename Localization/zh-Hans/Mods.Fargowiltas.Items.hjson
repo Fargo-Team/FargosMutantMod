@@ -1729,3 +1729,8 @@ UniversalCollapse: {
 		Use at your own risk.
 		''' */
 }
+
+HerbFertilizer: {
+	// DisplayName: Herb Fertilizer
+	// Tooltip: ""
+}

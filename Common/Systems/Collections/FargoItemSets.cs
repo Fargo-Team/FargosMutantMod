@@ -66,6 +66,8 @@ public static class FargoItemSets
 
     public static List<int>[] ShimmerTransformsFromItem = ItemFactory.CreateCustomSet<List<int>>(null);
 
+    public static bool[] HerbFertilizerItem = ItemFactory.CreateBoolSet(HerbFertilizer.ValidItems.ToArray());
+
 
     public static DupeType[] DuplicatableItems = ItemFactory.CreateCustomSet<DupeType>(DupeType.NotDupable,
         ItemID.CellPhone, DupeType.Dupable,

@@ -603,6 +603,11 @@ internal class LumberJackPurchaseButton : UIElement
                             ModContent.GetInstance<TreeTreasureAchievements.T2TreeTreasureAchievement>().CavernCondition.Complete();
                         }
                         break;
+                    case TeleportPylonType.Snow:
+                        {
+                            ModContent.GetInstance<TreeTreasureAchievements.T2TreeTreasureAchievement>().SnowCondition.Complete();
+                        }
+                        break;
                     case TeleportPylonType.Jungle:
                         ModContent.GetInstance<TreeTreasureAchievements.T2TreeTreasureAchievement>().JungleCondition.Complete();
                         break;
@@ -620,7 +625,7 @@ internal class LumberJackPurchaseButton : UIElement
                             if (biome.ID == "Crimson")
                                 ModContent.GetInstance<TreeTreasureAchievements.T2TreeTreasureAchievement>().CrimsonCondition.Complete();
 
-                            if (biome.ID == "Corruption")
+                            if (biome.ID == "Corrupt")
                                 ModContent.GetInstance<TreeTreasureAchievements.T2TreeTreasureAchievement>().CorruptCondition.Complete();
                         }
                         break;

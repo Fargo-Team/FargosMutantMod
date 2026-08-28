@@ -57,14 +57,17 @@ public class Deviantt : ModNPC
         NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, drawModifiers);
 
         NPC.Happiness.SetBiomeAffection<SkyBiome>(AffectionLevel.Love);
-        NPC.Happiness.SetBiomeAffection<JungleBiome>(AffectionLevel.Like);
-        NPC.Happiness.SetBiomeAffection<SnowBiome>(AffectionLevel.Dislike);
-        NPC.Happiness.SetBiomeAffection<DesertBiome>(AffectionLevel.Hate);
+        NPC.Happiness.SetBiomeAffection<JungleBiome>(AffectionLevel.Hate);
 
         NPC.Happiness.SetNPCAffection<Mutant>(AffectionLevel.Love);
-        NPC.Happiness.SetNPCAffection<Abominationn>(AffectionLevel.Like);
-        NPC.Happiness.SetNPCAffection(NPCID.BestiaryGirl, AffectionLevel.Dislike);
-        NPC.Happiness.SetNPCAffection(NPCID.Angler, AffectionLevel.Hate);
+        NPC.Happiness.SetNPCAffection<Abominationn>(AffectionLevel.Love);
+        NPC.Happiness.SetNPCAffection(NPCID.BestiaryGirl, AffectionLevel.Like);
+        NPC.Happiness.SetNPCAffection(NPCID.Guide, AffectionLevel.Like);
+        NPC.Happiness.SetNPCAffection(NPCID.Princess, AffectionLevel.Like);
+        NPC.Happiness.SetNPCAffection(NPCID.Wizard, AffectionLevel.Dislike);
+        NPC.Happiness.SetNPCAffection(NPCID.WitchDoctor, AffectionLevel.Dislike);
+        NPC.Happiness.SetNPCAffection(NPCID.Cyborg, AffectionLevel.Dislike);
+        NPC.Happiness.SetNPCAffection(NPCID.TaxCollector, AffectionLevel.Hate);
 
         //new
         NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Suffocation] = true;

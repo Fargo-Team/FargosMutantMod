@@ -63,7 +63,9 @@ public class Squirrel : ModNPC
 
         NPC.Happiness.SetBiomeAffection<ForestBiome>(AffectionLevel.Love);
         NPC.Happiness.SetBiomeAffection<UndergroundBiome>(AffectionLevel.Hate);
+
         NPC.Happiness.SetNPCAffection<LumberJack>(AffectionLevel.Love);
+        NPC.Happiness.SetNPCAffection(NPCID.BestiaryGirl, AffectionLevel.Like);
 
         NPCProfile = new Profiles.StackedNPCProfile(
             new Profiles.DefaultNPCProfile(Texture, NPCHeadLoader.GetHeadSlot(HeadTexture)) //, Texture + "_Party")

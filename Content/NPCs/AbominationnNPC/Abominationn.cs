@@ -68,12 +68,19 @@ public class Abominationn : ModNPC
         NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, drawModifiers);
 
         NPC.Happiness.SetBiomeAffection<SkyBiome>(AffectionLevel.Love);
-        NPC.Happiness.SetBiomeAffection<OceanBiome>(AffectionLevel.Like);
-        NPC.Happiness.SetBiomeAffection<DungeonBiome>(AffectionLevel.Dislike);
+        NPC.Happiness.SetBiomeAffection<OceanBiome>(AffectionLevel.Dislike);
 
         NPC.Happiness.SetNPCAffection<Mutant>(AffectionLevel.Love);
-        NPC.Happiness.SetNPCAffection<Deviantt>(AffectionLevel.Like);
+        NPC.Happiness.SetNPCAffection<Deviantt>(AffectionLevel.Love);
+        NPC.Happiness.SetNPCAffection(NPCID.Pirate, AffectionLevel.Like);
+        NPC.Happiness.SetNPCAffection(NPCID.Steampunker, AffectionLevel.Like);
+        NPC.Happiness.SetNPCAffection(NPCID.Cyborg, AffectionLevel.Like);
+        NPC.Happiness.SetNPCAffection(NPCID.DD2Bartender, AffectionLevel.Like);
+        NPC.Happiness.SetNPCAffection(NPCID.SantaClaus, AffectionLevel.Like);
+        NPC.Happiness.SetNPCAffection(NPCID.Princess, AffectionLevel.Dislike);
+        NPC.Happiness.SetNPCAffection(NPCID.Angler, AffectionLevel.Dislike);
         NPC.Happiness.SetNPCAffection(NPCID.Nurse, AffectionLevel.Hate);
+        NPC.Happiness.SetNPCAffection(NPCID.Mechanic, AffectionLevel.Hate);
 
         NPC.AddDebuffImmunities(new List<int>()
         {

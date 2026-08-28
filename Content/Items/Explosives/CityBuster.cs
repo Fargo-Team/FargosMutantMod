@@ -58,7 +58,7 @@ public class CityBuster : ModItem
         CreateRecipe()
             .AddIngredient<GizmoParts>(10)
             .AddIngredient(ItemID.Dynamite, 50)
-            .AddIngredient(ItemID.FallenStar, 1)
+            .AddIngredient(ItemID.FallenStar, 3)
             .AddTile(TileID.Anvils)
             .Register();
     }

@@ -34,13 +34,18 @@ public class NPCIconTagHandler : ITagHandler
 {
     public class NPCIconSnippet : TextSnippet
     {
+        private const float MaxIconDimension = 40f;
         private int id;
         private Vector2 frameSize;
+        private float iconScale;
 
         public NPCIconSnippet(int npcID)
         {
             this.id = npcID;
-            this.frameSize = new Vector2(TextureAssets.NpcHead[npcID].Size().X, 26);
+            Vector2 rawSize = TextureAssets.NpcHead[npcID].Size();
+            float largestDimension = System.Math.Max(rawSize.X, rawSize.Y);
+            iconScale = largestDimension > MaxIconDimension ? MaxIconDimension / largestDimension : 1f;
+            this.frameSize = new Vector2(rawSize.X * iconScale, 26);
         }
 
         public override bool UniqueDraw(bool justCheckingString, out Vector2 size, SpriteBatch spriteBatch, Vector2 position = default(Vector2), Color color = default(Color), float scale = 1f)
@@ -50,7 +55,7 @@ public class NPCIconTagHandler : ITagHandler
                 Texture2D value = TextureAssets.NpcHead[id].Value;
                 Rectangle frame = value.Frame();
                 Vector2 origin = frame.Size() / 2f;
-                spriteBatch.Draw(value, position + origin, frame, Color.White, 0f, origin, scale, SpriteEffects.None, 0f);
+                spriteBatch.Draw(value, position + origin * iconScale, frame, Color.White, 0f, origin, scale * iconScale, SpriteEffects.None, 0f);
             }
             size = frameSize;
             return true;

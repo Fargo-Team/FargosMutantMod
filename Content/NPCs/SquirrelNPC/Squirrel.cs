@@ -62,10 +62,15 @@ public class Squirrel : ModNPC
         NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, drawModifiers);
 
         NPC.Happiness.SetBiomeAffection<ForestBiome>(AffectionLevel.Love);
-        NPC.Happiness.SetBiomeAffection<UndergroundBiome>(AffectionLevel.Hate);
+        NPC.Happiness.SetBiomeAffection<OceanBiome>(AffectionLevel.Dislike);
+        NPC.Happiness.SetBiomeAffection<DesertBiome>(AffectionLevel.Hate);
 
         NPC.Happiness.SetNPCAffection<LumberJack>(AffectionLevel.Love);
         NPC.Happiness.SetNPCAffection(NPCID.BestiaryGirl, AffectionLevel.Like);
+        NPC.Happiness.SetNPCAffection(NPCID.GoblinTinkerer, AffectionLevel.Like);
+        NPC.Happiness.SetNPCAffection(NPCID.Dryad, AffectionLevel.Like);
+        NPC.Happiness.SetNPCAffection(NPCID.Merchant, AffectionLevel.Dislike);
+        NPC.Happiness.SetNPCAffection(NPCID.ArmsDealer, AffectionLevel.Dislike);
 
         NPCProfile = new Profiles.StackedNPCProfile(
             new Profiles.DefaultNPCProfile(Texture, NPCHeadLoader.GetHeadSlot(HeadTexture)) //, Texture + "_Party")

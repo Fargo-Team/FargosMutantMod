@@ -85,7 +85,8 @@ public class LumberjackBiomeRegistry : ModSystem
         LumberJackBiome.Create("Jungle", LocalPath, Item.buyPrice(0, 7), Color.LawnGreen, TeleportPylonType.Jungle)
             .SetIcon(vanillaIcons, vanillaIcons.Frame(16, 5, 6, 1))
             .SetWood(ItemID.RichMahogany, 50)
-            .AddCritter([ItemID.Buggy, ItemID.Sluggy, ItemID.Grubby, ItemID.Frog], 5, 1, () => 1f)
+            .AddCritter([ItemID.Buggy, ItemID.Sluggy, ItemID.Grubby], 5, 1, () => 0.7f)
+            .AddCritter([ItemID.Frog], 5, 1, () => 0.3f)
             .AddFruit([ItemID.Mango, ItemID.Pineapple], 5, 1, () => 1f)
             .Register();
 

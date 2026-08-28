@@ -89,6 +89,7 @@ public static class FargoItemSets
         ItemID.LavaproofTackleBag, DupeType.Dupable,
         ItemID.GoldenFishingRod, DupeType.Dupable,
         ItemID.GoldenBugNet, DupeType.Dupable,
+        ItemType<WiresPainting>(), DupeType.Dupable,
         ItemType<Omnistation>(), DupeType.Dupable,
         ItemType<Omnistation2>(), DupeType.Dupable,
         ItemType<CrucibleCosmos>(), DupeType.Dupable,

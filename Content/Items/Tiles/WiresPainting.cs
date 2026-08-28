@@ -1,5 +1,6 @@
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria;
 
 namespace Fargowiltas.Content.Items.Tiles;
 
@@ -17,6 +18,7 @@ public class WiresPainting : ModItem
         Item.useStyle = ItemUseStyleID.Swing;
         Item.consumable = true;
         Item.rare = ItemRarityID.Blue;
+        Item.value = Item.sellPrice(0, 0, 10);
         Item.createTile = ModContent.TileType<WiresPaintingSheet>();
     }
 }

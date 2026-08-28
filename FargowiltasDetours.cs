@@ -35,6 +35,7 @@ public class FargowiltasDetours : ModSystem
 
         //On_Player.AddBuff += AddBuff;
         On_Player.DoCommonDashHandle += OnVanillaDash;
+        On_Player.dropItemCheck += EnchantedTreeMouseClick;
         On_Player.DropTombstone += DisableTombstones;
         On_Player.HasUnityPotion += OnHasUnityPotion;
         On_Player.ItemCheck_CheckCanUse += AllowUseSummons;
@@ -396,6 +397,54 @@ public class FargowiltasDetours : ModSystem
     {
         orig(self, sw);
         EnchantedTreeTileEntity.UpdateEnchantedTrees();
+    }
+
+    private void EnchantedTreeMouseClick(On_Player.orig_dropItemCheck orig, Player self)
+    {
+
+        if (self.whoAmI == Main.myPlayer && Main.playerInventory && !Main.mouseItem.IsAir && Main.mouseItem.stack > 0 && !Main.mouseItem.favorited && Main.mouseRight && Main.mouseRightRelease && !self.mouseInterface)
+        {
+            for (int t = 0; t < EnchantedTreeSheet.EnchantedTrees.Count; t++)
+            {
+
+                if (!FargoUtils.TryGetTileEntityAs(EnchantedTreeSheet.EnchantedTrees[t].X, EnchantedTreeSheet.EnchantedTrees[t].Y, out EnchantedTreeTileEntity tree))
+                {
+                    continue;
+                }
+
+                if (tree.ItemType != -1 || tree.Fruits.Count != 0)
+                {
+
+                    continue;
+                }
+
+                Vector2 treeTopLeft = new Vector2(tree.Position.X, tree.Position.Y) * 16;
+                Rectangle treeHitbox = new Rectangle((int)treeTopLeft.X, (int)treeTopLeft.Y, 3 * 16, 4 * 16);
+
+                if (!treeHitbox.Contains(Main.MouseWorld.ToPoint()) || self.Distance(treeTopLeft) >= 400f)
+                {
+                    continue;
+                }
+
+                tree.ItemType = Main.mouseItem.type;
+                tree.Prefix = Main.mouseItem.prefix;
+
+                if (EnchantedTreeTileEntity.IsItemDupable(tree.ItemType))
+                {
+
+                    tree.Fruits.Add(new EnchantedTreeTileEntity.Fruit(tree.ItemType, tree.Position.ToWorldCoordinates() + new Vector2(16, -12), tree.Position.ToWorldCoordinates() + new Vector2(16, -80), Vector2.Zero));
+                    if (Main.netMode == NetmodeID.MultiplayerClient)
+                    { 
+                        FargoNet.SendEnchantedTreeFruitPacket(t);
+                    }
+                }
+
+                Main.mouseItem.stack -= 1;
+                tree.CursorInsertCooldown = 10;
+                return;
+            }
+        }
+        orig(self);
     }
 
     public static void UpdatePortableSundialCooldown_Day(On_Main.orig_UpdateTime_StartDay orig, ref bool stopEvents)

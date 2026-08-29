@@ -1681,6 +1681,6 @@ UniversalCollapse: {
 }
 
 HerbFertilizer: {
-	// DisplayName: Herb Fertilizer
-	// Tooltip: Causes herbs to instantly grow
+	DisplayName: Удобрение для цветов
+	Tooltip: Заставляет цветы, используемые в зельях, мгновенно расцвести
 }

@@ -34,4 +34,4 @@ ShimmerableBoth: Можно в помощью мерцания получить 
 TreeTreasure: Можно получить из лесных даров ДревоБилла
 FasterBedSpeed: Ускоряет время в {0} раз, когда вы спите
 PermanentEffectNearbyPickup: При получении навсегда предоставляет усиление «{0}» игрокам поблизости
-// HerbFertilizer: Can be Extractinated into Herb Fertilizer
+HerbFertilizer: Можно переработать в удобрение для цветов

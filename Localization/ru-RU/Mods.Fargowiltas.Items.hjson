@@ -1684,3 +1684,8 @@ HerbFertilizer: {
 	DisplayName: Удобрение для цветов
 	Tooltip: Заставляет цветы, используемые в зельях, мгновенно расцвести
 }
+
+DevianttBow: {
+	// DisplayName: Deviantt Bow
+	// Tooltip: ""
+}

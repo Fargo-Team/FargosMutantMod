@@ -1683,3 +1683,8 @@ HerbFertilizer: {
 	DisplayName: Herb Fertilizer
 	Tooltip: Causes herbs to instantly grow
 }
+
+DevianttBow: {
+	DisplayName: Deviantt Bow
+	Tooltip: ""
+}

@@ -85,6 +85,7 @@ public class EnchantedTreeTileEntity : ModTileEntity
     }
     public int ItemType = -1;
     public int Prefix = 0;
+    public int CursorInsertCooldown = 0;
     public override void SaveData(TagCompound tag)
     {
         tag["ItemDefinition"] = new ItemDefinition(ItemType);
@@ -158,6 +159,35 @@ public class EnchantedTreeTileEntity : ModTileEntity
                 {
                     //Main.NewText(EnchantedTreeTileEntity.EnchantedTrees.Count);
                     return;
+                }
+
+                if (tree.CursorInsertCooldown > 0)
+                {
+                    tree.CursorInsertCooldown--;
+                }
+
+                if (Main.playerInventory && tree.ItemType >= 0 && tree.CursorInsertCooldown <= 0 && Main.mouseRight && Main.mouseRightRelease && !Main.LocalPlayer.mouseInterface)
+                {
+                    Vector2 ejectTreeTopLeft = new Vector2(tree.Position.X, tree.Position.Y) * 16;
+                    Rectangle ejectTreeHitbox = new Rectangle((int)ejectTreeTopLeft.X, (int)ejectTreeTopLeft.Y, 3 * 16, 4 * 16);
+                    if (ejectTreeHitbox.Contains(Main.MouseWorld.ToPoint()) && Main.LocalPlayer.Distance(ejectTreeTopLeft) < 400f)
+                    {
+                        int it = Item.NewItem(Main.LocalPlayer.GetSource_TileInteraction(tree.Position.X, tree.Position.Y), tree.Position.ToWorldCoordinates(), tree.ItemType, 1, prefixGiven: tree.Prefix);
+                        NetMessage.SendData(MessageID.SyncItem, Main.LocalPlayer.whoAmI, number: it, number2: 1f);
+                        tree.ItemType = -1;
+                        for (int f = 0; f < tree.Fruits.Count; f++)
+                        {
+                            Fruit fruit = tree.Fruits[f];
+                            if (fruit.despawnTimer == 0)
+                            {
+                                fruit.despawnTimer = 1;
+                            }
+                        }
+                        if (Main.netMode == NetmodeID.MultiplayerClient)
+                        {
+                            FargoNet.SendEnchantedTreeFruitPacket(t);
+                        }
+                    }
                 }
 
                 for (int i = 0; i < tree.Fruits.Count; i++)

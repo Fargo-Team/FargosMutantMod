@@ -69,8 +69,12 @@ public class LumberJack : ModNPC
         };
         NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, drawModifiers);
 
-        NPC.Happiness.SetBiomeAffection<ForestBiome>(AffectionLevel.Love);
+        NPC.Happiness.SetBiomeAffection<SnowBiome>(AffectionLevel.Love);
+        NPC.Happiness.SetBiomeAffection<ForestBiome>(AffectionLevel.Like);
+        NPC.Happiness.SetBiomeAffection<MushroomBiome>(AffectionLevel.Dislike);
 
+        NPC.Happiness.SetNPCAffection(NPCID.Princess, AffectionLevel.Like);
+        NPC.Happiness.SetNPCAffection(NPCID.DD2Bartender, AffectionLevel.Like);
         NPC.Happiness.SetNPCAffection<Squirrel>(AffectionLevel.Like);
         NPC.Happiness.SetNPCAffection(NPCID.Dryad, AffectionLevel.Dislike);
         NPC.Happiness.SetNPCAffection(NPCID.Demolitionist, AffectionLevel.Hate);

@@ -148,7 +148,7 @@ public class EnchantedTreeSheet : ModTile
                 return true;
             }
             //if the entity has item already drop it and set it to null
-            else if (entity != null && entity.ItemType >= 0)
+            else if (entity != null && entity.ItemType >= 0 && entity.CursorInsertCooldown <= 0)
             {
                 int it = Item.NewItem(player.GetSource_TileInteraction(i, j), new Vector2(i, j).ToWorldCoordinates(), entity.ItemType, 1, prefixGiven: entity.Prefix);
                 NetMessage.SendData(MessageID.SyncItem, player.whoAmI, number: it, number2: 1f);

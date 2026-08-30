@@ -68,12 +68,16 @@ public class Mutant : ModNPC
         NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, drawModifiers);
 
         NPC.Happiness.SetBiomeAffection<SkyBiome>(AffectionLevel.Love);
-        NPC.Happiness.SetBiomeAffection<ForestBiome>(AffectionLevel.Like);
+        NPC.Happiness.SetBiomeAffection<OceanBiome>(AffectionLevel.Like);
         NPC.Happiness.SetBiomeAffection<HallowBiome>(AffectionLevel.Dislike);
 
         NPC.Happiness.SetNPCAffection<Abominationn>(AffectionLevel.Love);
-        NPC.Happiness.SetNPCAffection<Deviantt>(AffectionLevel.Like);
-        NPC.Happiness.SetNPCAffection<LumberJack>(AffectionLevel.Dislike);
+        NPC.Happiness.SetNPCAffection<Deviantt>(AffectionLevel.Love);
+        NPC.Happiness.SetNPCAffection(NPCID.Clothier, AffectionLevel.Like);
+        NPC.Happiness.SetNPCAffection(NPCID.Princess, AffectionLevel.Like);
+        NPC.Happiness.SetNPCAffection(NPCID.Cyborg, AffectionLevel.Like);
+        NPC.Happiness.SetNPCAffection(NPCID.Dryad, AffectionLevel.Dislike);
+
 
         NPC.AddDebuffImmunities(new List<int>()
         {

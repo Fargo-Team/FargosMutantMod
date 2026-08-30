@@ -33,6 +33,7 @@ using static Fargowiltas.Content.Items.Tiles.EnchantedTreeTileEntity;
 [assembly: InternalsVisibleTo("FargowiltasCrossmod")]
 [assembly: InternalsVisibleTo("FargowiltasSoulsDLC")]
 [assembly: InternalsVisibleTo("Satanist")]
+[assembly: InternalsVisibleTo("SecretsOfTheSouls")]
 namespace Fargowiltas;
 
 public class Fargowiltas : Mod

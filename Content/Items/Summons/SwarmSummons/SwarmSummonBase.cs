@@ -90,12 +90,12 @@ public abstract class SwarmSummonBase : ModItem
 
         if (Main.netMode == NetmodeID.Server)
         {
-            ChatHelper.BroadcastChatMessage(NetworkText.FromKey($"Mods.Fargowiltas.MessageInfo.{spawnMessageKey}"), new Color(175, 75, 255));
+            ChatHelper.BroadcastChatMessage(NetworkText.FromKey($"Mods.{Item.ModItem.Mod.Name}.MessageInfo.{spawnMessageKey}"), new Color(175, 75, 255));
             NetMessage.SendData(MessageID.WorldData);
         }
         else if (Main.netMode == NetmodeID.SinglePlayer)
         {
-            Main.NewText(Language.GetTextValue($"Mods.Fargowiltas.MessageInfo.{spawnMessageKey}"), 175, 75, 255);
+            Main.NewText(Language.GetTextValue($"Mods.{Item.ModItem.Mod.Name}.MessageInfo.{spawnMessageKey}"), 175, 75, 255);
         }
 
         SoundEngine.PlaySound(SoundID.Roar, player.position);

@@ -1686,6 +1686,6 @@ HerbFertilizer: {
 }
 
 DevianttBow: {
-	// DisplayName: Deviantt Bow
+	DisplayName: Бант Девиантт
 	// Tooltip: ""
 }

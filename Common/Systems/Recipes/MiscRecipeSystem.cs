@@ -291,6 +291,15 @@ public class MiscRecipeSystem : ModSystem
         recipe.DisableDecraft();
         recipe.Register();
 
+        recipe = Recipe.Create(ItemID.Sundial);
+        recipe.AddIngredient(ItemID.SunplateBlock, 40);
+        recipe.AddRecipeGroup(RecipeGroups.AnyGoldBar, 40);
+        recipe.AddRecipeGroup(RecipeGroups.AnyEvilBar, 20);
+        recipe.AddIngredient(ItemID.FallenStar, 10);
+        recipe.AddTile(TileID.SkyMill);
+        recipe.DisableDecraft();
+        recipe.Register();
+
         recipe = Recipe.Create(ItemID.AmberMosquito);
         recipe.AddIngredient(ItemID.Amber, 15);
         recipe.AddIngredient(ItemID.Firefly);

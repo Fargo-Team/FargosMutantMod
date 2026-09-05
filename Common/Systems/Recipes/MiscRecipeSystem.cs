@@ -264,7 +264,7 @@ public class MiscRecipeSystem : ModSystem
         recipe = Recipe.Create(ItemID.SailfishBoots);
         recipe.AddIngredient(ItemID.OldShoe);
         recipe.AddIngredient(ItemID.SharkFin, 3);
-        recipe.AddIngredient(RecipeGroups.AnyCommonFish, 5);
+        recipe.AddRecipeGroup(RecipeGroups.AnyCommonFish, 5);
         recipe.AddTile(TileID.LivingLoom);
         recipe.DisableDecraft();
         recipe.Register();

@@ -58,11 +58,16 @@ public class OmniBridgifier : ModItem
     public override void AddRecipes()
     {
         CreateRecipe()
+            .AddIngredient<GizmoParts>(2)
             .AddIngredient(ModContent.ItemType<InstaBridge>())
             .AddTile(ModContent.TileType<OmnistationSheet>())
             .Register();
 
-
+        CreateRecipe()
+           .AddIngredient<GizmoParts>(2)
+           .AddIngredient(ModContent.ItemType<SemiBridgifier>())
+           .AddTile(ModContent.TileType<OmnistationSheet>())
+           .Register();
     }
 }
 
@@ -115,6 +120,12 @@ public class OmniBridgifier2 : ModItem
         CreateRecipe()
             .AddIngredient<GizmoParts>(2)
             .AddIngredient(ModContent.ItemType<InstaBridge>())
+            .AddTile(ModContent.TileType<OmnistationSheet2>())
+            .Register();
+
+        CreateRecipe()
+            .AddIngredient<GizmoParts>(2)
+            .AddIngredient(ModContent.ItemType<SemiBridgifier>())
             .AddTile(ModContent.TileType<OmnistationSheet2>())
             .Register();
     }

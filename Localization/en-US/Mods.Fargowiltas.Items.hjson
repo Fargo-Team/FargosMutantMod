@@ -154,6 +154,7 @@ BattleCry: {
 		'''
 		Left click to toggle increased spawn rates
 		Right click to toggle decreased spawn rates
+		Does not stack with [i:BattlePotion][i:CalmingPotion][i:WaterCandle][i:PeaceCandle]
 		May also be toggled between modes by right clicking the item in the inventory
 		'''
 	Battle: Battle

@@ -540,20 +540,6 @@ public class FargoGlobalNPC : GlobalNPC
         }
         FargoPlayer fargoPlayer = player.FargoMutant();
 
-        if (fargoPlayer.BattleCry)
-        {
-            spawnRate = (int)(spawnRate * 0.25);
-            maxSpawns = (int)(maxSpawns * 4f);
-        }
-
-        if (fargoPlayer.CalmingCry)
-        {
-            float cryStrength = 1.25f; // 1 + strength of spawn rate decrease
-
-            spawnRate = (int)(spawnRate * cryStrength);
-            maxSpawns = (int)(maxSpawns * (1 / cryStrength));
-        }
-
         if ((FargoWorld.OverloadGoblins || FargoWorld.OverloadPirates) && player.position.X > Main.invasionX * 16.0 - 3000 && player.position.X < Main.invasionX * 16.0 + 3000)
         {
             if (FargoWorld.OverloadGoblins)

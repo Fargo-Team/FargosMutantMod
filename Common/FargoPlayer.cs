@@ -417,6 +417,19 @@ public class FargoPlayer : ModPlayer
         }
         */
     }
+    public override void PostUpdateEquips()
+    {
+        if (BattleCry)
+        {
+            Player.AddBuff(BuffID.Battle, 2);
+            Player.AddBuff(BuffID.WaterCandle, 2);
+        }
+        if (CalmingCry)
+        {
+            Player.AddBuff(BuffID.Calm, 2);
+            Player.AddBuff(BuffID.PeaceCandle, 2);
+        }
+    }
     public override void PostUpdateBuffs()
     {
         if (FargoServerConfig.Instance.UnlimitedPotionBuffs is UnlimitedBuffSelections.On || (FargoServerConfig.Instance.UnlimitedPotionBuffs is UnlimitedBuffSelections.BossOnly && FargoUtils.AnyBossAlive()))

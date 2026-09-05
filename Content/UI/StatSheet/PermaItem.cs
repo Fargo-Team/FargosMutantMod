@@ -40,8 +40,10 @@ public class PermaItem : UIElement
             {
                 if (active)
                 {
+                    Main.LocalPlayer.mouseInterface = true;
                     Main.hoverItemName = item.Name;
                     Main.HoverItem = item.Clone();
+                    Main.instance.MouseTextHackZoom(string.Empty);
                 }
                 else
                 {

@@ -353,6 +353,12 @@ public class PotionBagUI : FargoUI
 
             if (ContainsPoint(Main.MouseScreen))
             {
+                Item hoverItem = new Item(type);
+                Main.LocalPlayer.mouseInterface = true;
+                Main.HoverItem = hoverItem.Clone();
+                Main.hoverItemName = hoverItem.Name;
+                Main.instance.MouseTextHackZoom(string.Empty);
+
                 Rectangle lineFrame = line.Frame();
                 Vector2 lineOrigin = lineFrame.Size() - new Vector2(lineFrame.Size().X, lineFrame.Size().Y / 2f);
                 Vector2 horizScale = new Vector2(0.03f, (GetDimensions().Width / lineFrame.Height) - 2f);

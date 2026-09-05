@@ -65,6 +65,10 @@ public class SpawnProj : ModProjectile
 
             NPC.SpawnWOF(Main.player[Projectile.owner].Center);
         }
+        else if (Projectile.ai[0] == NPCID.PirateShip && FargoWorld.EternityMode) //eternity mode despawns pirate ships without ai[0] set to stop natural spawns
+        {
+            int n = NPC.NewNPC(NPC.GetBossSpawnSource(Main.myPlayer), (int)Projectile.Center.X, (int)Projectile.Center.Y, (int)Projectile.ai[0], 0, 1);
+        }
         else
         {
             int n = NPC.NewNPC(NPC.GetBossSpawnSource(Main.myPlayer), (int)Projectile.Center.X, (int)Projectile.Center.Y, (int)Projectile.ai[0]);

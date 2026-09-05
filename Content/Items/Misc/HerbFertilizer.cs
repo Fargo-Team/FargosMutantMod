@@ -9,7 +9,6 @@ namespace Fargowiltas.Content.Items.Misc;
 
 public class HerbFertilizer : ModItem
 {
-    public override string Texture => "Fargowiltas/Content/Items/Placeholder";
     public static List<int> ValidItems = [ItemID.Vertebrae, ItemID.RottenChunk, ItemID.JungleSpores, ItemID.AntlionMandible, ItemID.SharkFin];
     public override void SetStaticDefaults()
     {
@@ -43,12 +42,12 @@ public class HerbFertilizer : ModItem
     public override void AddRecipes()
     {
         foreach (int i in ValidItems)
-            RecipeHelper.CreateSimpleRecipe(i, Type, TileID.Extractinator, 1, 5, true, false);
+            RecipeHelper.CreateSimpleRecipe(i, Type, TileID.Solidifier, 1, 3, true, false);
     }
     public override void ExtractinatorUse(int extractinatorBlockType, ref int resultType, ref int resultStack)
     {
         resultType = Type;
-        resultStack = 5;
+        resultStack = 3;
     }
 }
 

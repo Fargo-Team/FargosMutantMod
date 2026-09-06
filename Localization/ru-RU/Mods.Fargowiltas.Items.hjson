@@ -1,4 +1,4 @@
-AltarExterminator: {
+﻿AltarExterminator: {
 	DisplayName: Истребитель алтарей
 	Tooltip:
 		'''
@@ -154,6 +154,7 @@ BattleCry: {
 		'''
 		Нажмите ЛКМ, чтобы увеличить скорость появления существ
 		Нажмите ПКМ, чтобы уменьшить скорость появления существ
+		Не складывается с [i:BattlePotion][i:CalmingPotion][i:WaterCandle][i:PeaceCandle]
 		Также режим можно переключить, нажав ПКМ по предмету в инвентаре
 		'''
 	Battle: Боевой клич

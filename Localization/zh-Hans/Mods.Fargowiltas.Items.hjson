@@ -1739,3 +1739,12 @@ DevianttBow: {
 	// DisplayName: Deviantt Bow
 	// Tooltip: ""
 }
+
+MiniObsidianInstaBridge: {
+	// DisplayName: Mini Obsidian Instabridge
+	/* Tooltip:
+		'''
+		Creates a long bridge of obsidian platforms at your cursor
+		Will not break any blocks and stops when it hits a solid block
+		''' */
+}

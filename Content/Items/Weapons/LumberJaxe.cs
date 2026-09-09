@@ -33,8 +33,11 @@ public class LumberJaxe : ModItem
     {
         if (Main.myPlayer == player.whoAmI)
         {
-            if (player.head == EquipLoader.GetEquipSlot(Mod, "LumberjackMask", EquipType.Head) && player.body == EquipLoader.GetEquipSlot(Mod, "LumberjackBody", EquipType.Body) && player.legs == EquipLoader.GetEquipSlot(Mod, "LumberjackPants", EquipType.Legs))
+            //player.head and etc only check armor slots due to probably update order bullshit, so vanity slots are also checked directly
+            if (((player.head == EquipLoader.GetEquipSlot(Mod, "LumberjackMask", EquipType.Head) || player.head == EquipLoader.GetEquipSlot(Mod, "LumberHat", EquipType.Head)) && player.body == EquipLoader.GetEquipSlot(Mod, "LumberjackBody", EquipType.Body) && player.legs == EquipLoader.GetEquipSlot(Mod, "LumberjackPants", EquipType.Legs)) 
+                || ((player.armor[10].headSlot == EquipLoader.GetEquipSlot(Mod, "LumberjackMask", EquipType.Head) || player.armor[10].headSlot == EquipLoader.GetEquipSlot(Mod, "LumberHat", EquipType.Head)) && player.armor[11].bodySlot == EquipLoader.GetEquipSlot(Mod, "LumberjackBody", EquipType.Body) && player.armor[12].legSlot == EquipLoader.GetEquipSlot(Mod, "LumberjackPants", EquipType.Legs)))
             {
+                Main.NewText("a");
                 ModContent.GetInstance<LumberjaxeAchievement>().Condition.Complete();
             }
         }

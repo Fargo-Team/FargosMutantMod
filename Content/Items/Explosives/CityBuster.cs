@@ -209,11 +209,11 @@ public class CityBusterBomb : ModProjectile
 
         Player player = Main.player[Projectile.owner];
 
-        Vector2 position = Projectile.Center;
+        Vector2 position = Projectile.Bottom;
         int radius = 64;     //bigger = boomer
         for (int x = -radius; x <= radius; x++)
         {
-            for (int y = -radius * 2; y <= 0; y++)
+            for (int y = -radius * 2; y < 0; y++)
             {
                 int xPosition = (int)(x + position.X / 16.0f);
                 int yPosition = (int)(y + position.Y / 16.0f);

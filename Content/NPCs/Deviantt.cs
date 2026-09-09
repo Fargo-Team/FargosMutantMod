@@ -282,14 +282,14 @@ public class Deviantt : ModNPC
         int mutant = NPC.FindFirstNPC(NPCType<Mutant>());
         if (mutant != -1)
         {
-            dialogue.Add(DeviChat("Mutant1", Main.npc[mutant].GivenName));
-            dialogue.Add(DeviChat("Mutant2", Main.npc[mutant].GivenName));
+            dialogue.Add(DeviChat("Mutant1", Main.npc[mutant].TypeName));
+            dialogue.Add(DeviChat("Mutant2", Main.npc[mutant].TypeName));
         }
 
         int lumberjack = NPC.FindFirstNPC(NPCType<LumberJack>());
         if (lumberjack != -1)
         {
-            dialogue.Add(DeviChat("Lumber", Main.npc[lumberjack].GivenName));
+            dialogue.Add(DeviChat("Lumber", Main.npc[lumberjack].TypeName));
         }
 
         if (FargoWorld.EternityMode)

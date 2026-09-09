@@ -401,7 +401,6 @@ public class FargowiltasDetours : ModSystem
 
     private void EnchantedTreeMouseClick(On_Player.orig_dropItemCheck orig, Player self)
     {
-
         if (self.whoAmI == Main.myPlayer && Main.playerInventory && !Main.mouseItem.IsAir && Main.mouseItem.stack > 0 && !Main.mouseItem.favorited && Main.mouseRight && Main.mouseRightRelease && !self.mouseInterface)
         {
             for (int t = 0; t < EnchantedTreeSheet.EnchantedTrees.Count; t++)
@@ -414,7 +413,6 @@ public class FargowiltasDetours : ModSystem
 
                 if (tree.ItemType != -1 || tree.Fruits.Count != 0)
                 {
-
                     continue;
                 }
 

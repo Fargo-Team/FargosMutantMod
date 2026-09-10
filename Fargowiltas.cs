@@ -133,6 +133,9 @@ public class Fargowiltas : Mod
 
         FargoUIManager.LoadUI();
 
+        string path = "Fargowiltas/Content/NPCs/DevianttNPC/Deviantt_Head_Hatless";
+        Instance.AddNPCHeadTexture(ModContent.NPCType<Deviantt>(), path);
+
         ModStats = [];
         PermaUpgrades =
         [

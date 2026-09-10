@@ -45,9 +45,7 @@ public class Deviantt : ModNPC
         NPCID.Sets.AttackAverageChance[NPC.type] = 30;
         NPCID.Sets.FaceEmote[NPC.type] = ModContent.EmoteBubbleType<DevianttEmote>();
 
-        NPCID.Sets.ShimmerTownTransform[NPC.type] = true; // This set says that the Town NPC has a Shimmered form. Otherwise, the Town NPC will become transparent when touching Shimmer like other enemies.
-
-        NPCID.Sets.ShimmerTownTransform[Type] = true; // Allows for this NPC to have a different texture after touching the Shimmer liquid.
+        // NPCID.Sets.ShimmerTownTransform[Type] = true; // Allows for this NPC to have a different texture after touching the Shimmer liquid.
 
         NPCID.Sets.NPCBestiaryDrawModifiers drawModifiers = new NPCID.Sets.NPCBestiaryDrawModifiers()
         {
@@ -97,8 +95,8 @@ public class Deviantt : ModNPC
     {
         NPC.townNPC = true;
         NPC.friendly = true;
-        NPC.width = 36;
-        NPC.height = 40;
+        NPC.width = 26;
+        NPC.height = 48;
         NPC.aiStyle = NPCAIStyleID.Passive;
         NPC.damage = 10;
         NPC.defense = NPC.downedMoonlord ? 50 : 15;
@@ -107,13 +105,6 @@ public class Deviantt : ModNPC
         NPC.DeathSound = SoundID.NPCDeath1;
         NPC.knockBackResist = 0.5f;
         AnimationType = NPCID.Angler;
-
-        //if (GetInstance<FargoConfig>().CatchNPCs)
-        //{
-        //    Main.NPCCatchable[NPC.type] = true;
-        //    NPC.catchItem = (short)mod.ItemType("Deviantt");
-        //}
-
     }
     public override bool CanTownNPCSpawn(int numTownNPCs)
     {
@@ -379,11 +370,6 @@ public class Deviantt : ModNPC
         npcShop.Register();
     }
 
-    public override void ModifyActiveShop(string shopName, Item[] items)
-    {
-
-    }
-
     public override void TownNPCAttackStrength(ref int damage, ref float knockback)
     {
         if (NPC.downedMoonlord)
@@ -454,49 +440,77 @@ public class Deviantt : ModNPC
         }
     }
 
-    public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
+    public override void ModifyHoverBoundingBox(ref Rectangle boundingBox)
     {
-        int offset = -5;
+        boundingBox = new((int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height);
+    }
+
+
+    // there are 40 horizontal frames and 14 vertical frames
+    public int frameX, frameY;
+
+    enum Actions
+    {
+        Still,
+        Walking,
+        StinkPotion,
+        LovePotion,
+        Point,
+        Blink,
+        Attack
+    }
+    public override void FindFrame(int frameHeight)
+    {
+        if (true) //todo: state enum?? write custom npc behavior so this is easier to track maybe????
+        {
+            frameX = 0;
+
+            if (NPC.ai[0] == 5f)
+                frameX = 32;
+        }
+    }
+
+    public static bool Hatless = false;
+    public override bool PreDraw(SpriteBatch sb, Vector2 screenPos, Color drawColor)
+    {
+        if (NPC.IsABestiaryIconDummy)
+            return true;
+        //Hatless = true;
         Texture2D texture = (Texture2D)TownNPCProfile().GetTextureNPCShouldUse(NPC);
-        Rectangle rectangle = NPC.frame;
+
+        int xFrameToUse = RetrieveProperXFrame(frameX);
+        Rectangle rectangle = new(72 * xFrameToUse, 66 & frameY, 72, 66);
         Vector2 origin2 = rectangle.Size() / 2f;
-        SpriteEffects effects = NPC.IsShimmerVariant ? NPC.spriteDirection < 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally : SpriteEffects.None;
+        SpriteEffects effects = SpriteEffects.None;
+
+        Vector2 position = NPC.Center - Main.screenPosition + new Vector2(-4 * NPC.direction, NPC.gfxOffY - 6);
         if ((bool?)Fargowiltas.SoulsMod?.Call("GiftsReceived") == false)
         {
-
-
             Color color26 = Main.DiscoColor;
             color26.A = 0;
 
-            //for (int i = 0; i < NPCID.Sets.TrailCacheLength[NPC.type]; i++)
-            //{
-            //    Color color27 = color26 * 0.5f;
-            //    color27 *= (float)(NPCID.Sets.TrailCacheLength[NPC.type] - i) / NPCID.Sets.TrailCacheLength[NPC.type];
-            //    Vector2 value4 = NPC.oldPos[i];
-            //    float num165 = NPC.rotation; //NPC.oldRot[i];
-            //    Main.EntitySpriteDraw(texture2D13, value4 + NPC.Size / 2f - Main.screenPosition + new Vector2(0, NPC.gfxOffY - 4), new Microsoft.Xna.Framework.Rectangle?(rectangle), color27, num165, origin2, NPC.scale, effects, 0);
-            //}
-
             float scale = (Main.mouseTextColor / 200f - 0.35f) * 0.5f + 1f;
             scale *= NPC.scale;
-            Main.EntitySpriteDraw(texture, NPC.Center - Main.screenPosition + new Vector2(0f, NPC.gfxOffY - 4), new Microsoft.Xna.Framework.Rectangle?(rectangle), color26, NPC.rotation, origin2, scale, effects, 0);
+            sb.Draw(texture, position, new Microsoft.Xna.Framework.Rectangle?(rectangle), color26, NPC.rotation, origin2, scale, effects, 0);
         }
 
-        if (NPC.IsShimmerVariant)
-            offset = -3;
+        //if (NPC.IsShimmerVariant)
+        //    offset = -3;
 
-        if (!NPC.IsABestiaryIconDummy)
-        {
-            Main.EntitySpriteDraw(texture, NPC.Center - Main.screenPosition + new Vector2(0f, NPC.gfxOffY) + new Vector2(0, offset), new Microsoft.Xna.Framework.Rectangle?(rectangle), NPC.GetAlpha(drawColor), NPC.rotation, origin2, NPC.scale, effects, 0);
-            return false;
-        }
-        else
-            return true;
+ 
+        sb.Draw(texture, position, new Microsoft.Xna.Framework.Rectangle?(rectangle), NPC.GetAlpha(drawColor), NPC.rotation, origin2, NPC.scale, effects, 0);
+        return false;
+    }
 
-
-
-
-
+    public int RetrieveProperXFrame(int frameX)
+    {
+        int frame = frameX;
+        bool faceRight = NPC.spriteDirection == 1;
+        if (Hatless)
+            frame += 2;
+        if (faceRight)
+            frame += 1;
+        return frame;
     }
 
     private static string DeviChat(string key, params object[] args) => Language.GetTextValue($"Mods.Fargowiltas.NPCs.Deviantt.Chat.{key}", args);
@@ -509,18 +523,22 @@ public class DevianttProfile : ITownNPCProfile
     public Asset<Texture2D> GetTextureNPCShouldUse(NPC npc)
     {
         if (npc.IsABestiaryIconDummy)
-            return Request<Texture2D>("Fargowiltas/Content/NPCs/Deviantt");
+            return Request<Texture2D>("Fargowiltas/Content/NPCs/DevianttNPC/Deviantt");
 
+        /*
         if (npc.IsShimmerVariant)
         {
             return Request<Texture2D>("Fargowiltas/Content/NPCs/Deviantt_Shimmer");
         }
+        */
 
-        if (npc.direction == -1)
-            return ModContent.Request<Texture2D>("Fargowiltas/Content/NPCs/Deviantt");
-        else
-            return ModContent.Request<Texture2D>("Fargowiltas/Content/NPCs/DevianttRight");
+        return Request<Texture2D>("Fargowiltas/Content/NPCs/DevianttNPC/Deviantt");
     }
 
-    public int GetHeadTextureIndex(NPC npc) => GetModHeadSlot("Fargowiltas/Content/NPCs/Deviantt_Head");
+    public int GetHeadTextureIndex(NPC npc)
+    {
+        if (Deviantt.Hatless)
+            return GetModHeadSlot("Fargowiltas/Content/NPCs/DevianttNPC/Deviantt_Head_Hatless");
+        return GetModHeadSlot("Fargowiltas/Content/NPCs/DevianttNPC/Deviantt_Head");
+    }
 }

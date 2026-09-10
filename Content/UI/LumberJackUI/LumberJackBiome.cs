@@ -69,10 +69,9 @@ public class LumberjackBiomeRegistry : ModSystem
         LumberJackBiome.Create("Caverns", LocalPath, Item.buyPrice(0, 7), Color.Black, TeleportPylonType.Underground)
             .SetIcon(vanillaIcons, vanillaIcons.Frame(16, 5, 2, 0))
             .AddFruit([ItemID.Amethyst, ItemID.Topaz, ItemID.Sapphire, ItemID.Emerald, ItemID.Ruby, ItemID.Amber, ItemID.Diamond], 2, 5, () => 1f)
-            .AddCritter(ItemID.Mouse, 5, () => 0.5f)
+            .AddCritter([ItemID.Mouse, ItemID.FairyCritterBlue, ItemID.FairyCritterGreen, ItemID.FairyCritterPink], 1, 5, () => 0.4f)
             .AddCritter([ItemID.GemSquirrelAmethyst, ItemID.GemSquirrelTopaz, ItemID.GemSquirrelSapphire, ItemID.GemSquirrelEmerald, ItemID.GemSquirrelRuby, ItemID.GemSquirrelAmber, ItemID.GemSquirrelDiamond], 1, 5, () => 0.25f)
             .AddCritter([ItemID.GemBunnyAmethyst, ItemID.GemBunnyTopaz, ItemID.GemBunnySapphire, ItemID.GemBunnyEmerald, ItemID.GemBunnyRuby, ItemID.GemBunnyAmber, ItemID.GemBunnyDiamond], 1, 5, () => 0.25f)
-            .AddCritter([ItemID.FairyCritterBlue, ItemID.FairyCritterGreen, ItemID.FairyCritterPink], 1, 3, () => 0.25f)
             .Register();
 
         LumberJackBiome.Create("Underworld", LocalPath, Item.buyPrice(0, 25), Color.OrangeRed, TeleportPylonType.Underground)

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent;
+using Terraria.GameContent.Drawing;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -17,6 +18,8 @@ public class EnchantedTreeSheet : ModTile
     public static List<Point16> EnchantedTrees = [];
     public override void SetStaticDefaults()
     {
+        Main.tileShine[Type] = 400;
+        Main.tileLighted[Type] = true;
         Main.tileSolid[Type] = false;
         Main.tileMergeDirt[Type] = false;
         Main.tileBlockLight[Type] = false;
@@ -35,12 +38,21 @@ public class EnchantedTreeSheet : ModTile
         LocalizedText name = CreateMapEntryName();
         AddMapEntry(Color.DarkGray, name);
 
-        DustType = DustID.Stone;
+        DustType = DustID.TintableDust;
     }
-    public override void RandomUpdate(int i, int j)
+
+    public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
     {
-        base.RandomUpdate(i, j);
+        r = 0.4f;
+        g = 0.3f;
+        b = 0.5f;
     }
+
+    public override void EmitParticles(int i, int j, Tile tile, short tileFrameX, short tileFrameY, Color tileLight, bool visible)
+    {
+
+    }
+
     public override void PlaceInWorld(int i, int j, Item item)
     {
         EnchantedTrees.Add(FargoUtils.GetTopLeftTileInMultitile(i, j));
@@ -48,12 +60,11 @@ public class EnchantedTreeSheet : ModTile
         {
             FargoNet.SendEnchantedTreesListPacket();
         }
-        base.PlaceInWorld(i, j, item);
     }
+
     public override void KillMultiTile(int i, int j, int frameX, int frameY)
     {
         //drop item currently inside it
-
         if (FargoUtils.TryGetTileEntityAs<EnchantedTreeTileEntity>(i, j, out EnchantedTreeTileEntity entity) == true && entity.ItemType >= 0 && !Main.dedServ)
         {
             int item = Item.NewItem(Item.GetSource_NaturalSpawn(), new Rectangle(i * 16 + 50, j * 16 + 50, 1, 1), entity.ItemType, 1, prefixGiven: entity.Prefix);
@@ -66,8 +77,8 @@ public class EnchantedTreeSheet : ModTile
             FargoNet.SendEnchantedTreesListPacket();
         }
         ModContent.GetInstance<EnchantedTreeTileEntity>().Kill(i, j);
-        base.KillMultiTile(i, j, frameX, frameY);
     }
+
     public override void DrawEffects(int i, int j, SpriteBatch spriteBatch, ref TileDrawInfo drawData)
     {
         //allow drawing in front of the tile
@@ -111,6 +122,7 @@ public class EnchantedTreeSheet : ModTile
             Main.EntitySpriteDraw(item.Value, position - Main.screenPosition, frame, Color.White * opacity, 0, new Vector2(frame.Width, frame.Height) / 2, 1, SpriteEffects.None, 0);
         }
     }
+
     public override bool RightClick(int i, int j)
     {
         Player player = Main.LocalPlayer;
@@ -159,6 +171,7 @@ public class EnchantedTreeSheet : ModTile
         }
         return base.RightClick(i, j);
     }
+
     public override void NearbyEffects(int i, int j, bool closer)
     {
         if (!closer)
@@ -174,6 +187,5 @@ public class EnchantedTreeSheet : ModTile
                 }
             }
         }
-        base.NearbyEffects(i, j, closer);
     }
 }

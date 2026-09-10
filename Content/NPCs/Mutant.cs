@@ -5,6 +5,7 @@ using Fargowiltas.Content.Items.Summons.Mutant;
 using Fargowiltas.Content.Items.Summons.SwarmSummons;
 using Fargowiltas.Content.Items.Tiles;
 using Fargowiltas.Content.NPCs.AbominationnNPC;
+using Fargowiltas.Content.NPCs.DevianttNPC;
 using Fargowiltas.Content.Projectiles;
 using Fargowiltas.Content.UI.Emotes;
 using Microsoft.Xna.Framework;

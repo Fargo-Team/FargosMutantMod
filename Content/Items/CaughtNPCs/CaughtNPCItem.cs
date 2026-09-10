@@ -1,6 +1,7 @@
 ﻿using Fargowiltas.Common.Configs;
 using Fargowiltas.Content.NPCs;
 using Fargowiltas.Content.NPCs.AbominationnNPC;
+using Fargowiltas.Content.NPCs.DevianttNPC;
 using Fargowiltas.Content.NPCs.SquirrelNPC;
 using System.Collections.Generic;
 using System.Linq;

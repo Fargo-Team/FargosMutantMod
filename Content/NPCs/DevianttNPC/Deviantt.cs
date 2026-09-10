@@ -19,7 +19,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 
-namespace Fargowiltas.Content.NPCs;
+namespace Fargowiltas.Content.NPCs.DevianttNPC;
 
 [AutoloadHead]
 public class Deviantt : ModNPC

@@ -272,13 +272,13 @@ public class ContainerRecipeSystem : ModSystem
         RecipeHelper.CreateSimpleRecipe(ItemID.GoodieBag, ItemID.BatHook, TileID.Solidifier, ingredientAmount: 25, disableDecraft: true);
         RecipeHelper.CreateSimpleRecipe(ItemID.GoodieBag, ItemID.RottenEgg, TileID.Solidifier, ingredientAmount: 2, resultAmount: 25, disableDecraft: true);
 
-        RecipeHelper.CreateSimpleRecipe(ItemID.HerbBag, ItemID.Daybloom, TileID.Solidifier, resultAmount: 5, disableDecraft: true);
-        RecipeHelper.CreateSimpleRecipe(ItemID.HerbBag, ItemID.Moonglow, TileID.Solidifier, resultAmount: 5, disableDecraft: true);
-        RecipeHelper.CreateSimpleRecipe(ItemID.HerbBag, ItemID.Blinkroot, TileID.Solidifier, resultAmount: 5, disableDecraft: true);
-        RecipeHelper.CreateSimpleRecipe(ItemID.HerbBag, ItemID.Waterleaf, TileID.Solidifier, resultAmount: 5, disableDecraft: true);
-        RecipeHelper.CreateSimpleRecipe(ItemID.HerbBag, ItemID.Deathweed, TileID.Solidifier, resultAmount: 5, disableDecraft: true);
-        RecipeHelper.CreateSimpleRecipe(ItemID.HerbBag, ItemID.Fireblossom, TileID.Solidifier, resultAmount: 5, disableDecraft: true);
-        RecipeHelper.CreateSimpleRecipe(ItemID.HerbBag, ItemID.Shiverthorn, TileID.Solidifier, resultAmount: 5, disableDecraft: true);
+        RecipeHelper.CreateSimpleRecipe(ItemID.HerbBag, ItemID.Daybloom, TileID.Solidifier, resultAmount: 3, disableDecraft: true);
+        RecipeHelper.CreateSimpleRecipe(ItemID.HerbBag, ItemID.Moonglow, TileID.Solidifier, resultAmount: 3, disableDecraft: true);
+        RecipeHelper.CreateSimpleRecipe(ItemID.HerbBag, ItemID.Blinkroot, TileID.Solidifier, resultAmount: 3, disableDecraft: true);
+        RecipeHelper.CreateSimpleRecipe(ItemID.HerbBag, ItemID.Waterleaf, TileID.Solidifier, resultAmount: 3, disableDecraft: true);
+        RecipeHelper.CreateSimpleRecipe(ItemID.HerbBag, ItemID.Deathweed, TileID.Solidifier, resultAmount: 3, disableDecraft: true);
+        RecipeHelper.CreateSimpleRecipe(ItemID.HerbBag, ItemID.Fireblossom, TileID.Solidifier, resultAmount: 3, disableDecraft: true);
+        RecipeHelper.CreateSimpleRecipe(ItemID.HerbBag, ItemID.Shiverthorn, TileID.Solidifier, resultAmount: 3, disableDecraft: true);
     }
 
     private static void AddCrateRecipes()

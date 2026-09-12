@@ -1692,10 +1692,10 @@ DevianttBow: {
 }
 
 MiniObsidianInstaBridge: {
-	// DisplayName: Mini Obsidian Instabridge
-	/* Tooltip:
+	DisplayName: Маленький обсидиановый МоментМост
+	Tooltip:
 		'''
-		Creates a long bridge of obsidian platforms at your cursor
-		Will not break any blocks and stops when it hits a solid block
-		''' */
+		Создаёт длинный мост из обсидиановых платформ у курсора
+		Не разрушает блоки и перестаёт ставить платформы при столкновении с блоками
+		'''
 }

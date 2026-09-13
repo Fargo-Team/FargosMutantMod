@@ -91,6 +91,23 @@ public class FargoPlayer : ModPlayer
 
     public List<BaseSpawnBoosterBuff> ActiveSpawnBoosters = [];
 
+    public List<(string ModName, string Name)> PinnedStats = [];
+    
+    public bool? TogglePinnedStat(string ModName, string Name)
+    {
+        var id = (ModName, Name);
+        if (PinnedStats.Remove(id))
+            return false;
+
+        if (PinnedStats.Count >= 8)
+            return null;
+
+        PinnedStats.Add(id);
+        return true;
+    }
+
+    public bool IsStatPinned(string ModName, string Name) => PinnedStats.Contains((ModName, Name));
+
     private readonly string[] tags =
     [
         "RedHusk",
@@ -213,6 +230,8 @@ public class FargoPlayer : ModPlayer
         }
         tag.Add("SacrificeCountKeys", keys.ToList());
         tag.Add("SacrificeCountValues", values);
+
+        tag.Add("PinnedStats", PinnedStats.Select(p => $"{p.ModName}|{p.Name}").ToList());
     }
     public override void LoadData(TagCompound tag)
     {
@@ -257,6 +276,17 @@ public class FargoPlayer : ModPlayer
                 SacrificeCountCache.Add(sacrificeKeys[i], sacrificeValues[i]);
                 if (sacrificeKeys[i].Type != -1)
                     SacrificeCount[sacrificeKeys[i].Type] = sacrificeValues[i];
+            }
+        }
+
+        if (tag.TryGet<IList<string>>("PinnedStats", out var PinnedStatsList))
+        {
+            PinnedStats.Clear();
+            foreach (string entry in PinnedStatsList)
+            {
+                string[] parts = entry.Split('|', 2);
+                if (parts.Length == 2)
+                    PinnedStats.Add((parts[0], parts[1]));
             }
         }
     }

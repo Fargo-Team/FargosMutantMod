@@ -1,6 +1,8 @@
 ﻿using Fargowiltas.Common.Systems;
 using Microsoft.Xna.Framework;
+using System.Text.RegularExpressions;
 using Terraria;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Fargowiltas.Content.UI.StatSheet;
@@ -29,7 +31,6 @@ public class PinnedStatDisplay : InfoDisplay
                 return null;
 
             int count = pins.Count;
-
             return (slotIndex >= 0 && slotIndex < count) ? pins[slotIndex] : null;
         }
     }
@@ -40,12 +41,15 @@ public class PinnedStatDisplay : InfoDisplay
         {
             if (Pin is not { } pin)
                 return "Fargowiltas/Assets/Symbols/InfoDisplay/StatSheet";
-
             return $"{SymbolPathRegistry.GetFilePath(pin.ModName)}/InfoDisplay/{pin.Name}";
         }
     }
 
     public override string Name => $"PinnedStatDisplay{slotIndex}";
+
+    public override LocalizedText DisplayName => Pin is { } pin ? this.GetLocalization(pin.Name, () => PrintStatName(pin.Name)) : this.GetLocalization("Empty", () => "Empty Pin Slot");
+
+    private static string PrintStatName(string name) => Regex.Replace(name, "(?<!^)(?=[A-Z])", " ");
 
     public override bool Active() => Pin is { } pin && StatRegistry.FindStat(pin.ModName, pin.Name) != null;
 
@@ -60,10 +64,7 @@ public class PinnedStatDisplay : InfoDisplay
         if (stat == null)
             return string.Empty;
 
-        // Fetch raw localized template string (e.g., "Fishing Quests: {0}")
         string rawText = stat.TextFunction?.Invoke() ?? string.Empty;
-
-        // Evaluate actual value to fill {0}
         object val = stat.Value?.Invoke();
         return val != null ? string.Format(rawText, val) : rawText;
     }

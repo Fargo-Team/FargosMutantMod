@@ -59,6 +59,9 @@ StatSheet: {
 	MaxSentries: 哨兵数量上限：{0}
 	// WhipSpeed: Whip Speed: {0}%
 	// WhipLength: Whip Length: {0}%
+	// pin
+	// PinTooltip: Alt+Click to pin to Info Display
+	// UnpinTooltip: Alt+Click to unpin
 }
 
 LumberJack: {

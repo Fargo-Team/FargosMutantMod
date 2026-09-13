@@ -25,6 +25,8 @@ public class StatTracker
     private static string StatSheetLocal(string key, object arg) => Language.GetTextValue($"Mods.Fargowiltas.UI.StatSheet.{key}", arg);
     private static string StatSheetLocal(string key) => Language.GetTextValue($"Mods.Fargowiltas.UI.StatSheet.{key}");
 
+    private static string StatSheetLocal(string modName, string key) => Language.GetTextValue($"Mods.{modName}.UI.StatSheet.{key}");
+
     private static string IconPath(string key) => $"Fargowiltas/Assets/Textures/UI/{key}";
 
     private StatCategory FargoCreate(string key, Func<bool> condition = null) => StatCategory.Create(key, $"Mods.Fargowiltas.UI.StatSheet.{key}", IconPath($"{key}_Icon"), condition);
@@ -107,8 +109,9 @@ public class StatTracker
         Mod souls = Fargowiltas.SoulsMod;
         if (souls != null)
         {
-            StatRegistry.TryAddStatToCategory("Summon", "SummonCritical", () => (int)souls.Call("GetSummonCrit"), () => StatSheetLocal("SummonCritical"), 1 + float.Epsilon, modName: "FargowiltasSouls");
-            StatRegistry.TryAddStatToCategory("Combat", "AttackSpeed", () => (int)Math.Round(MathF.Max((float)souls.Call("GetCachedAttackSpeed"), (float)souls.Call("GetAttackSpeed")) * 100), () => StatSheetLocal("AttackSpeed"), modName: "FargowiltasSouls");
+            const string soulsModName = "FargowiltasSouls";
+            StatRegistry.TryAddStatToCategory("Summon", "SummonCritical", () => (int)souls.Call("GetSummonCrit"), () => StatSheetLocal(soulsModName, "SummonCritical"), 1 + float.Epsilon, modName: soulsModName);
+            StatRegistry.TryAddStatToCategory("Combat", "AttackSpeed", () => (int)Math.Round(MathF.Max((float)souls.Call("GetCachedAttackSpeed"), (float)souls.Call("GetAttackSpeed")) * 100), () => StatSheetLocal(soulsModName, "AttackSpeed"), modName: soulsModName);
 
         }
     }

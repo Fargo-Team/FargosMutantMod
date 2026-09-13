@@ -1699,3 +1699,8 @@ MiniObsidianInstaBridge: {
 		Не разрушает блоки и перестаёт ставить платформы при столкновении с блоками
 		'''
 }
+
+ObsidianWreckingBall: {
+	// DisplayName: Obsidian Wrecking Ball
+	// Tooltip: Throw to demolish Obsidian Houses down to ground level
+}

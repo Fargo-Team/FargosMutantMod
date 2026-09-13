@@ -55,8 +55,9 @@ StatSheet: {
 	//summon
 	Summon: Призывательные
 	SummonDamage: Урон: {0}%
-	MaxMinions: Макс. миньоны: {0}
-	MaxSentries: Макс. стражи: {0}
+	// StatFraction: "{0}/{1}"
+	// Minions: Minions: {0}
+	// Sentries: Sentries: {0}
 	WhipSpeed: Скорость атаки: {0}%
 	WhipLength: Длина атаки: {0}%
 	// pin

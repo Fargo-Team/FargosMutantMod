@@ -55,8 +55,9 @@ StatSheet: {
 	//summon
 	// Summon: Summon
 	SummonDamage: Dano de invocação: {0}%
-	MaxMinions: Lacaios máximos: {0}
-	MaxSentries: Sentinelas máximas: {0}
+	// StatFraction: "{0}/{1}"
+	// Minions: Minions: {0}
+	// Sentries: Sentries: {0}
 	// WhipSpeed: Whip Speed: {0}%
 	// WhipLength: Whip Length: {0}%
 	// pin

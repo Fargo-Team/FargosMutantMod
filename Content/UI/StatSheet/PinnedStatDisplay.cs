@@ -47,7 +47,7 @@ public class PinnedStatDisplay : InfoDisplay
 
     public override string Name => $"PinnedStatDisplay{slotIndex}";
 
-    public override LocalizedText DisplayName => Pin is { } pin ? this.GetLocalization(pin.Name, () => PrintStatName(pin.Name)) : this.GetLocalization("Empty", () => "Empty Pin Slot");
+    public override LocalizedText DisplayName => LocalizedText.Empty;
 
     private static string PrintStatName(string name) => Regex.Replace(name, "(?<!^)(?=[A-Z])", " ");
 

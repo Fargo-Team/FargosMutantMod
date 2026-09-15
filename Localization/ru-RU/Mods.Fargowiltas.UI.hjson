@@ -61,7 +61,7 @@ StatSheet: {
 	WhipSpeed: Скорость атаки: {0}%
 	WhipLength: Длина атаки: {0}%
 	// pin
-	PinTooltip: Нажмите Alt+Click, чтобы закрепить в меню
+	PinTooltip: Нажмите Alt+Click, чтобы закрепить в окне отображения информации
 	UnpinTooltip: Нажмите Alt+Click, чтобы открепить
 }
 

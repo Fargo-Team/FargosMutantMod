@@ -1,4 +1,7 @@
-﻿using Terraria;
+﻿using Fargowiltas.Content.Projectiles.Explosives;
+using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -15,19 +18,27 @@ public class ObsidianWreckingBall : ModItem
     {
         Item.width = 32;
         Item.height = 36;
-
-        // placeholder
-        Item.useStyle = ItemUseStyleID.Swing;
-        Item.useTime = 30;
-        Item.useAnimation = 30;
+        Item.useStyle = ItemUseStyleID.Shoot;
+        Item.useTime = 60;
+        Item.useAnimation = 60;
         Item.UseSound = SoundID.Item1;
         Item.autoReuse = false;
         Item.noUseGraphic = true;
-
+        Item.noMelee = true;
         Item.rare = ItemRarityID.Orange;
         Item.value = Item.buyPrice(gold: 10);
+        Item.shoot = ModContent.ProjectileType<ObsidianWreckingBallProj>();
+        Item.shootSpeed = 0f;
+    }
 
-        // todo projectile
+    public override bool CanUseItem(Player player)
+    {
+        return !ObsidianWreckingBallProj.PlayerHasActiveBall(player.whoAmI);
+    }
+
+    public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+    {
+        return !ObsidianWreckingBallProj.PlayerHasActiveBall(player.whoAmI);
     }
 
     public override void AddRecipes()

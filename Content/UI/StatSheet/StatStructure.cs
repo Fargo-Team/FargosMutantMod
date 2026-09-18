@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using Terraria;
@@ -90,9 +91,8 @@ public class StatCategory
     public StatCategory AddStat(string key, float priority, Func<object> value, string localPath, Func<bool> condition = null)
     {
         condition ??= (() => true);
+        Stat newStat = new Stat(key, priority, value, () => Language.GetTextValue(localPath, value.Invoke()), condition);
 
-
-        Stat newStat = new Stat(key, priority, value, () => Language.GetTextValue(localPath), condition);
         if (!Stats.Contains(newStat))
         {
             Stats.Add(newStat);
@@ -130,6 +130,15 @@ public static class StatRegistry
             return true;
         }
         return false;
+    }
+
+    public static Stat FindStat(string ModName, string Name)
+    {
+        foreach (StatCategory category in StatRegistry.GetCategories())
+        foreach (Stat stat in category.Stats)
+            if (stat.ModName == ModName && stat.Name == Name)
+            return stat;
+        return null;
     }
 
     /// <summary>

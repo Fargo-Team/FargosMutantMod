@@ -55,10 +55,14 @@ StatSheet: {
 	//summon
 	Summon: Summon
 	SummonDamage: Summon Damage: {0}%
-	MaxMinions: Max Minions: {0}
-	MaxSentries: Max Sentries: {0}
+	StatFraction: "{0}/{1}"
+	Minions: Minions: {0}
+	Sentries: Sentries: {0}
 	WhipSpeed: Whip Speed: {0}%
 	WhipLength: Whip Length: {0}%
+	// pin
+	PinTooltip: Alt+Click to pin to Info Display
+	UnpinTooltip: Alt+Click to unpin
 }
 
 LumberJack: {

@@ -150,6 +150,9 @@ public class Fargowiltas : Mod
         symbolTracker = new SymbolTracker();
         statTracker = new StatTracker();
 
+        for (int i = 0; i < 8; i++)
+            AddContent(new PinnedStatDisplay(i));
+
         HomeKey = KeybindLoader.RegisterKeybind(this, "Home", "Home");
 
         StatKey = KeybindLoader.RegisterKeybind(this, "Stat", "L");

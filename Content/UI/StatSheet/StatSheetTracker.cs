@@ -23,7 +23,10 @@ public class StatTracker
     }
 
     private static string StatSheetLocal(string key, object arg) => Language.GetTextValue($"Mods.Fargowiltas.UI.StatSheet.{key}", arg);
+    private static string StatSheetLocal(string key, object arg0, object arg1) => Language.GetTextValue($"Mods.Fargowiltas.UI.StatSheet.{key}", arg0, arg1);
     private static string StatSheetLocal(string key) => Language.GetTextValue($"Mods.Fargowiltas.UI.StatSheet.{key}");
+
+    private static string StatSheetLocal(string modName, string key) => Language.GetTextValue($"Mods.{modName}.UI.StatSheet.{key}");
 
     private static string IconPath(string key) => $"Fargowiltas/Assets/Textures/UI/{key}";
 
@@ -95,8 +98,8 @@ public class StatTracker
         // Summon
         FargoCreate("Summon")
             .FargoStat("SummonDamage", () => Damage(DamageClass.Summon))
-            .FargoStat("MaxMinions", () => Main.LocalPlayer.maxMinions)
-            .FargoStat("MaxSentries", () => Main.LocalPlayer.maxTurrets)
+            .FargoStat("Minions", MinionCount)
+            .FargoStat("Sentries", SentryCount)
             .FargoStat("WhipSpeed", () => Math.Round(Main.LocalPlayer.GetAttackSpeed<SummonMeleeSpeedDamageClass>() * 100f))
             .FargoStat("WhipLength", () => Math.Round(Main.LocalPlayer.whipRangeMultiplier * 100f))
             .RegisterCategory();
@@ -107,8 +110,9 @@ public class StatTracker
         Mod souls = Fargowiltas.SoulsMod;
         if (souls != null)
         {
-            StatRegistry.TryAddStatToCategory("Summon", "SummonCritical", () => (int)souls.Call("GetSummonCrit"), () => StatSheetLocal("SummonCritical"), 1 + float.Epsilon, modName: "FargowiltasSouls");
-            StatRegistry.TryAddStatToCategory("Combat", "AttackSpeed", () => (int)Math.Round(MathF.Max((float)souls.Call("GetCachedAttackSpeed"), (float)souls.Call("GetAttackSpeed")) * 100), () => StatSheetLocal("AttackSpeed"), modName: "FargowiltasSouls");
+            const string soulsModName = "FargowiltasSouls";
+            StatRegistry.TryAddStatToCategory("Summon", "SummonCritical", () => (int)souls.Call("GetSummonCrit"), () => StatSheetLocal(soulsModName, "SummonCritical"), 1 + float.Epsilon, modName: soulsModName);
+            StatRegistry.TryAddStatToCategory("Combat", "AttackSpeed", () => (int)Math.Round(MathF.Max((float)souls.Call("GetCachedAttackSpeed"), (float)souls.Call("GetAttackSpeed")) * 100), () => StatSheetLocal(soulsModName, "AttackSpeed"), modName: soulsModName);
 
         }
     }
@@ -126,6 +130,21 @@ public class StatTracker
         if (player.wingTimeMax > 60 * 60 || (player.empressBrooch && Fargowiltas.CalamityMod == null))
             return StatSheetLocal("WingTimeMoreThan60Sec");
         return StatSheetLocal("WingTimeActual", Math.Round(player.wingTimeMax / 60.0, 2));
+    }
+
+    private static string MinionCount() => StatSheetLocal("StatFraction", (int)Math.Round(Main.LocalPlayer.slotsMinions), Main.LocalPlayer.maxMinions);
+
+    private static string SentryCount() => StatSheetLocal("StatFraction", ActiveSentryCount(Main.LocalPlayer), Main.LocalPlayer.maxTurrets);
+
+    private static int ActiveSentryCount(Player player)
+    {
+        int count = 0;
+        foreach (Projectile p in Main.ActiveProjectiles)
+        {
+            if (p.owner == player.whoAmI && p.WipableTurret)
+                count++;
+        }
+        return count;
     }
 
     private static int DamageReduction()

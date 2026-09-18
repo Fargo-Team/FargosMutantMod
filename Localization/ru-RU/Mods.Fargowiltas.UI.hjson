@@ -55,10 +55,14 @@ StatSheet: {
 	//summon
 	Summon: Призывательные
 	SummonDamage: Урон: {0}%
-	MaxMinions: Макс. миньоны: {0}
-	MaxSentries: Макс. стражи: {0}
+	// StatFraction: "{0}/{1}"
+	Minions: Миньоны: {0}
+	Sentries: Стражники: {0}
 	WhipSpeed: Скорость атаки: {0}%
 	WhipLength: Длина атаки: {0}%
+	// pin
+	PinTooltip: Нажмите Alt+Click, чтобы закрепить в окне отображения информации
+	UnpinTooltip: Нажмите Alt+Click, чтобы открепить
 }
 
 LumberJack: {

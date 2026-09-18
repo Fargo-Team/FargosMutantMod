@@ -208,7 +208,7 @@ public class StatSheetUI : FargoUI
             foreach (Stat stat in category.Stats)
             {
                 if (stat.condition.Invoke())
-                    AddStat(stat.Name, stat.ModName, stat.Value.Invoke());
+                    AddStat(stat.Name, stat.ModName, stat.Value?.Invoke());
             }
         }
     }
@@ -274,14 +274,13 @@ public class StatSheetUI : FargoUI
             ColumnCounter = 0;
         }
 
-        UIText ui = new UIText(key != null ? $"[s:{modName}/{key}] {text}" : text);
-        ui.Left.Set(left, 0f);
-        ui.Top.Set(top, 0f);
+        StatLine line = new StatLine($"[s:{modName}/{key}] {text}", modName, key);
+        line.Left.Set(left, 0f);
+        line.Top.Set(top, 0f);
 
         BackPanel.Height.Set(BackHeight, 0f);
         InnerPanel.Height.Set(BackHeight - 12 - 40, 0);
-
-        InnerPanel.Append(ui);
+        InnerPanel.Append(line);
     }
 
     public void AddHeader(StatCategory category)

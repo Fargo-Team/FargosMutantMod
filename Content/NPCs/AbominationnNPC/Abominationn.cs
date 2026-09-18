@@ -392,7 +392,7 @@ public class Abominationn : ModNPC
 
     public override void ModifyNPCLoot(NPCLoot npcLoot)
     {
-        npcLoot.Add(ItemDropRule.Common(ItemType<CrabSizedGlasses>(), 10));
+        //npcLoot.Add(ItemDropRule.Common(ItemType<CrabSizedGlasses>(), 10));
     }
     public override void HitEffect(NPC.HitInfo hit)
     {

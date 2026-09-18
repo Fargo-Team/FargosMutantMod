@@ -6,6 +6,7 @@ using Terraria.ModLoader;
 
 namespace Fargowiltas.Content.Items.Vanity;
 
+/*
 public class CrabSizedGlasses : ModItem
 {
     public override void SetDefaults()
@@ -26,3 +27,4 @@ public class CrabSizedGlasses : ModItem
         return true;
     }
 }
+*/

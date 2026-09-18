@@ -783,10 +783,12 @@ public class FargoPlayer : ModPlayer
             yield return createItem(ModContent.ItemType<MutantMask>());
         }
 
+        /*
         if (!mediumCoreDeath && Player.name.Contains("javyz", StringComparison.OrdinalIgnoreCase))
         {
             yield return createItem(ItemType<CrabSizedGlasses>());
         }
+        */
     }
 
     public override void AnglerQuestReward(float rareMultiplier, List<Item> rewardItems)

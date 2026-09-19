@@ -34,6 +34,12 @@ public class AutoHouseProj : ModProjectile
             tileType = TileID.BorealWood;
             platformStyle = 19;
         }
+        else if (player.ZoneGlowshroom)
+        {
+            wallType = WallID.Mushroom;
+            tileType = TileID.MushroomBlock;
+            platformStyle = 18;
+        }
         else if (player.ZoneJungle)
         {
             wallType = WallID.RichMaogany;
@@ -63,12 +69,6 @@ public class AutoHouseProj : ModProjectile
             wallType = WallID.Pearlwood;
             tileType = TileID.Pearlwood;
             platformStyle = 3;
-        }
-        else if (player.ZoneGlowshroom)
-        {
-            wallType = WallID.Mushroom;
-            tileType = TileID.MushroomBlock;
-            platformStyle = 18;
         }
         else if (player.ZoneSkyHeight)
         {
@@ -193,6 +193,13 @@ public class AutoHouseProj : ModProjectile
             tableStyle = 28;
             torchStyle = 9;
         }
+        else if (player.ZoneGlowshroom)
+        {
+            doorStyle = 6;
+            chairStyle = 9;
+            tableStyle = 27;
+            torchStyle = 22;
+        }
         else if (player.ZoneJungle)
         {
             doorStyle = 2;
@@ -227,13 +234,6 @@ public class AutoHouseProj : ModProjectile
             chairStyle = 4;
             tableStyle = 3;
             torchStyle = 20;
-        }
-        else if (player.ZoneGlowshroom)
-        {
-            doorStyle = 6;
-            chairStyle = 9;
-            tableStyle = 27;
-            torchStyle = 22;
         }
         else if (player.ZoneSkyHeight)
         {

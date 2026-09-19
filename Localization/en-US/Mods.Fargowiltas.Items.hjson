@@ -1698,3 +1698,8 @@ MiniObsidianInstaBridge: {
 		Will not break any blocks and stops when it hits a solid block
 		'''
 }
+
+ObsidianWreckingBall: {
+	DisplayName: Obsidian Wrecking Ball
+	Tooltip: Throw to demolish Underworld Houses down to ground level
+}

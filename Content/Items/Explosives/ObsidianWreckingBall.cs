@@ -46,8 +46,8 @@ public class ObsidianWreckingBall : ModItem
         CreateRecipe()
             .AddIngredient(ItemID.Obsidian, 100)
             .AddIngredient(ItemID.HellstoneBar, 20)
+            .AddIngredient(ItemID.Chain, 10)
             .AddIngredient(ItemID.Bone, 10)
-            .AddIngredient(ItemID.Rope, 50)
             .AddTile(TileID.Anvils)
             .Register();
     }

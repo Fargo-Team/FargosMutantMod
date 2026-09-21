@@ -94,7 +94,6 @@ public class ObsidianWreckingBallProj : ModProjectile
         }
         return false;
     }
-
     public override void AI()
     {
         Player player = Main.player[Projectile.owner];
@@ -112,19 +111,19 @@ public class ObsidianWreckingBallProj : ModProjectile
                 _landingDust.RemoveAt(i);
             }
         }
-        if (Projectile.ai[0] == 0f)
+        if (State == 0f)
         {
             AI_StateSwing(player);
             return;
         }
-        if (Projectile.ai[0] == 1f)
-        {
+        if (State == 1f)
+        {   
             Projectile.timeLeft = 2;
             Projectile.velocity.Y += Projectile.velocity.Y < 0f ? 0.2f : 0.8f;
             Projectile.rotation += Projectile.velocity.Y * 0.05f * (Projectile.velocity.Y < 0f ? Projectile.localAI[1] : fallSpinVariance);
             return;
         }
-        if (Projectile.ai[0] == 2f)
+        if (State == 2f)
         {
             AI_StateDestruction();
         }
@@ -141,10 +140,11 @@ public class ObsidianWreckingBallProj : ModProjectile
         p.heldProj = Projectile.whoAmI;
         p.itemTime = 2;
         p.itemAnimation = 2;
+        Projectile.ai[1] += 2;
         if (Projectile.ai[1] == 0f) swing_direction = p.direction;
 
-        Projectile.ai[1] += 1f;
-        float angle = MathHelper.Clamp(Projectile.ai[1] / 60f, 0f, 1f) * MathHelper.TwoPi;
+
+        float angle = Projectile.ai[1] / 60f * MathHelper.TwoPi;
         float offsetX = MathF.Cos(angle) * 56f * swing_direction;
         float offsetY = -16f + (MathF.Sin(angle) * 18f);
 
@@ -152,14 +152,26 @@ public class ObsidianWreckingBallProj : ModProjectile
         Projectile.Center = p.RotatedRelativePoint(p.MountedCenter) + new Vector2(offsetX, offsetY);
         Projectile.rotation = 0f;
 
-        if (p.whoAmI != Main.myPlayer || !(Projectile.ai[1] >= 60f)) return;
-        Projectile.ai[0] = 1f;
-        Projectile.ai[1] = 0f;
-        Projectile.localAI[1] = Main.rand.NextFloat(0.4f, 1.8f) * (Main.rand.NextBool() ? 1f : -1f);
-        fallSpinVariance = Main.rand.NextFloat(0.4f, 1.8f) * (Main.rand.NextBool() ? 1f : -1f);
-        Projectile.velocity = new Vector2(0f, -MathF.Sqrt(2f * 0.2f * 128f));
-        Projectile.tileCollide = true;
-        Projectile.netUpdate = true;
+        float interpolant = MathF.Sin(Projectile.ai[1] * 8 / 60f);
+        interpolant /= 2;
+        interpolant += 0.5f;
+
+        float normalizedDepth = (Projectile.localAI[0] + 1f) * 0.5f;
+        float armRot = MathHelper.Lerp(160, 215, normalizedDepth);
+
+        //p.SetCompositeArmFront(true, Player.CompositeArmStretchAmount.None, MathHelper.ToRadians(armRot));
+
+        if (!p.channel && p.whoAmI == Main.myPlayer)
+        {
+            State = 1f;
+            Projectile.ai[1] = 0f;
+            Projectile.position.X = p.position.X;
+            Projectile.localAI[1] = Main.rand.NextFloat(0.4f, 1.8f) * (Main.rand.NextBool() ? 1f : -1f);
+            fallSpinVariance = Main.rand.NextFloat(0.4f, 1.8f) * (Main.rand.NextBool() ? 1f : -1f);
+            Projectile.velocity = new Vector2(0f, -MathF.Sqrt(2f * 0.2f * 128f));
+            Projectile.tileCollide = true;
+            Projectile.netUpdate = true;
+        }
     }
 
     private void AI_StateDestruction()
@@ -223,7 +235,7 @@ public class ObsidianWreckingBallProj : ModProjectile
 
     public override bool OnTileCollide(Vector2 oldVelocity)
     {
-        if (Projectile.ai[0] != 1f)
+        if (State != 1f)
         {
             if (Projectile.velocity.Y != oldVelocity.Y) Projectile.velocity.Y = 0f;
             if (Projectile.velocity.X != oldVelocity.X) Projectile.velocity.X = 0f;
@@ -257,7 +269,7 @@ public class ObsidianWreckingBallProj : ModProjectile
         }
 
         Projectile.velocity = Vector2.Zero;
-        Projectile.ai[0] = 2f;
+        State = 2f;
         Projectile.ai[1] = 0f;
         Projectile.netUpdate = true;
         return false;
@@ -430,13 +442,13 @@ public class ObsidianWreckingBallProj : ModProjectile
         float zScale = 1f;
         Color renderColor = lightColor;
 
-        if (Projectile.ai[0] == 2f && Projectile.ai[1] > 0f)
+        if (State == 2f && Projectile.ai[1] > 0f)
         {
             float alpha = MathHelper.Clamp(Projectile.ai[1] / 30f, 0f, 1f);
             renderColor *= alpha;
         }
 
-        if (Projectile.ai[0] == 0f)
+        if (State == 0f)
         {
             zScale = MathHelper.Lerp(0.75f, 1.25f, normalizedDepth);
             if (Projectile.localAI[0] < 0f) renderColor *= MathHelper.Lerp(0.7f, 1.0f, normalizedDepth);
@@ -460,7 +472,7 @@ public class ObsidianWreckingBallProj : ModProjectile
                 if (Projectile.localAI[0] < 0f) color *= MathHelper.Lerp(0.7f, 1.0f, (MathHelper.Lerp(0f, Projectile.localAI[0], lerpAmount) + 1f) * 0.5f);
 
                 Texture2D textureToDraw = i == 5 ? endTexture : chainTexture;
-                Main.EntitySpriteDraw(textureToDraw, segmentPos - Main.screenPosition, null, color, 0f, textureToDraw.Size() / 2f, MathHelper.Lerp(1.0f, zScale, lerpAmount), SpriteEffects.None, 0);
+                Main.EntitySpriteDraw(textureToDraw, segmentPos - Main.screenPosition, null, color, segmentPos.AngleTo(Projectile.Center), textureToDraw.Size() / 2f, MathHelper.Lerp(1.0f, zScale, lerpAmount), SpriteEffects.None, 0);
             }
         }
 

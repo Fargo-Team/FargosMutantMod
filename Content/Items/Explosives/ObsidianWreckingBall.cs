@@ -9,10 +9,6 @@ namespace Fargowiltas.Content.Items.Explosives;
 
 public class ObsidianWreckingBall : ModItem
 {
-    public override void SetStaticDefaults()
-    {
-        Item.ResearchUnlockCount = 1;
-    }
 
     public override void SetDefaults()
     {
@@ -29,6 +25,7 @@ public class ObsidianWreckingBall : ModItem
         Item.value = Item.buyPrice(gold: 10);
         Item.shoot = ModContent.ProjectileType<ObsidianWreckingBallProj>();
         Item.shootSpeed = 0f;
+        Item.channel = true;
     }
 
     public override bool CanUseItem(Player player)

@@ -55,6 +55,8 @@ public class GalacticReformerBomb : ModProjectile
 {
     public static Asset<Texture2D> glowTexture;
     public static Asset<Texture2D> highlightTexture;
+
+    public static readonly SoundStyle ExplosionSound = new("Fargowiltas/Assets/Sounds/GalacticReformerExplosion");
     public override void SetStaticDefaults()
     {
         ProjectileID.Sets.IsInteractable[Type] = true;
@@ -188,8 +190,7 @@ public class GalacticReformerBomb : ModProjectile
         // Play explosion sound
         if (!Main.dedServ)
         {
-            SoundEngine.PlaySound(SoundID.Item15, Projectile.position);
-            SoundEngine.PlaySound(SoundID.Item14, position);
+            SoundEngine.PlaySound(ExplosionSound with { PauseBehavior = PauseBehavior.PauseWithGame }, Projectile.Center);
         }
     }
 

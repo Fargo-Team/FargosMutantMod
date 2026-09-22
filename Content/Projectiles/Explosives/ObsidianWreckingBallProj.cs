@@ -27,6 +27,12 @@ public class ObsidianWreckingBallProj : ModProjectile
         TileID.Painting3X3, TileID.Painting4X3, TileID.Painting6X4, TileID.Painting2X3, TileID.Painting3X2
     };
 
+
+    public override void SetStaticDefaults()
+    {
+        ProjectileID.Sets.DontAttachHideToAlpha[Type] = true;
+    }
+
     public override void SetDefaults()
     {
         Projectile.width = 28;

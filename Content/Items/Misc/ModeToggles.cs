@@ -15,8 +15,8 @@ public class ModeToggle : ModItem
     public override string Texture => "Fargowiltas/Content/Items/Misc/ModeToggle_0";
     public override void SetDefaults()
     {
-        Item.width = 32;
-        Item.height = 32;
+        Item.width = 28;
+        Item.height = 28;
         Item.value = Item.buyPrice(silver: 1);
         Item.rare = ItemRarityID.Blue;
         Item.useAnimation = 20;

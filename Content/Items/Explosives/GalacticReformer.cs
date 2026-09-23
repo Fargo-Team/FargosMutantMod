@@ -83,16 +83,15 @@ public class GalacticReformerBomb : ModProjectile
     {
         if (Main.netMode != NetmodeID.Server)
         {
-            SoundStyle arm = new("Fargowiltas/Assets/Sounds/CityBusterArm");
-            /*
-            SoundEngine.PlaySound(arm with { Variants = [1, 2], PauseBehavior = PauseBehavior.PauseWithGame }, Projectile.Center, delegate (ActiveSound s)
+            SoundStyle gArrmingSound = new("Fargowiltas/Assets/Sounds/GalacticReformerArm");
+            
+            SoundEngine.PlaySound(gArrmingSound with { Variants = [1, 2], PauseBehavior = PauseBehavior.PauseWithGame }, Projectile.Center, delegate (ActiveSound s)
             {
                 s.Position = Projectile.Center;
                 if (!Projectile.active)
                     return false;
                 return true;
             });
-            */
         }
     }
     public override void AI()

@@ -2,6 +2,8 @@ Close: Закрыть
 Clear: Очистить поиск
 CombinedUIButton: Открыть полезные меню
 PotionToggler: "[s:Fargowiltas/PotionToggler] Переключатель зелий"
+// On: On
+// Off: Off
 
 StatSheet: {
 	// misc
@@ -152,6 +154,8 @@ NoToggles: Переключать нечего!
 // Reforge UI
 InsertText: Поместите предмет сюда для перековки
 ReforgeCost: Стоимость перековки
+// AutoStatus: "Auto: "
+// ClearPrefixes: Click to remove all selected prefixes
 PlacementRange: Дальность размещения:
 ChizardItemInsert: Поместить предеты в ближайшие сундуки
 

@@ -2,6 +2,7 @@
 using Fargowiltas.Content.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,7 @@ using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using Terraria.ModLoader.UI;
 using Terraria.UI;
 
 namespace Fargowiltas.Common.Systems;
@@ -104,6 +106,7 @@ public class ReforgeButton : UIElement
     public Action Reforge;
     int HStimer = -1; // visual swing fx
 
+
     public void SwingHammer() // starts swing animation
     {
         if (HStimer >= 0)
@@ -163,7 +166,8 @@ public class PrefixOption : UIPanel
 {
     Item item;
     int prefix;
-    bool selected;
+    public Func<int, bool> HasPrefix;
+    bool selected => HasPrefix.Invoke(prefix);
 
     public Action<int> ToggleSelect;
 
@@ -175,8 +179,8 @@ public class PrefixOption : UIPanel
         this.prefix = prefixId;
         item = Item.Clone();
         item.ResetPrefix();
+        item.favorited = false;
         item.Prefix(prefix);
-        selected = false;
     }
 
     public override int CompareTo(object obj)
@@ -207,7 +211,7 @@ public class PrefixOption : UIPanel
     protected override void DrawSelf(SpriteBatch spriteBatch)
     {
         Color baseColor = new Color(63, 82, 151) * 0.7f;
-        BackgroundColor = selected ? Color.Lerp(baseColor, Color.Black, 0.4f) : baseColor;
+        BackgroundColor = selected ? Color.Lerp(baseColor, Color.Lime, 0.2f) : baseColor;
 
         base.DrawSelf(spriteBatch);
 
@@ -219,12 +223,17 @@ public class PrefixOption : UIPanel
             spriteBatch.Draw(texture, GetDimensions().Position() - new Vector2(0, 20) + (GetDimensions().Width - 20) * Vector2.UnitX, null, Color.Yellow * 0.5f, 0f, Vector2.Zero, 0.5f, SpriteEffects.None, 0f);
         }
 
+        if (ContainsPoint(Main.MouseScreen))
+        {
+            Main.HoverItem = item.Clone();
+            Main.hoverItemName = item.Name;
+        }
+
     }
 
     public override void LeftClick(UIMouseEvent evt)
     {
         base.LeftClick(evt);
-        selected = !selected;
         ToggleSelect(prefix);
         SoundEngine.PlaySound(SoundID.MenuTick);
     }
@@ -241,6 +250,7 @@ public class AutoReforgeUI : FargoUI
     public ReforgeItemSlot ItemSlotPanel;
 
     public bool isReforging = false;
+    public int reforgeCD = 0;
     public List<int> reservedPrefixs = [];
     public Action hammerSwing;
 
@@ -262,8 +272,15 @@ public class AutoReforgeUI : FargoUI
 
     public void ToggleReforge()
     {
-        if (!reservedPrefixs.Contains(ItemSlotPanel.Item.prefix))
-            isReforging = !isReforging;
+        if (reservedPrefixs.Count != 0)
+        {
+            isReforging = !isReforging && !reservedPrefixs.Contains(ItemSlotPanel.Item.prefix);
+        }
+        else if (reforgeCD == 0)
+        {
+            isReforging = true;
+            reforgeCD = 10;
+        }
     }
 
     public override void OnOpen()
@@ -288,6 +305,11 @@ public class AutoReforgeUI : FargoUI
         // close if not talking to tinkerer
         if (!Main.playerInventory || Main.LocalPlayer.talkNPC == -1 || Main.LocalPlayer.TalkNPC.type != NPCID.GoblinTinkerer)
             FargoUIManager.Close(this);
+
+        if (reforgeCD > 0)
+        {
+            reforgeCD--;
+        }
 
         // prevent mouse inputs when hovering
         if (BackPanel != null && BackPanel.ContainsPoint(Main.MouseScreen))
@@ -378,6 +400,7 @@ public class AutoReforgeUI : FargoUI
             option.Height.Set(30, 0);
             option.BackgroundColor = new Color(63, 82, 151) * 0.7f;
             option.ToggleSelect = TogglePrefix;
+            option.HasPrefix = ContainsPrefix;
             option.Activate();
             options.Add(option);
         }
@@ -396,6 +419,12 @@ public class AutoReforgeUI : FargoUI
 
         // price
         RebuildPrice(item);
+
+        var autoText = new AutoModeText();
+        autoText.GetAuto = IsAuto;
+        autoText.Left.Set(90f, 0f);
+        autoText.OnLeftClick += ClearPrefixes_OnLeftClick;
+        BackPanel.Append(autoText);
     }
 
     public void RebuildPrice(Item item)
@@ -407,6 +436,53 @@ public class AutoReforgeUI : FargoUI
         PriceTag.Top.Set(60, 0);
         PriceTag.Left.Set(0, 0);
         BackPanel.Append(PriceTag);
+    }
+
+    public bool ContainsPrefix(int prefix) => reservedPrefixs.Contains(prefix);
+
+    private bool IsAuto() => reservedPrefixs.Count != 0;
+
+    private void ClearPrefixes_OnLeftClick(UIMouseEvent evt, UIElement listeningElement)
+    {
+        reservedPrefixs.Clear();
+    }
+
+    private class AutoModeText : UIText
+    {
+        public Func<bool> GetAuto;
+
+        public AutoModeText() : base("", 1)
+        {
+
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
+
+            SetText(GetAutoText());
+        }
+
+        protected override void DrawSelf(SpriteBatch spriteBatch)
+        {
+            base.DrawSelf(spriteBatch);
+
+            if (ContainsPoint(Main.MouseScreen) && GetAuto.Invoke())
+            {
+                UICommon.TooltipMouseText(Language.GetTextValue("Mods.Fargowiltas.UI.ClearPrefixes"));
+            }
+        }
+
+        private string GetAutoText()
+        {
+            string retVal = Language.GetTextValue($"Mods.Fargowiltas.UI.AutoStatus");
+            if (GetAuto.Invoke())
+                retVal += $"[c/55FF55:{Language.GetTextValue($"Mods.Fargowiltas.UI.On")}]";
+            else
+                retVal += $"[c/FF5555:{Language.GetTextValue($"Mods.Fargowiltas.UI.Off")}]";
+
+            return retVal;
+        }
     }
 }
 
@@ -443,7 +519,7 @@ internal static class ReforgeUtils
             return "";
         string ret = "";
         if (reforgeText)
-            ret += "[c/" + Colors.AlphaDarken(Color.Lerp(Color.Green, Color.LightGray, 0.5f)).Hex3() + ":" + $"{Language.GetTextValue("Mods.Fargowiltas.UI.ReforgeCost")}:]\n";
+            ret += "[c/66FF66" + ":" + $"{Language.GetTextValue("Mods.Fargowiltas.UI.ReforgeCost")}:]\n";
         int num59 = 0;
         int num60 = 0;
         int num61 = 0;
@@ -544,9 +620,9 @@ internal static class ReforgeUtils
     {
         int prefix1 = item1.prefix;
         int prefix2 = item2.prefix;
-        int rareCompare = item1.rare.CompareTo(item2.rare);
-        if (rareCompare != 0)
-            return rareCompare;
+        int cmpValue = item1.value.CompareTo(item2.value);
+        if (cmpValue != 0)
+            return cmpValue;
 
         return Lang.prefix[prefix1].Value.CompareTo(Lang.prefix[prefix2].Value);
     }

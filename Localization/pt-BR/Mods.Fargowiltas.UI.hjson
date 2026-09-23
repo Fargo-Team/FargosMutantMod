@@ -2,6 +2,8 @@
 // Clear: Clear Search
 // CombinedUIButton: Open Utilities
 // PotionToggler: "[s:Fargowiltas/PotionToggler] Potion Toggles"
+// On: On
+// Off: Off
 
 StatSheet: {
 	// misc
@@ -152,6 +154,8 @@ BattleCryNone: Nenhum
 // Reforge UI
 // InsertText: Place an item here to reforge
 // ReforgeCost: Reforge Cost
+// AutoStatus: "Auto: "
+// ClearPrefixes: Click to remove all selected prefixes
 // PlacementRange: Placement Range:
 // ChizardItemInsert: Place items in nearby chests
 

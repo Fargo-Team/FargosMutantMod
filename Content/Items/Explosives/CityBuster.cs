@@ -69,7 +69,8 @@ public class CityBusterBomb : ModProjectile
 {
     public static readonly SoundStyle ArmingSound = new("Fargowiltas/Assets/Sounds/CityBusterArm");
     public static readonly SoundStyle DisarmSound = new("Fargowiltas/Assets/Sounds/CityBusterDisarm");
-    //public static readonly SoundStyle ExplosionSound = new("Fargowiltas/Assets/Sounds/CityBusterExplosion");
+
+    public static readonly SoundStyle ExplosionSound = new("Fargowiltas/Assets/Sounds/CityBusterExplosion");
     public static Asset<Texture2D> glowTexture;
     public static Asset<Texture2D> highlightTexture;
     public override void SetStaticDefaults()
@@ -200,7 +201,7 @@ public class CityBusterBomb : ModProjectile
     {   
         if (!Main.dedServ)
         {
-            //SoundEngine.PlaySound(ExplosionSound with { Volume = 0.8f, PauseBehavior = PauseBehavior.PauseWithGame }, Projectile.Center);
+            SoundEngine.PlaySound(ExplosionSound with { Volume = 0.8f, PauseBehavior = PauseBehavior.PauseWithGame }, Projectile.Center);
         }
 
         if (Main.netMode == NetmodeID.MultiplayerClient)

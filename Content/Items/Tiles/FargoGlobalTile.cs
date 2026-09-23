@@ -267,10 +267,9 @@ public class FargoGlobalTile : GlobalTile
 
         Tile tile = Main.tile[x, y];
         bool hadLiquid = tile.LiquidAmount != 0;
-        WorldGen.KillTile(x, y, noItem: true);
-
         tile.Clear(TileDataType.Tile);
         tile.Clear(TileDataType.Liquid);
+        WorldGen.SquareTileFrame(x, y, true);
 
         //tile.lava(false);
         //tile.honey(false);

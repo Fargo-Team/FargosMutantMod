@@ -1,4 +1,4 @@
-﻿Common: {
+Common: {
 	Exclamation: !
 	Period: .
 }
@@ -25,8 +25,6 @@ StartLanternNight: Ночь фонарей появляется чаще!
 StopLanternNight: Ночь фонарей появляется как обычно.
 StartLunarEvent: Небесные башни пробудились!
 StartRain: Тучи закрывают собой небо.
-AncientSeal: Пробудились все боссы!
-SeveralBossesAwoken: Пробудились некоторые боссы!
 // Swarm Summons
 OverloadBee: Оглушающее жужжание проходит через вас!
 OverloadBetsy: Настоящая армия Древнего наступает!
@@ -48,15 +46,5 @@ OverloadSlimeCrown: Добро пожаловать в истинный дожд
 OverloadTwins: Эти глаза переполняются решимостью!
 OverloadWall: Крепость из плоти восстаёт из глубин!
 OverloadWorm: Земля трясётся с математической точностью!
-// Swarm Events
-OverloadFrostMoonStop: Морозная луна угасает!
-OverloadFrostMoonStart: Восходит истинная морозная луна...
-OverloadFrostMoonWave20: Волна: 20: Всё
-OverloadPumpkinMoonStop: Тыквенная луна угасает!
-OverloadPumpkinMoonStart: Восходит истинная тыквенная луна...
-OverloadPumpkinMoonWave15: Волна: 15: Всё
-OverloadGoblinsStop: Гоблины нашли покой!
-OverloadMartiansStop: Марсиане нашли покой!
-OverloadPiratesStop: Пираты наши покой!
 // Swarm Misc
 SwarmDefeated: Перегруженный босс побеждён!

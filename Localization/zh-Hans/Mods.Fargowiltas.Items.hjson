@@ -697,16 +697,6 @@ SuspiciousLookingLure: {
 		'''
 }
 
-AncientSeal: {
-	DisplayName: 古代符章
-	Tooltip:
-		'''
-		召唤所有Boss，包括其他Mod中的
-		只能在晚上使用
-		“后果自负”
-		'''
-}
-
 CultistSummon: {
 	DisplayName: 拜月教徒的遗物
 	Tooltip:
@@ -716,36 +706,12 @@ CultistSummon: {
 		'''
 }
 
-DeathBringerFairy: {
-	DisplayName: 告死精灵
-	Tooltip:
-		'''
-		召唤所有困难模式前的Boss
-		只能在晚上使用
-		某些Boss只有在特定的生物群落中才会被召唤
-		'''
-}
-
 FleshyDoll: {
 	DisplayName: 向导娃娃火柴套
 	Tooltip:
 		'''
 		召唤血肉之墙
 		只在地狱中生效
-		'''
-}
-
-MechanicalAmalgam: {
-	DisplayName: 机械融合体
-	Tooltip: 召唤三个机械Boss
-}
-
-MutantVoodoo: {
-	DisplayName: 突变体毛绒玩具
-	Tooltip:
-		'''
-		召唤所有原版Boss
-		只能在夜晚使用
 		'''
 }
 
@@ -992,15 +958,6 @@ OverloadDestroyer: {
 	Tooltip: 召唤一个充满活力的毁灭者
 }
 
-OverloadedSlimeRain: {
-	DisplayName: 相当黏的晴雨表
-	Tooltip:
-		'''
-		召唤过载的史莱姆雨
-		再次使用以停止事件
-		'''
-}
-
 OverloadEmpress: {
 	DisplayName: 草蛉罐
 	Tooltip: 召唤一个充满活力的光之女皇
@@ -1038,50 +995,14 @@ OverloadFish: {
 	Tooltip: 召唤一个充满活力的猪龙鱼公爵
 }
 
-OverloadFrostMoon: {
-	DisplayName: 调皮礼物袋
-	Tooltip:
-		'''
-		召唤霜月事件，直接从第20波开始且刷怪率大幅增加
-		再次使用以停止事件
-		'''
-}
-
-OverloadGoblins: {
-	DisplayName: 过载哥布林战旗
-	Tooltip:
-		'''
-		召唤过载的哥布林入侵事件
-		再次使用以停止事件
-		'''
-}
-
 OverloadGolem: {
 	DisplayName: 符文能量电池
 	Tooltip: 召唤一个充满活力的石巨人
 }
 
-OverloadMartians: {
-	DisplayName: 火星人通讯卫星
-	Tooltip:
-		'''
-		召唤过载的火星暴乱事件
-		再次使用以停止事件
-		'''
-}
-
 OverloadMoon: {
 	DisplayName: 符文铭文
 	Tooltip: 召唤一个充满活力的月球领主
-}
-
-OverloadPirates: {
-	DisplayName: 海盗的赏金
-	Tooltip:
-		'''
-		召唤过载量的海盗入侵事件
-		再次使用以停止事件
-		'''
 }
 
 OverloadPlant: {
@@ -1092,15 +1013,6 @@ OverloadPlant: {
 OverloadPrime: {
 	DisplayName: 统帅控制芯片
 	Tooltip: 召唤一个充满活力的机械骷髅王
-}
-
-OverloadPumpkinMoon: {
-	DisplayName: 闹鬼战利品
-	Tooltip:
-		'''
-		召唤南瓜月事件，直接从第15波开始且刷怪率大幅增加
-		再次使用以停止事件
-		'''
 }
 
 OverloadQueenSlime: {

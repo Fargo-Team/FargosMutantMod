@@ -637,16 +637,6 @@ SuspiciousLookingLure: {
 	Tooltip: Summons a Zombie Merman or Wandering Eye Fish when used as bait during a Blood Moon
 }
 
-AncientSeal: {
-	DisplayName: Ancient Seal
-	Tooltip:
-		'''
-		Summons ALL the bosses modded included
-		Can only be used at night
-		'Use at your own risk'
-		'''
-}
-
 CultistSummon: {
 	DisplayName: Zealot's Possession
 	Tooltip:
@@ -656,36 +646,12 @@ CultistSummon: {
 		'''
 }
 
-DeathBringerFairy: {
-	DisplayName: Death Bringer Fairy
-	Tooltip:
-		'''
-		Summons all pre-hardmode bosses
-		Can only be used at night
-		Certain bosses will only spawn if you're in their specific biome
-		'''
-}
-
 FleshyDoll: {
 	DisplayName: Guide Doll and Match Kit
 	Tooltip:
 		'''
 		Summons the Wall of Flesh
 		Make sure you use it in the Underworld
-		'''
-}
-
-MechanicalAmalgam: {
-	DisplayName: Mechanical Amalgam
-	Tooltip: Summons all 3 Mechanical bosses
-}
-
-MutantVoodoo: {
-	DisplayName: Mutant Plushie
-	Tooltip:
-		'''
-		Summons ALL the bosses
-		Can only be used at night
 		'''
 }
 
@@ -932,15 +898,6 @@ OverloadDestroyer: {
 	Tooltip: Summons an energized Destroyer
 }
 
-OverloadedSlimeRain: {
-	DisplayName: Slimy Stormcaller
-	Tooltip:
-		'''
-		Summons an Overloaded Slime Rain
-		Use again to stop the event
-		'''
-}
-
 OverloadEmpress: {
 	DisplayName: Jar of Lacewings
 	Tooltip: Summons an energized Empress of Light
@@ -978,50 +935,14 @@ OverloadFish: {
 	Tooltip: Summons an energized Duke Fishron
 }
 
-OverloadFrostMoon: {
-	DisplayName: Naughty Present Sack
-	Tooltip:
-		'''
-		Summons an Overloaded Frost Moon
-		Use again to stop the event
-		'''
-}
-
-OverloadGoblins: {
-	DisplayName: Goblin War Banner
-	Tooltip:
-		'''
-		Summons an Overloaded Goblin Invasion
-		Use again to stop the event
-		'''
-}
-
 OverloadGolem: {
 	DisplayName: Runic Power Cell
 	Tooltip: Summons an energized Golem
 }
 
-OverloadMartians: {
-	DisplayName: Martian Communications Satellite
-	Tooltip:
-		'''
-		Summons an Overloaded Martian Invasion
-		Use again to stop the event
-		'''
-}
-
 OverloadMoon: {
 	DisplayName: Runic Inscription
 	Tooltip: Summons an energized Moon Lord
-}
-
-OverloadPirates: {
-	DisplayName: Pirate's Bounty
-	Tooltip:
-		'''
-		Summons an Overloaded Pirate Invasion
-		Use again to stop the event
-		'''
 }
 
 OverloadPlant: {
@@ -1032,15 +953,6 @@ OverloadPlant: {
 OverloadPrime: {
 	DisplayName: Primal Control Chip
 	Tooltip: Summons an energized Skeletron Prime
-}
-
-OverloadPumpkinMoon: {
-	DisplayName: Overloaded Pumpkin Moon Medallion
-	Tooltip:
-		'''
-		Summons an Overloaded Pumpkin Moon
-		Use again to stop the event
-		'''
 }
 
 OverloadQueenSlime: {

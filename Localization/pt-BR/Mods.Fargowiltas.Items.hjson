@@ -697,16 +697,6 @@ SuspiciousLookingLure: {
 		'''
 }
 
-AncientSeal: {
-	DisplayName: Selo Ancião
-	Tooltip:
-		'''
-		INVOCA TODOS OS CHEFES (incluido os de mods)
-		Pode ser usado apenas à noite
-		'Use por sua conta e risco'
-		'''
-}
-
 CultistSummon: {
 	DisplayName: Propriedade do Fanático
 	Tooltip:
@@ -716,36 +706,12 @@ CultistSummon: {
 		'''
 }
 
-DeathBringerFairy: {
-	DisplayName: Fada da Morte
-	Tooltip:
-		'''
-		invoca todos os chefes do Pré-Modo Díficil
-		Pode ser usado apenas à noite
-		Certos chefes só são invocados se você estiver no bioma certo
-		'''
-}
-
 FleshyDoll: {
 	DisplayName: Boneco do Guia e Pacote de Fósforos
 	Tooltip:
 		'''
 		Invoca a Parede de Carne
 		Use apenas no submundo
-		'''
-}
-
-MechanicalAmalgam: {
-	DisplayName: Amálgamo Mecânico
-	Tooltip: Invoca os 3 chefes mecânicos
-}
-
-MutantVoodoo: {
-	DisplayName: Pelúcia do Mutant
-	Tooltip:
-		'''
-		INVOCA TODOS OS CHEFES
-		Pode ser usado apenas à noite
 		'''
 }
 
@@ -995,15 +961,6 @@ OverloadDestroyer: {
 	Tooltip: Invoca um Destruidor Energizado
 }
 
-OverloadedSlimeRain: {
-	DisplayName: Invocador de Tempestade Gosmento
-	Tooltip:
-		'''
-		Invoca uma Chuva de Geleia Sobrecarregado
-		Use novamente para parar o evento
-		'''
-}
-
 OverloadEmpress: {
 	DisplayName: Jarra de Crisopídeos
 	Tooltip: Invoca uma Imperatriz da Luz Energizada
@@ -1041,50 +998,14 @@ OverloadFish: {
 	Tooltip: Invoca um Duque Peixe-dragão Energizado
 }
 
-OverloadFrostMoon: {
-	DisplayName: Saco de Presentes Malcriados
-	Tooltip:
-		'''
-		Invoca uma Lua de Gelo Sobrecarregada
-		Use novamente para parar o evento
-		'''
-}
-
-OverloadGoblins: {
-	DisplayName: Bandeira de Guerra Goblin
-	Tooltip:
-		'''
-		Invoca uma Invasão Goblin Sobrecarregada
-		Use novamente para parar o evento
-		'''
-}
-
 OverloadGolem: {
 	DisplayName: Bateria Rúnica
 	Tooltip: Invoca um Golem Energizado
 }
 
-OverloadMartians: {
-	DisplayName: Satélite de Comunicações Marciano
-	Tooltip:
-		'''
-		Invoca uma Invasão de Marte Sobrecarregada
-		Use novamente para parar o evento
-		'''
-}
-
 OverloadMoon: {
 	DisplayName: Inscrição Rúnica
 	Tooltip: Invoca um Senhor da Lua Energizado
-}
-
-OverloadPirates: {
-	DisplayName: Recompensa Pirata
-	Tooltip:
-		'''
-		Invoca uma Invasão Pirata Sobrecarregada
-		Use novamente para parar o evento
-		'''
 }
 
 OverloadPlant: {
@@ -1095,15 +1016,6 @@ OverloadPlant: {
 OverloadPrime: {
 	DisplayName: Chip de Controle Primal
 	Tooltip: Invoca um Skeletron Alfa Energizado
-}
-
-OverloadPumpkinMoon: {
-	DisplayName: Medalhão da Lua de Abóbora Sobrecarregado
-	Tooltip:
-		'''
-		Invoca a Lua de Abóbora Sobrecarregada
-		Use novamente para parar o evento
-		'''
 }
 
 OverloadQueenSlime: {

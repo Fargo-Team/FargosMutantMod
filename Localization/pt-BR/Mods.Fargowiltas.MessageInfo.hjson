@@ -25,8 +25,6 @@ StartLanternNight: Taxa de noites de lanterna aumentada!
 StopLanternNight: Taxa de noites de lanterna retornadas ao normal.
 StartLunarEvent: Os pilares celestiais acordou!
 StartRain: Nuvens cobrem o céu.
-AncientSeal: TODOS OS CHEFES acordaram!
-SeveralBossesAwoken: Diversos chefes acordaram!
 // Swarm Summons
 OverloadBee: Um zumbido perfurante te faz tremer!
 OverloadBetsy: O real exército do ancião está atacando!
@@ -48,15 +46,5 @@ OverloadSlimeCrown: Bem vindo a chuva de geleias verdadeira!
 OverloadTwins: Os olhos estão cheios de determinação!
 OverloadWall: Uma fortaleza de carne sobe das profundezas!
 OverloadWorm: O chão se mexe com precisão formulada!
-// Swarm Events
-OverloadFrostMoonStop: A Lua de Gelo desaparece!
-OverloadFrostMoonStart: A Lua de Gelo está subindo...
-OverloadFrostMoonWave20: Onda: 20: TUDO
-OverloadPumpkinMoonStop: A Lua de Abóbora desaparece!
-OverloadPumpkinMoonStart: A Lua de Abóbora está subindo...
-OverloadPumpkinMoonWave15: Onda: 15: TUDO
-OverloadGoblinsStop: Os goblins se acalmaras!
-OverloadMartiansStop: Os marcianos se acalmaram!
-OverloadPiratesStop: Os piratas se acalmaram!
 // Swarm Misc
 SwarmDefeated: O chefe energizado foi derrotado!

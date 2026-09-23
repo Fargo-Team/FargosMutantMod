@@ -25,8 +25,7 @@ StartLanternNight: Lantern Night rate increased!
 StopLanternNight: Lantern Night rate restored to default.
 StartLunarEvent: The Celestial Pillars have awoken!
 StartRain: Rain clouds cover the sky.
-AncientSeal: Every boss has awoken!
-SeveralBossesAwoken: Several bosses have awoken!
+
 // Swarm Summons
 OverloadBee: A deafening buzz pierces through you!
 OverloadBetsy: The real Old One's Army is attacking!
@@ -48,15 +47,5 @@ OverloadSlimeCrown: Welcome to the true slime rain!
 OverloadTwins: The eyes are filled with determination!
 OverloadWall: A fortress of flesh arises from the depths!
 OverloadWorm: The ground shifts with formulated precision!
-// Swarm Events
-OverloadFrostMoonStop: The Frost Moon fades away!
-OverloadFrostMoonStart: The Frost Moon is rising...
-OverloadFrostMoonWave20: Wave: 20: Everything
-OverloadPumpkinMoonStop: The Pumpkin Moon fades away!
-OverloadPumpkinMoonStart: The Pumpkin Moon is rising...
-OverloadPumpkinMoonWave15: Wave: 15: Everything
-OverloadGoblinsStop: The goblins have calmed down!
-OverloadMartiansStop: The martians have calmed down!
-OverloadPiratesStop: The pirates have calmed down!
 // Swarm Misc
 SwarmDefeated: The energized boss has been defeated!

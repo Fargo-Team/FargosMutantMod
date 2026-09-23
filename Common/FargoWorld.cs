@@ -25,13 +25,6 @@ public class FargoWorld : ModSystem
     internal static int WoodChopped;
     internal static byte PortableSundialCooldown;
 
-    internal static bool OverloadGoblins;
-    internal static bool OverloadPirates;
-    internal static bool OverloadPumpkinMoon;
-    internal static bool OverloadFrostMoon;
-    internal static bool OverloadMartians;
-    internal static bool OverloadedSlimeRain;
-
     internal static bool Matsuri;
     internal static bool BlockPortaDialCooldown;
 
@@ -125,13 +118,6 @@ public class FargoWorld : ModSystem
     private void ResetFlags()
     {
         AbomClearCD = 0;
-
-        OverloadGoblins = false;
-        OverloadPirates = false;
-        OverloadPumpkinMoon = false;
-        OverloadFrostMoon = false;
-        OverloadMartians = false;
-        OverloadedSlimeRain = false;
 
         EternityMode = (bool?)Fargowiltas.SoulsMod?.Call("EternityMode") == true;
 
@@ -262,36 +248,6 @@ public class FargoWorld : ModSystem
         if (AbomClearCD > 0)
         {
             AbomClearCD--;
-        }
-
-        if (OverloadGoblins && Main.invasionType != InvasionID.GoblinArmy)
-        {
-            OverloadGoblins = false;
-        }
-
-        if (OverloadPirates && Main.invasionType != InvasionID.PirateInvasion)
-        {
-            OverloadPirates = false;
-        }
-
-        if (OverloadPumpkinMoon && !Main.pumpkinMoon)
-        {
-            OverloadPumpkinMoon = false;
-        }
-
-        if (OverloadFrostMoon && !Main.snowMoon)
-        {
-            OverloadFrostMoon = false;
-        }
-
-        if (OverloadMartians && Main.invasionType != InvasionID.MartianMadness)
-        {
-            OverloadMartians = false;
-        }
-
-        if (OverloadedSlimeRain && !Main.slimeRain)
-        {
-            OverloadedSlimeRain = false;
         }
     }
 

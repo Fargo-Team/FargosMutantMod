@@ -154,8 +154,8 @@ public class ModeToggle : ModItem
     public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI)
     {
         Texture2D texture = (Texture2D)ModContent.Request<Texture2D>($"Fargowiltas/Content/Items/Misc/ModeToggle_{Main.GameMode}");
-        Vector2 position = Item.position - Main.screenPosition + new Vector2(16, 16);
-        Rectangle frame = new Rectangle(0, 0, 32, 32);
+        Vector2 position = Item.position - Main.screenPosition + new Vector2(14, 14);
+        Rectangle frame = new Rectangle(0, 0, 28, 28);
         spriteBatch.Draw(texture, position, frame, lightColor, rotation, new Vector2(16, 16), scale, SpriteEffects.None, 0f);
         return false;
     }

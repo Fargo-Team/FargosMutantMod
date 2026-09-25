@@ -155,7 +155,7 @@ BattleCryNone: 关闭
 // InsertText: Place an item here to reforge
 // ReforgeCost: Reforge Cost
 // AutoStatus: "Auto: "
-// ClearPrefixes: Click to remove all selected prefixes
+// ClearPrefixes: Click to deactivate
 // PlacementRange: Placement Range:
 // ChizardItemInsert: Place items in nearby chests
 

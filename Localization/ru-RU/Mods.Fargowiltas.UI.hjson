@@ -155,7 +155,7 @@ NoToggles: Переключать нечего!
 InsertText: Поместите предмет сюда для перековки
 ReforgeCost: Стоимость перековки
 // AutoStatus: "Auto: "
-// ClearPrefixes: Click to remove all selected prefixes
+// ClearPrefixes: Click to deactivate
 PlacementRange: Дальность размещения:
 ChizardItemInsert: Поместить предеты в ближайшие сундуки
 

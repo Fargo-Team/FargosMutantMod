@@ -227,13 +227,15 @@ public class CityBusterBomb : ModProjectile
                 if (tile == null)
                     continue;
 
-                if (!FargoGlobalProjectile.OkayToDestroyTileAt(xPosition, yPosition) || FargoGlobalProjectile.TileIsLiterallyAir(tile))
+                if (!FargoGlobalProjectile.OkayToDestroyTileAt(xPosition, yPosition))
                     continue;
 
-                if (!player.HasEnoughPickPowerToHurtTile(xPosition, yPosition) || !WorldGen.CanKillTile(xPosition, yPosition))
-                    continue;
+                bool canMineTile = !FargoGlobalProjectile.TileIsLiterallyAir(tile) && player.HasEnoughPickPowerToHurtTile(xPosition, yPosition) && WorldGen.CanKillTile(xPosition, yPosition);
 
-                FargoGlobalTile.ClearTileAndLiquid(xPosition, yPosition);
+                bool hasLiquid = tile.LiquidAmount != 0;
+
+                if (canMineTile || hasLiquid)
+                    FargoGlobalTile.ClearTileAndLiquid(xPosition, yPosition);
             }
         }
 

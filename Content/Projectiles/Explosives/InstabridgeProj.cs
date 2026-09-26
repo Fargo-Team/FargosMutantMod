@@ -59,14 +59,14 @@ public class InstabridgeProj : ModProjectile
 
                 if (y == 0 && Projectile.ai[2] != 2)
                 {
-                    FargoGlobalTile.ClearEverything(xPosition, yPosition, false);
+                    FargoGlobalTile.ClearEverything(xPosition, yPosition, false, true);
                     // Spawn platforms
                     WorldGen.PlaceTile(xPosition, yPosition, TileID.Platforms);
                 }
                 else
                 {
                     if (!FargoGlobalProjectile.TileIsLiterallyAir(tile))
-                        FargoGlobalTile.ClearEverything(xPosition, yPosition);
+                        FargoGlobalTile.ClearEverything(xPosition, yPosition, keepWires: true);
                 }
             }
         }

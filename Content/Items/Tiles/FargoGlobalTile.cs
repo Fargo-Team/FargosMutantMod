@@ -283,14 +283,36 @@ public class FargoGlobalTile : GlobalTile
         }
     }
 
-    internal static void ClearEverything(int x, int y, bool sendData = true)
+    internal static void ClearEverything(int x, int y, bool sendData = true, bool keepWires = false)
     {
         FindChestTopLeft(x, y, true);
 
         Tile tile = Main.tile[x, y];
         bool hadLiquid = tile.LiquidAmount != 0;
-        WorldGen.KillTile(x, y, noItem: true);
-        tile.ClearEverything();
+        
+        //looks inside. keeps wires!
+        if (keepWires)
+        {
+            bool redWire = tile.RedWire;
+            bool blueWire = tile.BlueWire;
+            bool greenWire = tile.GreenWire;
+            bool yellowWire = tile.YellowWire;
+            bool actuator = tile.HasActuator;
+
+            WorldGen.KillTile(x, y, noItem: true);
+            tile.ClearEverything();
+
+            tile.RedWire = redWire;
+            tile.BlueWire = blueWire;
+            tile.GreenWire = greenWire;
+            tile.YellowWire = yellowWire;
+            tile.HasActuator = actuator;
+        }
+        else
+        {
+            WorldGen.KillTile(x, y, noItem: true);
+            tile.ClearEverything();
+        }
 
         //tile.lava(false);
         //tile.honey(false);

@@ -60,7 +60,7 @@ public class InstatrackProj : ModProjectile
 
                 if (y == 0)
                 {
-                    FargoGlobalTile.ClearEverything(xPosition, yPosition, false);
+                    FargoGlobalTile.ClearEverything(xPosition, yPosition, false, true);
                     // Spawn platforms
                     WorldGen.PlaceTile(xPosition, yPosition, TileID.MinecartTrack);
 
@@ -68,7 +68,7 @@ public class InstatrackProj : ModProjectile
                 else
                 {
                     if (!FargoGlobalProjectile.TileIsLiterallyAir(tile))
-                        FargoGlobalTile.ClearEverything(xPosition, yPosition);
+                        FargoGlobalTile.ClearEverything(xPosition, yPosition, keepWires: true);
                 }
             }
         }

@@ -1667,3 +1667,23 @@ ObsidianWreckingBall: {
 	// DisplayName: Obsidian Wrecking Ball
 	// Tooltip: Throw to demolish Underworld Houses down to ground level
 }
+
+CopperCoinBag: {
+	DisplayName: Cofre de cobre infinito
+	Tooltip: ""
+}
+
+SilverCoinBag: {
+	DisplayName: Cofre de prata infinito
+	Tooltip: ""
+}
+
+GoldCoinBag: {
+	DisplayName: Cofre de ouro infinito
+	Tooltip: ""
+}
+
+PlatinumCoinBag: {
+	DisplayName: Cofre de platina infinito
+	Tooltip: ""
+}

@@ -1665,3 +1665,23 @@ ObsidianWreckingBall: {
 	// DisplayName: Obsidian Wrecking Ball
 	// Tooltip: Throw to demolish Underworld Houses down to ground level
 }
+
+CopperCoinBag: {
+	DisplayName: 无尽铜币保险箱
+	// Tooltip: ""
+}
+
+SilverCoinBag: {
+	DisplayName: 无尽银币保险箱
+	// Tooltip: ""
+}
+
+GoldCoinBag: {
+	DisplayName: 无尽金币保险箱
+	// Tooltip: ""
+}
+
+PlatinumCoinBag: {
+	DisplayName: 无尽铂金币保险箱
+	// Tooltip: ""
+}

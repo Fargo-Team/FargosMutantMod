@@ -60,14 +60,14 @@ public class DoubleObsInstaBridgeProj : ModProjectile
 
                 if (y == -20 || y == 0)
                 {
-                    FargoGlobalTile.ClearEverything(xPosition, yPosition, false);
+                    FargoGlobalTile.ClearEverything(xPosition, yPosition, false, true);
                     // Spawn platforms
                     WorldGen.PlaceTile(xPosition, yPosition, TileID.Platforms, false, false, -1, 13);
                 }
                 else
                 {
                     if (!FargoGlobalProjectile.TileIsLiterallyAir(tile))
-                        FargoGlobalTile.ClearEverything(xPosition, yPosition, false);
+                        FargoGlobalTile.ClearEverything(xPosition, yPosition, false, true);
                 }
             }
         }

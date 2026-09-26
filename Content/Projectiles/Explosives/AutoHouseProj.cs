@@ -143,7 +143,12 @@ public class AutoHouseProj : ModProjectile
 
         //doing it this way so the code still runs to place bg walls behind open door
         if (!((x == 9 * side || x == 2 * side) && (y == -1 || y == -2 || y == -3) && tile.TileType == TileID.OpenDoor))
-            FargoGlobalTile.ClearEverything(xPosition, yPosition);
+        {
+            FargoGlobalTile.ClearEverything(xPosition, yPosition, sendData: false, keepWires: true);
+
+            if (Main.netMode == NetmodeID.Server)
+                NetMessage.SendTileSquare(-1, xPosition, yPosition, 1);
+        }
 
         // Spawn walls
         if (y != -5 && y != 0 && x != 10 * side && x != 1 * side)

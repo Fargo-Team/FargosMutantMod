@@ -1615,3 +1615,23 @@ ObsidianWreckingBall: {
 	DisplayName: Obsidian Wrecking Ball
 	Tooltip: Throw to demolish Underworld Houses down to ground level
 }
+
+CopperCoinBag: {
+	DisplayName: Endless Copper Coin Safe
+	Tooltip: ""
+}
+
+SilverCoinBag: {
+	DisplayName: Endless Silver Coin Safe
+	Tooltip: ""
+}
+
+GoldCoinBag: {
+	DisplayName: Endless Gold Coin Safe
+	Tooltip: ""
+}
+
+PlatinumCoinBag: {
+	DisplayName: Endless Platinum Coin Safe
+	Tooltip: ""
+}

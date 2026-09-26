@@ -26,6 +26,7 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.Config;
 using Terraria.ModLoader.IO;
 using static Fargowiltas.Content.Items.Misc.BattleCry;
+using static Fargowiltas.Content.Items.Misc.WarHorn;
 using static Fargowiltas.Content.Items.Tiles.EnchantedTreeTileEntity;
 using static Fargowiltas.Fargowiltas;
 using static Terraria.ModLoader.ModContent;
@@ -56,6 +57,8 @@ public class FargoPlayer : ModPlayer
     public bool HasDrawnDebuffLayer;
     internal bool BattleCry;
     internal bool CalmingCry;
+    internal bool WarCry;
+    internal bool PeaceCry;
 
     internal int originalSelectedItem;
     internal bool autoRevertSelectedItem;
@@ -178,6 +181,12 @@ public class FargoPlayer : ModPlayer
         if (CalmingCry)
             tag.Add($"FargoCalmingCry{Player.name}", true);
 
+        if (WarCry)
+            tag.Add($"FargoWarCry{Player.name}", true);
+
+        if (PeaceCry)
+            tag.Add($"FargoPeaceCry{Player.name}", true);
+
         if (HasClickedWrench)
             tag.Add("HasClickedWrench", true);
 
@@ -246,6 +255,8 @@ public class FargoPlayer : ModPlayer
         DeathFruitHealth = tag.GetInt("DeathFruitHealth");
         BattleCry = tag.ContainsKey($"FargoBattleCry{Player.name}");
         CalmingCry = tag.ContainsKey($"FargoCalmingCry{Player.name}");
+        WarCry = tag.ContainsKey($"FargoWarCry{Player.name}");
+        PeaceCry = tag.ContainsKey($"FargoPeaceCry{Player.name}");
         HasClickedWrench = tag.ContainsKey("HasClickedWrench");
 
         if (tag.TryGet<IList<ItemDefinition>>("OwnedItemsListDef", out var ownedList))
@@ -376,7 +387,8 @@ public class FargoPlayer : ModPlayer
 
     public override void OnEnterWorld()
     {
-        SyncCry(Player);
+        SyncCry1(Player);
+        SyncCry2(Player);
 
         PotionToggler.TryLoad();
         PotionToggler.LoadPlayerToggles(Player);

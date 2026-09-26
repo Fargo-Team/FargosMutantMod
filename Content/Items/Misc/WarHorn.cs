@@ -12,7 +12,7 @@ using static Fargowiltas.Fargowiltas;
 
 namespace Fargowiltas.Content.Items.Misc;
 
-public class BattleCry : ModItem
+public class WarHorn : ModItem
 {
     public override void SetStaticDefaults()
     {
@@ -25,10 +25,10 @@ public class BattleCry : ModItem
     }
     public override void SetDefaults()
     {
-        Item.width = 46;
-        Item.height = 48;
-        Item.value = Item.sellPrice(0, 0, 2);
-        Item.rare = ItemRarityID.Orange;
+        Item.width = 52;
+        Item.height = 46;
+        Item.value = Item.sellPrice(0, 0, 5);
+        Item.rare = ItemRarityID.Pink;
         Item.useAnimation = 30;
         Item.useTime = 30;
         Item.useStyle = ItemUseStyleID.Shoot;
@@ -44,91 +44,73 @@ public class BattleCry : ModItem
     {
         FargoPlayer modPlayer = player.FargoMutant();
 
-        if (!modPlayer.BattleCry && !modPlayer.CalmingCry)
+        if (!modPlayer.WarCry && !modPlayer.PeaceCry)
         {
-            ToggleCry(true, player, ref modPlayer.BattleCry);
+            ToggleCry2(true, player, ref modPlayer.WarCry);
         }
-        else if (modPlayer.BattleCry)
+        else if (modPlayer.WarCry)
         {
-            ToggleCry(true, player, ref modPlayer.BattleCry);
-            ToggleCry(false, player, ref modPlayer.CalmingCry);
+            ToggleCry2(true, player, ref modPlayer.WarCry);
+            ToggleCry2(false, player, ref modPlayer.PeaceCry);
         }
         else
         {
-            ToggleCry(false, player, ref modPlayer.CalmingCry);
+            ToggleCry2(false, player, ref modPlayer.PeaceCry);
         }
 
-        if(!Main.dedServ)
+        if (!Main.dedServ)
             SoundEngine.PlaySound(new SoundStyle("Fargowiltas/Assets/Sounds/Horn"), player.Center);
     }
 
-    public static void GenerateText(bool isBattle, Player player, bool cry)
+    public static void GenerateText(bool isWar, Player player, bool cry)
     {
-        string cryToggled = Language.GetTextValue($"Mods.Fargowiltas.Items.BattleCry.{(isBattle ? "Battle" : "Calming")}");
-        string toggle = Language.GetTextValue($"Mods.Fargowiltas.Items.BattleCry.{(cry ? "Activated" : "Deactivated")}");
-        string punctuation = Language.GetTextValue($"Mods.Fargowiltas.MessageInfo.Common.{(isBattle ? "Exclamation" : "Period")}");
+        string cryToggled = Language.GetTextValue($"Mods.Fargowiltas.Items.WarHorn.{(isWar ? "War" : "Peace")}");
+        string toggle = Language.GetTextValue($"Mods.Fargowiltas.Items.WarHorn.{(cry ? "Activated" : "Deactivated")}");
+        string punctuation = Language.GetTextValue($"Mods.Fargowiltas.MessageInfo.Common.{(isWar ? "Exclamation" : "Period")}");
 
-        string text = Language.GetTextValue("Mods.Fargowiltas.Items.BattleCry.CryText", cryToggled, toggle, player.name, punctuation);
-        Color color = isBattle ? new Color(255, 0, 0) : new Color(0, 255, 255);
+        string text = Language.GetTextValue("Mods.Fargowiltas.Items.WarHorn.CryText2", cryToggled, toggle, player.name, punctuation);
+        Color color = isWar ? new Color(255, 0, 0) : new Color(0, 255, 255);
 
         FargoUtils.PrintText(text, color);
     }
 
-    public static void SyncCry1(Player player)
+    public static void SyncCry2(Player player)
     {
         if (player.whoAmI == Main.myPlayer && Main.netMode == NetmodeID.MultiplayerClient)
         {
             FargoPlayer modPlayer = player.GetModPlayer<FargoPlayer>();
 
             ModPacket packet = modPlayer.Mod.GetPacket();
-            packet.Write((byte)PacketID.SyncBattleCry);
+            packet.Write((byte)PacketID.SyncWarCry);
             packet.Write(player.whoAmI);
-            packet.Write(modPlayer.BattleCry);
-            packet.Write(modPlayer.CalmingCry);
+            packet.Write(modPlayer.WarCry);
+            packet.Write(modPlayer.PeaceCry);
             packet.Send();
         }
     }
 
-    void ToggleCry(bool isBattle, Player player, ref bool cry)
+    void ToggleCry2(bool isWar, Player player, ref bool cry)
     {
         cry = !cry;
 
         if (cry)
         {
             FargoPlayer modPlayer = player.FargoMutant();
-            if (modPlayer.WarCry)
+            if (modPlayer.BattleCry)
             {
-                modPlayer.WarCry = false;
+                modPlayer.BattleCry = false;
                 DeactivateOtherCry(true, player);
             }
-            if (modPlayer.PeaceCry)
+            if (modPlayer.CalmingCry)
             {
-                modPlayer.PeaceCry = false;
+                modPlayer.CalmingCry = false;
                 DeactivateOtherCry(false, player);
             }
         }
 
         if (Main.netMode == NetmodeID.SinglePlayer)
         {
-            GenerateText(isBattle, player, cry);
-        }
-        else if (Main.netMode == NetmodeID.MultiplayerClient && player.whoAmI == Main.myPlayer)
-        {
-            var packet = Mod.GetPacket();
-            packet.Write((byte)PacketID.BroadcastBattleCry);
-            packet.Write(isBattle);
-            packet.Write(player.whoAmI);
-            packet.Write(cry);
-            packet.Send();
-            SyncCry1(player);
-        }
-    }
-
-    void DeactivateOtherCry(bool isWar, Player player)
-    {
-        if (Main.netMode == NetmodeID.SinglePlayer)
-        {
-            WarHorn.GenerateText(isWar, player, false);
+            GenerateText(isWar, player, cry);
         }
         else if (Main.netMode == NetmodeID.MultiplayerClient && player.whoAmI == Main.myPlayer)
         {
@@ -136,9 +118,27 @@ public class BattleCry : ModItem
             packet.Write((byte)PacketID.BroadcastWarCry);
             packet.Write(isWar);
             packet.Write(player.whoAmI);
+            packet.Write(cry);
+            packet.Send();
+            SyncCry2(player);
+        }
+    }
+
+    void DeactivateOtherCry(bool isBattle, Player player)
+    {
+        if (Main.netMode == NetmodeID.SinglePlayer)
+        {
+            BattleCry.GenerateText(isBattle, player, false);
+        }
+        else if (Main.netMode == NetmodeID.MultiplayerClient && player.whoAmI == Main.myPlayer)
+        {
+            var packet = Mod.GetPacket();
+            packet.Write((byte)PacketID.BroadcastBattleCry);
+            packet.Write(isBattle);
+            packet.Write(player.whoAmI);
             packet.Write(false);
             packet.Send();
-            WarHorn.SyncCry2(player);
+            BattleCry.SyncCry1(player);
         }
     }
 
@@ -149,17 +149,17 @@ public class BattleCry : ModItem
             FargoPlayer modPlayer = player.FargoMutant();
             if (player.altFunctionUse == 2)
             {
-                if (modPlayer.BattleCry)
-                    ToggleCry(true, player, ref modPlayer.BattleCry);
+                if (modPlayer.WarCry)
+                    ToggleCry2(true, player, ref modPlayer.WarCry);
 
-                ToggleCry(false, player, ref modPlayer.CalmingCry);
+                ToggleCry2(false, player, ref modPlayer.PeaceCry);
             }
             else
             {
-                if (modPlayer.CalmingCry)
-                    ToggleCry(false, player, ref modPlayer.CalmingCry);
+                if (modPlayer.PeaceCry)
+                    ToggleCry2(false, player, ref modPlayer.PeaceCry);
 
-                ToggleCry(true, player, ref modPlayer.BattleCry);
+                ToggleCry2(true, player, ref modPlayer.WarCry);
             }
 
         }
@@ -177,11 +177,11 @@ public class BattleCry : ModItem
     {
         Player player = Main.LocalPlayer;
         FargoPlayer modPlayer = player.FargoMutant();
-        Texture2D texture = ModContent.Request<Texture2D>("Fargowiltas/Content/Items/Misc/BattleCry", AssetRequestMode.AsyncLoad).Value;
+        Texture2D texture = ModContent.Request<Texture2D>("Fargowiltas/Content/Items/Misc/WarHorn", AssetRequestMode.AsyncLoad).Value;
         ++RealFrameCounter;
         if (player.whoAmI == Main.myPlayer)
         {
-            if (modPlayer.CalmingCry)
+            if (modPlayer.PeaceCry)
             {
                 if (RealFrame <= 5)
                     RealFrame = 6;
@@ -193,7 +193,7 @@ public class BattleCry : ModItem
                 }
 
             }
-            else if (modPlayer.BattleCry)
+            else if (modPlayer.WarCry)
             {
                 if (RealFrame <= 0)
                     RealFrame = 1;
@@ -215,13 +215,11 @@ public class BattleCry : ModItem
     public override void AddRecipes()
     {
         CreateRecipe()
-            .AddIngredient<GizmoParts>(5)
-            .AddRecipeGroup(RecipeGroups.AnyEvilBar, 5)
-            .AddIngredient(ItemID.BattlePotion, 5)
-            .AddIngredient(ItemID.WaterCandle, 3)
-            .AddIngredient(ItemID.CalmingPotion, 5)
-            .AddIngredient(ItemID.PeaceCandle, 3)
-            .AddTile(TileID.DemonAltar)
+            .AddIngredient<BattleCry>(5)
+            .AddIngredient(ItemID.HallowedBar, 10)
+            .AddIngredient(ItemID.SoulofLight, 5)
+            .AddIngredient(ItemID.SoulofNight, 5)
+            .AddTile(TileID.MythrilAnvil)
             .Register();
     }
 }

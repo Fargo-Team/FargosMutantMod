@@ -530,6 +530,38 @@ public class FargoGlobalNPC : GlobalNPC
             return;
         }
         FargoPlayer fargoPlayer = player.FargoMutant();
+
+        if (fargoPlayer.WarCry)
+        {
+            if (player.HasBuff(BuffID.Battle))
+            {
+                spawnRate = (int)(spawnRate * 2f);
+                maxSpawns = (int)(maxSpawns / 2f);
+            }
+            if (player.HasBuff(BuffID.WaterCandle))
+            {
+                spawnRate = (int)(spawnRate * 1.33f);
+                maxSpawns = (int)(maxSpawns / 1.33f);
+            }
+            spawnRate = (int)(spawnRate * 0.2f);
+            maxSpawns = (int)(maxSpawns * 5f);
+        }
+
+        if (fargoPlayer.PeaceCry)
+        {
+            if (player.HasBuff(BuffID.Calm))
+            {
+                spawnRate = (int)(spawnRate / 1.39f);
+                maxSpawns = (int)(maxSpawns * 1.4f);
+            }
+            if (player.HasBuff(BuffID.PeaceCandle))
+            {
+                spawnRate = (int)(spawnRate / 1.23f);
+                maxSpawns = (int)(maxSpawns * 1.3f);
+            }
+            spawnRate = (int)(spawnRate * 2.5f);
+            maxSpawns = (int)(maxSpawns / 2.5f);
+        }
     }
 
     public override void EditSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)

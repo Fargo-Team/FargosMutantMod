@@ -480,6 +480,8 @@ public class Fargowiltas : Mod
         ClientUpdateWorld,
         BroadcastBattleCry,
         SyncBattleCry,
+        BroadcastWarCry,
+        SyncWarCry,
         SyncDeathFruit,
         DropMeteor,
         SyncTreeFruit,
@@ -571,6 +573,24 @@ public class Fargowiltas : Mod
                         int p = reader.ReadInt32();
                         Main.player[p].FargoMutant().BattleCry = reader.ReadBoolean();
                         Main.player[p].FargoMutant().CalmingCry = reader.ReadBoolean();
+                    }
+                    break;
+
+                //same as above for war cry
+                case PacketID.BroadcastWarCry:
+                    {
+                        bool isWar = reader.ReadBoolean();
+                        int p = reader.ReadInt32();
+                        bool cry = reader.ReadBoolean();
+                        WarHorn.GenerateText(isWar, Main.player[p], cry);
+                    }
+                    break;
+
+                case PacketID.SyncWarCry:
+                    {
+                        int p = reader.ReadInt32();
+                        Main.player[p].FargoMutant().WarCry = reader.ReadBoolean();
+                        Main.player[p].FargoMutant().PeaceCry = reader.ReadBoolean();
                     }
                     break;
 

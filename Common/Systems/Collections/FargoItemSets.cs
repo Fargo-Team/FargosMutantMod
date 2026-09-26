@@ -98,9 +98,13 @@ public static class FargoItemSets
         ItemType<MultitaskCenter>(), DupeType.Dupable,
         ItemType<PortableSundial>(), DupeType.Dupable,
         ItemType<BattleCry>(), DupeType.Dupable,
+        ItemType<WarHorn>(), DupeType.Dupable,
         ItemID.SoulofFright, DupeType.NotDupableFromDupable,
         ItemID.SoulofSight, DupeType.NotDupableFromDupable,
-        ItemID.SoulofMight, DupeType.NotDupableFromDupable);
+        ItemID.SoulofMight, DupeType.NotDupableFromDupable,
+        ItemID.SoulofNight, DupeType.NotDupableFromDupable,
+        ItemID.SoulofLight, DupeType.NotDupableFromDupable,
+        ItemID.HallowedBar, DupeType.NotDupableFromDupable);
 
     public static Dictionary<int, List<int>> DuplicatableRecipes = [];
 

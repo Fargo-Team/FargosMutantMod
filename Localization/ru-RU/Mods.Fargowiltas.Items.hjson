@@ -1617,6 +1617,23 @@ ObsidianWreckingBall: {
 	Tooltip: Бросьте, чтобы разрушить дом преисподней до уровня ближайших блоков
 }
 
+WarHorn: {
+	// DisplayName: War Horn
+	/* Tooltip:
+		'''
+		Left click to toggle greatly increased spawn rates
+		Right click to toggle greatly decreased spawn rates
+		Does not stack with [i:BattlePotion][i:CalmingPotion][i:WaterCandle][i:PeaceCandle][i:Fargowiltas/BattleCry]
+		May also be toggled between modes by right clicking the item in the inventory
+		''' */
+	// War: War
+	// Peace: Peace
+	// Activated: activated
+	// Deactivated: deactivated
+	// {War / Peace} Cry {activated / deactivated} for {playerName}{punctuation}
+	// CryText2: "{0} Cry {1} for {2}{3}"
+}
+
 CopperCoinBag: {
 	DisplayName: Бесконечный сейф медных монет
 	Tooltip: ""

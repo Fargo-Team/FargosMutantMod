@@ -1616,3 +1616,23 @@ ObsidianWreckingBall: {
 	DisplayName: Обсидиановый шар для сноса
 	Tooltip: Бросьте, чтобы разрушить дом преисподней до уровня ближайших блоков
 }
+
+CopperCoinBag: {
+	DisplayName: Бесконечный сейф медных монет
+	Tooltip: ""
+}
+
+SilverCoinBag: {
+	DisplayName: Бесконечный сейф серебряных монет
+	Tooltip: ""
+}
+
+GoldCoinBag: {
+	DisplayName: Бесконечный сейф золотых монет
+	Tooltip: ""
+}
+
+PlatinumCoinBag: {
+	DisplayName: Бесконечный сейф платиновых монет
+	Tooltip: ""
+}

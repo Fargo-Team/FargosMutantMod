@@ -847,11 +847,6 @@ public class FargoGlobalItem : GlobalItem
         { "VelocityPouch", ItemID.HighVelocityBullet },
         { "VenomPouch", ItemID.VenomBullet },
 
-        { "CopperCoinBag", ItemID.CopperCoin },
-        { "SilverCoinBag", ItemID.SilverCoin },
-        { "GoldCoinBag", ItemID.GoldCoin },
-        { "PlatinumCoinBag", ItemID.PlatinumCoin },
-
         { "CrystalDartBox", ItemID.CrystalDart },
         { "CursedDartBox", ItemID.CursedDart },
         { "IchorDartBox", ItemID.IchorDart },

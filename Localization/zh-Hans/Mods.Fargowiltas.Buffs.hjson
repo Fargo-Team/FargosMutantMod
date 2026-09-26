@@ -167,8 +167,8 @@ RuneOrbBuff: {
 	// Description: Greatly increases Rune Wizard spawn rates
 }
 
-ShadowflameIconBuff: {
-	// DisplayName: Shadowflame Icon
+ShadowflameIdolBuff: {
+	// DisplayName: Shadowflame Idol
 	// Description: Greatly increases Goblin Warlock spawn rates
 }
 

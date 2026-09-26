@@ -167,7 +167,7 @@ RuneOrbBuff: {
 	Description: Скорость появления рунических магов значительно увеличена
 }
 
-ShadowflameIconBuff: {
+ShadowflameIdolBuff: {
 	DisplayName: Икона теневого пламени
 	Description: Скорость появления гоблина-чернокнижника значительно увеличена
 }

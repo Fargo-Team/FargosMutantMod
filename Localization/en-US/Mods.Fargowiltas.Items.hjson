@@ -612,8 +612,8 @@ RuneOrb: {
 	Tooltip: Greatly increases Rune Wizard spawn rates
 }
 
-ShadowflameIcon: {
-	DisplayName: Shadowflame Icon
+ShadowflameIdol: {
+	DisplayName: Shadowflame Idol
 	Tooltip: Greatly increases Goblin Warlock spawn rates
 }
 

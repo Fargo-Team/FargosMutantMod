@@ -601,7 +601,7 @@ public class PotionBagUI : FargoUI
 
         }
 
-        public override bool CanAcceptItem(Item item) => item.buffType > 0 && item.buffTime >= 60 * 60 * 2;
+        public override bool CanAcceptItem(Item item) => item.buffType > 0 && item.buffTime >= 60 * 60 * 2 && item.ModItem is not BaseSpawnBooster;
 
         public override void OnItemSwap(ref Item oldItem, ref Item newItem)
         {

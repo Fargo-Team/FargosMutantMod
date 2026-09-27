@@ -62,6 +62,11 @@ public class WarHorn : ModItem
             SoundEngine.PlaySound(new SoundStyle("Fargowiltas/Assets/Sounds/Horn"), player.Center);
     }
 
+    public override Vector2? HoldoutOffset()
+    {
+        return new Vector2(8, -10);
+    }
+
     public static void GenerateText(bool isWar, Player player, bool cry)
     {
         string cryToggled = Language.GetTextValue($"Mods.Fargowiltas.Items.WarHorn.{(isWar ? "War" : "Peace")}");

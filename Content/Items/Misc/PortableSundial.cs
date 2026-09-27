@@ -21,7 +21,6 @@ public class PortableSundial : ModItem
         Item.useAnimation = 30;
         Item.useTime = 30;
         Item.useStyle = ItemUseStyleID.HoldUp;
-        Item.mana = 15;
         Item.UseSound = SoundID.Item4;
     }
 

@@ -249,6 +249,10 @@ public class FargowiltasDetours : ModSystem
 
     private bool AllowUseSummons(On_Player.orig_ItemCheck_CheckCanUse orig, Player self, Item item)
     {
+        // Easy Summons bypasses the normal checks, including GlobalItem.CanUseItem.
+        if (item.type == ItemID.CelestialSigil && NPC.MoonLordCountdown > 0)
+            return false;
+
         if (FargoGlobalItem.AlwaysUsableVanillaSummons.Contains(item.type) && FargoServerConfig.Instance.EasySummons)
         {
             if (!((item.type == ItemID.BloodMoonStarter && Main.bloodMoon) ||
@@ -323,9 +327,19 @@ public class FargowiltasDetours : ModSystem
             //with this one its just easier to redo the whole thing
             if (item.type == ItemID.CelestialSigil)
             {
+                // check before applying item time which also triggers consumption
+                if (NPC.MoonLordCountdown > 0)
+                    return;
+
                 SoundEngine.PlaySound(SoundID.Roar, self.position);
                 self.ApplyItemTime(item);
-                if (Main.netMode == NetmodeID.SinglePlayer)
+                
+                // countdown will do nothing if a ML is already alive
+                // so if a ML is alive, just raw spawn it instead
+                if (NPC.AnyNPCs(NPCID.MoonLordCore))
+                    Fargowiltas.SpawnBoss(self, NPCID.MoonLordCore, npcCenter: self.Center - new Vector2(0, 150),
+                        overrideDisplayName: Language.GetTextValue("NPCName.MoonLordHead"));
+                else if (Main.netMode == NetmodeID.SinglePlayer)
                     WorldGen.StartImpendingDoom(60);
                 else
                     NetMessage.SendData(MessageID.SpawnBossUseLicenseStartEvent, -1, -1, null, self.whoAmI, -8f);

@@ -49,6 +49,7 @@ public class LumberjackBiomeRegistry : ModSystem
             .AddCritter(ItemID.LadyBug, 5, () => Main.WindyEnoughForKiteDrops ? 0.5f : 0f)
             .AddCritter([ItemID.JuliaButterfly, ItemID.MonarchButterfly, ItemID.PurpleEmperorButterfly, ItemID.RedAdmiralButterfly, ItemID.SulphurButterfly, ItemID.TreeNymphButterfly, ItemID.UlyssesButterfly, ItemID.ZebraSwallowtailButterfly], 1, 5, () => 0.33f)
             .AddCritter([ItemID.Grasshopper, ItemID.Squirrel, ItemID.SquirrelRed, ItemID.Bird, ItemID.BlueJay, ItemID.Cardinal], 1, 5, () => 0.2f)
+            .AddCritter([ItemID.BlueDragonfly, ItemID.GreenDragonfly, ItemID.RedDragonfly], 1, 3, () => !NPC.TooWindyForButterflies && Main.dayTime ? 0.5f : 0f)
             .AddFruit([ItemID.Lemon, ItemID.Peach, ItemID.Apricot, ItemID.Grapefruit, ItemID.Apple], 1, 5, () => 1f)
             .AddFruit(ItemID.EucaluptusSap, 1, () => 0.01f)
             .Register();
@@ -57,6 +58,7 @@ public class LumberjackBiomeRegistry : ModSystem
             .SetIcon(vanillaIcons, vanillaIcons.Frame(16, 5, 3, 0))
             .SetWood(ItemID.Cactus, 100)
             .AddCritter([ItemID.Scorpion, ItemID.BlackScorpion], 5, 1, () => 1f)
+            .AddCritter([ItemID.BlackDragonfly, ItemID.OrangeDragonfly, ItemID.YellowDragonfly], 1, 3, () => !NPC.TooWindyForButterflies && Main.dayTime ? 0.5f : 0f)
             .AddFruit(ItemID.PinkPricklyPear, 1, () => 1f)
             .Register();
 

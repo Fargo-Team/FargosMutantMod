@@ -1663,7 +1663,11 @@ MiniObsidianInstaBridge: {
 
 ObsidianWreckingBall: {
 	// DisplayName: Obsidian Wrecking Ball
-	// Tooltip: Throw to demolish Underworld Houses down to ground level
+	/* Tooltip:
+		'''
+		Can be reused infinitely
+		Demolishes Underworld Houses below you down to ground level
+		''' */
 }
 
 WarHorn: {

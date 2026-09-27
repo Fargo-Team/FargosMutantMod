@@ -1,4 +1,5 @@
-﻿using Fargowiltas.Content.Projectiles.Explosives;
+﻿using Fargowiltas.Content.Items.Misc;
+using Fargowiltas.Content.Projectiles.Explosives;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
@@ -41,8 +42,9 @@ public class ObsidianWreckingBall : ModItem
     public override void AddRecipes()
     {
         CreateRecipe()
+            .AddIngredient<GizmoParts>(5)
             .AddIngredient(ItemID.Obsidian, 100)
-            .AddIngredient(ItemID.HellstoneBar, 20)
+            .AddIngredient(ItemID.HellstoneBar, 12)
             .AddIngredient(ItemID.Chain, 10)
             .AddIngredient(ItemID.Bone, 10)
             .AddTile(TileID.Anvils)

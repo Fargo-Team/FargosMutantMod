@@ -185,3 +185,8 @@ SuspiciousLookingChestBuff: {
 		Greatly increases Ice Mimic spawn rates when in the ice biome
 		'''
 }
+
+FairFightBuff: {
+	DisplayName: Fair Fight
+	Description: Energizer's power limits your mobility
+}

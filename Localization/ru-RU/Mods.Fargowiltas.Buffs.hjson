@@ -185,3 +185,8 @@ SuspiciousLookingChestBuff: {
 		Скорость появления ледяных мимиков в тундре значительно увеличена
 		'''
 }
+
+FairFightBuff: {
+	// DisplayName: Fair Fight
+	// Description: Energizer's power limits your mobility
+}

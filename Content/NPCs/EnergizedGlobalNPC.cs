@@ -1,4 +1,5 @@
 using Fargowiltas.Common.Systems.Collections;
+using Fargowiltas.Content.Buffs;
 using Microsoft.Xna.Framework;
 using System.Reflection;
 using Terraria;
@@ -313,6 +314,9 @@ public class EnergizedModPlayer : ModPlayer
     }
     public override void PostUpdateEquips()
     {
+        if (Fargowiltas.Binding != Binding.None)
+            Player.AddBuff(ModContent.BuffType<FairFightBuff>(), 2);
+
         SetMoveStats();
     }
     public override void PostUpdateRunSpeeds()

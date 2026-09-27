@@ -66,12 +66,12 @@ public class MiscRecipeSystem : ModSystem
             if (!DuplicatableRecipes.ContainsKey(result))
             {
                 DuplicatableRecipes.Add(result, []);
-            }
-            foreach (Item item in recipe.requiredItem)
-            {
-                if (EnchantedTreeTileEntity.IsItemDupable(item.type) || (DuplicatableItems[recipe.createItem.type] == DupeType.MaterialsDupable && DuplicatableItems[item.type] != DupeType.NotDupableFromDupable))
+                foreach (Item item in recipe.requiredItem)
                 {
-                    DuplicatableRecipes[recipe.createItem.type].Add(item.type);
+                    if (EnchantedTreeTileEntity.IsItemDupable(item.type) || (DuplicatableItems[result] == DupeType.MaterialsDupable && DuplicatableItems[item.type] != DupeType.NotDupableFromDupable))
+                    {
+                        DuplicatableRecipes[result].Add(item.type);
+                    }
                 }
             }
         }

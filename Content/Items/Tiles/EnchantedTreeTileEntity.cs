@@ -242,8 +242,7 @@ public class EnchantedTreeTileEntity : ModTileEntity
                             netsync = true;
                             for (int d = 0; d < FargoItemSets.DuplicatableRecipes[fruit.type].Count; d++)
                             {
-                                float side = (d % 2 == 0 ? -1 : 1);
-                                Vector2 position = fruit.targetPosition + new Vector2(0, 250) - new Vector2(0, 500).RotatedBy(MathHelper.ToRadians((d) * 7 - FargoItemSets.DuplicatableRecipes[fruit.type].Count * 7 / 2 + 3f));
+                                Vector2 position = fruit.targetPosition + new Vector2(0, 350) - new Vector2(0, 500).RotatedBy(MathHelper.ToRadians((d) * 7 - FargoItemSets.DuplicatableRecipes[fruit.type].Count * 7 / 2 + 3f));
                                 tree.Fruits.Add(new Fruit(FargoItemSets.DuplicatableRecipes[fruit.type][d], fruit.center, position, Vector2.Zero, i, fruit.layer + 1));
                             }
                         }
@@ -329,17 +328,17 @@ public class EnchantedTreeTileEntity : ModTileEntity
                 }
                 void DrawItem(int type, Vector2 position, float opacity = 1)
                 {
-
                     //needed for animated item sprites
                     //Main.instance.LoadItem(type);
-                    Rectangle frame;
-                    Main.GetItemDrawFrame(type, out Texture2D useless, out frame);
+                    Main.GetItemDrawFrame(type, out _, out Rectangle frame);
                     Asset<Texture2D> item = TextureAssets.Item[type];
-                    //position += new Vector2(190, 190);
                     //disco backglow
                     for (int n = 0; n < 5; n++)
                     {
-                        Main.EntitySpriteDraw(item.Value, position - Main.screenPosition + new Vector2((float)Math.Sin(tree.drawTimer + n * 2f) * 3, (float)Math.Cos(tree.drawTimer + n * 3f) * 3), frame, Color.White * 0.5f * opacity, 0, new Vector2(frame.Width, frame.Height) / 2, 1, SpriteEffects.None, 0);
+                        DrawData d = new(item.Value, position - Main.screenPosition + new Vector2((float)Math.Sin(tree.drawTimer + n * 2f) * 3, (float)Math.Cos(tree.drawTimer + n * 3f) * 3), frame, Color.White * 0.5f * opacity, 0, new Vector2(frame.Width, frame.Height) / 2, 1, SpriteEffects.None, 0);
+                        d.shader = 108;
+                        d.color = Main.DiscoColor * 0.5f * opacity;
+                        Main.EntitySpriteDraw(d);
                     }
                     //real item
                     Main.EntitySpriteDraw(item.Value, position - Main.screenPosition, frame, Color.White * opacity, 0, new Vector2(frame.Width, frame.Height) / 2, 1, SpriteEffects.None, 0);

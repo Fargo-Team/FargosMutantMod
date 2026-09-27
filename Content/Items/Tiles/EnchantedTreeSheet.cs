@@ -90,7 +90,8 @@ public class EnchantedTreeSheet : ModTile
 
     public override void SpecialDraw(int i, int j, SpriteBatch spriteBatch)
     {
-        if (Main.gameMenu || !FargoUtils.TryGetTileEntityAs<EnchantedTreeTileEntity>(i, j, out EnchantedTreeTileEntity tree))
+        //actual drawing is in EnchantedTreeTileEntity
+        /*if (Main.gameMenu || !FargoUtils.TryGetTileEntityAs<EnchantedTreeTileEntity>(i, j, out EnchantedTreeTileEntity tree))
             return;
 
         tree.drawTimer += 0.1f;
@@ -120,7 +121,7 @@ public class EnchantedTreeSheet : ModTile
             }
             //real item
             Main.EntitySpriteDraw(item.Value, position - Main.screenPosition, frame, Color.White * opacity, 0, new Vector2(frame.Width, frame.Height) / 2, 1, SpriteEffects.None, 0);
-        }
+        }*/
     }
 
     public override bool RightClick(int i, int j)
@@ -136,6 +137,10 @@ public class EnchantedTreeSheet : ModTile
                 tree.Prefix = player.HeldItem.prefix;
                 if (EnchantedTreeTileEntity.IsItemDupable(tree.ItemType))
                 {
+                    //thank you shellphone
+                    if (tree.ItemType is ItemID.ShellphoneHell or ItemID.ShellphoneOcean or ItemID.Shellphone or ItemID.ShellphoneSpawn)
+                        tree.ItemType = ItemID.ShellphoneDummy;
+
                     tree.Fruits.Add(new(tree.ItemType, tree.Position.ToWorldCoordinates() + new Vector2(16, -12), tree.Position.ToWorldCoordinates() + new Vector2(16, -80), Vector2.Zero));
                     if (Main.netMode == NetmodeID.MultiplayerClient)
                     {

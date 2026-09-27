@@ -220,7 +220,7 @@ public class WarHorn : ModItem
     public override void AddRecipes()
     {
         CreateRecipe()
-            .AddIngredient<BattleCry>(5)
+            .AddIngredient<BattleCry>(1)
             .AddIngredient(ItemID.HallowedBar, 10)
             .AddIngredient(ItemID.SoulofLight, 5)
             .AddIngredient(ItemID.SoulofNight, 5)

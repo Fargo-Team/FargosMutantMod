@@ -111,7 +111,7 @@ public class StatTracker
         if (souls != null)
         {
             const string soulsModName = "FargowiltasSouls";
-            StatRegistry.TryAddStatToCategory("Summon", "SummonCritical", () => (int)souls.Call("GetSummonCrit"), () => StatSheetLocal(soulsModName, "SummonCritical"), 1 + float.Epsilon, modName: soulsModName);
+            StatRegistry.TryAddStatToCategory("Summon", "SummonCritical", () => Crit(DamageClass.Summon) - 4, () => StatSheetLocal(soulsModName, "SummonCritical"), 1 + float.Epsilon, modName: soulsModName);
             StatRegistry.TryAddStatToCategory("Combat", "AttackSpeed", () => (int)Math.Round(MathF.Max((float)souls.Call("GetCachedAttackSpeed"), (float)souls.Call("GetAttackSpeed")) * 100), () => StatSheetLocal(soulsModName, "AttackSpeed"), modName: soulsModName);
 
         }

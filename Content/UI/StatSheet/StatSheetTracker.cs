@@ -70,6 +70,8 @@ public class StatTracker
             .FargoStat("Luck", () => Math.Round(Main.LocalPlayer.luck, 2))
             .FargoStat("PlacementSpeed", () => Math.Round((1f / Main.LocalPlayer.tileSpeed - 0.25f) * 100))
             .FargoStat("ExtraPlacementRange", () => Main.LocalPlayer.blockRange)
+            .FargoStat("SpawnRate", () => Math.Round(10000f / Math.Max(Main.LocalPlayer.FargoMutant().spawnRate, 1)) / 100) // Only contain 2 decimal digits
+            .FargoStat("MaxSpawns", () => Main.LocalPlayer.FargoMutant().maxSpawns)
             .RegisterCategory();
 
         // Melee
@@ -110,9 +112,8 @@ public class StatTracker
         Mod souls = Fargowiltas.SoulsMod;
         if (souls != null)
         {
-            const string soulsModName = "FargowiltasSouls";
-            StatRegistry.TryAddStatToCategory("Summon", "SummonCritical", () => Crit(DamageClass.Summon) - 4, () => StatSheetLocal(soulsModName, "SummonCritical"), 1 + float.Epsilon, modName: soulsModName);
-            StatRegistry.TryAddStatToCategory("Combat", "AttackSpeed", () => (int)Math.Round(MathF.Max((float)souls.Call("GetCachedAttackSpeed"), (float)souls.Call("GetAttackSpeed")) * 100), () => StatSheetLocal(soulsModName, "AttackSpeed"), modName: soulsModName);
+            StatRegistry.TryAddStatToCategory("Summon", "SummonCritical", () => Crit(DamageClass.Summon) - 4, () => StatSheetLocal(souls.Name, "SummonCritical"), 1 + float.Epsilon, modName: souls.Name);
+            StatRegistry.TryAddStatToCategory("Combat", "AttackSpeed", () => (int)Math.Round(MathF.Max((float)souls.Call("GetCachedAttackSpeed"), (float)souls.Call("GetAttackSpeed")) * 100), () => StatSheetLocal(souls.Name, "AttackSpeed"), modName: souls.Name);
 
         }
     }

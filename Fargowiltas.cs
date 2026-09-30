@@ -499,6 +499,7 @@ public class Fargowiltas : Mod
         SyncWorldTime,
         SyncOwnedItem,
         AddDeviSummon,
+        SyncSpawnRates,
     }
 
     public override void HandlePacket(BinaryReader reader, int whoAmI)
@@ -904,6 +905,13 @@ public class Fargowiltas : Mod
                         {
                             Main.player[player].FargoMutant().ActiveSpawnBoosters.Add((BaseSpawnBoosterBuff)BuffLoader.GetBuff(type));
                         }
+                    }
+                    break;
+                // From server to client
+                case PacketID.SyncSpawnRates:
+                    {
+                        Main.LocalPlayer.FargoMutant().spawnRate = reader.ReadInt32();
+                        Main.LocalPlayer.FargoMutant().maxSpawns = reader.ReadInt32();
                     }
                     break;
                 default:

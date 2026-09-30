@@ -39,9 +39,7 @@ public class PinnedStatDisplay : InfoDisplay
     {
         get
         {
-            if (Pin is not { } pin)
-                return "Fargowiltas/Assets/Symbols/InfoDisplay/StatSheet";
-            return $"{SymbolPathRegistry.GetFilePath(pin.ModName)}/InfoDisplay/{pin.Name}";
+            return "Fargowiltas/Assets/Symbols/InfoDisplayIcon";
         }
     }
 

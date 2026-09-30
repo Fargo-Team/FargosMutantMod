@@ -6,7 +6,6 @@ using Fargowiltas.Content.Dusts;
 using Fargowiltas.Content.Items;
 using Fargowiltas.Content.Items.Misc;
 using Fargowiltas.Content.Items.Vanity;
-using Fargowiltas.Content.NPCs;
 using Fargowiltas.Content.UI;
 using Fargowiltas.Content.UI.StatSheet;
 using Fargowiltas.Utilities.Extensions;
@@ -87,6 +86,13 @@ public class FargoPlayer : ModPlayer
 
     public int DeathCamTimer = 0;
     public int SpectatePlayer = 0;
+
+    // Used for Stat Sheet
+    public int spawnRate = typeof(NPC).GetField("defaultSpawnRate", FargoUtils.UniversalBindingFlags)?.GetValue(null) as int? ?? 600;
+    public int maxSpawns = typeof(NPC).GetField("defaultMaxSpawns", FargoUtils.UniversalBindingFlags)?.GetValue(null) as int? ?? 5;
+    internal static int SyncSpawnRatesMaxCD => 60 * 2;
+    internal int SyncSpawnRatesCD = SyncSpawnRatesMaxCD;
+
 #pragma warning disable CS8632
     public Fruit? grabbedFruit = null;
 #pragma warning restore CS8632
@@ -95,7 +101,7 @@ public class FargoPlayer : ModPlayer
     public List<BaseSpawnBoosterBuff> ActiveSpawnBoosters = [];
 
     public List<(string ModName, string Name)> PinnedStats = [];
-    
+
     public bool? TogglePinnedStat(string ModName, string Name)
     {
         var id = (ModName, Name);
@@ -711,6 +717,8 @@ public class FargoPlayer : ModPlayer
                 autoRevertSelectedItem = false;
             }
         }
+        if (Main.netMode == NetmodeID.Server && SyncSpawnRatesCD > 0)
+            SyncSpawnRatesCD--;
     }
 
     public override bool PreModifyLuck(ref float luck)

@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using System;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent;
@@ -18,6 +19,7 @@ namespace Fargowiltas;
 public class FargowiltasDetours : ModSystem
 {
     internal static bool BetsyEggUsed;
+    private static readonly MethodInfo EditSpawnRate_Method = typeof(NPCLoader).GetMethod("EditSpawnRate", FargoUtils.UniversalBindingFlags);
     public override void Load()
     {
         BetsyEggUsed = false;
@@ -25,6 +27,8 @@ public class FargowiltasDetours : ModSystem
         On_DD2Event.DropMedals += BetsyMedals;
 
         On_Item.GetShimmered += FixRecipeGroupsShimmerInteraction;
+
+        On_LucyAxeMessage.SpawnPopupText += AddMessage;
 
         On_Main.DoUpdateInWorld += UpdateEnchantedTreeFruit;
         On_Main.DrawPlayers_AfterProjectiles += DrawEnchantedTrees;
@@ -52,7 +56,8 @@ public class FargowiltasDetours : ModSystem
 
         On_WorldGen.CountTileTypesInArea += CountTileTypesInArea_PurityTotemHack;
 
-        On_LucyAxeMessage.SpawnPopupText += AddMessage;
+
+        MonoModHooks.Add(EditSpawnRate_Method, UpdateSpawnRates);
     }
 
     private void AddMessage(On_LucyAxeMessage.orig_SpawnPopupText orig, LucyAxeMessage.MessageSource source, int variationUnwrapped, Vector2 position, Vector2 velocity)
@@ -333,7 +338,7 @@ public class FargowiltasDetours : ModSystem
 
                 SoundEngine.PlaySound(SoundID.Roar, self.position);
                 self.ApplyItemTime(item);
-                
+
                 // countdown will do nothing if a ML is already alive
                 // so if a ML is alive, just raw spawn it instead
                 if (NPC.AnyNPCs(NPCID.MoonLordCore))
@@ -446,7 +451,7 @@ public class FargowiltasDetours : ModSystem
 
                     tree.Fruits.Add(new EnchantedTreeTileEntity.Fruit(tree.ItemType, tree.Position.ToWorldCoordinates() + new Vector2(16, -12), tree.Position.ToWorldCoordinates() + new Vector2(16, -80), Vector2.Zero));
                     if (Main.netMode == NetmodeID.MultiplayerClient)
-                    { 
+                    {
                         FargoNet.SendEnchantedTreeFruitPacket(t);
                     }
                 }
@@ -529,6 +534,27 @@ public class FargowiltasDetours : ModSystem
             return;
 
         orig(medals);
+    }
+
+    public delegate void Orig_EditSpawnRate(Player player, ref int spawnRate, ref int maxSpawns);
+    public static void UpdateSpawnRates(Orig_EditSpawnRate orig, Player player, ref int spawnRate, ref int maxSpawns)
+    {
+        orig(player, ref spawnRate, ref maxSpawns);
+        if (Main.netMode == NetmodeID.Server && player.active && !player.dead && !player.ghost && player.FargoMutant().SyncSpawnRatesCD <= 0)
+        {
+            player.FargoMutant().SyncSpawnRatesCD = 60 * 2;
+            ModPacket packet = Fargowiltas.Instance.GetPacket();
+            packet.Write((byte)Fargowiltas.PacketID.SyncSpawnRates);
+            packet.Write(spawnRate);
+            packet.Write(maxSpawns);
+            packet.Send(player.whoAmI);
+        }
+        else
+        {
+            FargoPlayer modPlayer = Main.LocalPlayer.FargoMutant();
+            modPlayer.spawnRate = spawnRate;
+            modPlayer.maxSpawns = maxSpawns;
+        }
     }
 }
 

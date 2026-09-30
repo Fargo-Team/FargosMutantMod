@@ -37,6 +37,8 @@ StatSheet: {
 	// MiningSpeed: Mining Speed: {0}%
 	// ExtraPlacementRange: Extra Placement Range: {0}
 	// PlacementSpeed: Placement Speed: {0}%
+	// SpawnRate: Spawn Rate: {0}%
+	// MaxSpawns: Max Spawns: {0}
 	// melee
 	// Melee: Melee
 	MeleeDamage: Dano físico: {0}%

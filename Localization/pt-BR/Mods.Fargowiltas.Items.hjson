@@ -1599,6 +1599,7 @@ PotionCooler: {
 		'''
 		Works from the inventory
 		<right> to open
+		<right> in the inventory while holding a potion to directly deposit it into the cooler
 		Stores potions and grants you their buffs
 		Potions stored within are shared between all players
 		Toggles are not shared between players

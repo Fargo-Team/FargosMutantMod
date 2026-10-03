@@ -12,6 +12,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
+using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
@@ -33,6 +34,8 @@ public class Abominationn : ModNPC
 
     private static int ShimmerHeadIndex;
     private static Profiles.StackedNPCProfile AbomProfile;
+
+    public SoundStyle StyxActivation = new("Fargowiltas/Assets/Sounds/StyxGazerActivate");
 
     public override void Load()
     {
@@ -165,6 +168,9 @@ public class Abominationn : ModNPC
             shouldDrawStyxGazer = true;
         else
             shouldDrawStyxGazer = false;
+
+        if (shouldDrawStyxGazer && StyxFrame == 1 && !Main.dedServ)
+            SoundEngine.PlaySound(StyxActivation with { Volume = 0.4f, PauseBehavior = PauseBehavior.PauseWithGame }, NPC.Center);
 
 
         Lighting.AddLight(NPC.Top, TorchID.Orange);

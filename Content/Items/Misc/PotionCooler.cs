@@ -1,5 +1,7 @@
-﻿using Fargowiltas.Common.Configs;
+﻿using Fargowiltas.Assets.Textures;
+using Fargowiltas.Common.Configs;
 using Fargowiltas.Common.Systems;
+using Fargowiltas.Content.Items.Summons;
 using Fargowiltas.Content.UI;
 using Fargowiltas.Content.UI.PotionBag;
 using Microsoft.Xna.Framework;
@@ -7,6 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.ID;
@@ -63,7 +66,24 @@ public class PotionCooler : ModItem
     {
         if (Main.LocalPlayer == player)
         {
-            FargoUIManager.Toggle<PotionBagUI>();
+            Item item = Main.mouseItem;
+            bool cantInput = item.IsAir || item.buffType == 0 || item.buffTime < 60 * 60 * 2 || item.ModItem is BaseSpawnBooster;
+            if (!cantInput)
+            {
+                if (PotionBagSystem.CanConsumePotion(item.type, item.stack, out int consumeAmount, out int leftover))
+                {
+                    item.stack = leftover;
+                    //SoundEngine.PlaySound(SoundID.Item130);
+                    inputInterpolant = 30;
+                    PotionBagUI.NeedsPotionListBuilding = true;
+                    if (Main.netMode == NetmodeID.MultiplayerClient)
+                        FargoNet.AddPotionToPotionBag(item.type, consumeAmount);
+                    else
+                        PotionBagSystem.AddPotion(item.type, consumeAmount);
+                }
+            }
+            else
+                FargoUIManager.Toggle<PotionBagUI>();
             return;
         }
     }
@@ -83,11 +103,49 @@ public class PotionCooler : ModItem
         base.ModifyTooltips(tooltips);
     }
 
-    public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
+    public override bool PreDrawInInventory(SpriteBatch sb, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
     {
         Asset<Texture2D> texture = TextureAssets.Item[Type];
         Rectangle drawFrame = texture.Frame(1, 2, 0, PotionBagSystem.AnyCompletedPotions ? 1 : 0);
-        return base.PreDrawInInventory(spriteBatch, position, drawFrame, drawColor, itemColor, drawFrame.Size() * 0.5f, scale);
+
+        inputInterpolant = MathHelper.Clamp(inputInterpolant, 0, 30);
+        if (!Main.gamePaused)
+            inputInterpolant -= 1.3f;
+        float ratio = inputInterpolant / 30f;
+        scale = MathHelper.Lerp(scale, scale * 1.2f, ratio);
+
+        sb.Draw(texture.Value, position, drawFrame, drawColor, 0, drawFrame.Size() / 2f, scale, SpriteEffects.None, 1);
+        return false;
+        //return base.PreDrawInInventory(sb, position, drawFrame, drawColor, itemColor, drawFrame.Size() * 0.5f, scale);
+    }
+
+    public float inputInterpolant;
+    public override void PostDrawInInventory(SpriteBatch sb, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
+    {
+        Item item = Main.mouseItem;
+        bool cantInput = item.IsAir || item.buffType == 0 || item.buffTime < 60 * 60 * 2 || item.ModItem is BaseSpawnBooster;
+
+        PotionBagSystem.TryGetCount(item.type, out int count);
+        if (!cantInput)
+        {
+            bool hoveringCoolor = Main.HoverItem?.type == ModContent.ItemType<PotionCooler>();
+
+            int adjustedCount = count + (hoveringCoolor ? item.stack : 0);
+            adjustedCount = (int)MathHelper.Clamp(adjustedCount, 0, PotionBagSystem.MaxPotions);
+            string potionCount = adjustedCount + "/" + PotionBagSystem.MaxPotions;
+            Vector2 textSize = FontAssets.ItemStack.Value.MeasureString(potionCount);
+            Vector2 textPosition = position + new Vector2(-8 - (textSize.X / potionCount.Length + 1), 8);
+            Color colorToUse = hoveringCoolor ? Color.LimeGreen : Color.White;
+
+            if (count >= PotionBagSystem.MaxPotions && hoveringCoolor)
+            {
+                Texture2D bigCross = ModContent.Request<Texture2D>("Fargowiltas/Assets/Textures/UI/BigCross", AssetRequestMode.ImmediateLoad).Value;
+                Rectangle xFrame = bigCross.Frame();
+                sb.Draw(bigCross, position, xFrame, drawColor, 0, xFrame.Size() / 2f, scale, SpriteEffects.None, 1);
+            }
+            else
+                Utils.DrawBorderString(sb, potionCount, textPosition, colorToUse, scale);
+        }
     }
 
     public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI)

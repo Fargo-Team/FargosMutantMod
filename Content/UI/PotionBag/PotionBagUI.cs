@@ -26,7 +26,7 @@ public class PotionBagUI : FargoUI
     public int BackWidth = 350;
     public int BackHeight = 590;
 
-    bool NeedsPotionListBuilding = false;
+    public static bool NeedsPotionListBuilding = false;
     int BuildListCooldown = 0;
 
     UIDragablePanel BackPanel;
@@ -211,6 +211,10 @@ public class PotionBagUI : FargoUI
         BackPanel.Append(CloseButton);
     }
 
+    public static void ForceRebuildList()
+    {
+        
+    }
     void RebuildList()
     {
         PotionPanel.RemoveAllChildren();

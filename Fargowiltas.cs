@@ -142,6 +142,7 @@ public class Fargowiltas : Mod
             new(ContentSamples.ItemsByType[ItemID.GummyWorm], () => Main.LocalPlayer.usedGummyWorm),
             new(ContentSamples.ItemsByType[ItemID.GalaxyPearl], () => Main.LocalPlayer.usedGalaxyPearl),
             new(ContentSamples.ItemsByType[ItemID.ArtisanLoaf], () => Main.LocalPlayer.ateArtisanBread),
+            new(ContentSamples.ItemsByType[ItemID.MinecartPowerup], () => Main.LocalPlayer.unlockedSuperCart)
         ];
 
         summonTracker = new MutantSummonTracker();

@@ -975,8 +975,8 @@ public class FargoGlobalNPC : GlobalNPC
     public override void OnChatButtonClicked(NPC npc, bool firstButton)
     {
         // No angler check enables luiafk compatibility
-        if (FargoServerConfig.Instance.AnglerQuestInstantReset && Main.anglerQuestFinished)
-        {
+        if (FargoServerConfig.Instance.AnglerQuestInstantReset && FargoWorld.IsAnglerQuestComplete)
+        {   
             if (Main.netMode == NetmodeID.SinglePlayer)
             {
                 Main.AnglerQuestSwap();

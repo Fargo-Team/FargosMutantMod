@@ -30,6 +30,8 @@ public class FargoWorld : ModSystem
 
     internal static bool EternityMode;
 
+    internal static bool IsAnglerQuestComplete;
+
     internal static bool[] CurrentSpawnRateTile;
     internal static Dictionary<string, bool> DownedBools = [];
 
@@ -193,6 +195,7 @@ public class FargoWorld : ModSystem
         HardmodeSwarmActive = reader.ReadBoolean();
         Binding = (EnergizedGlobalNPC.Binding)reader.ReadInt32();
         EternityMode = reader.ReadBoolean();
+        IsAnglerQuestComplete = reader.ReadBoolean();
         // These can't be bytes because a sign is required and
         // signed bytes range between -127 and 127, which is not enough for the NPC array
         FargoGlobalNPC.eaterBoss = reader.ReadInt16();
@@ -213,11 +216,13 @@ public class FargoWorld : ModSystem
         writer.Write(HardmodeSwarmActive);
         writer.Write((int)Binding);
         writer.Write(EternityMode);
+        writer.Write(IsAnglerQuestComplete);
         // These can't be bytes because signed bytes are required and
         // they range between -127 and 127, which is not enough for the NPC array
         writer.Write((short)FargoGlobalNPC.eaterBoss);
         writer.Write((short)FargoGlobalNPC.beeBoss);
     }
+
 
     public override void PostUpdateWorld()
     {
@@ -227,6 +232,8 @@ public class FargoWorld : ModSystem
 
         SetWorldBool(FargoServerConfig.Instance.Halloween, ref Main.halloween);
         SetWorldBool(FargoServerConfig.Instance.Christmas, ref Main.xMas);
+
+        IsAnglerQuestComplete = Main.anglerQuestFinished;
 
         if (Matsuri)
         {

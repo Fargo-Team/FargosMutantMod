@@ -22,9 +22,23 @@ public class StatLine : UIText
         this.Name = Name;
     }
 
+    
+    public override void Update(GameTime gameTime)
+    {
+        if (IsMouseHovering)
+        {
+            if (Main.keyState.IsKeyDown(Main.FavoriteKey))
+            {
+                //set cursor to favorite cursor icon
+                Main.cursorOverride = 3;
+                Main.NewText(Main.cursorOverride);
+            }
+        }
+    }
+
     public override void LeftClick(UIMouseEvent evt)
     {
-        if (Main.keyState.IsKeyDown(Keys.LeftAlt) || Main.keyState.IsKeyDown(Keys.RightAlt))
+        if (Main.keyState.IsKeyDown(Main.FavoriteKey))
         {
             bool? result = Main.LocalPlayer.GetModPlayer<FargoPlayer>().TogglePinnedStat(ModName, Name);
             SoundEngine.PlaySound(result switch { true => SoundID.MenuTick, false => SoundID.MenuClose, null => SoundID.MenuClose with { Pitch = -0.6f }, });

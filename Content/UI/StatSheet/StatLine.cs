@@ -31,7 +31,6 @@ public class StatLine : UIText
             {
                 //set cursor to favorite cursor icon
                 Main.cursorOverride = 3;
-                Main.NewText(Main.cursorOverride);
             }
         }
     }

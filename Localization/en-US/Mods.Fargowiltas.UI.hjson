@@ -8,6 +8,7 @@ Off: Off
 StatSheet: {
 	// misc
 	CombinedUI: "[s:Fargowiltas/StatSheet] Stat Sheet"
+	InternalName: Stat Sheet
 	PermaUpgrade: Permanent Upgrades
 	// combat
 	Combat: Combat

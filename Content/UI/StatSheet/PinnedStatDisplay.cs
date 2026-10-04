@@ -45,7 +45,7 @@ public class PinnedStatDisplay : InfoDisplay
 
     public override string Name => $"PinnedStatDisplay{slotIndex}";
 
-    public override LocalizedText DisplayName => LocalizedText.Empty;
+    public override LocalizedText DisplayName => Language.GetText("Mods.Fargowiltas.UI.StatSheet.InternalName");
 
     private static string PrintStatName(string name) => Regex.Replace(name, "(?<!^)(?=[A-Z])", " ");
 

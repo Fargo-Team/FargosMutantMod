@@ -8,6 +8,7 @@ PotionToggler: "[s:Fargowiltas/PotionToggler] Переключатель зел�
 StatSheet: {
 	// misc
 	CombinedUI: "[s:Fargowiltas/StatSheet] Характеристики"
+	// InternalName: Stat Sheet
 	PermaUpgrade: Улучшения
 	// combat
 	Combat: Боевые

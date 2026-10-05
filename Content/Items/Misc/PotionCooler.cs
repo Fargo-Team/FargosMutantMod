@@ -24,6 +24,9 @@ public class PotionCooler : ModItem
 
     public override bool IsLoadingEnabled(Mod mod) => FargoServerConfig.Instance.PotionCooler;
 
+
+    public static SoundStyle StorePotion = new("Fargowiltas/Assets/Sounds/PotionCoolerStore");
+
     public override void SetStaticDefaults()
     {
         Main.RegisterItemAnimation(Type, new PotionCoolerDrawAnimation());
@@ -73,7 +76,7 @@ public class PotionCooler : ModItem
                 if (PotionBagSystem.CanConsumePotion(item.type, item.stack, out int consumeAmount, out int leftover))
                 {
                     item.stack = leftover;
-                    //SoundEngine.PlaySound(SoundID.Item130);
+                    SoundEngine.PlaySound(StorePotion with { Volume = 0.6f});
                     inputInterpolant = 30;
                     PotionBagUI.NeedsPotionListBuilding = true;
                     if (Main.netMode == NetmodeID.MultiplayerClient)

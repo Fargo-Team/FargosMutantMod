@@ -1,5 +1,6 @@
 using Fargowiltas.Assets.Textures;
 using Fargowiltas.Common.Systems;
+using Fargowiltas.Content.Items.Misc;
 using Fargowiltas.Content.Items.Summons;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -120,6 +121,7 @@ public class PotionBagUI : FargoUI
         if (PotionBagSystem.CanConsumePotion(item.type, item.stack, out int amountToConsume, out int leftOvers))
         {
             AddSlot.Item.stack = leftOvers;
+            SoundEngine.PlaySound(PotionCooler.StorePotion with { Volume = 0.6f });
             if (leftOvers >= 0)
             {
                 SoundEngine.PlaySound(SoundID.Unlock);

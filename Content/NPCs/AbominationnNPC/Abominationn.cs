@@ -170,7 +170,7 @@ public class Abominationn : ModNPC
             shouldDrawStyxGazer = false;
 
         if (shouldDrawStyxGazer && StyxFrame == 1 && !Main.dedServ)
-            SoundEngine.PlaySound(StyxActivation with { Volume = 0.4f, PauseBehavior = PauseBehavior.PauseWithGame }, NPC.Center);
+            SoundEngine.PlaySound(StyxActivation with { Volume = 0.3f, PauseBehavior = PauseBehavior.PauseWithGame }, NPC.Center);
 
 
         Lighting.AddLight(NPC.Top, TorchID.Orange);

@@ -12,7 +12,7 @@ namespace Fargowiltas.Content.UI.SquirrelUI;
 public class SquirrelIcon : UIElement
 {
     Item item;
-    int swapTimer;
+    //int swapTimer;
     int timer;
     int mode;
 

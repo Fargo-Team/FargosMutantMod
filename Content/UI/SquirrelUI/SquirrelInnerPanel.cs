@@ -16,7 +16,7 @@ public class SquirrelInnerPanel : UIPanel
     SquirrelFeedSlot FeedSlot;
 
     public int mode;
-    int prevMode;
+    //int prevMode;
     public float timer;
     public float swapTimer;
 

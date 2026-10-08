@@ -28,8 +28,8 @@ namespace Fargowiltas.Content.NPCs;
 [AutoloadHead]
 public class LumberJack : ModNPC
 {
-    private bool dayOver;
-    private bool nightOver;
+    //private bool dayOver;
+    //private bool nightOver;
 
 
     //public override bool Autoload(ref string name)
@@ -149,7 +149,7 @@ public class LumberJack : ModNPC
 
     public override void AI()
     {
-        if (!Main.dayTime)
+        /*if (!Main.dayTime)
         {
             nightOver = true;
         }
@@ -157,7 +157,7 @@ public class LumberJack : ModNPC
         if (Main.dayTime)
         {
             dayOver = true;
-        }
+        }*/
     }
 
 
@@ -177,7 +177,7 @@ public class LumberJack : ModNPC
             Language.GetTextValue("Mods.Fargowiltas.NPCs.LumberJack.NPCName11"),
             Language.GetTextValue("Mods.Fargowiltas.NPCs.LumberJack.NPCName12")];
 
-        return new List<string>(names);
+        return names.ToList();
     }
 
     public override string GetChat()

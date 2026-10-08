@@ -24,7 +24,7 @@ public class PortableSundial : ModItem
         Item.UseSound = SoundID.Item4;
     }
 
-    int drawTimer;
+    //int drawTimer;
 
     public override bool AltFunctionUse(Player player)
     {

@@ -120,15 +120,7 @@ public class Fargowiltas : Mod
     public override void Load()
     {
         Instance = this;
-        ModLoader.TryGetMod("FargowiltasSouls", out SoulsMod);
-        ModLoader.TryGetMod("FargowiltasSoulsDLC", out SoulsExtrasMod);
-        ModLoader.TryGetMod("ThoriumMod", out ThoriumMod);
-        ModLoader.TryGetMod("CalamityMod", out CalamityMod);
-        ModLoader.TryGetMod("MagicStorage", out MagicStorageMod);
-        ModLoader.TryGetMod("WikiThis", out WikiThisMod);
-        ModLoader.TryGetMod("NoxusBoss", out WoTG);
-        ModLoader.TryGetMod("AlchemistNPC", out AlchemistNPCMod);
-        ModLoader.TryGetMod("AlchemistNPCLite", out AlchemistNPCLiteMod);
+        SetupModReferences();
 
         FargoUIManager.LoadUI();
 
@@ -167,7 +159,18 @@ public class Fargowiltas : Mod
         CaughtNPCItem.RegisterItems();
     }
 
-
+    public void SetupModReferences()
+    {
+        ModLoader.TryGetMod("FargowiltasSouls", out SoulsMod);
+        ModLoader.TryGetMod("FargowiltasSoulsDLC", out SoulsExtrasMod);
+        ModLoader.TryGetMod("ThoriumMod", out ThoriumMod);
+        ModLoader.TryGetMod("CalamityMod", out CalamityMod);
+        ModLoader.TryGetMod("MagicStorage", out MagicStorageMod);
+        ModLoader.TryGetMod("WikiThis", out WikiThisMod);
+        ModLoader.TryGetMod("NoxusBoss", out WoTG);
+        ModLoader.TryGetMod("AlchemistNPC", out AlchemistNPCMod);
+        ModLoader.TryGetMod("AlchemistNPCLite", out AlchemistNPCLiteMod);
+    }
 
     public override void Unload()
     {

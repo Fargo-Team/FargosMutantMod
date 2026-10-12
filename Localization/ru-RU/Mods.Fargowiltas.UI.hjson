@@ -2,13 +2,13 @@ Close: Закрыть
 Clear: Очистить поиск
 CombinedUIButton: Открыть полезные меню
 PotionToggler: "[s:Fargowiltas/PotionToggler] Переключатель зелий"
-// On: On
-// Off: Off
+On: Вкл.
+Off: Выкл.
 
 StatSheet: {
 	// misc
 	CombinedUI: "[s:Fargowiltas/StatSheet] Характеристики"
-	// InternalName: Stat Sheet
+	InternalName: Характеристики
 	PermaUpgrade: Улучшения
 	// combat
 	Combat: Боевые
@@ -38,8 +38,8 @@ StatSheet: {
 	MiningSpeed: Скорость копания: {0}%
 	ExtraPlacementRange: Дальность размещения: {0}
 	PlacementSpeed: Скорость размещения: {0}%
-	// SpawnRate: Spawn Rate: {0}%
-	// MaxSpawns: Max Spawns: {0}
+	SpawnRate: Скорость появления врагов: {0}%
+	MaxSpawns: Макс. кол-во врагов: {0}
 	// melee
 	Melee: Ближние
 	MeleeDamage: Урон: {0}%
@@ -157,8 +157,8 @@ NoToggles: Переключать нечего!
 // Reforge UI
 InsertText: Поместите предмет сюда для перековки
 ReforgeCost: Стоимость перековки
-// AutoStatus: "Auto: "
-// ClearPrefixes: Click to deactivate
+AutoStatus: "Авто: "
+ClearPrefixes: Нажмите, чтобы отключить
 PlacementRange: Дальность размещения:
 ChizardItemInsert: Поместить предеты в ближайшие сундуки
 

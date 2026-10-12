@@ -168,7 +168,7 @@ RuneOrbBuff: {
 }
 
 ShadowflameIdolBuff: {
-	DisplayName: Икона теневого пламени
+	DisplayName: Идол теневого пламени
 	Description: Скорость появления гоблина-чернокнижника значительно увеличена
 }
 
@@ -187,6 +187,6 @@ SuspiciousLookingChestBuff: {
 }
 
 FairFightBuff: {
-	// DisplayName: Fair Fight
-	// Description: Energizer's power limits your mobility
+	DisplayName: Честный бой
+	Description: Сила генератора замедляет вас
 }

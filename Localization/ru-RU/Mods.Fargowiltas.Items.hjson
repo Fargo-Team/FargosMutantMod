@@ -154,13 +154,13 @@ BattleCry: {
 		'''
 		Нажмите ЛКМ, чтобы увеличить скорость появления существ
 		Нажмите ПКМ, чтобы уменьшить скорость появления существ
-		Не складывается с [i:BattlePotion][i:CalmingPotion][i:WaterCandle][i:PeaceCandle]
+		Не складывается с [i:BattlePotion][i:CalmingPotion][i:WaterCandle][i:PeaceCandle][i:Fargowiltas/WarHorn]
 		Также режим можно переключить, нажав ПКМ по предмету в инвентаре
 		'''
 	Battle: Боевой клич
 	Calming: Успокаивающий плач
-	Activated: активирован
-	Deactivated: деактивирован
+	Activated: включён
+	Deactivated: выключен
 	// {Battle / Calming} Cry {activated / deactivated} for {playerName}{punctuation}
 	CryText: "{0} был {1} для игрока {2}{3}"
 }
@@ -614,7 +614,7 @@ RuneOrb: {
 }
 
 ShadowflameIdol: {
-	DisplayName: Икона теневого пламени
+	DisplayName: Идол теневого пламени
 	Tooltip: Значительно увеличивает скорость появления гоблинов-чернокнижников
 }
 
@@ -1548,10 +1548,11 @@ PotionCooler: {
 		'''
 		Работает из инвентаря
 		Нажмите <right>, чтобы открыть
+		Нажмите <right> в инвентаре с выбранным зельем, чтобы положить его в холодильник
 		Хранит зелья и даёт их эффекты
 		Хранимые зелья являются общими для всех игроков
 		Включённые эффекты, однако, для всех уникальные
-		«По баночке холодненького»
+		«По бутылочке холодненького»
 		'''
 }
 
@@ -1567,7 +1568,7 @@ PotionCoolerInactive: {
 		Работает из инвентаря
 		Нажмите <right>, чтобы отключить
 		Хранит зелья и даёт их эффекты
-		«По баночке холодненького»
+		«По бутылочке холодненького»
 		'''
 }
 
@@ -1614,24 +1615,28 @@ MiniObsidianInstaBridge: {
 
 ObsidianWreckingBall: {
 	DisplayName: Обсидиановый шар для сноса
-	Tooltip: Бросьте, чтобы разрушить дом преисподней до уровня ближайших блоков
+	Tooltip: 
+		'''
+		Не расходуется
+		Бросьте, чтобы разрушить дом преисподней до уровня ближайших блоков
+		'''
 }
 
 WarHorn: {
-	// DisplayName: War Horn
-	/* Tooltip:
+	DisplayName: Горн войны
+	Tooltip:
 		'''
-		Left click to toggle greatly increased spawn rates
-		Right click to toggle greatly decreased spawn rates
-		Does not stack with [i:BattlePotion][i:CalmingPotion][i:WaterCandle][i:PeaceCandle][i:Fargowiltas/BattleCry]
-		May also be toggled between modes by right clicking the item in the inventory
-		''' */
-	// War: War
-	// Peace: Peace
-	// Activated: activated
-	// Deactivated: deactivated
-	// {War / Peace} Cry {activated / deactivated} for {playerName}{punctuation}
-	// CryText2: "{0} Cry {1} for {2}{3}"
+		Нажмите ЛКМ, чтобы увеличить скорость появления существ
+		Нажмите ПКМ, чтобы уменьшить скорость появления существ
+		Не складывается с [i:BattlePotion][i:CalmingPotion][i:WaterCandle][i:PeaceCandle][i:Fargowiltas/BattleCry]
+		Также режим можно переключить, нажав ПКМ по предмету в инвентаре
+		'''
+	War: Клич войны
+	Peace: Возглас мира
+	Activated: включён
+	Deactivated: выключен
+	// {Battle / Calming} Cry {activated / deactivated} for {playerName}{punctuation}
+	CryText: "{0} был {1} для игрока {2}{3}"
 }
 
 CopperCoinBag: {

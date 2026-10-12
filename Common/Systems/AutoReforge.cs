@@ -293,7 +293,10 @@ public class AutoReforgeUI : FargoUI
 
     public override void OnClose()
     {
-        ItemSlotPanel.ReturnItemToPlayer();
+        if (ItemSlotPanel.RemoveItem() is Item item)
+        {
+            Main.LocalPlayer.GetItem(Main.myPlayer, item, GetItemSettings.InventoryUIToInventorySettings);
+        }
         isReforging = false;
         reservedPrefixs = [];
     }
@@ -302,9 +305,19 @@ public class AutoReforgeUI : FargoUI
     {
         base.Update(gameTime);
 
-        // close if not talking to tinkerer
-        if (!Main.playerInventory || Main.LocalPlayer.talkNPC == -1 || Main.LocalPlayer.TalkNPC.type != NPCID.GoblinTinkerer)
+        if (!Main.playerInventory)
+        {
             FargoUIManager.Close(this);
+            Main.CloseNPCChatOrSign();
+            return;
+        }
+
+        // close if not talking to tinkerer
+        if (Main.LocalPlayer.talkNPC == -1 || Main.LocalPlayer.TalkNPC.type != NPCID.GoblinTinkerer)
+        {
+            FargoUIManager.Close(this);
+            return;
+        }
 
         if (reforgeCD > 0)
         {

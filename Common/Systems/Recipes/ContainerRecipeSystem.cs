@@ -410,7 +410,7 @@ public class ContainerRecipeSystem : ModSystem
         CreateCrateRecipe(ItemID.FlameWakerBoots, RecipeGroups.AnyLavaCrate, 3);
         CreateCrateRecipe(ItemID.LavaFishingHook, RecipeGroups.AnyLavaCrate, 3);
         CreateCrateRecipe(ItemID.HellMinecart, RecipeGroups.AnyLavaCrate, 3);
-        CreateCrateRecipe(ItemID.WetBomb, RecipeGroups.AnyLavaCrate, 3);
+        CreateCrateRecipe(ItemID.WetBomb, RecipeGroups.AnyLavaCrate, 3, resultAmount: 10);
         CreateCrateRecipe(ItemID.DemonConch, RecipeGroups.AnyLavaCrate, 3);
 
         // ocean crate
@@ -422,11 +422,11 @@ public class ContainerRecipeSystem : ModSystem
         CreateCrateRecipe(ItemID.SharkBait, RecipeGroups.AnyOceanCrate, 5);
     }
 
-    private static void CreateCrateRecipe(int result, int crate, int crateAmount, int hardmodeCrate = -1, int extraItem = -1, params Condition[] conditions)
+    private static void CreateCrateRecipe(int result, int crate, int crateAmount, int hardmodeCrate = -1, int extraItem = -1, int resultAmount = 1, params Condition[] conditions)
     {
         if (crate != -1)
         {
-            var recipe = Recipe.Create(result);
+            var recipe = Recipe.Create(result, resultAmount);
             recipe.AddRecipeGroup(crate, crateAmount);
             if (extraItem != -1)
             {
@@ -443,7 +443,7 @@ public class ContainerRecipeSystem : ModSystem
 
         if (hardmodeCrate != -1)
         {
-            var recipe = Recipe.Create(result);
+            var recipe = Recipe.Create(result, resultAmount);
             recipe.AddIngredient(hardmodeCrate, crateAmount);
             if (extraItem != -1)
             {

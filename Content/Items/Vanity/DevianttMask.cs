@@ -60,10 +60,20 @@ public class DevianttMaskDrawLayer : PlayerDrawLayer
         position.Y += 5.5f;
         position.X -= 2 * player.direction;
 
-        Color color = Lighting.GetColor(position.ToTileCoordinates());
+        Color color;
+        if (Main.mapFullscreen)
+        {
+            color = Color.White;
+        }
+        else
+        {
+            color = Lighting.GetColor(position.ToTileCoordinates());
+        }
 
-        var data = new DrawData(texture, position - Main.screenPosition, null, color, player.headRotation, texture.Size() * 0.5f, 1, drawInfo.playerEffect);
-        data.shader = drawInfo.cHead;
+        var data = new DrawData(texture, position - Main.screenPosition, null, color, player.headRotation, texture.Size() * 0.5f, 1, drawInfo.playerEffect)
+        {
+            shader = drawInfo.cHead
+        };
         drawInfo.DrawDataCache.Add(data);
         return;
     }

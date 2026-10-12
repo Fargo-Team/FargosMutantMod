@@ -219,9 +219,9 @@ public class ObsidianWreckingBallProj : ModProjectile
                 WorldGen.KillTile(x, y);
                 destroyedAnything = true;
             }
-            if (tile_ref.WallType > 0 && HouseWallTypes.Contains(tile_ref.WallType))
+            if (tile_ref.WallType > WallID.None && HouseWallTypes.Contains(tile_ref.WallType))
             {
-                tile_ref.WallType = 0;
+                tile_ref.WallType = WallID.None;
                 WorldGen.SquareWallFrame(x, y);
                 destroyedAnything = true;
 
@@ -421,7 +421,7 @@ public class ObsidianWreckingBallProj : ModProjectile
             {
                 Tile tile = Framing.GetTileSafely(x, y);
                 bool isBreakableTile = tile.HasTile && HouseTileTypes.Contains(tile.TileType);
-                bool isBreakableWall = tile.WallType > 0 && HouseWallTypes.Contains(tile.WallType);
+                bool isBreakableWall = tile.WallType > WallID.None && HouseWallTypes.Contains(tile.WallType);
 
                 if (isBreakableTile || isBreakableWall) allHousePositions.Add((x, y));
             }

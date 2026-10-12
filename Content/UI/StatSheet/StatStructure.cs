@@ -1,5 +1,4 @@
-﻿using Microsoft.Win32;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using Terraria;
@@ -38,11 +37,16 @@ public class Stat : IComparable<Stat>
         this.priority = priority;
     }
 
-    public override bool Equals(Object obj)
+    public override bool Equals(object obj)
     {
         if (obj is Stat s)
             return Name.Equals(s.Name);
         return false;
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(ModName, Name);
     }
 
     public int CompareTo(Stat other)
@@ -107,6 +111,11 @@ public class StatCategory
             return Name.Equals(s.Name);
         return false;
     }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(Name);
+    }
 }
 
 public static class StatRegistry
@@ -135,9 +144,9 @@ public static class StatRegistry
     public static Stat FindStat(string ModName, string Name)
     {
         foreach (StatCategory category in StatRegistry.GetCategories())
-        foreach (Stat stat in category.Stats)
-            if (stat.ModName == ModName && stat.Name == Name)
-            return stat;
+            foreach (Stat stat in category.Stats)
+                if (stat.ModName == ModName && stat.Name == Name)
+                    return stat;
         return null;
     }
 

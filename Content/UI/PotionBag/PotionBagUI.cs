@@ -215,7 +215,7 @@ public class PotionBagUI : FargoUI
 
     public static void ForceRebuildList()
     {
-        
+
     }
     void RebuildList()
     {
@@ -619,7 +619,7 @@ public class PotionBagUI : FargoUI
     private class PotionAddButton : UIPanel
     {
         public bool Hidden = true;
-        public PotionAddSlot Slot;
+        //public PotionAddSlot Slot;
         public Action Consume;
 
         public PotionAddButton()

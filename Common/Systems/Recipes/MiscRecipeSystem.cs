@@ -271,7 +271,7 @@ public class MiscRecipeSystem : ModSystem
 
         recipe = Recipe.Create(ItemID.LivingLoom);
         recipe.AddIngredient(ItemID.Loom);
-        recipe.AddIngredient(ItemID.Vine, 10);
+        recipe.AddIngredient(ItemID.Vine, 2);
         recipe.AddTile(TileID.WorkBenches);
         recipe.DisableDecraft();
         recipe.Register();

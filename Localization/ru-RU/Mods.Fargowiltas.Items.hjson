@@ -1615,7 +1615,7 @@ MiniObsidianInstaBridge: {
 
 ObsidianWreckingBall: {
 	DisplayName: Обсидиановый шар для сноса
-	Tooltip: 
+	Tooltip:
 		'''
 		Не расходуется
 		Бросьте, чтобы разрушить дом преисподней до уровня ближайших блоков
@@ -1635,8 +1635,8 @@ WarHorn: {
 	Peace: Возглас мира
 	Activated: включён
 	Deactivated: выключен
-	// {Battle / Calming} Cry {activated / deactivated} for {playerName}{punctuation}
-	CryText: "{0} был {1} для игрока {2}{3}"
+	// {War / Peace} Cry {activated / deactivated} for {playerName}{punctuation}
+	// CryText2: "{0} Cry {1} for {2}{3}"
 }
 
 CopperCoinBag: {

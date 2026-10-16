@@ -51,9 +51,9 @@ public class KeywordTagHandler : ITagHandler
         {
             DynamicSpriteFont font = FontAssets.MouseText.Value;
             TextSnippet[] snippet = ChatManager.ParseMessage(Text, Color.White).ToArray();
-            if (!justCheckingString)
+            if (!justCheckingString && color is { R: > 0, G: > 0, B: > 0 })
             {
-                ChatManager.DrawColorCodedStringWithShadow(spriteBatch, font, snippet, position, color, ShadowColor, 0, Vector2.Zero, Vector2.One, out _, -1);
+                ChatManager.DrawColorCodedStringWithShadow(spriteBatch, font, snippet, position, 0f, color, ShadowColor, Vector2.Zero, Vector2.One, out _, -1);
                 ShadowColor = Color.Navy;
             }
             size = ChatManager.GetStringSize(font, snippet, Vector2.One);

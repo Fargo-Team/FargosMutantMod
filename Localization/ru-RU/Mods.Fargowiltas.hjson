@@ -1,4 +1,4 @@
-﻿// Used for TownNPCMood "{BiomeName}" Format (unused now)
+// Used for TownNPCMood "{BiomeName}" Format (unused now)
 Biome.Sky: Небо
 
 BuilderToggles: {
@@ -8,5 +8,47 @@ BuilderToggles: {
 		DisabledText: Предпоказ дальности размещения: откл.
 		NormalOpacityText: ПКМ, чтобы изменить режим: прозрачность
 		InverseOpacityText: ПКМ, чтобы изменить режим: подсветка
+	}
+}
+
+InfoDisplays: {
+	PinnedStatDisplay0: {
+		// DisplayName: Pinned Stat Display0
+		// Empty: Empty Pin Slot
+	}
+
+	PinnedStatDisplay1: {
+		// DisplayName: Pinned Stat Display1
+		// Empty: Empty Pin Slot
+	}
+
+	PinnedStatDisplay2: {
+		// DisplayName: Pinned Stat Display2
+		// Empty: Empty Pin Slot
+	}
+
+	PinnedStatDisplay3: {
+		// DisplayName: Pinned Stat Display3
+		// Empty: Empty Pin Slot
+	}
+
+	PinnedStatDisplay4: {
+		// DisplayName: Pinned Stat Display4
+		// Empty: Empty Pin Slot
+	}
+
+	PinnedStatDisplay5: {
+		// DisplayName: Pinned Stat Display5
+		// Empty: Empty Pin Slot
+	}
+
+	PinnedStatDisplay6: {
+		// DisplayName: Pinned Stat Display6
+		// Empty: Empty Pin Slot
+	}
+
+	PinnedStatDisplay7: {
+		// DisplayName: Pinned Stat Display7
+		// Empty: Empty Pin Slot
 	}
 }

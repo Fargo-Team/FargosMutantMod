@@ -291,15 +291,6 @@ public class FargoGlobalNPC : GlobalNPC
         return base.PreAI(npc);
     }
 
-    public override void AI(NPC npc)
-    {
-        // Wack ghost saucers begone
-        if (FargoWorld.OverloadMartians && npc.type == NPCID.MartianSaucerCore && npc.dontTakeDamage)
-        {
-            npc.dontTakeDamage = false;
-        }
-    }
-
     public override void ModifyShop(NPCShop shop)
     {
 
@@ -541,128 +532,43 @@ public class FargoGlobalNPC : GlobalNPC
         }
         FargoPlayer fargoPlayer = player.FargoMutant();
 
-        if (fargoPlayer.BattleCry)
+        if (fargoPlayer.WarCry)
         {
-            spawnRate = (int)(spawnRate * 0.25);
-            maxSpawns = (int)(maxSpawns * 4f);
-        }
-
-        if (fargoPlayer.CalmingCry)
-        {
-            float cryStrength = 1.25f; // 1 + strength of spawn rate decrease
-
-            spawnRate = (int)(spawnRate * cryStrength);
-            maxSpawns = (int)(maxSpawns * (1 / cryStrength));
-        }
-
-        if ((FargoWorld.OverloadGoblins || FargoWorld.OverloadPirates) && player.position.X > Main.invasionX * 16.0 - 3000 && player.position.X < Main.invasionX * 16.0 + 3000)
-        {
-            if (FargoWorld.OverloadGoblins)
+            if (player.HasBuff(BuffID.Battle))
             {
-                spawnRate = (int)(spawnRate * 0.2);
-                maxSpawns = (int)(maxSpawns * 10f);
+                spawnRate = (int)(spawnRate * 2f);
+                maxSpawns = (int)(maxSpawns / 2f);
             }
-            else if (FargoWorld.OverloadPirates)
+            if (player.HasBuff(BuffID.WaterCandle))
             {
-                spawnRate = (int)(spawnRate * 0.2);
-                maxSpawns = (int)(maxSpawns * 30f);
+                spawnRate = (int)(spawnRate * 1.33f);
+                maxSpawns = (int)(maxSpawns / 1.33f);
             }
+            spawnRate = (int)(spawnRate * 0.2f);
+            maxSpawns = (int)(maxSpawns * 5f);
         }
 
-        if (FargoWorld.OverloadPumpkinMoon || FargoWorld.OverloadFrostMoon)
+        if (fargoPlayer.PeaceCry)
         {
-            spawnRate = (int)(spawnRate * 0.2);
-            maxSpawns = (int)(maxSpawns * 10f);
-        }
-        else if (FargoWorld.OverloadMartians)
-        {
-            spawnRate = (int)(spawnRate * 0.2);
-            maxSpawns = (int)(maxSpawns * 30f);
+            if (player.HasBuff(BuffID.Calm))
+            {
+                spawnRate = (int)(spawnRate / 1.39f);
+                maxSpawns = (int)(maxSpawns * 1.4f);
+            }
+            if (player.HasBuff(BuffID.PeaceCandle))
+            {
+                spawnRate = (int)(spawnRate / 1.23f);
+                maxSpawns = (int)(maxSpawns * 1.3f);
+            }
+            spawnRate = (int)(spawnRate * 2.5f);
+            maxSpawns = (int)(maxSpawns / 2.5f);
         }
     }
-    public override void EditSpawnPool(IDictionary<int, float> pool, NPC.Spawner spawner)
-    {   
-        
+
+    public override void EditSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)
+    {
         Player player = Main.LocalPlayer;
-        bool normalSpawn = !spawner.spawnFriendly && !spawner.invaders;
-
-        if (FargoWorld.OverloadGoblins && player.position.X > Main.invasionX * 16.0 - 3000 && player.position.X < Main.invasionX * 16.0 + 3000)
-        {
-            // Literally nothing in the pool in the invasion so set everything to custom
-            pool[NPCID.GoblinSummoner] = 1f;
-            pool[NPCID.GoblinArcher] = 3f;
-            pool[NPCID.GoblinPeon] = 5f;
-            pool[NPCID.GoblinSorcerer] = 3f;
-            pool[NPCID.GoblinWarrior] = 5f;
-            pool[NPCID.GoblinThief] = 5f;
-            pool[NPCID.GoblinScout] = 3f;
-        }
-        else if (FargoWorld.OverloadPirates && player.position.X > Main.invasionX * 16.0 - 3000 && player.position.X < Main.invasionX * 16.0 + 3000)
-        {
-            // Literally nothing in the pool in the invasion so set everything to custom
-            if (NPC.CountNPCS(NPCID.PirateShip) < 4)
-            {
-                pool[NPCID.PirateShip] = .5f;
-            }
-
-            pool[NPCID.Parrot] = 2f;
-            pool[NPCID.PirateCaptain] = 1f;
-            pool[NPCID.PirateCrossbower] = 3f;
-            pool[NPCID.PirateCorsair] = 5f;
-            pool[NPCID.PirateDeadeye] = 4f;
-            pool[NPCID.PirateDeckhand] = 5f;
-        }
-
-        else if (FargoWorld.OverloadPumpkinMoon)
-        {
-            pool[NPCID.Pumpking] = 4f;
-            pool[NPCID.MourningWood] = 4f;
-            pool[NPCID.HeadlessHorseman] = 3f;
-            pool[NPCID.Scarecrow1] = .5f;
-            pool[NPCID.Scarecrow2] = .5f;
-            pool[NPCID.Scarecrow3] = .5f;
-            pool[NPCID.Scarecrow4] = .5f;
-            pool[NPCID.Scarecrow5] = .5f;
-            pool[NPCID.Scarecrow6] = .5f;
-            pool[NPCID.Scarecrow7] = .5f;
-            pool[NPCID.Scarecrow8] = .5f;
-            pool[NPCID.Scarecrow9] = .5f;
-            pool[NPCID.Scarecrow10] = .5f;
-            pool[NPCID.Hellhound] = 3f;
-            pool[NPCID.Poltergeist] = 3f;
-            pool[NPCID.Splinterling] = 3f;
-        }
-        else if (FargoWorld.OverloadFrostMoon)
-        {
-            pool[NPCID.IceQueen] = 5f;
-            pool[NPCID.Everscream] = 5f;
-            pool[NPCID.SantaNK1] = 5f;
-            pool[NPCID.ZombieElf] = 1f;
-            pool[NPCID.ZombieElfBeard] = 1f;
-            pool[NPCID.ZombieElfGirl] = 1f;
-            pool[NPCID.GingerbreadMan] = 2f;
-            pool[NPCID.ElfArcher] = 2f;
-            pool[NPCID.Nutcracker] = 3f;
-            pool[NPCID.ElfCopter] = 3f;
-            pool[NPCID.Flocko] = 2f;
-            pool[NPCID.Yeti] = 4f;
-            pool[NPCID.PresentMimic] = 2f;
-            pool[NPCID.Krampus] = 4f;
-        }
-        else if (FargoWorld.OverloadMartians)
-        {
-            pool[NPCID.MartianSaucerCore] = 1f;
-            pool[NPCID.Scutlix] = 3f;
-            pool[NPCID.ScutlixRider] = 2f;
-            pool[NPCID.MartianWalker] = 3f;
-            pool[NPCID.MartianDrone] = 2f;
-            pool[NPCID.GigaZapper] = 1f;
-            pool[NPCID.MartianEngineer] = 2f;
-            pool[NPCID.MartianOfficer] = 2f;
-            pool[NPCID.RayGunner] = 1f;
-            pool[NPCID.GrayGrunt] = 1f;
-            pool[NPCID.BrainScrambler] = 1f;
-        }
+        bool normalSpawn = !spawnInfo.PlayerInTown && !spawnInfo.Invasion && !spawnInfo.Player.ZoneOldOneArmy;
 
         if (normalSpawn)
         {
@@ -1067,11 +973,11 @@ public class FargoGlobalNPC : GlobalNPC
         }
     }
 
-    public override void OnChatButtonClicked(NPC npc, NPCInteraction interaction)
+    public override void OnChatButtonClicked(NPC npc, bool firstButton)
     {
         // No angler check enables luiafk compatibility
-        if (FargoServerConfig.Instance.AnglerQuestInstantReset && Main.anglerQuestFinished)
-        {
+        if (FargoServerConfig.Instance.AnglerQuestInstantReset && FargoWorld.IsAnglerQuestComplete)
+        {   
             if (Main.netMode == NetmodeID.SinglePlayer)
             {
                 Main.AnglerQuestSwap();

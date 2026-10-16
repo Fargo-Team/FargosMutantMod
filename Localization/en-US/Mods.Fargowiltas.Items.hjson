@@ -154,6 +154,7 @@ BattleCry: {
 		'''
 		Left click to toggle increased spawn rates
 		Right click to toggle decreased spawn rates
+		Does not stack with [i:BattlePotion][i:CalmingPotion][i:WaterCandle][i:PeaceCandle][i:Fargowiltas/WarHorn]
 		May also be toggled between modes by right clicking the item in the inventory
 		'''
 	Battle: Battle
@@ -455,7 +456,7 @@ AmalgamatedSkull: {
 
 AmalgamatedSpirit: {
 	DisplayName: Amalgamated Spirit
-	Tooltip: Greatly increases dungeon skeleton mages spawn rates
+	Tooltip: Greatly increases dungeon skeleton mage spawn rates
 }
 
 AthenianIdol: {
@@ -611,8 +612,8 @@ RuneOrb: {
 	Tooltip: Greatly increases Rune Wizard spawn rates
 }
 
-ShadowflameIcon: {
-	DisplayName: Shadowflame Icon
+ShadowflameIdol: {
+	DisplayName: Shadowflame Idol
 	Tooltip: Greatly increases Goblin Warlock spawn rates
 }
 
@@ -636,16 +637,6 @@ SuspiciousLookingLure: {
 	Tooltip: Summons a Zombie Merman or Wandering Eye Fish when used as bait during a Blood Moon
 }
 
-AncientSeal: {
-	DisplayName: Ancient Seal
-	Tooltip:
-		'''
-		Summons ALL the bosses modded included
-		Can only be used at night
-		'Use at your own risk'
-		'''
-}
-
 CultistSummon: {
 	DisplayName: Zealot's Possession
 	Tooltip:
@@ -655,36 +646,12 @@ CultistSummon: {
 		'''
 }
 
-DeathBringerFairy: {
-	DisplayName: Death Bringer Fairy
-	Tooltip:
-		'''
-		Summons all pre-hardmode bosses
-		Can only be used at night
-		Certain bosses will only spawn if you're in their specific biome
-		'''
-}
-
 FleshyDoll: {
 	DisplayName: Guide Doll and Match Kit
 	Tooltip:
 		'''
 		Summons the Wall of Flesh
 		Make sure you use it in the Underworld
-		'''
-}
-
-MechanicalAmalgam: {
-	DisplayName: Mechanical Amalgam
-	Tooltip: Summons all 3 Mechanical bosses
-}
-
-MutantVoodoo: {
-	DisplayName: Mutant Plushie
-	Tooltip:
-		'''
-		Summons ALL the bosses
-		Can only be used at night
 		'''
 }
 
@@ -931,15 +898,6 @@ OverloadDestroyer: {
 	Tooltip: Summons an energized Destroyer
 }
 
-OverloadedSlimeRain: {
-	DisplayName: Slimy Stormcaller
-	Tooltip:
-		'''
-		Summons an Overloaded Slime Rain
-		Use again to stop the event
-		'''
-}
-
 OverloadEmpress: {
 	DisplayName: Jar of Lacewings
 	Tooltip: Summons an energized Empress of Light
@@ -977,50 +935,14 @@ OverloadFish: {
 	Tooltip: Summons an energized Duke Fishron
 }
 
-OverloadFrostMoon: {
-	DisplayName: Naughty Present Sack
-	Tooltip:
-		'''
-		Summons an Overloaded Frost Moon
-		Use again to stop the event
-		'''
-}
-
-OverloadGoblins: {
-	DisplayName: Goblin War Banner
-	Tooltip:
-		'''
-		Summons an Overloaded Goblin Invasion
-		Use again to stop the event
-		'''
-}
-
 OverloadGolem: {
 	DisplayName: Runic Power Cell
 	Tooltip: Summons an energized Golem
 }
 
-OverloadMartians: {
-	DisplayName: Martian Communications Satellite
-	Tooltip:
-		'''
-		Summons an Overloaded Martian Invasion
-		Use again to stop the event
-		'''
-}
-
 OverloadMoon: {
 	DisplayName: Runic Inscription
 	Tooltip: Summons an energized Moon Lord
-}
-
-OverloadPirates: {
-	DisplayName: Pirate's Bounty
-	Tooltip:
-		'''
-		Summons an Overloaded Pirate Invasion
-		Use again to stop the event
-		'''
 }
 
 OverloadPlant: {
@@ -1031,15 +953,6 @@ OverloadPlant: {
 OverloadPrime: {
 	DisplayName: Primal Control Chip
 	Tooltip: Summons an energized Skeletron Prime
-}
-
-OverloadPumpkinMoon: {
-	DisplayName: Overloaded Pumpkin Moon Medallion
-	Tooltip:
-		'''
-		Summons an Overloaded Pumpkin Moon
-		Use again to stop the event
-		'''
 }
 
 OverloadQueenSlime: {
@@ -1634,6 +1547,7 @@ PotionCooler: {
 		'''
 		Works from the inventory
 		<right> to open
+		<right> in the inventory while holding a potion to directly deposit it into the cooler
 		Stores potions and grants you their buffs
 		Potions stored within are shared between all players
 		Toggles are not shared between players
@@ -1677,4 +1591,69 @@ UniversalCollapse: {
 		Has a 15 second fuse. Can be disarmed using <right>
 		Use at your own risk.
 		'''
+}
+
+HerbFertilizer: {
+	DisplayName: Herb Fertilizer
+	Tooltip: Causes herbs to instantly grow
+}
+
+DevianttBow: {
+	DisplayName: Deviantt Bow
+	Tooltip: ""
+}
+
+MiniObsidianInstaBridge: {
+	DisplayName: Mini Obsidian Instabridge
+	Tooltip:
+		'''
+		Creates a long bridge of obsidian platforms at your cursor
+		Will not break any blocks and stops when it hits a solid block
+		'''
+}
+
+ObsidianWreckingBall: {
+	DisplayName: Obsidian Wrecking Ball
+	Tooltip:
+		'''
+		Can be reused infinitely
+		Demolishes Underworld Houses below you down to ground level
+		'''
+}
+
+WarHorn: {
+	DisplayName: War Horn
+	Tooltip:
+		'''
+		Left click to toggle greatly increased spawn rates
+		Right click to toggle greatly decreased spawn rates
+		Does not stack with [i:BattlePotion][i:CalmingPotion][i:WaterCandle][i:PeaceCandle][i:Fargowiltas/BattleCry]
+		May also be toggled between modes by right clicking the item in the inventory
+		'''
+	War: War
+	Peace: Peace
+	Activated: activated
+	Deactivated: deactivated
+	// {War / Peace} Cry {activated / deactivated} for {playerName}{punctuation}
+	CryText2: "{0} Cry {1} for {2}{3}"
+}
+
+CopperCoinBag: {
+	DisplayName: Endless Copper Coin Safe
+	Tooltip: ""
+}
+
+SilverCoinBag: {
+	DisplayName: Endless Silver Coin Safe
+	Tooltip: ""
+}
+
+GoldCoinBag: {
+	DisplayName: Endless Gold Coin Safe
+	Tooltip: ""
+}
+
+PlatinumCoinBag: {
+	DisplayName: Endless Platinum Coin Safe
+	Tooltip: ""
 }

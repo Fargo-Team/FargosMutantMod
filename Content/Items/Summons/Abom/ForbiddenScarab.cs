@@ -19,8 +19,8 @@ public class ForbiddenScarab : ModItem
 
     public override void SetDefaults()
     {
-        Item.width = 20;
-        Item.height = 20;
+        Item.width = 30;
+        Item.height = 30;
         Item.maxStack = 9999;
         Item.value = Item.sellPrice(0, 0, 2);
         Item.rare = ItemRarityID.Blue;

@@ -74,7 +74,7 @@ public class BattleCry : ModItem
         FargoUtils.PrintText(text, color);
     }
 
-    public static void SyncCry(Player player)
+    public static void SyncCry1(Player player)
     {
         if (player.whoAmI == Main.myPlayer && Main.netMode == NetmodeID.MultiplayerClient)
         {
@@ -93,6 +93,21 @@ public class BattleCry : ModItem
     {
         cry = !cry;
 
+        if (cry)
+        {
+            FargoPlayer modPlayer = player.FargoMutant();
+            if (modPlayer.WarCry)
+            {
+                modPlayer.WarCry = false;
+                DeactivateOtherCry(true, player);
+            }
+            if (modPlayer.PeaceCry)
+            {
+                modPlayer.PeaceCry = false;
+                DeactivateOtherCry(false, player);
+            }
+        }
+
         if (Main.netMode == NetmodeID.SinglePlayer)
         {
             GenerateText(isBattle, player, cry);
@@ -105,8 +120,25 @@ public class BattleCry : ModItem
             packet.Write(player.whoAmI);
             packet.Write(cry);
             packet.Send();
+            SyncCry1(player);
+        }
+    }
 
-            SyncCry(player);
+    void DeactivateOtherCry(bool isWar, Player player)
+    {
+        if (Main.netMode == NetmodeID.SinglePlayer)
+        {
+            WarHorn.GenerateText(isWar, player, false);
+        }
+        else if (Main.netMode == NetmodeID.MultiplayerClient && player.whoAmI == Main.myPlayer)
+        {
+            var packet = Mod.GetPacket();
+            packet.Write((byte)PacketID.BroadcastWarCry);
+            packet.Write(isWar);
+            packet.Write(player.whoAmI);
+            packet.Write(false);
+            packet.Send();
+            WarHorn.SyncCry2(player);
         }
     }
 
@@ -192,4 +224,4 @@ public class BattleCry : ModItem
             .AddTile(TileID.DemonAltar)
             .Register();
     }
-}
+}}

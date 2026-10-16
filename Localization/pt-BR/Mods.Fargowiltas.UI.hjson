@@ -2,10 +2,13 @@
 // Clear: Clear Search
 // CombinedUIButton: Open Utilities
 // PotionToggler: "[s:Fargowiltas/PotionToggler] Potion Toggles"
+// On: On
+// Off: Off
 
 StatSheet: {
 	// misc
 	// CombinedUI: "[s:Fargowiltas/StatSheet] Stat Sheet"
+	// InternalName: Stat Sheet
 	// PermaUpgrade: Permanent Upgrades
 	// combat
 	// Combat: Combat
@@ -35,6 +38,8 @@ StatSheet: {
 	// MiningSpeed: Mining Speed: {0}%
 	// ExtraPlacementRange: Extra Placement Range: {0}
 	// PlacementSpeed: Placement Speed: {0}%
+	// SpawnRate: Spawn Rate: {0}%
+	// MaxSpawns: Max Spawns: {0}
 	// melee
 	// Melee: Melee
 	MeleeDamage: Dano físico: {0}%
@@ -55,10 +60,14 @@ StatSheet: {
 	//summon
 	// Summon: Summon
 	SummonDamage: Dano de invocação: {0}%
-	MaxMinions: Lacaios máximos: {0}
-	MaxSentries: Sentinelas máximas: {0}
+	// StatFraction: "{0}/{1}"
+	// Minions: Minions: {0}
+	// Sentries: Sentries: {0}
 	// WhipSpeed: Whip Speed: {0}%
 	// WhipLength: Whip Length: {0}%
+	// pin
+	// PinTooltip: Alt+Click to pin to Info Display
+	// UnpinTooltip: Alt+Click to unpin
 }
 
 LumberJack: {
@@ -148,6 +157,8 @@ BattleCryNone: Nenhum
 // Reforge UI
 // InsertText: Place an item here to reforge
 // ReforgeCost: Reforge Cost
+// AutoStatus: "Auto: "
+// ClearPrefixes: Click to deactivate
 // PlacementRange: Placement Range:
 // ChizardItemInsert: Place items in nearby chests
 

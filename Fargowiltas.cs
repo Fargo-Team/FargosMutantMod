@@ -33,6 +33,7 @@ using static Fargowiltas.Content.Items.Tiles.EnchantedTreeTileEntity;
 [assembly: InternalsVisibleTo("FargowiltasCrossmod")]
 [assembly: InternalsVisibleTo("FargowiltasSoulsDLC")]
 [assembly: InternalsVisibleTo("Satanist")]
+[assembly: InternalsVisibleTo("SecretsOfTheSouls")]
 namespace Fargowiltas;
 
 public class Fargowiltas : Mod
@@ -119,15 +120,7 @@ public class Fargowiltas : Mod
     public override void Load()
     {
         Instance = this;
-        ModLoader.TryGetMod("FargowiltasSouls", out SoulsMod);
-        ModLoader.TryGetMod("FargowiltasSoulsDLC", out SoulsExtrasMod);
-        ModLoader.TryGetMod("ThoriumMod", out ThoriumMod);
-        ModLoader.TryGetMod("CalamityMod", out CalamityMod);
-        ModLoader.TryGetMod("MagicStorage", out MagicStorageMod);
-        ModLoader.TryGetMod("WikiThis", out WikiThisMod);
-        ModLoader.TryGetMod("NoxusBoss", out WoTG);
-        ModLoader.TryGetMod("AlchemistNPC", out AlchemistNPCMod);
-        ModLoader.TryGetMod("AlchemistNPCLite", out AlchemistNPCLiteMod);
+        SetupModReferences();
 
         FargoUIManager.LoadUI();
 
@@ -141,6 +134,7 @@ public class Fargowiltas : Mod
             new(ContentSamples.ItemsByType[ItemID.GummyWorm], () => Main.LocalPlayer.usedGummyWorm),
             new(ContentSamples.ItemsByType[ItemID.GalaxyPearl], () => Main.LocalPlayer.usedGalaxyPearl),
             new(ContentSamples.ItemsByType[ItemID.ArtisanLoaf], () => Main.LocalPlayer.ateArtisanBread),
+            new(ContentSamples.ItemsByType[ItemID.MinecartPowerup], () => Main.LocalPlayer.unlockedSuperCart)
         ];
 
         summonTracker = new MutantSummonTracker();
@@ -148,6 +142,9 @@ public class Fargowiltas : Mod
         dialogueTracker.AddVanillaDialogue();
         symbolTracker = new SymbolTracker();
         statTracker = new StatTracker();
+
+        for (int i = 0; i < 8; i++)
+            AddContent(new PinnedStatDisplay(i));
 
         HomeKey = KeybindLoader.RegisterKeybind(this, "Home", "Home");
 
@@ -162,7 +159,18 @@ public class Fargowiltas : Mod
         CaughtNPCItem.RegisterItems();
     }
 
-
+    public void SetupModReferences()
+    {
+        ModLoader.TryGetMod("FargowiltasSouls", out SoulsMod);
+        ModLoader.TryGetMod("FargowiltasSoulsDLC", out SoulsExtrasMod);
+        ModLoader.TryGetMod("ThoriumMod", out ThoriumMod);
+        ModLoader.TryGetMod("CalamityMod", out CalamityMod);
+        ModLoader.TryGetMod("MagicStorage", out MagicStorageMod);
+        ModLoader.TryGetMod("WikiThis", out WikiThisMod);
+        ModLoader.TryGetMod("NoxusBoss", out WoTG);
+        ModLoader.TryGetMod("AlchemistNPC", out AlchemistNPCMod);
+        ModLoader.TryGetMod("AlchemistNPCLite", out AlchemistNPCLiteMod);
+    }
 
     public override void Unload()
     {
@@ -476,6 +484,8 @@ public class Fargowiltas : Mod
         ClientUpdateWorld,
         BroadcastBattleCry,
         SyncBattleCry,
+        BroadcastWarCry,
+        SyncWarCry,
         SyncDeathFruit,
         DropMeteor,
         SyncTreeFruit,
@@ -493,6 +503,7 @@ public class Fargowiltas : Mod
         SyncWorldTime,
         SyncOwnedItem,
         AddDeviSummon,
+        SyncSpawnRates,
     }
 
     public override void HandlePacket(BinaryReader reader, int whoAmI)
@@ -567,6 +578,24 @@ public class Fargowiltas : Mod
                         int p = reader.ReadInt32();
                         Main.player[p].FargoMutant().BattleCry = reader.ReadBoolean();
                         Main.player[p].FargoMutant().CalmingCry = reader.ReadBoolean();
+                    }
+                    break;
+
+                //same as above for war cry
+                case PacketID.BroadcastWarCry:
+                    {
+                        bool isWar = reader.ReadBoolean();
+                        int p = reader.ReadInt32();
+                        bool cry = reader.ReadBoolean();
+                        WarHorn.GenerateText(isWar, Main.player[p], cry);
+                    }
+                    break;
+
+                case PacketID.SyncWarCry:
+                    {
+                        int p = reader.ReadInt32();
+                        Main.player[p].FargoMutant().WarCry = reader.ReadBoolean();
+                        Main.player[p].FargoMutant().PeaceCry = reader.ReadBoolean();
                     }
                     break;
 
@@ -654,9 +683,7 @@ public class Fargowiltas : Mod
                             NPC.waveNumber = 6;
                             NPC.waveKills = 220;
                             DD2Event.CheckProgress(NPCID.DD2GoblinT3);
-                            egg.ToWorldItem().GetSource_FromThis();
-                            
-                            player.QuickSpawnItem(egg.ToWorldItem().GetSource_FromThis(), ItemID.DD2EnergyCrystal, (int)(140f * NPC.GetBalance())); // give all missing crystals
+                            player.QuickSpawnItem(egg.GetSource_FromThis(), ItemID.DD2EnergyCrystal, (int)(140f * NPC.GetBalance())); // give all missing crystals
                             FargowiltasDetours.BetsyEggUsed = false;
                             NetMessage.SendData(MessageID.WorldData);
                         }
@@ -882,6 +909,13 @@ public class Fargowiltas : Mod
                         {
                             Main.player[player].FargoMutant().ActiveSpawnBoosters.Add((BaseSpawnBoosterBuff)BuffLoader.GetBuff(type));
                         }
+                    }
+                    break;
+                // From server to client
+                case PacketID.SyncSpawnRates:
+                    {
+                        Main.LocalPlayer.FargoMutant().spawnRate = reader.ReadInt32();
+                        Main.LocalPlayer.FargoMutant().maxSpawns = reader.ReadInt32();
                     }
                     break;
                 default:

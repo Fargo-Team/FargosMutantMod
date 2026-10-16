@@ -53,18 +53,16 @@ public class FargoItemSlot : UIElement
             Item oldItem = _item.Clone();
             bool leftClick = Main.mouseLeftRelease && Main.mouseLeft;
             if (leftClick)
-            {   
-                //Porting note: In 1.4.5 ItemSlot.LeftClick & RightClick's first parameter was changed to an array
-                //todo: Investigate and fix
-                //ItemSlot.LeftClick(_item);
+            {
+                ItemSlot.LeftClick(ref _item);
             }
-            //ItemSlot.RightClick(_item);
+            ItemSlot.RightClick(ref _item);
             if (_item.IsNotSameTypePrefixAndStack(oldItem))
             {
                 OnItemSwap(ref oldItem, ref _item);
             }
         }
-        ItemSlot.MouseHover(_item);
+        ItemSlot.MouseHover(ref _item);
     }
 
     public override void Update(GameTime gameTime)

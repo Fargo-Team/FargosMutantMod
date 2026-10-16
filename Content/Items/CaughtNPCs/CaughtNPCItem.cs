@@ -1,7 +1,10 @@
 ﻿using Fargowiltas.Common.Configs;
+using Fargowiltas.Content.Items.Vanity;
 using Fargowiltas.Content.NPCs;
 using Fargowiltas.Content.NPCs.AbominationnNPC;
 using Fargowiltas.Content.NPCs.SquirrelNPC;
+using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
@@ -91,15 +94,30 @@ public class CaughtNPCItem : ModItem
         }*/
     }
 
-    public override void PostUpdate(WorldItem item)
+    public override void PostUpdate()
     {
-        if (AssociatedNpcId != NPCID.Guide || !item.lavaWet || NPC.AnyNPCs(NPCID.WallofFlesh))
+        if (!Item.lavaWet)
         {
             return;
         }
+        if (AssociatedNpcId == NPCID.Guide && !NPC.AnyNPCs(NPCID.WallofFlesh))
+        {
+            NPC.SpawnWOF(Item.position);
+            Item.TurnToAir();
+            return;
+        }
 
-        NPC.SpawnWOF(item.position);
-        Item.TurnToAir();
+        if (AssociatedNpcId == ModContent.NPCType<Abominationn>())
+        {
+            if (ModContent.TryFind("FargowiltasSouls", "MutantBoss", out ModNPC modNPC))
+            {
+                Player player = Main.LocalPlayer;
+                if (player.whoAmI != -1 && !NPC.AnyNPCs(modNPC.Type))
+                    NPC.SpawnOnPlayer(player.whoAmI, modNPC.Type);
+                Item.TurnToAir();
+                return;
+            }
+        }
     }
 
     public override bool CanUseItem(Player player)

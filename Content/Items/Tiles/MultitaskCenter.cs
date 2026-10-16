@@ -75,7 +75,7 @@ public class MultitaskCenterSheet : ModTile
         AddMapEntry(new Color(200, 200, 200), name);
 
         //counts as
-        int[] countsAs = 
+        AdjTiles =
             [
             TileID.WorkBenches,
             TileID.HeavyWorkBench,
@@ -90,12 +90,7 @@ public class MultitaskCenterSheet : ModTile
             TileID.Sinks,
             TileID.Kegs
             ];
-        TileID.Sets.CountsAsWaterForCrafting[Type] = true;
-
-        foreach (int item in countsAs)
-        {
-            Recipe.AddTileCountsAs(Type, item);
-        }
+        TileID.Sets.CountsAsWaterSource[Type] = true;
         AnimationFrameHeight = 54;
 
         glowTexture = ModContent.Request<Texture2D>(Texture + "_Glow");

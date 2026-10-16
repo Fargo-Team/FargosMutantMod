@@ -12,6 +12,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
+using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
@@ -33,6 +34,8 @@ public class Abominationn : ModNPC
 
     private static int ShimmerHeadIndex;
     private static Profiles.StackedNPCProfile AbomProfile;
+
+    public SoundStyle StyxActivation = new("Fargowiltas/Assets/Sounds/StyxGazerActivate");
 
     public override void Load()
     {
@@ -68,12 +71,19 @@ public class Abominationn : ModNPC
         NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, drawModifiers);
 
         NPC.Happiness.SetBiomeAffection<SkyBiome>(AffectionLevel.Love);
-        NPC.Happiness.SetBiomeAffection<OceanBiome>(AffectionLevel.Like);
-        NPC.Happiness.SetBiomeAffection<DungeonBiome>(AffectionLevel.Dislike);
+        NPC.Happiness.SetBiomeAffection<OceanBiome>(AffectionLevel.Dislike);
 
         NPC.Happiness.SetNPCAffection<Mutant>(AffectionLevel.Love);
-        NPC.Happiness.SetNPCAffection<Deviantt>(AffectionLevel.Like);
+        NPC.Happiness.SetNPCAffection<Deviantt>(AffectionLevel.Love);
+        NPC.Happiness.SetNPCAffection(NPCID.Pirate, AffectionLevel.Like);
+        NPC.Happiness.SetNPCAffection(NPCID.Steampunker, AffectionLevel.Like);
+        NPC.Happiness.SetNPCAffection(NPCID.Cyborg, AffectionLevel.Like);
+        NPC.Happiness.SetNPCAffection(NPCID.DD2Bartender, AffectionLevel.Like);
+        NPC.Happiness.SetNPCAffection(NPCID.SantaClaus, AffectionLevel.Like);
+        NPC.Happiness.SetNPCAffection(NPCID.Princess, AffectionLevel.Dislike);
+        NPC.Happiness.SetNPCAffection(NPCID.Angler, AffectionLevel.Dislike);
         NPC.Happiness.SetNPCAffection(NPCID.Nurse, AffectionLevel.Hate);
+        NPC.Happiness.SetNPCAffection(NPCID.Mechanic, AffectionLevel.Hate);
 
         NPC.AddDebuffImmunities(new List<int>()
         {
@@ -166,6 +176,11 @@ public class Abominationn : ModNPC
         else
             shouldDrawStyxGazer = false;
 
+        if (shouldDrawStyxGazer && StyxFrame == 1 && !Main.dedServ)
+            SoundEngine.PlaySound(StyxActivation with { Volume = 0.3f, PauseBehavior = PauseBehavior.PauseWithGame }, NPC.Center);
+
+
+        Lighting.AddLight(NPC.Top, TorchID.Orange);
 
         /*
         //fetch the NPC that Abominationn is currently targeting
@@ -295,9 +310,9 @@ public class Abominationn : ModNPC
             {
                 if (Main.netMode == NetmodeID.MultiplayerClient)
                 {
-                    //var netMessage = Mod.GetPacket(); //todo: decipher error
-                    //netMessage.Write((byte)PacketID.AbomClearEvent);
-                    //netMessage.Send();
+                    var netMessage = Mod.GetPacket();
+                    netMessage.Write((byte)PacketID.AbomClearEvent);
+                    netMessage.Send();
                 }
 
                 if (Fargowiltas.IsEventOccurring)
@@ -314,9 +329,9 @@ public class Abominationn : ModNPC
             {
                 if (Main.netMode == NetmodeID.MultiplayerClient)
                 {
-                    //var netMessage = Mod.GetPacket(); //todo: decipher error
-                    //netMessage.Write((byte)PacketID.AbomClearEvent);
-                    //netMessage.Send();
+                    var netMessage = Mod.GetPacket();
+                    netMessage.Write((byte)PacketID.AbomClearEvent);
+                    netMessage.Send();
                 }
 
                 Main.npcChatText = Fargowiltas.TryClearEvents() ? AbomChat("Canceled") : AbomChat("CancelCD", FargoWorld.AbomClearCD / 60);
@@ -393,7 +408,7 @@ public class Abominationn : ModNPC
 
     public override void ModifyNPCLoot(NPCLoot npcLoot)
     {
-        npcLoot.Add(ItemDropRule.Common(ItemType<CrabSizedGlasses>(), 10));
+        //npcLoot.Add(ItemDropRule.Common(ItemType<CrabSizedGlasses>(), 10));
     }
     public override void HitEffect(NPC.HitInfo hit)
     {

@@ -74,7 +74,7 @@ public class InstaProj : ModProjectile
                 if (!FargoGlobalProjectile.InstaDestructionCheck(xPosition, y, player, pickaxe))
                     continue;
 
-                FargoGlobalTile.ClearEverything(xPosition, y, false);
+                FargoGlobalTile.ClearEverything(xPosition, y, false, true);
 
                 // Spawn structure
                 WorldGen.PlaceWall(xPosition, y, WallID.Stone);

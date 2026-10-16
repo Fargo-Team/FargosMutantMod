@@ -49,7 +49,6 @@ public class Omnistation : ModBuff
 
             //ladybug
             player.ladyBugLuckTimeLeft = 12 * 60 * 60;
-            player.AddBuff(BuffID.SugarRush, 2);
         }
     }
 }

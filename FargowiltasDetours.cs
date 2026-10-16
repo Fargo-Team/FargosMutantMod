@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using System;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent;
@@ -18,6 +19,7 @@ namespace Fargowiltas;
 public class FargowiltasDetours : ModSystem
 {
     internal static bool BetsyEggUsed;
+    private static readonly MethodInfo EditSpawnRate_Method = typeof(NPCLoader).GetMethod("EditSpawnRate", FargoUtils.UniversalBindingFlags);
     public override void Load()
     {
         BetsyEggUsed = false;
@@ -26,6 +28,7 @@ public class FargowiltasDetours : ModSystem
 
         On_WorldItem.GetShimmered += FixRecipeGroupsShimmerInteraction;
 
+        On_LucyAxeMessage.SpawnPopupText += AddMessage;
 
         On_Main.DoUpdateInWorld += UpdateEnchantedTreeFruit;
         On_Main.DrawPlayers_AfterProjectiles += DrawEnchantedTrees;
@@ -36,9 +39,10 @@ public class FargowiltasDetours : ModSystem
 
         //On_Player.AddBuff += AddBuff;
         On_Player.DoCommonDashHandle += OnVanillaDash;
+        On_Player.dropItemCheck += EnchantedTreeMouseClick;
         On_Player.DropTombstone += DisableTombstones;
         On_Player.HasUnityPotion += OnHasUnityPotion;
-        On_Player.ItemCheck_CanUse += AllowUseSummons;
+        On_Player.ItemCheck_CheckCanUse += AllowUseSummons;
         On_Player.ItemCheck_UseBossSpawners += AllowUseSummons2EvilEdition;
         On_Player.ItemCheck_UseEventItems += AllowUseEventSummons;
         On_Player.KeyDoubleTap += OnVanillaDoubleTapSetBonus;
@@ -46,16 +50,14 @@ public class FargowiltasDetours : ModSystem
         On_Player.SummonItemCheck += AllowMultipleBosses;
         On_Player.TakeUnityPotion += OnTakeUnityPotion;
 
-        // FindRecipes was removed in 1.4.5. Is it still neccessory with the new Terraria crafting system?
-        //On_Recipe.FindRecipes += FindRecipes_ElementalAssemblerGraveyardHack;
+        On_Recipe.FindRecipes += FindRecipes_ElementalAssemblerGraveyardHack;
 
-        // ExportTileCountsToMain was seemingly removed in 1.4.5. Find equivilant?
-        //On_SceneMetrics.ExportTileCountsToMain += ExportTileCountsToMain_PurityTotemHack;
-
+        On_SceneMetrics.ExportTileCountsToMain += ExportTileCountsToMain_PurityTotemHack;
 
         On_WorldGen.CountTileTypesInArea += CountTileTypesInArea_PurityTotemHack;
 
-        On_LucyAxeMessage.SpawnPopupText += AddMessage;
+
+        MonoModHooks.Add(EditSpawnRate_Method, UpdateSpawnRates);
     }
 
     private void AddMessage(On_LucyAxeMessage.orig_SpawnPopupText orig, LucyAxeMessage.MessageSource source, int variationUnwrapped, Vector2 position, Vector2 velocity)
@@ -252,8 +254,12 @@ public class FargowiltasDetours : ModSystem
         }
     }
 
-    private bool AllowUseSummons(On_Player.orig_ItemCheck_CanUse orig, Player self, Item item, bool cursed)
+    private bool AllowUseSummons(On_Player.orig_ItemCheck_CheckCanUse orig, Player self, Item item)
     {
+        // Easy Summons bypasses the normal checks, including GlobalItem.CanUseItem.
+        if (item.type == ItemID.CelestialSigil && NPC.MoonLordCountdown > 0)
+            return false;
+
         if (FargoGlobalItem.AlwaysUsableVanillaSummons.Contains(item.type) && FargoServerConfig.Instance.EasySummons)
         {
             if (!((item.type == ItemID.BloodMoonStarter && Main.bloodMoon) ||
@@ -267,7 +273,7 @@ public class FargowiltasDetours : ModSystem
                 return true;
             }
         }
-        return orig(self, item, cursed);
+        return orig(self, item);
     }
     private bool AllowMultipleBosses(On_Player.orig_SummonItemCheck orig, Player self, Item item)
     {
@@ -328,9 +334,19 @@ public class FargowiltasDetours : ModSystem
             //with this one its just easier to redo the whole thing
             if (item.type == ItemID.CelestialSigil)
             {
+                // check before applying item time which also triggers consumption
+                if (NPC.MoonLordCountdown > 0)
+                    return;
+
                 SoundEngine.PlaySound(SoundID.Roar, self.position);
                 self.ApplyItemTime(item);
-                if (Main.netMode == NetmodeID.SinglePlayer)
+
+                // countdown will do nothing if a ML is already alive
+                // so if a ML is alive, just raw spawn it instead
+                if (NPC.AnyNPCs(NPCID.MoonLordCore))
+                    Fargowiltas.SpawnBoss(self, NPCID.MoonLordCore, npcCenter: self.Center - new Vector2(0, 150),
+                        overrideDisplayName: Language.GetTextValue("NPCName.MoonLordHead"));
+                else if (Main.netMode == NetmodeID.SinglePlayer)
                     WorldGen.StartImpendingDoom(60);
                 else
                     NetMessage.SendData(MessageID.SpawnBossUseLicenseStartEvent, -1, -1, null, self.whoAmI, -8f);
@@ -404,6 +420,52 @@ public class FargowiltasDetours : ModSystem
         EnchantedTreeTileEntity.UpdateEnchantedTrees();
     }
 
+    private void EnchantedTreeMouseClick(On_Player.orig_dropItemCheck orig, Player self)
+    {
+        if (self.whoAmI == Main.myPlayer && Main.playerInventory && !Main.mouseItem.IsAir && Main.mouseItem.stack > 0 && !Main.mouseItem.favorited && Main.mouseRight && Main.mouseRightRelease && !self.mouseInterface)
+        {
+            for (int t = 0; t < EnchantedTreeSheet.EnchantedTrees.Count; t++)
+            {
+
+                if (!FargoUtils.TryGetTileEntityAs(EnchantedTreeSheet.EnchantedTrees[t].X, EnchantedTreeSheet.EnchantedTrees[t].Y, out EnchantedTreeTileEntity tree))
+                {
+                    continue;
+                }
+
+                if (tree.ItemType != -1 || tree.Fruits.Count != 0)
+                {
+                    continue;
+                }
+
+                Vector2 treeTopLeft = new Vector2(tree.Position.X, tree.Position.Y) * 16;
+                Rectangle treeHitbox = new Rectangle((int)treeTopLeft.X, (int)treeTopLeft.Y, 3 * 16, 4 * 16);
+
+                if (!treeHitbox.Contains(Main.MouseWorld.ToPoint()) || self.Distance(treeTopLeft) >= 400f)
+                {
+                    continue;
+                }
+
+                tree.ItemType = Main.mouseItem.type;
+                tree.Prefix = Main.mouseItem.prefix;
+
+                if (EnchantedTreeTileEntity.IsItemDupable(tree.ItemType))
+                {
+
+                    tree.Fruits.Add(new EnchantedTreeTileEntity.Fruit(tree.ItemType, tree.Position.ToWorldCoordinates() + new Vector2(16, -12), tree.Position.ToWorldCoordinates() + new Vector2(16, -80), Vector2.Zero));
+                    if (Main.netMode == NetmodeID.MultiplayerClient)
+                    {
+                        FargoNet.SendEnchantedTreeFruitPacket(t);
+                    }
+                }
+
+                Main.mouseItem.stack -= 1;
+                tree.CursorInsertCooldown = 10;
+                return;
+            }
+        }
+        orig(self);
+    }
+
     public static void UpdatePortableSundialCooldown_Day(On_Main.orig_UpdateTime_StartDay orig, ref bool stopEvents)
     {
         if (FargoWorld.PortableSundialCooldown > 0 && !FargoWorld.BlockPortaDialCooldown && Main.netMode != NetmodeID.MultiplayerClient)
@@ -475,6 +537,27 @@ public class FargowiltasDetours : ModSystem
             return;
 
         orig(medals);
+    }
+
+    public delegate void Orig_EditSpawnRate(Player player, ref int spawnRate, ref int maxSpawns);
+    public static void UpdateSpawnRates(Orig_EditSpawnRate orig, Player player, ref int spawnRate, ref int maxSpawns)
+    {
+        orig(player, ref spawnRate, ref maxSpawns);
+        if (Main.netMode == NetmodeID.Server && player.active && !player.dead && !player.ghost && player.FargoMutant().SyncSpawnRatesCD <= 0)
+        {
+            player.FargoMutant().SyncSpawnRatesCD = 60 * 2;
+            ModPacket packet = Fargowiltas.Instance.GetPacket();
+            packet.Write((byte)Fargowiltas.PacketID.SyncSpawnRates);
+            packet.Write(spawnRate);
+            packet.Write(maxSpawns);
+            packet.Send(player.whoAmI);
+        }
+        else
+        {
+            FargoPlayer modPlayer = Main.LocalPlayer.FargoMutant();
+            modPlayer.spawnRate = spawnRate;
+            modPlayer.maxSpawns = maxSpawns;
+        }
     }
 }
 

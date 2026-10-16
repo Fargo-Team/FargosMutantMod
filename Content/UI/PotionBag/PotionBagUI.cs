@@ -1,5 +1,6 @@
 using Fargowiltas.Assets.Textures;
 using Fargowiltas.Common.Systems;
+using Fargowiltas.Content.Items.Misc;
 using Fargowiltas.Content.Items.Summons;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -26,7 +27,7 @@ public class PotionBagUI : FargoUI
     public int BackWidth = 350;
     public int BackHeight = 590;
 
-    bool NeedsPotionListBuilding = false;
+    public static bool NeedsPotionListBuilding = false;
     int BuildListCooldown = 0;
 
     UIDragablePanel BackPanel;
@@ -120,6 +121,7 @@ public class PotionBagUI : FargoUI
         if (PotionBagSystem.CanConsumePotion(item.type, item.stack, out int amountToConsume, out int leftOvers))
         {
             AddSlot.Item.stack = leftOvers;
+            SoundEngine.PlaySound(PotionCooler.StorePotion with { Volume = 0.6f });
             if (leftOvers >= 0)
             {
                 SoundEngine.PlaySound(SoundID.Unlock);
@@ -211,6 +213,10 @@ public class PotionBagUI : FargoUI
         BackPanel.Append(CloseButton);
     }
 
+    public static void ForceRebuildList()
+    {
+
+    }
     void RebuildList()
     {
         PotionPanel.RemoveAllChildren();
@@ -353,6 +359,12 @@ public class PotionBagUI : FargoUI
 
             if (ContainsPoint(Main.MouseScreen))
             {
+                Item hoverItem = new Item(type);
+                Main.LocalPlayer.mouseInterface = true;
+                Main.HoverItem = hoverItem.Clone();
+                Main.hoverItemName = hoverItem.Name;
+                Main.instance.MouseTextHackZoom(string.Empty);
+
                 Rectangle lineFrame = line.Frame();
                 Vector2 lineOrigin = lineFrame.Size() - new Vector2(lineFrame.Size().X, lineFrame.Size().Y / 2f);
                 Vector2 horizScale = new Vector2(0.03f, (GetDimensions().Width / lineFrame.Height) - 2f);
@@ -595,7 +607,7 @@ public class PotionBagUI : FargoUI
 
         }
 
-        public override bool CanAcceptItem(Item item) => item.buffType > 0 && item.buffTime >= 60 * 60 * 2;
+        public override bool CanAcceptItem(Item item) => item.buffType > 0 && item.buffTime >= 60 * 60 * 2 && item.ModItem is not BaseSpawnBooster;
 
         public override void OnItemSwap(ref Item oldItem, ref Item newItem)
         {
@@ -607,7 +619,7 @@ public class PotionBagUI : FargoUI
     private class PotionAddButton : UIPanel
     {
         public bool Hidden = true;
-        public PotionAddSlot Slot;
+        //public PotionAddSlot Slot;
         public Action Consume;
 
         public PotionAddButton()

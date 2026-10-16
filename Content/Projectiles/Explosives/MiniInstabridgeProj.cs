@@ -68,7 +68,7 @@ public class MiniInstabridgeProj : ModProjectile
 
             if (deletableTiles.Contains(tile.TileType))
             {
-                FargoGlobalTile.ClearEverything(xPosition, yPosition, false);
+                FargoGlobalTile.ClearEverything(xPosition, yPosition, false, true);
             }
             else if (x > min + 10 && tile.HasTile && Main.tileSolid[tile.TileType])
             {

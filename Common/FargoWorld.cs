@@ -25,17 +25,12 @@ public class FargoWorld : ModSystem
     internal static int WoodChopped;
     internal static byte PortableSundialCooldown;
 
-    internal static bool OverloadGoblins;
-    internal static bool OverloadPirates;
-    internal static bool OverloadPumpkinMoon;
-    internal static bool OverloadFrostMoon;
-    internal static bool OverloadMartians;
-    internal static bool OverloadedSlimeRain;
-
     internal static bool Matsuri;
     internal static bool BlockPortaDialCooldown;
 
     internal static bool EternityMode;
+
+    internal static bool IsAnglerQuestComplete;
 
     internal static bool[] CurrentSpawnRateTile;
     internal static Dictionary<string, bool> DownedBools = [];
@@ -126,13 +121,6 @@ public class FargoWorld : ModSystem
     {
         AbomClearCD = 0;
 
-        OverloadGoblins = false;
-        OverloadPirates = false;
-        OverloadPumpkinMoon = false;
-        OverloadFrostMoon = false;
-        OverloadMartians = false;
-        OverloadedSlimeRain = false;
-
         EternityMode = (bool?)Fargowiltas.SoulsMod?.Call("EternityMode") == true;
 
         CurrentSpawnRateTile = new bool[Main.netMode == NetmodeID.Server ? 255 : 1];
@@ -207,6 +195,7 @@ public class FargoWorld : ModSystem
         HardmodeSwarmActive = reader.ReadBoolean();
         Binding = (EnergizedGlobalNPC.Binding)reader.ReadInt32();
         EternityMode = reader.ReadBoolean();
+        IsAnglerQuestComplete = reader.ReadBoolean();
         // These can't be bytes because a sign is required and
         // signed bytes range between -127 and 127, which is not enough for the NPC array
         FargoGlobalNPC.eaterBoss = reader.ReadInt16();
@@ -227,11 +216,13 @@ public class FargoWorld : ModSystem
         writer.Write(HardmodeSwarmActive);
         writer.Write((int)Binding);
         writer.Write(EternityMode);
+        writer.Write(IsAnglerQuestComplete);
         // These can't be bytes because signed bytes are required and
         // they range between -127 and 127, which is not enough for the NPC array
         writer.Write((short)FargoGlobalNPC.eaterBoss);
         writer.Write((short)FargoGlobalNPC.beeBoss);
     }
+
 
     public override void PostUpdateWorld()
     {
@@ -241,6 +232,8 @@ public class FargoWorld : ModSystem
 
         SetWorldBool(FargoServerConfig.Instance.Halloween, ref Main.halloween);
         SetWorldBool(FargoServerConfig.Instance.Christmas, ref Main.xMas);
+
+        IsAnglerQuestComplete = Main.anglerQuestFinished;
 
         if (Matsuri)
         {
@@ -262,36 +255,6 @@ public class FargoWorld : ModSystem
         if (AbomClearCD > 0)
         {
             AbomClearCD--;
-        }
-
-        if (OverloadGoblins && Main.invasionType != InvasionID.GoblinArmy)
-        {
-            OverloadGoblins = false;
-        }
-
-        if (OverloadPirates && Main.invasionType != InvasionID.PirateInvasion)
-        {
-            OverloadPirates = false;
-        }
-
-        if (OverloadPumpkinMoon && !Main.pumpkinMoon)
-        {
-            OverloadPumpkinMoon = false;
-        }
-
-        if (OverloadFrostMoon && !Main.snowMoon)
-        {
-            OverloadFrostMoon = false;
-        }
-
-        if (OverloadMartians && Main.invasionType != InvasionID.MartianMadness)
-        {
-            OverloadMartians = false;
-        }
-
-        if (OverloadedSlimeRain && !Main.slimeRain)
-        {
-            OverloadedSlimeRain = false;
         }
     }
 

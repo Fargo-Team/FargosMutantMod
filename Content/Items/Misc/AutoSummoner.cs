@@ -65,6 +65,16 @@ public class AutoSummoner : ModItem
             //during boss, can only summon so many times and then no more
             if (fargoPlayer.AutoSummonCap <= 0)
                 return;
+            
+            //dont summon when mutant in phase change or desp
+            if (Fargowiltas.SoulsMod?.TryFind("MutantBoss", out ModNPC mutantBoss) == true)
+            {
+                foreach (NPC npc in Main.ActiveNPCs)
+                {
+                    if (npc.type == mutantBoss.Type && npc.dontTakeDamage)
+                        return;
+                }
+            }
         }
 
         int weaponsUsed = 0;
@@ -81,8 +91,9 @@ public class AutoSummoner : ModItem
         {
             Item item = player.inventory[i];
 
+            // need stardust dragon exception because head costs zero minionSlots
             if (item != null && item.DamageType == DamageClass.Summon && item.damage > 0 && item.shoot > ProjectileID.None && item.ammo <= 0 && !item.channel
-                && ((ContentSamples.ProjectilesByType[item.shoot].minion && ContentSamples.ProjectilesByType[item.shoot].minionSlots > 0f && ItemID.Sets.StaffMinionSlotsRequired[item.type] <= emptySlots)
+                && ((ContentSamples.ProjectilesByType[item.shoot].minion && (ContentSamples.ProjectilesByType[item.shoot].minionSlots > 0f || item.shoot == ProjectileID.StardustDragon1) && ItemID.Sets.StaffMinionSlotsRequired[item.type] <= emptySlots)
                 || (item.sentry && ContentSamples.ProjectilesByType[item.shoot].sentry && sentrycount < player.maxTurrets && !DD2Event.Ongoing)))
             {
                 if (!player.HasAmmo(item) || (item.mana > 0 && !player.CheckMana(item, -1, false, true)))

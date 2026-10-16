@@ -57,14 +57,17 @@ public class Deviantt : ModNPC
         NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, drawModifiers);
 
         NPC.Happiness.SetBiomeAffection<SkyBiome>(AffectionLevel.Love);
-        NPC.Happiness.SetBiomeAffection<JungleBiome>(AffectionLevel.Like);
-        NPC.Happiness.SetBiomeAffection<SnowBiome>(AffectionLevel.Dislike);
-        NPC.Happiness.SetBiomeAffection<DesertBiome>(AffectionLevel.Hate);
+        NPC.Happiness.SetBiomeAffection<JungleBiome>(AffectionLevel.Hate);
 
         NPC.Happiness.SetNPCAffection<Mutant>(AffectionLevel.Love);
-        NPC.Happiness.SetNPCAffection<Abominationn>(AffectionLevel.Like);
-        NPC.Happiness.SetNPCAffection(NPCID.BestiaryGirl, AffectionLevel.Dislike);
-        NPC.Happiness.SetNPCAffection(NPCID.Angler, AffectionLevel.Hate);
+        NPC.Happiness.SetNPCAffection<Abominationn>(AffectionLevel.Love);
+        NPC.Happiness.SetNPCAffection(NPCID.BestiaryGirl, AffectionLevel.Like);
+        NPC.Happiness.SetNPCAffection(NPCID.Guide, AffectionLevel.Like);
+        NPC.Happiness.SetNPCAffection(NPCID.Princess, AffectionLevel.Like);
+        NPC.Happiness.SetNPCAffection(NPCID.Wizard, AffectionLevel.Dislike);
+        NPC.Happiness.SetNPCAffection(NPCID.WitchDoctor, AffectionLevel.Dislike);
+        NPC.Happiness.SetNPCAffection(NPCID.Cyborg, AffectionLevel.Dislike);
+        NPC.Happiness.SetNPCAffection(NPCID.TaxCollector, AffectionLevel.Hate);
 
         //new
         NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Suffocation] = true;
@@ -288,14 +291,14 @@ public class Deviantt : ModNPC
         int mutant = NPC.FindFirstNPC(NPCType<Mutant>());
         if (mutant != -1)
         {
-            dialogue.Add(DeviChat("Mutant1", Main.npc[mutant].GivenName));
-            dialogue.Add(DeviChat("Mutant2", Main.npc[mutant].GivenName));
+            dialogue.Add(DeviChat("Mutant1", Main.npc[mutant].TypeName));
+            dialogue.Add(DeviChat("Mutant2", Main.npc[mutant].TypeName));
         }
 
         int lumberjack = NPC.FindFirstNPC(NPCType<LumberJack>());
         if (lumberjack != -1)
         {
-            dialogue.Add(DeviChat("Lumber", Main.npc[lumberjack].GivenName));
+            dialogue.Add(DeviChat("Lumber", Main.npc[lumberjack].TypeName));
         }
 
         if (FargoWorld.EternityMode)

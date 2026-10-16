@@ -1,6 +1,7 @@
 ﻿using Fargowiltas.Common.Configs;
 using Fargowiltas.Common.Systems;
 using Fargowiltas.Common.Systems.Collections;
+using Fargowiltas.Content.Items.Misc;
 using Fargowiltas.Content.Items.Summons.Abom;
 using Fargowiltas.Content.Items.Tiles;
 using Fargowiltas.Content.NPCs.SquirrelNPC;
@@ -215,6 +216,11 @@ public class FargoGlobalItem : GlobalItem
                         tooltips.Add(new TooltipLine(Mod, "Tooltip0", $"[s:Fargowiltas/CatchNPCs] [c/AAAAAA:{ExpandedTooltipLoc("CatchNPCs")}]"));
                     break;
 
+            }
+
+            if (FargoItemSets.HerbFertilizerItem[item.type])
+            {
+                //tooltips.Add(new TooltipLine(Mod, "Tooltip0", $"[i:Extractinator] [c/AAAAAA:{ExpandedTooltipLoc("HerbFertilizer")}]"));
             }
 
             if (fargoServerConfig.ExtraLures)
@@ -842,11 +848,6 @@ public class FargoGlobalItem : GlobalItem
         { "TungstenPouch", ItemID.TungstenBullet },
         { "VelocityPouch", ItemID.HighVelocityBullet },
         { "VenomPouch", ItemID.VenomBullet },
-
-        { "CopperCoinBag", ItemID.CopperCoin },
-        { "SilverCoinBag", ItemID.SilverCoin },
-        { "GoldCoinBag", ItemID.GoldCoin },
-        { "PlatinumCoinBag", ItemID.PlatinumCoin },
 
         { "CrystalDartBox", ItemID.CrystalDart },
         { "CursedDartBox", ItemID.CursedDart },

@@ -87,6 +87,7 @@ public class CaughtNPCItem : ModItem
         Item.DefaultToCapturedCritter(AssociatedNpcId);
         Item.rare = ItemRarityID.Blue;
         Item.UseSound = SoundID.Item44;
+        Item.createTile = -1;
 
         /*if (AssociatedNpcId == NPCID.Angler)
         {

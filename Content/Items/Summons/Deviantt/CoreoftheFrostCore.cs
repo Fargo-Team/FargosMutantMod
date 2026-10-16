@@ -4,35 +4,34 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Fargowiltas.Content.Items.Summons.Deviantt
+namespace Fargowiltas.Content.Items.Summons.Deviantt;
+
+public class CoreoftheFrostCore : BaseSpawnBooster
 {
-    public class CoreoftheFrostCore : BaseSpawnBooster
+    public override int BuffType => ModContent.BuffType<CoreoftheFrostCoreBuff>();
+
+    public override void SetStaticDefaults()
     {
-        public override int BuffType => ModContent.BuffType<CoreoftheFrostCoreBuff>();
+        base.SetStaticDefaults();
+        Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(6, 6));
+        ItemID.Sets.AnimatesAsSoul[Item.type] = true;
 
-        public override void SetStaticDefaults()
-        {
-            base.SetStaticDefaults();
-            Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(6, 6));
-            ItemID.Sets.AnimatesAsSoul[Item.type] = true;
-
-        }
-
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-                .AddIngredient(ItemID.IceBlock, 100)
-                .AddIngredient(ItemID.FlinxFur, 6)
-                .AddIngredient(ItemID.SoulofLight, 3)
-                .AddIngredient(ItemID.SoulofNight, 3)
-                .AddTile(TileID.MythrilAnvil)
-                .Register();
-        }
     }
-    public class CoreoftheFrostCoreBuff : BaseSpawnBoosterBuff
+
+    public override void AddRecipes()
     {
-        public CoreoftheFrostCoreBuff() : base(() => [NPCID.IceGolem], () => Main.LocalPlayer.ZoneSnow && Main.hardMode && (Main.LocalPlayer.ZoneOverworldHeight || Main.LocalPlayer.ZoneSkyHeight) && Main.IsItRaining, 0.3f)
-        {
-        }
+        CreateRecipe()
+            .AddIngredient(ItemID.IceBlock, 100)
+            .AddIngredient(ItemID.FlinxFur, 6)
+            .AddIngredient(ItemID.SoulofLight, 3)
+            .AddIngredient(ItemID.SoulofNight, 3)
+            .AddTile(TileID.MythrilAnvil)
+            .Register();
+    }
+}
+public class CoreoftheFrostCoreBuff : BaseSpawnBoosterBuff
+{
+    public CoreoftheFrostCoreBuff() : base(() => [NPCID.IceGolem], () => Main.LocalPlayer.ZoneSnow && Main.hardMode && (Main.LocalPlayer.ZoneOverworldHeight || Main.LocalPlayer.ZoneSkyHeight) && Main.IsItRaining, 0.3f)
+    {
     }
 }

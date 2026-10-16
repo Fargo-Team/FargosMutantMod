@@ -1,9 +1,8 @@
-﻿namespace Fargowiltas.Common.Configs
+﻿namespace Fargowiltas.Common.Configs;
+
+public enum UnlimitedBuffSelections
 {
-    public enum UnlimitedBuffSelections
-    {
-        On,
-        BossOnly,
-        Off
-    }
+    On,
+    BossOnly,
+    Off
 }

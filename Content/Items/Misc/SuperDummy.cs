@@ -5,78 +5,77 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Fargowiltas.Content.Items.Misc
+namespace Fargowiltas.Content.Items.Misc;
+
+public class SuperDummy : ModItem
 {
-    public class SuperDummy : ModItem
+    public override void SetDefaults()
     {
-        public override void SetDefaults()
-        {
-            Item.width = 20;
-            Item.height = 30;
-            Item.useTime = 15;
-            Item.useAnimation = 15;
-            Item.useStyle = ItemUseStyleID.Swing;
-            Item.useTurn = true;
-            Item.rare = ItemRarityID.Blue;
-        }
+        Item.width = 20;
+        Item.height = 30;
+        Item.useTime = 15;
+        Item.useAnimation = 15;
+        Item.useStyle = ItemUseStyleID.Swing;
+        Item.useTurn = true;
+        Item.rare = ItemRarityID.Blue;
+    }
 
-        public override bool CanUseItem(Player player) => !FargoUtils.AnyBossAlive();
+    public override bool CanUseItem(Player player) => !FargoUtils.AnyBossAlive();
 
-        public override bool AltFunctionUse(Player player)
-        {
-            return true;
-        }
+    public override bool AltFunctionUse(Player player)
+    {
+        return true;
+    }
 
-        public override bool? UseItem(Player player)
-        {
-            if (player.altFunctionUse == ItemAlternativeFunctionID.ActivatedAndUsed)
-            {
-                ClearAllSuperDummies(player);
-            }
-            else if (NPC.CountNPCS(ModContent.NPCType<SuperDummyNPC>()) < 50 && player.whoAmI == Main.myPlayer)
-            {
-                Vector2 pos = new((int)Main.MouseWorld.X - 9, (int)Main.MouseWorld.Y - 20);
-                Projectile.NewProjectile(player.GetSource_ItemUse(Item), pos, Vector2.Zero, ModContent.ProjectileType<SpawnProj>(), 0, 0, player.whoAmI, ModContent.NPCType<SuperDummyNPC>());
-            }
-
-            return true;
-        }
-
-        public override bool CanRightClick() => true;
-
-        public override bool ConsumeItem(Player player) => false;
-
-        public override void RightClick(Player player)
+    public override bool? UseItem(Player player)
+    {
+        if (player.altFunctionUse == ItemAlternativeFunctionID.ActivatedAndUsed)
         {
             ClearAllSuperDummies(player);
         }
-
-        private void ClearAllSuperDummies(Player player)
+        else if (NPC.CountNPCS(ModContent.NPCType<SuperDummyNPC>()) < 50 && player.whoAmI == Main.myPlayer)
         {
-            foreach (NPC n in Main.ActiveNPCs)
+            Vector2 pos = new((int)Main.MouseWorld.X - 9, (int)Main.MouseWorld.Y - 20);
+            Projectile.NewProjectile(player.GetSource_ItemUse(Item), pos, Vector2.Zero, ModContent.ProjectileType<SpawnProj>(), 0, 0, player.whoAmI, ModContent.NPCType<SuperDummyNPC>());
+        }
+
+        return true;
+    }
+
+    public override bool CanRightClick() => true;
+
+    public override bool ConsumeItem(Player player) => false;
+
+    public override void RightClick(Player player)
+    {
+        ClearAllSuperDummies(player);
+    }
+
+    private void ClearAllSuperDummies(Player player)
+    {
+        foreach (NPC n in Main.ActiveNPCs)
+        {
+            if (n.type == ModContent.NPCType<SuperDummyNPC>())
             {
-                if (n.type == ModContent.NPCType<SuperDummyNPC>())
+                n.active = false;
+                if (Main.netMode == NetmodeID.MultiplayerClient)
                 {
-                    n.active = false;
-                    if (Main.netMode == NetmodeID.MultiplayerClient)
-                    {
-                        ModPacket deactivate = Mod.GetPacket();
-                        deactivate.Write((byte)Fargowiltas.PacketID.SyncInactiveNPC);
-                        deactivate.Write((byte)n.whoAmI);
-                        deactivate.Send();
-                    }
+                    ModPacket deactivate = Mod.GetPacket();
+                    deactivate.Write((byte)Fargowiltas.PacketID.SyncInactiveNPC);
+                    deactivate.Write((byte)n.whoAmI);
+                    deactivate.Send();
                 }
             }
         }
+    }
 
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-                .AddIngredient<GizmoParts>(4)
-                .AddIngredient(ItemID.TargetDummy)
-                .AddIngredient(ItemID.FallenStar)
-                .AddTile(TileID.Sawmill)
-                .Register();
-        }
+    public override void AddRecipes()
+    {
+        CreateRecipe()
+            .AddIngredient<GizmoParts>(4)
+            .AddIngredient(ItemID.TargetDummy)
+            .AddIngredient(ItemID.FallenStar)
+            .AddTile(TileID.Sawmill)
+            .Register();
     }
 }

@@ -9,125 +9,124 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.UI.Chat;
 
-namespace Fargowiltas.Common.Systems
+namespace Fargowiltas.Common.Systems;
+
+public class SymbolSystem : ModSystem
 {
-    public class SymbolSystem : ModSystem
+    private readonly string[] tagNames = { "s", "symbol" };
+
+    public override void Load()
     {
-        private readonly string[] tagNames = { "s", "symbol" };
-
-        public override void Load()
-        {
-            ChatManager.Register<SymbolTagHandler>(tagNames);
-        }
-
-        public override void Unload()
-        {
-            var handlers = typeof(ChatManager).GetField("_handlers", BindingFlags.Static | BindingFlags.NonPublic).GetValue(null) as ConcurrentDictionary<string, ITagHandler>;
-            foreach (var tag in tagNames)
-            {
-                handlers.TryRemove(tag, out _);
-            }
-        }
+        ChatManager.Register<SymbolTagHandler>(tagNames);
     }
 
-    public class SymbolTagHandler : ITagHandler
+    public override void Unload()
     {
-        public class SymbolSnippet : TextSnippet
+        var handlers = typeof(ChatManager).GetField("_handlers", BindingFlags.Static | BindingFlags.NonPublic).GetValue(null) as ConcurrentDictionary<string, ITagHandler>;
+        foreach (var tag in tagNames)
         {
-            private Vector2 frameSize;
-            Asset<Texture2D> Texture;
+            handlers.TryRemove(tag, out _);
+        }
+    }
+}
 
-            public SymbolSnippet(Asset<Texture2D> texture)
+public class SymbolTagHandler : ITagHandler
+{
+    public class SymbolSnippet : TextSnippet
+    {
+        private Vector2 frameSize;
+        Asset<Texture2D> Texture;
+
+        public SymbolSnippet(Asset<Texture2D> texture)
+        {
+            this.Texture = texture;
+            this.frameSize = Texture.Value.Frame().Size();
+            base.Color = Color.White;
+        }
+
+        public override bool UniqueDraw(bool justCheckingString, out Vector2 size, SpriteBatch spriteBatch, Vector2 position = default(Vector2), Color color = default(Color), float scale = 1f)
+        {
+            if (!justCheckingString && color is { R: > 0, G: > 0, B: > 0 })
             {
-                this.Texture = texture;
-                this.frameSize = Texture.Value.Frame().Size();
-                base.Color = Color.White;
+                Rectangle frame = Texture.Frame();
+                Vector2 origin = frame.Size() / 2f;
+                spriteBatch.Draw(Texture.Value, position + origin, frame, Color.White, 0f, origin, scale, SpriteEffects.None, 0f);
             }
+            size = frameSize;
+            return true;
+        }
 
-            public override bool UniqueDraw(bool justCheckingString, out Vector2 size, SpriteBatch spriteBatch, Vector2 position = default(Vector2), Color color = default(Color), float scale = 1f)
+        /*
+        public override float GetStringLength(DynamicSpriteFont font)
+        {
+            return frameSize.X;
+        }
+        */
+    }
+
+    public TextSnippet Parse(string text, Color baseColor = default(Color), string options = null)
+    {
+        string[] args = text.Split('/');
+
+        if (args.Length == 2 && SymbolPathRegistry.ContainsMod(args[0]))
+        {
+            string filePath = $"{SymbolPathRegistry.GetFilePath(args[0])}/{args[1]}";
+            bool result = ModContent.RequestIfExists<Texture2D>(filePath, out Asset<Texture2D> icon, AssetRequestMode.ImmediateLoad);
+            if (result)
             {
-                if (!justCheckingString && color is { R: > 0, G: > 0, B: > 0 })
+                return new SymbolSnippet(icon)
                 {
-                    Rectangle frame = Texture.Frame();
-                    Vector2 origin = frame.Size() / 2f;
-                    spriteBatch.Draw(Texture.Value, position + origin, frame, Color.White, 0f, origin, scale, SpriteEffects.None, 0f);
-                }
-                size = frameSize;
-                return true;
+                    DeleteWhole = true,
+                    Text = "[s:" + text + "]"
+                };
             }
-
-            /*
-            public override float GetStringLength(DynamicSpriteFont font)
-            {
-                return frameSize.X;
-            }
-            */
         }
 
-        public TextSnippet Parse(string text, Color baseColor = default(Color), string options = null)
-        {
-            string[] args = text.Split('/');
+        return new TextSnippet(text);
+    }
+}
 
-            if (args.Length == 2 && SymbolPathRegistry.ContainsMod(args[0]))
-            {
-                string filePath = $"{SymbolPathRegistry.GetFilePath(args[0])}/{args[1]}";
-                bool result = ModContent.RequestIfExists<Texture2D>(filePath, out Asset<Texture2D> icon, AssetRequestMode.ImmediateLoad);
-                if (result)
-                {
-                    return new SymbolSnippet(icon)
-                    {
-                        DeleteWhole = true,
-                        Text = "[s:" + text + "]"
-                    };
-                }
-            }
+public static class SymbolPathRegistry
+{
+    private static Dictionary<string, string> registry = new Dictionary<string, string>();
 
-            return new TextSnippet(text);
-        }
+    public static void Register(string modName, string filePath)
+    {
+        if (registry.ContainsKey(modName))
+            return;
+
+        registry[modName] = filePath;
     }
 
-    public static class SymbolPathRegistry
+    public static bool ContainsMod(string modName) => registry.ContainsKey(modName);
+
+    public static string GetFilePath(string modName)
     {
-        private static Dictionary<string, string> registry = new Dictionary<string, string>();
+        if (!registry.TryGetValue(modName, out string value))
+            return null;
 
-        public static void Register(string modName, string filePath)
-        {
-            if (registry.ContainsKey(modName))
-                return;
+        return value;
+    }
+}
 
-            registry[modName] = filePath;
-        }
+public class SymbolTracker
+{
+    internal bool SymbolsFinalized = false;
 
-        public static bool ContainsMod(string modName) => registry.ContainsKey(modName);
-
-        public static string GetFilePath(string modName)
-        {
-            if (!registry.TryGetValue(modName, out string value))
-                return null;
-
-            return value;
-        }
+    public SymbolTracker()
+    {
+        Fargowiltas.symbolTracker = this;
+        AddSymbolPath(Fargowiltas.Instance.Name, $"{Fargowiltas.Instance.Name}/Assets/Symbols");
     }
 
-    public class SymbolTracker
+    internal void FinalizeSymbols()
     {
-        internal bool SymbolsFinalized = false;
+        SymbolsFinalized = true;
+    }
 
-        public SymbolTracker()
-        {
-            Fargowiltas.symbolTracker = this;
-            AddSymbolPath(Fargowiltas.Instance.Name, $"{Fargowiltas.Instance.Name}/Assets/Symbols");
-        }
-
-        internal void FinalizeSymbols()
-        {
-            SymbolsFinalized = true;
-        }
-
-        public void AddSymbolPath(string modName, string filePath)
-        {
-            if (!SymbolsFinalized)
-                SymbolPathRegistry.Register(modName, filePath);
-        }
+    public void AddSymbolPath(string modName, string filePath)
+    {
+        if (!SymbolsFinalized)
+            SymbolPathRegistry.Register(modName, filePath);
     }
 }

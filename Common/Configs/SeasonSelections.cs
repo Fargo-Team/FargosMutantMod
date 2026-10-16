@@ -1,9 +1,8 @@
-﻿namespace Fargowiltas.Common.Configs
+﻿namespace Fargowiltas.Common.Configs;
+
+public enum SeasonSelections
 {
-    public enum SeasonSelections
-    {
-        Normal,
-        AlwaysOn,
-        AlwaysOff
-    }
+    Normal,
+    AlwaysOn,
+    AlwaysOff
 }

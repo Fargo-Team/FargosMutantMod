@@ -2,20 +2,19 @@
 using Terraria.GameContent.Personalities;
 using Terraria.ModLoader;
 
-namespace Fargowiltas.Content.Biomes
+namespace Fargowiltas.Content.Biomes;
+
+public class SkyBiome : IShoppingBiome, ILoadable
 {
-    public class SkyBiome : IShoppingBiome, ILoadable
+    public string NameKey => "Mods.Fargowiltas.Biome.Sky";
+
+    public bool IsInBiome(Player player) => player.ZoneSkyHeight;
+
+    void ILoadable.Load(Mod mod)
     {
-        public string NameKey => "Mods.Fargowiltas.Biome.Sky";
+    }
 
-        public bool IsInBiome(Player player) => player.ZoneSkyHeight;
-
-        void ILoadable.Load(Mod mod)
-        {
-        }
-
-        void ILoadable.Unload()
-        {
-        }
+    void ILoadable.Unload()
+    {
     }
 }

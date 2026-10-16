@@ -3,26 +3,25 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Fargowiltas.Content.Items.Summons.Deviantt
-{
-    public class HolyGrail : BaseSpawnBooster
-    {
-        public override int BuffType => ModContent.BuffType<HolyGrailBuff>();
+namespace Fargowiltas.Content.Items.Summons.Deviantt;
 
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-                .AddRecipeGroup("Fargowiltas:AnyGoldBar", 4)
-                .AddIngredient(ItemID.ManaPotion, 6)
-                .AddIngredient(ItemID.Ruby)
-                .AddTile(TileID.DemonAltar)
-                .Register();
-        }
-    }
-    public class HolyGrailBuff : BaseSpawnBoosterBuff
+public class HolyGrail : BaseSpawnBooster
+{
+    public override int BuffType => ModContent.BuffType<HolyGrailBuff>();
+
+    public override void AddRecipes()
     {
-        public HolyGrailBuff() : base(() => [NPCID.Tim], () => Main.LocalPlayer.ZoneRockLayerHeight && (double)Main.LocalPlayer.Center.Y / 16 > (Main.rockLayer + Main.maxTilesY) / 2.0, Main.LocalPlayer.hasGemRobe ? 0.15f : 0.1f)
-        {
-        }
+        CreateRecipe()
+            .AddRecipeGroup("Fargowiltas:AnyGoldBar", 4)
+            .AddIngredient(ItemID.ManaPotion, 6)
+            .AddIngredient(ItemID.Ruby)
+            .AddTile(TileID.DemonAltar)
+            .Register();
+    }
+}
+public class HolyGrailBuff : BaseSpawnBoosterBuff
+{
+    public HolyGrailBuff() : base(() => [NPCID.Tim], () => Main.LocalPlayer.ZoneRockLayerHeight && (double)Main.LocalPlayer.Center.Y / 16 > (Main.rockLayer + Main.maxTilesY) / 2.0, Main.LocalPlayer.hasGemRobe ? 0.15f : 0.1f)
+    {
     }
 }

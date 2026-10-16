@@ -1,15 +1,14 @@
-﻿namespace Fargowiltas.Common.Configs
-{
-    public enum DebuffDisplayMode
-    {
-        Disabled,
-        Icon,
-        IconTimer
-    }
+﻿namespace Fargowiltas.Common.Configs;
 
-    public enum DebuffDisplayPosition
-    {
-        Top,
-        Bottom
-    }
+public enum DebuffDisplayMode
+{
+    Disabled,
+    Icon,
+    IconTimer
+}
+
+public enum DebuffDisplayPosition
+{
+    Top,
+    Bottom
 }

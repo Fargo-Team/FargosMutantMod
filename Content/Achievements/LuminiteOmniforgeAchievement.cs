@@ -3,26 +3,25 @@ using System.Collections.Generic;
 using Terraria.Achievements;
 using Terraria.ModLoader;
 
-namespace Fargowiltas.Content.Achievements
+namespace Fargowiltas.Content.Achievements;
+
+public class LuminiteOmniforgeAchievement : ModAchievement
 {
-    public class LuminiteOmniforgeAchievement : ModAchievement
+    public override string TextureName => "Fargowiltas/Content/Achievements/MutantAchievements";
+
+    public override int Index => 11;
+
+    public override void SetStaticDefaults()
     {
-        public override string TextureName => "Fargowiltas/Content/Achievements/MutantAchievements";
+        Achievement.SetCategory(Terraria.Achievements.AchievementCategory.Collector);
 
-        public override int Index => 11;
+        AddItemCraftCondition(ModContent.ItemType<LuminiteOmniforge>());
+    }
 
-        public override void SetStaticDefaults()
-        {
-            Achievement.SetCategory(Terraria.Achievements.AchievementCategory.Collector);
+    public override Position GetDefaultPosition() => new After("CHAMPION_OF_TERRARIA");
 
-            AddItemCraftCondition(ModContent.ItemType<LuminiteOmniforge>());
-        }
-
-        public override Position GetDefaultPosition() => new After("CHAMPION_OF_TERRARIA");
-
-        public override IEnumerable<Position> GetModdedConstraints()
-        {
-            yield return new Before(ModContent.GetInstance<CrucibleofTheCosmosAchievement>());
-        }
+    public override IEnumerable<Position> GetModdedConstraints()
+    {
+        yield return new Before(ModContent.GetInstance<CrucibleofTheCosmosAchievement>());
     }
 }

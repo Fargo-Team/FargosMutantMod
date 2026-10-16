@@ -2,24 +2,23 @@
 using Terraria.GameContent.Achievements;
 using Terraria.ModLoader;
 
-namespace Fargowiltas.Content.Achievements
+namespace Fargowiltas.Content.Achievements;
+
+public class BuyNPCAchievement : ModAchievement
 {
-    public class BuyNPCAchievement : ModAchievement
+    public override bool IsLoadingEnabled(Mod mod) => false;
+    public override string TextureName => "Fargowiltas/Content/Achievements/MutantAchievements";
+
+    public override int Index => 2;
+
+    public CustomFlagCondition Condition { get; private set; }
+
+    public override void SetStaticDefaults()
     {
-        public override bool IsLoadingEnabled(Mod mod) => false;
-        public override string TextureName => "Fargowiltas/Content/Achievements/MutantAchievements";
+        Achievement.SetCategory(Terraria.Achievements.AchievementCategory.Collector);
 
-        public override int Index => 2;
-
-        public CustomFlagCondition Condition { get; private set; }
-
-        public override void SetStaticDefaults()
-        {
-            Achievement.SetCategory(Terraria.Achievements.AchievementCategory.Collector);
-
-            Condition = AddCondition("BuyNPCAchievementCondition");
-        }
-
-        public override Position GetDefaultPosition() => new After("NO_HOBO");
+        Condition = AddCondition("BuyNPCAchievementCondition");
     }
+
+    public override Position GetDefaultPosition() => new After("NO_HOBO");
 }

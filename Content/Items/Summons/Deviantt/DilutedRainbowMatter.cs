@@ -3,27 +3,26 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Fargowiltas.Content.Items.Summons.Deviantt
+namespace Fargowiltas.Content.Items.Summons.Deviantt;
+
+public class DilutedRainbowMatter : BaseSpawnBooster
 {
-    public class DilutedRainbowMatter : BaseSpawnBooster
+    public override int BuffType => ModContent.BuffType<DilutedRainbowMatterBuff>();
+
+    public override void AddRecipes()
     {
-        public override int BuffType => ModContent.BuffType<DilutedRainbowMatterBuff>();
-
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-                .AddIngredient(ItemID.Gel, 100)
-                .AddIngredient(ItemID.RainbowMoss, 20) //this is the only consistently obtainable rainbow item premechs
-                .AddIngredient(ItemID.SoulofLight, 3)
-                .AddTile(TileID.MythrilAnvil)
-                .Register();
-        }
-
+        CreateRecipe()
+            .AddIngredient(ItemID.Gel, 100)
+            .AddIngredient(ItemID.RainbowMoss, 20) //this is the only consistently obtainable rainbow item premechs
+            .AddIngredient(ItemID.SoulofLight, 3)
+            .AddTile(TileID.MythrilAnvil)
+            .Register();
     }
-    public class DilutedRainbowMatterBuff : BaseSpawnBoosterBuff
+
+}
+public class DilutedRainbowMatterBuff : BaseSpawnBoosterBuff
+{
+    public DilutedRainbowMatterBuff() : base(() => [NPCID.RainbowSlime], () => Main.LocalPlayer.ZoneHallow && Main.IsItRaining && (Main.LocalPlayer.ZoneOverworldHeight || Main.LocalPlayer.ZoneSkyHeight) && Main.hardMode, 0.2f)
     {
-        public DilutedRainbowMatterBuff() : base(() => [NPCID.RainbowSlime], () => Main.LocalPlayer.ZoneHallow && Main.IsItRaining && (Main.LocalPlayer.ZoneOverworldHeight || Main.LocalPlayer.ZoneSkyHeight) && Main.hardMode, 0.2f)
-        {
-        }
     }
 }

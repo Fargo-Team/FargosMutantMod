@@ -135,8 +135,9 @@ public class EnchantedTreeSheet : ModTile
                 player.HeldItem != null && 
                 player.HeldItem.type >= ItemID.None && 
                 EnchantedTreeTileEntity.IsItemDupable(player.HeldItem.type) && 
-                player.HeldItem.stack > 0;
-            if (tree != null && treeAccepts && tree.ItemType == -1 && tree.Fruits.Count == 0 && !player.HeldItem.favorited)
+                player.HeldItem.stack > 0 &&
+                !player.HeldItem.favorited;
+            if (tree != null && treeAccepts && tree.ItemType == -1 && tree.Fruits.Count == 0)
             {
                 tree.ItemType = player.HeldItem.type;
                 tree.Prefix = player.HeldItem.prefix;

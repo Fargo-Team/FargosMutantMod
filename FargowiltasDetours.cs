@@ -423,8 +423,9 @@ public class FargowiltasDetours : ModSystem
         bool isDupable = 
             !Main.mouseItem.IsAir && 
             EnchantedTreeTileEntity.IsItemDupable(Main.mouseItem.type) && 
-            Main.mouseItem.stack > 0;
-        if (self.whoAmI == Main.myPlayer && Main.playerInventory && isDupable && !Main.mouseItem.favorited && Main.mouseRight && Main.mouseRightRelease && !self.mouseInterface)
+            Main.mouseItem.stack > 0 &&
+            !Main.mouseItem.favorited;
+        if (self.whoAmI == Main.myPlayer && Main.playerInventory && isDupable && Main.mouseRight && Main.mouseRightRelease && !self.mouseInterface)
         {
             for (int t = 0; t < EnchantedTreeSheet.EnchantedTrees.Count; t++)
             {

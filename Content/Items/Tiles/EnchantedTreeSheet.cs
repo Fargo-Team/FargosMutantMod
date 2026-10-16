@@ -131,21 +131,25 @@ public class EnchantedTreeSheet : ModTile
         {
             FargoUtils.TryGetTileEntityAs<EnchantedTreeTileEntity>(i, j, out EnchantedTreeTileEntity tree);
             //set tile entity's item to held item of the player and reduce stack of player's held item!
-            if (tree != null && player.HeldItem != null && player.HeldItem.type >= ItemID.None && tree.ItemType == -1 && player.HeldItem.stack > 0 && tree.Fruits.Count == 0 && !player.HeldItem.favorited)
+            bool treeAccepts = 
+                player.HeldItem != null && 
+                player.HeldItem.type >= ItemID.None && 
+                EnchantedTreeTileEntity.IsItemDupable(player.HeldItem.type) && 
+                player.HeldItem.stack > 0 &&
+                !player.HeldItem.favorited;
+            if (tree != null && treeAccepts && tree.ItemType == -1 && tree.Fruits.Count == 0)
             {
                 tree.ItemType = player.HeldItem.type;
                 tree.Prefix = player.HeldItem.prefix;
-                if (EnchantedTreeTileEntity.IsItemDupable(tree.ItemType))
-                {
-                    //thank you shellphone
-                    if (tree.ItemType is ItemID.ShellphoneHell or ItemID.ShellphoneOcean or ItemID.Shellphone or ItemID.ShellphoneSpawn)
-                        tree.ItemType = ItemID.ShellphoneDummy;
 
-                    tree.Fruits.Add(new(tree.ItemType, tree.Position.ToWorldCoordinates() + new Vector2(16, -12), tree.Position.ToWorldCoordinates() + new Vector2(16, -80), Vector2.Zero));
-                    if (Main.netMode == NetmodeID.MultiplayerClient)
-                    {
-                        FargoNet.SendEnchantedTreeFruitPacket(EnchantedTrees.IndexOf(FargoUtils.GetTopLeftTileInMultitile(i, j)));
-                    }
+                //thank you shellphone
+                if (tree.ItemType is ItemID.ShellphoneHell or ItemID.ShellphoneOcean or ItemID.Shellphone or ItemID.ShellphoneSpawn)
+                    tree.ItemType = ItemID.ShellphoneDummy;
+
+                tree.Fruits.Add(new(tree.ItemType, tree.Position.ToWorldCoordinates() + new Vector2(16, -12), tree.Position.ToWorldCoordinates() + new Vector2(16, -80), Vector2.Zero));
+                if (Main.netMode == NetmodeID.MultiplayerClient)
+                {
+                    FargoNet.SendEnchantedTreeFruitPacket(EnchantedTrees.IndexOf(FargoUtils.GetTopLeftTileInMultitile(i, j)));
                 }
                 player.HeldItem.stack -= 1;
                 tree.CursorInsertCooldown = 10;

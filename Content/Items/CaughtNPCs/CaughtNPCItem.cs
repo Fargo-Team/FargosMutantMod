@@ -94,15 +94,15 @@ public class CaughtNPCItem : ModItem
         }*/
     }
 
-    public override void PostUpdate()
+    public override void PostUpdate(WorldItem item)
     {
-        if (!Item.lavaWet)
+        if (!item.lavaWet)
         {
             return;
         }
         if (AssociatedNpcId == NPCID.Guide && !NPC.AnyNPCs(NPCID.WallofFlesh))
         {
-            NPC.SpawnWOF(Item.position);
+            NPC.SpawnWOF(item.position);
             Item.TurnToAir();
             return;
         }

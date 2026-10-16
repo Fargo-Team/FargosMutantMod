@@ -60,11 +60,6 @@ public class NPCIconTagHandler : ITagHandler
             size = frameSize;
             return true;
         }
-
-        public override float GetStringLength(DynamicSpriteFont font)
-        {
-            return frameSize.X;
-        }
     }
 
     public TextSnippet Parse(string text, Color baseColor = default(Color), string options = null)

@@ -30,7 +30,7 @@ public class ObsidianWreckingBallProj : ModProjectile
 
     public override void SetStaticDefaults()
     {
-        ProjectileID.Sets.DontAttachHideToAlpha[Type] = true;
+        //ProjectileID.Sets.DontAttachHideToAlpha[Type] = true; removed as of 1.4.5
     }
 
     public override void SetDefaults()
@@ -43,6 +43,7 @@ public class ObsidianWreckingBallProj : ModProjectile
         Projectile.hide = true;
         Projectile.netImportant = true;
         Projectile.timeLeft = 2;
+        Projectile.drawLayer = ProjectileDrawLayerID.OverPlayers;
     }
 
     private int swing_direction = 1;
@@ -234,10 +235,12 @@ public class ObsidianWreckingBallProj : ModProjectile
         }
     }
 
+    /* removed as of 1.4.5, in favor of new Projectile.drawLayer parameter in SetDefaults()
     public override void DrawBehind(int index, List<int> behindNPCsAndTiles, List<int> behindNPCs, List<int> behindProjectiles, List<int> overPlayers, List<int> overWiresUI)
     {
         overPlayers.Add(index);
     }
+    */
 
     public override bool OnTileCollide(Vector2 oldVelocity)
     {
@@ -442,7 +445,7 @@ public class ObsidianWreckingBallProj : ModProjectile
         currentDestructionRowIndex = 0;
     }
 
-    public override bool PreDraw(ref Color lightColor)
+    public override bool PreDraw(Player p, ref Color lightColor)
     {
         float normalizedDepth = (Projectile.localAI[0] + 1f) * 0.5f;
         float zScale = 1f;
@@ -459,7 +462,6 @@ public class ObsidianWreckingBallProj : ModProjectile
             zScale = MathHelper.Lerp(0.75f, 1.25f, normalizedDepth);
             if (Projectile.localAI[0] < 0f) renderColor *= MathHelper.Lerp(0.7f, 1.0f, normalizedDepth);
 
-            Player p = Main.player[Projectile.owner];
             Vector2 start = p.RotatedRelativePoint(p.MountedCenter);
             Vector2 end = Projectile.Center;
             var chainTexture = ModContent.Request<Texture2D>("Fargowiltas/Content/Projectiles/Explosives/ObsidianWreckingBallChain").Value;

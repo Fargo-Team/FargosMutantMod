@@ -121,7 +121,7 @@ public class ShurikenProj : ModProjectile
         Player player = Main.player[Projectile.owner];
         var pickaxe = player.GetBestPickaxe() ?? ContentSamples.ItemsByType[ItemID.CopperPickaxe];
 
-        NetMessage.SendData(MessageID.KillProjectile, -1, -1, null, Projectile.identity, Projectile.owner);
+        NetMessage.SendData(MessageID.KillProjectile, -1, -1, null, Projectile.key, Projectile.owner);
 
         AchievementsHelper.CurrentlyMining = true;
         for (int x = -radius; x <= radius; x++)

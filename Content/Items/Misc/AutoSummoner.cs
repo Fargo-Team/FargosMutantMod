@@ -96,7 +96,8 @@ public class AutoSummoner : ModItem
                 && ((ContentSamples.ProjectilesByType[item.shoot].minion && (ContentSamples.ProjectilesByType[item.shoot].minionSlots > 0f || item.shoot == ProjectileID.StardustDragon1) && ItemID.Sets.StaffMinionSlotsRequired[item.type] <= emptySlots)
                 || (item.sentry && ContentSamples.ProjectilesByType[item.shoot].sentry && sentrycount < player.maxTurrets && !DD2Event.Ongoing)))
             {
-                if (!player.HasAmmo(item) || (item.mana > 0 && !player.CheckMana(item, -1, false, true)))
+                // porting note: Summon Weapons do not cost mana in 1.4.5, it is not neccessary to check for mana anymore
+                if (!player.HasAmmo(item) /*|| (item.mana > 0 && !player.CheckMana(item, -1, false, true))*/)
                     continue;
 
                 if (!CombinedHooks.CanUseItem(player, item))
@@ -123,6 +124,7 @@ public class AutoSummoner : ModItem
 
                 SoundEngine.PlaySound(item.UseSound);
 
+                /* porting note: Summon Weapons do not cost mana in 1.4.5, it is not neccessary to check for mana anymore
                 if (item.mana > 0)
                 {
                     if (player.CheckMana(item, -1, true, false))
@@ -130,6 +132,7 @@ public class AutoSummoner : ModItem
                         player.manaRegenDelay = player.maxRegenDelay;
                     }
                 }
+                */
                 if (item.consumable)
                 {
                     item.stack--;

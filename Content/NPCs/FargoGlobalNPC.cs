@@ -565,11 +565,11 @@ public class FargoGlobalNPC : GlobalNPC
         }
     }
 
-    public override void EditSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)
+    public override void EditSpawnPool(IDictionary<int, float> pool, NPC.Spawner spawner)
     {
         Player player = Main.LocalPlayer;
-        bool normalSpawn = !spawnInfo.PlayerInTown && !spawnInfo.Invasion && !spawnInfo.Player.ZoneOldOneArmy;
-
+        bool normalSpawn = !spawner.spawnFriendly && !spawner.invaders;
+        
         if (normalSpawn)
         {
             foreach (var spawnPlayer in Main.ActivePlayers)
@@ -973,7 +973,7 @@ public class FargoGlobalNPC : GlobalNPC
         }
     }
 
-    public override void OnChatButtonClicked(NPC npc, bool firstButton)
+    public override void OnChatButtonClicked(NPC npc, NPCInteraction interaction)
     {
         // No angler check enables luiafk compatibility
         if (FargoServerConfig.Instance.AnglerQuestInstantReset && FargoWorld.IsAnglerQuestComplete)
@@ -1077,21 +1077,24 @@ public class FargoGlobalNPC : GlobalNPC
             int stack = Fargowiltas.SwarmItemsUsed * 5 - 1;
             if (npc.type == NPCID.CultistBoss)
                 stack += 1;
-            npc.DropItemInstanced(npc.Center, npc.Size, bossbag, itemStack: stack);
+            int b = Item.NewItem(npc.GetSource_Loot(), npc.Hitbox, bossbag, stack);
+            Main.item[b].MakeInstanced((Player p) => npc.playerInteraction[p.whoAmI]);
+
         }
         else if (bossbag >= 0 && bossbag == ItemID.DefenderMedal)
         {
-            npc.DropItemInstanced(npc.Center, npc.Size, bossbag, itemStack: 5 * (Fargowiltas.SwarmItemsUsed * 5 - 1));
+            int b = Item.NewItem(npc.GetSource_Loot(), npc.Hitbox, bossbag, stack: 5 * (Fargowiltas.SwarmItemsUsed * 5 - 1));
+            Main.item[b].MakeInstanced((Player p) => npc.playerInteraction[p.whoAmI]);
         }
 
         // Drop swarm reward for every 10 items used
         if (Fargowiltas.SwarmItemsUsed >= 10 && reward > 0)
-            Item.NewItem(npc.GetSource_Loot(), npc.Hitbox, reward, Stack: Fargowiltas.SwarmItemsUsed / 10);
+            Item.NewItem(npc.GetSource_Loot(), npc.Hitbox, reward, stack: Fargowiltas.SwarmItemsUsed / 10);
 
 
         //drop trophy for every 3 items
         if (Fargowiltas.SwarmItemsUsed >= 3 && trophy > 0)
-            Item.NewItem(npc.GetSource_Loot(), npc.Hitbox, trophy, Stack: Fargowiltas.SwarmItemsUsed / 3);
+            Item.NewItem(npc.GetSource_Loot(), npc.Hitbox, trophy, stack: Fargowiltas.SwarmItemsUsed / 3);
 
         if (minion != -1)
         {

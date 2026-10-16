@@ -34,7 +34,7 @@ public class SquirrelIcon : UIElement
     {
         timer = 0;
         mode = -1;
-        item.TurnToAir(true);
+        item.TurnToAir();
     }
 
     protected override void DrawSelf(SpriteBatch spriteBatch)

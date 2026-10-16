@@ -683,7 +683,7 @@ public class Fargowiltas : Mod
                             NPC.waveNumber = 6;
                             NPC.waveKills = 220;
                             DD2Event.CheckProgress(NPCID.DD2GoblinT3);
-                            player.QuickSpawnItem(egg.GetSource_FromThis(), ItemID.DD2EnergyCrystal, (int)(140f * NPC.GetBalance())); // give all missing crystals
+                            player.QuickSpawnItem(null, ItemID.DD2EnergyCrystal, (int)(140f * NPC.GetBalance())); // give all missing crystals
                             FargowiltasDetours.BetsyEggUsed = false;
                             NetMessage.SendData(MessageID.WorldData);
                         }

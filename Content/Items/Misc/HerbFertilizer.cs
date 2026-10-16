@@ -42,7 +42,7 @@ public class HerbFertilizer : ModItem
     public override void AddRecipes()
     {
         foreach (int i in ValidItems)
-            RecipeHelper.CreateSimpleRecipe(i, Type, TileID.Solidifier, 1, 3, true, false);
+            RecipeHelper.CreateSimpleRecipe(i, Type, TileID.Solidifier, 1, 3, true /*, false*/); // porting note: what was the last parameter here used for? investigate
     }
     public override void ExtractinatorUse(int extractinatorBlockType, ref int resultType, ref int resultStack)
     {

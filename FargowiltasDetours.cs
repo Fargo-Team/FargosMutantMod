@@ -42,7 +42,7 @@ public class FargowiltasDetours : ModSystem
         On_Player.dropItemCheck += EnchantedTreeMouseClick;
         On_Player.DropTombstone += DisableTombstones;
         On_Player.HasUnityPotion += OnHasUnityPotion;
-        On_Player.ItemCheck_CheckCanUse += AllowUseSummons;
+        On_Player.ItemCheck_CanUse += AllowUseSummons;
         On_Player.ItemCheck_UseBossSpawners += AllowUseSummons2EvilEdition;
         On_Player.ItemCheck_UseEventItems += AllowUseEventSummons;
         On_Player.KeyDoubleTap += OnVanillaDoubleTapSetBonus;
@@ -50,9 +50,9 @@ public class FargowiltasDetours : ModSystem
         On_Player.SummonItemCheck += AllowMultipleBosses;
         On_Player.TakeUnityPotion += OnTakeUnityPotion;
 
-        On_Recipe.FindRecipes += FindRecipes_ElementalAssemblerGraveyardHack;
+        //On_Recipe.FindRecipes += FindRecipes_ElementalAssemblerGraveyardHack;
 
-        On_SceneMetrics.ExportTileCountsToMain += ExportTileCountsToMain_PurityTotemHack;
+        //On_SceneMetrics.ExportTileCountsToMain += ExportTileCountsToMain_PurityTotemHack;
 
         On_WorldGen.CountTileTypesInArea += CountTileTypesInArea_PurityTotemHack;
 
@@ -254,7 +254,7 @@ public class FargowiltasDetours : ModSystem
         }
     }
 
-    private bool AllowUseSummons(On_Player.orig_ItemCheck_CheckCanUse orig, Player self, Item item)
+    private bool AllowUseSummons(On_Player.orig_ItemCheck_CanUse orig, Player self, Item item, bool ignoreCursed)
     {
         // Easy Summons bypasses the normal checks, including GlobalItem.CanUseItem.
         if (item.type == ItemID.CelestialSigil && NPC.MoonLordCountdown > 0)
@@ -273,7 +273,7 @@ public class FargowiltasDetours : ModSystem
                 return true;
             }
         }
-        return orig(self, item);
+        return orig(self, item, ignoreCursed);
     }
     private bool AllowMultipleBosses(On_Player.orig_SummonItemCheck orig, Player self, Item item)
     {
@@ -414,9 +414,9 @@ public class FargowiltasDetours : ModSystem
         orig(self);
     }
 
-    private void UpdateEnchantedTreeFruit(On_Main.orig_DoUpdateInWorld orig, Main self, Stopwatch sw)
+    private void UpdateEnchantedTreeFruit(On_Main.orig_DoUpdateInWorld orig, Main self)
     {
-        orig(self, sw);
+        orig(self);
         EnchantedTreeTileEntity.UpdateEnchantedTrees();
     }
 

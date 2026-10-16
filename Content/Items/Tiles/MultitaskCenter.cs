@@ -90,7 +90,7 @@ public class MultitaskCenterSheet : ModTile
             TileID.Sinks,
             TileID.Kegs
             ];
-        TileID.Sets.CountsAsWaterSource[Type] = true;
+        TileID.Sets.CountsAsWaterForCrafting[Type] = true;
         AnimationFrameHeight = 54;
 
         glowTexture = ModContent.Request<Texture2D>(Texture + "_Glow");

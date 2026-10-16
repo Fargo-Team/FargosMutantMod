@@ -78,7 +78,7 @@ public static class FargoNet
             return;
         }
 
-        int id = codable is NPC ? ((NPC)codable).whoAmI : ((Projectile)codable).identity;
+        int id = codable is NPC ? ((NPC)codable).whoAmI : ((Projectile)codable).key;
         SyncAI(entType, id, ai, aitype);
     }
 

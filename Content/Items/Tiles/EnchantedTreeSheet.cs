@@ -66,8 +66,8 @@ public class EnchantedTreeSheet : ModTile
     {
         //drop item currently inside it
         if (FargoUtils.TryGetTileEntityAs<EnchantedTreeTileEntity>(i, j, out EnchantedTreeTileEntity entity) == true && entity.ItemType >= 0 && !Main.dedServ)
-        {
-            int item = Item.NewItem(Item.GetSource_NaturalSpawn(), new Rectangle(i * 16 + 50, j * 16 + 50, 1, 1), entity.ItemType, 1, prefixGiven: entity.Prefix);
+        {   
+            int item = Item.NewItem(WorldItem.GetSource_NaturalSpawn(), new Rectangle(i * 16 + 50, j * 16 + 50, 1, 1), entity.ItemType, 1, prefix: entity.Prefix);
             if (Main.netMode == NetmodeID.MultiplayerClient)
                 NetMessage.SendData(MessageID.SyncItem, Main.myPlayer, number: item, number2: -1);
         }
@@ -154,7 +154,7 @@ public class EnchantedTreeSheet : ModTile
             //if the entity has item already drop it and set it to null
             else if (tree != null && tree.ItemType >= 0 && tree.CursorInsertCooldown <= 0)
             {
-                int it = Item.NewItem(player.GetSource_TileInteraction(i, j), new Vector2(i, j).ToWorldCoordinates(), tree.ItemType, 1, prefixGiven: tree.Prefix);
+                int it = Item.NewItem(player.GetSource_TileInteraction(i, j), new Vector2(i, j).ToWorldCoordinates(), tree.ItemType, 1, prefix: tree.Prefix);
                 NetMessage.SendData(MessageID.SyncItem, player.whoAmI, number: it, number2: 1f);
                 tree.ItemType = -1;
                 for (int f = 0; f < tree.Fruits.Count; f++)

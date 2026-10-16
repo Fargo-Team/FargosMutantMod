@@ -172,7 +172,7 @@ public class EnchantedTreeTileEntity : ModTileEntity
                     Rectangle ejectTreeHitbox = new Rectangle((int)ejectTreeTopLeft.X, (int)ejectTreeTopLeft.Y, 3 * 16, 4 * 16);
                     if (ejectTreeHitbox.Contains(Main.MouseWorld.ToPoint()) && Main.LocalPlayer.Distance(ejectTreeTopLeft) < 400f)
                     {
-                        int it = Item.NewItem(Main.LocalPlayer.GetSource_TileInteraction(tree.Position.X, tree.Position.Y), tree.Position.ToWorldCoordinates(), tree.ItemType, 1, prefixGiven: tree.Prefix);
+                        int it = Item.NewItem(Main.LocalPlayer.GetSource_TileInteraction(tree.Position.X, tree.Position.Y), tree.Position.ToWorldCoordinates(), tree.ItemType, 1, prefix: tree.Prefix);
                         NetMessage.SendData(MessageID.SyncItem, Main.LocalPlayer.whoAmI, number: it, number2: 1f);
                         tree.ItemType = -1;
                         for (int f = 0; f < tree.Fruits.Count; f++)
@@ -264,10 +264,10 @@ public class EnchantedTreeTileEntity : ModTileEntity
                             {
                                 if (Main.netMode != NetmodeID.Server)
                                 {
-                                    int item = Item.NewItem(Main.LocalPlayer.GetSource_TileInteraction(tree.Position.X, tree.Position.Y, "EnchantedTreeDuplication"), fruit.center, fruit.type, prefixGiven: tree.Prefix);
+                                    int item = Item.NewItem(Main.LocalPlayer.GetSource_TileInteraction(tree.Position.X, tree.Position.Y, "EnchantedTreeDuplication"), fruit.center, fruit.type, prefix: tree.Prefix);
 
-                                    Main.item[item].GetGlobalItem<FargoGlobalItem>().Grabbed = Main.myPlayer;
-                                    Main.item[item].GetGlobalItem<FargoGlobalItem>().FromEnchantedTree = true;
+                                    Main.item[item].inner.GetGlobalItem<FargoGlobalItem>().Grabbed = Main.myPlayer;
+                                    Main.item[item].inner.GetGlobalItem<FargoGlobalItem>().FromEnchantedTree = true;
                                     //FargoNet.SyncItemFromFruitPacket(Main.item[item].type, Main.myPlayer, tree.Position.ToVector2(), fruit.center, item);
                                     NetMessage.SendData(MessageID.SyncItem, Main.myPlayer, number: item, number2: 1f);
 

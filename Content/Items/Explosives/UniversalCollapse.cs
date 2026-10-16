@@ -113,7 +113,7 @@ public class UniversalCollapseBomb : ModProjectile
 
         Player player = Main.player[Projectile.owner];
         Vector2 spot = player.Center;
-        if (player.IsProjectileInteractableAndInInteractionRange(Projectile, ref spot))
+        if (player.IsProjectileInteractableAndInInteractionRange(Projectile, spot))
         {
             Main.HasInteractableObjectThatIsNotATile = true;
             bool mouseOver = Projectile.Hitbox.Contains(Main.MouseWorld.ToPoint());
@@ -192,7 +192,7 @@ public class UniversalCollapseBomb : ModProjectile
         Vector2 interactionSpot = player.Center;
 
         Color highlightColor;
-        if (player.IsProjectileInteractableAndInInteractionRange(Projectile, ref interactionSpot) && (Main.SmartCursorIsUsed || PlayerInput.UsingGamepad))
+        if (player.IsProjectileInteractableAndInInteractionRange(Projectile, interactionSpot) && (Main.SmartCursorIsUsed || PlayerInput.UsingGamepad))
         {
             int avgBrightness = (lightColor.R + lightColor.G + lightColor.B) / 3;
             if (avgBrightness > 10)

@@ -224,4 +224,4 @@ public class BattleCry : ModItem
             .AddTile(TileID.DemonAltar)
             .Register();
     }
-}}
+}

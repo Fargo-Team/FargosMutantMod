@@ -295,22 +295,23 @@ public class Abominationn : ModNPC
 
         public override bool Condition() => true;
 
-        public override bool ShowExcalmation => Fargowiltas.IsEventOccurring;
+        public override bool ShowExclamation => Fargowiltas.IsEventOccurring;
 
         public override void Interact()
         {
             if (Main.netMode == NetmodeID.MultiplayerClient)
             {
-                //var netMessage = Mod.GetPacket();
-                //netMessage.Write((byte)PacketID.ClientUpdateWorld);
-                //netMessage.Send();
+                var netMessage = Instance.GetPacket();
+                netMessage.Write((byte)PacketID.ClientUpdateWorld);
+                netMessage.Send();
             }
 
             if (!NPC.downedTowers && NPC.LunarApocalypseIsUp)
             {
                 if (Main.netMode == NetmodeID.MultiplayerClient)
                 {
-                    var netMessage = Mod.GetPacket();
+                    
+                    var netMessage = Fargowiltas.Instance.GetPacket();
                     netMessage.Write((byte)PacketID.AbomClearEvent);
                     netMessage.Send();
                 }
@@ -329,7 +330,7 @@ public class Abominationn : ModNPC
             {
                 if (Main.netMode == NetmodeID.MultiplayerClient)
                 {
-                    var netMessage = Mod.GetPacket();
+                    var netMessage = Instance.GetPacket();
                     netMessage.Write((byte)PacketID.AbomClearEvent);
                     netMessage.Send();
                 }

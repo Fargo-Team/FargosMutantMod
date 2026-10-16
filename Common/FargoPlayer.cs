@@ -713,7 +713,7 @@ public class FargoPlayer : ModPlayer
         {
             if (Player.itemTime == 0 && Player.itemAnimation == 0)
             {
-                Player.selectedItem = originalSelectedItem;
+                //Player.selectedItem = originalSelectedItem; Porting Note: Player.selectedItem was made readonly. investigate.
                 autoRevertSelectedItem = false;
             }
         }

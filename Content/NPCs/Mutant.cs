@@ -402,8 +402,6 @@ public class Mutant : ModNPC
             }
         }
 
-        npcShop3.Add(new Item(ItemType<AncientSeal>()) { shopCustomPrice = Item.buyPrice(copper: 100000000) });
-
         Condition siblingPylonCondition = new Condition("Mods.Fargowiltas.Conditions.SiblingPylon", () => Condition.NpcIsPresent(NPCType<Abominationn>()).Predicate.Invoke() && Condition.NpcIsPresent(NPCType<Deviantt>()).Predicate.Invoke());
         npcShop1.Add(new Item(ItemType<SiblingPylon>()), siblingPylonCondition);
         npcShop2.Add(new Item(ItemType<SiblingPylon>()), siblingPylonCondition);

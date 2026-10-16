@@ -53,16 +53,16 @@ public class FargoItemSlot : UIElement
             Item oldItem = _item.Clone();
             bool leftClick = Main.mouseLeftRelease && Main.mouseLeft;
             if (leftClick)
-            {
-                ItemSlot.LeftClick(ref _item);
+            {   
+                //ItemSlot.LeftClick(ref _item); // porting note: the input was changed to be an array instead of item singular. investigate
             }
-            ItemSlot.RightClick(ref _item);
+            //ItemSlot.RightClick(ref _item);
             if (_item.IsNotSameTypePrefixAndStack(oldItem))
             {
                 OnItemSwap(ref oldItem, ref _item);
             }
         }
-        ItemSlot.MouseHover(ref _item);
+        ItemSlot.MouseHover(_item);
     }
 
     public override void Update(GameTime gameTime)
@@ -153,7 +153,7 @@ public class FargoItemSlot : UIElement
             return null;
 
         Item i = _item.Clone();
-        _item.TurnToAir(true);
+        _item.TurnToAir();
         return i;
     }
 
@@ -166,7 +166,7 @@ public class FargoItemSlot : UIElement
             return;
 
         Main.LocalPlayer.QuickSpawnItem(new EntitySource_WorldEvent(), _item.Clone().type, _item.stack);
-        _item.TurnToAir(true);
+        _item.TurnToAir();
     }
 
     /// <summary>

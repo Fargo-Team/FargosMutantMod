@@ -53,7 +53,8 @@ public class KeywordTagHandler : ITagHandler
             TextSnippet[] snippet = ChatManager.ParseMessage(Text, Color.White).ToArray();
             if (!justCheckingString && color is { R: > 0, G: > 0, B: > 0 })
             {
-                ChatManager.DrawColorCodedStringWithShadow(spriteBatch, font, snippet, position, 0f, color, ShadowColor, Vector2.Zero, Vector2.One, out _, -1);
+                //ChatManager.DrawColorCodedStringWithShadow(spriteBatch, font, snippet, position, 0f, color, ShadowColor, Vector2.Zero, Vector2.One, out _, -1);
+                ChatManager.DrawColorCodedStringWithShadow(spriteBatch, font, snippet, position, 0f, Vector2.Zero, Vector2.One, out _, -1);
                 ShadowColor = Color.Navy;
             }
             size = ChatManager.GetStringSize(font, snippet, Vector2.One);

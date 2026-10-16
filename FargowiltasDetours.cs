@@ -420,7 +420,11 @@ public class FargowiltasDetours : ModSystem
 
     private void EnchantedTreeMouseClick(On_Player.orig_dropItemCheck orig, Player self)
     {
-        if (self.whoAmI == Main.myPlayer && Main.playerInventory && !Main.mouseItem.IsAir && Main.mouseItem.stack > 0 && !Main.mouseItem.favorited && Main.mouseRight && Main.mouseRightRelease && !self.mouseInterface)
+        bool isDupable = 
+            !Main.mouseItem.IsAir && 
+            EnchantedTreeTileEntity.IsItemDupable(Main.mouseItem.type) && 
+            Main.mouseItem.stack > 0;
+        if (self.whoAmI == Main.myPlayer && Main.playerInventory && isDupable && !Main.mouseItem.favorited && Main.mouseRight && Main.mouseRightRelease && !self.mouseInterface)
         {
             for (int t = 0; t < EnchantedTreeSheet.EnchantedTrees.Count; t++)
             {
@@ -446,14 +450,10 @@ public class FargowiltasDetours : ModSystem
                 tree.ItemType = Main.mouseItem.type;
                 tree.Prefix = Main.mouseItem.prefix;
 
-                if (EnchantedTreeTileEntity.IsItemDupable(tree.ItemType))
+                tree.Fruits.Add(new EnchantedTreeTileEntity.Fruit(tree.ItemType, tree.Position.ToWorldCoordinates() + new Vector2(16, -12), tree.Position.ToWorldCoordinates() + new Vector2(16, -80), Vector2.Zero));
+                if (Main.netMode == NetmodeID.MultiplayerClient)
                 {
-
-                    tree.Fruits.Add(new EnchantedTreeTileEntity.Fruit(tree.ItemType, tree.Position.ToWorldCoordinates() + new Vector2(16, -12), tree.Position.ToWorldCoordinates() + new Vector2(16, -80), Vector2.Zero));
-                    if (Main.netMode == NetmodeID.MultiplayerClient)
-                    {
-                        FargoNet.SendEnchantedTreeFruitPacket(t);
-                    }
+                    FargoNet.SendEnchantedTreeFruitPacket(t);
                 }
 
                 Main.mouseItem.stack -= 1;

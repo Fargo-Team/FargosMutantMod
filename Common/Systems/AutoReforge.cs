@@ -23,14 +23,14 @@ public class AutoReforge : GlobalNPC
     public override bool AppliesToEntity(NPC entity, bool lateInstantiation) => lateInstantiation && entity.type == NPCID.GoblinTinkerer;
     public override bool PreChatButtonClicked(NPC npc, NPCInteraction interaction)
     {
-        // todo: figure out what firstButton translates to in NPCInteraction
-        if (/*!firstButton &&*/ FargoClientConfig.Instance.AutoReforge)
+        if (interaction is NPCInteractions.Actions.TinkererReforge && FargoClientConfig.Instance.AutoReforge)
         {
             FargoUIManager.Open<AutoReforgeUI>();
             return false;
         }
         return base.PreChatButtonClicked(npc, interaction);
     }
+
 }
 
 public class ReforgeItemSlot : FargoItemSlot

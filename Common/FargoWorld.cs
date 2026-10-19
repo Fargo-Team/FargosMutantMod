@@ -32,6 +32,8 @@ public class FargoWorld : ModSystem
 
     internal static bool IsAnglerQuestComplete;
 
+    internal static bool IsSomeoneWearingHatty;
+
     internal static bool[] CurrentSpawnRateTile;
     internal static Dictionary<string, bool> DownedBools = [];
 
@@ -196,6 +198,7 @@ public class FargoWorld : ModSystem
         Binding = (EnergizedGlobalNPC.Binding)reader.ReadInt32();
         EternityMode = reader.ReadBoolean();
         IsAnglerQuestComplete = reader.ReadBoolean();
+        IsSomeoneWearingHatty = reader.ReadBoolean();
         // These can't be bytes because a sign is required and
         // signed bytes range between -127 and 127, which is not enough for the NPC array
         FargoGlobalNPC.eaterBoss = reader.ReadInt16();
@@ -234,6 +237,18 @@ public class FargoWorld : ModSystem
         SetWorldBool(FargoServerConfig.Instance.Christmas, ref Main.xMas);
 
         IsAnglerQuestComplete = Main.anglerQuestFinished;
+
+        foreach (Player player in Main.ActivePlayers)
+        {
+            if (player != null && !player.dead)
+            {
+                bool wearingHatty = 
+                    player.head == EquipLoader.GetEquipSlot(Mod, "DevianttMask", EquipType.Head) ||
+                    player.armor[10].headSlot == EquipLoader.GetEquipSlot(Mod, "DevianttMask", EquipType.Head);
+                IsSomeoneWearingHatty = wearingHatty;
+                //Main.NewText(wearingHatty);
+            }
+        }
 
         if (Matsuri)
         {

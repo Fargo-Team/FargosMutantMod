@@ -8,6 +8,7 @@ using Fargowiltas.Content.UI.Emotes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
@@ -35,8 +36,7 @@ public class Deviantt : ModNPC
 
     public override void SetStaticDefaults()
     {
-
-        Main.npcFrameCount[NPC.type] = 23;
+        Main.npcFrameCount[NPC.type] = 25;
         NPCID.Sets.ExtraFramesCount[NPC.type] = 9;
         NPCID.Sets.AttackFrameCount[NPC.type] = 4;
         NPCID.Sets.DangerDetectRange[NPC.type] = 700;
@@ -104,7 +104,7 @@ public class Deviantt : ModNPC
         NPC.HitSound = SoundID.NPCHit1;
         NPC.DeathSound = SoundID.NPCDeath1;
         NPC.knockBackResist = 0.5f;
-        AnimationType = NPCID.Angler;
+        AnimationType = NPCID.Guide;
     }
     public override bool CanTownNPCSpawn(int numTownNPCs)
     {
@@ -121,13 +121,6 @@ public class Deviantt : ModNPC
 
     public override void AI()
     {
-        /*if (Main.LocalPlayer.talkNPC == NPC.whoAmI)
-        {
-            FargoUIManager.Open<DevianttNPCUI>();
-        }
-        else
-            FargoUIManager.Close<DevianttNPCUI>();*/
-
         NPC.breath = 200;
         if (defeatQuoteTimer > 0)
             defeatQuoteTimer--;
@@ -446,6 +439,8 @@ public class Deviantt : ModNPC
     }
 
 
+    /* do not delete
+
     // there are 40 horizontal frames and 14 vertical frames
     public int frameX, frameY;
 
@@ -469,22 +464,35 @@ public class Deviantt : ModNPC
                 frameX = 32;
         }
     }
+    */
+    public override void ChatBubblePosition(ref Vector2 position, ref SpriteEffects spriteEffects)
+    {   
+        if (FargoWorld.IsSomeoneWearingHatty)
+        {
+            position.Y += 6;
+        }
+    }
 
-    public static bool Hatless = false;
+    public override void EmoteBubblePosition(ref Vector2 position, ref SpriteEffects spriteEffects)
+    {
+        if (FargoWorld.IsSomeoneWearingHatty)
+            position.Y += 4;       
+        else
+            position.Y -= 8;
+    }
     public override bool PreDraw(SpriteBatch sb, Vector2 screenPos, Color drawColor)
     {
-        if (NPC.IsABestiaryIconDummy)
-            return true;
-        //Hatless = true;
+        //if (NPC.IsABestiaryIconDummy)
+        //    return true;
         Texture2D texture = (Texture2D)TownNPCProfile().GetTextureNPCShouldUse(NPC);
 
-        int xFrameToUse = RetrieveProperXFrame(frameX);
-        Rectangle rectangle = new(72 * xFrameToUse, 66 & frameY, 72, 66);
+        int xFrameToUse = RetrieveProperXFrame(0);
+        Rectangle rectangle = new(72 * xFrameToUse, NPC.frame.Y, 72, 66);
         Vector2 origin2 = rectangle.Size() / 2f;
         SpriteEffects effects = SpriteEffects.None;
 
         Vector2 position = NPC.Center - Main.screenPosition + new Vector2(-4 * NPC.direction, NPC.gfxOffY - 6);
-        if ((bool?)Fargowiltas.SoulsMod?.Call("GiftsReceived") == false)
+        if ((bool?)Fargowiltas.SoulsMod?.Call("GiftsReceived") == false && !NPC.IsABestiaryIconDummy)
         {
             Color color26 = Main.DiscoColor;
             color26.A = 0;
@@ -506,7 +514,7 @@ public class Deviantt : ModNPC
     {
         int frame = frameX;
         bool faceRight = NPC.spriteDirection == 1;
-        if (Hatless)
+        if (FargoWorld.IsSomeoneWearingHatty)
             frame += 2;
         if (faceRight)
             frame += 1;
@@ -537,7 +545,7 @@ public class DevianttProfile : ITownNPCProfile
 
     public int GetHeadTextureIndex(NPC npc)
     {
-        if (Deviantt.Hatless)
+        if (FargoWorld.IsSomeoneWearingHatty)
             return GetModHeadSlot("Fargowiltas/Content/NPCs/DevianttNPC/Deviantt_Head_Hatless");
         return GetModHeadSlot("Fargowiltas/Content/NPCs/DevianttNPC/Deviantt_Head");
     }

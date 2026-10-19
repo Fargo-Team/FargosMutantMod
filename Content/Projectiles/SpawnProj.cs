@@ -40,31 +40,6 @@ public class SpawnProj : ModProjectile
             // Lunatic Cultist
             int npc = NPC.NewNPC(new EntitySource_BossSpawn(Main.LocalPlayer, "PreventLunarPillars"), (int)Projectile.Center.X, (int)Projectile.Center.Y, (int)Projectile.ai[0]);
         }
-        else if (Projectile.ai[1] == 2)
-        {
-            // Death Fairy (Pre-Hardmode bosses)
-            for (int i = 0; i < 7; i++)
-            {
-                int n = NPC.NewNPC(NPC.GetBossSpawnSource(Main.myPlayer), (int)Projectile.Center.X, (int)Projectile.Center.Y, bosses[i]);
-            }
-
-            NPC.SpawnWOF(Main.player[Projectile.owner].Center);
-        }
-        else if (Projectile.ai[1] == 3)
-        {
-            // Mutant Voodoo (All bosses)
-            foreach (int boss in bosses)
-            {
-                IEntitySource source = NPC.GetBossSpawnSource(Main.myPlayer);
-                if (boss == NPCID.CultistBoss)
-                {
-                    source = new EntitySource_BossSpawn(Main.LocalPlayer, "PreventLunarPillars");
-                }
-                int spawn = NPC.NewNPC(source, (int)Projectile.Center.X, (int)Projectile.Center.Y, boss);
-            }
-
-            NPC.SpawnWOF(Main.player[Projectile.owner].Center);
-        }
         else if (Projectile.ai[0] == NPCID.PirateShip && FargoWorld.EternityMode) //eternity mode despawns pirate ships without ai[0] set to stop natural spawns
         {
             int n = NPC.NewNPC(NPC.GetBossSpawnSource(Main.myPlayer), (int)Projectile.Center.X, (int)Projectile.Center.Y, (int)Projectile.ai[0], 0, 1);

@@ -58,6 +58,7 @@ public class CityBuster : ModItem
         CreateRecipe()
             .AddIngredient<GizmoParts>(10)
             .AddIngredient(ItemID.Dynamite, 50)
+            .AddIngredient(ItemID.Bone, 3)
             .AddIngredient(ItemID.FallenStar, 3)
             .AddTile(TileID.Anvils)
             .Register();
@@ -68,6 +69,7 @@ public class CityBusterBomb : ModProjectile
 {
     public static readonly SoundStyle ArmingSound = new("Fargowiltas/Assets/Sounds/CityBusterArm");
     public static readonly SoundStyle DisarmSound = new("Fargowiltas/Assets/Sounds/CityBusterDisarm");
+
     public static readonly SoundStyle ExplosionSound = new("Fargowiltas/Assets/Sounds/CityBusterExplosion");
     public static Asset<Texture2D> glowTexture;
     public static Asset<Texture2D> highlightTexture;
@@ -225,13 +227,15 @@ public class CityBusterBomb : ModProjectile
                 if (tile == null)
                     continue;
 
-                if (!FargoGlobalProjectile.OkayToDestroyTileAt(xPosition, yPosition) || FargoGlobalProjectile.TileIsLiterallyAir(tile))
+                if (!FargoGlobalProjectile.OkayToDestroyTileAt(xPosition, yPosition))
                     continue;
 
-                if (!player.HasEnoughPickPowerToHurtTile(xPosition, yPosition) || !WorldGen.CanKillTile(xPosition, yPosition))
-                    continue;
+                bool canMineTile = !FargoGlobalProjectile.TileIsLiterallyAir(tile) && player.HasEnoughPickPowerToHurtTile(xPosition, yPosition) && WorldGen.CanKillTile(xPosition, yPosition);
 
-                FargoGlobalTile.ClearTileAndLiquid(xPosition, yPosition);
+                bool hasLiquid = tile.LiquidAmount != 0;
+
+                if (canMineTile || hasLiquid)
+                    FargoGlobalTile.ClearTileAndLiquid(xPosition, yPosition);
             }
         }
 

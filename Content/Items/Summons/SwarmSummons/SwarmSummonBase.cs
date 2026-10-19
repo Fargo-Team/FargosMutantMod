@@ -14,7 +14,7 @@ namespace Fargowiltas.Content.Items.Summons.SwarmSummons;
 public abstract class SwarmSummonBase : ModItem
 {
     //wof only
-    private int counter = 0;
+    //private int counter = 0;
 
     private int npcType;
     private readonly int maxSpawn; //energizer swarms are this size

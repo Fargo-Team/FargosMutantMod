@@ -45,7 +45,7 @@ public class KohaCrystal : ModItem
     {
         if (player.ConsumedManaCrystals > 0)
         {
-            if (player.altFunctionUse != 2)
+            if (player.altFunctionUse != ItemAlternativeFunctionID.ActivatedAndUsed)
             {
                 player.ManaEffect(-20);
                 player.ConsumedManaCrystals--;

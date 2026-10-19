@@ -72,7 +72,7 @@ public class HalfInstaProj : ModProjectile
                 if (!FargoGlobalProjectile.InstaDestructionCheck(xPosition, y, player, pickaxe))
                     continue;
 
-                FargoGlobalTile.ClearEverything(xPosition, y, false);
+                FargoGlobalTile.ClearEverything(xPosition, y, false, true);
 
                 if (x == 0)
                 {

@@ -167,8 +167,8 @@ RuneOrbBuff: {
 	Description: Скорость появления рунических магов значительно увеличена
 }
 
-ShadowflameIconBuff: {
-	DisplayName: Икона теневого пламени
+ShadowflameIdolBuff: {
+	DisplayName: Идол теневого пламени
 	Description: Скорость появления гоблина-чернокнижника значительно увеличена
 }
 
@@ -184,4 +184,9 @@ SuspiciousLookingChestBuff: {
 		Скорость появления мимиков значительно увеличена
 		Скорость появления ледяных мимиков в тундре значительно увеличена
 		'''
+}
+
+FairFightBuff: {
+	DisplayName: Честный бой
+	Description: Сила генератора замедляет вас
 }

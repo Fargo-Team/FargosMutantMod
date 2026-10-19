@@ -34,6 +34,12 @@ public class AutoHouseProj : ModProjectile
             tileType = TileID.BorealWood;
             platformStyle = 19;
         }
+        else if (player.ZoneGlowshroom)
+        {
+            wallType = WallID.Mushroom;
+            tileType = TileID.MushroomBlock;
+            platformStyle = 18;
+        }
         else if (player.ZoneJungle)
         {
             wallType = WallID.RichMaogany;
@@ -63,12 +69,6 @@ public class AutoHouseProj : ModProjectile
             wallType = WallID.Pearlwood;
             tileType = TileID.Pearlwood;
             platformStyle = 3;
-        }
-        else if (player.ZoneGlowshroom)
-        {
-            wallType = WallID.Mushroom;
-            tileType = TileID.MushroomBlock;
-            platformStyle = 18;
         }
         else if (player.ZoneSkyHeight)
         {
@@ -143,7 +143,12 @@ public class AutoHouseProj : ModProjectile
 
         //doing it this way so the code still runs to place bg walls behind open door
         if (!((x == 9 * side || x == 2 * side) && (y == -1 || y == -2 || y == -3) && tile.TileType == TileID.OpenDoor))
-            FargoGlobalTile.ClearEverything(xPosition, yPosition);
+        {
+            FargoGlobalTile.ClearEverything(xPosition, yPosition, sendData: false, keepWires: true);
+
+            if (Main.netMode == NetmodeID.Server)
+                NetMessage.SendTileSquare(-1, xPosition, yPosition, 1);
+        }
 
         // Spawn walls
         if (y != -5 && y != 0 && x != 10 * side && x != 1 * side)
@@ -193,6 +198,13 @@ public class AutoHouseProj : ModProjectile
             tableStyle = 28;
             torchStyle = 9;
         }
+        else if (player.ZoneGlowshroom)
+        {
+            doorStyle = 6;
+            chairStyle = 9;
+            tableStyle = 27;
+            torchStyle = 22;
+        }
         else if (player.ZoneJungle)
         {
             doorStyle = 2;
@@ -227,13 +239,6 @@ public class AutoHouseProj : ModProjectile
             chairStyle = 4;
             tableStyle = 3;
             torchStyle = 20;
-        }
-        else if (player.ZoneGlowshroom)
-        {
-            doorStyle = 6;
-            chairStyle = 9;
-            tableStyle = 27;
-            torchStyle = 22;
         }
         else if (player.ZoneSkyHeight)
         {

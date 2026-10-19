@@ -21,8 +21,8 @@ public class WorldTokenProj : ModProjectile
 
     public override void SetDefaults()
     {
-        Projectile.width = 32;
-        Projectile.height = 32;
+        Projectile.width = 28;
+        Projectile.height = 28;
         Projectile.friendly = false;
         Projectile.penetrate = -1;
         Projectile.scale = 1f;

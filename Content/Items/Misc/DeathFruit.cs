@@ -36,7 +36,7 @@ public class DeathFruit : ModItem
     public override bool AltFunctionUse(Player player) => true;
     public override bool CanUseItem(Player player)
     {
-        if (!CanUse(player) && player.altFunctionUse != 2)
+        if (!CanUse(player) && player.altFunctionUse != ItemAlternativeFunctionID.ActivatedAndUsed)
         {
             return false;
         }
@@ -61,7 +61,7 @@ public class DeathFruit : ModItem
     {
         if (player.ConsumedLifeFruit > 0)
         {
-            if (player.altFunctionUse != 2)
+            if (player.altFunctionUse != ItemAlternativeFunctionID.ActivatedAndUsed)
             {
                 player.ConsumedLifeFruit--;
             }
@@ -77,7 +77,7 @@ public class DeathFruit : ModItem
         }
         else if (player.ConsumedLifeCrystals > 0)
         {
-            if (player.altFunctionUse != 2)
+            if (player.altFunctionUse != ItemAlternativeFunctionID.ActivatedAndUsed)
             {
                 player.ConsumedLifeCrystals--;
             }

@@ -25,8 +25,6 @@ StartLanternNight: 出现灯笼夜的概率提高了！
 StopLanternNight: 出现灯笼夜的概率恢复正常。
 StartLunarEvent: 天界柱已苏醒！
 StartRain: 雨云遮住了天空。
-AncientSeal: 所有Boss已苏醒！
-SeveralBossesAwoken: 数个Boss已苏醒！
 // Swarm Summons
 OverloadBee: 震耳欲聋的嗡嗡声穿透了你！
 OverloadBetsy: 真正的撒旦大军来袭！
@@ -48,15 +46,5 @@ OverloadSlimeCrown: 欢迎来到真正的史莱姆雨！
 OverloadTwins: 双眼里充满了决心！
 OverloadWall: 一个血肉堡垒从深处升起！
 OverloadWorm: 地面以公式化的精度颤动！
-// Swarm Events
-OverloadFrostMoonStop: 霜月消逝……
-OverloadFrostMoonStart: 霜月正在升起……
-OverloadFrostMoonWave20: 波数：20：一切
-OverloadPumpkinMoonStop: 南瓜月消逝……
-OverloadPumpkinMoonStart: 南瓜月正在升起……
-OverloadPumpkinMoonWave15: 波数：15：一切
-OverloadGoblinsStop: 哥布林们冷静下来了！
-OverloadMartiansStop: 火星人们冷静下来了！
-OverloadPiratesStop: 海盗们冷静下来了！
 // Swarm Misc
 SwarmDefeated: 这群能量满溢的Boss已被打败！

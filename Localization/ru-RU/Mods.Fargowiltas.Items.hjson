@@ -154,13 +154,13 @@ BattleCry: {
 		'''
 		Нажмите ЛКМ, чтобы увеличить скорость появления существ
 		Нажмите ПКМ, чтобы уменьшить скорость появления существ
-		Не складывается с [i:BattlePotion][i:CalmingPotion][i:WaterCandle][i:PeaceCandle]
+		Не складывается с [i:BattlePotion][i:CalmingPotion][i:WaterCandle][i:PeaceCandle][i:Fargowiltas/WarHorn]
 		Также режим можно переключить, нажав ПКМ по предмету в инвентаре
 		'''
 	Battle: Боевой клич
 	Calming: Успокаивающий плач
-	Activated: активирован
-	Deactivated: деактивирован
+	Activated: включён
+	Deactivated: выключен
 	// {Battle / Calming} Cry {activated / deactivated} for {playerName}{punctuation}
 	CryText: "{0} был {1} для игрока {2}{3}"
 }
@@ -613,8 +613,8 @@ RuneOrb: {
 	Tooltip: Значительно увеличивает скорость появления рунических магов
 }
 
-ShadowflameIcon: {
-	DisplayName: Икона теневого пламени
+ShadowflameIdol: {
+	DisplayName: Идол теневого пламени
 	Tooltip: Значительно увеличивает скорость появления гоблинов-чернокнижников
 }
 
@@ -638,16 +638,6 @@ SuspiciousLookingLure: {
 	Tooltip: Вылавливает зомби-тритонов и блуждающих глаз-рыб при использовании как наживки во время кровавой луны
 }
 
-AncientSeal: {
-	DisplayName: Древняя печать
-	Tooltip:
-		'''
-		Призывает ВСЕХ боссов, включая боссов из модов
-		Можно использовать только ночью
-		«Используйте на свой страх и риск»
-		'''
-}
-
 CultistSummon: {
 	DisplayName: Владение фанатика
 	Tooltip:
@@ -657,36 +647,12 @@ CultistSummon: {
 		'''
 }
 
-DeathBringerFairy: {
-	DisplayName: Смертоносная фея
-	Tooltip:
-		'''
-		Призывает всех боссов до сложного режима
-		Можно использовать только ночью
-		Некоторые боссы будут призваны только если вы находитесь в определённом биоме
-		'''
-}
-
 FleshyDoll: {
 	DisplayName: Кукла вуду и спички
 	Tooltip:
 		'''
 		Призывает Стену плоти
 		Убедитесь, что используете этот предмет в преисподней
-		'''
-}
-
-MechanicalAmalgam: {
-	DisplayName: Механическая амальгама
-	Tooltip: Призывает всех трёх механических боссов
-}
-
-MutantVoodoo: {
-	DisplayName: Плюшевая кукла Мутанта
-	Tooltip:
-		'''
-		Призывает ВСЕХ боссов
-		Можно использовать только ночью
 		'''
 }
 
@@ -933,15 +899,6 @@ OverloadDestroyer: {
 	Tooltip: Призывает перегруженного Уничтожителя
 }
 
-OverloadedSlimeRain: {
-	DisplayName: Склизкий буревестник
-	Tooltip:
-		'''
-		Призывает перегруженный дождь слизней
-		Используйте снова, чтобы остановить событие
-		'''
-}
-
 OverloadEmpress: {
 	DisplayName: Банка со златоглазками
 	Tooltip: Призывает перегруженную Императрицу света
@@ -979,50 +936,14 @@ OverloadFish: {
 	Tooltip: Призывает перегруженного Герцога Рыброна
 }
 
-OverloadFrostMoon: {
-	DisplayName: Мешок с непослушными подарками
-	Tooltip:
-		'''
-		Призывает перегруженную морозную луну
-		Используйте снова, чтобы остановить событие
-		'''
-}
-
-OverloadGoblins: {
-	DisplayName: Воинское знамя гоблинов
-	Tooltip:
-		'''
-		Призывает перегруженную армию гоблинов
-		Используйте снова, чтобы остановить событие
-		'''
-}
-
 OverloadGolem: {
 	DisplayName: Руническая батарейка
 	Tooltip: Призывает перегруженного Голема
 }
 
-OverloadMartians: {
-	DisplayName: Марсианский коммуникационный спутник
-	Tooltip:
-		'''
-		Призывает перегруженное нашествие марсиан
-		Используйте снова, чтобы остановить событие
-		'''
-}
-
 OverloadMoon: {
 	DisplayName: Рунический боевой призыв
 	Tooltip: Призывает перегруженного Лунного лорда
-}
-
-OverloadPirates: {
-	DisplayName: Пиратская добыча
-	Tooltip:
-		'''
-		Призывает перегруженное нашествие пиратов
-		Используйте снова, чтобы остановить событие
-		'''
 }
 
 OverloadPlant: {
@@ -1033,15 +954,6 @@ OverloadPlant: {
 OverloadPrime: {
 	DisplayName: Первобытный чип контроля
 	Tooltip: Призывает перегруженного Скелетрона Прайма
-}
-
-OverloadPumpkinMoon: {
-	DisplayName: Перегруженный медальон тыквенной луны
-	Tooltip:
-		'''
-		Призывает перегруженную тыквенную луну
-		Используйте снова, чтобы остановить событие
-		'''
 }
 
 OverloadQueenSlime: {
@@ -1636,10 +1548,11 @@ PotionCooler: {
 		'''
 		Работает из инвентаря
 		Нажмите <right>, чтобы открыть
+		Нажмите <right> в инвентаре с выбранным зельем, чтобы положить его в холодильник
 		Хранит зелья и даёт их эффекты
 		Хранимые зелья являются общими для всех игроков
 		Включённые эффекты, однако, для всех уникальные
-		«По баночке холодненького»
+		«По бутылочке холодненького»
 		'''
 }
 
@@ -1655,7 +1568,7 @@ PotionCoolerInactive: {
 		Работает из инвентаря
 		Нажмите <right>, чтобы отключить
 		Хранит зелья и даёт их эффекты
-		«По баночке холодненького»
+		«По бутылочке холодненького»
 		'''
 }
 
@@ -1692,10 +1605,56 @@ DevianttBow: {
 }
 
 MiniObsidianInstaBridge: {
-	// DisplayName: Mini Obsidian Instabridge
-	/* Tooltip:
+	DisplayName: Маленький обсидиановый МоментМост
+	Tooltip:
 		'''
-		Creates a long bridge of obsidian platforms at your cursor
-		Will not break any blocks and stops when it hits a solid block
-		''' */
+		Создаёт длинный мост из обсидиановых платформ у курсора
+		Не разрушает блоки и перестаёт ставить платформы при столкновении с блоками
+		'''
+}
+
+ObsidianWreckingBall: {
+	DisplayName: Обсидиановый шар для сноса
+	Tooltip:
+		'''
+		Не расходуется
+		Бросьте, чтобы разрушить дом преисподней до уровня ближайших блоков
+		'''
+}
+
+WarHorn: {
+	DisplayName: Горн войны
+	Tooltip:
+		'''
+		Нажмите ЛКМ, чтобы увеличить скорость появления существ
+		Нажмите ПКМ, чтобы уменьшить скорость появления существ
+		Не складывается с [i:BattlePotion][i:CalmingPotion][i:WaterCandle][i:PeaceCandle][i:Fargowiltas/BattleCry]
+		Также режим можно переключить, нажав ПКМ по предмету в инвентаре
+		'''
+	War: Клич войны
+	Peace: Возглас мира
+	Activated: включён
+	Deactivated: выключен
+	// {War / Peace} Cry {activated / deactivated} for {playerName}{punctuation}
+	// CryText2: "{0} Cry {1} for {2}{3}"
+}
+
+CopperCoinBag: {
+	DisplayName: Бесконечный сейф медных монет
+	Tooltip: ""
+}
+
+SilverCoinBag: {
+	DisplayName: Бесконечный сейф серебряных монет
+	Tooltip: ""
+}
+
+GoldCoinBag: {
+	DisplayName: Бесконечный сейф золотых монет
+	Tooltip: ""
+}
+
+PlatinumCoinBag: {
+	DisplayName: Бесконечный сейф платиновых монет
+	Tooltip: ""
 }

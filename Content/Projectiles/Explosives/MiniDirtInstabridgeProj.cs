@@ -67,7 +67,7 @@ public class MiniDirtInstabridgeProj : ModProjectile
 
             if (deletableTiles.Contains(tile.TileType))
             {
-                FargoGlobalTile.ClearEverything(xPosition, yPosition);
+                FargoGlobalTile.ClearEverything(xPosition, yPosition, keepWires: true);
             }
 
             // Spawn platforms

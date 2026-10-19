@@ -6,7 +6,6 @@ using Fargowiltas.Content.Dusts;
 using Fargowiltas.Content.Items;
 using Fargowiltas.Content.Items.Misc;
 using Fargowiltas.Content.Items.Vanity;
-using Fargowiltas.Content.NPCs;
 using Fargowiltas.Content.UI;
 using Fargowiltas.Content.UI.StatSheet;
 using Fargowiltas.Utilities.Extensions;
@@ -26,6 +25,7 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.Config;
 using Terraria.ModLoader.IO;
 using static Fargowiltas.Content.Items.Misc.BattleCry;
+using static Fargowiltas.Content.Items.Misc.WarHorn;
 using static Fargowiltas.Content.Items.Tiles.EnchantedTreeTileEntity;
 using static Fargowiltas.Fargowiltas;
 using static Terraria.ModLoader.ModContent;
@@ -56,6 +56,8 @@ public class FargoPlayer : ModPlayer
     public bool HasDrawnDebuffLayer;
     internal bool BattleCry;
     internal bool CalmingCry;
+    internal bool WarCry;
+    internal bool PeaceCry;
 
     internal int originalSelectedItem;
     internal bool autoRevertSelectedItem;
@@ -84,12 +86,36 @@ public class FargoPlayer : ModPlayer
 
     public int DeathCamTimer = 0;
     public int SpectatePlayer = 0;
+
+    // Used for Stat Sheet
+    public int spawnRate = typeof(NPC).GetField("defaultSpawnRate", FargoUtils.UniversalBindingFlags)?.GetValue(null) as int? ?? 600;
+    public int maxSpawns = typeof(NPC).GetField("defaultMaxSpawns", FargoUtils.UniversalBindingFlags)?.GetValue(null) as int? ?? 5;
+    internal static int SyncSpawnRatesMaxCD => 60 * 2;
+    internal int SyncSpawnRatesCD = SyncSpawnRatesMaxCD;
+
 #pragma warning disable CS8632
     public Fruit? grabbedFruit = null;
 #pragma warning restore CS8632
     public Vector2 LastInteractedChizard = Vector2.Zero;
 
     public List<BaseSpawnBoosterBuff> ActiveSpawnBoosters = [];
+
+    public List<(string ModName, string Name)> PinnedStats = [];
+
+    public bool? TogglePinnedStat(string ModName, string Name)
+    {
+        var id = (ModName, Name);
+        if (PinnedStats.Remove(id))
+            return false;
+
+        if (PinnedStats.Count >= 8)
+            return null;
+
+        PinnedStats.Add(id);
+        return true;
+    }
+
+    public bool IsStatPinned(string ModName, string Name) => PinnedStats.Contains((ModName, Name));
 
     private readonly string[] tags =
     [
@@ -161,6 +187,12 @@ public class FargoPlayer : ModPlayer
         if (CalmingCry)
             tag.Add($"FargoCalmingCry{Player.name}", true);
 
+        if (WarCry)
+            tag.Add($"FargoWarCry{Player.name}", true);
+
+        if (PeaceCry)
+            tag.Add($"FargoPeaceCry{Player.name}", true);
+
         if (HasClickedWrench)
             tag.Add("HasClickedWrench", true);
 
@@ -213,6 +245,8 @@ public class FargoPlayer : ModPlayer
         }
         tag.Add("SacrificeCountKeys", keys.ToList());
         tag.Add("SacrificeCountValues", values);
+
+        tag.Add("PinnedStats", PinnedStats.Select(p => $"{p.ModName}|{p.Name}").ToList());
     }
     public override void LoadData(TagCompound tag)
     {
@@ -227,6 +261,8 @@ public class FargoPlayer : ModPlayer
         DeathFruitHealth = tag.GetInt("DeathFruitHealth");
         BattleCry = tag.ContainsKey($"FargoBattleCry{Player.name}");
         CalmingCry = tag.ContainsKey($"FargoCalmingCry{Player.name}");
+        WarCry = tag.ContainsKey($"FargoWarCry{Player.name}");
+        PeaceCry = tag.ContainsKey($"FargoPeaceCry{Player.name}");
         HasClickedWrench = tag.ContainsKey("HasClickedWrench");
 
         if (tag.TryGet<IList<ItemDefinition>>("OwnedItemsListDef", out var ownedList))
@@ -257,6 +293,17 @@ public class FargoPlayer : ModPlayer
                 SacrificeCountCache.Add(sacrificeKeys[i], sacrificeValues[i]);
                 if (sacrificeKeys[i].Type != -1)
                     SacrificeCount[sacrificeKeys[i].Type] = sacrificeValues[i];
+            }
+        }
+
+        if (tag.TryGet<IList<string>>("PinnedStats", out var PinnedStatsList))
+        {
+            PinnedStats.Clear();
+            foreach (string entry in PinnedStatsList)
+            {
+                string[] parts = entry.Split('|', 2);
+                if (parts.Length == 2)
+                    PinnedStats.Add((parts[0], parts[1]));
             }
         }
     }
@@ -346,7 +393,8 @@ public class FargoPlayer : ModPlayer
 
     public override void OnEnterWorld()
     {
-        SyncCry(Player);
+        SyncCry1(Player);
+        SyncCry2(Player);
 
         PotionToggler.TryLoad();
         PotionToggler.LoadPlayerToggles(Player);
@@ -669,6 +717,8 @@ public class FargoPlayer : ModPlayer
                 autoRevertSelectedItem = false;
             }
         }
+        if (Main.netMode == NetmodeID.Server && SyncSpawnRatesCD > 0)
+            SyncSpawnRatesCD--;
     }
 
     public override bool PreModifyLuck(ref float luck)
@@ -783,10 +833,12 @@ public class FargoPlayer : ModPlayer
             yield return createItem(ModContent.ItemType<MutantMask>());
         }
 
+        /*
         if (!mediumCoreDeath && Player.name.Contains("javyz", StringComparison.OrdinalIgnoreCase))
         {
             yield return createItem(ItemType<CrabSizedGlasses>());
         }
+        */
     }
 
     public override void AnglerQuestReward(float rareMultiplier, List<Item> rewardItems)

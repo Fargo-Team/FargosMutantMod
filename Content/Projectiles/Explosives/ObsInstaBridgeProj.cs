@@ -58,18 +58,18 @@ public class ObsInstabridgeProj : ModProjectile
                 if (!FargoGlobalProjectile.InstaDestructionCheck(xPosition, y, player, pickaxe))
                     continue;
 
-                FargoGlobalTile.ClearEverything(xPosition, yPosition);
+                FargoGlobalTile.ClearEverything(xPosition, yPosition, keepWires: true);
 
                 if (y == 0)
                 {
-                    FargoGlobalTile.ClearEverything(xPosition, yPosition, false);
+                    FargoGlobalTile.ClearEverything(xPosition, yPosition, false, true);
                     // Spawn platforms
                     WorldGen.PlaceTile(xPosition, yPosition, TileID.Platforms, false, false, -1, 13);
                 }
                 else
                 {
                     if (!FargoGlobalProjectile.TileIsLiterallyAir(tile))
-                        FargoGlobalTile.ClearEverything(xPosition, yPosition);
+                        FargoGlobalTile.ClearEverything(xPosition, yPosition, keepWires: true);
                 }
             }
         }

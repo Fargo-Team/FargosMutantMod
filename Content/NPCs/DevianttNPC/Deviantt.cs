@@ -483,7 +483,7 @@ public class Deviantt : ModNPC
     public override bool PreDraw(SpriteBatch sb, Vector2 screenPos, Color drawColor)
     {
         //if (NPC.IsABestiaryIconDummy)
-        //    return true;
+        //   return true;
         Texture2D texture = (Texture2D)TownNPCProfile().GetTextureNPCShouldUse(NPC);
 
         int xFrameToUse = RetrieveProperXFrame(0);
@@ -491,7 +491,7 @@ public class Deviantt : ModNPC
         Vector2 origin2 = rectangle.Size() / 2f;
         SpriteEffects effects = SpriteEffects.None;
 
-        Vector2 position = NPC.Center - Main.screenPosition + new Vector2(-4 * NPC.direction, NPC.gfxOffY - 6);
+        Vector2 position = NPC.Center - screenPos + new Vector2(-4 * NPC.direction, NPC.gfxOffY - 6);
         if ((bool?)Fargowiltas.SoulsMod?.Call("GiftsReceived") == false && !NPC.IsABestiaryIconDummy)
         {
             Color color26 = Main.DiscoColor;

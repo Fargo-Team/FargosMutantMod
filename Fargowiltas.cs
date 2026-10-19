@@ -7,6 +7,7 @@ using Fargowiltas.Content.Items.Misc;
 using Fargowiltas.Content.Items.Summons.Abom;
 using Fargowiltas.Content.Items.Tiles;
 using Fargowiltas.Content.NPCs;
+using Fargowiltas.Content.NPCs.DevianttNPC;
 using Fargowiltas.Content.Projectiles;
 using Fargowiltas.Content.UI;
 using Fargowiltas.Content.UI.StatSheet;
@@ -123,6 +124,9 @@ public class Fargowiltas : Mod
         SetupModReferences();
 
         FargoUIManager.LoadUI();
+
+        string path = "Fargowiltas/Content/NPCs/DevianttNPC/Deviantt_Head_Hatless";
+        Instance.AddNPCHeadTexture(ModContent.NPCType<Deviantt>(), path);
 
         ModStats = [];
         PermaUpgrades =

@@ -4,6 +4,7 @@ using Fargowiltas.Content.Items.Summons.Abom;
 using Fargowiltas.Content.Items.Summons.Deviantt;
 using Fargowiltas.Content.Items.Tiles;
 using Fargowiltas.Content.Items.Vanity;
+using Fargowiltas.Content.NPCs.DevianttNPC;
 using Fargowiltas.Content.UI.Emotes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

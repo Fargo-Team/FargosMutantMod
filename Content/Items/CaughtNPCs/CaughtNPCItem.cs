@@ -2,6 +2,7 @@
 using Fargowiltas.Content.Items.Vanity;
 using Fargowiltas.Content.NPCs;
 using Fargowiltas.Content.NPCs.AbominationnNPC;
+using Fargowiltas.Content.NPCs.DevianttNPC;
 using Fargowiltas.Content.NPCs.SquirrelNPC;
 using Microsoft.Xna.Framework;
 using System;

@@ -7,7 +7,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.Utilities;
 
-namespace Fargowiltas.Content.NPCs;
+namespace Fargowiltas.Content.NPCs.DevianttNPC;
 
 internal class DevianttDialogueTracker
 {

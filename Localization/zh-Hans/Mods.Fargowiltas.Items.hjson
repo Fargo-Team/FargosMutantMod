@@ -1182,19 +1182,14 @@ AbominationnScythe: {
 	// Tooltip: ""
 }
 
-DevianttBody: {
-	DisplayName: 戴薇安的身体
+Bloodress: {
+	// DisplayName: Bloodress
 	// Tooltip: ""
 }
 
-DevianttMask: {
-	DisplayName: 戴薇安的面具
-	// Tooltip: ""
-}
-
-DevianttPants: {
-	DisplayName: 戴薇安的裤子
-	// Tooltip: ""
+MatthewVanity: {
+	// DisplayName: Matthew
+	// Tooltip: "'Might bite'"
 }
 
 LumberHat: {
@@ -1648,8 +1643,8 @@ HerbFertilizer: {
 	// Tooltip: Causes herbs to instantly grow
 }
 
-DevianttBow: {
-	// DisplayName: Deviantt Bow
+ShowtimeBow: {
+	// DisplayName: Showtime Bow
 	// Tooltip: ""
 }
 

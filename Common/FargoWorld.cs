@@ -1,6 +1,7 @@
 using Fargowiltas.Common.Configs;
 using Fargowiltas.Content.Items.Summons.Deviantt;
 using Fargowiltas.Content.Items.Tiles;
+using Fargowiltas.Content.Items.Vanity;
 using Fargowiltas.Content.NPCs;
 using Fargowiltas.Content.Projectiles;
 using Microsoft.Xna.Framework;
@@ -32,7 +33,7 @@ public class FargoWorld : ModSystem
 
     internal static bool IsAnglerQuestComplete;
 
-    internal static bool IsSomeoneWearingHatty;
+    internal static bool IsSomeoneWearingMatthew;
 
     internal static bool[] CurrentSpawnRateTile;
     internal static Dictionary<string, bool> DownedBools = [];
@@ -198,7 +199,7 @@ public class FargoWorld : ModSystem
         Binding = (EnergizedGlobalNPC.Binding)reader.ReadInt32();
         EternityMode = reader.ReadBoolean();
         IsAnglerQuestComplete = reader.ReadBoolean();
-        IsSomeoneWearingHatty = reader.ReadBoolean();
+        IsSomeoneWearingMatthew = reader.ReadBoolean();
         // These can't be bytes because a sign is required and
         // signed bytes range between -127 and 127, which is not enough for the NPC array
         FargoGlobalNPC.eaterBoss = reader.ReadInt16();
@@ -242,10 +243,10 @@ public class FargoWorld : ModSystem
         {
             if (player != null && !player.dead)
             {
-                bool wearingHatty = 
-                    player.head == EquipLoader.GetEquipSlot(Mod, "DevianttMask", EquipType.Head) ||
-                    player.armor[10].headSlot == EquipLoader.GetEquipSlot(Mod, "DevianttMask", EquipType.Head);
-                IsSomeoneWearingHatty = wearingHatty;
+                bool wearingMatthew = 
+                    player.head == EquipLoader.GetEquipSlot(Mod, "MatthewVanity", EquipType.Head) ||
+                    player.armor[10].headSlot == EquipLoader.GetEquipSlot(Mod, "MatthewVanity", EquipType.Head);
+                IsSomeoneWearingMatthew = wearingMatthew;
                 //Main.NewText(wearingHatty);
             }
         }

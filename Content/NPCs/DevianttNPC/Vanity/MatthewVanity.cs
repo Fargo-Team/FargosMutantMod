@@ -6,10 +6,11 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Fargowiltas.Content.Items.Vanity;
+namespace Fargowiltas.Content.NPCs.DevianttNPC.Vanity;
 
 [AutoloadEquip(EquipType.Head)]
-public class DevianttMask : ModItem
+[LegacyName("DevianttMask")]
+public class MatthewVanity : ModItem
 {
     public override bool ModifyEquipTextureDraw(ref PlayerDrawSet drawInfo, ref DrawData drawData, EquipTexture equipTexture, string methodName)
     {

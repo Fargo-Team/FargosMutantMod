@@ -5,11 +5,23 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Fargowiltas.Content.Items.Vanity;
+namespace Fargowiltas.Content.NPCs.DevianttNPC.Vanity;
 
 [AutoloadEquip(EquipType.Back)]
-public class DevianttBow : ModItem
+[LegacyName("DevianttPants")]
+public class ShowtimeBow : ModItem
 {
+    public override bool ModifyEquipTextureDraw(ref PlayerDrawSet drawInfo, ref DrawData drawData, EquipTexture equipTexture, string methodName)
+    {
+        Rectangle rect = new(0, 0, 56, 56);
+        Vector2 origin = rect.Size() / 2f;
+
+        Player player = drawInfo.drawPlayer;
+        float yOffset = Main.OffsetsPlayerHeadgear[player.bodyFrame.Y / player.bodyFrame.Height].Y;
+        Vector2 offset = new(14 * -player.direction, (-4 + yOffset) * player.gravDir);
+        drawInfo.DrawDataCache.Add(drawData with { position = drawData.position + offset, sourceRect = rect, origin = origin });
+        return false;
+    }
     public override void SetDefaults()
     {
         Item.width = 50;
@@ -18,8 +30,18 @@ public class DevianttBow : ModItem
         Item.vanity = true;
         Item.accessory = true;
     }
+
+    public override void AddRecipes()
+    {
+        CreateRecipe()
+            .AddIngredient(ItemID.Silk, 8)
+            .AddIngredient(ItemID.ChumBucket, 2)
+            .AddTile(TileID.Loom)
+            .Register();
+    }
 }
 
+/*
 public class DevianttBowDrawLayer : PlayerDrawLayer
 {
     public override bool GetDefaultVisibility(PlayerDrawSet drawInfo) => drawInfo.shadow == 0 && drawInfo.drawPlayer.back == EquipLoader.GetEquipSlot(Mod, "DevianttBow", EquipType.Back);
@@ -44,3 +66,4 @@ public class DevianttBowDrawLayer : PlayerDrawLayer
         drawInfo.DrawDataCache.Add(data);
     }
 }
+*/

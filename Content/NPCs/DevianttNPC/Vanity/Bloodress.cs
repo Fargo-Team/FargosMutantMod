@@ -1,10 +1,11 @@
 ﻿using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Fargowiltas.Content.Items.Vanity;
+namespace Fargowiltas.Content.NPCs.DevianttNPC.Vanity;
 
-[AutoloadEquip(EquipType.Legs)]
-public class DevianttPants : ModItem
+[AutoloadEquip(EquipType.Body)]
+[LegacyName("DevianttBody")]
+public class Bloodress : ModItem
 {
     public override void SetDefaults()
     {
@@ -17,9 +18,9 @@ public class DevianttPants : ModItem
     public override void AddRecipes()
     {
         CreateRecipe()
-            .AddIngredient(ItemID.ChumBucket)
-            .AddIngredient(ItemID.SoulofFlight, 5)
-            .AddTile(TileID.TinkerersWorkbench)
+            .AddIngredient(ItemID.Silk, 7)
+            .AddIngredient(ItemID.ChumBucket, 3)
+            .AddTile(TileID.Loom)
             .Register();
     }
 }

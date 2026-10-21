@@ -1184,19 +1184,14 @@ AbominationnScythe: {
 	Tooltip: ""
 }
 
-DevianttBody: {
-	DisplayName: Corpo da Deviantt
-	Tooltip: ""
+Bloodress: {
+	// DisplayName: Bloodress
+	// Tooltip: ""
 }
 
-DevianttMask: {
-	DisplayName: Máscara da Deviantt
-	Tooltip: ""
-}
-
-DevianttPants: {
-	DisplayName: Calças da Deviantt
-	Tooltip: ""
+MatthewVanity: {
+	// DisplayName: Matthew
+	// Tooltip: "'Might bite'"
 }
 
 LumberHat: {
@@ -1650,8 +1645,8 @@ HerbFertilizer: {
 	// Tooltip: Causes herbs to instantly grow
 }
 
-DevianttBow: {
-	// DisplayName: Deviantt Bow
+ShowtimeBow: {
+	// DisplayName: Showtime Bow
 	// Tooltip: ""
 }
 

@@ -3,6 +3,7 @@ using Fargowiltas.Content.Biomes;
 using Fargowiltas.Content.Items.Summons.Deviantt;
 using Fargowiltas.Content.Items.Tiles;
 using Fargowiltas.Content.NPCs.AbominationnNPC;
+using Fargowiltas.Content.NPCs.DevianttNPC.Vanity;
 using Fargowiltas.Content.Projectiles;
 using Fargowiltas.Content.UI.Emotes;
 using Microsoft.Xna.Framework;
@@ -14,6 +15,7 @@ using System.Linq;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.GameContent.Personalities;
 using Terraria.ID;
 using Terraria.Localization;
@@ -208,6 +210,10 @@ public class Deviantt : ModNPC
         typeName = Language.GetTextValue("Mods.Fargowiltas.NPCs.Deviantt.DisplayName");
     }
 
+    public override void ModifyNPCLoot(NPCLoot npcLoot)
+    {
+        npcLoot.Add(ItemDropRule.Common(ItemType<MatthewVanity>(), 8)); // 1 in 8
+    }
     public override string GetChat() //=> string.Empty;
     {
         Mod souls = Fargowiltas.SoulsMod;
@@ -467,7 +473,7 @@ public class Deviantt : ModNPC
     */
     public override void ChatBubblePosition(ref Vector2 position, ref SpriteEffects spriteEffects)
     {   
-        if (FargoWorld.IsSomeoneWearingHatty)
+        if (FargoWorld.IsSomeoneWearingMatthew)
         {
             position.Y += 6;
         }
@@ -475,7 +481,7 @@ public class Deviantt : ModNPC
 
     public override void EmoteBubblePosition(ref Vector2 position, ref SpriteEffects spriteEffects)
     {
-        if (FargoWorld.IsSomeoneWearingHatty)
+        if (FargoWorld.IsSomeoneWearingMatthew)
             position.Y += 4;       
         else
             position.Y -= 8;
@@ -514,7 +520,7 @@ public class Deviantt : ModNPC
     {
         int frame = frameX;
         bool faceRight = NPC.spriteDirection == 1;
-        if (FargoWorld.IsSomeoneWearingHatty)
+        if (true)//FargoWorld.IsSomeoneWearingMatthew)
             frame += 2;
         if (faceRight)
             frame += 1;
@@ -545,7 +551,7 @@ public class DevianttProfile : ITownNPCProfile
 
     public int GetHeadTextureIndex(NPC npc)
     {
-        if (FargoWorld.IsSomeoneWearingHatty)
+        if (FargoWorld.IsSomeoneWearingMatthew)
             return GetModHeadSlot("Fargowiltas/Content/NPCs/DevianttNPC/Deviantt_Head_Hatless");
         return GetModHeadSlot("Fargowiltas/Content/NPCs/DevianttNPC/Deviantt_Head");
     }

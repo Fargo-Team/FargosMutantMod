@@ -197,7 +197,7 @@ public class PrefixOption : UIPanel
         base.OnActivate();
 
         RemoveAllChildren();
-        UIText text = new UIText(Lang.prefix[prefix]);
+        UIText text = new(Lang.prefix[prefix]);
         text.TextColor = ItemRarity.GetColor(item.rare);
         text.Top.Set(0, 0);
         text.Left.Set(0, 0);

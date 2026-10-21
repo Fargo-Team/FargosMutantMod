@@ -7,7 +7,7 @@ namespace Fargowiltas.Common.Systems.Collections;
 [ReinitializeDuringResizeArrays]
 public static class FargoBuffSets
 {
-    public static SetFactory BuffFactory = new SetFactory(BuffLoader.BuffCount, "Fargowiltas/BuffID", Search);
+    public static SetFactory BuffFactory = new(BuffLoader.BuffCount, "Fargowiltas/BuffID", Search);
     public static IdDictionary Search = IdDictionary.Create<BuffID, int>();
     public static bool[] BuffDisplayBlacklist = BuffFactory.CreateBoolSet(false,
         BuffID.Campfire,

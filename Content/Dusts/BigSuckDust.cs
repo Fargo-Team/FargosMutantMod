@@ -7,7 +7,7 @@ namespace Fargowiltas.Content.Dusts;
 
 public class BigSuckDust : ModDust
 {
-    public override string Texture => null;
+    public override string Texture => string.Empty;
     public override void OnSpawn(Dust dust)
     {
         //to give off the effect of sucking the entire world, dust sprite is random from many options

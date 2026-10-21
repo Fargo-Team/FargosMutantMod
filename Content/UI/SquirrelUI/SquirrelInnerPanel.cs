@@ -113,7 +113,7 @@ public class SquirrelInnerPanel : UIPanel
         {
             SpriteEffects bubbleFlip = !InFeedMode() ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
             Rectangle frame = speechBubble.Value.Frame(2, frameX: swapTimer < 5 ? 0 : 1);
-            Vector2 offset = new Vector2((InFeedMode() ? 1 : -1) * 70, -squirrelFrame.Height);
+            Vector2 offset = new((InFeedMode() ? 1 : -1) * 70, -squirrelFrame.Height);
             spriteBatch.Draw(speechBubble.Value, squirrelPos + offset, frame, Color.White, 0f, frame.Size() / 2, 2f, bubbleFlip, 0f);
 
             if (swapTimer > 10)

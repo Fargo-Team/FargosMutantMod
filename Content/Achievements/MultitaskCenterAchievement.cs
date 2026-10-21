@@ -1,4 +1,5 @@
 ﻿using Fargowiltas.Content.Items.Tiles;
+using Terraria.Achievements;
 using Terraria.ModLoader;
 
 namespace Fargowiltas.Content.Achievements;
@@ -11,7 +12,7 @@ public class MultitaskCenterAchievement : ModAchievement
 
     public override void SetStaticDefaults()
     {
-        Achievement.SetCategory(Terraria.Achievements.AchievementCategory.Collector);
+        Achievement.SetCategory(AchievementCategory.Collector);
 
         AddItemCraftCondition(ModContent.ItemType<MultitaskCenter>());
     }

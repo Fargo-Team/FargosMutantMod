@@ -98,7 +98,7 @@ public static class FargoUIManager
 
     public static void LoadUI()
     {
-        if (!Main.dedServ)
+        if (Main.netMode != NetmodeID.Server)
         {
             foreach (var ui in UserInterfaces)
             {
@@ -108,7 +108,7 @@ public static class FargoUIManager
     }
     public static void InitializeUI()
     {
-        if (!Main.dedServ)
+        if (Main.netMode != NetmodeID.Server)
         {
             foreach (var ui in UserInterfaces)
             {

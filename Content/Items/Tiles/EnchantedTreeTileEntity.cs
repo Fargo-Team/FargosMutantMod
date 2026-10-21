@@ -64,7 +64,7 @@ public class EnchantedTreeTileEntity : ModTileEntity
     }
     public override int Hook_AfterPlacement(int i, int j, int type, int style, int direction, int alternate)
     {
-        Point16 tileOrigin = new Point16(0, 3);
+        Point16 tileOrigin = new(0, 3);
         int placedEntity = Place(i - tileOrigin.X, j - tileOrigin.Y);
         if (Main.netMode == NetmodeID.MultiplayerClient)
         {
@@ -150,7 +150,7 @@ public class EnchantedTreeTileEntity : ModTileEntity
     }
     public static void UpdateEnchantedTrees()
     {
-        if (!Main.dedServ)
+        if (Main.netMode != NetmodeID.Server)
         {
 
             for (int t = 0; t < EnchantedTreeSheet.EnchantedTrees.Count; t++)
@@ -169,7 +169,7 @@ public class EnchantedTreeTileEntity : ModTileEntity
                 if (Main.playerInventory && tree.ItemType >= 0 && tree.CursorInsertCooldown <= 0 && Main.mouseRight && Main.mouseRightRelease && !Main.LocalPlayer.mouseInterface)
                 {
                     Vector2 ejectTreeTopLeft = new Vector2(tree.Position.X, tree.Position.Y) * 16;
-                    Rectangle ejectTreeHitbox = new Rectangle((int)ejectTreeTopLeft.X, (int)ejectTreeTopLeft.Y, 3 * 16, 4 * 16);
+                    Rectangle ejectTreeHitbox = new((int)ejectTreeTopLeft.X, (int)ejectTreeTopLeft.Y, 3 * 16, 4 * 16);
                     if (ejectTreeHitbox.Contains(Main.MouseWorld.ToPoint()) && Main.LocalPlayer.Distance(ejectTreeTopLeft) < 400f)
                     {
                         int it = Item.NewItem(Main.LocalPlayer.GetSource_TileInteraction(tree.Position.X, tree.Position.Y), tree.Position.ToWorldCoordinates(), tree.ItemType, 1, prefixGiven: tree.Prefix);

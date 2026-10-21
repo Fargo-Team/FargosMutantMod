@@ -359,7 +359,7 @@ public class PotionBagUI : FargoUI
 
             if (ContainsPoint(Main.MouseScreen))
             {
-                Item hoverItem = new Item(type);
+                Item hoverItem = new(type);
                 Main.LocalPlayer.mouseInterface = true;
                 Main.HoverItem = hoverItem.Clone();
                 Main.hoverItemName = hoverItem.Name;
@@ -367,8 +367,8 @@ public class PotionBagUI : FargoUI
 
                 Rectangle lineFrame = line.Frame();
                 Vector2 lineOrigin = lineFrame.Size() - new Vector2(lineFrame.Size().X, lineFrame.Size().Y / 2f);
-                Vector2 horizScale = new Vector2(0.03f, (GetDimensions().Width / lineFrame.Height) - 2f);
-                Vector2 vertScale = new Vector2(0.03f, (GetDimensions().Height / lineFrame.Height) - 2f);
+                Vector2 horizScale = new(0.03f, (GetDimensions().Width / lineFrame.Height) - 2f);
+                Vector2 vertScale = new(0.03f, (GetDimensions().Height / lineFrame.Height) - 2f);
                 Color baseColor = Color.Lerp(Color.White, Count >= PotionBagSystem.MaxPotions ? Color.Green : Color.Red, 0.4f);
                 Color color = baseColor * 0.7f;
 
@@ -625,7 +625,7 @@ public class PotionBagUI : FargoUI
         public PotionAddButton()
         {
             SetPadding(0f);
-            UIText text = new UIText(GetCoolerText("Store"));
+            UIText text = new(GetCoolerText("Store"));
             text.Width.Set(0, 1f);
             text.Height.Set(0, 1f);
             text.TextOriginX = 0.5f;

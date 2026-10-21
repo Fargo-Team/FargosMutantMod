@@ -13,7 +13,7 @@ namespace Fargowiltas.Common.Systems.Collections;
 [ReinitializeDuringResizeArrays]
 public static class FargoItemSets
 {
-    public static SetFactory ItemFactory = new SetFactory(ItemLoader.ItemCount, "Fargowiltas/ItemID", Search);
+    public static SetFactory ItemFactory = new(ItemLoader.ItemCount, "Fargowiltas/ItemID", Search);
     public static IdDictionary Search = IdDictionary.Create<ItemID, int>();
 
     public static bool[] MechanicalAccessory = ItemFactory.CreateBoolSet(false,

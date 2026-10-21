@@ -46,7 +46,7 @@ public class ObsidianWreckingBallProj : ModProjectile
     }
 
     private int swing_direction = 1;
-    private readonly List<int> _landingDust = new List<int>();
+    private readonly List<int> _landingDust = new();
     public ref float Timer => ref Projectile.ai[1];
 
     public static bool PlayerHasActiveBall(int owner)
@@ -61,12 +61,13 @@ public class ObsidianWreckingBallProj : ModProjectile
     }
 
     private readonly List<int> house_rows = new();
-    private Dictionary<int, List<(int x, int y)>> houseTilesByRow = new Dictionary<int, List<(int x, int y)>>();
+    private Dictionary<int, List<(int x, int y)>> houseTilesByRow = new();
     private int currentDestructionRowIndex;
     public ref float Depth => ref Projectile.localAI[0];
     public ref float SpinVariance => ref Projectile.localAI[1];
 
-    private static readonly HashSet<ushort> HouseWallTypes = new HashSet<ushort> {
+    private static readonly HashSet<ushort> HouseWallTypes = new()
+    {
         WallID.ObsidianBrickUnsafe, WallID.HellstoneBrickUnsafe
     };
 
@@ -306,7 +307,7 @@ public class ObsidianWreckingBallProj : ModProjectile
 
         if (start == Point16.NegativeOne) return;
         HashSet<(int x, int y)> visited = new() { (start.X, start.Y) };
-        Queue<(int x, int y)> queue = new Queue<(int x, int y)>();
+        Queue<(int x, int y)> queue = new();
         queue.Enqueue((start.X, start.Y));
 
         int min_x = start.X, max_x = start.X, minY = start.Y, maxY = start.Y;
@@ -368,7 +369,7 @@ public class ObsidianWreckingBallProj : ModProjectile
         int floorSearchStart = groundRow > 0 ? Math.Min(maxY, groundRow + 3) : maxY;
         int searchMaxY = Math.Max(floorSearchStart, minY);
 
-        Dictionary<int, HashSet<int>> rowColumns = new Dictionary<int, HashSet<int>>();
+        Dictionary<int, HashSet<int>> rowColumns = new();
         foreach ((int x, int y) in visited)
         {
             if (!rowColumns.ContainsKey(y)) rowColumns[y] = new HashSet<int>();
@@ -408,7 +409,7 @@ public class ObsidianWreckingBallProj : ModProjectile
         }
 
         int maxAllowedY = floorRow - 1;
-        HashSet<(int x, int y)> allHousePositions = new HashSet<(int x, int y)>();
+        HashSet<(int x, int y)> allHousePositions = new();
 
         foreach ((int x, int y) in visited)
         {
@@ -435,7 +436,7 @@ public class ObsidianWreckingBallProj : ModProjectile
         }
 
         house_rows.Clear();
-        List<int> sortedRowKeys = new List<int>(houseTilesByRow.Keys);
+        List<int> sortedRowKeys = new(houseTilesByRow.Keys);
         sortedRowKeys.Sort();
         for (int r = 0; r < sortedRowKeys.Count; r++) house_rows.Add(sortedRowKeys[r]);
 

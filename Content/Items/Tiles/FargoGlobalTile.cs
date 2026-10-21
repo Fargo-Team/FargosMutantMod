@@ -96,7 +96,7 @@ public class FargoGlobalTile : GlobalTile
     public override void NearbyEffects(int i, int j, int type, bool closer)
     {
         Player player = Main.LocalPlayer;
-        if (closer && TileID.Sets.Torch[type] && !Main.dedServ
+        if (closer && TileID.Sets.Torch[type] && Main.netMode != NetmodeID.Server
             && player.UsingBiomeTorches
             && (LastTorchUpdate < Main.GameUpdateCount - 60 || LastTorchUpdate == Main.GameUpdateCount))
         {

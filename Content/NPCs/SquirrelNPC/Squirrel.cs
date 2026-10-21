@@ -54,7 +54,7 @@ public class Squirrel : ModNPC
 
         NPCID.Sets.CannotSitOnFurniture[Type] = true;
 
-        NPCID.Sets.NPCBestiaryDrawModifiers drawModifiers = new NPCID.Sets.NPCBestiaryDrawModifiers()
+        NPCID.Sets.NPCBestiaryDrawModifiers drawModifiers = new()
         {
             Velocity = -1f,
             Direction = -1
@@ -345,7 +345,7 @@ public class Squirrel : ModNPC
             for (int j = 0; j < 12; j++)
             {
                 Vector2 afterimageOffset = (MathHelper.TwoPi * j / 12f).ToRotationVector2() * 4f + Vector2.UnitY * 3;
-                Color glowColor = new Color(255, 0, 0, 0);
+                Color glowColor = new(255, 0, 0, 0);
                 Main.EntitySpriteDraw(texture, position + afterimageOffset - new Vector2(0, 4), frame, glowColor, NPC.rotation, origin, scale, effects, 0f);
             }
         }
@@ -361,7 +361,7 @@ public class Squirrel : ModNPC
     {
         if (NPC.life <= 0)
         {
-            if (!Main.dedServ)
+            if (Main.netMode != NetmodeID.Server)
             {
                 Gore.NewGore(NPC.GetSource_FromThis(), NPC.Center, NPC.velocity, ModContent.Find<ModGore>(Mod.Name, $"TophatSquirrelGore").Type, NPC.scale);
             }

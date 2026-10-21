@@ -64,7 +64,7 @@ public class Omnistation2 : BaseOmnistation
 
 public class OmnistationSheet : ModTile
 {
-    public virtual Color color => new Color(221, 85, 125);
+    public virtual Color color => new(221, 85, 125);
 
     public override void SetStaticDefaults()
     {
@@ -119,7 +119,7 @@ public class OmnistationSheet : ModTile
         int y3 = num156 * Main.tileFrame[Type]; //ypos of upper left corner of sprite to draw
         Rectangle rectangle = new(tile.TileFrameX, tile.TileFrameY + y3, 16, 16);
         Vector2 origin2 = rectangle.Size() / 2f;
-        Vector2 zero = new Vector2(Main.offScreenRange, Main.offScreenRange);
+        Vector2 zero = new(Main.offScreenRange, Main.offScreenRange);
         //Rectangle frame = new(tile.TileFrameX, tile.TileFrameY + Main.tileFrame[Type], texture2D13.Width, texture2D13.Height);
         if (Main.drawToScreen)
         {
@@ -131,7 +131,7 @@ public class OmnistationSheet : ModTile
 
 public class OmnistationSheet2 : OmnistationSheet
 {
-    public override Color color => new Color(102, 116, 130);
+    public override Color color => new(102, 116, 130);
 
     public override void PostDraw(int i, int j, SpriteBatch spriteBatch)
     {
@@ -141,7 +141,7 @@ public class OmnistationSheet2 : OmnistationSheet
         int y3 = num156 * Main.tileFrame[Type]; //ypos of upper left corner of sprite to draw
         Rectangle rectangle = new(tile.TileFrameX, tile.TileFrameY + y3, 16, 16);
         Vector2 origin2 = rectangle.Size() / 2f;
-        Vector2 zero = new Vector2(Main.offScreenRange, Main.offScreenRange);
+        Vector2 zero = new(Main.offScreenRange, Main.offScreenRange);
         //Rectangle frame = new(tile.TileFrameX, tile.TileFrameY + Main.tileFrame[Type], texture2D13.Width, texture2D13.Height);
         if (Main.drawToScreen)
         {

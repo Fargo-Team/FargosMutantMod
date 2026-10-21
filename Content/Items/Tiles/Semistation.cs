@@ -39,7 +39,7 @@ public class Semistation : ModItem
 
 public class SemistationSheet : ModTile
 {
-    public virtual Color color => new Color(221, 85, 125);
+    public virtual Color color => new(221, 85, 125);
 
     public override void SetStaticDefaults()
     {

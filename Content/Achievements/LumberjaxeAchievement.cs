@@ -1,4 +1,5 @@
-﻿using Terraria.GameContent.Achievements;
+﻿using Terraria.Achievements;
+using Terraria.GameContent.Achievements;
 using Terraria.ModLoader;
 
 namespace Fargowiltas.Content.Achievements;
@@ -9,11 +10,11 @@ public class LumberjaxeAchievement : ModAchievement
 
     public override int Index => 3;
 
-    public CustomFlagCondition Condition { get; private set; }
+    public CustomFlagCondition Condition { get; private set; } = new(string.Empty);
 
     public override void SetStaticDefaults()
     {
-        Achievement.SetCategory(Terraria.Achievements.AchievementCategory.Collector);
+        Achievement.SetCategory(AchievementCategory.Collector);
 
         Condition = AddCondition("LumberjaxeAchievementCondition");
     }

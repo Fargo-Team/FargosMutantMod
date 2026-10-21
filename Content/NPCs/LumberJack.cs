@@ -62,7 +62,7 @@ public class LumberJack : ModNPC
 
         NPCID.Sets.ShimmerTownTransform[Type] = true; // Allows for this NPC to have a different texture after touching the Shimmer liquid.
 
-        NPCID.Sets.NPCBestiaryDrawModifiers drawModifiers = new NPCID.Sets.NPCBestiaryDrawModifiers()
+        NPCID.Sets.NPCBestiaryDrawModifiers drawModifiers = new()
         {
             Velocity = -1f,
             Direction = -1
@@ -352,7 +352,7 @@ public class LumberJack : ModNPC
                 Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood, 2.5f * hit.HitDirection, -2.5f, Scale: 0.8f);
             }
 
-            if (!Main.dedServ)
+            if (Main.netMode != NetmodeID.Server)
             {
                 Vector2 pos = NPC.position + new Vector2(Main.rand.Next(NPC.width - 8), Main.rand.Next(NPC.height / 2));
                 Gore.NewGore(NPC.GetSource_Death(), pos, NPC.velocity, Find<ModGore>("Fargowiltas", "LumberGore3").Type);

@@ -95,7 +95,7 @@ public class StatCategory
     public StatCategory AddStat(string key, float priority, Func<object> value, string localPath, Func<bool> condition = null)
     {
         condition ??= (() => true);
-        Stat newStat = new Stat(key, priority, value, () => Language.GetTextValue(localPath, value.Invoke()), condition);
+        Stat newStat = new(key, priority, value, () => Language.GetTextValue(localPath, value.Invoke()), condition);
 
         if (!Stats.Contains(newStat))
         {
@@ -121,7 +121,7 @@ public class StatCategory
 public static class StatRegistry
 {
     private static bool finalized = false;
-    private static Dictionary<string, StatCategory> registry = new Dictionary<string, StatCategory>();
+    private static Dictionary<string, StatCategory> registry = new();
 
     /// <summary>
     /// Attempts to register the stat category
@@ -174,7 +174,7 @@ public static class StatRegistry
                 category.priorityMax++;
             }
 
-            Stat newStat = new Stat(statKey, p, value, textFunction, modName: modName);
+            Stat newStat = new(statKey, p, value, textFunction, modName: modName);
             if (!category.Stats.Contains(newStat))
             {
                 category.Stats.Add(newStat);

@@ -146,7 +146,7 @@ public class PhantasmalEyeProjectile : ModProjectile
         Texture2D glow = ModContent.Request<Texture2D>(Texture + "_Glow").Value;
         int rect1 = glow.Height / Main.projFrames[Projectile.type];
         int rect2 = rect1 * Projectile.frame;
-        Rectangle glowrectangle = new Rectangle(0, rect2, glow.Width, rect1);
+        Rectangle glowrectangle = new(0, rect2, glow.Width, rect1);
         Vector2 gloworigin2 = glowrectangle.Size() / 2f;
         Color glowcolor = Color.Lerp(new Color(31, 187, 192, 0), Color.Transparent, 0.74f);
         Vector2 drawCenter = Projectile.Center - Projectile.velocity.SafeNormalize(Vector2.UnitX) * 14;
@@ -188,7 +188,7 @@ public class PhantasmalEyeProjectile : ModProjectile
         Texture2D texture2D13 = ModContent.Request<Texture2D>(Texture).Value;
         int num156 = texture2D13.Height / Main.projFrames[Projectile.type]; //ypos of lower right corner of sprite to draw
         int y3 = num156 * Projectile.frame; //ypos of upper left corner of sprite to draw
-        Rectangle rectangle = new Rectangle(0, y3, texture2D13.Width, num156);
+        Rectangle rectangle = new(0, y3, texture2D13.Width, num156);
         Vector2 origin2 = rectangle.Size() / 2f;
         Main.spriteBatch.Draw(texture2D13, Projectile.Center - Main.screenPosition + new Vector2(0f, Projectile.gfxOffY), new Microsoft.Xna.Framework.Rectangle?(rectangle), Projectile.GetAlpha(lightColor), Projectile.rotation, origin2, Projectile.scale, SpriteEffects.None, 0f);
     }

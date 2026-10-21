@@ -49,7 +49,7 @@ public class Deviantt : ModNPC
 
         // NPCID.Sets.ShimmerTownTransform[Type] = true; // Allows for this NPC to have a different texture after touching the Shimmer liquid.
 
-        NPCID.Sets.NPCBestiaryDrawModifiers drawModifiers = new NPCID.Sets.NPCBestiaryDrawModifiers()
+        NPCID.Sets.NPCBestiaryDrawModifiers drawModifiers = new()
         {
             Velocity = -1f,
             Direction = -1
@@ -327,7 +327,7 @@ public class Deviantt : ModNPC
             npcShop.Add(new Item(pandorasBox.Type));
         }
 
-        Condition siblingPylonCondition = new Condition("Mods.Fargowiltas.Conditions.SiblingPylon", () => Condition.NpcIsPresent(NPCType<Abominationn>()).Predicate.Invoke() && Condition.NpcIsPresent(NPCType<Mutant>()).Predicate.Invoke());
+        Condition siblingPylonCondition = new("Mods.Fargowiltas.Conditions.SiblingPylon", () => Condition.NpcIsPresent(NPCType<Abominationn>()).Predicate.Invoke() && Condition.NpcIsPresent(NPCType<Mutant>()).Predicate.Invoke());
 
         npcShop
             .Add(new Item(ItemType<WormSnack>()) { shopCustomPrice = Item.buyPrice(copper: 20000) }, new Condition("Mods.Fargowiltas.Conditions.WormDown", () => FargoWorld.DownedBools["worm"]))
@@ -418,7 +418,7 @@ public class Deviantt : ModNPC
                 Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood, 2.5f * hit.HitDirection, -2.5f, 0, default, 0.8f);
             }
 
-            if (!Main.dedServ)
+            if (Main.netMode != NetmodeID.Server)
             {
                 Vector2 pos = NPC.position + new Vector2(Main.rand.Next(NPC.width - 8), Main.rand.Next(NPC.height / 2));
                 Gore.NewGore(NPC.GetSource_Death(), pos, NPC.velocity, Find<ModGore>("Fargowiltas", "DevianttGore3").Type);

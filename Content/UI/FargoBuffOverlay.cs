@@ -29,7 +29,7 @@ public class FargoBuffOverlay
     //key is buff id
     //value is <old duration, max duration>
     //purpose of knowing old duration: get debuffed for 15sec, it decrease to 4sec, debuffed again for 10sec, recalculate ratio to match
-    private static Dictionary<int, Tuple<int, int>> memorizedDebuffDurations = new Dictionary<int, Tuple<int, int>>();
+    private static Dictionary<int, Tuple<int, int>> memorizedDebuffDurations = new();
 
     public static void Draw(SpriteBatch spriteBatch, Player player)
     {
@@ -134,7 +134,7 @@ public class FargoBuffOverlay
                             if (y + height > buffIcon.Bounds.Height) //just in case
                                 y = buffIcon.Bounds.Height - height;
 
-                            Rectangle buffIconPortion = new Rectangle(x, y, width, height);
+                            Rectangle buffIconPortion = new(x, y, width, height);
                             Vector2 drawPortion = drawPos + y * Vector2.UnitY.RotatedBy(rotation);
                             Color portionColor = buffColor * faderRatio;
 

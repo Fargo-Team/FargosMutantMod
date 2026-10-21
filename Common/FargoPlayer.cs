@@ -73,7 +73,7 @@ public class FargoPlayer : ModPlayer
     public bool AutoSummon;
     public int AutoSummonCD;
     public float AutoSummonCap;
-    public static MethodInfo AutoSummonShootMethod;
+    public static MethodInfo? AutoSummonShootMethod = typeof(Player).GetMethod("ItemCheck_Shoot", BindingFlags.NonPublic | BindingFlags.Instance);
 
     public int StationSoundCooldown;
 
@@ -93,9 +93,7 @@ public class FargoPlayer : ModPlayer
     internal static int SyncSpawnRatesMaxCD => 60 * 2;
     internal int SyncSpawnRatesCD = SyncSpawnRatesMaxCD;
 
-#pragma warning disable CS8632
     public Fruit? grabbedFruit = null;
-#pragma warning restore CS8632
     public Vector2 LastInteractedChizard = Vector2.Zero;
 
     public List<BaseSpawnBoosterBuff> ActiveSpawnBoosters = [];
@@ -155,10 +153,6 @@ public class FargoPlayer : ModPlayer
         ItemHasBeenOwned = ItemID.Sets.Factory.CreateBoolSet(false);
         SacrificeCount = FargoItemSets.SacrificeCountDefault.Clone() as int[];
         SacrificeCountCache = [];
-    }
-    public override void Load()
-    {
-        AutoSummonShootMethod = typeof(Player).GetMethod("ItemCheck_Shoot", BindingFlags.NonPublic | BindingFlags.Instance);
     }
     public override void SaveData(TagCompound tag)
     {
@@ -448,6 +442,12 @@ public class FargoPlayer : ModPlayer
     public override void PreUpdate()
     {
         PotionToggler.TryLoad();
+        // There's no override for ghost updates and it blocks the rest of the update
+        if (Player.ghost)
+        {
+            UpdateDead();
+            return;
+        }
     }
     public override void PreUpdateBuffs()
     {
@@ -539,6 +539,7 @@ public class FargoPlayer : ModPlayer
     }
     public override void UpdateDead()
     {
+        ResetEffects();
         StationSoundCooldown = 0;
         AutoSummonCD = 0;
         if (FargoClientConfig.Instance.MultiplayerDeathSpectate && Player.dead && Main.netMode != NetmodeID.SinglePlayer && Main.player.Any(p => p != null && !p.dead && !p.ghost))
@@ -801,16 +802,7 @@ public class FargoPlayer : ModPlayer
 
     public override void PostBuyItem(NPC vendor, Item[] shopInventory, Item item)
     {
-        /*if (vendor.type == ModContent.NPCType<Squirrel>())
-        {
-            foreach (var npc in Main.npc.Where(n => n.active && n.townNPC && CaughtNPCItem.CaughtTownies.ContainsKey(n.type)))
-            {
-                if (item.type == CaughtNPCItem.CaughtTownies[npc.type])
-                {
-                    ModContent.GetInstance<BuyNPCAchievement>().Condition.Complete();
-                }
-            }
-        }*/
+
     }
 
     public override IEnumerable<Item> AddStartingItems(bool mediumCoreDeath)

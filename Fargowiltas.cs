@@ -204,7 +204,7 @@ public class Fargowiltas : Mod
         }
 
 
-        if (ModLoader.TryGetMod("Wikithis", out Mod wikithis) && !Main.dedServ)
+        if (ModLoader.TryGetMod("Wikithis", out Mod wikithis) && Main.netMode != NetmodeID.Server)
         {
             wikithis.Call("AddModURL", this, "https://fargosmods.wiki.gg/wiki/{}");
 
@@ -630,12 +630,12 @@ public class Fargowiltas : Mod
                         tree.Fruits = [];
                         for (int i = 0; i < fruitlength; i++)
                         {
-                            Fruit fruit = new Fruit(reader.ReadInt32(), reader.ReadVector2(), reader.ReadVector2(), reader.ReadVector2(), reader.ReadInt32(), reader.ReadInt32());
+                            Fruit fruit = new(reader.ReadInt32(), reader.ReadVector2(), reader.ReadVector2(), reader.ReadVector2(), reader.ReadInt32(), reader.ReadInt32());
                             fruit.grabCooldown = reader.ReadInt32();
                             fruit.despawnTimer = reader.ReadSingle();
                             tree.Fruits.Add(fruit);
                         }
-                        if (Main.dedServ)
+                        if (Main.netMode == NetmodeID.Server)
                         {
                             NetMessage.SendData(MessageID.TileEntitySharing, -1, -1, null, tree.ID, tree.Position.X, tree.Position.Y);
                         }
@@ -649,7 +649,7 @@ public class Fargowiltas : Mod
                         {
                             EnchantedTreeSheet.EnchantedTrees.Add(new Point16(reader.ReadInt32(), reader.ReadInt32()));
                         }
-                        if (Main.dedServ)
+                        if (Main.netMode == NetmodeID.Server)
                         {
                             FargoNet.SendEnchantedTreesListPacket();
                         }
@@ -676,12 +676,12 @@ public class Fargowiltas : Mod
                     break;
                 case PacketID.BetsySummon:
                     {
-                        if (Main.dedServ)
+                        if (Main.netMode == NetmodeID.Server)
                         {
                             FargowiltasDetours.BetsyEggUsed = true;
-                            Item egg = new Item(ModContent.ItemType<BetsyEgg>());
+                            Item egg = new(ModContent.ItemType<BetsyEgg>());
                             Player player = Main.player[reader.ReadInt32()];
-                            Point standPos = new Point(reader.ReadInt32(), reader.ReadInt32());
+                            Point standPos = new(reader.ReadInt32(), reader.ReadInt32());
                             DD2Event.SummonCrystal(standPos.X, standPos.Y, player.whoAmI);
                             DD2Event.TimeLeftBetweenWaves = 0;
                             NPC.waveNumber = 6;
@@ -694,7 +694,7 @@ public class Fargowiltas : Mod
                     }
                     break;
                 case PacketID.SyncChestContents:
-                    if (Main.dedServ)
+                    if (Main.netMode == NetmodeID.Server)
                     {
                         int chestX = reader.ReadInt32();
                         int chestY = reader.ReadInt32();
@@ -710,7 +710,7 @@ public class Fargowiltas : Mod
                     int c = Chest.FindChest(chestx, chesty);
                     if (c >= 0)
                     {
-                        if (Main.dedServ)
+                        if (Main.netMode == NetmodeID.Server)
                         {
                             int itemtype = reader.ReadInt32();
                             int itemstack = reader.ReadInt32();
@@ -755,7 +755,7 @@ public class Fargowiltas : Mod
                 case PacketID.ChangeChizardHat:
                     int chizard = reader.ReadInt32();
                     int hat = reader.ReadInt32();
-                    if (Main.dedServ)
+                    if (Main.netMode == NetmodeID.Server)
                     {
                         ChestWizardTileEntity chizardEntity = (ChestWizardTileEntity)TileEntity.ByID[chizard];
                         chizardEntity.hatID = hat;
@@ -766,7 +766,7 @@ public class Fargowiltas : Mod
                     {
                         int id = reader.ReadInt32();
                         int count = reader.ReadInt32();
-                        if (Main.dedServ)
+                        if (Main.netMode == NetmodeID.Server)
                         {
                             PotionBagSystem.AddPotion(id, count);
                             NetMessage.SendData(MessageID.WorldData);

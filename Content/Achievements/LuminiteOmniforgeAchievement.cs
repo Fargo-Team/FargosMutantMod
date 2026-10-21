@@ -13,7 +13,7 @@ public class LuminiteOmniforgeAchievement : ModAchievement
 
     public override void SetStaticDefaults()
     {
-        Achievement.SetCategory(Terraria.Achievements.AchievementCategory.Collector);
+        Achievement.SetCategory(AchievementCategory.Collector);
 
         AddItemCraftCondition(ModContent.ItemType<LuminiteOmniforge>());
     }

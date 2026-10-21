@@ -114,7 +114,7 @@ public class PlacementReachOverlay
 
         Rectangle rect = new(0, 0, 16, 16);
 
-        Vector2 tilePosition = new Vector2(xPosition * 16, yPosition * 16);
+        Vector2 tilePosition = new(xPosition * 16, yPosition * 16);
         float opacity = rightClickState != 0 ?
             MathHelper.Lerp(1, 0, tilePosition.Distance(Main.MouseWorld) / 64)
             :

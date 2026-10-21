@@ -53,13 +53,13 @@ public class PermaItem : UIElement
 
             Rectangle lineFrame = line.Value.Frame();
             Vector2 lineOrigin = lineFrame.Size() / 2;
-            Vector2 scale = new Vector2(0.02f, 20f);
+            Vector2 scale = new(0.02f, 20f);
             float height = 0.2f * GetOuterDimensions().Height;
             spriteBatch.Draw(line.Value, GetOuterDimensions().Center() + height * Vector2.UnitY, lineFrame, Color.Pink * 0.25f, 3 * MathHelper.PiOver2, lineOrigin, scale, SpriteEffects.None, 1);
             spriteBatch.Draw(line.Value, GetOuterDimensions().Center() + (height + lineFrame.Width * scale.X) * Vector2.UnitY, lineFrame, Color.Pink * 0.1f, MathHelper.PiOver2, lineOrigin, scale, SpriteEffects.None, 1);
 
             Color drawColor = active ? Color.White : Color.Black;
-            Vector2 offset = new Vector2(0, 0.7f * MathF.Sin(MathHelper.TwoPi * timer++ / 300f) - 2);
+            Vector2 offset = new(0, 0.7f * MathF.Sin(MathHelper.TwoPi * timer++ / 300f) - 2);
             if (active)
             {
                 for (int n = 0; n < 5; n++)

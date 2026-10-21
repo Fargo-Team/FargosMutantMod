@@ -13,11 +13,6 @@ ElementalAssemblerAchievement: {
 	Description: Отточите своё ремесленничество, соединив особенные станции создания в удобный станок!
 }
 
-BuyNPCAchievement: {
-	FriendlyName: Не спрашивай, откуда они у меня
-	Description: Купите кого-нибудь у бельчонка под багровым покровом кровавой луны.
-}
-
 LumberjaxeAchievement: {
 	FriendlyName: Тебе никогда не быть таким крутым
 	Description: Взмахните Древопилом, когда на вас полный комплект одежды ДревоБилла.

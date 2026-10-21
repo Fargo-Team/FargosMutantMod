@@ -181,7 +181,7 @@ internal class LumberjackListOption : UIElement, IComparable
         }
 
         Vector2 center = GetOuterDimensions().Center();
-        Point frameOffset = new Point(drawFrame.X == 1 ? -1 : 0, drawFrame.Y == 0 ? -1 : 0); // i hate this game.
+        Point frameOffset = new(drawFrame.X == 1 ? -1 : 0, drawFrame.Y == 0 ? -1 : 0); // i hate this game.
         Rectangle frame = texture.Value.Frame(4, 2, drawFrame.X, drawFrame.Y, frameOffset.X, frameOffset.Y);
         Vector2 origin2 = frame.Size() / 2;
         spriteBatch.Draw(texture.Value, center - new Vector2(1, 0), frame, Color.White, -MathHelper.PiOver2, origin2, 1f, SpriteEffects.None, 0);
@@ -278,7 +278,7 @@ internal class LumberjackInfoPanel : UIPanel
         TitlePanel.Top.Set(0, 0);
         Append(TitlePanel);
 
-        UIText biomeText = new UIText($"{biome.GetLocalizedText("Name")} {Language.GetTextValue("Mods.Fargowiltas.UI.LumberJack.Biome")}")
+        UIText biomeText = new($"{biome.GetLocalizedText("Name")} {Language.GetTextValue("Mods.Fargowiltas.UI.LumberJack.Biome")}")
         {
             HAlign = 0.5f,
             VAlign = 0.5f
@@ -293,7 +293,7 @@ internal class LumberjackInfoPanel : UIPanel
         Append(WoodPanel);
 
         string wText = biome.Wood.type > 0 ? $"{Language.GetTextValue("Mods.Fargowiltas.UI.LumberJack.WoodTitle")} [i:{biome.Wood.type}] x{biome.Wood.amount}" : "None";
-        UIText woodText = new UIText(wText)
+        UIText woodText = new(wText)
         {
             HAlign = 0.5f,
             VAlign = 0.5f
@@ -322,7 +322,7 @@ internal class LumberjackInfoPanel : UIPanel
         DialoguePanel.HAlign = 0.5f;
         Append(DialoguePanel);
 
-        UIText dialogue = new UIText(biome.GetLocalizedText("Description"));
+        UIText dialogue = new(biome.GetLocalizedText("Description"));
         dialogue.IsWrapped = true;
         dialogue.Width.Set(0, 1f);
         DialoguePanel.Append(dialogue);
@@ -370,7 +370,7 @@ internal class LumberjackInfoPanel : UIPanel
 
         if (!biome.IsAvailable)
         {
-            Item pylon = new Item(biome.PylonType.HasValue ? biome.GetPylonItemType() : ItemID.TeleportationPylonVictory);
+            Item pylon = new(biome.PylonType.HasValue ? biome.GetPylonItemType() : ItemID.TeleportationPylonVictory);
 
             spriteBatch.End();
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise, null, Main.UIScaleMatrix);
@@ -431,7 +431,7 @@ internal class LumberJackItemPanel : UIPanel
     {
         RemoveAllChildren();
 
-        UIText title = new UIText(Language.GetTextValue($"Mods.Fargowiltas.UI.LumberJack.{suffix}"));
+        UIText title = new(Language.GetTextValue($"Mods.Fargowiltas.UI.LumberJack.{suffix}"));
         title.Top.Set(0, 0);
         title.HAlign = 0.5f;
         Append(title);
@@ -460,7 +460,7 @@ internal class LumberJackItemPanel : UIPanel
         }
         if (elements.Count == 0)
         {
-            UIText empty = new UIText(Language.GetTextValue("Mods.Fargowiltas.UI.LumberJack.Empty"))
+            UIText empty = new(Language.GetTextValue("Mods.Fargowiltas.UI.LumberJack.Empty"))
             {
                 HAlign = 0.5f,
                 VAlign = 0.5f
@@ -515,7 +515,7 @@ internal class LumberJackItemElement : UIPanel
                 typeIndex = 0;
         }
 
-        Item drawItem = new Item(item.types[typeIndex])
+        Item drawItem = new(item.types[typeIndex])
         {
             stack = item.stack
         };

@@ -25,7 +25,7 @@ public class BetsyEgg : BaseSummon
             return false;
 
         Point playerPos = player.Center.ToTileCoordinates();
-        Point standPos = new Point(-1, -1);
+        Point standPos = new(-1, -1);
         int radius = 20;
         for (int i = -radius; i < radius; i++)
         {
@@ -56,7 +56,7 @@ public class BetsyEgg : BaseSummon
     public override bool? UseItem(Player player)
     {
         Point playerPos = player.Center.ToTileCoordinates();
-        Point standPos = new Point(-1, -1);
+        Point standPos = new(-1, -1);
         int radius = 20;
         for (int i = -radius; i < radius; i++)
         {

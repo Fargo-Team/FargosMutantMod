@@ -86,7 +86,7 @@ public class SymbolTagHandler : ITagHandler
 
 public static class SymbolPathRegistry
 {
-    private static Dictionary<string, string> registry = new Dictionary<string, string>();
+    private static Dictionary<string, string> registry = new();
 
     public static void Register(string modName, string filePath)
     {

@@ -40,7 +40,7 @@ public class ChestWizardTileEntity : ModTileEntity
     }
     public override int Hook_AfterPlacement(int i, int j, int type, int style, int direction, int alternate)
     {
-        Point16 tileOrigin = new Point16(0, 1);
+        Point16 tileOrigin = new(0, 1);
         int placedEntity = Place(i - tileOrigin.X, j - tileOrigin.Y);
         if (Main.netMode == NetmodeID.MultiplayerClient)
         {

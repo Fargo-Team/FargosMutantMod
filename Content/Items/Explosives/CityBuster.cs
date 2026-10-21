@@ -78,7 +78,7 @@ public class CityBusterBomb : ModProjectile
         ProjectileID.Sets.IsInteractable[Type] = true;
         Main.projFrames[Type] = 8;
 
-        if (!Main.dedServ)
+        if (Main.netMode != NetmodeID.Server)
         {
             glowTexture = ModContent.Request<Texture2D>(Texture + "_Glow", AssetRequestMode.ImmediateLoad);
             highlightTexture = ModContent.Request<Texture2D>(Texture + "_Highlight", AssetRequestMode.ImmediateLoad);
@@ -176,7 +176,7 @@ public class CityBusterBomb : ModProjectile
                     player.tileInteractionHappened = true;
                     player.releaseUseTile = true;
                     Projectile.active = false;
-                    if (!Main.dedServ)
+                    if (Main.netMode != NetmodeID.Server)
                     {
                         SoundEngine.PlaySound(DisarmSound with { Volume = 0.4f, PauseBehavior = PauseBehavior.PauseWithGame }, Projectile.Center);
                     }
@@ -199,7 +199,7 @@ public class CityBusterBomb : ModProjectile
 
     public override void OnKill(int timeLeft)
     {   
-        if (!Main.dedServ)
+        if (Main.netMode != NetmodeID.Server)
         {
             SoundEngine.PlaySound(ExplosionSound with { Volume = 0.8f, PauseBehavior = PauseBehavior.PauseWithGame }, Projectile.Center);
         }

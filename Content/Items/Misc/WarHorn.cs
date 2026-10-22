@@ -18,7 +18,7 @@ public class WarHorn : ModItem
     {
         // Done this way to spoof Item visual scale in the inventory and world.
         // Ticks per second is set to 1 to prevent weird divide by zero error. ¯\_(ツ)_/¯
-        DrawAnimationVertical drawAnim = new DrawAnimationVertical(1, 11);
+        DrawAnimationVertical drawAnim = new(1, 11);
         drawAnim.NotActuallyAnimating = true;
 
         Main.RegisterItemAnimation(Type, drawAnim);
@@ -58,7 +58,7 @@ public class WarHorn : ModItem
             ToggleCry2(false, player, ref modPlayer.PeaceCry);
         }
 
-        if (!Main.dedServ)
+        if (Main.netMode != NetmodeID.Server)
             SoundEngine.PlaySound(new SoundStyle("Fargowiltas/Assets/Sounds/Horn"), player.Center);
     }
 
@@ -169,7 +169,7 @@ public class WarHorn : ModItem
 
         }
 
-        if (!Main.dedServ)
+        if (Main.netMode != NetmodeID.Server)
             SoundEngine.PlaySound(new SoundStyle("Fargowiltas/Assets/Sounds/Horn"), player.Center);
 
         return true;

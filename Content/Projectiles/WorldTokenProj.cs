@@ -46,7 +46,7 @@ public class WorldTokenProj : ModProjectile
     public override bool PreDraw(ref Color lightColor)
     {
         Texture2D texture = (Texture2D)ModContent.Request<Texture2D>($"Fargowiltas/Content/Items/Misc/ModeToggle_{Main.GameMode}");
-        Rectangle frame = new Rectangle(0, 0, texture.Width, texture.Height);
+        Rectangle frame = new(0, 0, texture.Width, texture.Height);
         Vector2 origin = frame.Size() / 2f;
         Main.spriteBatch.Draw(texture, Projectile.Center - Main.screenPosition + new Vector2(0f, Projectile.gfxOffY), new Microsoft.Xna.Framework.Rectangle?(frame), Projectile.GetAlpha(lightColor), Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0f);
         return false;

@@ -23,6 +23,15 @@ public class InstaDrawPlayer : ModPlayer
     {
         ResetEffects();
     }
+    public override void PreUpdate()
+    {
+        // There's no override for ghost updates and it blocks the rest of the update
+        if (Player.ghost)
+        {
+            UpdateDead();
+            return;
+        }
+    }
 }
 public class InstaVisual : ModSystem
 {

@@ -1131,13 +1131,13 @@ AbominationnScythe: {
 }
 
 Bloodress: {
-	// DisplayName: Bloodress
+	DisplayName: Кишкодежды
 	// Tooltip: ""
 }
 
 MatthewVanity: {
-	// DisplayName: Matthew
-	// Tooltip: "'Might bite'"
+	DisplayName: Дуглас
+	Tooltip: «Кусается»
 }
 
 LumberHat: {
@@ -1595,7 +1595,7 @@ HerbFertilizer: {
 }
 
 ShowtimeBow: {
-	// DisplayName: Showtime Bow
+	DisplayName: Бант для шоу
 	// Tooltip: ""
 }
 
@@ -1631,7 +1631,7 @@ WarHorn: {
 	Activated: включён
 	Deactivated: выключен
 	// {War / Peace} Cry {activated / deactivated} for {playerName}{punctuation}
-	// CryText2: "{0} Cry {1} for {2}{3}"
+	CryText2: "{0} был {1} для игрока {2}{3}"
 }
 
 CopperCoinBag: {

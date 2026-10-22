@@ -8,7 +8,7 @@ namespace Fargowiltas.Common.Systems.Collections;
 [ReinitializeDuringResizeArrays]
 public static class FargoTileSets
 {
-    public static SetFactory TileFactory = new SetFactory(TileLoader.TileCount, "Fargowiltas/TileID", Search);
+    public static SetFactory TileFactory = new(TileLoader.TileCount, "Fargowiltas/TileID", Search);
     public static IdDictionary Search = IdDictionary.Create<TileID, int>();
 
     public static bool[] InstaCannotDestroy = TileFactory.CreateBoolSet(false);

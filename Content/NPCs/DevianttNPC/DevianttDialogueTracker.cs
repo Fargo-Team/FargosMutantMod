@@ -64,7 +64,7 @@ internal class DevianttDialogueTracker
 
     private (List<HelpDialogue> sortedDialogue, int type) SortDialogue(string deviName)
     {
-        List<HelpDialogue> sortedDialogue = new List<HelpDialogue>();
+        List<HelpDialogue> sortedDialogue = new();
         int typeChoice = 0;
         int attempts = 0;
         while (true)

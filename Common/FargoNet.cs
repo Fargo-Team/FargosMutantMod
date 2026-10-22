@@ -105,7 +105,7 @@ public static class FargoNet
      */
     public static object[] WriteVector2Array(Vector2[] array)
     {
-        List<object> list = new List<object>
+        List<object> list = new()
         {
             array.Length,
         };

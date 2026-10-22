@@ -441,7 +441,7 @@ public class FargowiltasDetours : ModSystem
                 }
 
                 Vector2 treeTopLeft = new Vector2(tree.Position.X, tree.Position.Y) * 16;
-                Rectangle treeHitbox = new Rectangle((int)treeTopLeft.X, (int)treeTopLeft.Y, 3 * 16, 4 * 16);
+                Rectangle treeHitbox = new((int)treeTopLeft.X, (int)treeTopLeft.Y, 3 * 16, 4 * 16);
 
                 if (!treeHitbox.Contains(Main.MouseWorld.ToPoint()) || self.Distance(treeTopLeft) >= 400f)
                 {

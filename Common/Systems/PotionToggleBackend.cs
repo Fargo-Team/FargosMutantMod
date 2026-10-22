@@ -36,7 +36,7 @@ public class PotionToggleBackend : ToggleBackend
 
         Toggles = PotionToggleLoader.LoadedToggles;
 
-        if (!Main.dedServ)
+        if (Main.netMode != NetmodeID.Server)
         {
             if (!Config.Load())
                 Save();
@@ -75,7 +75,7 @@ public class PotionToggleBackend : ToggleBackend
         if (!Initialized)
             return;
 
-        if (!Main.dedServ)
+        if (Main.netMode != NetmodeID.Server)
         {
             //Config.Put("CanPlayMaso", CanPlayMaso);
 
@@ -155,7 +155,7 @@ public class PotionToggleBackend : ToggleBackend
                 togglesOff.Add(entry.Key);
         }
 
-        if (!Main.dedServ)
+        if (Main.netMode != NetmodeID.Server)
         {
             CustomPresets[slot - 1] = togglesOff;
             //Save(); 

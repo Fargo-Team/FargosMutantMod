@@ -61,7 +61,7 @@ public class UniversalCollapseBomb : ModProjectile
         ProjectileID.Sets.IsInteractable[Type] = true;
         Main.projFrames[Type] = 9;
 
-        if (!Main.dedServ)
+        if (Main.netMode != NetmodeID.Server)
         {
             glowTexture = ModContent.Request<Texture2D>(Texture + "_Glow", AssetRequestMode.ImmediateLoad);
             highlightTexture = ModContent.Request<Texture2D>(Texture + "_Highlight", AssetRequestMode.ImmediateLoad);
@@ -130,7 +130,7 @@ public class UniversalCollapseBomb : ModProjectile
                     player.tileInteractionHappened = true;
                     player.releaseUseTile = true;
                     Projectile.active = false;
-                    if (!Main.dedServ)
+                    if (Main.netMode != NetmodeID.Server)
                     {
                         SoundEngine.PlaySound(CityBusterBomb.DisarmSound with { Volume = 0.4f, PauseBehavior = PauseBehavior.PauseWithGame }, Projectile.Center);
                     }

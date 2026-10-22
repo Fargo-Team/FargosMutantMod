@@ -51,7 +51,7 @@ public class CategoryButton : UIPanel
             drawFrame.X -= 2;
         }
 
-        Point frameOffset = new Point(drawFrame.X == 1 ? -1 : 0, drawFrame.Y == 0 ? -1 : 0); // i hate this game.
+        Point frameOffset = new(drawFrame.X == 1 ? -1 : 0, drawFrame.Y == 0 ? -1 : 0); // i hate this game.
         Rectangle frame = texture.Value.Frame(4, 2, drawFrame.X, drawFrame.Y, frameOffset.X, frameOffset.Y);
         Vector2 origin2 = frame.Size() / 2;
         spriteBatch.Draw(texture.Value, GetOuterDimensions().Center() + 9.8f * Vector2.UnitY, frame, c, 0f, origin2, 1f, SpriteEffects.None, 0);

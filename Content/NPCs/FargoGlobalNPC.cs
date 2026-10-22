@@ -295,13 +295,13 @@ public class FargoGlobalNPC : GlobalNPC
 
         #region Conditions
         //TODO: localization/proper text on conditions
-        Condition angler5 = new Condition("Mods.Fargowiltas.Conditions.Angler5", () => Main.LocalPlayer.anglerQuestsFinished >= 5);
-        Condition angler10 = new Condition("Mods.Fargowiltas.Conditions.Angler10", () => Main.LocalPlayer.anglerQuestsFinished >= 10);
-        Condition angler15 = new Condition("Mods.Fargowiltas.Conditions.Angler15", () => Main.LocalPlayer.anglerQuestsFinished >= 15);
-        Condition angler20 = new Condition("Mods.Fargowiltas.Conditions.Angler20", () => Main.LocalPlayer.anglerQuestsFinished >= 20);
-        Condition angler25 = new Condition("Mods.Fargowiltas.Conditions.Angler25", () => Main.LocalPlayer.anglerQuestsFinished >= 25);
-        Condition angler30 = new Condition("Mods.Fargowiltas.Conditions.Angler30", () => Main.LocalPlayer.anglerQuestsFinished >= 30);
-        Condition InRockOrDirtLayerHeight = new Condition("Mods.Fargowiltas.Conditions.InRockOrDirtLayerHeight", () => (Condition.InDirtLayerHeight.IsMet() || Condition.InRockLayerHeight.IsMet()) && !(Condition.InUndergroundDesert.IsMet() || Condition.InDungeon.IsMet()));
+        Condition angler5 = new("Mods.Fargowiltas.Conditions.Angler5", () => Main.LocalPlayer.anglerQuestsFinished >= 5);
+        Condition angler10 = new("Mods.Fargowiltas.Conditions.Angler10", () => Main.LocalPlayer.anglerQuestsFinished >= 10);
+        Condition angler15 = new("Mods.Fargowiltas.Conditions.Angler15", () => Main.LocalPlayer.anglerQuestsFinished >= 15);
+        Condition angler20 = new("Mods.Fargowiltas.Conditions.Angler20", () => Main.LocalPlayer.anglerQuestsFinished >= 20);
+        Condition angler25 = new("Mods.Fargowiltas.Conditions.Angler25", () => Main.LocalPlayer.anglerQuestsFinished >= 25);
+        Condition angler30 = new("Mods.Fargowiltas.Conditions.Angler30", () => Main.LocalPlayer.anglerQuestsFinished >= 30);
+        Condition InRockOrDirtLayerHeight = new("Mods.Fargowiltas.Conditions.InRockOrDirtLayerHeight", () => (Condition.InDirtLayerHeight.IsMet() || Condition.InRockLayerHeight.IsMet()) && !(Condition.InUndergroundDesert.IsMet() || Condition.InDungeon.IsMet()));
         #endregion
 
 

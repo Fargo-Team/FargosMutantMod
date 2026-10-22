@@ -56,7 +56,7 @@ public class FargoGlobalItem : GlobalItem
 
     //public override bool CloneNewInstances => true;
 
-    TooltipLine FountainTooltip(string biome) => new TooltipLine(Mod, "Tooltip0", $"[s:Fargowiltas/FountainEffect] [c/AAAAAA:{ExpandedTooltipLoc($"Fountain{biome}")}]");
+    TooltipLine FountainTooltip(string biome) => new(Mod, "Tooltip0", $"[s:Fargowiltas/FountainEffect] [c/AAAAAA:{ExpandedTooltipLoc($"Fountain{biome}")}]");
 
     //For the shop sale tooltip system.
     public class ShopTooltip
@@ -480,7 +480,7 @@ public class FargoGlobalItem : GlobalItem
         if (FromEnchantedTree)
         {
             maxFallSpeed = 0;
-            if (Main.myPlayer == Grabbed && !Main.dedServ)
+            if (Main.myPlayer == Grabbed && Main.netMode != NetmodeID.Server)
             {
                 item.Center = Vector2.Lerp(item.Center, Main.MouseWorld, 0.07f);
                 if (!Main.LocalPlayer.controlUseItem)

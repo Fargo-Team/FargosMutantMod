@@ -65,7 +65,7 @@ public class EnchantedTreeSheet : ModTile
     public override void KillMultiTile(int i, int j, int frameX, int frameY)
     {
         //drop item currently inside it
-        if (FargoUtils.TryGetTileEntityAs<EnchantedTreeTileEntity>(i, j, out EnchantedTreeTileEntity entity) == true && entity.ItemType >= 0 && !Main.dedServ)
+        if (FargoUtils.TryGetTileEntityAs<EnchantedTreeTileEntity>(i, j, out EnchantedTreeTileEntity entity) == true && entity.ItemType >= 0 && Main.netMode != NetmodeID.Server)
         {
             int item = Item.NewItem(Item.GetSource_NaturalSpawn(), new Rectangle(i * 16 + 50, j * 16 + 50, 1, 1), entity.ItemType, 1, prefixGiven: entity.Prefix);
             if (Main.netMode == NetmodeID.MultiplayerClient)

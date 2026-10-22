@@ -16,7 +16,7 @@ namespace Fargowiltas.Content.UI.LumberjackUI;
 
 public class LumberjackBiomeRegistry : ModSystem
 {
-    private static Dictionary<string, LumberJackBiome> _registry = new Dictionary<string, LumberJackBiome>();
+    private static Dictionary<string, LumberJackBiome> _registry = new();
 
     internal static void Register(LumberJackBiome value)
     {
@@ -181,7 +181,7 @@ public class LumberJackBiome
     #region Chain Methods
     public static LumberJackBiome Create(string ID, string localPath, int buyPrice, Color bgColor, TeleportPylonType? pylonType = null)
     {
-        LumberJackBiome biome = new LumberJackBiome(ID, buyPrice, bgColor, localPath, pylonType);
+        LumberJackBiome biome = new(ID, buyPrice, bgColor, localPath, pylonType);
         return biome;
     }
 
@@ -275,7 +275,7 @@ public class LumberJackBiome
             player.QuickSpawnItem(player.GetSource_OpenItem(Wood.type), Wood.type, Wood.amount);
         }
 
-        WeightedRandom<LumberJackItem> wr = new WeightedRandom<LumberJackItem>();
+        WeightedRandom<LumberJackItem> wr = new();
         LumberJackItem itemToSpawn;
 
         // Fruit
@@ -318,7 +318,7 @@ public class LumberJackBiome
 
     public int GetBuyPrice()
     {
-        Item item = new Item();
+        Item item = new();
         item.value = _price;
         Main.LocalPlayer.GetItemExpectedPrice(item, out long _, out long buyPrice);
         return (int)buyPrice;

@@ -46,7 +46,7 @@ public class SquirrelIcon : UIElement
 
         SpriteEffects flip = SpriteEffects.None;
         Rectangle frame = speechBubble.Value.Frame(2, frameX: timer < 10 ? 0 : 1);
-        Vector2 offset = new Vector2(-1 * 70, 0);
+        Vector2 offset = new(-1 * 70, 0);
         spriteBatch.Draw(speechBubble.Value, GetOuterDimensions().Center() + offset, frame, Color.White, 0f, frame.Size() / 2, 2f, flip, 0f);
 
         if (timer > 20)

@@ -274,7 +274,7 @@ public class StatSheetUI : FargoUI
             ColumnCounter = 0;
         }
 
-        StatLine line = new StatLine($"[s:{modName}/{key}] {text}", modName, key);
+        StatLine line = new($"[s:{modName}/{key}] {text}", modName, key);
         line.Left.Set(left, 0f);
         line.Top.Set(top, 0f);
 

@@ -64,7 +64,7 @@ public class Abominationn : ModNPC
         NPCID.Sets.ShimmerTownTransform[Type] = true;
         NPCID.Sets.ShimmerTownTransform[Type] = true;
 
-        NPCID.Sets.NPCBestiaryDrawModifiers drawModifiers = new NPCID.Sets.NPCBestiaryDrawModifiers()
+        NPCID.Sets.NPCBestiaryDrawModifiers drawModifiers = new()
         {
             Velocity = -1f,
             Direction = -1
@@ -96,7 +96,7 @@ public class Abominationn : ModNPC
             new Profiles.DefaultNPCProfile(Texture + "_Shimmer", ShimmerHeadIndex, null)
         );
 
-        if (!Main.dedServ)
+        if (Main.netMode != NetmodeID.Server)
         {
             Cape = Request<Texture2D>("Fargowiltas/Content/NPCs/AbominationnNPC/AbominationnCape");
             Glow = Request<Texture2D>("Fargowiltas/Content/NPCs/AbominationnNPC/Abominationn_glow");
@@ -170,7 +170,7 @@ public class Abominationn : ModNPC
         else
             shouldDrawStyxGazer = false;
 
-        if (shouldDrawStyxGazer && StyxFrame == 1 && !Main.dedServ)
+        if (shouldDrawStyxGazer && StyxFrame == 1 && Main.netMode != NetmodeID.Server)
             SoundEngine.PlaySound(StyxActivation with { Volume = 0.3f, PauseBehavior = PauseBehavior.PauseWithGame }, NPC.Center);
 
 
@@ -338,7 +338,7 @@ public class Abominationn : ModNPC
 
     public override void AddShops()
     {
-        Condition siblingPylonCondition = new Condition("Mods.Fargowiltas.Conditions.SiblingPylon", () => Condition.NpcIsPresent(NPCType<Deviantt>()).Predicate.Invoke() && Condition.NpcIsPresent(NPCType<Mutant>()).Predicate.Invoke());
+        Condition siblingPylonCondition = new("Mods.Fargowiltas.Conditions.SiblingPylon", () => Condition.NpcIsPresent(NPCType<Deviantt>()).Predicate.Invoke() && Condition.NpcIsPresent(NPCType<Mutant>()).Predicate.Invoke());
         var npcShop = new NPCShop(Type, ShopName)
             .Add(new Item(ItemType<PartyInvite>()) { shopCustomPrice = Item.buyPrice(copper: 10000) })
             .Add(new Item(ItemType<WeatherBalloon>()) { shopCustomPrice = Item.buyPrice(copper: 20000) })
@@ -410,7 +410,7 @@ public class Abominationn : ModNPC
                 Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Pumpkin, 2.5f * hit.HitDirection, -2.5f, Scale: 0.8f);
             }
 
-            if (!Main.dedServ)
+            if (Main.netMode != NetmodeID.Server)
             {
                 for (int i = 1; i <= 5; i++)
                 {

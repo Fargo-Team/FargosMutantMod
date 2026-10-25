@@ -56,6 +56,8 @@ public class UniversalCollapseBomb : ModProjectile
 {
     public static Asset<Texture2D> glowTexture;
     public static Asset<Texture2D> highlightTexture;
+
+    public static readonly SoundStyle ExplosionSound = new("Fargowiltas/Assets/Sounds/UniversalCollapseExplosion");
     public override void SetStaticDefaults()
     {
         ProjectileID.Sets.IsInteractable[Type] = true;
@@ -82,28 +84,34 @@ public class UniversalCollapseBomb : ModProjectile
     {
         if (Main.netMode != NetmodeID.Server)
         {
-            SoundStyle arm = new("Fargowiltas/Assets/Sounds/CityBusterArm");
-            /*
-             * SoundEngine.PlaySound(arm with { Variants = [1, 2], PauseBehavior = PauseBehavior.PauseWithGame }, Projectile.Center, delegate (ActiveSound s)
+            SoundStyle arm = new("Fargowiltas/Assets/Sounds/UniversalCollapseArm");
+            
+            SoundEngine.PlaySound(arm with { PauseBehavior = PauseBehavior.PauseWithGame }, Projectile.Center, delegate (ActiveSound s)
             {
                 s.Position = Projectile.Center;
                 if (!Projectile.active)
                     return false;
                 return true;
             });
-            */
+            
         }
     }
     public override void AI()
     {
         float ratio = Projectile.timeLeft / 1100f;
         float tps = MathHelper.Lerp(0, 6, ratio);
-        if (++Projectile.frameCounter >= tps)
+        //Main.NewText(Projectile.timeLeft);
+        if (Projectile.timeLeft <= 450)
         {
-            Projectile.frameCounter = 0;
-            if (++Projectile.frame >= Main.projFrames[Type] - 1)
-                Projectile.frame = 0;
+            if (++Projectile.frameCounter >= tps)
+            {
+                Projectile.frameCounter = 0;
+                if (++Projectile.frame >= Main.projFrames[Type] - 1)
+                    Projectile.frame = 0;
+            }
         }
+        else
+            Projectile.frame = 5;
 
         Projectile.velocity *= 0.96f;
         Projectile.rotation += (Projectile.velocity.X / 24);
@@ -177,6 +185,11 @@ public class UniversalCollapseBomb : ModProjectile
         }
 
         Main.refreshMap = true;
+        // Play explosion sound
+        if (Main.netMode != NetmodeID.Server)
+        {
+            SoundEngine.PlaySound(ExplosionSound with { PauseBehavior = PauseBehavior.PauseWithGame }, Projectile.Center);
+        }
     }
 
     public override bool PreDraw(ref Color lightColor)

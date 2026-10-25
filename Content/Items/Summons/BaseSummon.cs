@@ -49,7 +49,6 @@ public abstract class BaseSummon : ModItem
             {
                 ModPacket syncTime = Mod.GetPacket();
                 syncTime.Write((byte)Fargowiltas.PacketID.SyncWorldTime);
-                syncTime.Write(Main.time);
                 syncTime.Send();
             }
         }

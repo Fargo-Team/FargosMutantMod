@@ -19,7 +19,7 @@ public class MatthewVanity : ModItem
 
         Player player = drawInfo.drawPlayer;
         float yOffset = Main.OffsetsPlayerHeadgear[player.bodyFrame.Y / player.bodyFrame.Height].Y * player.gravDir;
-        Vector2 offset = new Vector2(4 * -player.direction, (player.gravDir == -1 ? 11 : 0) + yOffset);
+        Vector2 offset = new(4 * -player.direction, (player.gravDir == -1 ? 11 : 0) + yOffset);
         drawInfo.DrawDataCache.Add(drawData with { position = drawData.position + offset, sourceRect = hatRect, origin = origin });
         return false;
     }

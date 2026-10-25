@@ -154,7 +154,7 @@ public class ChestWizardSheet : ModTile
             {
                 for (int c = 0; c < Main.chest.Length; c++)
                 {
-                    if (Main.chest[c] != null && new Vector2(Main.chest[c].x * 16, Main.chest[c].y * 16).Distance(Main.LocalPlayer.Center) < 1000)
+                    if (Main.chest[c] != null && new Vector2(Main.chest[c].x * 16, Main.chest[c].y * 16).DistanceSQ(Main.LocalPlayer.Center) < 1000 * 1000)
                     {
                         FargoNet.SendChizardRequestChestContents(Main.chest[c].x, Main.chest[c].y);
                     }

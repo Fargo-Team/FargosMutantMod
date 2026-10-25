@@ -1,5 +1,4 @@
-﻿using Fargowiltas.Assets.Textures;
-using Fargowiltas.Common.Configs;
+﻿using Fargowiltas.Common.Configs;
 using Fargowiltas.Common.Systems;
 using Fargowiltas.Content.Items.Summons;
 using Fargowiltas.Content.UI;
@@ -76,7 +75,7 @@ public class PotionCooler : ModItem
                 if (PotionBagSystem.CanConsumePotion(item.type, item.stack, out int consumeAmount, out int leftover))
                 {
                     item.stack = leftover;
-                    SoundEngine.PlaySound(StorePotion with { Volume = 0.6f});
+                    SoundEngine.PlaySound(StorePotion with { Volume = 0.6f });
                     inputInterpolant = 30;
                     PotionBagUI.NeedsPotionListBuilding = true;
                     if (Main.netMode == NetmodeID.MultiplayerClient)

@@ -767,13 +767,13 @@ public class FargoGlobalItem : GlobalItem
     }
     public override void NetSend(Item item, BinaryWriter writer)
     {
-        writer.Write(Grabbed);
+        writer.Write((short)Grabbed);
         writer.Write(FromEnchantedTree);
         base.NetSend(item, writer);
     }
     public override void NetReceive(Item item, BinaryReader reader)
     {
-        Grabbed = reader.ReadInt32();
+        Grabbed = reader.ReadInt16();
         FromEnchantedTree = reader.ReadBoolean();
         base.NetReceive(item, reader);
     }

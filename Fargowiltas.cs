@@ -870,12 +870,11 @@ public class Fargowiltas : Mod
                     break;
                 case PacketID.SyncWorldTime:
                     {
-                        Main.time = reader.ReadInt64();
+                        Main.time = 0;
                         if (Main.netMode == NetmodeID.Server)
                         {
                             ModPacket syncOthersTime = GetPacket();
                             syncOthersTime.Write((byte)PacketID.SyncWorldTime);
-                            syncOthersTime.Write(Main.time);
                             syncOthersTime.Send(-1, whoAmI);
                         }
                     }
@@ -1055,14 +1054,6 @@ public class Fargowiltas : Mod
             }
         }
 
-        //foreach (MutantSummonInfo summon in summonTracker.EventSummons)
-        //{
-        //    if ((bool)ModLoader.GetMod(summon.modSource).Call("AbominationnClearEvents", canClearEvent))
-        //    {
-        //        eventOccurring = true;
-        //    }
-        //}
-
         return canClearEvent;
     }
 
@@ -1131,93 +1122,8 @@ public class Fargowiltas : Mod
                 }
             }
         }
-        else
-        {
-            FargoNet.SendNetMessage(FargoNet.SummonNPCFromClient, (byte)player.whoAmI, (short)bossType, spawnMessage, (int)npcCenter.X, (int)npcCenter.Y, overrideDisplayName, namePlural);
-        }
 
         return 200;
     }
-
-    //        private static void HookIntoLoad()
-    //        {
-    //            MonoModHooks.RequestNativeAccess();
-    //            new Hook(
-    //                typeof(ModContent).GetMethod("LoadModContent", BindingFlags.NonPublic | BindingFlags.Static),
-    //                typeof(Fargowiltas).GetMethod(nameof(LoadHook), BindingFlags.NonPublic | BindingFlags.Static)).Apply();
-
-    //            HookEndpointManager.Modify(
-    //                typeof(ModContent).GetMethod("Load", BindingFlags.NonPublic | BindingFlags.Static),
-    //                Delegate.CreateDelegate(typeof(ILContext.Manipulator),
-    //                    typeof(Fargowiltas).GetMethod(nameof(ModifyLoading),
-    //                        BindingFlags.NonPublic | BindingFlags.Static) ?? throw new Exception("Couldn't create IL manipulator.")));
-    //        }
-
-    //        private static void ModifyLoading(ILContext il)
-    //        {
-    //            ILCursor c = new ILCursor(il);
-
-    //            c.GotoNext(x => x.MatchCall(typeof(ModContent), "ResizeArrays"));
-    //            c.Index++;
-
-    //            c.EmitDelegate<Action>(() =>
-    //            {
-    //                FieldInfo loadInfo = typeof(Mod).GetField("loading", BindingFlags.Instance | BindingFlags.NonPublic);
-    //                loadInfo?.SetValue(ModLoader.GetMod("Fargowiltas"), true);
-
-    //                /*foreach (Mod mod in ModLoader.Mods.Where(x => x != ModLoader.GetMod("Fargowiltas")))
-    //                {
-    //                    foreach (ModNPC npc in (typeof(Mod).GetField("npcs", BindingFlags.Instance | BindingFlags.NonPublic)
-    //                        ?.GetValue(mod) as IDictionary<string, ModNPC>)?.Values ?? new ModNPC[0])
-    //                    {
-    //                        try
-    //                        {
-    //                            npc.SetDefaults();
-
-    //                            if (npc.npc.townNPC)
-    //                                CaughtNPCItem.AddAutomatic(npc.Name, npc.npc.type);
-    //                        }
-    //                        catch
-    //                        {
-    //                            // ignore
-    //                        }
-    //                    }
-    //                }*/
-    //                loadInfo?.SetValue(ModLoader.GetMod("Fargowiltas"), false);
-
-    //                typeof(ModContent).GetMethod("ResizeArrays", BindingFlags.NonPublic | BindingFlags.Static)?
-    //                    .Invoke(null, new object[] {false});
-    //            });
-    //        }
-
-    //        private static void LoadHook(Action<CancellationToken, Action<Mod>> orig, CancellationToken token,
-    //            Action<Mod> loadAction)
-    //        {
-    //            PropertyInfo modsArray = typeof(ModLoader).GetProperty("Mods", BindingFlags.Public | BindingFlags.Static);
-
-    //            if (modsArray is null)
-    //            {
-    //                orig(token, loadAction);
-    //                return;
-    //            }
-
-    //            // Mod[] cachedArray = modsArray.GetValue(null) as Mod[];
-    //            List<Mod> tempMods = (modsArray.GetValue(null) as Mod[])?.ToList();
-
-    //            if (tempMods is null)
-    //            {
-    //                orig(token, loadAction);
-    //                return;
-    //            }
-
-    //            Mod mod = tempMods.First(x => x.Name.Equals("Fargowiltas"));
-    //            tempMods.Remove(mod);
-    //            tempMods.Add(mod);
-    //            modsArray.SetValue(null, tempMods.ToArray());
-
-    //            orig(token, loadAction);
-
-    //            // modsArray.SetValue(null, cachedArray);
-    //        }
 }
 

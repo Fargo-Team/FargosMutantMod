@@ -111,7 +111,7 @@ public class FargoGlobalProjectile : GlobalProjectile
         if (projectile.type == ProjectileID.FlyingPiggyBank && FargoServerConfig.Instance.StalkerMoneyTrough)
         {
             Player player = Main.player[projectile.owner];
-            float dist = Vector2.Distance(projectile.Center, player.Center);
+            float dist = projectile.Center.Distance(player.Center);
 
             if (dist > 3000)
             {

@@ -125,8 +125,8 @@ public class FakeHeartDeviantt : ModProjectile
 
     //public override bool PreDraw(ref Color lightColor)
     //{
-    //    Texture2D texture2D13 = Main.ProjectileTexture[Projectile.type];
-    //    int num156 = Main.ProjectileTexture[Projectile.type].Height / Main.projFrames[Projectile.type]; // ypos of lower right corner of sprite to draw
+    //    Texture2D texture2D13 = Main.ProjectileTexture[Type];
+    //    int num156 = Main.ProjectileTexture[Type].Height / Main.projFrames[Type]; // ypos of lower right corner of sprite to draw
     //    int y3 = num156 * Projectile.frame; // ypos of upper left corner of sprite to draw
     //    Rectangle rectangle = new Rectangle(0, y3, texture2D13.Width, num156);
     //    Vector2 origin2 = rectangle.Size() / 2f;

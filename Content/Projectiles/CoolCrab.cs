@@ -91,7 +91,7 @@ public class CoolCrab : ModProjectile
     }
     public override bool PreDraw(ref Color lightColor)
     {
-        Texture2D texture2D13 = Terraria.GameContent.TextureAssets.Projectile[Projectile.type].Value;
+        Texture2D texture2D13 = Terraria.GameContent.TextureAssets.Projectile[Type].Value;
 
         int num156 = texture2D13.Height / 8; //ypos of lower right corner of sprite to draw
         int y3 = num156 * (Projectile.isAPreviewDummy ? Projectile.frame : Frame); //ypos of upper left corner of sprite to draw

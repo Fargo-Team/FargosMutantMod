@@ -1,6 +1,5 @@
 using Fargowiltas.Common.Configs;
 using Fargowiltas.Content.Items.Explosives;
-using Fargowiltas.Content.Items.Misc;
 using Fargowiltas.Content.Items.Summons.SwarmSummons.Energizers;
 using Fargowiltas.Content.Items.Tiles;
 using Fargowiltas.Content.NPCs.SquirrelNPC;
@@ -337,18 +336,18 @@ public class FargoGlobalNPC : GlobalNPC
                     break;
 
                 case NPCID.Clothier:
-                    //AddItem(ItemID.PharaohsMask, Item.buyPrice(gold: 1));
-                    //AddItem(ItemID.PharaohsRobe, Item.buyPrice(gold: 1));
+                //AddItem(ItemID.PharaohsMask, Item.buyPrice(gold: 1));
+                //AddItem(ItemID.PharaohsRobe, Item.buyPrice(gold: 1));
 
-                    //AddItem(ItemID.AnglerHat, condition: angler10);
-                    //AddItem(ItemID.AnglerVest, condition: angler15);
-                    //AddItem(ItemID.AnglerPants, condition: angler20);
+                //AddItem(ItemID.AnglerHat, condition: angler10);
+                //AddItem(ItemID.AnglerVest, condition: angler15);
+                //AddItem(ItemID.AnglerPants, condition: angler20);
 
-                    //AddItem(ItemID.BlueBrick, Item.buyPrice(silver: 1));
+                //AddItem(ItemID.BlueBrick, Item.buyPrice(silver: 1));
 
-                    //AddItem(ItemID.GreenBrick, Item.buyPrice(silver: 1));
+                //AddItem(ItemID.GreenBrick, Item.buyPrice(silver: 1));
 
-                    //AddItem(ItemID.PinkBrick, Item.buyPrice(silver: 1));
+                //AddItem(ItemID.PinkBrick, Item.buyPrice(silver: 1));
 
                 case NPCID.Merchant:
 
@@ -976,7 +975,7 @@ public class FargoGlobalNPC : GlobalNPC
     {
         // No angler check enables luiafk compatibility
         if (FargoServerConfig.Instance.AnglerQuestInstantReset && FargoWorld.IsAnglerQuestComplete)
-        {   
+        {
             if (Main.netMode == NetmodeID.SinglePlayer)
             {
                 Main.AnglerQuestSwap();

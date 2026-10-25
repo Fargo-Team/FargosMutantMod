@@ -19,13 +19,13 @@ public class ObsidianWreckingBallProj : ModProjectile
     private float fallSpinVariance;
     public ref float State => ref Projectile.ai[0];
 
-    private static readonly HashSet<ushort> HouseTileTypes = new()
-    {
+    private static readonly HashSet<ushort> HouseTileTypes =
+    [
         TileID.ObsidianBrick, TileID.HellstoneBrick, TileID.Platforms, TileID.ClosedDoor, TileID.OpenDoor,
         TileID.Containers, TileID.Containers2, TileID.Hellforge, TileID.Torches, TileID.Chairs, TileID.Tables, TileID.Tables2, TileID.WorkBenches, TileID.Candles, TileID.Chandeliers, TileID.Dressers, TileID.Lamps, TileID.Beds, TileID.Banners,
         TileID.Cobweb, TileID.SmallPiles, TileID.LargePiles, TileID.LargePiles2, TileID.Pots,
         TileID.Painting3X3, TileID.Painting4X3, TileID.Painting6X4, TileID.Painting2X3, TileID.Painting3X2
-    };
+    ];
 
 
     public override void SetStaticDefaults()
@@ -46,7 +46,7 @@ public class ObsidianWreckingBallProj : ModProjectile
     }
 
     private int swing_direction = 1;
-    private readonly List<int> _landingDust = new();
+    private readonly List<int> _landingDust = [];
     public ref float Timer => ref Projectile.ai[1];
 
     public static bool PlayerHasActiveBall(int owner)
@@ -60,28 +60,28 @@ public class ObsidianWreckingBallProj : ModProjectile
         return false;
     }
 
-    private readonly List<int> house_rows = new();
-    private Dictionary<int, List<(int x, int y)>> houseTilesByRow = new();
+    private readonly List<int> house_rows = [];
+    private Dictionary<int, List<(int x, int y)>> houseTilesByRow = [];
     private int currentDestructionRowIndex;
     public ref float Depth => ref Projectile.localAI[0];
     public ref float SpinVariance => ref Projectile.localAI[1];
 
-    private static readonly HashSet<ushort> HouseWallTypes = new()
-    {
+    private static readonly HashSet<ushort> HouseWallTypes =
+    [
         WallID.ObsidianBrickUnsafe, WallID.HellstoneBrickUnsafe
-    };
+    ];
 
     public override bool? CanDamage() => false;
 
     public override void SendExtraAI(BinaryWriter writer)
     {
-        writer.Write(Projectile.localAI[1]);
+        writer.Write(SpinVariance);
         writer.Write(fallSpinVariance);
     }
 
     public override void ReceiveExtraAI(BinaryReader reader)
     {
-        Projectile.localAI[1] = reader.ReadSingle();
+        SpinVariance = reader.ReadSingle();
         fallSpinVariance = reader.ReadSingle();
     }
 
@@ -127,7 +127,7 @@ public class ObsidianWreckingBallProj : ModProjectile
         {   
             Projectile.timeLeft = 2;
             Projectile.velocity.Y += Projectile.velocity.Y < 0f ? 0.2f : 0.8f;
-            Projectile.rotation += Projectile.velocity.Y * 0.05f * (Projectile.velocity.Y < 0f ? Projectile.localAI[1] : fallSpinVariance);
+            Projectile.rotation += Projectile.velocity.Y * 0.05f * (Projectile.velocity.Y < 0f ? SpinVariance : fallSpinVariance);
             return;
         }
         if (State == 2f)
@@ -173,7 +173,7 @@ public class ObsidianWreckingBallProj : ModProjectile
             State = 1f;
             Projectile.ai[1] = 0f;
             Projectile.position.X = p.position.X;
-            Projectile.localAI[1] = Main.rand.NextFloat(0.4f, 1.8f) * (Main.rand.NextBool() ? 1f : -1f);
+            SpinVariance = Main.rand.NextFloat(0.4f, 1.8f) * (Main.rand.NextBool() ? 1f : -1f);
             fallSpinVariance = Main.rand.NextFloat(0.4f, 1.8f) * (Main.rand.NextBool() ? 1f : -1f);
             Projectile.velocity = new Vector2(0f, -MathF.Sqrt(2f * 0.2f * 128f));
             Projectile.tileCollide = true;

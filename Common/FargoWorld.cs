@@ -1,7 +1,6 @@
 using Fargowiltas.Common.Configs;
 using Fargowiltas.Content.Items.Summons.Deviantt;
 using Fargowiltas.Content.Items.Tiles;
-using Fargowiltas.Content.Items.Vanity;
 using Fargowiltas.Content.NPCs;
 using Fargowiltas.Content.Projectiles;
 using Microsoft.Xna.Framework;
@@ -166,6 +165,7 @@ public class FargoWorld : ModSystem
         tag.Add("FargoIndestructibleRectangles", FargoGlobalProjectile.CannotDestroyRectangle.ToList());
 
         tag.Add("PortableSundialCooldown", PortableSundialCooldown);
+        tag.Add(nameof(WoodChopped), (ushort)WoodChopped);
     }
 
     public override void LoadWorldData(TagCompound tag)
@@ -182,24 +182,34 @@ public class FargoWorld : ModSystem
             FargoGlobalProjectile.CannotDestroyRectangle.Add(rectangle);
 
         PortableSundialCooldown = tag.Get<byte>("PortableSundialCooldown");
+        WoodChopped = tag.Get<ushort>("WoodChopped");
     }
 
     public override void NetReceive(BinaryReader reader)
     {
-        foreach (string tag in tags)
+        BitsByte bits = new();
+        for (int i = 0; i < tags.Length; i++)
         {
-            DownedBools[tag] = reader.ReadBoolean();
+            if (i % 8 == 0)
+            {
+                bits = reader.ReadBitsByte();
+            }
+            DownedBools[tags[i]] = bits[i % 8];
         }
 
-        AbomClearCD = reader.ReadInt32();
-        WoodChopped = reader.ReadInt32();
-        Matsuri = reader.ReadBoolean();
-        SwarmActive = reader.ReadBoolean();
-        HardmodeSwarmActive = reader.ReadBoolean();
-        Binding = (EnergizedGlobalNPC.Binding)reader.ReadInt32();
-        EternityMode = reader.ReadBoolean();
-        IsAnglerQuestComplete = reader.ReadBoolean();
-        IsSomeoneWearingMatthew = reader.ReadBoolean();
+        bits = reader.ReadBitsByte();
+        Matsuri = bits[0];
+        SwarmActive = bits[1];
+        HardmodeSwarmActive = bits[2];
+        EternityMode = bits[3];
+        IsAnglerQuestComplete = bits[4];
+        IsSomeoneWearingMatthew = bits[5];
+        _ = bits[6];
+        _ = bits[7];
+
+        AbomClearCD = reader.ReadUInt16();
+        WoodChopped = reader.ReadUInt16();
+        Binding = (EnergizedGlobalNPC.Binding)reader.ReadByte();
         // These can't be bytes because a sign is required and
         // signed bytes range between -127 and 127, which is not enough for the NPC array
         FargoGlobalNPC.eaterBoss = reader.ReadInt16();
@@ -208,19 +218,41 @@ public class FargoWorld : ModSystem
 
     public override void NetSend(BinaryWriter writer)
     {
-        foreach (string tag in tags)
+        BitsByte bits = new();
+        for (int i = 0; i < tags.Length; i++)
         {
-            writer.Write(DownedBools.TryGetValue(tag, out bool value) && value);
+            bool downed = DownedBools.TryGetValue(tags[i], out bool value) && value;
+            bits[i % 8] = downed;
+            if (i == tags.Length - 1)
+            {
+                for (int j = i + 1; j < 8; j++)
+                {
+                    bits[j] = false;
+                }
+                writer.Write(bits);
+                break;
+            }
+            if (i != 0 && i % 8 == 0)
+            {
+                writer.Write(bits);
+                bits = new();
+            }
         }
 
-        writer.Write(AbomClearCD);
-        writer.Write(WoodChopped);
-        writer.Write(Matsuri);
-        writer.Write(SwarmActive);
-        writer.Write(HardmodeSwarmActive);
-        writer.Write((int)Binding);
-        writer.Write(EternityMode);
-        writer.Write(IsAnglerQuestComplete);
+        bits = new();
+        bits[0] = Matsuri;
+        bits[1] = SwarmActive;
+        bits[2] = HardmodeSwarmActive;
+        bits[3] = EternityMode;
+        bits[4] = IsAnglerQuestComplete;
+        bits[5] = IsSomeoneWearingMatthew;
+        bits[6] = false;
+        bits[7] = false;
+        writer.Write(bits);
+
+        writer.Write((ushort)AbomClearCD);
+        writer.Write((ushort)WoodChopped);
+        writer.Write((byte)Binding);
         // These can't be bytes because signed bytes are required and
         // they range between -127 and 127, which is not enough for the NPC array
         writer.Write((short)FargoGlobalNPC.eaterBoss);
@@ -241,9 +273,9 @@ public class FargoWorld : ModSystem
 
         foreach (Player player in Main.ActivePlayers)
         {
-            if (player != null && !player.dead)
+            if (!player.dead && !player.ghost)
             {
-                bool wearingMatthew = 
+                bool wearingMatthew =
                     player.head == EquipLoader.GetEquipSlot(Mod, "MatthewVanity", EquipType.Head) ||
                     player.armor[10].headSlot == EquipLoader.GetEquipSlot(Mod, "MatthewVanity", EquipType.Head);
                 IsSomeoneWearingMatthew = wearingMatthew;

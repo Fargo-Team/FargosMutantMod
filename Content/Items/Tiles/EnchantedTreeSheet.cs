@@ -1,12 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Content;
-using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
-using Terraria.GameContent;
-using Terraria.GameContent.Drawing;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -65,7 +61,7 @@ public class EnchantedTreeSheet : ModTile
     public override void KillMultiTile(int i, int j, int frameX, int frameY)
     {
         //drop item currently inside it
-        if (FargoUtils.TryGetTileEntityAs<EnchantedTreeTileEntity>(i, j, out EnchantedTreeTileEntity entity) == true && entity.ItemType >= 0 && Main.netMode != NetmodeID.Server)
+        if (Main.netMode != NetmodeID.Server && FargoUtils.TryGetTileEntityAs(i, j, out EnchantedTreeTileEntity entity) == true && entity.ItemType >= 0)
         {
             int item = Item.NewItem(Item.GetSource_NaturalSpawn(), new Rectangle(i * 16 + 50, j * 16 + 50, 1, 1), entity.ItemType, 1, prefixGiven: entity.Prefix);
             if (Main.netMode == NetmodeID.MultiplayerClient)
@@ -129,12 +125,12 @@ public class EnchantedTreeSheet : ModTile
         Player player = Main.LocalPlayer;
         if (player != null && player.active && !player.dead && Main.netMode != NetmodeID.Server)
         {
-            FargoUtils.TryGetTileEntityAs<EnchantedTreeTileEntity>(i, j, out EnchantedTreeTileEntity tree);
+            FargoUtils.TryGetTileEntityAs(i, j, out EnchantedTreeTileEntity tree);
             //set tile entity's item to held item of the player and reduce stack of player's held item!
-            bool treeAccepts = 
-                player.HeldItem != null && 
-                player.HeldItem.type >= ItemID.None && 
-                EnchantedTreeTileEntity.IsItemDupable(player.HeldItem.type) && 
+            bool treeAccepts =
+                player.HeldItem != null &&
+                player.HeldItem.type >= ItemID.None &&
+                EnchantedTreeTileEntity.IsItemDupable(player.HeldItem.type) &&
                 player.HeldItem.stack > 0 &&
                 !player.HeldItem.favorited;
             if (tree != null && treeAccepts && tree.ItemType == -1 && tree.Fruits.Count == 0)
@@ -186,10 +182,11 @@ public class EnchantedTreeSheet : ModTile
         if (!closer)
         {
             //Debug.WriteLine(EnchantedTreeTileEntity.EnchantedTrees[0]);
-            if (!EnchantedTrees.Contains(FargoUtils.GetTopLeftTileInMultitile(i, j)))
+            Point16 point = FargoUtils.GetTopLeftTileInMultitile(i, j);
+            if (!EnchantedTrees.Contains(point))
             {
                 //EnchantedTreeTileEntity.EnchantedTrees = [];
-                EnchantedTrees.Add(FargoUtils.GetTopLeftTileInMultitile(i, j));
+                EnchantedTrees.Add(point);
                 if (Main.netMode != NetmodeID.SinglePlayer)
                 {
                     FargoNet.SendEnchantedTreesListPacket();

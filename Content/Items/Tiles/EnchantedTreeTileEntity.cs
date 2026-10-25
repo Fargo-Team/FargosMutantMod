@@ -51,11 +51,11 @@ public class EnchantedTreeTileEntity : ModTileEntity
     }
     public override void Update()
     {
-        for (int i = 0; i < Fruits.Count; i++)
+        /*for (int i = 0; i < Fruits.Count; i++)
         {
             Fruit fruit = Fruits[i];
 
-        }
+        }*/
     }
     public override bool IsTileValidForEntity(int x, int y)
     {
@@ -107,13 +107,13 @@ public class EnchantedTreeTileEntity : ModTileEntity
         {
             Fruit fruit = Fruits[i];
             writer.Write(fruit.type);
-            writer.WriteVector2(fruit.center);
-            writer.WriteVector2(fruit.targetPosition);
-            writer.WriteVector2(fruit.velocity);
+            writer.WritePackedVector2(fruit.center);
+            writer.WritePackedVector2(fruit.targetPosition);
+            writer.WritePackedVector2(fruit.velocity);
             writer.Write(fruit.previousItem);
             writer.Write(fruit.layer);
-            writer.Write(fruit.grabCooldown);
-            writer.Write(fruit.despawnTimer);
+            writer.Write((byte)fruit.grabCooldown);
+            writer.Write((byte)fruit.despawnTimer);
         }
     }
     public override void NetReceive(BinaryReader reader)
@@ -126,9 +126,11 @@ public class EnchantedTreeTileEntity : ModTileEntity
         Fruits = [];
         for (int i = 0; i < count; i++)
         {
-            Fruit fruit = new(reader.ReadInt32(), reader.ReadVector2(), reader.ReadVector2(), reader.ReadVector2(), reader.ReadInt32(), reader.ReadInt32());
-            fruit.grabCooldown = reader.ReadInt32();
-            fruit.despawnTimer = reader.ReadSingle();
+            Fruit fruit = new(reader.ReadInt32(), reader.ReadPackedVector2(), reader.ReadPackedVector2(), reader.ReadPackedVector2(), reader.ReadInt32(), reader.ReadInt32())
+            {
+                grabCooldown = reader.ReadByte(),
+                despawnTimer = reader.ReadByte()
+            };
             Fruits.Add(fruit);
         }
     }
@@ -170,7 +172,7 @@ public class EnchantedTreeTileEntity : ModTileEntity
                 {
                     Vector2 ejectTreeTopLeft = new Vector2(tree.Position.X, tree.Position.Y) * 16;
                     Rectangle ejectTreeHitbox = new((int)ejectTreeTopLeft.X, (int)ejectTreeTopLeft.Y, 3 * 16, 4 * 16);
-                    if (ejectTreeHitbox.Contains(Main.MouseWorld.ToPoint()) && Main.LocalPlayer.Distance(ejectTreeTopLeft) < 400f)
+                    if (ejectTreeHitbox.Contains(Main.MouseWorld.ToPoint()) && Main.LocalPlayer.DistanceSQ(ejectTreeTopLeft) < 400f * 400f)
                     {
                         int it = Item.NewItem(Main.LocalPlayer.GetSource_TileInteraction(tree.Position.X, tree.Position.Y), tree.Position.ToWorldCoordinates(), tree.ItemType, 1, prefixGiven: tree.Prefix);
                         NetMessage.SendData(MessageID.SyncItem, Main.LocalPlayer.whoAmI, number: it, number2: 1f);
@@ -195,7 +197,7 @@ public class EnchantedTreeTileEntity : ModTileEntity
 
                     EnchantedTreeTileEntity.Fruit fruit = tree.Fruits[i];
                     //radius for a dist check so width / 2
-                    float size = 30;
+                    float size = 30 * 30;
                     
                     int cost = ContentSamples.ItemsByType[fruit.type].value * 2;
                     //cost = Math.Clamp(cost, 1, 9999);
@@ -203,11 +205,11 @@ public class EnchantedTreeTileEntity : ModTileEntity
                     {
                         fruit.grabbed = false;
                     }
-                    if (Main.MouseWorld.Distance(fruit.center) <= size)
+                    if (Main.MouseWorld.DistanceSQ(fruit.center) <= size)
                     {
                         Main.instance.MouseText(Lang.GetItemNameValue(fruit.type) + "\n" + ReforgeUtils.GetPriceString(cost, false, true), 0);
                     }
-                    if (Main.MouseWorld.Distance(fruit.center) <= size && Main.LocalPlayer.controlUseItem && fruit.grabCooldown == 0 &&
+                    if (Main.MouseWorld.DistanceSQ(fruit.center) <= size && Main.LocalPlayer.controlUseItem && fruit.grabCooldown == 0 &&
                         (Main.LocalPlayer.FargoMutant().grabbedFruit == null || Main.LocalPlayer.FargoMutant().grabbedFruit == fruit))
                     {
                         fruit.grabbed = true;
@@ -236,14 +238,14 @@ public class EnchantedTreeTileEntity : ModTileEntity
                                 fruit2.despawnTimer = 1;
                             }
                         }
-                        if (expand && FargoItemSets.DuplicatableRecipes.ContainsKey(fruit.type) && FargoItemSets.DuplicatableRecipes[fruit.type].Count > 0)
+                        if (expand && FargoItemSets.DuplicatableRecipes.TryGetValue(fruit.type, out List<int> value) && value.Count > 0)
                         {
                             SoundEngine.PlaySound(SoundID.Item130, fruit.center);
                             netsync = true;
-                            for (int d = 0; d < FargoItemSets.DuplicatableRecipes[fruit.type].Count; d++)
+                            for (int d = 0; d < value.Count; d++)
                             {
-                                Vector2 position = fruit.targetPosition + new Vector2(0, 350) - new Vector2(0, 500).RotatedBy(MathHelper.ToRadians((d) * 7 - FargoItemSets.DuplicatableRecipes[fruit.type].Count * 7 / 2 + 3f));
-                                tree.Fruits.Add(new Fruit(FargoItemSets.DuplicatableRecipes[fruit.type][d], fruit.center, position, Vector2.Zero, i, fruit.layer + 1));
+                                Vector2 position = fruit.targetPosition + new Vector2(0, 350) - new Vector2(0, 500).RotatedBy(MathHelper.ToRadians((d) * 7 - value.Count * 7 / 2 + 3f));
+                                tree.Fruits.Add(new Fruit(value[d], fruit.center, position, Vector2.Zero, i, fruit.layer + 1));
                             }
                         }
                         if (netsync && Main.netMode == NetmodeID.MultiplayerClient)
@@ -301,14 +303,14 @@ public class EnchantedTreeTileEntity : ModTileEntity
     {
         for (int i = 0; i < EnchantedTreeSheet.EnchantedTrees.Count; i++)
         {
-            if (FargoUtils.TryGetTileEntityAs<EnchantedTreeTileEntity>(EnchantedTreeSheet.EnchantedTrees[i].X, EnchantedTreeSheet.EnchantedTrees[i].Y, out EnchantedTreeTileEntity tree))
+            if (FargoUtils.TryGetTileEntityAs(EnchantedTreeSheet.EnchantedTrees[i].X, EnchantedTreeSheet.EnchantedTrees[i].Y, out EnchantedTreeTileEntity tree))
             {
                 Main.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, Main.Camera.Sampler, DepthStencilState.None, Main.Camera.Rasterizer, null, transformMatrix: Main.Camera.GameViewMatrix.TransformationMatrix);
                 Asset<Texture2D> line = TextureAssets.Extra[ExtrasID.FairyQueenLance];
                 //draw lines
                 for (int f = 0; f < tree.Fruits.Count; f++)
                 {
-                    EnchantedTreeTileEntity.Fruit fruit = tree.Fruits[f];
+                    Fruit fruit = tree.Fruits[f];
                     if (fruit.previousItem >= 0 && tree.Fruits.Count > fruit.previousItem && Main.LocalPlayer.Distance(fruit.center) < 1200)
                     {
                         Vector2 pos = tree.Fruits[fruit.previousItem].center;
@@ -321,8 +323,8 @@ public class EnchantedTreeTileEntity : ModTileEntity
                 for (int f = 0; f < tree.Fruits.Count; f++)
                 {
 
-                    EnchantedTreeTileEntity.Fruit fruit = tree.Fruits[f];
-                    if (Main.LocalPlayer.Distance(fruit.center) < 1200)
+                    Fruit fruit = tree.Fruits[f];
+                    if (Main.LocalPlayer.DistanceSQ(fruit.center) < 1200 * 1200)
                         DrawItem(fruit.type, fruit.center, 1 - fruit.despawnTimer / 20f);
 
                 }

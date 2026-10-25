@@ -46,7 +46,7 @@ public class FargoGlobalTile : GlobalTile
             return;
         }
 
-        if (type == TileID.Trees || type == TileID.TreeAsh && !fail && !(FargoWorld.DownedBools.TryGetValue("lumberjack", out bool down) && down))
+        if (FargoWorld.WoodChopped < 400 && (type == TileID.Trees || type == TileID.TreeAsh && !fail && !(FargoWorld.DownedBools.TryGetValue("lumberjack", out bool down) && down)))
         {
             FargoWorld.WoodChopped++;
 

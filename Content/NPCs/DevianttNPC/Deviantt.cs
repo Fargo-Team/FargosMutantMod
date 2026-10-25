@@ -490,7 +490,7 @@ public class Deviantt : ModNPC
     {
         //if (NPC.IsABestiaryIconDummy)
         //   return true;
-        Texture2D texture = (Texture2D)TownNPCProfile().GetTextureNPCShouldUse(NPC);
+        Texture2D texture = TownNPCProfile().GetTextureNPCShouldUse(NPC).Value;
 
         int xFrameToUse = RetrieveProperXFrame(0);
         Rectangle rectangle = new(72 * xFrameToUse, NPC.frame.Y, 72, 66);

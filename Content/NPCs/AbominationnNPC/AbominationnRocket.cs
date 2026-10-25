@@ -13,8 +13,8 @@ public class AbominationnRocket : ModProjectile
     public override void SetStaticDefaults()
     {
         Main.projFrames[Type] = 3;
-        ProjectileID.Sets.TrailCacheLength[Projectile.type] = 6;
-        ProjectileID.Sets.TrailingMode[Projectile.type] = 2;
+        ProjectileID.Sets.TrailCacheLength[Type] = 6;
+        ProjectileID.Sets.TrailingMode[Type] = 2;
     }
 
     public override void SetDefaults()
@@ -107,8 +107,8 @@ public class AbominationnRocket : ModProjectile
 
     //public override bool PreDraw(ref Color lightColor)
     //{
-    //    Texture2D texture2D13 = Main.ProjectileTexture[Projectile.type];
-    //    int num156 = Main.ProjectileTexture[Projectile.type].Height / Main.projFrames[Projectile.type]; // Y-pos of lower right corner of sprite to draw
+    //    Texture2D texture2D13 = Main.ProjectileTexture[Type];
+    //    int num156 = Main.ProjectileTexture[Type].Height / Main.projFrames[Type]; // Y-pos of lower right corner of sprite to draw
     //    int y3 = num156 * Projectile.frame; // Y-pos of upper left corner of sprite to draw
     //    Rectangle rectangle = new Rectangle(0, y3, texture2D13.Width, num156);
     //    Vector2 origin2 = rectangle.Size() / 2f;
@@ -118,10 +118,10 @@ public class AbominationnRocket : ModProjectile
 
     //    SpriteEffects effects = Projectile.spriteDirection > 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
 
-    //    for (int i = 0; i < ProjectileID.Sets.TrailCacheLength[Projectile.type]; i++)
+    //    for (int i = 0; i < ProjectileID.Sets.TrailCacheLength[Type]; i++)
     //    {
     //        Color color27 = color26 * 0.5f;
-    //        color27 *= (float)(ProjectileID.Sets.TrailCacheLength[Projectile.type] - i) / ProjectileID.Sets.TrailCacheLength[Projectile.type];
+    //        color27 *= (float)(ProjectileID.Sets.TrailCacheLength[Type] - i) / ProjectileID.Sets.TrailCacheLength[Type];
     //        Vector2 value4 = Projectile.oldPos[i];
     //        float num165 = Projectile.oldRot[i];
     //        Main.spriteBatch.Draw(texture2D13, value4 + Projectile.Size / 2f - Main.screenPosition + new Vector2(0, Projectile.gfxOffY), new Microsoft.Xna.Framework.Rectangle?(rectangle), color27, num165, origin2, Projectile.scale, effects, 0f);

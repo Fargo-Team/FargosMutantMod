@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -45,7 +46,8 @@ public class MechEyeProjectile : ModProjectile
             if (foundTarget != -1)
             {
                 NPC n = Main.npc[foundTarget];
-                if (Projectile.Distance(n.Center) > System.Math.Max(n.width, n.height))
+                int max = Math.Max(n.width, n.height);
+                if (Projectile.DistanceSQ(n.Center) > max * max)
                 {
                     Vector2 desiredVelocity = Projectile.DirectionTo(n.Center) * flySpeed;
                     Projectile.velocity = Vector2.Lerp(Projectile.velocity, desiredVelocity, 1f / lerpFrameAmount);
@@ -68,7 +70,7 @@ public class MechEyeProjectile : ModProjectile
 
     private int HomeOnTarget()
     {
-        const float HOMING_MAXIMUM_RANGE_IN_PIXELS = 500;
+        const float HOMING_MAXIMUM_RANGE_IN_PIXELS = 500 * 500;
 
         int selectedTarget = -1;
         for (int i = 0; i < Main.maxNPCs; i++)
@@ -76,8 +78,8 @@ public class MechEyeProjectile : ModProjectile
             NPC n = Main.npc[i];
             if (n.CanBeChasedBy(Projectile) && Collision.CanHitLine(Projectile.Center, 0, 0, n.Center, 0, 0))
             {
-                float distance = Projectile.Distance(n.Center);
-                if (distance <= HOMING_MAXIMUM_RANGE_IN_PIXELS && (selectedTarget == -1 || Projectile.Distance(Main.npc[selectedTarget].Center) > distance))
+                float distance = Projectile.DistanceSQ(n.Center);
+                if (distance <= HOMING_MAXIMUM_RANGE_IN_PIXELS && (selectedTarget == -1 || Projectile.DistanceSQ(Main.npc[selectedTarget].Center) > distance))
                 {
                     selectedTarget = i;
                 }

@@ -101,7 +101,7 @@ public class SiblingPylonTile : ModPylon
     }
 
     bool NearNPC(Vector2 tilePos, int npcType)
-        => Main.npc.Any(n => n.active && n.type == npcType && n.Distance(tilePos) < 1000);
+        => Main.npc.Any(n => n.active && n.type == npcType && n.DistanceSQ(tilePos) < 1000 * 1000);
 
     bool NearEnoughSiblings(Vector2 tilePos)
     {

@@ -125,7 +125,7 @@ public class CaughtNPCItem : ModItem
     {
         //replaced tile in range check because items like toolbox exist and npcs just dont spawn if placed too far
         //what the fuck is terraria code anyway
-        return player.Distance(Main.MouseWorld) < 4 * 16
+        return player.DistanceSQ(Main.MouseWorld) < 4 * 16 * 4 * 16
             && !Collision.SolidCollision(Main.MouseWorld - player.DefaultSize / 2, (int)player.DefaultSize.X, (int)player.DefaultSize.Y)
             && NPC.CountNPCS(AssociatedNpcId) < 5;
     }

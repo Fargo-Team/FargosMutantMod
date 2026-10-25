@@ -256,7 +256,7 @@ public class EnchantedTreeTileEntity : ModTileEntity
                         }
                         //fruit.velocity = Vector2.Lerp(fruit.velocity, fruit.center.AngleTo(Main.MouseWorld).ToRotationVector2() * fruit.center.Distance(Main.MouseWorld), 0.07f);
                         fruit.center = Vector2.Lerp(fruit.center, Main.MouseWorld, 0.07f);
-                        if (fruit.center.Distance(fruit.targetPosition) > 100)
+                        if (fruit.center.DistanceSQ(fruit.targetPosition) > 100 * 100)
                         {
                             fruit.grabbed = false;
                             Main.LocalPlayer.FargoMutant().grabbedFruit = null;
@@ -311,10 +311,10 @@ public class EnchantedTreeTileEntity : ModTileEntity
                 for (int f = 0; f < tree.Fruits.Count; f++)
                 {
                     Fruit fruit = tree.Fruits[f];
-                    if (fruit.previousItem >= 0 && tree.Fruits.Count > fruit.previousItem && Main.LocalPlayer.Distance(fruit.center) < 1200)
+                    if (fruit.previousItem >= 0 && tree.Fruits.Count > fruit.previousItem && Main.LocalPlayer.DistanceSQ(fruit.center) < 1200 * 1200)
                     {
                         Vector2 pos = tree.Fruits[fruit.previousItem].center;
-                        Main.EntitySpriteDraw(line.Value, pos - Main.screenPosition, null, Color.White * (1 - fruit.despawnTimer / 20f), pos.AngleTo(fruit.center), new Vector2(0, line.Height()) / 2, new Vector2(pos.Distance(fruit.center) / line.Width(), 1), SpriteEffects.None);
+                        Main.EntitySpriteDraw(line.Value, pos - Main.screenPosition, null, Color.White * (1 - fruit.despawnTimer / 20f), pos.AngleTo(fruit.center), new Vector2(0, line.Height()) / 2, new Vector2(pos.DistanceSQ(fruit.center) / (line.Width() * line.Width()), 1), SpriteEffects.None);
                     }
                 }
 

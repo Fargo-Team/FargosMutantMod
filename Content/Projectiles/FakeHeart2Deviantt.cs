@@ -64,7 +64,7 @@ public class FakeHeart2Deviantt : ModProjectile
                         num4 += 2.0 * Math.PI;
                     }
 
-                    Projectile.velocity = Projectile.velocity.RotatedBy(num4 * (Projectile.Distance(Main.npc[ai0].Center) > 100 ? 0.6f : 0.2f));
+                    Projectile.velocity = Projectile.velocity.RotatedBy(num4 * (Projectile.DistanceSQ(Main.npc[ai0].Center) > 100 * 100 ? 0.6f : 0.2f));
                 }
                 else
                 {
@@ -77,14 +77,14 @@ public class FakeHeart2Deviantt : ModProjectile
                 if (++Projectile.localAI[1] > 12f)
                 {
                     Projectile.localAI[1] = 0f;
-                    float maxDistance = 700f;
+                    float maxDistance = 700f * 700f;
                     int possibleTarget = -1;
                     for (int i = 0; i < Main.maxNPCs; i++)
                     {
                         NPC npc = Main.npc[i];
                         if (npc.CanBeChasedBy())
                         {
-                            float npcDistance = Projectile.Distance(npc.Center);
+                            float npcDistance = Projectile.DistanceSQ(npc.Center);
                             if (npcDistance < maxDistance)
                             {
                                 maxDistance = npcDistance;

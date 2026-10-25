@@ -4,6 +4,7 @@ using Terraria.Audio;
 using Terraria.GameContent.Events;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Net;
 
 namespace Fargowiltas.Content.Items.Summons.Abom;
 
@@ -35,9 +36,23 @@ public class WeatherBalloon : ModItem
 
     public override bool? UseItem(Player player)
     {
+        MakeItRain();
+        if (player.whoAmI == Main.myPlayer && Main.netMode == NetmodeID.MultiplayerClient)
+        {
+            ModPacket packet = Mod.GetPacket();
+            packet.Write((byte)Fargowiltas.PacketID.SyncWeatherBalloon);
+            packet.Send();
+        }
+        FargoUtils.PrintLocalization("MessageInfo.StartRain", new Color(175, 75, 255));
+        SoundEngine.PlaySound(SoundID.Roar, player.position);
+
+        return true;
+    }
+
+    public static void MakeItRain(int whoAmI = -1)
+    {
         LanternNight.GenuineLanterns = false;
         LanternNight.ManualLanterns = false;
-
         //sets rain time to 12 hours
         int day = 86400;
         int hour = day / 24;
@@ -45,15 +60,15 @@ public class WeatherBalloon : ModItem
         Main.raining = true;
         Main.maxRaining = Main.cloudAlpha = 0.9f;
         Main.windSpeedTarget = Main.windSpeedCurrent = 0.8f; //40mph?
-
-        if (Main.netMode == NetmodeID.Server)
+        if (Main.maxRaining != Main.oldMaxRaining)
         {
-            NetMessage.SendData(MessageID.WorldData);
-            Main.SyncRain();
+            if (Main.netMode == NetmodeID.Server)
+            {
+                ModPacket packet = Fargowiltas.Instance.GetPacket();
+                packet.Write((byte)Fargowiltas.PacketID.SyncWeatherBalloon);
+                packet.Send(-1, whoAmI);
+            }
+            Main.oldMaxRaining = Main.maxRaining;
         }
-        FargoUtils.PrintLocalization("MessageInfo.StartRain", new Color(175, 75, 255));
-        SoundEngine.PlaySound(SoundID.Roar, player.position);
-
-        return true;
     }
 }

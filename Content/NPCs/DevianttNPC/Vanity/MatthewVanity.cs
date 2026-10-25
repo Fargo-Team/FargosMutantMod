@@ -1,6 +1,4 @@
-﻿using Fargowiltas.Content.NPCs.DevianttNPC;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -12,6 +10,14 @@ namespace Fargowiltas.Content.NPCs.DevianttNPC.Vanity;
 [LegacyName("DevianttMask")]
 public class MatthewVanity : ModItem
 {
+    public static int EquipSlotID;
+    public override void OnCreated(ItemCreationContext context)
+    {
+        if (context is InitializationItemCreationContext)
+        {
+            EquipSlotID = EquipLoader.GetEquipSlot(Mod, Name, EquipType.Head);
+        }
+    }
     public override bool ModifyEquipTextureDraw(ref PlayerDrawSet drawInfo, ref DrawData drawData, EquipTexture equipTexture, string methodName)
     {
         Rectangle hatRect = new(0, 0, 48, 64);
@@ -43,5 +49,27 @@ public class MatthewVanity : ModItem
             .AddIngredient(ItemID.MetalDetector)
             .AddTile(TileID.TinkerersWorkbench)
             .Register();
+    }
+}
+public class MatthewWorld : ModSystem
+{
+    internal static bool IsSomeoneWearingMatthew;
+    public override void PreUpdatePlayers()
+    {
+        IsSomeoneWearingMatthew = false;
+    }
+}
+public class MatthewPlayer : ModPlayer
+{
+    public override void PreUpdate()
+    {
+        if (!Player.dead && !Player.ghost)
+        {
+            int id = MatthewVanity.EquipSlotID;
+            if (Player.head == id || Player.armor[10].headSlot == id)
+            {
+                MatthewWorld.IsSomeoneWearingMatthew = true;
+            }
+        }
     }
 }

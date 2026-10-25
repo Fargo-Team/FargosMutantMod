@@ -737,28 +737,25 @@ public class FargoGlobalItem : GlobalItem
     {
         if (item.type == ItemID.Binoculars) //the amount of nesting here exists to prevent excessive lag
         {
-            if (NPC.AnyNPCs(NPCID.TownCat))
+            for (int j = 0; j < Main.maxNPCs; j++)
             {
-                for (int j = 0; j < Main.maxNPCs; j++)
+                if (Main.npc[j].active && Main.npc[j].type == NPCID.TownCat)
                 {
-                    if (Main.npc[j].active && Main.npc[j].type == NPCID.TownCat)
+                    NPC cat = Main.npc[j];
+                    for (int i = 0; i < Main.maxItems; i++)
                     {
-                        NPC cat = Main.npc[j];
-                        for (int i = 0; i < Main.maxItems; i++)
+                        if (Main.item[i].active && Main.item[i].type == ItemID.CellPhone)
                         {
-                            if (Main.item[i].active && Main.item[i].type == ItemID.CellPhone)
+                            if (cat.DistanceSQ(Main.item[i].Center) < cat.Size.LengthSquared() && Main.MouseWorld.DistanceSQ(cat.Center) < cat.Size.LengthSquared())
                             {
-                                if (cat.Distance(Main.item[i].Center) < cat.Size.Length() && Main.MouseWorld.Distance(cat.Center) < cat.Size.Length())
-                                {
-                                    Item.NewItem(player.GetSource_ItemUse(item), cat.Center, ItemType<WiresPainting>());
-                                    Main.item[i].active = false;
-                                    cat.active = false;
-                                    EmoteBubble.MakeLocalPlayerEmote(ModContent.EmoteBubbleType<WiresEmote>());
-                                    return;
-                                }
+                                Item.NewItem(player.GetSource_ItemUse(item), cat.Center, ItemType<WiresPainting>());
+                                Main.item[i].active = false;
+                                cat.active = false;
+                                EmoteBubble.MakeLocalPlayerEmote(ModContent.EmoteBubbleType<WiresEmote>());
+                                return;
                             }
-
                         }
+
                     }
                 }
             }

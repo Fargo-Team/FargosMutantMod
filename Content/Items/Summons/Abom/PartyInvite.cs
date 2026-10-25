@@ -34,24 +34,31 @@ public class PartyInvite : ModItem
 
     public override bool? UseItem(Player player)
     {
-        if (!NPC.AnyNPCs(NPCID.PartyGirl))
+        if (!NPC.npcsFoundForCheckActive[NPCID.PartyGirl])
             NPC.SpawnOnPlayer(player.whoAmI, NPCID.PartyGirl);
 
         BirthdayParty.PartyDaysOnCooldown = 0;
 
         if (Main.netMode != NetmodeID.MultiplayerClient)
         {
-            for (int i = 0; i < 100; i++)
-            {
-                if (BirthdayParty.PartyIsUp)
-                    break;
-                BirthdayParty.CheckMorning();
-            }
+            TryForParty();
+        }
+        else if (player.whoAmI == Main.myPlayer)
+        {
+            ModPacket packet = Mod.GetPacket();
+            packet.Write((byte)Fargowiltas.PacketID.SyncPartyInvite);
+            packet.Send();
         }
 
-        if (Main.netMode == NetmodeID.Server)
-            NetMessage.SendData(MessageID.WorldData);
-
         return true;
+    }
+    public static void TryForParty()
+    {
+        for (int i = 0; i < 100; i++)
+        {
+            if (BirthdayParty.PartyIsUp)
+                break;
+            BirthdayParty.CheckMorning();
+        }
     }
 }

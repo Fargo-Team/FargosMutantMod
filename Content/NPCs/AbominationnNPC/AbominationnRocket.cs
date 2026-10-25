@@ -134,7 +134,7 @@ public class AbominationnRocket : ModProjectile
     private int HomeOnTarget()
     {
         const bool homingCanAimAtWetEnemies = true;
-        const float homingMaximumRangeInPixels = 1000;
+        const float homingMaximumRangeInPixels = 1000 * 1000;
 
         int selectedTarget = -1;
         for (int i = 0; i < Main.maxNPCs; i++)
@@ -142,8 +142,8 @@ public class AbominationnRocket : ModProjectile
             NPC n = Main.npc[i];
             if (n.CanBeChasedBy(Projectile) && (!n.wet || homingCanAimAtWetEnemies))
             {
-                float distance = Projectile.Distance(n.Center);
-                if (distance <= homingMaximumRangeInPixels && (selectedTarget == -1 || Projectile.Distance(Main.npc[selectedTarget].Center) > distance))
+                float distance = Projectile.DistanceSQ(n.Center);
+                if (distance <= homingMaximumRangeInPixels && (selectedTarget == -1 || Projectile.DistanceSQ(Main.npc[selectedTarget].Center) > distance))
                 {
                     selectedTarget = i;
                 }

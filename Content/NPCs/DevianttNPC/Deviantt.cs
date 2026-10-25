@@ -143,7 +143,7 @@ public class Deviantt : ModNPC
 
         //no trolling when possible danger
         if (FargoUtils.AnyBossAlive()
-            || Main.npc.Any(n => n.active && n.damage > 0 && !n.friendly && NPC.Distance(n.Center) < 1200)
+            || Main.npc.Any(n => n.active && n.damage > 0 && !n.friendly && NPC.DistanceSQ(n.Center) < 1200 * 1200)
             || NPC.life < NPC.lifeMax)
             return;
 
@@ -153,18 +153,19 @@ public class Deviantt : ModNPC
         Vector2 targetPos = default;
 
         const float maxRange = 600f;
-        float targetDistance = maxRange;
+        float targetDistanceSQ = maxRange * 600f;
 
         void TryUpdateTarget(Vector2 possibleTarget)
         {
-            if (targetDistance > NPC.Distance(possibleTarget)
+            float distance = NPC.DistanceSQ(possibleTarget);
+            if (targetDistanceSQ > distance
                 && Collision.CanHitLine(NPC.Center, 0, 0, possibleTarget, 0, 0))
             {
                 Tile tileBelow = Framing.GetTileSafely(possibleTarget + 32f * Vector2.UnitY);
                 if (tileBelow.HasUnactuatedTile && Main.tileSolid[tileBelow.TileType] && !Main.tileSolidTop[tileBelow.TileType])
                 {
                     targetPos = possibleTarget;
-                    targetDistance = NPC.Distance(possibleTarget);
+                    targetDistanceSQ = distance;
                 }
             }
         }
@@ -186,7 +187,7 @@ public class Deviantt : ModNPC
 
         if (targetPos != default)
         {
-            float distanceRatio = targetDistance / maxRange;
+            float distanceRatio = (float)Math.Sqrt(targetDistanceSQ) / maxRange;
 
             //account for gravity
             targetPos.Y += 16f;
@@ -473,7 +474,7 @@ public class Deviantt : ModNPC
     */
     public override void ChatBubblePosition(ref Vector2 position, ref SpriteEffects spriteEffects)
     {   
-        if (FargoWorld.IsSomeoneWearingMatthew)
+        if (MatthewWorld.IsSomeoneWearingMatthew)
         {
             position.Y += 6;
         }
@@ -481,7 +482,7 @@ public class Deviantt : ModNPC
 
     public override void EmoteBubblePosition(ref Vector2 position, ref SpriteEffects spriteEffects)
     {
-        if (FargoWorld.IsSomeoneWearingMatthew)
+        if (MatthewWorld.IsSomeoneWearingMatthew)
             position.Y += 4;       
         else
             position.Y -= 8;
@@ -520,7 +521,7 @@ public class Deviantt : ModNPC
     {
         int frame = frameX;
         bool faceRight = NPC.spriteDirection == 1;
-        if (true)//FargoWorld.IsSomeoneWearingMatthew)
+        if (true)//MatthewWorld.IsSomeoneWearingMatthew)
             frame += 2;
         if (faceRight)
             frame += 1;
@@ -551,7 +552,7 @@ public class DevianttProfile : ITownNPCProfile
 
     public int GetHeadTextureIndex(NPC npc)
     {
-        if (FargoWorld.IsSomeoneWearingMatthew)
+        if (MatthewWorld.IsSomeoneWearingMatthew)
             return GetModHeadSlot("Fargowiltas/Content/NPCs/DevianttNPC/Deviantt_Head_Hatless");
         return GetModHeadSlot("Fargowiltas/Content/NPCs/DevianttNPC/Deviantt_Head");
     }

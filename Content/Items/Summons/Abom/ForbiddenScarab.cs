@@ -38,15 +38,12 @@ public class ForbiddenScarab : ModItem
     public override bool? UseItem(Player player)
     {
         Main.windSpeedTarget = Main.windSpeedCurrent = 0.8f; //40mph?
-
         Sandstorm.StartSandstorm();
-
-
-
-        if (Main.netMode == NetmodeID.Server)
+        if (player.whoAmI == Main.myPlayer && Main.netMode == NetmodeID.MultiplayerClient)
         {
-            NetMessage.SendData(MessageID.WorldData);
-            Main.SyncRain();
+            ModPacket packet = Mod.GetPacket();
+            packet.Write((byte)Fargowiltas.PacketID.SyncForbiddenScarab);
+            packet.Send();
         }
 
         FargoUtils.PrintLocalization("MessageInfo.StartSandStorm", new Color(175, 75, 255));

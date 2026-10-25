@@ -9,14 +9,12 @@ using Fargowiltas.Content.UI.Emotes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
-using Terraria.GameContent.ItemDropRules;
 using Terraria.GameContent.Personalities;
 using Terraria.ID;
 using Terraria.Localization;
@@ -164,7 +162,7 @@ public class Abominationn : ModNPC
 
         //Main.NewText(NPC.DistanceSQ(Main.LocalPlayer.Center));
         bool shouldBrandish = NPC.DistanceSQ(Main.LocalPlayer.Center) / 10 <= 2500;
-            //|| targetIndex != -1;
+        //|| targetIndex != -1;
         if (shouldBrandish)
             shouldDrawStyxGazer = true;
         else
@@ -291,42 +289,37 @@ public class Abominationn : ModNPC
         }
         else
         {
-            if (Main.netMode == NetmodeID.MultiplayerClient)
-            {
-                var netMessage = Mod.GetPacket();
-                netMessage.Write((byte)PacketID.ClientUpdateWorld);
-                netMessage.Send();
-            }
-
             if (!NPC.downedTowers && NPC.LunarApocalypseIsUp)
             {
-                if (Main.netMode == NetmodeID.MultiplayerClient)
+                bool canClear = Fargowiltas.TryClearEvents(out bool didClearSomething);
+                if (canClear && Main.netMode == NetmodeID.MultiplayerClient)
                 {
                     var netMessage = Mod.GetPacket();
                     netMessage.Write((byte)PacketID.AbomClearEvent);
                     netMessage.Send();
                 }
 
-                if (Fargowiltas.IsEventOccurring)
+                if (didClearSomething)
                 {
-                    Main.npcChatText = Fargowiltas.TryClearEvents() ? AbomChat("PillarFail2") : AbomChat("PillarFailCD", FargoWorld.AbomClearCD / 60);
+                    Main.npcChatText = AbomChat("PillarFail2");
                 }
                 else
                 {
-                    Main.npcChatText = AbomChat("PillarFail");
+                    Main.npcChatText = canClear ? AbomChat("PillarFail") : AbomChat("PillarFailCD", FargoWorld.AbomClearCD / 60);
                 }
             }
 
             else if (Fargowiltas.IsEventOccurring)
             {
-                if (Main.netMode == NetmodeID.MultiplayerClient)
+                bool canClear = Fargowiltas.TryClearEvents(out bool didClearSomething);
+                if (canClear && Main.netMode == NetmodeID.MultiplayerClient)
                 {
                     var netMessage = Mod.GetPacket();
                     netMessage.Write((byte)PacketID.AbomClearEvent);
                     netMessage.Send();
                 }
 
-                Main.npcChatText = Fargowiltas.TryClearEvents() ? AbomChat("Canceled") : AbomChat("CancelCD", FargoWorld.AbomClearCD / 60);
+                Main.npcChatText = didClearSomething ? AbomChat("Canceled") : AbomChat("CancelCD", FargoWorld.AbomClearCD / 60);
             }
 
             else
@@ -539,7 +532,7 @@ public class Abominationn : ModNPC
         else if (NPC.velocity.Length() == 0)
             HandleCapeAnimation((int)CapeAnimationID.Idle, shouldFlourishCape);
         #endregion
-        
+
         if (shouldDrawStyxGazer)
         {
             if (++StyxFrameCounter >= 4)
@@ -633,7 +626,7 @@ public class Abominationn : ModNPC
             }
         }
         */
-                  
+
         return false;
     }
 

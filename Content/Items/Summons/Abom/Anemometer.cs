@@ -36,8 +36,12 @@ public class Anemometer : ModItem
     {
         Main.windSpeedTarget = Main.windSpeedCurrent = 0.8f; //40mph?
 
-        if (Main.netMode == NetmodeID.Server)
-            NetMessage.SendData(MessageID.WorldData);
+        if (player.whoAmI == Main.myPlayer && Main.netMode == NetmodeID.MultiplayerClient)
+        {
+            ModPacket packet = Mod.GetPacket();
+            packet.Write((byte)Fargowiltas.PacketID.SyncWeatherBalloon);
+            packet.Send();
+        }
         FargoUtils.PrintLocalization("MessageInfo.StartWindyDay", new Color(175, 75, 255));
         SoundEngine.PlaySound(SoundID.Roar, player.position);
 

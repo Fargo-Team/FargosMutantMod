@@ -80,7 +80,7 @@ public class ChizardSearchBar : FargoUI
         Vector2 pos = Main.LocalPlayer.FargoMutant().LastInteractedChizard.ToWorldCoordinates();
         FargoUtils.TryGetTileEntityAs(tilepos.X, tilepos.Y, out ChestWizardTileEntity TE);
         //if too far or destroyed, disable ui
-        if (!Main.playerInventory || pos.Distance(Main.LocalPlayer.Center) > 100 || Main.tile[tilepos].TileType != ModContent.TileType<ChestWizardSheet>())
+        if (!Main.playerInventory || pos.DistanceSQ(Main.LocalPlayer.Center) > 100 * 100 || Main.tile[tilepos].TileType != ModContent.TileType<ChestWizardSheet>())
         {
             FargoUI ui = FargoUIManager.Get<ChizardSearchBar>();
             FargoUIManager.Close(ui);
@@ -109,7 +109,7 @@ public class ChizardSearchBar : FargoUI
                 Chest chest = Main.chest[c];
                 if (chest == null || TileLoader.IsLockedChest(chest.x, chest.y, Main.tile[chest.x, chest.y].TileType) || Chest.IsLocked(chest.x, chest.y)) continue;
 
-                if (new Point(chest.x, chest.y).ToWorldCoordinates().Distance(pos) < 1000)
+                if (new Point(chest.x, chest.y).ToWorldCoordinates().DistanceSQ(pos) < 1000 * 1000)
                 {
                     for (int i = 0; i < chest.item.Length; i++)
                     {
@@ -326,7 +326,7 @@ public class ChizardSearchBar : FargoUI
             Chest chest = Main.chest[i];
             if (chest == null || TileLoader.IsLockedChest(chest.x, chest.y, Main.tile[chest.x, chest.y].TileType) || Chest.IsLocked(chest.x, chest.y)) continue;
 
-            if (new Point(chest.x, chest.y).ToWorldCoordinates().Distance(pos) < 1000)
+            if (new Point(chest.x, chest.y).ToWorldCoordinates().DistanceSQ(pos) < 1000 * 1000)
             {
 
                 for (int j = 0; j < chest.item.Length; j++)

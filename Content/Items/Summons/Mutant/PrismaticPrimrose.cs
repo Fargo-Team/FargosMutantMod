@@ -30,7 +30,7 @@ public class PrismaticPrimrose : BaseSummon
             Main.SkipToTime(0, Main.dayTime);
 
             if (Main.netMode == NetmodeID.Server) //sync time
-                NetMessage.SendData(MessageID.WorldData, -1, -1, null, 0, 0f, 0f, 0f, 0, 0, 0);
+                NetMessage.SendData(MessageID.WorldData);
         }
         return base.Shoot(player, source, position, velocity, type, damage, knockback);
     }

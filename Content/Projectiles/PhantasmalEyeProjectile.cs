@@ -59,7 +59,9 @@ public class PhantasmalEyeProjectile : ModProjectile
             if (foundTarget != -1)
             {
                 NPC n = Main.npc[foundTarget];
-                if (Projectile.Distance(n.Center) > Math.Max(n.width, n.height))
+                int max = Math.Max(n.width, n.height);
+                float distance = Projectile.DistanceSQ(n.Center);
+                if (distance > max * max)
                 {
                     Vector2 desiredVelocity = Projectile.DirectionTo(n.Center) * flySpeed;
                     Projectile.velocity = Vector2.Lerp(Projectile.velocity, desiredVelocity, 1f / lerpFrameAmount);
@@ -75,7 +77,7 @@ public class PhantasmalEyeProjectile : ModProjectile
                         num4 += 2.0 * Math.PI;
                     }
 
-                    Projectile.velocity = Projectile.velocity.RotatedBy(num4 * (Projectile.Distance(n.Center) > 100 ? 0.4f : 0.1f));
+                    Projectile.velocity = Projectile.velocity.RotatedBy(num4 * (distance > 100 ? 0.4f : 0.1f));
                 }
             }
         }
@@ -117,7 +119,7 @@ public class PhantasmalEyeProjectile : ModProjectile
 
     private int HomeOnTarget()
     {
-        const float HOMING_MAXIMUM_RANGE_IN_PIXELS = 1000;
+        const float HOMING_MAXIMUM_RANGE_IN_PIXELS = 1000 * 1000;
 
         int selectedTarget = -1;
         for (int i = 0; i < Main.maxNPCs; i++)
@@ -125,8 +127,8 @@ public class PhantasmalEyeProjectile : ModProjectile
             NPC n = Main.npc[i];
             if (n.CanBeChasedBy(Projectile))
             {
-                float distance = Projectile.Distance(n.Center);
-                if (distance <= HOMING_MAXIMUM_RANGE_IN_PIXELS && (selectedTarget == -1 || Projectile.Distance(Main.npc[selectedTarget].Center) > distance))
+                float distance = Projectile.DistanceSQ(n.Center);
+                if (distance <= HOMING_MAXIMUM_RANGE_IN_PIXELS && (selectedTarget == -1 || Projectile.DistanceSQ(Main.npc[selectedTarget].Center) > distance))
                 {
                     selectedTarget = i;
                 }

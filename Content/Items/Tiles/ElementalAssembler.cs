@@ -114,7 +114,7 @@ public class ElementalAssemblerSheet : ModTile
 
     public override void NearbyEffects(int i, int j, bool closer)
     {
-        if (Main.LocalPlayer.Distance(new Vector2(i * 16 + 8, j * 16 + 8)) < 16 * 5)
+        if (Main.LocalPlayer.DistanceSQ(new Vector2(i * 16 + 8, j * 16 + 8)) < 16 * 5 * 16 * 5)
         {
             Main.LocalPlayer.GetModPlayer<FargoPlayer>().ElementalAssemblerNearby = 6;
         }

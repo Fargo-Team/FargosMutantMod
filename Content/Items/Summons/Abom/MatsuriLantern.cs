@@ -1,7 +1,9 @@
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.Chat;
 using Terraria.DataStructures;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Fargowiltas.Content.Items.Summons.Abom;
@@ -40,8 +42,12 @@ public class MatsuriLantern : ModItem
         FargoWorld.Matsuri = true;
         FargoUtils.PrintLocalization("MessageInfo.StartLanternNight", new Color(175, 75, 255));
 
-        if (Main.netMode == NetmodeID.Server)
-            NetMessage.SendData(MessageID.WorldData);
+        if (player.whoAmI == Main.myPlayer && Main.netMode == NetmodeID.MultiplayerClient)
+        {
+            ModPacket packet = Mod.GetPacket();
+            packet.Write((byte)Fargowiltas.PacketID.SyncMatsuriLantern);
+            packet.Send();
+        }
 
         Terraria.Audio.SoundEngine.PlaySound(SoundID.Roar, player.position);
 

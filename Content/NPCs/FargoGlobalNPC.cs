@@ -61,8 +61,6 @@ public class FargoGlobalNPC : GlobalNPC
     internal bool PandoraActive;
     //internal bool DestroyerSwarm = false;
 
-    public static int eaterBoss = -1;
-    public static int beeBoss = -1;
     public static int dungeonGuardian = -1;
     public static int darkMage = -1;
     public static int Boss = -1;
@@ -199,14 +197,6 @@ public class FargoGlobalNPC : GlobalNPC
         }
         switch (npc.type)
         {
-            case NPCID.EaterofWorldsHead:
-                eaterBoss = npc.whoAmI;
-                break;
-
-            case NPCID.QueenBee:
-                beeBoss = npc.whoAmI;
-                break;
-
             case NPCID.DungeonGuardian:
                 dungeonGuardian = npc.whoAmI;
                 break;
@@ -242,14 +232,6 @@ public class FargoGlobalNPC : GlobalNPC
 
         switch (npc.type)
         {
-            case NPCID.EaterofWorldsHead:
-                eaterBoss = npc.whoAmI;
-                break;
-
-            case NPCID.QueenBee:
-                beeBoss = npc.whoAmI;
-                break;
-
             case NPCID.DungeonGuardian:
                 dungeonGuardian = npc.whoAmI;
                 break;
@@ -261,7 +243,7 @@ public class FargoGlobalNPC : GlobalNPC
             case NPCID.CultistBoss:
                 if (npc.ai[0] == -1 && npc.ai[1] == 1) //just after spawning
                 {
-                    bool foundTabletNearby = Main.npc.Any(n => n.active && n.type == NPCID.CultistTablet && npc.Distance(n.Center) < 400);
+                    bool foundTabletNearby = Main.npc.Any(n => n.active && n.type == NPCID.CultistTablet && npc.DistanceSQ(n.Center) < 400 * 400);
                     if (!foundTabletNearby)
                     {
                         npc.ai[1] = 360;

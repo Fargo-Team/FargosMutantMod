@@ -508,6 +508,11 @@ public class Fargowiltas : Mod
         SyncOwnedItem,
         AddDeviSummon,
         SyncSpawnRates,
+        SyncWeatherBalloon,
+        SyncAnemometer,
+        SyncForbiddenScarab,
+        SyncMatsuriLantern,
+        SyncPartyInvite,
     }
 
     public override void HandlePacket(BinaryReader reader, int whoAmI)
@@ -533,8 +538,7 @@ public class Fargowiltas : Mod
                         {
                             if (IsEventOccurring)
                             {
-                                TryClearEvents();
-                                NetMessage.SendData(MessageID.WorldData);
+                                TryClearEvents(out _);
                             }
                         }
                     }
@@ -921,6 +925,56 @@ public class Fargowiltas : Mod
                         Main.LocalPlayer.FargoMutant().maxSpawns = reader.ReadInt32();
                     }
                     break;
+                case PacketID.SyncWeatherBalloon:
+                    {
+                        WeatherBalloon.MakeItRain(whoAmI);
+                    }
+                    break;
+                case PacketID.SyncAnemometer:
+                    {
+                        Main.windSpeedTarget = Main.windSpeedCurrent = 0.8f; //40mph?
+                        if (Main.netMode == NetmodeID.Server)
+                        {
+                            ModPacket packet = GetPacket();
+                            packet.Write((byte)PacketID.SyncAnemometer);
+                            packet.Send(-1, whoAmI);
+                        }
+                    }
+                    break;
+                case PacketID.SyncForbiddenScarab:
+                    {
+                        Main.windSpeedTarget = Main.windSpeedCurrent = 0.8f; //40mph?
+                        if (Main.netMode == NetmodeID.Server)
+                        {
+                            if (Sandstorm.Happening)
+                                Sandstorm.IntendedSeverity = 0.4f + Main.rand.NextFloat();
+                            else if (Main.rand.NextBool(3))
+                                Sandstorm.IntendedSeverity = 0f;
+                            else
+                                Sandstorm.IntendedSeverity = Main.rand.NextFloat() * 0.3f;
+
+                            ModPacket packet = GetPacket();
+                            packet.Write((byte)PacketID.SyncForbiddenScarab);
+                            packet.Write(Sandstorm.IntendedSeverity);
+                            packet.Send();
+                        }
+                        else
+                        {
+                            Sandstorm.IntendedSeverity = reader.ReadSingle();
+                        }
+                    }
+                    break;
+                case PacketID.SyncMatsuriLantern:
+                    {
+                        FargoWorld.Matsuri = !FargoWorld.Matsuri;
+                    }
+                    break;
+                case PacketID.SyncPartyInvite:
+                    {
+                        PartyInvite.TryForParty();
+                        NetMessage.SendData(MessageID.WorldData);
+                    }
+                    break;
                 default:
                     break;
             }
@@ -943,43 +997,52 @@ public class Fargowiltas : Mod
         || NPC.LunarApocalypseIsUp
         || ModEventActiveFuncs.Any(f => f.Invoke());
 
-    internal static bool TryClearEvents()
+    private static readonly List<Vector2>? dD2Event_deadGoblinSpots = typeof(DD2Event).GetField("_deadGoblinSpots", FargoUtils.UniversalBindingFlags).GetValue(null) as List<Vector2>;
+    internal static bool TryClearEvents(out bool didClearSomething)
     {
         bool canClearEvent = FargoWorld.AbomClearCD <= 0;
+        didClearSomething = false;
         if (canClearEvent)
         {
+            FargoWorld.AbomClearCD = 7200;
             if (Main.invasionType != 0)
             {
+                didClearSomething = true;
                 Main.invasionType = 0;
                 FargoUtils.PrintLocalization("MessageInfo.CancelEvent", new Color(175, 75, 255));
             }
 
             if (Main.pumpkinMoon)
             {
+                didClearSomething = true;
                 Main.pumpkinMoon = false;
                 FargoUtils.PrintLocalization("MessageInfo.CancelPumpkinMoon", new Color(175, 75, 255));
             }
 
             if (Main.snowMoon)
             {
+                didClearSomething = true;
                 Main.snowMoon = false;
                 FargoUtils.PrintLocalization("MessageInfo.CancelFrostMoon", new Color(175, 75, 255));
             }
 
             if (Main.eclipse)
             {
+                didClearSomething = true;
                 Main.eclipse = false;
                 FargoUtils.PrintLocalization("MessageInfo.CancelEclipse", new Color(175, 75, 255));
             }
 
             if (Main.bloodMoon)
             {
+                didClearSomething = true;
                 Main.bloodMoon = false;
                 FargoUtils.PrintLocalization("MessageInfo.CancelBloodMoon", new Color(175, 75, 255));
             }
 
             if (Main.WindyEnoughForKiteDrops)
             {
+                didClearSomething = true;
                 Main.windSpeedTarget = 0;
                 Main.windSpeedCurrent = 0;
                 FargoUtils.PrintLocalization("MessageInfo.CancelWindyDay", new Color(175, 75, 255));
@@ -987,22 +1050,36 @@ public class Fargowiltas : Mod
 
             if (Main.slimeRain)
             {
-                Main.StopSlimeRain();
+                didClearSomething = true;
+                Main.StopSlimeRain(false);
                 Main.slimeWarningDelay = 1;
                 Main.slimeWarningTime = 1;
             }
 
             if (BirthdayParty.PartyIsUp)
-                BirthdayParty.CheckNight();
-
-            if (DD2Event.Ongoing && Main.netMode != NetmodeID.MultiplayerClient)
             {
-                DD2Event.StopInvasion();
+                didClearSomething = true;
+                BirthdayParty.CheckNight();
+            }
+
+            if (DD2Event.Ongoing)
+            {
+                didClearSomething = true;
+                DD2Event.Ongoing = false;
+                dD2Event_deadGoblinSpots?.Clear();
+                if (Main.netMode != NetmodeID.MultiplayerClient)
+                {
+                    NPC.totalInvasionPoints = 0f;
+                    NPC.waveKills = 0f;
+                    NPC.waveNumber = 0;
+                    DD2Event.WipeEntities();
+                }
                 FargoUtils.PrintLocalization("MessageInfo.CancelOOA", new Color(175, 75, 255));
             }
 
             if (Sandstorm.Happening)
             {
+                didClearSomething = true;
                 Sandstorm.Happening = false;
                 Sandstorm.TimeLeft = 0;
                 Sandstorm.IntendedSeverity = 0;
@@ -1012,6 +1089,7 @@ public class Fargowiltas : Mod
             // Keep in mind, only tower strengths are netsynced. It is best this way to avoid unnecessary netpackets
             if (NPC.downedTowers && NPC.LunarApocalypseIsUp)
             {
+                didClearSomething = true;
                 NPC.LunarApocalypseIsUp =
                     NPC.TowerActiveSolar =
                     NPC.TowerActiveVortex =
@@ -1022,7 +1100,9 @@ public class Fargowiltas : Mod
                     NPC.ShieldStrengthTowerVortex =
                     NPC.ShieldStrengthTowerNebula =
                     NPC.ShieldStrengthTowerStardust = 0;
-                NetMessage.SendData(MessageID.UpdateTowerShieldStrengths);
+
+                if (Main.netMode == NetmodeID.Server)
+                    NetMessage.SendData(MessageID.UpdateTowerShieldStrengths);
 
                 // Purge all towers
                 foreach (NPC n in Main.ActiveNPCs)
@@ -1036,24 +1116,27 @@ public class Fargowiltas : Mod
                 }
                 FargoUtils.PrintLocalization("MessageInfo.CancelLunarEvent", new Color(175, 75, 255));
             }
-
             if (Main.IsItRaining || Main.IsItStorming)
             {
-                Main.StopRain();
+                didClearSomething = true;
                 Main.cloudAlpha = 0;
-                if (Main.netMode == NetmodeID.Server)
-                    Main.SyncRain();
+                Main.StopRain();
+                if (Main.maxRaining != Main.oldMaxRaining)
+                {
+                    Main.oldMaxRaining = Main.maxRaining;
+                }
                 FargoUtils.PrintLocalization("MessageInfo.CancelRain", new Color(175, 75, 255));
             }
-
-            FargoWorld.AbomClearCD = 7200;
 
             foreach (Action action in ModEventActions)
             {
                 action.Invoke();
             }
+            if (Main.netMode != NetmodeID.MultiplayerClient)
+            {
+                NetMessage.SendData(MessageID.WorldData);
+            }
         }
-
         return canClearEvent;
     }
 

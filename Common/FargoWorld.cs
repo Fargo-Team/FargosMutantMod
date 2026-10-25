@@ -32,8 +32,6 @@ public class FargoWorld : ModSystem
 
     internal static bool IsAnglerQuestComplete;
 
-    internal static bool IsSomeoneWearingMatthew;
-
     internal static bool[] CurrentSpawnRateTile;
     internal static Dictionary<string, bool> DownedBools = [];
 
@@ -203,17 +201,13 @@ public class FargoWorld : ModSystem
         HardmodeSwarmActive = bits[2];
         EternityMode = bits[3];
         IsAnglerQuestComplete = bits[4];
-        IsSomeoneWearingMatthew = bits[5];
+        _ = bits[5];
         _ = bits[6];
         _ = bits[7];
 
         AbomClearCD = reader.ReadUInt16();
         WoodChopped = reader.ReadUInt16();
         Binding = (EnergizedGlobalNPC.Binding)reader.ReadByte();
-        // These can't be bytes because a sign is required and
-        // signed bytes range between -127 and 127, which is not enough for the NPC array
-        FargoGlobalNPC.eaterBoss = reader.ReadInt16();
-        FargoGlobalNPC.beeBoss = reader.ReadInt16();
     }
 
     public override void NetSend(BinaryWriter writer)
@@ -245,7 +239,7 @@ public class FargoWorld : ModSystem
         bits[2] = HardmodeSwarmActive;
         bits[3] = EternityMode;
         bits[4] = IsAnglerQuestComplete;
-        bits[5] = IsSomeoneWearingMatthew;
+        bits[5] = false;
         bits[6] = false;
         bits[7] = false;
         writer.Write(bits);
@@ -253,10 +247,6 @@ public class FargoWorld : ModSystem
         writer.Write((ushort)AbomClearCD);
         writer.Write((ushort)WoodChopped);
         writer.Write((byte)Binding);
-        // These can't be bytes because signed bytes are required and
-        // they range between -127 and 127, which is not enough for the NPC array
-        writer.Write((short)FargoGlobalNPC.eaterBoss);
-        writer.Write((short)FargoGlobalNPC.beeBoss);
     }
 
 
@@ -270,18 +260,6 @@ public class FargoWorld : ModSystem
         SetWorldBool(FargoServerConfig.Instance.Christmas, ref Main.xMas);
 
         IsAnglerQuestComplete = Main.anglerQuestFinished;
-
-        foreach (Player player in Main.ActivePlayers)
-        {
-            if (!player.dead && !player.ghost)
-            {
-                bool wearingMatthew =
-                    player.head == EquipLoader.GetEquipSlot(Mod, "MatthewVanity", EquipType.Head) ||
-                    player.armor[10].headSlot == EquipLoader.GetEquipSlot(Mod, "MatthewVanity", EquipType.Head);
-                IsSomeoneWearingMatthew = wearingMatthew;
-                //Main.NewText(wearingHatty);
-            }
-        }
 
         if (Matsuri)
         {
@@ -388,14 +366,6 @@ public class FargoWorld : ModSystem
 
     public override void PreUpdateNPCs()
     {
-        if (!Main.IsNPCActiveAndOneOfTypes(FargoGlobalNPC.eaterBoss, NPCID.EaterofWorldsHead))
-        {
-            FargoGlobalNPC.eaterBoss = -1;
-        }
-        if (!Main.IsNPCActiveAndOneOfTypes(FargoGlobalNPC.beeBoss, NPCID.QueenBee))
-        {
-            FargoGlobalNPC.beeBoss = -1;
-        }
         if (!Main.IsNPCActiveAndOneOfTypes(FargoGlobalNPC.dungeonGuardian, NPCID.DungeonGuardian))
         {
             FargoGlobalNPC.dungeonGuardian = -1;

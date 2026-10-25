@@ -429,7 +429,6 @@ public class FargoPlayer : ModPlayer
     }
     public override bool ShiftClickSlot(Item[] inventory, int context, int slot)
     {
-
         if (Player.chest == -1 && FargoUIManager.IsOpen<ChizardSearchBar>())
         {
             ChizardSearchBar bar = FargoUIManager.Get<ChizardSearchBar>();
@@ -590,7 +589,7 @@ public class FargoPlayer : ModPlayer
         spectatePlayer = Main.player[SpectatePlayer];
 
         Vector2 spectatePos = spectatePlayer.Center;
-        if (Player.Center.Distance(spectatePos) > 2000)
+        if (Player.Center.DistanceSQ(spectatePos) > 2000 * 2000)
         {
             DeathCamTimer++;
             if (DeathCamTimer > 60)

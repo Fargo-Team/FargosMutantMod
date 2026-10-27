@@ -34,7 +34,7 @@ public class PartyInvite : ModItem
 
     public override bool? UseItem(Player player)
     {
-        if (!NPC.npcsFoundForCheckActive[NPCID.PartyGirl])
+        if (!NPC.AnyNPCs(NPCID.PartyGirl))
             NPC.SpawnOnPlayer(player.whoAmI, NPCID.PartyGirl);
 
         BirthdayParty.PartyDaysOnCooldown = 0;

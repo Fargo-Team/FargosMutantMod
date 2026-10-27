@@ -27,8 +27,12 @@ public class SpentLantern : MatsuriLantern
         FargoWorld.Matsuri = false;
         FargoUtils.PrintLocalization("MessageInfo.StopLanternNight", new Color(175, 75, 255));
 
-        if (Main.netMode == NetmodeID.Server)
-            NetMessage.SendData(MessageID.WorldData);
+        if (player.whoAmI == Main.myPlayer && Main.netMode == NetmodeID.MultiplayerClient)
+        {
+            ModPacket packet = Mod.GetPacket();
+            packet.Write((byte)Fargowiltas.PacketID.SyncMatsuriLantern);
+            packet.Send();
+        }
 
         Terraria.Audio.SoundEngine.PlaySound(SoundID.Roar, player.position);
 

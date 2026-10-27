@@ -925,11 +925,13 @@ public class Fargowiltas : Mod
                         Main.LocalPlayer.FargoMutant().maxSpawns = reader.ReadInt32();
                     }
                     break;
+                // From server to client
                 case PacketID.SyncWeatherBalloon:
                     {
                         WeatherBalloon.MakeItRain(whoAmI);
                     }
                     break;
+                // From server to client
                 case PacketID.SyncAnemometer:
                     {
                         Main.windSpeedTarget = Main.windSpeedCurrent = 0.8f; //40mph?
@@ -941,6 +943,7 @@ public class Fargowiltas : Mod
                         }
                     }
                     break;
+                // From server to client
                 case PacketID.SyncForbiddenScarab:
                     {
                         Main.windSpeedTarget = Main.windSpeedCurrent = 0.8f; //40mph?
@@ -964,11 +967,13 @@ public class Fargowiltas : Mod
                         }
                     }
                     break;
+                // From server to client
                 case PacketID.SyncMatsuriLantern:
                     {
                         FargoWorld.Matsuri = !FargoWorld.Matsuri;
                     }
                     break;
+                // From server to client
                 case PacketID.SyncPartyInvite:
                     {
                         PartyInvite.TryForParty();

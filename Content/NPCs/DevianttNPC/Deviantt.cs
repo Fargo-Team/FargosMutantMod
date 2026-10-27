@@ -521,7 +521,7 @@ public class Deviantt : ModNPC
     {
         int frame = frameX;
         bool faceRight = NPC.spriteDirection == 1;
-        if (true)//MatthewWorld.IsSomeoneWearingMatthew)
+        if (FargoWorld.IsSomeoneWearingMatthew)
             frame += 2;
         if (faceRight)
             frame += 1;

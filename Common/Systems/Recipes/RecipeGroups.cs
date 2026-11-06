@@ -17,6 +17,7 @@ public class RecipeGroups : ModSystem
     internal static int AnyButterfly, /*AnySquirrel,*/ AnyCommonFish, AnyDragonfly, AnyBird, AnyDuck;
     internal static int AnyFoodT2, AnyFoodT3, AnyGemRobe;
     internal static int AnyWoodCrate, AnyIronCrate, AnyGoldCrate, AnyJungleCrate, AnySkyCrate, AnyCorruptCrate, AnyCrimsonCrate, AnyHallowedCrate, AnyDungeonCrate, AnyFrozenCrate, AnySandCrate, AnyLavaCrate, AnyOceanCrate;
+    internal static int AnyPearl;
 
     public override void AddRecipeGroups()
     {
@@ -333,5 +334,8 @@ public class RecipeGroups : ModSystem
         //ocean crates
         group = new RecipeGroup(() => ItemXOrY(ItemID.OceanCrate, ItemID.OceanCrateHard), ItemID.OceanCrate, ItemID.OceanCrateHard);
         AnyOceanCrate = RecipeGroup.RegisterGroup("Fargowiltas:AnyOceanCrate", group);
+
+        group = new RecipeGroup(() => RecipeHelper.GenerateAnyItemRecipeGroupText(ItemID.WhitePearl), [ItemID.WhitePearl, ItemID.BlackPearl, ItemID.PinkPearl]);
+        AnyPearl = RecipeGroup.RegisterGroup("Fargowiltas:AnyPearl", group);
     }
 }

@@ -1652,3 +1652,8 @@ PlatinumCoinBag: {
 	DisplayName: Endless Platinum Coin Safe
 	Tooltip: ""
 }
+
+ShimmerDowser: {
+	DisplayName: Shimmer Dowser
+	Tooltip: ""
+}

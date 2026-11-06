@@ -1704,3 +1704,8 @@ PlatinumCoinBag: {
 	DisplayName: Cofre de platina infinito
 	Tooltip: ""
 }
+
+ShimmerDowser: {
+	// DisplayName: Shimmer Dowser
+	// Tooltip: ""
+}

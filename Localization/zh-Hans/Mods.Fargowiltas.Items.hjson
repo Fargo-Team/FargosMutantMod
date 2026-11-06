@@ -1702,3 +1702,8 @@ PlatinumCoinBag: {
 	DisplayName: 无尽铂金币保险箱
 	// Tooltip: ""
 }
+
+ShimmerDowser: {
+	// DisplayName: Shimmer Dowser
+	// Tooltip: ""
+}

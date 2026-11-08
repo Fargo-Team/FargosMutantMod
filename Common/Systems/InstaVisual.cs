@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
@@ -49,6 +50,8 @@ public class InstaVisual : ModSystem
     }
     public static void DrawInstaVisual(Player player, Vector2 drawPosition, Vector2 scale, DrawOrigin drawOrigin = DrawOrigin.Center)
     {
+        drawPosition.X = MathF.Floor(drawPosition.X / 16) * 16;
+        drawPosition.Y = MathF.Floor(drawPosition.Y / 16) * 16;
         InstaDrawPlayer drawPlayer = player.GetModPlayer<InstaDrawPlayer>();
         drawPlayer.Draw = true;
         drawPlayer.DrawPosition = drawPosition;

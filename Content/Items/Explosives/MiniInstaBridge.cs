@@ -53,8 +53,6 @@ public class MiniInstaBridge : ModItem
             Vector2 mouse = Main.MouseWorld;
             int side = Math.Sign(mouse.X - player.Center.X);
             InstaVisual.DrawOrigin origin = side > 0 ? InstaVisual.DrawOrigin.Left : InstaVisual.DrawOrigin.Right;
-            if (side == -1)
-                mouse.X += side * 16;
             InstaVisual.DrawInstaVisual(player, mouse, new(1000, 1), origin);
         }
     }

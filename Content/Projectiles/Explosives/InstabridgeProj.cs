@@ -1,5 +1,6 @@
 ﻿using Fargowiltas.Content.Items.Tiles;
 using Microsoft.Xna.Framework;
+using System.Linq;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
@@ -35,43 +36,50 @@ public class InstabridgeProj : ModProjectile
             return;
         }
 
-        Player player = Main.player[Projectile.owner];
-        var pickaxe = player.GetBestPickaxe() ?? ContentSamples.ItemsByType[ItemID.CopperPickaxe];
         // All the way across
-        for (int x = 1; x <= Main.maxTilesX; x++)
+        int length = Main.maxTilesX + 200;
+        bool goLeft = Projectile.Center.X < Main.player[Projectile.owner].Center.X;
+        int min = 0;
+        int max = length;
+
+        int[] deletableTiles = [
+            TileID.Cactus,
+            TileID.Trees,
+            TileID.CorruptThorns,
+            TileID.CrimsonThorns,
+            TileID.JungleThorns,
+        ];
+
+        for (int x = min; x < max; x++)
         {
-            // Six down, last is platforms
-            for (int y = -5; y <= 0; y++)
+            int xPos = goLeft ? -x : x;
+            int xPosition = (int)(xPos + position.X / 16.0f);
+            int yPosition = (int)(position.Y / 16.0f);
+
+            if (xPosition < 0 || xPosition >= Main.maxTilesX || yPosition < 0 || yPosition >= Main.maxTilesY)
+                break;
+
+            Tile tile = Main.tile[xPosition, yPosition];
+
+            if (tile == null)
             {
-                int xPosition = x;
-                int yPosition = (int)(y + position.Y / 16.0f);
-
-                if (xPosition < 0 || xPosition >= Main.maxTilesX || yPosition < 0 || yPosition >= Main.maxTilesY)
-                    continue;
-
-                Tile tile = Main.tile[xPosition, yPosition];
-
-                if (tile == null)
-                    continue;
-
-                if (!FargoGlobalProjectile.InstaDestructionCheck(xPosition, yPosition, player, pickaxe))
-                    continue;
-
-                if (y == 0 && Projectile.ai[2] != 2)
-                {
-                    FargoGlobalTile.ClearEverything(xPosition, yPosition, false, true);
-                    // Spawn platforms
-                    WorldGen.PlaceTile(xPosition, yPosition, TileID.Platforms);
-                }
-                else
-                {
-                    if (!FargoGlobalProjectile.TileIsLiterallyAir(tile))
-                        FargoGlobalTile.ClearEverything(xPosition, yPosition, keepWires: true);
-                }
+                break;
             }
+
+            if (deletableTiles.Contains(tile.TileType))
+            {
+                FargoGlobalTile.ClearEverything(xPosition, yPosition, false, true);
+            }
+            else if (x > min + 10 && tile.HasTile && Main.tileSolid[tile.TileType])
+            {
+                break;
+            }
+
+            // Spawn platforms
+            WorldGen.PlaceTile(xPosition, yPosition, TileID.Platforms);
         }
 
-        if (Projectile.ai[2] != 2 && Main.netMode == NetmodeID.Server)
-            NetMessage.SendTileSquare(-1, 0, (int)(position.Y / 16f), Main.maxTilesX, 1, TileChangeType.None);
+        int xx = goLeft ? -min - max : min;
+        NetMessage.SendTileSquare(-1, (int)(xx + position.X / 16.0f), (int)(position.Y / 16.0f), max - min + 1, 1);
     }
 }

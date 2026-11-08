@@ -66,12 +66,8 @@ InstaBridge: {
 	DisplayName: Instabridge
 	Tooltip:
 		'''
-		Creates a bridge of platforms across the whole world
-		Also clears the area right above the platforms
-		The bridge appears at your cursor
-		Uses your best pickaxe's mining power
-		Right Click to clear the area without placing a bridge
-		Use at your own risk
+		Creates a bridge of platforms at your cursor with no length limit
+		Will not break any blocks and stops when it hits a solid block
 		'''
 }
 
@@ -79,11 +75,8 @@ InstaTrack: {
 	DisplayName: Instatrack
 	Tooltip:
 		'''
-		Creates a minecart track across the whole world
-		Also clears the area right above the tracks
-		The track appears at your cursor
-		Uses your best pickaxe's mining power
-		Use at your own risk
+		Creates a minecart track at your cursor with no length limit
+		Will not break any blocks and stops when it hits a solid block
 		'''
 }
 
@@ -111,7 +104,7 @@ MiniInstaBridge: {
 	DisplayName: Mini Instabridge
 	Tooltip:
 		'''
-		Creates a long bridge of platforms at your cursor
+		Creates an up to 400 tile long bridge of platforms at your cursor
 		Will not break any blocks and stops when it hits a solid block
 		'''
 }
@@ -120,11 +113,8 @@ ObsidianInstaBridge: {
 	DisplayName: Obsidian Instabridge
 	Tooltip:
 		'''
-		Creates a bridge of obsidian platforms across the whole world
-		Also clears the area right above the platforms
-		The bridge appears at your cursor
-		Uses your best pickaxe's mining power
-		Use at your own risk
+		Creates a bridge of obsidian platforms at your cursor with no length limit
+		Will not break any blocks and stops when it hits a solid block
 		'''
 }
 

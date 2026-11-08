@@ -3,6 +3,7 @@ using Fargowiltas.Common.Systems;
 using Fargowiltas.Content.Items.Misc;
 using Fargowiltas.Content.Projectiles.Explosives;
 using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -44,9 +45,11 @@ public class InstaTrack : ModItem
         if (player.whoAmI == Main.myPlayer)
         {
             Vector2 mouse = Main.MouseWorld;
-            mouse += Vector2.UnitY * 16;
-            InstaVisual.DrawOrigin drawOrigin = InstaVisual.DrawOrigin.Bottom;
-            InstaVisual.DrawInstaVisual(player, mouse, new(2000, 6), drawOrigin);
+            int side = Math.Sign(mouse.X - player.Center.X);
+            InstaVisual.DrawOrigin origin = side > 0 ? InstaVisual.DrawOrigin.Left : InstaVisual.DrawOrigin.Right;
+            if (side == -1)
+                mouse.X += side * 16;
+            InstaVisual.DrawInstaVisual(player, mouse, new(2000, 1), origin);
         }
     }
     public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
@@ -62,9 +65,9 @@ public class InstaTrack : ModItem
     {
         CreateRecipe()
             .AddIngredient<GizmoParts>(10)
-            .AddIngredient(ItemID.Dynamite, 10)
-            .AddIngredient(ItemID.MinecartTrack, 1000)
-            .AddIngredient(ItemID.Bone, 3)
+            .AddIngredient(ItemID.Dynamite, 20)
+            .AddIngredient(ItemID.MinecartTrack, 2000)
+            .AddIngredient(ItemID.FallenStar, 4)
             .AddTile(TileID.Anvils)
             .Register();
     }

@@ -18,7 +18,7 @@ public class EnergizerDestroy : ModItem
     {
         CreateRecipe()
             .AddIngredient(ItemID.DestroyerTrophy)
-            .AddIngredient(ItemID.SoulofNight, 60)
+            .AddIngredient(ItemID.SoulofNight, 66)
             .AddIngredient(ItemID.LunarOre, 50)
             .AddTile<LuminiteOmniforgeTile>()
             .Register();

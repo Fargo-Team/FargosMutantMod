@@ -18,11 +18,11 @@ public class EnergizerMoon : ModItem
     {
         CreateRecipe()
             .AddIngredient(ItemID.MoonLordTrophy)
-            .AddIngredient(ItemID.FragmentSolar, 20)
-            .AddIngredient(ItemID.FragmentVortex, 20)
-            .AddIngredient(ItemID.FragmentNebula, 20)
-            .AddIngredient(ItemID.FragmentStardust, 20)
-            .AddIngredient(ItemID.LunarOre, 100)
+            .AddIngredient(ItemID.FragmentSolar, 40)
+            .AddIngredient(ItemID.FragmentVortex, 40)
+            .AddIngredient(ItemID.FragmentNebula, 40)
+            .AddIngredient(ItemID.FragmentStardust, 40)
+            .AddIngredient(ItemID.LunarOre, 200)
             .AddTile<LuminiteOmniforgeTile>()
             .Register();
     }

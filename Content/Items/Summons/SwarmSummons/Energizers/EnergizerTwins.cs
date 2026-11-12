@@ -19,7 +19,7 @@ public class EnergizerTwins : ModItem
     {
         CreateRecipe()
             .AddRecipeGroup(RecipeGroups.AnyTwinsTrophy)
-            .AddIngredient(ItemID.SoulofLight, 60)
+            .AddIngredient(ItemID.SoulofLight, 66)
             .AddIngredient(ItemID.LunarOre, 50)
             .AddTile<LuminiteOmniforgeTile>()
             .Register();

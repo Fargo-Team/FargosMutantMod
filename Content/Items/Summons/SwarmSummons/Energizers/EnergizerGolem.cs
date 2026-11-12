@@ -18,7 +18,7 @@ public class EnergizerGolem : ModItem
     {
         CreateRecipe()
             .AddIngredient(ItemID.GolemTrophy)
-            .AddIngredient(ItemID.LunarTabletFragment, 30)
+            .AddIngredient(ItemID.LunarTabletFragment, 33)
             .AddIngredient(ItemID.LunarOre, 50)
             .AddTile<LuminiteOmniforgeTile>()
             .Register();

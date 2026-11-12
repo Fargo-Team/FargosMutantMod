@@ -18,7 +18,7 @@ public class EnergizerPlant : ModItem
     {
         CreateRecipe()
             .AddIngredient(ItemID.PlanteraTrophy)
-            .AddIngredient(ItemID.ChlorophyteBar, 50)
+            .AddIngredient(ItemID.ChlorophyteBar, 75)
             .AddIngredient(ItemID.LunarOre, 50)
             .AddTile<LuminiteOmniforgeTile>()
             .Register();

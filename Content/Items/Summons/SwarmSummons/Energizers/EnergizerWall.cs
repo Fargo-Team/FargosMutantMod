@@ -18,7 +18,7 @@ public class EnergizerWall : ModItem
     {
         CreateRecipe()
             .AddIngredient(ItemID.WallofFleshTrophy)
-            .AddIngredient(ItemID.HellstoneBar, 50)
+            .AddIngredient(ItemID.HellstoneBar, 75)
             .AddIngredient(ItemID.LunarOre, 50)
             .AddTile<LuminiteOmniforgeTile>()
             .Register();

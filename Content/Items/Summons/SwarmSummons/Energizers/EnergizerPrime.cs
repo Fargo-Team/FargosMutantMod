@@ -18,8 +18,8 @@ public class EnergizerPrime : ModItem
     {
         CreateRecipe()
             .AddIngredient(ItemID.SkeletronPrimeTrophy)
-            .AddIngredient(ItemID.SoulofLight, 30)
-            .AddIngredient(ItemID.SoulofNight, 30)
+            .AddIngredient(ItemID.SoulofLight, 33)
+            .AddIngredient(ItemID.SoulofNight, 33)
             .AddIngredient(ItemID.LunarOre, 50)
             .AddTile<LuminiteOmniforgeTile>()
             .Register();

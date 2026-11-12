@@ -18,7 +18,7 @@ public class EnergizerDeer : ModItem
     {
         CreateRecipe()
             .AddIngredient(ItemID.DeerclopsTrophy)
-            .AddIngredient(ItemID.FlinxFur, 20)
+            .AddIngredient(ItemID.FlinxFur, 30)
             .AddIngredient(ItemID.LunarOre, 50)
             .AddTile<LuminiteOmniforgeTile>()
             .Register();

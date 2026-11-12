@@ -151,6 +151,8 @@ public class EnchantedTreeTileEntity : ModTileEntity
         }
         return false;
     }
+    public static string GetText(string line) => Language.GetTextValue($"Mods.Fargowiltas.UI.EnchantedTree.{line}");
+
     public static void UpdateEnchantedTrees()
     {
         if (Main.netMode != NetmodeID.Server)
@@ -179,11 +181,11 @@ public class EnchantedTreeTileEntity : ModTileEntity
                     if (tree.Fruits.Count == 0)
                     {
                         if (IsItemDupable(Main.LocalPlayer.HeldItem.type))
-                            text = $"[c/AAAAAA:Right Click to insert] [i:{Main.LocalPlayer.HeldItem.type}]";
+                            text = $"[c/AAAAAA:{GetText("Insert")}] [i:{Main.LocalPlayer.HeldItem.type}]";
                     }
                     else
                     {
-                        text = $"[c/AAAAAA:Right Click to reclaim] [i:{tree.Fruits[0].type}]";
+                        text = $"[c/AAAAAA:{GetText("Reclaim")}] [i:{tree.Fruits[0].type}]";
                     }
                     if (text != "")
                         Main.instance.MouseText(text, 0);
@@ -237,9 +239,9 @@ public class EnchantedTreeTileEntity : ModTileEntity
                                     expand2 = false;
                             }
                             if (expand2)
-                                text += "\n" + "[c/AAAAAA:Left Click to show duplicatable ingredients]";
+                                text += "\n" + $"[c/AAAAAA:{GetText("Ingredients")}]";
                         }
-                        text += "\n" + "[c/AAAAAA:Left Click and drag to duplicate for]\n" + ReforgeUtils.GetPriceString(cost, false, true);
+                        text += "\n" + $"[c/AAAAAA:{GetText("Duplicate")}]\n" + ReforgeUtils.GetPriceString(cost, false, true);
                         Main.instance.MouseText(text, 0);
                     }
                     if (Main.MouseWorld.DistanceSQ(fruit.center) <= size && Main.LocalPlayer.controlUseItem && fruit.grabCooldown == 0 &&

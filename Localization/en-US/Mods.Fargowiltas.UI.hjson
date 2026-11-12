@@ -128,10 +128,16 @@ LumberJack: {
 		}
 	}
 
-	Cost: Cost:
+	Cost: 
+		'''
+		Cost:
+		'''
 	Empty: Nothing to find here!
 	Biome: Biome
-	WoodTitle: Wood:
+	WoodTitle: 
+		'''
+		Wood:
+		'''
 	FruitTitle: Obtainable Fruits
 	CritterTitle: Obtainable Critters
 	Purchase: Purchase
@@ -157,7 +163,10 @@ NoToggles: No togglable effects equipped!
 // Reforge UI
 InsertText: Place an item here to reforge
 ReforgeCost: Reforge Cost
-AutoStatus: "Auto: "
+AutoStatus: 
+	'''
+	Auto: 
+	'''
 ClearPrefixes: Click to deactivate
 PlacementRange: Placement Range:
 ChizardItemInsert: Place items in nearby chests
@@ -172,4 +181,11 @@ PotionCooler: {
 	FlaskWarn: "[c/FFFF99:Warning:] Only one flask can be active at a time! (Active Flask: {0})"
 	Store: Store
 	Completion: "{0} more until completion"
+}
+
+EnchantedTree: {
+	Insert: Right Click to insert
+	Reclaim: Right Click to reclaim
+	Ingredients: Left Click to show duplicatable Ingredients
+	Duplicate: Left Click and drag to duplicate
 }

@@ -173,3 +173,10 @@ PotionCooler: {
 	// Store: Store
 	// Completion: "{0} more until completion"
 }
+
+EnchantedTree: {
+	// Insert: <right> to insert
+	// Reclaim: <right> to Reclaim
+	// Ingredients: <left> to show duplicatable Ingredients
+	// Duplicate: <left> and drag to duplicate
+}

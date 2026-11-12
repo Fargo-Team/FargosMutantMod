@@ -1530,10 +1530,9 @@ EnchantedTree: {
 	/* Tooltip:
 		'''
 		Can duplicate certain complex items and components
-		<right> with an item to place it
-		If applicable, <left> placed item to show its crafting tree
-		<left> and pull the item you want to duplicate
-		Duplication consumes coins based on item complexity
+		Valid items are marked with [s:Fargowiltas/DuplicatableAtTree] [c/AAAAAA:{$Mods.Fargowiltas.ExpandedTooltips.EnchantedTreeDupable}]
+		<right> using a duplicatable item
+		Duplication costs coins based on item complexity
 		''' */
 }
 

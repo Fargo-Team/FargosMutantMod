@@ -1,3 +1,4 @@
+using Fargowiltas.Content.Items.Tiles;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -5,12 +6,6 @@ namespace Fargowiltas.Content.Items.Summons.SwarmSummons.Energizers;
 
 public class EnergizerSlime : ModItem
 {
-    public override void SetStaticDefaults()
-    {
-        // DisplayName.SetDefault("Slimy Energizer");
-        // Tooltip.SetDefault("Formed after using 10 Swarm Crowns\n'It feels a bit slimy'");
-    }
-
     public override void SetDefaults()
     {
         Item.width = 20;
@@ -18,5 +13,14 @@ public class EnergizerSlime : ModItem
         Item.maxStack = 9999;
         Item.rare = ItemRarityID.Blue;
         Item.value = 1000000;
+    }
+    public override void AddRecipes()
+    {
+        CreateRecipe()
+            .AddIngredient(ItemID.KingSlimeTrophy)
+            .AddIngredient(ItemID.Gel, 1000)
+            .AddIngredient(ItemID.LunarOre, 50)
+            .AddTile<LuminiteOmniforgeTile>()
+            .Register();
     }
 }

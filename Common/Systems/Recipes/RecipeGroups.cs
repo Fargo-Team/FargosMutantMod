@@ -15,7 +15,7 @@ public class RecipeGroups : ModSystem
     internal static int AnyGoldBar, AnyEvilBar;
     internal static int AnyDemonAltar, AnyAnvil, AnyHMAnvil, AnyForge, AnyBookcase, AnyCookingPot, AnyTombstone, AnyWoodenTable, AnyWoodenChair, AnyWoodenSink, AnyDecayChamber, AnyWoodenPlatform;
     internal static int AnyButterfly, /*AnySquirrel,*/ AnyCommonFish, AnyDragonfly, AnyBird, AnyDuck;
-    internal static int AnyFoodT2, AnyFoodT3, AnyGemRobe;
+    internal static int AnyFoodT2, AnyFoodT3, AnyGemRobe, AnyTwinsTrophy;
     internal static int AnyWoodCrate, AnyIronCrate, AnyGoldCrate, AnyJungleCrate, AnySkyCrate, AnyCorruptCrate, AnyCrimsonCrate, AnyHallowedCrate, AnyDungeonCrate, AnyFrozenCrate, AnySandCrate, AnyLavaCrate, AnyOceanCrate;
 
     public override void AddRecipeGroups()
@@ -264,6 +264,10 @@ public class RecipeGroups : ModSystem
             ItemID.TopazRobe
         );
         AnyGemRobe = RecipeGroup.RegisterGroup("Fargowiltas:AnyGemRobe", group);
+
+        //twins trophies
+        group = new RecipeGroup(() => ItemXOrY(ItemID.SpazmatismTrophy, ItemID.RetinazerTrophy), ItemID.SpazmatismTrophy, ItemID.RetinazerTrophy);
+        AnyTwinsTrophy = RecipeGroup.RegisterGroup("Fargowiltas:AnyTwinsTrophy", group);
 
         //any wood platforms
         group = new RecipeGroup(() => RecipeHelper.GenerateAnyItemRecipeGroupText("WoodenPlatform"),

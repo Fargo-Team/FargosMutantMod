@@ -1,16 +1,11 @@
-﻿using Terraria.ID;
+﻿using Fargowiltas.Content.Items.Tiles;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Fargowiltas.Content.Items.Summons.SwarmSummons.Energizers;
 
 public class EnergizerQueenSlime : ModItem
 {
-    public override void SetStaticDefaults()
-    {
-        // DisplayName.SetDefault("Crystalline Energizer");
-        // Tooltip.SetDefault("Formed after using 10 Swarm Crystals\n'It feels very slimy'");
-    }
-
     public override void SetDefaults()
     {
         Item.width = 20;
@@ -18,5 +13,14 @@ public class EnergizerQueenSlime : ModItem
         Item.maxStack = 9999;
         Item.rare = ItemRarityID.Blue;
         Item.value = 1000000;
+    }
+    public override void AddRecipes()
+    {
+        CreateRecipe()
+            .AddIngredient(ItemID.QueenSlimeTrophy)
+            .AddIngredient(ItemID.CrystalShard, 100)
+            .AddIngredient(ItemID.LunarOre, 50)
+            .AddTile<LuminiteOmniforgeTile>()
+            .Register();
     }
 }

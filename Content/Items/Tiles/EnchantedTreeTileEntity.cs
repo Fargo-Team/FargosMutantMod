@@ -16,6 +16,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Config;
 using Terraria.ModLoader.IO;
+using static Fargowiltas.Content.Items.Tiles.EnchantedTreeTileEntity;
 
 namespace Fargowiltas.Content.Items.Tiles;
 
@@ -168,11 +169,29 @@ public class EnchantedTreeTileEntity : ModTileEntity
                     tree.CursorInsertCooldown--;
                 }
 
+                Vector2 ejectTreeTopLeft = new Vector2(tree.Position.X, tree.Position.Y) * 16;
+                Rectangle ejectTreeHitbox = new((int)ejectTreeTopLeft.X, (int)ejectTreeTopLeft.Y, 3 * 16, 4 * 16);
+                bool hoveringTree = ejectTreeHitbox.Contains(Main.MouseWorld.ToPoint()) && Main.LocalPlayer.DistanceSQ(ejectTreeTopLeft) < 400f * 400f;
+
+                if (hoveringTree)
+                {
+                    string text = "";
+                    if (tree.Fruits.Count == 0)
+                    {
+                        if (IsItemDupable(Main.LocalPlayer.HeldItem.type))
+                            text = $"[c/AAAAAA:Right Click to insert] [i:{Main.LocalPlayer.HeldItem.type}]";
+                    }
+                    else
+                    {
+                        text = $"[c/AAAAAA:Right Click to reclaim] [i:{tree.Fruits[0].type}]";
+                    }
+                    if (text != "")
+                        Main.instance.MouseText(text, 0);
+                }
+
                 if (Main.playerInventory && tree.ItemType >= 0 && tree.CursorInsertCooldown <= 0 && Main.mouseRight && Main.mouseRightRelease && !Main.LocalPlayer.mouseInterface)
                 {
-                    Vector2 ejectTreeTopLeft = new Vector2(tree.Position.X, tree.Position.Y) * 16;
-                    Rectangle ejectTreeHitbox = new((int)ejectTreeTopLeft.X, (int)ejectTreeTopLeft.Y, 3 * 16, 4 * 16);
-                    if (ejectTreeHitbox.Contains(Main.MouseWorld.ToPoint()) && Main.LocalPlayer.DistanceSQ(ejectTreeTopLeft) < 400f * 400f)
+                    if (hoveringTree)
                     {
                         int it = Item.NewItem(Main.LocalPlayer.GetSource_TileInteraction(tree.Position.X, tree.Position.Y), tree.Position.ToWorldCoordinates(), tree.ItemType, 1, prefixGiven: tree.Prefix);
                         NetMessage.SendData(MessageID.SyncItem, Main.LocalPlayer.whoAmI, number: it, number2: 1f);
@@ -198,7 +217,7 @@ public class EnchantedTreeTileEntity : ModTileEntity
                     EnchantedTreeTileEntity.Fruit fruit = tree.Fruits[i];
                     //radius for a dist check so width / 2
                     float size = 30 * 30;
-                    
+
                     int cost = ContentSamples.ItemsByType[fruit.type].value * 2;
                     //cost = Math.Clamp(cost, 1, 9999);
                     if (!Main.LocalPlayer.controlUseItem)
@@ -207,7 +226,21 @@ public class EnchantedTreeTileEntity : ModTileEntity
                     }
                     if (Main.MouseWorld.DistanceSQ(fruit.center) <= size)
                     {
-                        Main.instance.MouseText(Lang.GetItemNameValue(fruit.type) + "\n" + ReforgeUtils.GetPriceString(cost, false, true), 0);
+                        string text = Lang.GetItemNameValue(fruit.type);
+                        bool expand2 = FargoItemSets.DuplicatableRecipes.TryGetValue(fruit.type, out List<int> value) && value.Count > 0;
+                        if (expand2)
+                        {
+                            for (int k = 0; k < tree.Fruits.Count; k++)
+                            {
+                                Fruit fruit2 = tree.Fruits[k];
+                                if (fruit2.previousItem == i && k != i)
+                                    expand2 = false;
+                            }
+                            if (expand2)
+                                text += "\n" + "[c/AAAAAA:Left Click to show duplicatable ingredients]";
+                        }
+                        text += "\n" + "[c/AAAAAA:Left Click and drag to duplicate for]\n" + ReforgeUtils.GetPriceString(cost, false, true);
+                        Main.instance.MouseText(text, 0);
                     }
                     if (Main.MouseWorld.DistanceSQ(fruit.center) <= size && Main.LocalPlayer.controlUseItem && fruit.grabCooldown == 0 &&
                         (Main.LocalPlayer.FargoMutant().grabbedFruit == null || Main.LocalPlayer.FargoMutant().grabbedFruit == fruit))
@@ -226,12 +259,14 @@ public class EnchantedTreeTileEntity : ModTileEntity
 
                     if (fruit.grabbed)
                     {
+
                         bool expand = true;
                         bool netsync = false;
                         for (int k = 0; k < tree.Fruits.Count; k++)
                         {
                             Fruit fruit2 = tree.Fruits[k];
-                            if (fruit2.previousItem == i && k != i) expand = false;
+                            if (fruit2.previousItem == i && k != i) 
+                                expand = false;
                             else if (fruit2.layer > fruit.layer && fruit2.despawnTimer == 0)
                             {
                                 netsync = true;

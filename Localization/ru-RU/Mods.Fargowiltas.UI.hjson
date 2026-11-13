@@ -175,8 +175,8 @@ PotionCooler: {
 }
 
 EnchantedTree: {
-	// Insert: <right> to insert
-	// Reclaim: <right> to Reclaim
-	// Ingredients: <left> to show duplicatable Ingredients
-	// Duplicate: <left> and drag to duplicate
+	Insert: Нажмите ПКМ, чтобы поставить
+	Reclaim: Нажмите ПКМ, чтобы забрать
+	Ingredients: Нажмите ЛКМ, чтобы показать копируемые ингредиенты
+	Duplicate: Нажмите ЛКМ и потяните, чтобы копировать
 }

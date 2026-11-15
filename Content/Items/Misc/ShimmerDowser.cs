@@ -66,7 +66,7 @@ public class ShimmerDowser : ModItem
 
         var texture = Holdout.Value;
         Vector2 origin = texture.Size() * 0.5f;
-        Vector2 offset = new(3 * (drawData.effect == SpriteEffects.FlipHorizontally ? -1 : 1), -6);
+        Vector2 offset = new(3 * (drawData.effect == SpriteEffects.FlipHorizontally ? -1 : 1), -6 * drawInfo.drawPlayer.gravDir);
 
         origin += Main.rand.NextVector2Circular(2, 2) * modPlayer.ShineOpacity;
 

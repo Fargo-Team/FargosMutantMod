@@ -1705,7 +1705,7 @@ PlatinumCoinBag: {
 }
 
 ShimmerDowser: {
-	// DisplayName: Shimmer Dowser Rod
-	// Tooltip: When held out, vibrates and glows brighter the closer you are to an Aether Lake.
-	// NoShimmer: "[c/AAAAAA:It seems the rod can't sense The Aether in this world...]"
+	// DisplayName: Aether Dowsing Rod
+	// Tooltip: When held, vibrates and glows brighter the closer you are to an [s:Fargowiltas/Shimmer] Aether Lake
+	// NoShimmer: "[c/AAAAAA:[It seems the rod can't sense] [s:Fargowiltas/Shimmer] [c/AAAAAA:The Aether in this world...][c/AAAAAA:]]"
 }

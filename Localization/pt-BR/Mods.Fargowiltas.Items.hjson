@@ -1703,3 +1703,9 @@ PlatinumCoinBag: {
 	DisplayName: Cofre de platina infinito
 	Tooltip: ""
 }
+
+ShimmerDowser: {
+	// DisplayName: Shimmer Dowser Rod
+	// Tooltip: When held out, vibrates and glows brighter the closer you are to an Aether Lake.
+	// NoShimmer: "[c/AAAAAA:It seems the rod can't sense The Aether in this world...]"
+}

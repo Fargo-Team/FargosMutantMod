@@ -17,7 +17,7 @@ public class UILayerSystem : ModSystem
             {
                 FargoBuffOverlay.Draw(Main.spriteBatch, Main.LocalPlayer);
                 return true;
-            }, InterfaceScaleType.UI));
+            }, InterfaceScaleType.Game));
         }
 
         int rulerIndex = layers.FindIndex((layer) => layer.Name == "Vanilla: Ruler");

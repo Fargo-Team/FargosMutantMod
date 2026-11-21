@@ -92,7 +92,7 @@ public class FargoBuffOverlay
                 drawPos.Y = Vector2.Transform(drawPos.Floor(), Main.GameViewMatrix.ZoomMatrix).Y;
                 drawPos.Y = (int)drawPos.Y;
                 drawPos.X = (int)drawPos.X;
-                drawPos /= Main.UIScale;
+                //drawPos /= Main.UIScale;
 
                 if (!TextureAssets.Buff[debuffID].IsLoaded)
                     continue;

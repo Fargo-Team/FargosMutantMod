@@ -100,12 +100,12 @@ FargoServerConfig: {
 	}
 
 	Mutant: {
-		Label: "[s:Fargowiltas/Mutant_Head] [c/ffffff:{$Mods.Fargowiltas.NPCs.Mutant.DisplayName} {$Mods.Fargowiltas.Configs.Common.CanSpawn}]"
+		Label: "[h:Fargowiltas/Mutant] [c/ffffff:{$Mods.Fargowiltas.NPCs.Mutant.DisplayName} {$Mods.Fargowiltas.Configs.Common.CanSpawn}]"
 		Tooltip: ""
 	}
 
 	Abom: {
-		Label: "[s:Fargowiltas/Abominationn_Head] [c/ffffff:{$Mods.Fargowiltas.NPCs.Abominationn.DisplayName} {$Mods.Fargowiltas.Configs.Common.CanSpawn}]"
+		Label: "[h:Fargowiltas/Abominationn] [c/ffffff:{$Mods.Fargowiltas.NPCs.Abominationn.DisplayName} {$Mods.Fargowiltas.Configs.Common.CanSpawn}]"
 		Tooltip: ""
 	}
 
@@ -115,12 +115,12 @@ FargoServerConfig: {
 	}
 
 	Lumber: {
-		Label: "[s:Fargowiltas/LumberJack_Head] [c/ffffff:{$Mods.Fargowiltas.NPCs.LumberJack.DisplayName} {$Mods.Fargowiltas.Configs.Common.CanSpawn}]"
+		Label: "[h:Fargowiltas/LumberJack] [c/ffffff:{$Mods.Fargowiltas.NPCs.LumberJack.DisplayName} {$Mods.Fargowiltas.Configs.Common.CanSpawn}]"
 		Tooltip: ""
 	}
 
 	Squirrel: {
-		Label: "[s:Fargowiltas/Squirrel_Head] [c/ffffff:{$Mods.Fargowiltas.NPCs.Squirrel.DisplayName} {$Mods.Fargowiltas.Configs.Common.CanSpawn}]"
+		Label: "[h:Fargowiltas/Squirrel] [c/ffffff:{$Mods.Fargowiltas.NPCs.Squirrel.DisplayName} {$Mods.Fargowiltas.Configs.Common.CanSpawn}]"
 		Tooltip: ""
 	}
 

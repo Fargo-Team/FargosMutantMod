@@ -77,6 +77,7 @@ public sealed class FargoServerConfig : ModConfig
     public bool MiscRecipes;
 
     [DefaultValue(true)]
+    [ReloadRequired]
     public bool NPCSales;
 
     [DefaultValue(true)]

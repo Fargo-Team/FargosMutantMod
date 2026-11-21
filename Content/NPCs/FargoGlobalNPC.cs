@@ -481,16 +481,15 @@ public class FargoGlobalNPC : GlobalNPC
                     AddItem(ItemID.PinkDye, condition: new Condition("Mods.Fargowiltas.Conditions.PinkPricklyPear", () => Main.LocalPlayer.GetModPlayer<FargoPlayer>().FirstDyeIngredients["PinkPricklyPear"]));
                     AddItem(ItemID.BlackDye, condition: new Condition("Mods.Fargowiltas.Conditions.BlackInk", () => Main.LocalPlayer.GetModPlayer<FargoPlayer>().FirstDyeIngredients["BlackInk"]));
 
+                    AddItem(ItemID.StrangePlant1, Item.buyPrice(gold: 30), condition: Condition.Hardmode);
+                    AddItem(ItemID.StrangePlant2, Item.buyPrice(gold: 30), condition: Condition.Hardmode);
+                    AddItem(ItemID.StrangePlant3, Item.buyPrice(gold: 30), condition: Condition.Hardmode);
+                    AddItem(ItemID.StrangePlant4, Item.buyPrice(gold: 30), condition: Condition.Hardmode);
                     break;
 
                 case NPCID.Dryad:
                     AddItem(ItemID.NaturesGift, Item.buyPrice(gold: 10));
                     AddItem(ItemID.JungleRose, Item.buyPrice(gold: 20));
-
-                    AddItem(ItemID.StrangePlant1, Item.buyPrice(gold: 20), condition: Condition.Hardmode);
-                    AddItem(ItemID.StrangePlant2, Item.buyPrice(gold: 20), condition: Condition.Hardmode);
-                    AddItem(ItemID.StrangePlant3, Item.buyPrice(gold: 20), condition: Condition.Hardmode);
-                    AddItem(ItemID.StrangePlant4, Item.buyPrice(gold: 20), condition: Condition.Hardmode);
                     break;
 
                 case NPCID.Wizard:
